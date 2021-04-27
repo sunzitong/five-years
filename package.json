@@ -5,11 +5,12 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "dev": "",
-    "list": "lerna list # 查看项目列表",
-    "install": "lerna bootstrap # 安装所有项目依赖",
-    "clean": "lerna clean # 清空所有项目node_modules",
-    "check": "lerna exec ncu # 检查npm依赖版本",
+    "dev": "npm-run-all dev:cli-vue2",
+    "dev:cli-vue2": "lerna run serve --scope=cli-vue2 --stream",
+    "list": "lerna list",
+    "install": "lerna bootstrap",
+    "clean": "lerna clean",
+    "ncu": "lerna exec ncu",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
