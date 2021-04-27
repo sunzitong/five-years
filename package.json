@@ -5,10 +5,10 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "dev": "npm-run-all dev:cli-vue2",
-    "dev:cli-vue2": "lerna run serve --scope=cli-vue2 --stream",
     "build": "npm-run-all build:cli-vue2",
     "build:cli-vue2": "lerna run build --scope=cli-vue2 --stream",
+    "dev": "npm-run-all dev:cli-vue2",
+    "dev:cli-vue2": "lerna run serve --scope=cli-vue2 --stream",
     "list": "lerna list",
     "install": "lerna bootstrap",
     "clean": "lerna clean",
