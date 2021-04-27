@@ -2,6 +2,51 @@
 
 C端 app 内嵌页面
 
+
+# 新建项目配置【重要】
+
+【重要】 配置 `package.json` 的 `build` 和 `postinstall` 命令。
+
+参考 `cli-vue2` 项目，以新建项目 **`myProject`** 为例：
+
+1. 在`packages`中新建项目
+
+   1. 新建 /packages/myProject 作为项目目录
+   2. 修改 /packages/myProject/package.json 的 name 字段 为 myProject
+   3. 修改编译输出目录为 ../../dist/myProject
+   4. SPA项目修改publicPath
+   5. 以上要保持一致, 否则会出现找不到对应项目的情况
+
+   ```sh
+   # 可以快捷生成项目模板再修改
+   npm run create myProject
+   ```
+
+   
+
+2. 在`package.json`的`scripts`中添加/修改指令, 此步骤只针对线上devops, 可以在交付时配置
+
+   同时上线多个项目等特殊情况, 需要看具体的流水线配置
+
+   ```json
+   "scripts": {
+       "postinstall": "npm-run-all install:myProject",
+       "build": "npm-run-all build:myProject",
+       "install:myProject": "lerna bootstrap --scope=myProject",
+       "build:myProject": "lerna run build --scope=myProject",
+   },
+   ```
+
+3. 本地开发
+
+   ```sh
+   # 非特殊情况建议直接打开具体项目进行开发
+   cd packages/myProject
+   code .
+   ```
+
+   
+
 # 目录结构
 
 - packages - 项目集合
@@ -10,7 +55,7 @@ C端 app 内嵌页面
 
 
 
-# 指令说明
+# 指令说明【参考】
 
 ## npm指令
 
@@ -19,12 +64,12 @@ C端 app 内嵌页面
 npm run list
 
 # 安装所有项目的npm依赖
-npm run install
+npm run bootstrap
 
 # 删除所有项目的node_modules
 npm run clean
 
-# 查看所有项目npm依赖的更新版本
+# 查看所有项目npm依赖的版本更新
 npm run ncu
 ```
 
@@ -99,5 +144,3 @@ npx lerna -h
   Run an npm script in each package that contains that script
 
   在每个包中执行npm命令
-
-  
