@@ -7,16 +7,16 @@ if (process.env.NODE_ENV === "production") {
   process.env.VUE_APP_BASE_API = "/dev-api";
 }
 process.env.VUE_APP_BASE_IMG = `@/assets/img/`;
-// 默认活动编号
-process.env.VUE_APP_ACT_NUM = "202008117856";
 // css图片域名变量
 const scssData = `
 $VUE_APP_BASE_IMG: "~${process.env.VUE_APP_BASE_IMG}";
 @import "~@/assets/css/bg-img.scss";`;
 
+const pkg = require('./package.json');
+
 module.exports = {
-  publicPath:
-    process.env.NODE_ENV === "production" ? "/fe/template-vue2-ts-base/" : "",
+  publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}/` : "",
+  outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
   // indexPath,
