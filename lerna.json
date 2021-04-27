@@ -1,0 +1,15 @@
+{
+  "packages": ["packages/*"],
+  "command": {
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [],
+      "hoist": false
+    },
+    "list": {
+      "all": true,
+      "json": true
+    }
+  },
+  "version": "0.0.0"
+}
