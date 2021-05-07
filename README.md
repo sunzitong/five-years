@@ -28,12 +28,12 @@ C端 app 内嵌页面
 
    同时上线多个项目等特殊情况, 需要看具体的流水线配置
 
-   ```json
+   ```js
    "scripts": {
-       "postinstall": "npm-run-all install:myProject", // 修改
-       "build": "npm-run-all build:myProject", // 修改
-       "install:myProject": "lerna bootstrap --scope=myProject", // 新增
-       "build:myProject": "lerna run build --scope=myProject", // 新增
+       "postinstall": "npm-run-all install:myProject", //修改
+       "build": "npm-run-all build:myProject", //修改
+       "install:myProject": "lerna bootstrap --scope=myProject", //新增
+       "build:myProject": "lerna run build --scope=myProject", //新增
    },
    ```
 
