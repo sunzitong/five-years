@@ -30,10 +30,10 @@ C端 app 内嵌页面
 
    ```json
    "scripts": {
-       "postinstall": "npm-run-all install:myProject",
-       "build": "npm-run-all build:myProject",
-       "install:myProject": "lerna bootstrap --scope=myProject",
-       "build:myProject": "lerna run build --scope=myProject",
+       "postinstall": "npm-run-all install:myProject", // 修改
+       "build": "npm-run-all build:myProject", // 修改
+       "install:myProject": "lerna bootstrap --scope=myProject", // 新增
+       "build:myProject": "lerna run build --scope=myProject", // 新增
    },
    ```
 
