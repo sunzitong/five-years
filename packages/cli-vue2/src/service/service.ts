@@ -1,3 +1,4 @@
+import { getToken } from "@/utils/guanyu";
 import axios from "axios";
 import { Toast } from "vant";
 
@@ -11,7 +12,10 @@ service.defaults.headers.post["Content-Type"] = "application/json";
 service.interceptors.request.use(
   (config) => {
     // 需要token就在这里设置
-    // config.headers.common['Authorization'] = localStorage["token"] || '';
+    const token = getToken();
+    if (token) {
+      config.headers.common["Authorization"] = `Bearer ${token}`;
+    }
     return config;
   },
   () => {

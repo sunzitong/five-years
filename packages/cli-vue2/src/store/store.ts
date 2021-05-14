@@ -6,6 +6,8 @@ const store = {
     ...process.env,
     err: "",
   } as Env,
+
+  /* TODO: 其他数据 */
 };
 
 export default store;
