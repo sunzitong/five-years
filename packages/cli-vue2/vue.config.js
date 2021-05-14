@@ -16,7 +16,7 @@ const pkg = require("./package.json");
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
-  outputDir: "dist",
+  outputDir: "../../dist/cli-vue2",
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
   // indexPath,
