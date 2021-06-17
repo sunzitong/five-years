@@ -12,14 +12,9 @@ const subRouter = [
     },
   },
   {
-    path: "index",
+    path: "index",  // 领取月付不上浮优惠券
     component: () => import("@/views/Index.vue"),
     meta: "index",
-  },
-  {
-    path: "bigmember-no-monthraise", // 领取月付不上浮优惠券
-    component: () => import("@/views/BigMemberNoMonthRaise.vue"),
-    meta: "BigMemberNoMonthRaise",
   },
   {
     path: "*",

@@ -5,18 +5,18 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "npm-run-all install:coupon",
-    "build": "npm-run-all --serial build:coupon",
-    "install:coupon": "lerna bootstrap --scope=coupon",
-    "build:coupon": "lerna run build --scope=coupon --stream",
+    "postinstall": "npm-run-all install:coupon-monthnoraise",
+    "build": "npm-run-all --serial build:coupon-monthnoraise",
+    "install:coupon-monthnoraise": "lerna bootstrap --scope=coupon-monthnoraise",
+    "build:coupon-monthnoraise": "lerna run build --scope=coupon-monthnoraise --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
     "ncu": "lerna exec ncu -- --timeout 60000",
     "create": "lerna create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all dev:coupon",
-    "dev:coupon": "lerna run serve --scope=coupon --stream"
+    "dev": "npm-run-all dev:coupon-monthnoraise",
+    "dev:coupon-monthnoraise": "lerna run serve --scope=coupon-monthnoraise --stream"
   },
   "repository": {
     "type": "git",
