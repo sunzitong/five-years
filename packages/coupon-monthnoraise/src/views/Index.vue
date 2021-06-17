@@ -104,7 +104,7 @@ export default class Index extends Base {
     } else {
       // 领取成功
       this.title = "领取成功！";
-      this.desc = "恭喜您，成功领取到一张月付不上浮券，请到我的-优惠券中查看。";
+      this.desc = "恭喜您，成功领取到一张月付不上浮券，请到冠寓APP 我的-优惠券中查看。";
       this.showCommonConfirm = true;
     }
     // if (!res || res.status === "fail") return;
