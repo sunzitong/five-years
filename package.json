@@ -5,18 +5,18 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "npm-run-all install:cli-vue2",
-    "build": "npm-run-all --serial build:cli-vue2",
-    "install:cli-vue2": "lerna bootstrap --scope=cli-vue2",
-    "build:cli-vue2": "lerna run build --scope=cli-vue2 --stream",
+    "postinstall": "npm-run-all install:coupon",
+    "build": "npm-run-all --serial build:coupon",
+    "install:coupon": "lerna bootstrap --scope=coupon",
+    "build:coupon": "lerna run build --scope=coupon --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
     "ncu": "lerna exec ncu -- --timeout 60000",
     "create": "lerna create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all dev:cli-vue2",
-    "dev:cli-vue2": "lerna run serve --scope=cli-vue2 --stream"
+    "dev": "npm-run-all dev:coupon",
+    "dev:coupon": "lerna run serve --scope=coupon --stream"
   },
   "repository": {
     "type": "git",
