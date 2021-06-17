@@ -97,7 +97,7 @@ export default class Index extends Base {
 
     const { code, msg } = res;
     // 领取失败
-    if (+code === 100) {
+    if (+code === 1001) {
       this.title = "系统提示";
       this.desc = msg;
       this.showCommonConfirm = true;
