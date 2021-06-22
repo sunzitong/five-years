@@ -42,7 +42,7 @@ import { judgeSystem, judgeDevice } from "@guanyu/h5-tools";
 import { Toast } from "vant";
 import { requestReceiveMonthPayNotComeUp } from "@/service";
 import CommonConfirm from "@/components/CommonConfirm.vue";
-import { getToken } from "@/utils/guanyu";
+import { getToken, toLogin } from "@/utils/guanyu";
 import Base from "./Base";
 
 @Component({
@@ -80,11 +80,17 @@ export default class Index extends Base {
    * 会员领取月付不上浮接口
    */
   async requestReceiveMonthPayNotComeUp() {
+    const token = getToken();
+    // 未登录
+    if (!token) {
+      toLogin();
+      return;
+    }
     // itemId 门店id layoutId 户型id
     const res = await requestReceiveMonthPayNotComeUp({
       activityNumber: 202106044536, //活动编号
       channel: "app", //渠道
-      token: getToken(), // 渠道是app时，传token
+      token, // 渠道是app时，传token
       buCode:
         judgeDevice() === "小程序"
           ? "C30403"
@@ -104,7 +110,8 @@ export default class Index extends Base {
     } else {
       // 领取成功
       this.title = "领取成功！";
-      this.desc = "恭喜您，成功领取到一张月付不上浮券，请到冠寓APP 我的-优惠券中查看。";
+      this.desc =
+        "恭喜您，成功领取到一张月付不上浮券，请到冠寓APP 我的-优惠券中查看。";
       this.showCommonConfirm = true;
     }
     // if (!res || res.status === "fail") return;
