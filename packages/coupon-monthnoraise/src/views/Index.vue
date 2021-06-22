@@ -101,16 +101,16 @@ export default class Index extends Base {
     if (!res) return;
 
     const { code, msg } = res;
-    // 领取失败
-    if (+code === 1001) {
-      this.title = "系统提示";
-      this.desc = msg;
-      this.showCommonConfirm = true;
-    } else {
+    if (+code === 0) {
       // 领取成功
       this.title = "领取成功！";
       this.desc =
         "恭喜您，成功领取到一张月付不涨价券，请到冠寓APP 我的-优惠券中查看。";
+      this.showCommonConfirm = true;
+    } else {
+        // 领取失败
+      this.title = "系统提示";
+      this.desc = msg;
       this.showCommonConfirm = true;
     }
     // if (!res || res.status === "fail") return;
