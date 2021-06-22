@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="coupon">
-      <div class="title">月付不上浮券</div>
+      <div class="title">月付不涨价券</div>
       <div class="dash" />
       <div class="desc">签约时选择月付时，可以使用本券抵免 月付服务费</div>
     </div>
@@ -11,19 +11,19 @@
     <div class="instructions">
       优惠券使用说明：
       <br />
-      1.现阶段仅面向5级用户开放，可在冠寓APP“我的”-“花珑珠”-“月付不上浮券”免费领取。
+      1.现阶段仅面向5级用户开放，可在冠寓APP“我的”-“花珑珠”-“月付不涨价券”免费领取。
       <br />
-      2.同一用户一个自然年内只能使用一次月付不上浮券。
+      2.同一用户一个自然年内只能使用一次月付不涨价券。
       <br />
       3.此优惠券的有效期为本年度12月31日，过期作废
       <br />
-      4.月付不上浮券”不可与其他优惠同时使用
+      4.月付不涨价券”不可与其他优惠同时使用
       <br />
-      5.已领取的“月付不上浮券”请到冠寓APP“我的”——“优惠券”中查看
+      5.已领取的“月付不涨价券”请到冠寓APP“我的”——“优惠券”中查看
       <br />
       6.此券可在全国所有冠寓门店通用。
       <br />
-      7.请在操作签约前提前兑换月付不上浮券，并告知门店运营官您要使用该券。
+      7.请在操作签约前提前兑换月付不涨价券，并告知门店运营官您要使用该券。
       <br />
       8.珑珠抵扣金额部分不支持开具发票
     </div>
@@ -77,7 +77,7 @@ export default class Index extends Base {
   }
 
   /**
-   * 会员领取月付不上浮接口
+   * 会员领取月付不涨价接口
    */
   async requestReceiveMonthPayNotComeUp() {
     const token = getToken();
@@ -111,7 +111,7 @@ export default class Index extends Base {
       // 领取成功
       this.title = "领取成功！";
       this.desc =
-        "恭喜您，成功领取到一张月付不上浮券，请到冠寓APP 我的-优惠券中查看。";
+        "恭喜您，成功领取到一张月付不涨价券，请到冠寓APP 我的-优惠券中查看。";
       this.showCommonConfirm = true;
     }
     // if (!res || res.status === "fail") return;
