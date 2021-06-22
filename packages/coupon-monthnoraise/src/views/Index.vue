@@ -175,6 +175,7 @@ export default class Index extends Base {
   }
 
   .revice-btn {
+    cursor: pointer;
     margin: 20px 20px 0px 20px;
     height: 50px;
     background: #f18d00;
