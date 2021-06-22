@@ -14,7 +14,8 @@ service.interceptors.request.use(
     // 需要token就在这里设置
     const token = getToken();
     if (token) {
-      config.headers.common["Authorization"] = `Bearer ${token}`;
+      // 不可以在请求头中加 Authorization, 海辉
+      // config.headers.common["Authorization"] = `Bearer ${token}`;
     }
     return config;
   },

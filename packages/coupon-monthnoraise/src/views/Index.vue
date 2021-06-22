@@ -80,12 +80,12 @@ export default class Index extends Base {
    * 会员领取月付不涨价接口
    */
   async requestReceiveMonthPayNotComeUp() {
-    const token = getToken();
+    const token = getToken() || '8f993057e28c404db73163b645b3cccd';
     // 未登录
-    if (!token) {
-      toLogin();
-      return;
-    }
+    // if (!token) {
+    //   toLogin();
+    //   return;
+    // }
     // itemId 门店id layoutId 户型id
     const res = await requestReceiveMonthPayNotComeUp({
       activityNumber: 202106044536, //活动编号
