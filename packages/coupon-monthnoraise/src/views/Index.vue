@@ -5,9 +5,7 @@
       <div class="dash" />
       <div class="desc">签约时选择月付时，可以使用本券抵月付服务费</div>
     </div>
-    <div class="revice-btn" @click="receiveMonthPayNotComeUp">
-      立即领取1
-    </div>
+    <div class="revice-btn" @click="receiveMonthPayNotComeUp">立即领取1</div>
     <div class="instructions">
       优惠券使用说明：
       <br />
@@ -43,6 +41,7 @@ import { Toast } from "vant";
 import { requestReceiveMonthPayNotComeUp } from "@/service";
 import CommonConfirm from "@/components/CommonConfirm.vue";
 import { getToken, toLogin } from "@/utils/guanyu";
+import { getQueries } from "@/utils/tools";
 import Base from "./Base";
 
 @Component({
@@ -80,24 +79,11 @@ export default class Index extends Base {
    * 会员领取月付不涨价接口
    */
   async receiveMonthPayNotComeUp() {
-    console.log(1)
-    const token = getToken();
-    // 未登录
-    if (!token) {
-      console.log(2)
-      toLogin();
-      return;
-    }
     const res = await requestReceiveMonthPayNotComeUp({
       activityNumber: 202106044536, //活动编号
       channel: "app", //渠道
-      token, // 渠道是app时，传token
-      buCode:
-        judgeDevice() === "小程序"
-          ? "C30403"
-          : judgeSystem() === "isIos"
-          ? "C30603"
-          : "C30503", //ios来的传C30603 安卓来的传C30503
+      token: getQueries().token, // 渠道是app时，传token
+      buCode: getQueries().buCode,
     });
 
     if (!res) return;
@@ -110,7 +96,7 @@ export default class Index extends Base {
         "恭喜您，成功领取到一张月付不涨价券，请到冠寓APP 我的-优惠券中查看。";
       this.showCommonConfirm = true;
     } else {
-        // 领取失败
+      // 领取失败
       this.title = "系统提示";
       this.desc = msg;
       this.showCommonConfirm = true;

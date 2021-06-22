@@ -17,20 +17,6 @@ import { getQueries } from "@guanyu/shared";
  */
 export function getToken(): string {
   const visitSource = judgeDevice();
-  console.log('visitSource', visitSource);
-  const judgeSystem = () => {
-    const u = navigator.userAgent;
-    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // 安卓
-    const isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-    if (isAndroid) {
-      console.log('isAndroid');
-    }
-    if (isIos) {
-      console.log('isIos');
-    }
-  };
-  console.log('navigator.userAgent', navigator.userAgent);
-  console.log(navigator.userAgent.includes('GY'));
   /*
   // 模拟
   if (process.env.NODE_ENV === "development") {
@@ -56,9 +42,7 @@ export function getToken(): string {
  * 需要手动引用 jweixin sdk
  */
 export function toLogin(webviewUrl = "") {
-  console.log(3)
   const visitSource = judgeDevice();
-  console.log('visitSource', visitSource);
   if (visitSource === "小程序") {
     webviewUrl = webviewUrl || window.location.href;
     return window.wx.miniProgram.navigateTo({
@@ -68,7 +52,6 @@ export function toLogin(webviewUrl = "") {
     });
   }
   if (visitSource === "APP") {
-    console.log(4)
     return (window.location.href = "guanyu://page.gy/login");
   }
   return false;
