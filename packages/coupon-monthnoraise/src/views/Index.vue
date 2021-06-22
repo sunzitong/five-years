@@ -5,7 +5,7 @@
       <div class="dash" />
       <div class="desc">签约时选择月付时，可以使用本券抵月付服务费</div>
     </div>
-    <div class="revice-btn" @click="receiveMonthPayNotComeUp">立即领取1</div>
+    <div class="revice-btn" @click="receiveMonthPayNotComeUp">立即领取</div>
     <div class="instructions">
       优惠券使用说明：
       <br />
