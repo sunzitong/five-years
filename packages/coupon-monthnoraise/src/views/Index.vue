@@ -5,7 +5,7 @@
       <div class="dash" />
       <div class="desc">签约时选择月付时，可以使用本券抵月付服务费</div>
     </div>
-    <div class="revice-btn" @click="requestReceiveMonthPayNotComeUp">
+    <div class="revice-btn" @click="receiveMonthPayNotComeUp">
       立即领取1
     </div>
     <div class="instructions">
@@ -79,7 +79,7 @@ export default class Index extends Base {
   /**
    * 会员领取月付不涨价接口
    */
-  async requestReceiveMonthPayNotComeUp() {
+  async receiveMonthPayNotComeUp() {
     console.log(1)
     const token = getToken();
     // 未登录
