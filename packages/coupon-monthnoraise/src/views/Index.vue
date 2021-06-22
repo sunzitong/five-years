@@ -3,7 +3,7 @@
     <div class="coupon">
       <div class="title">月付不涨价券</div>
       <div class="dash" />
-      <div class="desc">签约时选择月付时，可以使用本券抵免 月付服务费</div>
+      <div class="desc">签约时选择月付时，可以使用本券抵月付服务费</div>
     </div>
     <div class="revice-btn" @click="requestReceiveMonthPayNotComeUp">
       立即领取
