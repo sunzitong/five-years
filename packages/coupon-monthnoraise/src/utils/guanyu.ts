@@ -42,7 +42,9 @@ export function getToken(): string {
  * 需要手动引用 jweixin sdk
  */
 export function toLogin(webviewUrl = "") {
+  console.log(3)
   const visitSource = judgeDevice();
+  console.log('visitSource', visitSource);
   if (visitSource === "小程序") {
     webviewUrl = webviewUrl || window.location.href;
     return window.wx.miniProgram.navigateTo({
@@ -52,6 +54,7 @@ export function toLogin(webviewUrl = "") {
     });
   }
   if (visitSource === "APP") {
+    console.log(4)
     return (window.location.href = "guanyu://page.gy/login");
   }
   return false;

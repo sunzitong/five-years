@@ -80,9 +80,11 @@ export default class Index extends Base {
    * 会员领取月付不涨价接口
    */
   async requestReceiveMonthPayNotComeUp() {
+    console.log(1)
     const token = getToken();
     // 未登录
     if (!token) {
+      console.log(2)
       toLogin();
       return;
     }
