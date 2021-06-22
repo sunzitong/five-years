@@ -64,7 +64,7 @@ export default class Index extends Base {
 
   title = "";
   desc = "";
-  showCommonConfirm = true;
+  showCommonConfirm = false;
 
   // head() {
   //   return {

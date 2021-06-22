@@ -17,6 +17,20 @@ import { getQueries } from "@guanyu/shared";
  */
 export function getToken(): string {
   const visitSource = judgeDevice();
+  console.log('visitSource', visitSource);
+  const judgeSystem = () => {
+    const u = navigator.userAgent;
+    const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // 安卓
+    const isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+    if (isAndroid) {
+      console.log('isAndroid');
+    }
+    if (isIos) {
+      console.log('isIos');
+    }
+  };
+  console.log('navigator.userAgent', navigator.userAgent);
+  console.log(navigator.userAgent.includes('GY'));
   /*
   // 模拟
   if (process.env.NODE_ENV === "development") {
