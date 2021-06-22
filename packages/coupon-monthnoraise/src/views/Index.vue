@@ -79,7 +79,7 @@ export default class Index extends Base {
   /**
    * 会员领取月付不涨价接口
    */
-  async receiveMonthPayNotComeUp() {
+  receiveMonthPayNotComeUp() {
     console.log(1)
     const token = getToken();
     // 未登录
@@ -88,6 +88,7 @@ export default class Index extends Base {
       toLogin();
       return;
     }
+    return;
     const res = await requestReceiveMonthPayNotComeUp({
       activityNumber: 202106044536, //活动编号
       channel: "app", //渠道
