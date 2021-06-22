@@ -89,7 +89,7 @@ export default class Index extends Base {
       return;
     }
     return;
-    const res = await requestReceiveMonthPayNotComeUp({
+    const res = requestReceiveMonthPayNotComeUp({
       activityNumber: 202106044536, //活动编号
       channel: "app", //渠道
       token, // 渠道是app时，传token
