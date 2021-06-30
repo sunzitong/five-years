@@ -44,22 +44,12 @@ export default class Index extends Base {
 
   mounted() {
     document.title = "领取优惠券";
-    // if (this.isWeiXinInner() === -1) {
-    //   this.isWeiXin = false;
-    // } else {
-    //   this.isWeiXin = true;
-    // }
   }
 
   title = "";
   desc = "";
   showCommonConfirm = false;
 
-  // head() {
-  //   return {
-  //     title: "付款方式",
-  //   };
-  // }
 
   confrimCb() {
     this.showCommonConfirm = false;
@@ -83,7 +73,7 @@ export default class Index extends Base {
       // 领取成功
       this.title = "领取成功！";
       this.desc =
-        "恭喜您，成功领取到一张月付不涨价券，请到冠寓APP 我的-优惠券中查看。";
+        "恭喜您，成功领取到一张月付不涨价券，请到【冠寓APP-我的-优惠券】中查看。";
       this.showCommonConfirm = true;
     } else {
       // 领取失败
@@ -91,19 +81,7 @@ export default class Index extends Base {
       this.desc = msg;
       this.showCommonConfirm = true;
     }
-    // if (!res || res.status === "fail") return;
-    // if (res.code === 10000) {
-    //   const { rentQtyDescList = [] } = res.data;
-    //   this.payModeList = rentQtyDescList;
-    // } else {
-    //   Toast.fail(res.message);
-    // }
   }
-
-  // 判断是否在微信里
-  // isWeiXinInner() {
-  //   return navigator.userAgent.toLowerCase().indexOf("micromessenger");
-  // }
 }
 </script>
 
