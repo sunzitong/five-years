@@ -23,7 +23,7 @@ const subRouter = [
 ];
 
 const mainRouter = new Router({
-  mode: "history",
+  mode: "hash",
   // base: process.env.BASE_URL 即 vue.config.js publicPath
   routes: [
     {
