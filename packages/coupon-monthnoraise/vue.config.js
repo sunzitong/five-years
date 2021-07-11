@@ -19,6 +19,7 @@ module.exports = {
   outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
+  transpileDependencies: [/[/\\]node_modules[/\\]/],
   // indexPath,
   // 去掉文件名中的 hash
   // filenameHashing: false,
@@ -108,7 +109,7 @@ module.exports = {
     https: false,
     hotOnly: false,
     open: false,
-    before: (app) => {},
+    before: (app) => { },
     disableHostCheck: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
