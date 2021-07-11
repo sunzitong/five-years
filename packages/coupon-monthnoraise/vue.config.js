@@ -19,7 +19,8 @@ module.exports = {
   outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
-  transpileDependencies: [/[/\\]node_modules[/\\]/],
+  // transpileDependencies: [/[/\\]node_modules[/\\]@guanyu[/\\]/],
+  transpileDependencies: [/[/\\]node_modules[/\\][@\\]guanyu[/\\]/],
   // indexPath,
   // 去掉文件名中的 hash
   // filenameHashing: false,
