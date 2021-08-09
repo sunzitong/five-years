@@ -1,7 +1,7 @@
 const pkg = require("./package.json");
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === "production" ? `/fe/toch5/${pkg.name}` : "",
+    publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
     outputDir: `../../dist/${pkg.name}`,
     css: {
         loaderOptions: {

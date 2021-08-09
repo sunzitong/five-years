@@ -5,18 +5,16 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "npm-run-all install:oldCustomerInvitation",
-    "build": "npm-run-all --serial build:oldCustomerInvitation",
-    "install:oldCustomerInvitation": "lerna bootstrap --scope=oldCustomerInvitation",
-    "build:oldCustomerInvitation": "lerna run build --scope=oldCustomerInvitation --stream",
+    "postinstall": "lerna bootstrap --scope=customerinvitat",
+    "build": "lerna run build --scope=customerinvitat --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
     "ncu": "lerna exec ncu -- --timeout 60000",
     "create": "lerna create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all dev:oldCustomerInvitation",
-    "dev:oldCustomerInvitation": "lerna run serve --scope=oldCustomerInvitation --stream"
+    "dev": "npm-run-all dev:customerinvitat",
+    "dev:customerinvitat": "lerna run serve --scope=customerinvitat --stream"
   },
   "repository": {
     "type": "git",
