@@ -1,67 +1,29 @@
 <template>
   <div id="app">
-    <router-view />
-    <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="false" />
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Mixins, Provide } from "vue-property-decorator";
-import AppLoading from "@/components/AppLoading.vue";
-import MixStore from "@/store/MixStore";
-import { setMiniProgramShare, showAppShare } from "./utils/guanyu";
-import { judgeDevice } from "@guanyu/h5-tools";
-
-@Component({
-  name: "app",
-  components: {
-    AppLoading,
-  },
-})
-export default class App extends Mixins(MixStore) {
-  @Provide()
-  /**
-   * Provide会透传给所有自级组件
-   * 环境: APP 小程序 browser
-   */
-  visitSource = judgeDevice();
-
-  /**
-   * Provide会透传给所有自级组件
-   * 用Inject接收
-   */
-  @Provide()
-  share() {
-    const title = "冠寓";
-    const img =
-      "https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/oNuSnxNLKKU.png";
-    if (this.visitSource === "小程序") {
-      return setMiniProgramShare({
-        title,
-        imageUrl: img,
-        path: location.href,
-      });
-    }
-    if (this.visitSource === "APP") {
-      /**
-       * 调用app的分享 分享目标到小程序 miniProgramUrl
-       */
-      return showAppShare(
-        {
-          title,
-          image: img,
-          url: location.href,
-        },
-        location.href,
-        2
-      );
+<style lang="less">
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
     }
   }
-}
-</script>
-<style lang="scss">
-#app {
-  min-height: 100vh;
 }
 </style>
