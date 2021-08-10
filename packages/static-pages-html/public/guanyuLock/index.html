@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="text/html charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <link rel='apple-touch-icon' href='https://static.iguanyu.com/manual/app/book/static/img/key.png'>
+    <title>冠寓门锁</title>
+    <script>
+        // 设置rem转换
+        function getRem(pwidth, prem) {
+            var html = document.getElementsByTagName("html")[0];
+            var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+            html.style.fontSize = oWidth / pwidth * prem + "px";
+            document.getElementById('container').classList.remove('hidden')
+        }
+        window.onload = function () {
+            /*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+              为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+            getRem(375, 100)
+            if (window.navigator.standalone === true) {
+                // 初始化当前时间戳
+                var initTimestamp = new Date().getTime();
+                document.getElementById('container').classList.add('hidden')
+                window.location.href = 'guanyu://page.gy/door/open';
+                const timer = setInterval(() => {
+                    let currentTimestamp = new Date().getTime();
+                    // 成功跳转app
+                    if (document.hidden || document.webkitHidden) {
+                        clearTimeout(timer)
+                    }
+                    if (currentTimestamp - initTimestamp > 5000) {
+                        window.location.href = 'https://itunes.apple.com/cn/app/冠寓/id1286975560?ls=1&mt=8'
+                        clearTimeout(timer)
+                    }
+                }, 20)
+            }
+        };
+        window.onresize = function () {
+            getRem(375, 100)
+        };
+    </script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            text-decoration: none;
+            font-family: "微软雅黑";
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f8f8f8;
+        }
+
+        a,
+        a:hover,
+        a:active,
+        a:visited,
+        a:link,
+        a:focus {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            background: none;
+            text-decoration: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        img {
+            display: block;
+        }
+
+        #vip {
+            width: 100%;
+            max-width: 1080px;
+            margin: 0 auto;
+            background: #f8f8f8;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            /*   justify-content:center; */
+            align-items: center;
+        }
+
+        .content {
+            width: 2.5rem;
+            height: 2.5rem;
+            max-width: 200;
+            min-height: 2.5rem;
+            background: #fff;
+            border-radius: 0.15rem;
+            margin-top: 1.375rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 0.15rem;
+            overflow: hidden;
+            box-shadow: 0 0.75px 2px #ddd;
+        }
+
+        .key {
+            width: 0.625rem;
+            height: 0.625rem;
+        }
+
+        .title {
+            margin-top: 0.15rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .des {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.05rem;
+        }
+
+        .share {
+            width: 0.125rem;
+            height: 0.175rem;
+            display: block;
+            margin-left: 0.025rem;
+            margin-top: -0.05rem;
+        }
+
+        .corner {
+            width: 0px;
+            /*  宽高设置为0，很重要，否则达不到效果 */
+            height: 0px;
+            border: 5px solid #fff;
+            border-bottom-color: transparent;
+            /* 设置透明背景色 */
+            border-left-color: transparent;
+            border-right-color: transparent;
+
+        }
+    </style>
+</head>
+
+<body class="hidden" id="container">
+    <div id="vip">
+        <div class="content">
+            <img src="https://static.iguanyu.com/manual/app/book/static/img/key.png" class="key" alt="">
+            <div class="title">开门钥匙</div>
+            <div>
+                <span class="des">点击下方工具栏上的<img src="https://static.iguanyu.com/manual/app/book/static/img/share.png"
+                        class="share" alt=""></span> 并选择“添加到主屏幕”
+            </div>
+        </div>
+        <div class="corner"></div>
+    </div>
+</body>
+
+</html>

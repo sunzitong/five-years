@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>款项划转确认书</title>
+  <script>
+    // 设置rem转换
+    function getRem(pwidth, prem) {
+      var html = document.getElementsByTagName("html")[0];
+      var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+      html.style.fontSize = oWidth / pwidth * prem + "px";
+      document.getElementById('container').classList.remove('hidden')
+    }
+    window.onload = function () {
+      /*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+        为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+      getRem(375, 100)
+    };
+    window.onresize = function () {
+      getRem(375, 100)
+    };
+  </script>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      text-decoration: none;
+      font-family: "微软雅黑";
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: white;
+      font-size: 14px;
+      line-height: 32px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .contract-number {
+      text-align: right;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 20px 0px;
+    }
+
+    .desc {
+      margin-top: 20px;
+      text-indent: 2em;
+    }
+
+    .clause {
+      text-indent: 2em;
+      margin-top: 10px;
+    }
+
+    .signature {
+      margin-top: 40px;
+      margin-right: 27px;
+      text-align: right;
+    }
+    .date {
+      text-align: right;
+      /* margin-top: 40px; */
+    }
+  </style>
+</head>
+
+<body class="hidden" id="container">
+  <div class="container">
+    <div class="title">款项划转确认书</div>
+    <div class="info">________冠寓商业经营有限公司：
+    </div>
+    <div class="clause">
+      本人（姓名、身份证号）系贵司冠寓（___店）住户,因跨门店换房事宜，特向贵司确认如下事宜：
+    </div>
+    <div class="clause">
+      本人自____冠寓（____店）换房至____冠寓（____店），对于换房前本人已付费用中的剩余部分￥_______元（大写人民币________元），贵司无需退还本人，可直接费用划转至换房后门店账户，以冲抵换房后租住房间产生费用中的相应部分。
+    </div>
+    <div class="clause">
+      本人确认并特别授权贵司完成上述款项划转操作，由此产生的一切法律责任由本人自行承担。
+    </div>
+    <div class="clause">
+      特此确认。
+    </div>
+    <div class="signature">本人签名：</div>
+    <div class="date">日期：  年  月  日</div>
+  </div>
+</body>
+
+</html>

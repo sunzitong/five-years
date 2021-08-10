@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>龙湖冠寓</title>
+  <script>
+    // 设置rem转换
+    function getRem(pwidth, prem) {
+      var html = document.getElementsByTagName("html")[0];
+      var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+      html.style.fontSize = oWidth / pwidth * prem + "px";
+      document.getElementById('container').classList.remove('hidden')
+    }
+    window.onload = function () {
+      /*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+        为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+      getRem(375, 100)
+    };
+    window.onresize = function () {
+      getRem(375, 100)
+    };
+  </script>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      text-decoration: none;
+      font-family: "微软雅黑";
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: white;
+      font-size: 14px;
+      line-height: 32px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .contract-number {
+      text-align: right;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 20px 0px;
+    }
+
+    .desc {
+      margin-top: 20px;
+      text-indent: 2em;
+    }
+
+    .clause {
+      margin-top: 10px;
+    }
+
+    .foot-line {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body class="hidden" id="container">
+  <div class="container">
+    <div class="contract-number">合同编号：【 】</div>
+    <div class="title">房租租赁意向书</div>
+    <div class="info">甲 方：____________________________</div>
+    <div class="info">已 方：____________________________</div>
+    <div class="info">有效证件类型：_____________________</div>
+    <div class="info">有效证件号码：_____________________</div>
+    <div class="info">手机号码：_________________________</div>
+    <div class="desc">
+      乙方有意入住甲方经营的房屋，经甲乙双方友好协商一致，就相关事宜订立本意向书。
+    </div>
+    <div class="clause">
+      <span>一、</span>
+      甲方经营的房屋位于________________
+      ，乙方有意租住该房屋，由甲方向乙方提供房间租赁服务。
+    </div>
+    <div class="clause">
+      <span>二、</span>
+      乙方意向租住的房屋房间号为________
+      （以下称“意向房屋”）。为保障乙方租住权益与签约优先权，乙方自愿向甲方支付定金￥________
+      元（大写人民币________ ），乙方在签署本意向书时支付上述定金。
+    </div>
+    <div class="clause">
+      <span>三、</span>
+      乙方向甲方足额支付定金后，甲方为乙方保留意向房屋至______年______月______
+      日，在此之前，甲方承诺不会就意向房屋向任何第三方提供租赁服务（本意向书签订时已有住户的除外）。上述期限届满前，若甲方与第三方就意向房屋签订协议并允许他人入住的，则甲方双倍退还乙方已付定金。
+    </div>
+    <div class="clause">
+      <span>四、</span>
+      乙方应在本意向书第三条约定的时间前与甲方签订《房屋租赁协议》并支付首期费用。若乙方未在上述期限内签约并支付相关费用，则甲方有权没收乙方已付定金，并将意向房屋另行处置而无需通知乙方。
+    </div>
+    <div class="clause">
+      <span>五、</span>
+      本意向书自甲乙双方签字盖章且甲方收到乙方定金时生效，在甲乙双方签订《房屋租赁协议》后自动失效，乙方支付的定金同时转为乙方应付合同保证金的一部分。
+    </div>
+    <div class="clause">
+      <span>六、</span>
+      本意向书一式贰份，甲乙双方各持壹份，具有同等法律效力。
+    </div>
+    <div class="clause">
+      <span>七、</span>
+      甲乙双方一致确认：本意向书可以采用电子签章技术签署，电子签章生成的文档无需加盖传统印章或签名。电子签章文档与纸质版意向书同样具备合同法律效力。
+    </div>
+    <div class="foot-line">甲方：（盖章）</div>
+    <div class="foot-line">法定代表人或授权代表：</div>
+    <div class="foot-line">乙方：（盖章）</div>
+    <div class="foot-line">法定代表人或授权代表：</div>
+  </div>
+</body>
+
+</html>
