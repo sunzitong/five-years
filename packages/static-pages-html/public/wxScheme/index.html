@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>龙湖冠寓</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        // 获取url query参数
+        var queryObj = {};
+        if (window.location.search) {
+            window.location.search.replace('?', '').split('&').forEach((item) => {
+                queryObj[item.split('=')[0]] = item.split('=')[1]
+            })
+        }
+        // 打开小程序链接
+        var openWx = function () {
+            location.href = decodeURIComponent(queryObj.wxScheme)
+        }
+        // 设置rem转换
+        function getRem(pwidth, prem) {
+            console.log('pwidth', pwidth);
+            var html = document.getElementsByTagName("html")[0];
+            var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+            html.style.fontSize = oWidth / pwidth * prem + "px";
+            $('#container').removeClass('hidden')
+            // 自动出发打开小程序链接
+            if (queryObj.wxScheme) {
+                location.href = decodeURIComponent(queryObj.wxScheme)
+            }
+        }
+        window.onload = function () {
+            /*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+              为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+            getRem(375, 100)
+        };
+        window.onresize = function () {
+            getRem(375, 100)
+        };
+    </script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        a {
+            text-decoration: none;
+            border: none;
+        }
+
+        *,
+        body,
+        head,
+        div,
+        p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .icon-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 0.75rem;
+        }
+
+        .arrow {
+            margin-left: 0.08rem;
+            margin-right: 0.125rem;
+            width: 0.445rem;
+            height: 0.225rem;
+        }
+
+        .text {
+            margin-top: 0.12rem;
+            color: #666666;
+            font-size: 0.15rem;
+        }
+
+        .btn {
+            margin-top: 0.6rem;
+            border: 0.02rem solid rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            border-radius: 0.08rem;
+            height: 0.5rem;
+            width: 1.55rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.17rem;
+            font-weight: bold;
+            color: #333333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container hidden" id="container">
+        <div class="icon-container">
+            <img class="logo" src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/mI5PsNKol8a68Ig24FWlIg.png"
+                alt="">
+            <img class="arrow" src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/j9zD5iATklvWrLpEMfLyOQ.png"
+                alt="">
+            <img class="logo" src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/45jGJGypP7GXnmXSQHpqQg.png"
+                alt="">
+        </div>
+        <div class="text">
+            点击下方按钮参加活动
+        </div>
+        <a class="btn" href="javascript:" onclick="openWx()">
+            进入活动
+        </a>
+    </div>
+</body>
+
+</html>

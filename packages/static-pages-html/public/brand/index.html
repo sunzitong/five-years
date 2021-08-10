@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>品牌联名</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $(document).ready(() => {
+            // 如果是小程序环境
+            if (window.navigator.userAgent.includes('miniProgram')) {
+                // 隐藏樊登读书，因为小程序业务域名未配置
+                $("#vip_readinng").addClass("hiden");
+                // 隐藏高德地图，因为小程序业务域名未配置
+                $("#gaode").addClass("hiden");
+                // 隐藏滴滴打车，因为滴滴没法跟我们做域名验证
+                $("#didi").addClass("hiden");
+                // 全棉时代打车，因为滴滴没法跟我们做域名验证
+                $("#cotton").addClass("hiden");
+                // 隐藏合作页的
+                $('.cooperation-container').addClass("hiden");
+                $('.brand').removeClass('app')
+            }
+        })
+    </script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: #f8f8f8;
+            height: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        *,
+        body,
+        head,
+        div,
+        p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .brand {
+            overflow: auto;
+        }
+
+        .app {
+            overflow: scroll;
+            height: calc(100vh - 70px - env(safe-area-inset-bottom));
+        }
+
+        .brand-list {
+            padding: 0 10px;
+        }
+
+        .brand-list li {
+            width: 100%;
+            margin-top: 10px;
+            background-color: #ffffff;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+        }
+
+        .brand-list li a {
+            display: block;
+            width: 100%;
+            height: 100px;
+        }
+
+        .brand-list li h3 {
+            font-size: 15px;
+            color: #666666;
+            line-height: 41px;
+            font-weight: normal;
+            padding: 0 10px;
+        }
+
+        .brand-list li a img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hiden {
+            display: none !important;
+        }
+
+        .cooperation-container {
+            position: absolute;
+            left: 0;
+            bottom: env(safe-area-inset-bottom);
+            width: 100%;
+            padding: 0px 10px;
+            box-sizing: border-box;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cooperation-container .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(130, 73, 33, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 24px;
+            text-align: center;
+            color: #824921;
+            height: 50px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="brand app">
+        <ul class="brand-list">
+            <li>
+                <a href="https://act.huolala.cn/rs/201903/act_user_ling/index.html?uuid=i7hjcs">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/sw-mZVP7312N2NtupFlwCg.png" alt="">
+                </a>
+                <h3>Goyoo星球专享货拉拉搬家权益</h3>
+            </li>
+            <li id='vip_readinng'>
+                <a
+                    href="https://card.dushu.io/activity/card/index.html?id=1137&activityId=18&randomCode=OkMRvc57OkZsM6nlakf">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/0-mtj0bsiWtpBp6svYsuEA.jpeg"
+                        alt="">
+                </a>
+                <h3>樊登14天读书卡领取</h3>
+            </li>
+            <li id='cotton'>
+                <a
+                    href="https://mall.winnermedical.com/mobile/index#/componentPage?uuid=ebb07a9a-eb4b-4d98-8c57-8c5034bf2f9d&chn=187">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/GV9wliB3Itz97Zeahplmfg.jpeg"
+                        alt="">
+                </a>
+                <h3>全棉时代官方商城</h3>
+            </li>
+            <li id="didi">
+                <a href="https://z.didi.cn/4ezr4">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/FJuG-fJNtJTlEZ8N3XINwg.jpg" alt="">
+                </a>
+                <h3>滴滴出行优惠礼包</h3>
+            </li>
+            <li id='gaode'>
+                <a href="https://cache.amap.com/activity/2020TaxiGetNew/index.html?gd_from=4fQmiJgkk55">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/mD1icNbBS-bU3Foo6GElhw.png" alt="">
+                </a>
+                <h3>高德打车优惠礼包</h3>
+            </li>
+            <li>
+                <a
+                    href="https://70ox-sf-self-creation.weixinjia.net/mobile/index?channel=2&aid=70OxA9Cx3oiHnluZyUOtknoQF6Xxr7x1">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/15LjCJ6qsbJ2PR7dxR19fg.png" alt="">
+                </a>
+                <h3>顺丰百元寄件礼包</h3>
+            </li>
+            <li>
+                <a
+                    href="https://market.ishansong.com/marketing/recipientConversion.html?activity_id=205&activityCode=2512p8y49i">
+                    <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/Z9iigrb4uX45RTAVk0QMfQ.png" alt="">
+                </a>
+                <h3>闪送超级专属优惠</h3>
+            </li>
+        </ul>
+    </div>
+    <div class="cooperation-container">
+        <a class="btn" href="https://www.wenjuan.com/s/UZBZJv0Czk/">
+            我要合作
+            <a>
+    </div>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
     "bootstrap": {
       "ignore": "component-*",
       "npmClientArgs": [],
-      "hoist": false
+      "hoist": true
     },
     "list": {
       "all": true,

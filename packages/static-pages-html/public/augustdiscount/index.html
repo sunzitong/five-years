@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script>
+
+    window.onload = () => {
+      var suwan = 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/g-D-XT5gRKo-q-pdy_P9Xw.jpg'
+      var shandong = 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/P9czWhAnkWpfLUCM2Ku39g.jpeg'
+      var guangzhou = 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/tsRL4zwcg36haUaksb0mqQ.jpg'
+      var hangzhou = 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/bkD7xR_jCg53d52WjPsB0g.jpg'
+      var wuhan = 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Yi4o3jIewKPaLvuG7znX0A.jpg';
+      var queryObj = {}
+      location.search && location.search.replace('?', '').split('&&').forEach((item) => {
+        queryObj[item.split('=')[0]] = item.split('=')[1]
+      })
+      var title = ''
+      var imgSrc = ''
+      switch (queryObj.cityName) {
+        case 'suwan':
+          title = '苏皖8月特价门店';
+          imgSrc = suwan;
+          break;
+        case 'shandong':
+          title = '山东8月特价门店';
+          imgSrc = shandong;
+          break;
+        case 'guangzhou':
+          title = '广州8月特价门店';
+          imgSrc = guangzhou;
+          break;
+        case 'hangzhou':
+          title = '杭州8月特价门店';
+          imgSrc = hangzhou;
+          break;
+        case 'wuhan':
+          title = '武汉8月特价门店';
+          imgSrc = wuhan;
+          break;
+        default:
+          title = '武汉8月特价门店';
+          imgSrc = wuhan;
+      }
+
+      document.title = title;
+
+      document.getElementById('image').src = imgSrc;
+    }
+    // $(document).ready(() => {
+
+
+    // })
+  </script>
+  <style>
+    *,
+    body,
+    head,
+    div,
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <img id='image' src="" alt="">
+</body>
+
+</html>

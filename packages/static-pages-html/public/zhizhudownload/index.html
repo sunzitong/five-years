@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>龙湖冠寓</title>
+    <script>
+        // 设置rem转换
+        function getRem(pwidth, prem) {
+            var html = document.getElementsByTagName("html")[0];
+            var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+            html.style.fontSize = oWidth / pwidth * prem + "px";
+            document.getElementById('container').classList.remove('hidden')
+        }
+        window.onload = function () {
+            /*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+              为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+            getRem(375, 100)
+        };
+        window.onresize = function () {
+            getRem(375, 100)
+        };
+    </script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            border: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        *,
+        body,
+        head,
+        div,
+        p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .header-container {
+            width: 100%;
+        }
+
+        .title {
+            margin-top: 0.85rem;
+            font-size: 0.44rem;
+            font-weight: bold;
+        }
+
+        .down-load-btn {
+            border-radius: 0.29rem;
+            width: 2.79rem;
+            background: #1C7AF7;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0.82rem;
+            padding: 0.12rem 0;
+        }
+
+        .label {
+            font-size: 0.16rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .version {
+            font-size: 0.11rem;
+            opacity: 0.7;
+        }
+
+        .intro {
+            font-size: 0.12rem;
+            line-height: 0.2rem;
+            color: #1C7AF7;
+            opacity: 0.8;
+            margin-top: 0.6rem;
+            padding: 0 0.3rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="hidden" id="container">
+    <img alt="" src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/3ByjGb_rOqswYim2zGXx3g.png"
+        class="header-container">
+    </div>
+    <a class="down-load-btn"
+        href="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/guanyuapp/CNXilwujf4xaBFyhMkoFtw.apk">
+        <div class="label">
+            下载
+        </div>
+        <div class="version">
+            当前版本：1.0.0（最新）
+        </div>
+    </a>
+    <p class="intro">
+        智珠时空，是集销售管理、租约管理、资产管理、财务管理、对客服务、数据看板等模块于一体，服务 于业主、租户、一线运营的租赁住房管理平台。
+    </p>
+</body>
+
+</html>
