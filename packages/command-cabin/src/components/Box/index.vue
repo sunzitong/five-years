@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="app-box__footer" v-if="showFooter">
-      <div class="leftContent"></div>
-      <div class="rightContent">
+      <div class="left-content"></div>
+      <div class="right-content">
         <div class="l"></div>
         <div class="content">
           <div class="visible-hidden">
@@ -31,7 +31,7 @@
         </div>
         <div class="r"></div>
       </div>
-      <div class="relContent"><slot name="footer"></slot></div>
+      <div class="rel-content"><slot name="footer"></slot></div>
     </div>
   </div>
 </template>
@@ -148,13 +148,13 @@ $box-border-radius: 20px;
     position: relative;
     display: flex;
     height: 90px;
-    .leftContent {
+    .left-content {
       opacity: $box-opacity;
       flex: 1;
       background-color: $box-background-color;
       border-bottom-left-radius: $box-border-radius;
     }
-    .rightContent {
+    .right-content {
       opacity: $box-opacity;
       display: flex;
       .l {
@@ -181,7 +181,7 @@ $box-border-radius: 20px;
         visibility: hidden;
       }
     }
-    .relContent {
+    .rel-content {
       a {
         color: #fff;
       }
