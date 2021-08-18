@@ -12,13 +12,13 @@ const scaleFactor = 100 / scaledFontSize;
 const baseSize = 100;
 function setRem(vue: VueConstructor, rem?: number) {
   rem = rem || baseSize;
-  const scale = Math.min(750, document.documentElement.clientWidth) / 375;
+  const scale = Math.min(7680, document.documentElement.clientWidth) / 375;
   if (!scale) return;
   // 计算的fontsize
   const calcPX = rem * scale * scaleFactor;
   document.documentElement.style.fontSize = calcPX + "px";
-  if (document.documentElement.clientWidth > 750) {
-    document.documentElement.style.width = "750px";
+  if (document.documentElement.clientWidth > 7680) {
+    document.documentElement.style.width = "7680px";
     document.documentElement.style.margin = "auto";
   } else {
     document.documentElement.style.width = "";
