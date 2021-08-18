@@ -14,22 +14,15 @@
         </div>
         <div class="bottom"></div>
       </div>
-      <div v-if="background" class="app-box__lattices"></div>
       <div class="app-box__content">
         <slot>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
           <p>这里是body区域</p>
         </slot>
       </div>
     </div>
     <div class="app-box__footer" v-if="showFooter">
-      <div class="left-content"></div>
-      <div class="right-content">
+      <div class="leftContent"></div>
+      <div class="rightContent">
         <div class="l"></div>
         <div class="content">
           <div class="visible-hidden">
@@ -38,7 +31,7 @@
         </div>
         <div class="r"></div>
       </div>
-      <div class="rel-content"><slot name="footer"></slot></div>
+      <div class="relContent"><slot name="footer"></slot></div>
     </div>
   </div>
 </template>
@@ -46,7 +39,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
-export default class Box extends Vue {
+export default class Lattices extends Vue {
   /**
    * 盒子标题
    */
@@ -61,11 +54,6 @@ export default class Box extends Vue {
    * 是否显示底部
    */
   @Prop({ default: true }) showFooter!: boolean;
-
-  /**
-   * 是否显示方格背景
-   */
-  @Prop({ default: true }) background!: boolean;
 
   get showFooterClass() {
     return {
@@ -145,25 +133,6 @@ $box-border-radius: 20px;
     }
   }
 
-  &__lattices {
-    position: absolute;
-    top: 70px;
-    left: 20px;
-    right: 20px;
-    bottom: 0;
-    opacity: $box-opacity;
-    background-size: 100% 100%, 62px 62px;
-    background-repeat: no-repeat, repeat;
-    background-position: -2px -2px;
-    background-image: linear-gradient(
-        0,
-        rgba(5, 71, 143, 0.04) 0%,
-        rgba(1, 77, 159, 0.4) 50%,
-        rgba(5, 71, 143, 0.04) 80%
-      ),
-      url("~@/assets/img/box-lattices.png");
-  }
-
   &__body {
     position: relative;
     margin-top: -48px;
@@ -179,13 +148,13 @@ $box-border-radius: 20px;
     position: relative;
     display: flex;
     height: 90px;
-    .left-content {
+    .leftContent {
       opacity: $box-opacity;
       flex: 1;
       background-color: $box-background-color;
       border-bottom-left-radius: $box-border-radius;
     }
-    .right-content {
+    .rightContent {
       opacity: $box-opacity;
       display: flex;
       .l {
@@ -212,7 +181,7 @@ $box-border-radius: 20px;
         visibility: hidden;
       }
     }
-    .rel-content {
+    .relContent {
       a {
         color: #fff;
       }
