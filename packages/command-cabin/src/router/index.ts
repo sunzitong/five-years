@@ -8,13 +8,18 @@ const subRouter = [
   {
     path: "",
     redirect: {
-      path: "index",
+      path: "example",
     },
   },
   {
     path: "index",
     component: () => import("@/views/Index.vue"),
     meta: "index",
+  },
+  {
+    path: "example",
+    component: () => import("@/views/Example.vue"),
+    meta: "example",
   },
   {
     path: "*",

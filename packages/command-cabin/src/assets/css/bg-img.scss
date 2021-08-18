@@ -7,6 +7,9 @@
 $img-map: (
   "404": "404.png",
   "share": "share.png",
+  "box-head-bg": "box-head-bg.png",
+  "box-body-bg": "box-body-bg.png",
+  "box-footer-bg": "box-footer-bg.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
