@@ -67,6 +67,10 @@ export default class Box extends Vue {
    */
   @Prop({ default: true }) background!: boolean;
 
+  /**
+   * 显示footer时添加className
+   * 用来控制底部padding
+   */
   get showFooterClass() {
     return {
       "app-box--showfooter": this.showFooter,

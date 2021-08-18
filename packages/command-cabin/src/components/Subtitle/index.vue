@@ -26,7 +26,10 @@ export default class Subtitle extends Vue {
 .app-subtitle {
   position: relative;
   height: 100px;
-  background: #011656;
+  @extend %bg-img-subtitle-bg;
+  background-position: left center;
+  background-size: 1358px 99px;
+  background-color: #011656;
 
   &__title {
     display: flex;
