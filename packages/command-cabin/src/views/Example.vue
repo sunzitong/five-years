@@ -10,6 +10,7 @@
         <a href="javascript:;">详情→</a>
       </template>
     </Subtitle>
+    <Lattices :width="1000" :height="1000" />
   </div>
 </template>
 
@@ -17,11 +18,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import Box from "@/components/Box/index.vue";
 import Subtitle from "@/components/Subtitle/index.vue";
+import Lattices from "@/components/Lattices/index.vue";
 
 @Component({
   components: {
     Box,
     Subtitle,
+    Lattices,
   },
 })
 export default class Example extends Vue {}

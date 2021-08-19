@@ -1,8 +1,11 @@
+<template>
+  <div></div>
+</template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class Box extends Vue {
-  isDev = process.env.NODE_ENV === "development";
+  isDev = process.env.NODE_ENV !== "development";
 
   resizeHandle() {
     const { clientWidth } = document.body;

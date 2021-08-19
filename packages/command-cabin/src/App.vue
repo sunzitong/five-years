@@ -3,6 +3,7 @@
     <router-view />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
+    <Resize />
   </div>
 </template>
 
@@ -12,11 +13,13 @@ import AppLoading from "@/components/AppLoading.vue";
 import MixStore from "@/store/MixStore";
 import { setMiniProgramShare, showAppShare } from "./utils/guanyu";
 import { judgeDevice } from "@guanyu/h5-tools";
+import Resize from "@/components/Resize/index.vue";
 
 @Component({
   name: "app",
   components: {
     AppLoading,
+    Resize,
   },
 })
 export default class App extends Mixins(MixStore) {
