@@ -11,6 +11,8 @@ import {
   List,
   Cell,
   Dialog,
+  Row,
+  Col,
 } from "vant";
 import Vue from "vue";
 
@@ -28,3 +30,5 @@ Vue.use(Button);
 Vue.use(List);
 Vue.use(Cell);
 Vue.use(Dialog);
+Vue.use(Row);
+Vue.use(Col);
