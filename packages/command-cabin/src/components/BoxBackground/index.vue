@@ -1,78 +1,140 @@
 <template>
-  <svg
-    width="1000"
-    height="800"
-    viewBox="0 0 1000 800"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g filter="url(#filter0_b)">
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        :d="bbbb"
-        fill="#113069"
-        fill-opacity="0.6"
-      />
-      <path :d="aaaa" stroke="url(#paint0_linear)" stroke-width="2" />
-    </g>
-    <defs>
-      <filter
-        id="filter0_b"
-        x="-20"
-        y="-19.0269"
-        filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+  <div class="app-box-background">
+    <div class="app-box-background__header">
+      <svg
+        width="519"
+        height="74"
+        viewBox="0 0 519 74"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
-        <feComposite
-          in2="SourceAlpha"
-          operator="in"
-          result="effect1_backgroundBlur"
+        <path
+          d="M9.37569 1C3.16638 1 -0.259503 8.20668 3.67708 13.0102L50.5366 70.189C51.9354 71.8958 54.0272 72.8853 56.2352 72.8853H77.4396C81.2737 72.8853 84.8632 71.0021 87.0424 67.8475C88.8481 65.2335 91.8225 63.6731 94.9996 63.6731H427.879C431.056 63.6731 434.03 65.2335 435.836 67.8475C438.015 71.0021 441.605 72.8853 445.439 72.8853H466.25C469.197 72.8853 471.32 71.1167 473.015 69.0739C473.867 68.0472 474.651 66.9025 475.397 65.8031L475.522 65.6183C476.232 64.5709 476.909 63.5725 477.617 62.6875L510.844 21.1159C513.488 17.8085 516.114 13.0504 517.018 9.04495C517.465 7.06207 517.533 5.07539 516.764 3.53505C515.938 1.87861 514.288 1 511.953 1H9.37569Z"
+          fill="#0B2763"
+          stroke="url(#paint0_linear)"
+          stroke-width="2"
         />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_backgroundBlur"
-          result="shape"
-        />
-      </filter>
-      <linearGradient
-        id="paint0_linear"
-        x1="308.5"
-        y1="0.973145"
-        x2="308.5"
-        y2="474.035"
-        gradientUnits="userSpaceOnUse"
+        <defs>
+          <linearGradient
+            id="paint0_linear"
+            x1="265.661"
+            y1="2"
+            x2="265.661"
+            y2="71.8853"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#1B4986" />
+            <stop offset="1" stop-color="#00639F" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div ref="wrapper" class="app-box-background__body">
+      <svg
+        :width="width"
+        :height="height"
+        :viewBox="`0 0 ${width} ${height}`"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <stop stop-color="#1B4986" />
-        <stop offset="1" stop-color="#1B4986" stop-opacity="0" />
-      </linearGradient>
-    </defs>
-  </svg>
+        <g filter="url(#filter0_b)">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            :d="bbbb"
+            fill="#113069"
+            fill-opacity="0.6"
+          />
+          <path :d="aaaa" stroke="url(#paint0_linear)" stroke-width="2" />
+        </g>
+        <defs>
+          <filter
+            id="filter0_b"
+            x="-20"
+            y="-19.0269"
+            :width="width + 40"
+            :height="height + 43.027"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
+            <feComposite
+              in2="SourceAlpha"
+              operator="in"
+              result="effect1_backgroundBlur"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_backgroundBlur"
+              result="shape"
+            />
+          </filter>
+          <linearGradient
+            id="paint0_linear"
+            x1="308.5"
+            y1="0.973145"
+            x2="308.5"
+            y2="474.035"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#1B4986" />
+            <stop offset="1" stop-color="#1B4986" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Ref } from "vue-property-decorator";
+import { ResizeObserver } from "@juggle/resize-observer";
+
 @Component
 export default class Box extends Vue {
-  @Prop({ default: 1000 }) width!: number;
-  @Prop({ default: 1000 }) height!: number;
+  // @Prop({ default: 1000 }) width!: number;
+  // @Prop({ default: 1000 }) height!: number;
+  @Ref() wrapper!: HTMLDivElement;
+  /**
+   * 盒子最小宽度
+   */
+  MIN_WIDTH = 606;
 
-  w = 192;
-  h = 100;
+  /**
+   * 背景最小高度
+   */
+  MIN_HEIGHT = 105;
+
+  /**
+   * 盒子默认宽度
+   */
+  width = 1000;
+
+  /**
+   * 盒子默认高度
+   */
+  height = 1000;
 
   /**
    * 格式化svg path
    */
   formatSvgPathD(d: string) {
+    const w = (this.width - this.MIN_WIDTH) / 2 - 5;
+    const h = this.height - 505;
+
+    console.log(this.width, this.MIN_WIDTH, w);
+
     return d
       .replace(/{\d+(\.\d+)?}/g, (a: string) => {
-        return `${this.w + parseFloat(`${a}`.slice(1, -1))}`;
+        return `${w + parseFloat(`${a}`.slice(1, -1))}`;
       })
       .replace(/\[\d+(\.\d+)?\]/g, (a: string) => {
-        return `${2 * this.w + parseFloat(`${a}`.slice(1, -1))}`;
+        return `${2 * w + parseFloat(`${a}`.slice(1, -1))}`;
+      })
+      .replace(/\(\d+(\.\d+)?\)/g, (a: string) => {
+        return `${h + parseFloat(`${a}`.slice(1, -1))}`;
       });
   }
 
@@ -110,35 +172,82 @@ export default class Box extends Vue {
 
   get bbbb() {
     return this.formatSvgPathD(`
-    M{91.31} 55.5496
-    L{46.5832} 0.973145
-    H10
-    C4.47715 0.973145 0 5.44294 0 10.9567
-    V{494.016}
-    C0 {499.53} 4.47713 {800} 9.99998 {800}
-    H{388}
-    H{423.873}
-    C423.873 {800} 428.96 {800} 432.529 {800}
-    H{596}
-    C{607.046} {800} {1000} {495.046} {1000} {484}
-    V10.9568
-    C{1000} 5.44296 {611.523} 0.973145 {606} 0.973145
-    H{574.679}
-    C{570.968} 0.973145 {567.665} 3.11062 {565.404} 6.05177
-    C{565.291} 6.19896 {565.177} 6.34364 {565.064} 6.48562
-    L{531.834} 48.0602
-    C{531.101} 48.977 {530.403} 50.0063 {529.699} 51.0443
-    C{527.414} 54.416 {525.066} 57.8797 {521.25} 57.8797
-    H{486.445}
-    C{482.936} 57.8797 {479.651} 56.1576 {477.659} 53.2736
-    C{475.667} 50.3896 {472.382} 48.6676 {468.873} 48.6676
-    H{147.006}
-    C{143.497} 48.6676 {140.212} 50.3896 {138.22} 53.2736
-    C{136.227} 56.1576 {132.942} 57.8797 {129.433} 57.8797
-    H{96.2352}
-    C{94.3265} 57.8797 {92.5186} 57.0244 {91.31} 55.5496Z`);
+      M{91.31} 55.5496
+      L{46.5832} 0.973145
+      H10
+      C4.47715 0.973145 0 5.44294 0 10.9567
+      V(494.016)
+      C0 (499.53) 4.47713 (504) 9.99998 (504)
+      H388
+      H423.873
+      C423.873 (504) 428.96 (504) 432.529 (504)
+      H[596]
+      C[607.046] (504) [616] (495.046) [616] (484)
+      V10.9568
+      C[616] 5.44296 [611.523] 0.973145 [606] 0.973145
+      H{574.679}
+      C{570.968} 0.973145 {567.665} 3.11062 {565.404} 6.05177
+      C{565.291} 6.19896 {565.177} 6.34364 {565.064} 6.48562
+      L{531.834} 48.0602
+      C{531.101} 48.977 {530.403} 50.0063 {529.699} 51.0443
+      C{527.414} 54.416 {525.066} 57.8797 {521.25} 57.8797
+      H{486.445}
+      C{482.936} 57.8797 {479.651} 56.1576 {477.659} 53.2736
+      C{475.667} 50.3896 {472.382} 48.6676 {468.873} 48.6676
+      H{147.006}
+      C{143.497} 48.6676 {140.212} 50.3896 {138.22} 53.2736
+      C{136.227} 56.1576 {132.942} 57.8797 {129.433} 57.8797
+      H{96.2352}
+      C{94.3265} 57.8797 {92.5186} 57.0244 {91.31} 55.5496
+      Z`);
+  }
+
+  /**
+   * div大小改变更新svg宽度
+   */
+  divSizeChangeHandle() {
+    const { width, height } = this.wrapper.getBoundingClientRect();
+    this.width = width;
+    this.height = height;
+  }
+
+  /**
+   * 组件挂载
+   */
+  mounted() {
+    this.divSizeChangeHandle();
+    const resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
+    resizeObserver.observe(this.wrapper);
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-box-background {
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  min-width: 606px;
+  top: 0;
+  left: 0;
+  right: 0;
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -258px;
+  }
+  &__body {
+    position: absolute;
+    margin-top: auto;
+    top: 25px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  svg {
+    vertical-align: middle;
+  }
+}
+</style>
