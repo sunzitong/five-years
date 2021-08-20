@@ -1,7 +1,11 @@
 <template>
-  <div class="app-card">
+  <div class="app-card" :class="includeFooterCls">
     <!-- SVG 背景没有footer -->
-    <BoxBackground :showRectBackground="showRectBackground" />
+    <CardDecorateWithFooter
+      v-if="showFooter"
+      :showRectBackground="showRectBackground"
+    />
+    <CardDecorate v-else :showRectBackground="showRectBackground" />
     <div class="app-card__head">
       <slot name="title" v-bind="title">
         <h3 class="app-card__title">{{ title }}</h3>
@@ -15,19 +19,34 @@
           <p>这里是body区域</p>
           <p>这里是body区域</p>
           <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
+          <p>这里是body区域</p>
         </slot>
       </div>
+    </div>
+    <div class="app-card__footer" v-if="showFooter">
+      <slot name="footer">
+        <a href="javascript::">查看详情→</a>
+      </slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import BoxBackground from "@/components/BoxBackground/index.vue";
+import CardDecorateWithFooter from "@/components/CardDecorate/WithFooter.vue";
+import CardDecorate from "@/components/CardDecorate/index.vue";
 
 @Component({
   components: {
-    BoxBackground,
+    CardDecorate,
+    CardDecorateWithFooter,
   },
 })
 export default class Card extends Vue {
@@ -49,7 +68,16 @@ export default class Card extends Vue {
   /**
    * 是否显示页脚
    */
-  @Prop({ default: false }) showFooter!: boolean;
+  @Prop({ default: true }) showFooter!: boolean;
+
+  /**
+   * 是否包含footer
+   */
+  get includeFooterCls() {
+    return {
+      "app-card__footer--visible": this.showFooter,
+    };
+  }
 }
 </script>
 
@@ -79,6 +107,27 @@ export default class Card extends Vue {
   &__content {
     position: relative;
     color: #fff;
+  }
+
+  &__footer {
+    height: 60px;
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    width: 210px;
+    text-align: center;
+    overflow: hidden;
+    line-height: 60px;
+    color: #fff;
+    a {
+      color: #fff;
+    }
+  }
+
+  &__footer--visible {
+    .app-card__body {
+      padding-bottom: 80px;
+    }
   }
 }
 </style>

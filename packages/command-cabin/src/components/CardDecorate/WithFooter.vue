@@ -1,6 +1,6 @@
 <template>
-  <div class="app-box-background">
-    <div class="app-box-background__header">
+  <div class="app-card-decorate">
+    <div class="app-card-decorate__header">
       <svg
         width="519"
         height="74"
@@ -30,7 +30,7 @@
       </svg>
     </div>
 
-    <div ref="wrapper" class="app-box-background__body">
+    <div ref="wrapper" class="app-card-decorate__body">
       <svg
         :width="width"
         :height="height"
@@ -90,7 +90,7 @@
         </defs>
       </svg>
     </div>
-    <div class="app-box-background__footer">
+    <div class="app-card-decorate__footer">
       <svg
         width="266"
         height="60"
@@ -118,7 +118,7 @@
         </defs>
       </svg>
     </div>
-    <div v-if="showRectBackground" class="app-box-background__lattices"></div>
+    <div v-if="showRectBackground" class="app-card-decorate__lattices"></div>
   </div>
 </template>
 
@@ -316,7 +316,7 @@ export default class WithFooter extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.app-box-background {
+.app-card-decorate {
   position: absolute;
   text-align: center;
   height: 100%;
@@ -330,6 +330,9 @@ export default class WithFooter extends Vue {
     top: 0;
     left: 50%;
     margin-left: -258px;
+    svg {
+      margin-left: -2px;
+    }
   }
   &__body {
     position: absolute;

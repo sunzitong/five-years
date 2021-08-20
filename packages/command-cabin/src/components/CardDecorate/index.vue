@@ -29,7 +29,6 @@
         </defs>
       </svg>
     </div>
-    <div v-if="showRectBackground" class="app-box-background__lattices"></div>
     <div ref="wrapper" class="app-box-background__body">
       <svg
         :width="width"
@@ -43,8 +42,8 @@
             fill-rule="evenodd"
             clip-rule="evenodd"
             :d="outLinePath"
-            fill="#113069"
-            fill-opacity="0.6"
+            :fill="fill"
+            :fill-opacity="fillOpacity"
           />
           <path
             :d="bodyBackgroundPath"
@@ -90,6 +89,7 @@
         </defs>
       </svg>
     </div>
+    <div v-if="showRectBackground" class="app-box-background__lattices"></div>
   </div>
 </template>
 
@@ -105,6 +105,20 @@ export default class CardDecorate extends Vue {
    * 是否显示方格背景
    */
   @Prop({ default: true }) showRectBackground!: boolean;
+
+  /**
+   * 填充颜色
+   */
+  @Prop({ default: "#0A1E58" }) fill!: string;
+  /**
+   * 透明度
+   */
+  @Prop({ default: 1 }) fillOpacity!: number;
+
+  /**
+   * 尺寸
+   */
+  @Prop({ default: "medium" }) size!: "small" | "medium" | "large";
 
   /**
    * 背景最小宽度
@@ -126,7 +140,7 @@ export default class CardDecorate extends Vue {
    */
   formatSvgPathD(d: string) {
     const w = (this.width - this.MIN_WIDTH) / 2 - 5;
-    const h = this.height;
+    const h = this.height - 505;
 
     return d
       .replace(/{\d+(\.\d+)?}/g, (a: string) => {
@@ -251,6 +265,9 @@ export default class CardDecorate extends Vue {
     top: 0;
     left: 50%;
     margin-left: -258px;
+    svg {
+      margin-left: -2px;
+    }
   }
   &__body {
     position: absolute;
