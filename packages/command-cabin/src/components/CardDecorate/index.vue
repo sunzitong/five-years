@@ -42,7 +42,7 @@
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            :d="headBackgroundPath"
+            :d="outLinePath"
             fill="#113069"
             fill-opacity="0.6"
           />
@@ -146,7 +146,7 @@ export default class CardDecorate extends Vue {
   /**
    * 头部标题svg path d
    */
-  get headBackgroundPath() {
+  get outLinePath() {
     return this.formatSvgPathD(`
       M{91.31} 55.5496
       L{46.5832} 0.973145
