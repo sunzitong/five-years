@@ -143,21 +143,22 @@ export default class CardDecorate extends Vue {
     const h = this.height - 505;
 
     return d
-      .replace(/{\d+(\.\d+)?}/g, (a: string) => {
+      .replace(/{(\d+(\.\d+)?)}/g, (a: string, $1) => {
         // 匹配{100} 数字 * 宽度
-        return `${w + parseFloat(`${a}`.slice(1, -1))}`;
+        return `${w + parseFloat($1)}`;
       })
-      .replace(/\[\d+(\.\d+)?\]/g, (a: string) => {
+      .replace(/\[(\d+(\.\d+)?)\]/g, (a: string, $1) => {
         // 匹配[100] 数字 * 宽度
-        return `${2 * w + parseFloat(`${a}`.slice(1, -1))}`;
+        return `${2 * w + parseFloat($1)}`;
       })
-      .replace(/\(\d+(\.\d+)?\)/g, (a: string) => {
+      .replace(/\((\d+(\.\d+)?)\)/g, (a: string, $1) => {
         // 匹配(100) 数字 * 高度
-        return `${h + parseFloat(`${a}`.slice(1, -1))}`;
+        return `${h + parseFloat($1)}`;
       });
   }
 
   formatSmallSize(d: string) {
+    console.log(d);
     const size = {
       small: -100,
       // medium: -142,
@@ -258,12 +259,16 @@ export default class CardDecorate extends Vue {
       C{570.968} 0.973145 {567.665} 3.11062 {565.404} 6.05177
       C{565.291} 6.19896 {565.177} 6.34364 {565.064} 6.48562
       L{531.834} 48.0602
+
+
       C{531.101} 48.977 {530.403} 50.0063 {529.699} 51.0443
       C{527.414} 54.416 {525.066} 57.8797 {521.25} 57.8797
       H{486.445}
+
       C{482.936} 57.8797 {479.651} 56.1576 {477.659} 53.2736
       C{475.667} 50.3896 {472.382} 48.6676 {468.873} 48.6676
       H{147.006}
+
       C{143.497} 48.6676 {140.212} 50.3896 {138.22} 53.2736
       C{136.227} 56.1576 {132.942} 57.8797 {129.433} 57.8797
       H{96.2352}

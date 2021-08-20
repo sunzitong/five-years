@@ -3,9 +3,14 @@
     <!-- SVG 背景没有footer -->
     <CardDecorateWithFooter
       v-if="showFooter"
+      :fillOpacity="opacity"
       :showRectBackground="showRectBackground"
     />
-    <CardDecorate v-else :showRectBackground="showRectBackground" />
+    <CardDecorate
+      v-else
+      :fillOpacity="opacity"
+      :showRectBackground="showRectBackground"
+    />
     <div class="app-card__head">
       <slot name="title" v-bind="title">
         <h3 class="app-card__title">{{ title }}</h3>
@@ -69,6 +74,11 @@ export default class Card extends Vue {
    * 是否显示页脚
    */
   @Prop({ default: true }) showFooter!: boolean;
+
+  /**
+   * 是否显示页脚
+   */
+  @Prop({ default: 1 }) opacity!: number;
 
   /**
    * 是否包含footer
