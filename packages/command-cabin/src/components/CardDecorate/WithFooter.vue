@@ -176,15 +176,15 @@ export default class WithFooter extends Vue {
     const h = this.height - 220;
 
     return d
-      .replace(/{(\d+(\.\d+)?)}/g, (a: string, $1) => {
+      .replace(/{(-?\d+(\.\d+)?)}/g, (a: string, $1) => {
         // 匹配{100} 数字 * 宽度
         return `${w + parseFloat($1)}`;
       })
-      .replace(/\[(\d+(\.\d+)?)\]/g, (a: string, $1) => {
+      .replace(/\[(-?\d+(\.\d+)?)\]/g, (a: string, $1) => {
         // 匹配[100] 数字 * 宽度
         return `${2 * w + parseFloat($1)}`;
       })
-      .replace(/\((\d+(\.\d+)?)\)/g, (a: string, $1) => {
+      .replace(/\((-?\d+(\.\d+)?)\)/g, (a: string, $1) => {
         // 匹配(100) 数字 * 高度
         return `${h + parseFloat($1)}`;
       });

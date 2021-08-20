@@ -3,11 +3,13 @@
     <!-- SVG 背景没有footer -->
     <CardDecorateWithFooter
       v-if="showFooter"
+      :size="size"
       :fillOpacity="opacity"
       :showRectBackground="showRectBackground"
     />
     <CardDecorate
       v-else
+      :size="size"
       :fillOpacity="opacity"
       :showRectBackground="showRectBackground"
     />
