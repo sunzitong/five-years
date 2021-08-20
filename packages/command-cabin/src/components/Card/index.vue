@@ -1,14 +1,14 @@
 <template>
-  <div class="app-box">
+  <div class="app-card">
     <!-- SVG 背景没有footer -->
     <BoxBackground :showRectBackground="showRectBackground" />
-    <div class="app-box__head">
+    <div class="app-card__head">
       <slot name="title" v-bind="title">
-        <h3 class="app-box__title">{{ title }}</h3>
+        <h3 class="app-card__title">{{ title }}</h3>
       </slot>
     </div>
-    <div class="app-box__body">
-      <div class="app-box__content">
+    <div class="app-card__body">
+      <div class="app-card__content">
         <slot>
           <p>这里是body区域</p>
           <p>这里是body区域</p>
@@ -44,7 +44,7 @@ export default class Card extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.app-box {
+.app-card {
   position: relative;
   min-width: 580px;
   &__head {
