@@ -11,7 +11,7 @@
       </template>
     </Subtitle>
     <Lattices :width="1000" :height="1000" /> -->
-    <Card title="营造盘面" />
+    <Card title="营造盘面" :showFooter="false" />
   </div>
 </template>
 
