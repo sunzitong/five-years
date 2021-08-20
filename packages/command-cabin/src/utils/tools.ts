@@ -1,3 +1,11 @@
+import Vue from "vue";
+import { iwant } from "@guanyu/shared";
+
+export interface ToPixel {
+  (px: number, unit?: false): number;
+  (px: number, unit: true): string;
+}
+
 /**
  * 用 @guanyu/shared cloneJSON 代替
  * @param obj 序列化JSON克隆对象
@@ -29,3 +37,11 @@
  * 用 @guanyu/shared getQueries 代替
  * @param searchStr 网址的search部分 不传则当前网址
  */
+
+/**
+ * 根据rootpx按比例计算
+ */
+export const toRpx: ToPixel = (px: number, unit = false): any => {
+  const rpx = iwant.calc((Vue.rpx / 100) * px, 5);
+  return unit ? `${rpx}px` : rpx;
+};

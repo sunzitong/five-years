@@ -96,11 +96,14 @@
 <script lang="ts">
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
 import { ResizeObserver } from "@juggle/resize-observer";
+import { toRpx } from "@/utils/tools";
 
 @Component
 export default class CardDecorate extends Vue {
   // @Prop({ default: 1000 }) width!: number;
   @Ref() wrapper!: HTMLDivElement;
+
+  toRpx = toRpx;
   /**
    * 是否显示方格背景
    */
@@ -162,17 +165,17 @@ export default class CardDecorate extends Vue {
    */
   formatSmallSize(d: string) {
     const size = {
-      small: -71,
+      small: -101,
       medium: 0,
       large: 0,
     }[this.size];
 
     return d
       .replace(/'(-?\d+(\.\d+)?)'/g, (a: string, $1: string) => {
-        return `${Number($1) - size}`;
+        return `${parseFloat($1) - size}`;
       })
       .replace(/<(-?\d+(\.\d+)?)>/g, (a: string, $1: string) => {
-        return `${Number($1) + size}`;
+        return `${parseFloat($1) + size}`;
       });
   }
 
@@ -322,7 +325,7 @@ export default class CardDecorate extends Vue {
   text-align: center;
   height: 100%;
   display: flex;
-  min-width: 606px;
+  // min-width: 606px;
   top: 0;
   left: 0;
   right: 0;
@@ -333,6 +336,8 @@ export default class CardDecorate extends Vue {
     margin-left: -258px;
     svg {
       margin-left: -2px;
+      width: 517px;
+      height: 74px;
     }
   }
   &__body {

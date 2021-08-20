@@ -1,21 +1,11 @@
 import Vue, { VueConstructor } from "vue";
-
-const $dom: any = document.createElement("div");
-$dom.style.fontSize = "100px";
-document.body.appendChild($dom);
-// 计算出放大后的字体
-const scaledFontSize = parseFloat(
-  window.getComputedStyle($dom, null).getPropertyValue("font-size")
-);
 // 计算原字体和放大后字体的比例
-const scaleFactor = 100 / scaledFontSize;
-const baseSize = 100;
 function setRem(vue: VueConstructor, rem?: number) {
-  rem = rem || baseSize;
-  const scale = Math.min(7680, document.documentElement.clientWidth) / 375;
+  rem = rem || 100;
+  const scale = document.documentElement.clientWidth / 7680;
   if (!scale) return;
   // 计算的fontsize
-  const calcPX = rem * scale * scaleFactor;
+  const calcPX = rem * scale;
   document.documentElement.style.fontSize = calcPX + "px";
   if (document.documentElement.clientWidth > 7680) {
     document.documentElement.style.width = "7680px";
@@ -32,14 +22,7 @@ function setRem(vue: VueConstructor, rem?: number) {
    * 存储rootpx
    */
   vue.rpx = vue.prototype.$rpx = realPX;
-  console.log(
-    "计算大小:",
-    calcPX,
-    "实际大小:",
-    realPX,
-    "缩放比例:",
-    scaleFactor
-  );
+  console.log("计算大小:", calcPX, "实际大小:", realPX);
 }
 
 const Plugin = {
