@@ -37,9 +37,19 @@ export default class Card extends Vue {
   @Prop({ default: "" }) title!: string;
 
   /**
+   * 尺寸
+   */
+  @Prop({ default: "medium" }) size!: "small" | "medium" | "large";
+
+  /**
    * 是否显示方格背景
    */
   @Prop({ default: true }) showRectBackground!: boolean;
+
+  /**
+   * 是否显示页脚
+   */
+  @Prop({ default: false }) showFooter!: boolean;
 }
 </script>
 
