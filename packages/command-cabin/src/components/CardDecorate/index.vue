@@ -31,7 +31,7 @@
             x="-20"
             y="-19.0269"
             :width="width + 40"
-            :height="height + 43.027"
+            :height="100000000"
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
