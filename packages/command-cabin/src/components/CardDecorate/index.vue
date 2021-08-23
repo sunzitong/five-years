@@ -74,7 +74,6 @@ import CardDecorateTitle, {
   SizeProps,
   formatSmallSize,
 } from "@/components/CardDecorate/Title.vue";
-import { toRpx } from "@/utils/tools";
 
 @Component({
   components: {
@@ -82,10 +81,12 @@ import { toRpx } from "@/utils/tools";
   },
 })
 export default class CardDecorate extends Vue {
-  // @Prop({ default: 1000 }) width!: number;
-  @Ref() wrapper!: HTMLDivElement;
+  /**
+   * div容器
+   * htmlWrapper必须加，不然视为同一个div
+   */
+  @Ref("htmlWapper") readonly wrapper!: HTMLDivElement;
 
-  toRpx = toRpx;
   /**
    * 是否显示方格背景
    */
@@ -119,6 +120,11 @@ export default class CardDecorate extends Vue {
    * 背景默认高度
    */
   height = 1000;
+
+  /**
+   * 监听器
+   */
+  resizeObserver: ResizeObserver | null = null;
 
   /**
    * 格式化svg path
@@ -249,11 +255,22 @@ export default class CardDecorate extends Vue {
    */
   mounted() {
     this.divSizeChangeHandle();
+
     /**
      * 监听容器尺寸变化
      */
-    const resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
-    resizeObserver.observe(this.wrapper);
+    this.resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
+    this.resizeObserver.observe(this.wrapper);
+  }
+
+  /**
+   * 组件卸载移出监听
+   */
+  beforeDestroy() {
+    if (this.resizeObserver) {
+      this.resizeObserver.unobserve(this.wrapper);
+    }
+    this.resizeObserver = null;
   }
 }
 </script>
