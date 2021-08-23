@@ -253,9 +253,10 @@ export default class WithFooter extends Vue {
    * 更新背景区域宽、高度
    */
   divSizeChangeHandle() {
-    const { width, height } = this.wrapper.getBoundingClientRect();
-    this.width = width;
-    this.height = height;
+    // const dom = this.wrapper.getBoundingClientRect();
+    const dom = window.getComputedStyle(this.wrapper);
+    this.width = parseInt(dom.width);
+    this.height = parseInt(dom.height);
   }
 
   /**
