@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Inject } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Base from "./Base";
 import Subtitle from "@/components/Subtitle/index.vue";
 
@@ -24,18 +24,7 @@ import Subtitle from "@/components/Subtitle/index.vue";
     Subtitle,
   },
 })
-export default class Index extends Base {
-  /**
-   * 运行环境
-   * 来源 App.vue中定义
-   */
-  @Inject() visitSource!: string;
-  /**
-   * 分享方法
-   * 来源 App.vue中定义
-   */
-  @Inject() share!: () => void;
-}
+export default class Index extends Base {}
 </script>
 
 <style lang="scss" scoped>
