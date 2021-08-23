@@ -55,8 +55,8 @@ export default class App extends Mixins(MixStore) {
 #app {
   width: 7680px;
   height: 3240px;
-  background: red;
   transform-origin: 0 0;
   overflow: hidden;
+  background: #020633;
 }
 </style>
