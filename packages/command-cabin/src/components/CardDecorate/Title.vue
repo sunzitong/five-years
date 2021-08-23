@@ -32,32 +32,41 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 
+/**
+ * size 枚举
+ */
+export type SizeProps = "small" | "medium" | "large";
+
+/**
+ * 控制title size 实现了small, medium
+ * large无使用场景
+ */
+export const formatSmallSize = (d: string, s: SizeProps) => {
+  const size = { small: -101, medium: 0, large: 0 }[s];
+
+  return d
+    .replace(/'(-?\d+(\.\d+)?)'/g, (str: string, $1: string) => {
+      // 单引号包围表示中心线右侧需要减
+      return `${parseFloat($1) - size}`;
+    })
+    .replace(/"(-?\d+(\.\d+)?)"/g, (str: string, $1: string) => {
+      // 双引号包围表示中心线左侧需要加
+      return `${parseFloat($1) + size}`;
+    });
+};
+
 @Component
 export default class TitleDecorate extends Vue {
   /**
    * 尺寸
    */
-  @Prop({ default: "medium" }) size!: "small" | "medium" | "large";
+  @Prop({ default: "medium" }) size!: SizeProps;
 
   /**
    * 控制size
    */
   formatSmallSize(d: string) {
-    const size = {
-      small: -101,
-      medium: 0,
-      large: 0,
-    }[this.size];
-
-    return d
-      .replace(/'(-?\d+(\.\d+)?)'/g, (str: string, $1: string) => {
-        // 单引号包围表示中心线右侧需要减
-        return `${parseFloat($1) - size}`;
-      })
-      .replace(/"(-?\d+(\.\d+)?)"/g, (str: string, $1: string) => {
-        // 双引号包围表示中心线左侧需要加
-        return `${parseFloat($1) + size}`;
-      });
+    return formatSmallSize(d, this.size);
   }
 
   /**

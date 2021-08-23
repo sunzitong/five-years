@@ -70,7 +70,10 @@
 <script lang="ts">
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
 import { ResizeObserver } from "@juggle/resize-observer";
-import CardDecorateTitle from "@/components/CardDecorate/Title.vue";
+import CardDecorateTitle, {
+  SizeProps,
+  formatSmallSize,
+} from "@/components/CardDecorate/Title.vue";
 import { toRpx } from "@/utils/tools";
 
 @Component({
@@ -100,7 +103,7 @@ export default class CardDecorate extends Vue {
   /**
    * 尺寸
    */
-  @Prop({ default: "medium" }) size!: "small" | "medium" | "large";
+  @Prop({ default: "medium" }) size!: SizeProps;
 
   /**
    * 背景最小宽度
@@ -143,19 +146,7 @@ export default class CardDecorate extends Vue {
    * 控制size
    */
   formatSmallSize(d: string) {
-    const size = {
-      small: -101,
-      medium: 0,
-      large: 0,
-    }[this.size];
-
-    return d
-      .replace(/'(-?\d+(\.\d+)?)'/g, (a: string, $1: string) => {
-        return `${parseFloat($1) - size}`;
-      })
-      .replace(/"(-?\d+(\.\d+)?)"/g, (a: string, $1: string) => {
-        return `${parseFloat($1) + size}`;
-      });
+    return formatSmallSize(d, this.size);
   }
 
   /**
