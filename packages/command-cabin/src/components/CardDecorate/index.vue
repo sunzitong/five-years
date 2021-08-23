@@ -1,6 +1,6 @@
 <template>
-  <div class="app-box-background">
-    <div class="app-box-background__header">
+  <div class="app-card-decorate">
+    <div class="app-card-decorate__header">
       <svg
         width="519"
         height="74"
@@ -29,7 +29,7 @@
         </defs>
       </svg>
     </div>
-    <div ref="wrapper" class="app-box-background__body">
+    <div ref="wrapper" class="app-card-decorate__body">
       <svg
         :width="width"
         :height="height"
@@ -89,7 +89,7 @@
         </defs>
       </svg>
     </div>
-    <div v-if="showRectBackground" class="app-box-background__lattices"></div>
+    <div v-if="showRectBackground" class="app-card-decorate__lattices"></div>
   </div>
 </template>
 
@@ -320,12 +320,12 @@ export default class CardDecorate extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.app-box-background {
+.app-card-decorate {
   position: absolute;
   text-align: center;
+  overflow: hidden;
   height: 100%;
   display: flex;
-  // min-width: 606px;
   top: 0;
   left: 0;
   right: 0;
@@ -336,8 +336,6 @@ export default class CardDecorate extends Vue {
     margin-left: -258px;
     svg {
       margin-left: -2px;
-      width: 517px;
-      height: 74px;
     }
   }
   &__body {

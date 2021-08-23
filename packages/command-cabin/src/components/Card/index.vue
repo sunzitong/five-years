@@ -96,12 +96,11 @@ export default class Card extends Vue {
 <style lang="scss" scoped>
 .app-card {
   position: relative;
-  min-width: 580px;
+  min-width: 340px;
   &__head {
     position: relative;
     z-index: 10;
     display: flex;
-    width: 516px;
     height: 70px;
     margin: 0 auto;
   }
