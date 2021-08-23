@@ -1,17 +1,20 @@
 <template>
   <div class="page__example">
-    <!-- <box title="商机转化">
-      <template #footer>
-        <a href="javascript:;">供销存详情→</a>
-      </template>
-    </box>
+    <Card title="营造盘面" size="small" :showFooter="false" />
+    <Card title="营造盘面" size="medium" :showFooter="false" />
+    <Card title="营造盘面" size="medium" />
+    <Card
+      title="营造盘面"
+      size="medium"
+      :opacity="0.6"
+      :showRectBackground="false"
+    />
     <Subtitle title="营造盘面">
       <template #extra>
         <a href="javascript:;">详情→</a>
       </template>
     </Subtitle>
-    <Lattices :width="1000" :height="1000" /> -->
-    <Card title="营造盘面" size="small" :showFooter="false" />
+    <Lattices :width="1000" :height="1000" />
   </div>
 </template>
 

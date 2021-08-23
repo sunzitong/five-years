@@ -26,14 +26,6 @@
           <p>这里是body区域</p>
           <p>这里是body区域</p>
           <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
         </slot>
       </div>
     </div>
