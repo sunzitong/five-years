@@ -2,12 +2,14 @@
   <div class="app-card" :class="includeFooterCls">
     <!-- SVG 背景没有footer -->
     <CardDecorateWithFooter
+      key="CardDecorateWithFooter"
       v-if="showFooter"
       :size="size"
       :fillOpacity="opacity"
       :showRectBackground="showRectBackground"
     />
     <CardDecorate
+      key="CardDecorate"
       v-else
       :size="size"
       :fillOpacity="opacity"

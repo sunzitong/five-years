@@ -98,10 +98,11 @@
 
 <script lang="ts">
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
-import { ResizeObserver } from "@juggle/resize-observer";
+import { ResizeObserver } from "resize-observer";
 import CardDecorateTitle from "@/components/CardDecorate/Title.vue";
 
 @Component({
+  name: "WithFooter",
   components: {
     CardDecorateTitle,
   },
@@ -142,6 +143,11 @@ export default class WithFooter extends Vue {
    * 背景默认高度
    */
   height = 1000;
+
+  /**
+   * 监听器
+   */
+  resizeObserver: ResizeObserver | null = null;
 
   /**
    * 格式化svg path
@@ -260,8 +266,18 @@ export default class WithFooter extends Vue {
     /**
      * 监听容器尺寸变化
      */
-    const resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
-    resizeObserver.observe(this.wrapper);
+    this.resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
+    this.resizeObserver.observe(this.wrapper);
+  }
+
+  /**
+   * 组件卸载移出监听
+   */
+  beforeDestroy() {
+    if (this.resizeObserver) {
+      this.resizeObserver.unobserve(this.wrapper);
+    }
+    this.resizeObserver = null;
   }
 }
 </script>

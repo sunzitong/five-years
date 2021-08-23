@@ -69,13 +69,14 @@
 
 <script lang="ts">
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
-import { ResizeObserver } from "@juggle/resize-observer";
+import { ResizeObserver } from "resize-observer";
 import CardDecorateTitle, {
   SizeProps,
   formatSmallSize,
 } from "@/components/CardDecorate/Title.vue";
 
 @Component({
+  name:"CardDecorate",
   components: {
     CardDecorateTitle,
   },
@@ -83,9 +84,8 @@ import CardDecorateTitle, {
 export default class CardDecorate extends Vue {
   /**
    * div容器
-   * htmlWrapper必须加，不然视为同一个div
    */
-  @Ref("htmlWapper") readonly wrapper!: HTMLDivElement;
+  @Ref() readonly wrapper!: HTMLDivElement;
 
   /**
    * 是否显示方格背景
@@ -245,9 +245,9 @@ export default class CardDecorate extends Vue {
    * 更新背景区域宽、高度
    */
   divSizeChangeHandle() {
-    const { width, height } = this.wrapper.getBoundingClientRect();
-    this.width = width;
-    this.height = height;
+    const dom = this.wrapper.getBoundingClientRect();
+    this.width = dom.width;
+    this.height = dom.height;
   }
 
   /**
@@ -255,12 +255,13 @@ export default class CardDecorate extends Vue {
    */
   mounted() {
     this.divSizeChangeHandle();
-
     /**
      * 监听容器尺寸变化
      */
     this.resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
     this.resizeObserver.observe(this.wrapper);
+
+    console.log(this.wrapper);
   }
 
   /**
