@@ -43,11 +43,13 @@ export default class App extends Mixins(MixStore) {
   }
   created() {
     // 7680 x 3240
-    window.removeEventListener("resize", this.resizeHandle);
     window.addEventListener("resize", this.resizeHandle);
   }
   mounted() {
     this.resizeHandle();
+  }
+  destroyed() {
+    window.removeEventListener("resize", this.resizeHandle);
   }
 }
 </script>
