@@ -21,6 +21,7 @@
         <Icon type="version-touch" color="#00A1FF" />
         <Icon type="version-search" />
         <Icon type="version-metting" />
+        <Icon type="camera" />
       </p>
     </Card>
     <Card

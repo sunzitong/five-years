@@ -19,6 +19,7 @@ import TurnBack from "./components/TurnBack.vue";
 import VersionTouch from "./components/VersionTouch.vue";
 import VersionSearch from "./components/VersionSearch.vue";
 import VersionMetting from "./components/VersionMetting.vue";
+import Camera from "./components/Camera.vue";
 
 @Component({
   components: {
@@ -31,6 +32,7 @@ import VersionMetting from "./components/VersionMetting.vue";
     VersionTouch,
     VersionSearch,
     VersionMetting,
+    Camera,
   },
 })
 export default class Icon extends Vue {
@@ -53,6 +55,7 @@ export default class Icon extends Vue {
     | "data-source"
     | "light"
     | "call"
+    | "camera"
     | "turn-back"
     | "touch-version"
     | "search-version"
@@ -79,6 +82,7 @@ export default class Icon extends Vue {
       light: Light,
       trangle: Trangle,
       call: Call,
+      camera: Camera,
       "version-touch": VersionTouch,
       "version-search": VersionSearch,
       "version-metting": VersionMetting,
