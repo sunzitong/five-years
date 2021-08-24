@@ -12,7 +12,7 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g filter="url(#filter0_b)">
+        <g :filter="`url(#${linearId}_filter0_b)`">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -22,17 +22,17 @@
           />
           <path
             :d="outLinePath"
-            stroke="url(#paint0_linear)"
+            :stroke="`url(#${linearId})`"
             stroke-width="2"
           />
         </g>
         <defs>
           <filter
-            id="filter0_b"
+            :id="`${linearId}_filter0_b`"
             x="-19.728"
             y="-19.918"
-            :width="width + 40"
-            :height="3000"
+            :width="width + 20"
+            :height="height + 20"
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
@@ -51,7 +51,7 @@
             />
           </filter>
           <linearGradient
-            id="paint0_linear"
+            :id="linearId"
             x1="295.272"
             y1="-2.01758"
             x2="295.272"
@@ -76,11 +76,11 @@
           d="M28.0651 5.37634C29.7655 2.44977 32.8946 0.648926 36.2793 0.648926H245.272C256.042 0.648926 264.772 9.37937 264.772 20.1489V49.1008C264.772 54.3475 260.519 58.6008 255.272 58.6008H6.69732C2.4567 58.6008 -0.188636 54.0043 1.94175 50.3377L28.0651 5.37634Z"
           :fill="fill"
           :fill-opacity="fillOpacity"
-          stroke="url(#paint0_linear)"
+          :stroke="`url(#${linearId})`"
         />
         <defs>
           <linearGradient
-            id="paint0_linear"
+            :id="linearId"
             x1="110.772"
             y1="0.148926"
             x2="110.772"
@@ -99,6 +99,7 @@
 
 <script lang="ts">
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
+import { uuid } from "@guanyu/shared";
 import { ResizeObserver } from "resize-observer";
 import CardDecorateTitle from "@/components/CardDecorate/Title.vue";
 
@@ -201,14 +202,14 @@ export default class WithFooter extends Vue {
       C{559.602} 2.9965 {562.639} 1.08203 {565.952} 1.08203
       H[590.272]
       C[595.244] 1.08203 [599.272] 5.1069 [599.272] 10.0691
-      V132.187
-      C[599.272] 142.681 [590.765] 151.187 [580.272] 151.187
-      H{364.801}
-      C{360.875} 151.187 {357.246} 153.277 {355.28} 156.672
-      L{322.296} 213.612
-      C{320.686} 216.39 {317.719} 218.101 {314.508} 218.101
+      V(132.187)
+      C[599.272] (142.681) [590.765] (151.187) [580.272] (151.187)
+      H[364.801]
+      C[360.875] (151.187) [357.246] (153.277) [355.28] (156.672)
+      L[322.296] (213.612)
+      C[320.686] (216.39) [317.719] (218.101) [314.508] (218.101)
       H10.2719
-      C5.30017 218.101 1.27197 214.076 1.27197 209.114
+      C5.30017 (218.101) 1.27197 (214.076) 1.27197 (209.114)
       V10.0691
       C1.27197 5.10689 5.30019 1.08203 10.272 1.08203
       Z`);
@@ -248,6 +249,10 @@ export default class WithFooter extends Vue {
       H{88.5071}
       C{86.5985} 57.0085 {84.7906} 56.1529 {83.582} 54.6775
       Z`);
+  }
+
+  get linearId() {
+    return `__CARD-DECORATE-WIDTH-FOOTER__${uuid()}`;
   }
 
   /**

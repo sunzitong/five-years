@@ -11,12 +11,7 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g filter="url(#filter0_b)">
-          <path
-            :d="outLinePath"
-            stroke="url(#paint0_linear)"
-            stroke-width="2"
-          />
+        <g :filter="`url(#${linearId}_filter0_b)`">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -24,14 +19,19 @@
             :fill="fill"
             :fill-opacity="fillOpacity"
           />
+          <path
+            :d="outLinePath"
+            :stroke="`url(#${linearId})`"
+            stroke-width="2"
+          />
         </g>
         <defs>
           <filter
-            id="filter0_b"
+            :id="`${linearId}_filter0_b`"
             x="-20"
             y="-19.0269"
-            :width="width + 40"
-            :height="3000"
+            :width="width + 20"
+            :height="height + 20"
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
@@ -50,11 +50,11 @@
             />
           </filter>
           <linearGradient
-            id="paint0_linear"
+            :id="linearId"
             x1="308.5"
             y1="0.973145"
             x2="308.5"
-            y2="474.035"
+            y2="174.035"
             gradientUnits="userSpaceOnUse"
           >
             <stop stop-color="#1B4986" />
@@ -70,13 +70,14 @@
 <script lang="ts">
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
 import { ResizeObserver } from "resize-observer";
+import { uuid } from "@guanyu/shared";
 import CardDecorateTitle, {
   SizeProps,
   formatSmallSize,
 } from "@/components/CardDecorate/Title.vue";
 
 @Component({
-  name:"CardDecorate",
+  name: "CardDecorate",
   components: {
     CardDecorateTitle,
   },
@@ -239,6 +240,10 @@ export default class CardDecorate extends Vue {
       C'{94.3265}' 57.8797 '{92.5186}' 57.0244 '{91.31}' 55.5496
       Z`)
     );
+  }
+
+  get linearId() {
+    return `__APP-CARD-DECORATE__${uuid()}`;
   }
 
   /**
