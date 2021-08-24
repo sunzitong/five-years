@@ -65,7 +65,7 @@ export default class SubWrapper extends Vue {
   }
 
   &__body {
-    padding: 40px 40px 0;
+    padding: 30px 40px 0;
     overflow: hidden;
     background: linear-gradient(
       180deg,

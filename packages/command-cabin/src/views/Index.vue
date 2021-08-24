@@ -28,20 +28,20 @@
             <van-col>
               <Card
                 title="项目开业"
-                style="width: 1580px; height: 775px"
+                style="width: 1580px; height: 660px"
               ></Card>
-            </van-col>
-            <van-col>
-              <Card title="产品品质" style="width: 616px; height: 775px"></Card>
-            </van-col>
-          </van-row>
-          <WhiteSpace />
-          <van-row gutter="24">
-            <van-col>
+              <WhiteSpace />
               <Card
                 title="开业延期"
-                style="width: 2220px; height: 710px"
+                style="width: 1580px; height: 670px"
               ></Card>
+            </van-col>
+            <van-col>
+              <Card title="成本分析" style="width: 616px; height: 540px"></Card>
+              <WhiteSpace />
+              <Card title="产品品质" style="width: 616px; height: 370px"></Card>
+              <WhiteSpace />
+              <Card title="维保报事" style="width: 616px; height: 390px"></Card>
             </van-col>
           </van-row>
         </SubWrapper>

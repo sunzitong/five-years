@@ -312,7 +312,7 @@ export default class WithFooter extends Vue {
   &__body {
     position: absolute;
     margin-top: auto;
-    top: 25px;
+    top: 23px;
     left: 0;
     right: 0;
     bottom: 0;
