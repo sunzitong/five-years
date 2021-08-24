@@ -71,7 +71,7 @@ export default class Card extends Vue {
   /**
    * 是否显示方格背景
    */
-  @Prop({ default: true }) showRectBackground!: boolean;
+  @Prop({ default: false }) showRectBackground!: boolean;
 
   /**
    * 是否显示页脚
