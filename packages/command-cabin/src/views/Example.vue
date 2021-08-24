@@ -33,6 +33,7 @@
       </p>
       <p>
         <Icon type="trangle" color="#FF2A76" />
+        <Icon type="turn-back" color="#00A1FF" />
       </p>
     </Card>
     <Card

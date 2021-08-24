@@ -51,15 +51,5 @@ export default class Trangle extends Vue {
     };
     return sizes[this.size] ?? this.size;
   }
-
-  /**
-   * 图标className
-   */
-  get cls() {
-    return {
-      "app-icon--desc": this.type === "desc",
-      "app-icon--asce": this.type === "asce",
-    };
-  }
 }
 </script>
