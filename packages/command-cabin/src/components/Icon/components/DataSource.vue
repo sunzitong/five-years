@@ -41,6 +41,9 @@ export default class DataSource extends Vue {
    * 填充颜色
    */
   get fill() {
+    /**
+     * 处理特殊场景
+     */
     const colors = {};
     return colors[this.type] ?? this.color;
   }

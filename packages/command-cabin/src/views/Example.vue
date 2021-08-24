@@ -28,6 +28,10 @@
         数据来源
       </p>
       <p>
+        <Icon type="call" color="#65DA7A" />
+        数据来源
+      </p>
+      <p>
         <Icon type="trangle" color="#FF2A76" />
       </p>
     </Card>

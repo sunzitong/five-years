@@ -13,6 +13,7 @@ import AsceAndDesc from "./components/AsceAndDesc.vue";
 import DataSource from "./components/DataSource.vue";
 import Light from "./components/Light.vue";
 import Trangle from "./components/Trangle.vue";
+import Call from "./components/Call.vue";
 
 @Component({
   components: {
@@ -20,6 +21,7 @@ import Trangle from "./components/Trangle.vue";
     DataSource,
     Light,
     Trangle,
+    Call,
   },
 })
 export default class Icon extends Vue {
@@ -36,6 +38,7 @@ export default class Icon extends Vue {
     | "asce"
     | "data-source"
     | "light"
+    | "call"
     | "trangle";
 
   /**
@@ -57,6 +60,7 @@ export default class Icon extends Vue {
       desc: AsceAndDesc,
       light: Light,
       trangle: Trangle,
+      call: Call,
       "data-source": DataSource,
     };
     return conponents[this.type] ?? null;

@@ -20,13 +20,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class Trangle extends Vue {
   /**
-   * 图标类型
-   * 提升：asce
-   * 下降：desc
-   */
-  @Prop({ default: "asce" }) type!: "desc" | "asce";
-
-  /**
    * 图标颜色
    */
   @Prop({ default: "#FF2A76" }) color!: string;
@@ -40,6 +33,9 @@ export default class Trangle extends Vue {
    * 填充颜色
    */
   get fill() {
+    /**
+     * 处理特殊场景
+     */
     const colors = {};
     return colors[this.type] ?? this.color;
   }
@@ -67,14 +63,3 @@ export default class Trangle extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.app-icon {
-  &--asce {
-    transform: matrix(-1, 0, 0, -1, 0, 0);
-  }
-  &__desc {
-    transform: matrix(1, 0, 0, 1, 0, 0);
-  }
-}
-</style>
