@@ -19,6 +19,15 @@
         <Icons type="data-source" color="#4988FD" />
         数据来源
       </p>
+      <p>
+        <Icons type="light" color="green" />
+        数据来源
+      </p>
+      <p>
+        <Icons type="light" color="red" />
+
+        数据来源
+      </p>
     </Card>
     <Card
       title="营造盘面"

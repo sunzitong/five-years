@@ -11,11 +11,13 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import AsceAndDesc from "./components/AsceAndDesc.vue";
 import DataSource from "./components/DataSource.vue";
+import Light from "./components/Light.vue";
 
 @Component({
   components: {
     AsceAndDesc,
     DataSource,
+    Light,
   },
 })
 export default class Icon extends Vue {
@@ -24,7 +26,7 @@ export default class Icon extends Vue {
    * 提升：asce
    * 下降：desc
    */
-  @Prop({ required: true }) type!: "desc" | "asce" | "data-source";
+  @Prop({ required: true }) type!: "desc" | "asce" | "data-source" | "light";
 
   /**
    * 图标颜色
@@ -43,6 +45,7 @@ export default class Icon extends Vue {
     const conponents = {
       asce: AsceAndDesc,
       desc: AsceAndDesc,
+      light: Light,
       "data-source": DataSource,
     };
     return conponents[this.type] ?? null;
