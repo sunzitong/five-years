@@ -19,6 +19,7 @@
             </van-col>
           </van-row>
         </SubWrapper>
+        <WhiteSpace />
         <SubWrapper title="营造盘面">
           <template #extra>
             <a href="javascript:;">详情 →</a>
@@ -34,6 +35,7 @@
               <Card title="产品品质" style="width: 616px; height: 775px"></Card>
             </van-col>
           </van-row>
+          <WhiteSpace />
           <van-row gutter="24">
             <van-col>
               <Card
@@ -45,7 +47,81 @@
         </SubWrapper>
       </div>
       <div class="main-center">main-center</div>
-      <div class="main-right">main-right</div>
+      <div class="main-right">
+        <SubWrapper title="经营现状">
+          <template #extra>
+            <a href="javascript:;">详情 →</a>
+          </template>
+          <van-row gutter="24">
+            <van-col>
+              <Card
+                title="全业态收入及完成度"
+                style="width: 1565px; height: 480px"
+              ></Card>
+            </van-col>
+            <van-col>
+              <Card
+                title="平均续租率"
+                style="width: 631px; height: 480px"
+              ></Card>
+            </van-col>
+          </van-row>
+          <WhiteSpace />
+          <van-row gutter="24">
+            <van-col>
+              <van-row gutter="24">
+                <van-col>
+                  <Card
+                    title="经营性支出"
+                    style="width: 876px; height: 587px"
+                  ></Card>
+                </van-col>
+                <van-col>
+                  <Card
+                    title="成本使用进度"
+                    style="width: 562px; height: 587px"
+                  ></Card>
+                </van-col>
+              </van-row>
+              <WhiteSpace />
+              <van-row gutter="24">
+                <van-col>
+                  <Card
+                    title="客户洞察"
+                    style="width: 876px; height: 363px"
+                  ></Card>
+                </van-col>
+                <van-col>
+                  <Card
+                    title="设备离线率"
+                    style="width: 562px; height: 363px"
+                  ></Card>
+                </van-col>
+              </van-row>
+            </van-col>
+            <van-col>
+              <Card title="舆情风险" style="width: 734px; height: 978px"></Card>
+            </van-col>
+          </van-row>
+        </SubWrapper>
+        <WhiteSpace />
+        <SubWrapper title="异常预警">
+          <template #extra>
+            <a href="javascript:;">详情 →</a>
+          </template>
+          <van-row gutter="24">
+            <van-col>
+              <Card title="收入预警" style="width: 706px; height: 688px"></Card>
+            </van-col>
+            <van-col>
+              <Card title="事件预警" style="width: 904px; height: 688px"></Card>
+            </van-col>
+            <van-col>
+              <Card title="监控预警" style="width: 561px; height: 688px"></Card>
+            </van-col>
+          </van-row>
+        </SubWrapper>
+      </div>
     </div>
     <div class="footer"></div>
   </div>
@@ -56,11 +132,13 @@ import { Component } from "vue-property-decorator";
 import Base from "./Base";
 import SubWrapper from "@/components/SubWrapper/index.vue";
 import Card from "@/components/Card/index.vue";
+import WhiteSpace from "@/components/WhiteSpace/index.vue";
 
 @Component({
   components: {
     SubWrapper,
     Card,
+    WhiteSpace,
   },
 })
 export default class Index extends Base {}
