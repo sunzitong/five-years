@@ -30,7 +30,9 @@
           <p>这里是body区域</p>
         </slot>
       </div>
-      <DataSource :position="dataSourcePosition">{{ dataSource }}</DataSource>
+      <DataSource v-if="dataSource" :position="dataSourcePosition">
+        {{ dataSource }}
+      </DataSource>
     </div>
     <div class="app-card__footer" v-if="showFooter">
       <slot name="footer">
@@ -84,7 +86,7 @@ export default class Card extends Vue {
   /**
    * 数据来源
    */
-  @Prop({ default: "数据来自龙头" }) dataSource!: string;
+  @Prop({ default: "" }) dataSource!: string;
 
   /**
    * 数据来源位置
@@ -122,6 +124,7 @@ export default class Card extends Vue {
   &__body {
     position: relative;
     padding: 24px 0;
+    z-index: 10;
   }
 
   &__content {

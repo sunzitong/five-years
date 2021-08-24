@@ -38,6 +38,7 @@ export default class DataSource extends Vue {
   font-size: 20px;
   align-items: center;
   color: #b4b4b4;
+  z-index: 5;
   > span {
     margin-left: 10px;
   }
