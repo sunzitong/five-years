@@ -54,7 +54,7 @@
             x1="308.5"
             y1="0.973145"
             x2="308.5"
-            y2="174.035"
+            :y2="Math.min(height / 2, 150)"
             gradientUnits="userSpaceOnUse"
           >
             <stop stop-color="#1B4986" />
