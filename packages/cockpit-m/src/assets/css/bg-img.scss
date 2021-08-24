@@ -1,0 +1,26 @@
+@import "./variable.scss";
+
+/** 背景图
+    $VUE_APP_BASE_IMG 在vue.config.js配置
+    process.env.VUE_APP_BASE_IMG
+*/
+$img-map: (
+  "404": "404.png",
+  "share": "share.png",
+  "card-background": "card-background.png",
+  "count-background": "count-background.png",
+  "rank-first": "rank-first.png",
+  "rank-second": "rank-second.png",
+  "rank-third": "rank-third.png",
+  "plane-bottom": "plane-bottom.png",
+  "rent-term-background": "rent-term-background.png",
+  "revenue-calender-icon": "revenue-calender-icon.png",
+  "tab-header": "tab-header.png",
+  "tab-header-back": "tab-header-back.png",
+);
+@each $label, $map in $img-map {
+  %bg-img-#{$label} {
+    @extend %bg-top;
+    background-image: url($VUE_APP_BASE_IMG + $map);
+  }
+}
