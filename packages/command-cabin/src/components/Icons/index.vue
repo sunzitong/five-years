@@ -12,12 +12,14 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import AsceAndDesc from "./components/AsceAndDesc.vue";
 import DataSource from "./components/DataSource.vue";
 import Light from "./components/Light.vue";
+import Trangle from "./components/Trangle.vue";
 
 @Component({
   components: {
     AsceAndDesc,
     DataSource,
     Light,
+    Trangle,
   },
 })
 export default class Icon extends Vue {
@@ -25,8 +27,16 @@ export default class Icon extends Vue {
    * 图标类型
    * 提升：asce
    * 下降：desc
+   * 数据来源：data-source
+   * 灯：light
+   * 三角形：trangle
    */
-  @Prop({ required: true }) type!: "desc" | "asce" | "data-source" | "light";
+  @Prop({ required: true }) type!:
+    | "desc"
+    | "asce"
+    | "data-source"
+    | "light"
+    | "trangle";
 
   /**
    * 图标颜色
@@ -46,6 +56,7 @@ export default class Icon extends Vue {
       asce: AsceAndDesc,
       desc: AsceAndDesc,
       light: Light,
+      trangle: Trangle,
       "data-source": DataSource,
     };
     return conponents[this.type] ?? null;

@@ -25,8 +25,10 @@
       </p>
       <p>
         <Icons type="light" color="red" />
-
         数据来源
+      </p>
+      <p>
+        <Icons type="trangle" color="#FF2A76" />
       </p>
     </Card>
     <Card
