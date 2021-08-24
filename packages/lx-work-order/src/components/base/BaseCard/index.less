@@ -1,0 +1,23 @@
+.baseCard {
+  padding-left: 18px;
+  padding-right: 18px;
+  background-color: #fff;
+  margin-bottom: 12px;
+  > h2 {
+    padding: 15px 0;
+    // border-bottom: 1px solid #eaeaea;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #323232;
+  }
+  :global > {
+    .am-list:nth-last-of-type(1) {
+      > .am-list-body {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}

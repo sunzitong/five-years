@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope={cockpit-m,customerinvitat,newfriend}",
-    "build": "lerna run build --scope={cockpit-m,customerinvitat,newfriend} --stream",
+    "postinstall": "lerna bootstrap --scope=lx-reserve-h5",
+    "build": "lerna run build --scope=lx-reserve-h5 --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
