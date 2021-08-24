@@ -31,7 +31,7 @@
             x="-20"
             y="-19.0269"
             :width="width + 40"
-            :height="100000000"
+            :height="3000"
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
@@ -281,6 +281,7 @@ export default class CardDecorate extends Vue {
 .app-card-decorate {
   position: absolute;
   text-align: center;
+  pointer-events: none;
   overflow: hidden;
   height: 100%;
   display: flex;

@@ -69,7 +69,7 @@ export default class Card extends Vue {
   /**
    * 是否显示页脚
    */
-  @Prop({ default: true }) showFooter!: boolean;
+  @Prop({ default: false }) showFooter!: boolean;
 
   /**
    * 是否显示页脚

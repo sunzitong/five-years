@@ -32,7 +32,7 @@
             x="-19.728"
             y="-19.918"
             :width="width + 40"
-            :height="1000000"
+            :height="3000"
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
@@ -74,7 +74,8 @@
       >
         <path
           d="M28.0651 5.37634C29.7655 2.44977 32.8946 0.648926 36.2793 0.648926H245.272C256.042 0.648926 264.772 9.37937 264.772 20.1489V49.1008C264.772 54.3475 260.519 58.6008 255.272 58.6008H6.69732C2.4567 58.6008 -0.188636 54.0043 1.94175 50.3377L28.0651 5.37634Z"
-          fill="#0A225D"
+          :fill="fill"
+          :fill-opacity="fillOpacity"
           stroke="url(#paint0_linear)"
         />
         <defs>
@@ -287,6 +288,7 @@ export default class WithFooter extends Vue {
 .app-card-decorate {
   position: absolute;
   text-align: center;
+  pointer-events: none;
   height: 100%;
   display: flex;
   min-width: 606px;

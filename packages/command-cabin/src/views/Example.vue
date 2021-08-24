@@ -1,75 +1,37 @@
 <template>
   <div class="page__example">
-    <Card title="营造盘面" size="small" :showFooter="false">
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-      <p>1111</p>
-    </Card>
+    <Card title="营造盘面" size="small">body区域</Card>
     <br />
-    <Card title="营造盘面" :showFooter="false">
-      <p>2222</p>
-      <p>2222</p>
-      <p>2222</p>
-      <p>2222</p>
-      <p>2222</p>
-      <p>2222</p>
-    </Card>
+    <Card title="营造盘面">body区域</Card>
+    <br />
+    <Card title="营造盘面" :showFooter="true">body区域</Card>
     <br />
     <Card title="营造盘面">
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
-      <p>4444</p>
+      <p>
+        <Icons type="desc" color="#D1356E;" />
+        上升
+      </p>
+      <p>
+        <Icons type="asce" color="#01F5F1" />
+        下降
+      </p>
+      <p>
+        <Icons type="data-source" color="#4988FD" />
+        数据来源
+      </p>
     </Card>
-    <br />
-    <Card title="营造盘面">
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-      <p>3333</p>
-    </Card>
-    <br />
+    <Card
+      title="营造盘面"
+      :showFooter="true"
+      :showRectBackground="false"
+      :opacity="0.6"
+    />
     <Subtitle title="营造盘面">
       <template #extra>
         <a href="javascript:;">详情→</a>
       </template>
     </Subtitle>
-    <Lattices :width="1000" :height="1000" />
+    <!-- <Lattices :width="1000" :height="1000" /> -->
   </div>
 </template>
 
@@ -79,6 +41,7 @@ import Box from "@/components/Box/index.vue";
 import Subtitle from "@/components/Subtitle/index.vue";
 import Lattices from "@/components/Lattices/index.vue";
 import Card from "@/components/Card/index.vue";
+import Icons from "@/components/Icons/index.vue";
 
 @Component({
   components: {
@@ -86,9 +49,14 @@ import Card from "@/components/Card/index.vue";
     Subtitle,
     Lattices,
     Card,
+    Icons,
   },
 })
 export default class Example extends Vue {}
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.page__example {
+  width: 1000px;
+}
+</style>
