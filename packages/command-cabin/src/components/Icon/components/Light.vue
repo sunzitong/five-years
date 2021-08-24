@@ -45,7 +45,7 @@ export default class Light extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#50EF9D" }) color!: string;
+  @Prop({ default: "#50EF9D|#26B284" }) color!: string;
 
   /**
    * 图标大小

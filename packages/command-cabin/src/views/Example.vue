@@ -8,17 +8,18 @@
     <br />
     <Card title="营造盘面">
       <p>
-        <Icon type="desc" color="#D1356E;" />
-        <Icon type="asce" color="#01F5F1" />
-        <Icon type="data-source" color="#4988FD" />
-        <Icon type="light" color="#50EF9D|#26B284" />
+        <Icon type="desc" />
+        <Icon type="asce" />
+        <Icon type="data-source" />
+        <Icon type="light" />
         <Icon type="light" color="#FF598C|#EB2763" />
         <Icon type="call" color="#65DA7A" />
         <Icon type="call" color="#EB4477" />
         <Icon type="call" color="rgba(0,0,0,0)" />
-        <Icon type="trangle" color="#FF2A76" />
-        <Icon type="turn-back" color="#00A1FF" />
+        <Icon type="trangle" />
+        <Icon type="turn-back" />
         <Icon type="touch" color="#00A1FF" />
+        <Icon type="search-version" />
       </p>
     </Card>
     <Card

@@ -17,6 +17,7 @@ import Trangle from "./components/Trangle.vue";
 import Call from "./components/Call.vue";
 import TurnBack from "./components/TurnBack.vue";
 import Touch from "./components/Touch.vue";
+import SearchVersion from "./components/SearchVersion.vue";
 
 @Component({
   components: {
@@ -27,6 +28,7 @@ import Touch from "./components/Touch.vue";
     Call,
     TurnBack,
     Touch,
+    SearchVersion,
   },
 })
 export default class Icon extends Vue {
@@ -56,7 +58,7 @@ export default class Icon extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ required: true, default: "#01F5F1" }) color!: string;
+  @Prop() color!: string;
 
   /**
    * 图标大小
@@ -74,6 +76,7 @@ export default class Icon extends Vue {
       trangle: Trangle,
       call: Call,
       touch: Touch,
+      "search-version": SearchVersion,
       "turn-back": TurnBack,
       "data-source": DataSource,
     };
