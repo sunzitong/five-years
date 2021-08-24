@@ -8,7 +8,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Provide, Vue } from "vue-property-decorator";
+import { formatColorStr } from "@/utils/tools";
 import AsceAndDesc from "./components/AsceAndDesc.vue";
 import DataSource from "./components/DataSource.vue";
 import Light from "./components/Light.vue";
@@ -29,6 +30,11 @@ import Touch from "./components/Touch.vue";
   },
 })
 export default class Icon extends Vue {
+  /**
+   * 工具函数
+   */
+  @Provide() formatColorStr = formatColorStr;
+
   /**
    * 图标类型
    * 提升：asce

@@ -21,8 +21,8 @@
         y2="29.4846"
         gradientUnits="userSpaceOnUse"
       >
-        <stop :stop-color="fill.start" />
-        <stop offset="1" :stop-color="fill.end" />
+        <stop :stop-color="fill[0]" />
+        <stop offset="1" :stop-color="fill[1]" />
       </linearGradient>
       <clipPath id="clip0">
         <rect
@@ -37,6 +37,7 @@
 </template>
 
 <script lang="ts">
+import { formatColorStr } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -55,19 +56,7 @@ export default class Light extends Vue {
    * 填充颜色
    */
   get fill() {
-    const colors = {
-      // 绿灯
-      green: {
-        start: "#50EF9D",
-        end: "#26B284",
-      },
-      // 红灯
-      red: {
-        start: "#f50",
-        end: "#EB2763",
-      },
-    };
-    return colors[this.color] ?? [this.color, this.color];
+    return formatColorStr(this.color, 2);
   }
 
   mounted() {

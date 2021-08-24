@@ -15,6 +15,7 @@
 </template>
 
 <script lang="ts">
+import { formatColorStr } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -36,10 +37,7 @@ export default class Call extends Vue {
     /**
      * 处理特殊场景
      */
-    const colors = {
-      green: ["#65DA7A", "#fff"],
-    };
-    return colors[this.color] ?? [this.color, "#fff"];
+    return formatColorStr(this.color, 2);
   }
 
   /**

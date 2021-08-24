@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import { formatColorStr } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -44,11 +45,7 @@ export default class Touch extends Vue {
    * 填充颜色
    */
   get fill() {
-    /**
-     * 处理特殊场景
-     */
-    const colors = {};
-    return colors[this.color] ?? [this.color, "#fff"];
+    return formatColorStr(this.color, 2);
   }
 
   /**

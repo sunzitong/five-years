@@ -9,29 +9,13 @@
     <Card title="营造盘面">
       <p>
         <Icon type="desc" color="#D1356E;" />
-        上升
-      </p>
-      <p>
         <Icon type="asce" color="#01F5F1" />
-        下降
-      </p>
-      <p>
         <Icon type="data-source" color="#4988FD" />
-        数据来源
-      </p>
-      <p>
-        <Icon type="light" color="green" />
-        数据来源
-      </p>
-      <p>
-        <Icon type="light" color="red" />
-        数据来源
-      </p>
-      <p>
+        <Icon type="light" color="#50EF9D|#26B284" />
+        <Icon type="light" color="#FF598C|#EB2763" />
         <Icon type="call" color="#65DA7A" />
-        数据来源
-      </p>
-      <p>
+        <Icon type="call" color="#EB4477" />
+        <Icon type="call" color="rgba(0,0,0,0)" />
         <Icon type="trangle" color="#FF2A76" />
         <Icon type="turn-back" color="#00A1FF" />
         <Icon type="touch" color="#00A1FF" />
