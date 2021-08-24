@@ -1,5 +1,5 @@
 <template>
-  <div class="app-card" :class="includeFooterCls">
+  <div ref="card" class="app-card" :class="includeFooterCls">
     <!-- SVG 背景没有footer -->
     <CardDecorateWithFooter
       key="CardDecorateWithFooter"
@@ -17,7 +17,9 @@
     />
     <div class="app-card__head">
       <slot name="title" v-bind="title">
-        <h3 class="app-card__title">{{ title }}</h3>
+        <h3 class="app-card__title">
+          {{ title }}
+        </h3>
       </slot>
     </div>
     <div class="app-card__body">
@@ -34,6 +36,10 @@
         {{ dataSource }}
       </DataSource>
     </div>
+    <div class="app-card__debug" v-if="debug">
+      <p>width: {{ W }}</p>
+      <p>height: {{ H }}</p>
+    </div>
     <div class="app-card__footer" v-if="showFooter">
       <slot name="footer">
         <a href="javascript::">查看详情→</a>
@@ -43,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import CardDecorateWithFooter from "@/components/CardDecorate/WithFooter.vue";
 import CardDecorate from "@/components/CardDecorate/index.vue";
 import Icon from "@/components/Icon/index.vue";
@@ -58,6 +64,7 @@ import DataSource from "@/components/DataSource/index.vue";
   },
 })
 export default class Card extends Vue {
+  @Ref() card!: HTMLDivElement;
   /**
    * 标题
    */
@@ -93,6 +100,11 @@ export default class Card extends Vue {
    */
   @Prop({ default: "" }) dataSourcePosition!: "right top";
 
+  W = 0;
+  H = 0;
+
+  debug = process.env.NODE_ENV === "development";
+
   /**
    * 是否包含footer
    */
@@ -100,6 +112,14 @@ export default class Card extends Vue {
     return {
       "app-card__footer--visible": this.showFooter,
     };
+  }
+
+  mounted() {
+    if (this.debug) {
+      const { width, height } = getComputedStyle(this.card);
+      this.W = parseFloat(width);
+      this.H = parseFloat(height);
+    }
   }
 }
 </script>
@@ -151,6 +171,15 @@ export default class Card extends Vue {
     .app-card__body {
       padding-bottom: 80px;
     }
+  }
+
+  &__debug {
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.2);
   }
 }
 </style>
