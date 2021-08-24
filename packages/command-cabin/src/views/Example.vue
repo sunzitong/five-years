@@ -8,27 +8,27 @@
     <br />
     <Card title="营造盘面">
       <p>
-        <Icons type="desc" color="#D1356E;" />
+        <Icon type="desc" color="#D1356E;" />
         上升
       </p>
       <p>
-        <Icons type="asce" color="#01F5F1" />
+        <Icon type="asce" color="#01F5F1" />
         下降
       </p>
       <p>
-        <Icons type="data-source" color="#4988FD" />
+        <Icon type="data-source" color="#4988FD" />
         数据来源
       </p>
       <p>
-        <Icons type="light" color="green" />
+        <Icon type="light" color="green" />
         数据来源
       </p>
       <p>
-        <Icons type="light" color="red" />
+        <Icon type="light" color="red" />
         数据来源
       </p>
       <p>
-        <Icons type="trangle" color="#FF2A76" />
+        <Icon type="trangle" color="#FF2A76" />
       </p>
     </Card>
     <Card
@@ -52,7 +52,7 @@ import Box from "@/components/Box/index.vue";
 import Subtitle from "@/components/Subtitle/index.vue";
 import Lattices from "@/components/Lattices/index.vue";
 import Card from "@/components/Card/index.vue";
-import Icons from "@/components/Icons/index.vue";
+import Icon from "@/components/Icon/index.vue";
 
 @Component({
   components: {
@@ -60,7 +60,7 @@ import Icons from "@/components/Icons/index.vue";
     Subtitle,
     Lattices,
     Card,
-    Icons,
+    Icon,
   },
 })
 export default class Example extends Vue {}
