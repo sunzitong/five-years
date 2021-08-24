@@ -6,6 +6,10 @@ export interface ToPixel {
   (px: number, unit: true): string;
 }
 
+export interface FormatColorStr {
+  (str: string, length: number): string[];
+}
+
 /**
  * 用 @guanyu/shared cloneJSON 代替
  * @param obj 序列化JSON克隆对象
@@ -44,4 +48,18 @@ export interface ToPixel {
 export const toRpx: ToPixel = (px: number, unit = false): any => {
   const rpx = iwant.calc((Vue.rpx / 100) * px, 5);
   return unit ? `${rpx}px` : rpx;
+};
+
+/**
+ * 拆分颜色
+ * "#fff"|#000
+ */
+export const formatColorStr: FormatColorStr = (
+  str: string,
+  length: number
+): string[] => {
+  if (str.includes("|")) {
+    return str.split("|").slice(0, length);
+  }
+  return [str].concat(Array(length - 1).fill("#FFF"));
 };
