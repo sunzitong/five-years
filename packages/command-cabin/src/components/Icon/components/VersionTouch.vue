@@ -30,7 +30,7 @@ import { formatColorStr } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class TouchVersion extends Vue {
+export default class VersionTouch extends Vue {
   /**
    * 图标颜色
    */

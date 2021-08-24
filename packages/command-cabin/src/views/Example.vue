@@ -18,8 +18,9 @@
         <Icon type="call" color="rgba(0,0,0,0)" />
         <Icon type="trangle" />
         <Icon type="turn-back" />
-        <Icon type="touch-version" color="#00A1FF" />
-        <Icon type="search-version" />
+        <Icon type="version-touch" color="#00A1FF" />
+        <Icon type="version-search" />
+        <Icon type="version-metting" />
       </p>
     </Card>
     <Card
