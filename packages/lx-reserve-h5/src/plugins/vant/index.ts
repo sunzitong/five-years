@@ -1,0 +1,52 @@
+import {
+  Calendar,
+  Toast,
+  Picker,
+  Icon,
+  Popup,
+  Overlay,
+  Lazyload,
+  Image,
+  Loading,
+  List,
+  Empty,
+  Button,
+  Swipe,
+  SwipeItem,
+  Cell,
+  CellGroup,
+  Tag,
+  IndexBar,
+  IndexAnchor,
+  ImagePreview,
+  Field,
+  Form,
+  Dialog,
+  Notify,
+} from "vant";
+import Vue from "vue";
+
+Vue.use(Calendar);
+Vue.use(Button);
+Vue.use(Toast);
+Vue.use(Picker);
+Vue.use(Icon);
+Vue.use(Popup);
+Vue.use(Overlay);
+Vue.use(List);
+Vue.use(Empty);
+Vue.use(Lazyload);
+Vue.use(Image);
+Vue.use(Loading);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Tag);
+Vue.use(IndexBar);
+Vue.use(IndexAnchor);
+Vue.use(ImagePreview);
+Vue.use(Field);
+Vue.use(Form);
+Vue.use(Dialog);
+Vue.use(Notify);

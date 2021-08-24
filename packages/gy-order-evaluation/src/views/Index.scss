@@ -1,0 +1,135 @@
+@import '../assets/css/reset.css';
+
+.page-index {
+    padding: 17px 18px 80px 17px;
+    overflow: hidden;
+}
+
+h2 {
+    font-size: 17px;
+    line-height: 24px;
+    color: #333333;
+    font-weight: bold;
+}
+
+.question-list {
+    padding-bottom: 29px;
+
+    .question-box {
+        padding-top: 23px;
+
+        h3 {
+            font-size: 15px;
+            line-height: 25px;
+            color: #333333;
+            font-weight: bold;
+        }
+    }
+
+    .star-list-wrap {
+        display: flex;
+        align-items: center;
+    }
+
+    .star-list {
+        display: flex;
+        padding-top: 8px;
+
+        li {
+            width: 21px;
+            height: 21px;
+            margin-right: 15px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .star-desc {
+        padding-top: 9px;
+        line-height: 20px;
+        font-size: 15px;
+        color: #999999;
+        font-weight: bold;
+    }
+
+    .label-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        .label-box {
+            margin-top: 14px;
+            font-size: 15px;
+            line-height: 21px;
+            color: #666666;
+            background-color: #F8F8F8;
+            padding: 6px 15px;
+            border-radius: 17px;
+            margin-right: 12px;
+            border: 1px solid #F8F8F8;
+
+            &.cur {
+                background: #ffffff;
+                color: #F18D00;
+                border-color: #F18D00;
+            }
+        }
+    }
+}
+
+.other-box-title {
+    display: flex;
+    justify-content: space-between;
+
+    h2 {}
+
+    span {
+        line-height: 24px;
+        font-size: 15px;
+        color: #666666;
+    }
+}
+
+.text-area {
+    width: 100%;
+    height: 120px;
+    background: #F8F8F8;
+    border: 0.5px solid #EAEAEA;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 10px;
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    color: #999999;
+    -webkit-appearance: none;
+    appearance: none;
+    /*去除阴影边框*/
+    outline: none;
+
+}
+
+.submit {
+    padding: 10px;
+    border-top: 1px solid #ebebeb;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 50px;
+        background: #F18D00;
+        border-radius: 8px;
+        font-size: 17px;
+        color: #ffffff;
+        line-height: 50px;
+        text-align: center;
+    }
+}

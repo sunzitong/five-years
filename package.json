@@ -5,16 +5,16 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=static-pages-html",
-    "build": "lerna run build --scope=static-pages-html --stream",
+    "postinstall": "lerna bootstrap --scope={cockpit-m,customerinvitat,newfriend}",
+    "build": "lerna run build --scope={cockpit-m,customerinvitat,newfriend} --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
     "ncu": "lerna exec ncu -- --timeout 60000",
     "create": "lerna create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all dev:static-pages-html",
-    "dev:static-pages-html": "lerna run serve --scope=static-pages-html --stream"
+    "dev": "npm-run-all dev:cockpit-m",
+    "dev:cockpit-m": "lerna run serve --scope=cockpit-m --stream"
   },
   "repository": {
     "type": "git",
