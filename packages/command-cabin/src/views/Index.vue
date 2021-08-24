@@ -9,13 +9,30 @@
           </template>
           <van-row gutter="24">
             <van-col>
-              <Card title="签约达成" style="width: 727px; height: 814px"></Card>
+              <Card title="商机转化" style="width: 727px; height: 814px"></Card>
             </van-col>
             <van-col>
-              <Card title="商机储备" style="width: 640px; height: 814px"></Card>
+              <Card title="项目获取" style="width: 640px; height: 814px"></Card>
             </van-col>
             <van-col>
-              <Card title="中央奖补" style="width: 804px; height: 814px"></Card>
+              <Card title="战略合作" style="width: 804px; height: 382px"></Card>
+              <WhiteSpace />
+              <van-row gutter="24">
+                <van-col>
+                  <Card
+                    title="中央奖补"
+                    size="small"
+                    style="width: 390px; height: 400px"
+                  ></Card>
+                </van-col>
+                <van-col>
+                  <Card
+                    title="投后攻坚"
+                    size="small"
+                    style="width: 390px; height: 400px"
+                  ></Card>
+                </van-col>
+              </van-row>
             </van-col>
           </van-row>
         </SubWrapper>
@@ -105,7 +122,7 @@
           </van-row>
         </SubWrapper>
         <WhiteSpace />
-        <SubWrapper title="异常预警">
+        <SubWrapper title="舆情风险">
           <template #extra>
             <a href="javascript:;">详情 →</a>
           </template>
