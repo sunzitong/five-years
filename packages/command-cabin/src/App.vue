@@ -10,17 +10,16 @@
 import { Component, Mixins } from "vue-property-decorator";
 import AppLoading from "@/components/AppLoading.vue";
 import MixStore from "@/store/MixStore";
-import Resize from "@/components/Resize/index.vue";
 
 @Component({
   name: "app",
   components: {
     AppLoading,
-    Resize,
   },
 })
 export default class App extends Mixins(MixStore) {
   resizeHandle() {
+    if (process.env.NODE_ENV === "development") return;
     const app = this.$root.$el as HTMLDivElement;
     const fixWidth = 7680;
     const fixHeight = 3240;
@@ -58,7 +57,7 @@ export default class App extends Mixins(MixStore) {
   width: 7680px;
   height: 3240px;
   transform-origin: 0 0;
-  overflow: hidden;
-  background: #020633;
+  // overflow: hidden;
+  // background: #020633;
 }
 </style>
