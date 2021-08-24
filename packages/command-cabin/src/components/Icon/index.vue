@@ -15,6 +15,7 @@ import Light from "./components/Light.vue";
 import Trangle from "./components/Trangle.vue";
 import Call from "./components/Call.vue";
 import TurnBack from "./components/TurnBack.vue";
+import Touch from "./components/Touch.vue";
 
 @Component({
   components: {
@@ -24,6 +25,7 @@ import TurnBack from "./components/TurnBack.vue";
     Trangle,
     Call,
     TurnBack,
+    Touch,
   },
 })
 export default class Icon extends Vue {
@@ -42,6 +44,7 @@ export default class Icon extends Vue {
     | "light"
     | "call"
     | "turn-back"
+    | "touch"
     | "trangle";
 
   /**
@@ -64,6 +67,7 @@ export default class Icon extends Vue {
       light: Light,
       trangle: Trangle,
       call: Call,
+      touch: Touch,
       "turn-back": TurnBack,
       "data-source": DataSource,
     };

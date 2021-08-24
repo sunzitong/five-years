@@ -43,7 +43,7 @@ export default class TurnBack extends Vue {
      * 处理特殊场景
      */
     const colors = {};
-    return colors[this.type] ?? [this.color, "#fff"];
+    return colors[this.color] ?? [this.color, "#fff"];
   }
 
   /**

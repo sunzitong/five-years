@@ -45,7 +45,7 @@ export default class DataSource extends Vue {
      * 处理特殊场景
      */
     const colors = {};
-    return colors[this.type] ?? this.color;
+    return colors[this.color] ?? this.color;
   }
 
   /**

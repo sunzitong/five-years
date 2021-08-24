@@ -39,7 +39,7 @@ export default class Call extends Vue {
     const colors = {
       green: ["#65DA7A", "#fff"],
     };
-    return colors[this.type] ?? [this.color, "#fff"];
+    return colors[this.color] ?? [this.color, "#fff"];
   }
 
   /**
