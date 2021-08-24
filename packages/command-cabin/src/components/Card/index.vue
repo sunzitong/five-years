@@ -30,6 +30,7 @@
           <p>这里是body区域</p>
         </slot>
       </div>
+      <DataSource :position="dataSourcePosition">{{ dataSource }}</DataSource>
     </div>
     <div class="app-card__footer" v-if="showFooter">
       <slot name="footer">
@@ -43,11 +44,15 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import CardDecorateWithFooter from "@/components/CardDecorate/WithFooter.vue";
 import CardDecorate from "@/components/CardDecorate/index.vue";
+import Icon from "@/components/Icon/index.vue";
+import DataSource from "@/components/DataSource/index.vue";
 
 @Component({
   components: {
     CardDecorate,
     CardDecorateWithFooter,
+    Icon,
+    DataSource,
   },
 })
 export default class Card extends Vue {
@@ -75,6 +80,16 @@ export default class Card extends Vue {
    * 是否显示页脚
    */
   @Prop({ default: 1 }) opacity!: number;
+
+  /**
+   * 数据来源
+   */
+  @Prop({ default: "数据来自龙头" }) dataSource!: string;
+
+  /**
+   * 数据来源位置
+   */
+  @Prop({ default: "" }) dataSourcePosition!: "right top";
 
   /**
    * 是否包含footer
@@ -106,7 +121,7 @@ export default class Card extends Vue {
 
   &__body {
     position: relative;
-    padding: 30px 0;
+    padding: 24px 0;
   }
 
   &__content {

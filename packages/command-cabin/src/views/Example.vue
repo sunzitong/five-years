@@ -1,6 +1,8 @@
 <template>
   <div class="page__example">
-    <Card title="营造盘面" size="small">body区域</Card>
+    <Card title="营造盘面" dataSourcePosition="right top" size="small">
+      body区域
+    </Card>
     <br />
     <Card title="营造盘面">body区域</Card>
     <br />
