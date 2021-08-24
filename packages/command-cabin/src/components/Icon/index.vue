@@ -16,7 +16,7 @@ import Light from "./components/Light.vue";
 import Trangle from "./components/Trangle.vue";
 import Call from "./components/Call.vue";
 import TurnBack from "./components/TurnBack.vue";
-import Touch from "./components/Touch.vue";
+import TouchVersion from "./components/TouchVersion.vue";
 import SearchVersion from "./components/SearchVersion.vue";
 
 @Component({
@@ -27,7 +27,7 @@ import SearchVersion from "./components/SearchVersion.vue";
     Trangle,
     Call,
     TurnBack,
-    Touch,
+    TouchVersion,
     SearchVersion,
   },
 })
@@ -52,7 +52,8 @@ export default class Icon extends Vue {
     | "light"
     | "call"
     | "turn-back"
-    | "touch"
+    | "touch-version"
+    | "search-version"
     | "trangle";
 
   /**
@@ -75,7 +76,7 @@ export default class Icon extends Vue {
       light: Light,
       trangle: Trangle,
       call: Call,
-      touch: Touch,
+      "touch-version": TouchVersion,
       "search-version": SearchVersion,
       "turn-back": TurnBack,
       "data-source": DataSource,
