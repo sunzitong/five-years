@@ -18,7 +18,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class Icon extends Vue {
+export default class AsceAndDesc extends Vue {
   /**
    * 图标类型
    * 提升：asce
