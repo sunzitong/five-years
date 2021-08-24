@@ -1,5 +1,5 @@
 <template>
-  <div class="app-white-space"></div>
+  <div class="app-white-space" :class="cls"></div>
 </template>
 
 <script lang="ts">
@@ -11,6 +11,9 @@ export default class SubWrapper extends Vue {
    */
   @Prop({ default: "lg" }) size!: "sm" | "md" | "lg" | "xs" | "xl";
 
+  /**
+   * 动态设置className
+   */
   get cls() {
     return `app-white-space--${this.size}`;
   }
