@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+.wishes {
+    height: 100%;
+    width: 100%;
+    background: url(../../assets/bg1.png);
+    background-size: cover;
+    overflow: hidden;
+    font-size: 14px;
+    color:rgba(99,60,40,1); 
+}
+
+.wishes .box1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wishes .greetings {
+    box-sizing: border-box;
+    padding: 116px 38px 106px;
+    width: 343px;
+    height: 505px;
+    background: url(../../assets/bg2.png);
+    background-size: cover;
+}
+
+.wishes .greetings h3 {
+    margin-top: 13px;
+    height: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 25px;
+    // 省略号
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wishes .greetings .description {
+    margin-top: 20px;
+    line-height: 24px;
+    font-weight: normal;
+}
+
+.wishes .greetings .greet_end {
+    margin-top: 10px;
+    line-height: 20px;
+}
+
+.wishes .greetings .greet_end .time {
+    text-align: right;
+    font-weight: bold;
+}
+
+.wishes .greetings .greet_end .sign {
+    text-align: right;
+    font-weight: bold;
+}
+
+.wishes .btn {
+    margin: 8px auto 94px auto;
+    width: 327px;
+    height: 50px;
+    background: url(../../assets/btn1.png);
+    background-size: cover;
+    font-size: 17px;
+    font-weight: bold;
+    color:rgba(199,67,5,1);
+    line-height: 50px;
+    text-align: center;
+}
