@@ -25,6 +25,9 @@
         <Icon type="version-metting" />
         <Icon type="camera" />
       </p>
+      <div>
+        <Progress v-model="progress" />
+      </div>
     </Card>
     <Card
       title="营造盘面"
@@ -48,6 +51,7 @@ import Subtitle from "@/components/Subtitle/index.vue";
 import Lattices from "@/components/Lattices/index.vue";
 import Card from "@/components/Card/index.vue";
 import Icon from "@/components/Icon/index.vue";
+import Progress from "@/components/Progress/index.vue";
 
 @Component({
   components: {
@@ -56,9 +60,18 @@ import Icon from "@/components/Icon/index.vue";
     Lattices,
     Card,
     Icon,
+    Progress,
   },
 })
-export default class Example extends Vue {}
+export default class Example extends Vue {
+  progress = 10;
+
+  mounted() {
+    setTimeout(() => {
+      console.log(this.progress);
+    }, 3000);
+  }
+}
 </script>
 
 <style lang="less" scoped>
