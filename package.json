@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=hd_newNotice",
-    "build": "lerna run build --scope=hd_newNotice --stream",
+    "postinstall": "lerna bootstrap --scope=checkoutRules",
+    "build": "lerna run build --scope=checkoutRules --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
