@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=hd-birthday",
-    "build": "lerna run build --scope=hd-birthday --stream",
+    "postinstall": "lerna bootstrap --scope=xg-client-store-daliy",
+    "build": "lerna run build --scope=xg-client-store-daliy --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
