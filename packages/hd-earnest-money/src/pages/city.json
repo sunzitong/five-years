@@ -1,0 +1,1639 @@
+[
+  {
+    "cityName": "北京",
+    "projectList": [
+      {
+        "itemId": "98",
+        "itemName": "龙湖冠寓北京酒仙桥店",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "145",
+        "itemName": "龙湖测试",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "157",
+        "itemName": "龙湖冠寓北京望京北路店",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "163",
+        "itemName": "龙湖冠寓北京生命科学园店",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "199",
+        "itemName": "龙湖冠寓北京大瓦窑店",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "266",
+        "itemName": "龙湖冠寓北京东迎坊服务式公寓",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "293",
+        "itemName": "北京一展空间彩虹桥社区",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "299",
+        "itemName": "一展空间常营社区-一期",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "301",
+        "itemName": "一展空间常营社区-二期",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "317",
+        "itemName": "龙湖冠寓北京亚运村关庄店",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "347",
+        "itemName": "龙湖冠寓北京总部基地店",
+        "cityId": "1",
+        "cityName": "北京"
+      },
+      {
+        "itemId": "370",
+        "itemName": "龙湖冠寓北京回龙观店",
+        "cityId": "1",
+        "cityName": "北京"
+      }
+    ]
+  },
+  {
+    "cityName": "南宁",
+    "projectList": [
+      {
+        "itemId": "229",
+        "itemName": "龙湖冠寓南宁广西民族大学店",
+        "cityId": "218",
+        "cityName": "南宁"
+      }
+    ]
+  },
+  {
+    "cityName": "嘉兴",
+    "projectList": [
+      {
+        "itemId": "269",
+        "itemName": "龙湖冠寓嘉兴嘉禾中心店",
+        "cityId": "90",
+        "cityName": "嘉兴"
+      }
+    ]
+  },
+  {
+    "cityName": "昆明",
+    "projectList": [
+      {
+        "itemId": "324",
+        "itemName": "龙湖冠寓昆明市体育馆店",
+        "cityId": "265",
+        "cityName": "昆明"
+      }
+    ]
+  },
+  {
+    "cityName": "济南",
+    "projectList": [
+      {
+        "itemId": "173",
+        "itemName": "龙湖冠寓济南奥体店",
+        "cityId": "135",
+        "cityName": "济南"
+      },
+      {
+        "itemId": "178",
+        "itemName": "龙湖冠寓济南无影山路店",
+        "cityId": "135",
+        "cityName": "济南"
+      },
+      {
+        "itemId": "243",
+        "itemName": "龙湖冠寓济南经十路店",
+        "cityId": "135",
+        "cityName": "济南"
+      }
+    ]
+  },
+  {
+    "cityName": "徐州",
+    "projectList": [
+      {
+        "itemId": "258",
+        "itemName": "龙湖冠寓徐州火车站店",
+        "cityId": "76",
+        "cityName": "徐州"
+      }
+    ]
+  },
+  {
+    "cityName": "绍兴",
+    "projectList": [
+      {
+        "itemId": "156",
+        "itemName": "绍兴中成松果创艺坊",
+        "cityId": "92",
+        "cityName": "绍兴"
+      }
+    ]
+  },
+  {
+    "cityName": "厦门",
+    "projectList": [
+      {
+        "itemId": "87",
+        "itemName": "龙湖冠寓厦门高新园店",
+        "cityId": "116",
+        "cityName": "厦门"
+      },
+      {
+        "itemId": "120",
+        "itemName": "龙湖冠寓厦门云顶店",
+        "cityId": "116",
+        "cityName": "厦门"
+      },
+      {
+        "itemId": "137",
+        "itemName": "龙湖冠寓厦门湖里大道店",
+        "cityId": "116",
+        "cityName": "厦门"
+      },
+      {
+        "itemId": "161",
+        "itemName": "龙湖冠寓厦门五缘湾旗舰店",
+        "cityId": "116",
+        "cityName": "厦门"
+      },
+      {
+        "itemId": "170",
+        "itemName": "龙湖冠寓厦门莲坂店",
+        "cityId": "116",
+        "cityName": "厦门"
+      },
+      {
+        "itemId": "253",
+        "itemName": "龙湖冠寓厦门集美集源路店",
+        "cityId": "116",
+        "cityName": "厦门"
+      },
+      {
+        "itemId": "256",
+        "itemName": "龙湖冠寓厦门机场港中路店",
+        "cityId": "116",
+        "cityName": "厦门"
+      }
+    ]
+  },
+  {
+    "cityName": "宁波",
+    "projectList": [
+      {
+        "itemId": "121",
+        "itemName": "龙湖冠寓宁波ONE宁南路店",
+        "cityId": "88",
+        "cityName": "宁波"
+      },
+      {
+        "itemId": "312",
+        "itemName": "龙湖冠寓宁波镇海五里牌店",
+        "cityId": "88",
+        "cityName": "宁波"
+      }
+    ]
+  },
+  {
+    "cityName": "东莞",
+    "projectList": [
+      {
+        "itemId": "316",
+        "itemName": "龙湖冠寓东莞东城店",
+        "cityId": "213",
+        "cityName": "东莞"
+      }
+    ]
+  },
+  {
+    "cityName": "重庆",
+    "projectList": [
+      {
+        "itemId": "92",
+        "itemName": "龙湖冠寓重庆新壹城店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "100",
+        "itemName": "龙湖冠寓重庆佰乐街店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "116",
+        "itemName": "龙湖冠寓重庆源著店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "160",
+        "itemName": "龙湖冠寓重庆新壹城二店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "261",
+        "itemName": "龙湖冠寓重庆两江鱼嘴店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "264",
+        "itemName": "龙湖冠寓重庆两江龙兴店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "265",
+        "itemName": "龙湖冠寓重庆两江万寿店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "273",
+        "itemName": "龙湖冠寓重庆解放碑店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "279",
+        "itemName": "龙湖冠寓重庆明发御景园店",
+        "cityId": "234",
+        "cityName": "重庆"
+      },
+      {
+        "itemId": "352",
+        "itemName": "龙湖冠寓重庆礼嘉店",
+        "cityId": "234",
+        "cityName": "重庆"
+      }
+    ]
+  },
+  {
+    "cityName": "石家庄",
+    "projectList": [
+      {
+        "itemId": "169",
+        "itemName": "龙湖冠寓石家庄和平西路店",
+        "cityId": "3",
+        "cityName": "石家庄"
+      },
+      {
+        "itemId": "219",
+        "itemName": "龙湖冠寓石家庄胜利北街店",
+        "cityId": "3",
+        "cityName": "石家庄"
+      }
+    ]
+  },
+  {
+    "cityName": "无锡",
+    "projectList": [
+      {
+        "itemId": "239",
+        "itemName": "龙湖冠寓无锡学前东路店",
+        "cityId": "75",
+        "cityName": "无锡"
+      },
+      {
+        "itemId": "245",
+        "itemName": "龙湖冠寓无锡弘毅路一店",
+        "cityId": "75",
+        "cityName": "无锡"
+      }
+    ]
+  },
+  {
+    "cityName": "保定",
+    "projectList": [
+      {
+        "itemId": "228",
+        "itemName": "龙湖冠寓北京雄安新区店",
+        "cityId": "8",
+        "cityName": "保定"
+      },
+      {
+        "itemId": "304",
+        "itemName": "龙湖冠寓北京雄安新区店二期",
+        "cityId": "8",
+        "cityName": "保定"
+      }
+    ]
+  },
+  {
+    "cityName": "合肥",
+    "projectList": [
+      {
+        "itemId": "143",
+        "itemName": "龙湖冠寓合肥北一环店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "213",
+        "itemName": "龙湖冠寓合肥亳州路店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "214",
+        "itemName": "龙湖冠寓合肥裕溪路店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "215",
+        "itemName": "龙湖冠寓合肥黄山路店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "230",
+        "itemName": "龙湖冠寓合肥大东门店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "244",
+        "itemName": "龙湖冠寓合肥亳州路2店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "291",
+        "itemName": "龙湖冠寓合肥创富工坊店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "292",
+        "itemName": "龙湖冠寓合肥临泉路店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "305",
+        "itemName": "便客龙湖冠寓合肥三里街店",
+        "cityId": "98",
+        "cityName": "合肥"
+      },
+      {
+        "itemId": "331",
+        "itemName": "龙湖冠寓合肥亳州路2店二期",
+        "cityId": "98",
+        "cityName": "合肥"
+      }
+    ]
+  },
+  {
+    "cityName": "天津",
+    "projectList": [
+      {
+        "itemId": "107",
+        "itemName": "龙湖冠寓天津音乐学院店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "167",
+        "itemName": "龙湖冠寓天津卫国道店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "188",
+        "itemName": "龙湖冠寓天津黑牛城道店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "202",
+        "itemName": "龙湖冠寓天津空港店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "241",
+        "itemName": "龙湖冠寓天津开发区四大街店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "251",
+        "itemName": "龙湖冠寓天津十一经路桥店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "326",
+        "itemName": "龙湖冠寓天津华苑复康路桥店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "327",
+        "itemName": "龙湖冠寓天津塘沽河北路店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "343",
+        "itemName": "龙湖冠寓天津天保青年公寓店",
+        "cityId": "2",
+        "cityName": "天津"
+      },
+      {
+        "itemId": "360",
+        "itemName": "龙湖冠寓天津第五大道店",
+        "cityId": "2",
+        "cityName": "天津"
+      }
+    ]
+  },
+  {
+    "cityName": "珠海",
+    "projectList": [
+      {
+        "itemId": "182",
+        "itemName": "龙湖冠寓珠海横琴保税区店",
+        "cityId": "200",
+        "cityName": "珠海"
+      },
+      {
+        "itemId": "223",
+        "itemName": "龙湖冠寓珠海前山逸仙路店",
+        "cityId": "200",
+        "cityName": "珠海"
+      },
+      {
+        "itemId": "259",
+        "itemName": "龙湖冠寓珠海横琴保税区二店",
+        "cityId": "200",
+        "cityName": "珠海"
+      },
+      {
+        "itemId": "348",
+        "itemName": "龙湖冠寓珠海前山乐士店",
+        "cityId": "200",
+        "cityName": "珠海"
+      }
+    ]
+  },
+  {
+    "cityName": "青岛",
+    "projectList": [
+      {
+        "itemId": "183",
+        "itemName": "龙湖冠寓青岛中德生态园店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "210",
+        "itemName": "龙湖冠寓青岛国家广告产业园店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "211",
+        "itemName": "龙湖冠寓青岛金沙滩长江东路店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "221",
+        "itemName": "龙湖冠寓青岛西海岸理工大学店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "224",
+        "itemName": "龙湖冠寓青岛中山路店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "249",
+        "itemName": "龙湖冠寓青岛世纪公园店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "250",
+        "itemName": "龙湖冠寓青岛国家广告产业园二店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "268",
+        "itemName": "龙湖冠寓青岛正阳路国学公园店",
+        "cityId": "136",
+        "cityName": "青岛"
+      },
+      {
+        "itemId": "276",
+        "itemName": "龙湖冠寓青岛西海岸井冈山路店",
+        "cityId": "136",
+        "cityName": "青岛"
+      }
+    ]
+  },
+  {
+    "cityName": "大连",
+    "projectList": [
+      {
+        "itemId": "175",
+        "itemName": "龙湖冠寓大连奥林匹克广场店",
+        "cityId": "38",
+        "cityName": "大连"
+      },
+      {
+        "itemId": "235",
+        "itemName": "龙湖冠寓大连民族大学店",
+        "cityId": "38",
+        "cityName": "大连"
+      },
+      {
+        "itemId": "236",
+        "itemName": "龙湖冠寓大连高新爱贤街店",
+        "cityId": "38",
+        "cityName": "大连"
+      },
+      {
+        "itemId": "285",
+        "itemName": "龙湖冠寓大连交通大学店",
+        "cityId": "38",
+        "cityName": "大连"
+      },
+      {
+        "itemId": "322",
+        "itemName": "龙湖冠寓大连高新火炬路店",
+        "cityId": "38",
+        "cityName": "大连"
+      },
+      {
+        "itemId": "323",
+        "itemName": "龙湖冠寓大连黄浦路店",
+        "cityId": "38",
+        "cityName": "大连"
+      }
+    ]
+  },
+  {
+    "cityName": "杭州",
+    "projectList": [
+      {
+        "itemId": "89",
+        "itemName": "龙湖冠寓杭州西溪蓝保店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "90",
+        "itemName": "龙湖冠寓杭州未来城融通店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "109",
+        "itemName": "龙湖冠寓杭州A-Li海创园店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "110",
+        "itemName": "龙湖冠寓杭州银隆百货店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "153",
+        "itemName": "龙湖冠寓杭州西湖科技园店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "154",
+        "itemName": "龙湖冠寓杭州G5创艺工坊店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "155",
+        "itemName": "龙湖冠寓杭州奥体飞虹路店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "176",
+        "itemName": "龙湖冠寓杭州星桥店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "218",
+        "itemName": "龙湖冠寓杭州奥体盈丰路店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "248",
+        "itemName": "龙湖冠寓杭州西湖文化广场店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "254",
+        "itemName": "龙湖冠寓星悦坊",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "302",
+        "itemName": "龙湖冠寓杭州火车东站店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "336",
+        "itemName": "龙湖冠寓杭州大江东义蓬店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "341",
+        "itemName": "龙湖冠寓杭州之江宋城店",
+        "cityId": "87",
+        "cityName": "杭州"
+      },
+      {
+        "itemId": "364",
+        "itemName": "龙湖冠寓杭州云栖小镇店",
+        "cityId": "87",
+        "cityName": "杭州"
+      }
+    ]
+  },
+  {
+    "cityName": "南昌",
+    "projectList": [
+      {
+        "itemId": "186",
+        "itemName": "龙湖冠寓南昌翠苑路店",
+        "cityId": "124",
+        "cityName": "南昌"
+      },
+      {
+        "itemId": "328",
+        "itemName": "龙湖冠寓南昌艾溪湖地铁站店",
+        "cityId": "124",
+        "cityName": "南昌"
+      }
+    ]
+  },
+  {
+    "cityName": "福州",
+    "projectList": [
+      {
+        "itemId": "152",
+        "itemName": "龙湖冠寓福州三叉街店",
+        "cityId": "115",
+        "cityName": "福州"
+      },
+      {
+        "itemId": "275",
+        "itemName": "龙湖冠寓|青遇·福州高新区店",
+        "cityId": "115",
+        "cityName": "福州"
+      },
+      {
+        "itemId": "290",
+        "itemName": "龙湖冠寓福州达道路店",
+        "cityId": "115",
+        "cityName": "福州"
+      },
+      {
+        "itemId": "307",
+        "itemName": "龙湖冠寓福州首占店",
+        "cityId": "115",
+        "cityName": "福州"
+      }
+    ]
+  },
+  {
+    "cityName": "成都",
+    "projectList": [
+      {
+        "itemId": "84",
+        "itemName": "龙湖冠寓成都时代店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "85",
+        "itemName": "龙湖冠寓成都金楠天街店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "105",
+        "itemName": "龙湖冠寓成都赞城店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "106",
+        "itemName": "龙湖冠寓成都丽都店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "128",
+        "itemName": "龙湖冠寓成都解放路店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "129",
+        "itemName": "龙湖冠寓成都软件园店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "130",
+        "itemName": "龙湖冠寓成都天府广场店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "131",
+        "itemName": "龙湖冠寓成都营门口店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "172",
+        "itemName": "龙湖冠寓成都香年广场店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "180",
+        "itemName": "龙湖冠寓成都大丰店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "187",
+        "itemName": "龙湖冠寓成都金融城店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "231",
+        "itemName": "龙湖冠寓成都郫都创智店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "246",
+        "itemName": "龙湖冠寓成都科华中路店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "282",
+        "itemName": "龙湖冠寓成都营门口店B座一期",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "311",
+        "itemName": "龙湖冠寓成都金牛区西宸天街店",
+        "cityId": "235",
+        "cityName": "成都"
+      },
+      {
+        "itemId": "337",
+        "itemName": "龙湖冠寓成都南三环店",
+        "cityId": "235",
+        "cityName": "成都"
+      }
+    ]
+  },
+  {
+    "cityName": "上海",
+    "projectList": [
+      {
+        "itemId": "91",
+        "itemName": "龙湖冠寓上海周浦店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "108",
+        "itemName": "龙湖冠寓上海嘉定北店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "111",
+        "itemName": "龙湖冠寓上海荣乐路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "112",
+        "itemName": "龙湖冠寓上海谷阳北路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "123",
+        "itemName": "龙湖冠寓上海闵行公园店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "135",
+        "itemName": "龙湖冠寓上海复旦大学店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "141",
+        "itemName": "龙湖冠寓上海平型关店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "142",
+        "itemName": "龙湖冠寓上海九亭店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "147",
+        "itemName": "龙湖冠寓上海谷阳北路二店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "150",
+        "itemName": "龙湖冠寓上海乐山路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "159",
+        "itemName": "龙湖冠寓上海松卫北路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "165",
+        "itemName": "龙湖冠寓上海张江商业广场店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "181",
+        "itemName": "龙湖冠寓上海北城天街店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "184",
+        "itemName": "龙湖冠寓上海杨高南路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "185",
+        "itemName": "龙湖冠寓上海城南路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "205",
+        "itemName": "龙湖冠寓上海复旦大学二店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "216",
+        "itemName": "龙湖冠寓上海浦东机场店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "227",
+        "itemName": "龙湖冠寓上海东城一路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "232",
+        "itemName": "龙湖冠寓上海浦东大道店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "238",
+        "itemName": "龙湖冠寓上海南园路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "252",
+        "itemName": "龙湖冠寓上海华夏东路店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "295",
+        "itemName": "龙湖冠寓上海华泾天街店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "297",
+        "itemName": "龙湖冠寓上海浦东大道二店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "310",
+        "itemName": "一展空间虹桥天街店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "340",
+        "itemName": "龙湖冠寓上海顾村公园店",
+        "cityId": "73",
+        "cityName": "上海"
+      },
+      {
+        "itemId": "374",
+        "itemName": "大唐",
+        "cityId": "73",
+        "cityName": "上海"
+      }
+    ]
+  },
+  {
+    "cityName": "沈阳",
+    "projectList": [
+      {
+        "itemId": "287",
+        "itemName": "龙湖冠寓沈阳小北店",
+        "cityId": "37",
+        "cityName": "沈阳"
+      },
+      {
+        "itemId": "289",
+        "itemName": "龙湖冠寓沈阳南塔店",
+        "cityId": "37",
+        "cityName": "沈阳"
+      }
+    ]
+  },
+  {
+    "cityName": "长沙",
+    "projectList": [
+      {
+        "itemId": "164",
+        "itemName": "龙湖冠寓长沙星光店",
+        "cityId": "183",
+        "cityName": "长沙"
+      },
+      {
+        "itemId": "225",
+        "itemName": "龙湖冠寓长沙欧亚达广场店",
+        "cityId": "183",
+        "cityName": "长沙"
+      },
+      {
+        "itemId": "318",
+        "itemName": "龙湖冠寓长沙金融中心店",
+        "cityId": "183",
+        "cityName": "长沙"
+      },
+      {
+        "itemId": "369",
+        "itemName": "龙湖冠寓长沙水晶郦城店",
+        "cityId": "183",
+        "cityName": "长沙"
+      }
+    ]
+  },
+  {
+    "cityName": "中山",
+    "projectList": [
+      {
+        "itemId": "278",
+        "itemName": "龙湖冠寓中山火炬开发区店",
+        "cityId": "214",
+        "cityName": "中山"
+      }
+    ]
+  },
+  {
+    "cityName": "武汉",
+    "projectList": [
+      {
+        "itemId": "101",
+        "itemName": "龙湖冠寓武汉花山店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "103",
+        "itemName": "龙湖冠寓武汉香港路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "113",
+        "itemName": "龙湖冠寓武汉江发路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "133",
+        "itemName": "龙湖冠寓武汉CBD店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "144",
+        "itemName": "龙湖冠寓武汉发展二路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "146",
+        "itemName": "龙湖冠寓武汉南湖店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "162",
+        "itemName": "龙湖冠寓武汉古田二路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "166",
+        "itemName": "龙湖冠寓武汉光谷流芳店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "189",
+        "itemName": "龙湖冠寓武汉华师一附中店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "191",
+        "itemName": "龙湖冠寓武汉中山公园店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "200",
+        "itemName": "龙湖冠寓武汉高新二路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "257",
+        "itemName": "龙湖冠寓武汉盘龙城空港中心店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "260",
+        "itemName": "龙湖冠寓武汉五环大道店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "267",
+        "itemName": "龙湖冠寓武汉青山红钢城店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "272",
+        "itemName": "龙湖冠寓武汉卓刀泉店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "283",
+        "itemName": "龙湖冠寓武汉虎泉店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "284",
+        "itemName": "龙湖冠寓武汉光谷一路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "294",
+        "itemName": "龙湖冠寓武汉软件新城店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "320",
+        "itemName": "龙湖冠寓武汉丁字桥店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "321",
+        "itemName": "龙湖冠寓武汉六渡桥",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "345",
+        "itemName": "龙湖冠寓武汉千禧城店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "356",
+        "itemName": "龙湖冠寓武汉商学院店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "357",
+        "itemName": "龙湖冠寓武汉庙山店",
+        "cityId": "169",
+        "cityName": "武汉"
+      },
+      {
+        "itemId": "366",
+        "itemName": "一展空间发展二路店",
+        "cityId": "169",
+        "cityName": "武汉"
+      }
+    ]
+  },
+  {
+    "cityName": "深圳",
+    "projectList": [
+      {
+        "itemId": "102",
+        "itemName": "龙湖冠寓深圳大芬店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "104",
+        "itemName": "龙湖冠寓深圳后瑞店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "127",
+        "itemName": "龙湖冠寓深圳横岗四联路店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "136",
+        "itemName": "龙湖冠寓深圳固戍地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "139",
+        "itemName": "龙湖冠寓深圳福永地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "140",
+        "itemName": "龙湖冠寓深圳海上世界店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "151",
+        "itemName": "龙湖冠寓深圳前海店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "179",
+        "itemName": "龙湖冠寓深圳前海二期店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "247",
+        "itemName": "龙湖冠寓深圳景田国际公寓",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "255",
+        "itemName": "龙湖冠寓深圳大布头轻轨站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "288",
+        "itemName": "龙湖冠寓深圳荷坳地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "309",
+        "itemName": "龙湖冠寓深圳桂月路店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "314",
+        "itemName": "龙湖冠寓深圳新城市花园店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "319",
+        "itemName": "龙湖冠寓深圳后瑞地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "329",
+        "itemName": "龙湖冠寓深圳观澜高新园店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "335",
+        "itemName": "龙湖冠寓深圳后亭地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "353",
+        "itemName": "龙湖冠寓深圳平湖生态谷社区",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "363",
+        "itemName": "龙湖冠寓深圳吉祥地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "367",
+        "itemName": "龙湖冠寓深圳固戍二店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "372",
+        "itemName": "龙湖冠寓深圳大浪商业中心店",
+        "cityId": "199",
+        "cityName": "深圳"
+      },
+      {
+        "itemId": "373",
+        "itemName": "龙湖冠寓深圳南山地铁站店",
+        "cityId": "199",
+        "cityName": "深圳"
+      }
+    ]
+  },
+  {
+    "cityName": "广州",
+    "projectList": [
+      {
+        "itemId": "97",
+        "itemName": "龙湖冠寓广州番禺钟村店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "99",
+        "itemName": "龙湖冠寓广州诺亚方舟店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "122",
+        "itemName": "龙湖冠寓广州萝岗乐飞家园店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "134",
+        "itemName": "龙湖冠寓广州白云机场路店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "168",
+        "itemName": "龙湖冠寓广州江湾桥店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "171",
+        "itemName": "龙湖冠寓广州燕塘店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "177",
+        "itemName": "龙湖冠寓广州越秀三元里店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "190",
+        "itemName": "龙湖冠寓广州白云岗贝路店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "234",
+        "itemName": "龙湖冠寓广州白云人和店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "303",
+        "itemName": "龙湖冠寓广州市桥南店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "330",
+        "itemName": "龙湖冠寓广州三元里二店",
+        "cityId": "197",
+        "cityName": "广州"
+      },
+      {
+        "itemId": "368",
+        "itemName": "龙湖冠寓广州珠宝市场店",
+        "cityId": "197",
+        "cityName": "广州"
+      }
+    ]
+  },
+  {
+    "cityName": "泉州",
+    "projectList": [
+      {
+        "itemId": "242",
+        "itemName": "龙湖冠寓石狮宝岛中路店",
+        "cityId": "119",
+        "cityName": "泉州"
+      }
+    ]
+  },
+  {
+    "cityName": "西安",
+    "projectList": [
+      {
+        "itemId": "96",
+        "itemName": "龙湖冠寓西安大兴东路店",
+        "cityId": "288",
+        "cityName": "西安"
+      },
+      {
+        "itemId": "158",
+        "itemName": "龙湖冠寓西安浐灞中心店",
+        "cityId": "288",
+        "cityName": "西安"
+      },
+      {
+        "itemId": "174",
+        "itemName": "龙湖冠寓西安科技西路店",
+        "cityId": "288",
+        "cityName": "西安"
+      },
+      {
+        "itemId": "286",
+        "itemName": "龙湖冠寓西安李家村店",
+        "cityId": "288",
+        "cityName": "西安"
+      },
+      {
+        "itemId": "298",
+        "itemName": "龙湖冠寓西安未央路店",
+        "cityId": "288",
+        "cityName": "西安"
+      }
+    ]
+  },
+  {
+    "cityName": "烟台",
+    "projectList": [
+      {
+        "itemId": "359",
+        "itemName": "龙湖冠寓烟台葡醍海湾店",
+        "cityId": "140",
+        "cityName": "烟台"
+      }
+    ]
+  },
+  {
+    "cityName": "郑州",
+    "projectList": [
+      {
+        "itemId": "193",
+        "itemName": "龙湖冠寓郑州人民公园店",
+        "cityId": "152",
+        "cityName": "郑州"
+      },
+      {
+        "itemId": "306",
+        "itemName": "龙湖冠寓郑州大卫城店",
+        "cityId": "152",
+        "cityName": "郑州"
+      },
+      {
+        "itemId": "351",
+        "itemName": "龙湖冠寓郑州郑汴路店",
+        "cityId": "152",
+        "cityName": "郑州"
+      }
+    ]
+  },
+  {
+    "cityName": "佛山",
+    "projectList": [
+      {
+        "itemId": "313",
+        "itemName": "龙湖冠寓广州金沙洲店",
+        "cityId": "202",
+        "cityName": "佛山"
+      },
+      {
+        "itemId": "315",
+        "itemName": "龙湖冠寓佛山季华五路店",
+        "cityId": "202",
+        "cityName": "佛山"
+      }
+    ]
+  },
+  {
+    "cityName": "南京",
+    "projectList": [
+      {
+        "itemId": "93",
+        "itemName": "龙湖冠寓南京河西大街店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "94",
+        "itemName": "龙湖冠寓南京九竹路店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "95",
+        "itemName": "龙湖冠寓南京长盛街店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "138",
+        "itemName": "龙湖冠寓南京万福路店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "192",
+        "itemName": "龙湖冠寓南京空港翔宇路南站店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "226",
+        "itemName": "龙湖冠寓南京砂之船店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "262",
+        "itemName": "龙湖冠寓南京新港店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "263",
+        "itemName": "龙湖冠寓南京万寿路店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "277",
+        "itemName": "龙湖冠寓南京新港二店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "339",
+        "itemName": "龙湖冠寓南京新壹城店",
+        "cityId": "74",
+        "cityName": "南京"
+      },
+      {
+        "itemId": "354",
+        "itemName": "龙湖冠寓南京东大九龙湖校区店",
+        "cityId": "74",
+        "cityName": "南京"
+      }
+    ]
+  },
+  {
+    "cityName": "苏州",
+    "projectList": [
+      {
+        "itemId": "88",
+        "itemName": "龙湖冠寓苏州钟园路店",
+        "cityId": "78",
+        "cityName": "苏州"
+      },
+      {
+        "itemId": "132",
+        "itemName": "龙湖冠寓苏州太湖西路店",
+        "cityId": "78",
+        "cityName": "苏州"
+      },
+      {
+        "itemId": "270",
+        "itemName": "龙湖冠寓常熟大科园店",
+        "cityId": "78",
+        "cityName": "苏州"
+      },
+      {
+        "itemId": "271",
+        "itemName": "龙湖伟业冠寓苏州高新路店",
+        "cityId": "78",
+        "cityName": "苏州"
+      },
+      {
+        "itemId": "274",
+        "itemName": "龙湖冠寓苏州通园路店",
+        "cityId": "78",
+        "cityName": "苏州"
+      },
+      {
+        "itemId": "281",
+        "itemName": "龙湖冠寓苏州独墅湖店",
+        "cityId": "78",
+        "cityName": "苏州"
+      },
+      {
+        "itemId": "334",
+        "itemName": "龙湖冠寓苏州木渎店",
+        "cityId": "78",
+        "cityName": "苏州"
+      }
+    ]
+  }
+]
