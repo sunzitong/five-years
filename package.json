@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=hd-earnest-money",
-    "build": "lerna run build --scope=hd-earnest-money --stream",
+    "postinstall": "lerna bootstrap --scope=hd_newNotice",
+    "build": "lerna run build --scope=hd_newNotice --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
