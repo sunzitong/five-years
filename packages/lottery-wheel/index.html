@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <title>春季租房节</title>
+    <script src="//pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script type = "text/javascript">
+      (function() {
+        const partten = /(test|localhost|[0-9]{3})\./
+        let jsSrc = partten.test(location.href) ? "https://dataintest.longfor.com/zhuge.js?v=" : "https://datain.longfor.com/zhuge.js?v=";
+        let appKey = partten.test(location.href) ? "c43b19418a12482e860edc085b93797e" : "05f3c3ed704142b58a27800c0f253ad4";
+
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init identify track getDid getSid getKey setSuperProperty setUserProperties setWxProperties setPlatform".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+            if (!document.getElementById("zhuge-js")) {
+                var a = document.createElement("script");
+                var verDate = new Date();
+                var verStr = verDate.getFullYear().toString() + verDate.getMonth().toString() + verDate.getDate().toString();
+
+                a.type = "text/javascript";
+                a.id = "zhuge-js";
+                a.async = !0;
+                a.src = jsSrc + verStr;
+                a.onerror = function() {
+                    window.zhuge.identify = window.zhuge.track = function(ename, props, callback) {
+                          if(callback && Object.prototype.toString.call(callback) === '[object Function]') {
+                    callback();
+                                } else if (Object.prototype.toString.call(props) === '[object Function]') {
+                    props();
+                            }
+                    };
+                };
+                var c = document.getElementsByTagName("script")[0];
+                c.parentNode.insertBefore(a, c);
+                window.zhuge._init(b, x)
+            }
+        };
+        window.zhuge.load(appKey, {
+            superProperty: {
+                '应用名称': '积分活动'
+            },
+            adTrack:false,
+            zgsee:false,//视屏采集开关, 默认为false
+            autoTrack: false,
+            singlePage: false
+        });
+      })();
+      </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+    //designWidth:设计稿的实际宽度值，需要根据实际设置
+    //maxWidth:制作稿的最大宽度值，需要根据实际设置
+    //这段js的最后面有两个参数记得要设置，一个为设计稿实际宽度，一个为制作稿最大宽度，例如设计稿为750，最大宽度为750，则为(750,750)
+    (function(designWidth, maxWidth) {
+      var doc = document,
+        win = window,
+        docEl = doc.documentElement,
+        remStyle = document.createElement("style"),
+        tid;
+
+      function refreshRem() {
+        var width = docEl.getBoundingClientRect().width;
+        maxWidth = maxWidth || 540;
+        width > maxWidth && (width = maxWidth);
+        var rem = (width * 100) / designWidth;
+        remStyle.innerHTML = "html{font-size:" + rem + "px;}";
+      }
+
+      if (docEl.firstElementChild) {
+        docEl.firstElementChild.appendChild(remStyle);
+      } else {
+        var wrap = doc.createElement("div");
+        wrap.appendChild(remStyle);
+        doc.write(wrap.innerHTML);
+        wrap = null;
+      }
+      //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+      refreshRem();
+
+      win.addEventListener(
+        "resize",
+        function() {
+          clearTimeout(tid); //防止执行两次
+          tid = setTimeout(refreshRem, 300);
+        },
+        false
+      );
+
+      win.addEventListener(
+        "pageshow",
+        function(e) {
+          if (e.persisted) {
+            // 浏览器后退的时候重新计算
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+          }
+        },
+        false
+      );
+
+      if (doc.readyState === "complete") {
+        doc.body.style.fontSize = "16px";
+      } else {
+        doc.addEventListener(
+          "DOMContentLoaded",
+          function(e) {
+            doc.body.style.fontSize = "16px";
+          },
+          false
+        );
+      }
+    })(750, window.innerWidth);
+  </script>
+</html>
