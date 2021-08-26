@@ -63,7 +63,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, `../../../dist/${pkg.name}`),
     assetsSubDirectory: '',
-    assetsPublicPath: `/fe/${pkg.name}`,
+    assetsPublicPath: `/fe/${pkg.name}/`,
 
     /**
      * Source Maps

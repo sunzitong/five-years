@@ -7,7 +7,7 @@
       <div class="btn" @click="pathIndex()">立即预约看房赚积分</div>
       <div class="tip">
         <div class="tip-content">
-          <p class="bottom1">【获取积分】1</p>
+          <p class="bottom1">【获取积分】</p>
           <p class="bottom2"> 1）预约奖励：在预约页面或App填写手机号并选择门店预约后自动升级为龙湖冠寓会员，并获得50积分（每个手机号限一次）。</p>
           <p class="bottom2"> 2）分享奖励：成功登陆后，在冠寓APP内完成一次房源分享（分享至朋友圈），即可获得10积分，每人每天最多获得30积分。</p>
           <p class="bottom1">【获取限时积分奖励】</p>
