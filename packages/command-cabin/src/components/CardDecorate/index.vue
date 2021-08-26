@@ -1,6 +1,6 @@
 <template>
-  <div class="app-card-decorate">
-    <div class="app-card-decorate__header">
+  <div class="app-card-decorate" :class="cls">
+    <div class="app-card-decorate__header" v-if="showHeader">
       <CardDecorateTitle :size="size" />
     </div>
     <div ref="wrapper" class="app-card-decorate__body">
@@ -18,10 +18,10 @@
           :fill="fill"
           :fill-opacity="fillOpacity"
         />
-        <path :stroke="`url(#${linearId})`" stroke-width="2" :d="customerD" />
+        <path :stroke="`url(#${uuid})`" stroke-width="2" :d="customerD" />
         <defs>
           <linearGradient
-            :id="linearId"
+            :id="uuid"
             x1="0"
             y1="0"
             x2="0"
@@ -43,7 +43,7 @@
           opacity=".8"
         >
           <animateMotion dur="2s" rotate="auto" repeatCount="indefinite">
-            <mpath :xlink:href="`#${linearId}_1`" />
+            <mpath :xlink:href="`#${uuid}_1`" />
           </animateMotion>
         </ellipse> -->
       </svg>
@@ -92,6 +92,13 @@ export default class CardDecorate extends Vue {
   @Prop({ default: "medium" }) size!: SizeProps;
 
   /**
+   * 类型
+   * box 带头部
+   * box-rect无头部就是一个方块带圆角
+   */
+  @Prop({ default: "box" }) type!: "box" | "box-rect";
+
+  /**
    * 背景默认宽度
    */
   width = 1000;
@@ -106,6 +113,28 @@ export default class CardDecorate extends Vue {
    */
   resizeObserver: ResizeObserver | null = null;
 
+  /**
+   * 设置className
+   */
+  get cls() {
+    return {
+      [`app-card-decorate--${this.type}`]: this.type === "box-rect",
+    };
+  }
+
+  /**
+   * 是否显示header
+   */
+  get showHeader() {
+    if (this.type === "box-rect") {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * 格式化尺寸
+   */
   get formatSize() {
     const rect = {
       W: 235, // 中心线宽度
@@ -132,7 +161,17 @@ export default class CardDecorate extends Vue {
         rect.W = 300;
       },
     };
+
+    const formatType = {
+      // 中
+      "box-rect": () => {
+        rect.A = 0;
+        rect.B = 0;
+        rect.E = 0;
+      },
+    };
     if (format[this.size]) format[this.size]();
+    if (formatType[this.type]) formatType[this.type]();
     rect.W = (this.width - rect.C - (rect.A + rect.B + rect.R) * 2) / 2;
     return rect;
   }
@@ -185,8 +224,8 @@ export default class CardDecorate extends Vue {
   /**
    * 唯一id
    */
-  get linearId() {
-    return `__APP-CARD-DECORATE__${uuid()}`;
+  get uuid() {
+    return uuid();
   }
 
   /**
@@ -268,6 +307,12 @@ export default class CardDecorate extends Vue {
   }
   svg {
     vertical-align: middle;
+  }
+
+  &--box-rect {
+    .app-card-decorate__body {
+      top: 0;
+    }
   }
 }
 </style>
