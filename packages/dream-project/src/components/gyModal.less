@@ -1,0 +1,63 @@
+.modal-container {
+  height: 101vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+
+  .box-container {
+    padding-top: 20px;
+    // margin-top: -54px;
+    width: 610px;
+    background: #ffffff;
+    border-radius: 16px;
+
+    .title-container {
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: PingFang SC;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 36px;
+      line-height: 50px;
+      color: #333333;
+    }
+
+    .content-container {
+      padding: 20px 40px 40px 40px;
+      font-family: PingFang SC;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 30px;
+      line-height: 42px;
+      color: #333333;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .button-container {
+      height: 108px;
+      display: flex;
+
+      .button {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: PingFang SC;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 34px;
+        line-height: 48px;
+        text-align: center;
+        color: #666666;
+      }
+    }
+  }
+}

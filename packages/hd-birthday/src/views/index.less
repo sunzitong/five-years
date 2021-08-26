@@ -1,0 +1,242 @@
+.page-home {
+    width: 100%;
+    height: 100%;
+}
+
+.home {
+    padding: 448px 0 50px 0;
+    background: linear-gradient(270deg, rgba(147, 54, 228, 1) 0%, rgba(173, 60, 175, 1) 100%);
+    
+    .showing {
+        transition-duration: .8s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 60px;
+        position: fixed;
+        top: 13px;
+        right: 0;
+        background: url(../assets/elseActivity.png);
+        background-size: cover;
+        z-index: 200;
+        p { 
+            margin-left: 10px;
+            width: 58px;
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color:rgba(131,96,77,1);
+        }
+        &.hidding {
+            transform: translateX(50%);
+            transition-duration: .2s;
+        }
+    }
+}
+
+.banner-cont {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+
+    img {
+        width: 100%;
+    }
+}
+
+.main-cont {
+    position: relative;
+    z-index: 20;
+    padding: 0 15px;
+
+    .countdown {
+        text-align: center;
+
+        p { 
+            font-size: 12px;
+            font-weight: normal;
+            color: rgba(255, 255, 255, 1);
+            line-height: 17px;
+
+            i { 
+                font-style: normal;
+            }
+
+            em {
+                margin: 0 3px;
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                line-height: 14px;
+                font-size: 11px;
+                background:rgba(255,133,75,1);
+                border-radius: 2px;
+                font-style: normal;
+                vertical-align: middle;
+            }
+        }
+
+        .invite-btn {
+            width: 271px;
+            height: 50px;
+            background: linear-gradient(180deg, rgba(255, 237, 181, 1) 0%, rgba(251, 188, 54, 1) 100%);
+            box-shadow: 0px 2px 1px 0px rgba(248,123,17,1);
+            border-radius: 25px;
+            font-size: 17px;
+            font-weight: bold;
+            color: rgba(199, 67, 5, 1);
+            line-height: 50px;
+            margin: 12px auto 0;
+        }
+    }
+}
+
+.friend-list-box {
+    width: 100%;
+    background: linear-gradient(270deg, rgba(136, 42, 189, 1) 0%, rgba(195, 52, 125, 1) 100%);
+    border-radius: 10px;
+    margin-top: 36px;
+    padding: 24px 20px 20px 20px;
+    box-sizing: border-box;
+
+    .nothing-text {
+        font-size: 14px;
+        font-weight: normal;
+        color: rgba(255, 255, 255, 1);
+        line-height: 22px;
+        opacity: 0.8;
+        padding-top: 20px;
+        padding-bottom: 14px;
+    }
+
+    h2 {
+        width: 212px;
+        height: 26px;
+        background: url('../assets/friend-tit-bj.png') 0 0 no-repeat;
+        background-size: 212px 26px;
+        margin: 0 auto 10px;
+        text-indent: -9999px;
+        
+    }
+
+    .line {
+        overflow: hidden;
+    }
+
+    .friend-box {
+        margin-top: -1px;
+        // padding-top: 10px;
+        .frient-list {
+            display: flex;
+            padding: 9px 0;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .head-img {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #ffffff;
+            margin-right: 5px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .friend-info {
+            padding-top: 5px;
+
+            h3 {
+                font-size: 16px;
+                font-weight: normal;
+                color: #ffffff;
+                line-height: 22px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: normal;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 17px;
+                padding-top: 5px;
+            }
+        }
+
+        .right-cont {
+            position: absolute;
+            right: 0;
+            top: 15px;
+
+            h3 {
+                font-size: 16px;
+                font-weight: normal;
+                color: rgba(255, 215, 133, 1);
+                line-height: 22px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: normal;
+                color: rgba(255, 255, 255, 1);
+                line-height: 17px;
+                padding-top: 4px;
+            }
+        }
+    }
+}
+
+.activity-rules {
+    width: 100%;
+    background: linear-gradient(270deg, rgba(136, 42, 189, 1) 0%, rgba(195, 52, 125, 1) 100%);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-top: 24px;
+
+    h5 {
+        width: 213px;
+        height: 26px;
+        background: url('../assets/activity-tit-bg.png') 0 0 no-repeat;
+        background-size: 213px 26px;
+        margin: 0 auto;
+        text-indent: -9999px;
+    }
+
+    .rules-box {
+        padding: 10px 20px 30px 20px;
+
+        .rules-cont {
+            padding-top: 10px;
+            display: flex;
+
+            span {
+                font-size: 14px;
+                font-weight: normal;
+                color: rgba(255, 255, 255, 1);
+                line-height: 22px;
+                white-space: nowrap;
+                display: block;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: normal;
+                color: rgba(255, 255, 255, 1);
+                line-height: 22px;
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+.swiper-slide{
+    // width:300px;/*设为固定值*/
+    width:auto;/*根据内容调整宽度*/
+  }

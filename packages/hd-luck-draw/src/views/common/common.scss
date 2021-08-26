@@ -1,0 +1,125 @@
+.page__index {
+    background: rgba(57, 0, 145, 1) url(../../../src/assets/img/main_header.jpg) no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+
+    // 内容区域
+    .main-content {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 0px 16px;
+
+        // 好友助力信息
+        .friend-info {
+            position: relative;
+            width: 339px;
+            background-color: #210068;
+
+            .friend-title {
+                width: 163px;
+                height: 48px;
+                background: url(../../../src/assets/img/friend_info.png) no-repeat center;
+                background-size: 100%;
+                position: absolute;
+                left: 50%;
+                margin-left: -81.5px;
+                top: -12px;
+            }
+
+            .friend-list {
+                margin: 40px 19px 4px;
+                max-height: 400px;
+                overflow-y: scroll;
+
+                :first-child {
+                    border: none;
+                }
+
+                li {
+                    display: flex;
+                    height: 66px;
+                    padding-top: 14px;
+                    border-top: 1px solid #3F00B8;
+
+                    img {
+                        display: inline-block;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        background: url(../../assets/img/user_image.png) no-repeat;
+                        background-size: 100%;
+                    }
+
+                    .friend-message {
+                        flex: 1;
+                        margin-left: 11px;
+                        text-align: left;
+
+                        h3 {
+                            margin-top: 1.5px;
+                            font-size: 16px;
+                            font-family: PingFangSC-Medium, PingFang SC;
+                            font-weight: bold;
+                            color: #FFFFFF;
+                            line-height: 22.5px;
+                            letter-spacing: 1.5px;
+                        }
+
+                        p {
+                            margin-top: 5.5px;
+                            line-height: 18px;
+                            font-size: 13px;
+                            font-family: PingFangSC-Regular, PingFang SC;
+                            font-weight: normal;
+                            color: #AD87FF;
+                            letter-spacing: 1px;
+                        }
+                    }
+                }
+            }
+            .no-one {
+                padding: 92px 0;
+                font-size: 14px;
+                color: #C6BED8;
+                text-align: center;
+            }
+
+        }
+
+        // 活动规则
+        .activity-rules {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-top: 42px;
+            width: 339px;
+            background-color: #210068;
+
+            .rules-title {
+                width: 163px;
+                height: 48px;
+                background: url(../../../src/assets/img/activity_rules.png) no-repeat center;
+                background-size: 100%;
+                position: absolute;
+                left: 50%;
+                margin-left: -81.5px;
+                top: -12px;
+            }
+
+            .rules-description {
+                padding: 49px 18px 14px;
+                width: 303.5px;
+                font-size: 14px;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: normal;
+                color: #FFFFFF;
+                line-height: 25px;
+                letter-spacing: 1.5px;
+                text-align: justify;
+            }
+        }
+    }
+}
