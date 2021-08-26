@@ -1,21 +1,21 @@
 <template>
   <svg
     style="vertical-align: middle"
-    width="519"
-    height="74"
-    viewBox="0 0 519 74"
+    :width="width"
+    :height="height"
+    :viewBox="`0 0 ${width} ${height}`"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       :d="titlePath"
       fill="#0B2763"
-      stroke="url(#paint0_linear)"
+      :stroke="`url(#${uuid})`"
       stroke-width="2"
     />
     <defs>
       <linearGradient
-        id="paint0_linear"
+        :id="uuid"
         x1="265.661"
         y1="2"
         x2="265.661"
@@ -30,7 +30,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { uuid } from "@guanyu/shared";
+import { Component, Vue, Prop, PropSync } from "vue-property-decorator";
 
 /**
  * size 枚举
@@ -62,42 +63,69 @@ export default class TitleDecorate extends Vue {
    */
   @Prop({ default: "medium" }) size!: SizeProps;
 
+  width = 519;
+  height = 70;
+
+  get formatSize() {
+    const rect = {
+      W: this.width,
+      H: this.height,
+      SH: this.height - 10,
+    };
+
+    const format = {
+      // 小
+      small: () => {
+        this.width = 318;
+        rect.W = this.width;
+      },
+      // 中
+      medium: () => {
+        this.width = 519;
+        rect.W = this.width;
+      },
+      // 大
+      large: () => {
+        this.width = 700;
+        rect.W = this.width;
+      },
+    };
+    if (format[this.size]) format[this.size]();
+    return rect;
+  }
+
   /**
-   * 控制size
+   * 唯一id
    */
-  formatSmallSize(d: string) {
-    return formatSmallSize(d, this.size);
+  get uuid() {
+    console.log('title', this.size);
+    return uuid();
   }
 
   /**
    * 标题图片缩放
    */
   get titlePath() {
-    return this.formatSmallSize(`
-      M'9.37569' 1
-      C'3.16638' 1 '-0.259503' 8.20668 '3.67708' 13.0102
-      L'50.5366' 70.189
-      C'51.9354' 71.8958 '54.0272' 72.8853 '56.2352' 72.8853
+    const { W, H, SH } = this.formatSize;
 
-      H'77.4396'
-      C'81.2737' 72.8853 '84.8632' 71.0021 '87.0424' 67.8475
-      C'88.8481' 65.2335 '91.8225' 63.6731 '94.9996' 63.6731
-
-      H"427.879"
-      C"431.056" 63.6731 "434.03" 65.2335 "435.836" 67.8475
-      C"438.015" 71.0021 "441.605" 72.8853 "445.439" 72.8853
-      H"466.25"
-      C"469.197" 72.8853 "471.32" 71.1167 "473.015" 69.0739
-      C"473.867" 68.0472 "474.651" 66.9025 "475.397" 65.8031
-      L"475.522" 65.6183
-      C"476.232" 64.5709 "476.909" 63.5725 "477.617" 62.6875
-      L"510.844" 21.1159
-      C"513.488" 17.8085 "516.114" 13.0504 "517.018" 9.04495
-      C"517.465" 7.06207 "517.533" 5.07539 "516.764" 3.53505
-      C"515.938" 1.87861 "514.288" 1 "511.953" 1
-
-      H'9.37569'
-      Z`);
+    return `
+      M10 1
+      L${W - 9} 1
+      C${W - 9} 1
+      ${W} 0
+      ${W - 4} 10
+      L${W - 50} ${H}
+      ${W - 79} ${H}
+      ${W - 89} ${SH}
+      90 ${SH}
+      80 ${H}
+      50 ${H}
+      3 9
+      C1 5
+      3 1
+      11 1
+      Z
+    `;
   }
 }
 </script>

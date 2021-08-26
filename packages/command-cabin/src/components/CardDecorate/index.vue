@@ -11,56 +11,41 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g :filter="`url(#${linearId}_filter0_b)`">
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            :d="bodyBackgroundPath"
-            :fill="fill"
-            :fill-opacity="fillOpacity"
-          />
-          <path
-            :d="outLinePath"
-            :stroke="`url(#${linearId})`"
-            stroke-width="2"
-          />
-        </g>
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          :d="customerD"
+          :fill="fill"
+          :fill-opacity="fillOpacity"
+        />
+        <path :stroke="`url(#${linearId})`" stroke-width="2" :d="customerD" />
         <defs>
-          <filter
-            :id="`${linearId}_filter0_b`"
-            x="-20"
-            y="-19.0269"
-            :width="width + 20"
-            :height="height + 20"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
-          >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
-            <feComposite
-              in2="SourceAlpha"
-              operator="in"
-              result="effect1_backgroundBlur"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect1_backgroundBlur"
-              result="shape"
-            />
-          </filter>
           <linearGradient
             :id="linearId"
-            x1="308.5"
-            y1="0.973145"
-            x2="308.5"
-            :y2="Math.min(height / 2, 150)"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="150"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#1B4986" />
-            <stop offset="1" stop-color="#1B4986" stop-opacity="0" />
+            <stop offset="0" stop-color="#1B4986" stop-opacity="1" />
+            <stop offset="1" stop-color="#1B4986" stop-opacity="1" />
           </linearGradient>
         </defs>
+        <!-- <ellipse
+          cx="7"
+          cy="-5"
+          rx="20"
+          ry="14"
+          fill="#aaa"
+          stroke="#666"
+          stroke-width="2"
+          opacity=".8"
+        >
+          <animateMotion dur="2s" rotate="auto" repeatCount="indefinite">
+            <mpath :xlink:href="`#${linearId}_1`" />
+          </animateMotion>
+        </ellipse> -->
       </svg>
     </div>
     <div v-if="showRectBackground" class="app-card-decorate__lattices"></div>
@@ -73,7 +58,6 @@ import { ResizeObserver } from "resize-observer";
 import { uuid } from "@guanyu/shared";
 import CardDecorateTitle, {
   SizeProps,
-  formatSmallSize,
 } from "@/components/CardDecorate/Title.vue";
 
 @Component({
@@ -91,7 +75,7 @@ export default class CardDecorate extends Vue {
   /**
    * 是否显示方格背景
    */
-  @Prop({ default: true }) showRectBackground!: boolean;
+  @Prop({ default: false }) showRectBackground!: boolean;
 
   /**
    * 填充颜色
@@ -108,11 +92,6 @@ export default class CardDecorate extends Vue {
   @Prop({ default: "medium" }) size!: SizeProps;
 
   /**
-   * 背景最小宽度
-   */
-  MIN_WIDTH = 606;
-
-  /**
    * 背景默认宽度
    */
   width = 1000;
@@ -120,128 +99,92 @@ export default class CardDecorate extends Vue {
   /**
    * 背景默认高度
    */
-  height = 1000;
+  height = 500;
 
   /**
    * 监听器
    */
   resizeObserver: ResizeObserver | null = null;
 
-  /**
-   * 格式化svg path
-   */
-  formatSvgPathD(d: string) {
-    const w = (this.width - this.MIN_WIDTH) / 2 - 5;
-    const h = this.height - 505;
+  get formatSize() {
+    const rect = {
+      W: 235, // 中心线宽度
+      H: this.height, // 高度
+      C: 330, // 中心凹进去的中间宽度
+      A: 50, //
+      B: 40,
+      D: 10, // 凹下然后又起的高度
+      E: 60,
+      R: 10, // 圆角
+      LW: 1, // 线条宽度
+    };
+    const format = {
+      // 小
+      small: () => {
+        rect.C = 125;
+      },
+      // 中
+      medium: () => {
+        rect.W = 200;
+      },
+      // 大
+      large: () => {
+        rect.W = 300;
+      },
+    };
+    if (format[this.size]) format[this.size]();
+    rect.W = (this.width - rect.C - (rect.A + rect.B + rect.R) * 2) / 2;
+    return rect;
+  }
 
-    return d
-      .replace(/{(-?\d+(\.\d+)?)}/g, (a: string, $1) => {
-        // 匹配{100} 数字 * 宽度
-        return `${w + parseFloat($1)}`;
-      })
-      .replace(/\[(-?\d+(\.\d+)?)\]/g, (a: string, $1) => {
-        // 匹配[100] 数字 * 宽度
-        return `${2 * w + parseFloat($1)}`;
-      })
-      .replace(/\((-?\d+(\.\d+)?)\)/g, (a: string, $1) => {
-        // 匹配(100) 数字 * 高度
-        return `${h + parseFloat($1)}`;
-      });
+  get customerD() {
+    const { W, H, C, A, B, D, E, R, LW } = this.formatSize;
+    /**
+     *----W----A-------                              -----W---R
+     *|        |\                                   /         |
+     *|        E \     D----            D----      /          |
+     *H        |   -B-/     \----C-----/      \ -B-          H
+     *|                                                       |
+     *|                                                       |
+     *R ---------------------------------------------------- R
+     */
+
+    return `
+      M${R} ${LW}
+      L${W} ${LW}
+      ${W + A} ${E}
+      ${W + A + B} ${E}
+      ${W + A + B + D} ${A}
+      ${W + A + B + D + C}  ${A}
+      ${W + A + B + D + C + D} ${E}
+      ${W + A + B + D + C + D + B} ${E}
+      ${W + A + B + D + C + D + B + A} ${LW}
+      ${W + A + B + D + C + D + B + A + W - R} ${LW}
+      C${W + A + B + D + C + D + B + A + W - R} ${LW}
+      ${W + A + B + D + C + D + B + A + W} ${LW}
+      ${W + A + B + D + C + D + B + A + W} ${R}
+      L${W + A + B + D + C + D + B + A + W} ${R}
+      L${W + A + B + D + C + D + B + A + W} ${H - R}
+      C${W + A + B + D + C + D + B + A + W} ${H - R}
+      ${W + A + B + D + C + D + B + A + W} ${H}
+      ${W + A + B + D + C + D + B + A + W - R} ${H}
+      L${W + A + B + D + C + D + B + A + W - R} ${H}
+      L${R} ${H}
+      C${R} ${H}
+      ${LW} ${H}
+      ${LW} ${H - R}
+      L${LW} ${H - R}
+      L${LW} ${R}
+      C${LW} ${R}
+      ${LW} ${LW}
+      ${R} ${LW}
+      Z
+            `;
   }
 
   /**
-   * 控制size
+   * 唯一id
    */
-  formatSmallSize(d: string) {
-    return formatSmallSize(d, this.size);
-  }
-
-  /**
-   * 线框区域svg path d
-   */
-  get outLinePath() {
-    return this.formatSmallSize(
-      this.formatSvgPathD(`
-      M10 1.97314
-      H'{46.1098}'
-      L'{90.5366}' 56.1835
-      C'{91.9353}' 57.8903 '{94.0272}' 58.8797 '{96.2352}' 58.8797
-      H'{129.433}'
-      C'{133.271}' 58.8797 '{136.863}' 56.9967 '{139.042}' 53.842
-      C'{140.848}' 51.2286 '{143.825}' 49.6676 '{147.006}' 49.6676
-      
-      H"{468.873}"
-      C"{472.054}" 49.6676 "{475.031}" 51.2286 "{476.836}" 53.842
-      C"{479.015}" 56.9967 "{482.608}" 58.8797 "{486.445}" 58.8797
-
-      H"{521.25}"
-      C"{523.499}" 58.8797 "{525.275}" 57.8468 "{526.739}" 56.45
-      C"{528.167}" 55.0882 "{529.375}" 53.3052 "{530.494}" 51.6548
-      L"{530.527}" 51.6054
-      C"{531.236}" 50.5604 "{531.911}" 49.565 "{532.615}" 48.6845
-
-      L"{565.845}" 7.10997
-      L"{565.064}" 6.48562
-      L"{565.845}" 7.10991
-
-      C"{565.962}" 6.96297 "{566.079}" 6.81343 "{566.196}" 6.66147
-      C"{568.33}" 3.88713 "{571.367}" 2 "{574.679}" 2
-
-      H[606]
-      C[610.972] 2 [615] 5.99679 [615] 10.9568
-      V484
-      C615 494.493 606.493 503 596 503
-      C5.02787 503 1 498.976 1 494.016
-      V10.9567
-      C1 5.99678 5.02789 2 10 2
-      Z`)
-    );
-  }
-
-  /**
-   * 内容区域svg path d
-   */
-  get bodyBackgroundPath() {
-    return this.formatSmallSize(
-      this.formatSvgPathD(`
-      M'{91.31}' 55.5496
-      L'{46.5832}' 0.973145
-      H10
-
-      C4.47715 0.973145 0 5.44294 0 10.9567
-      V(494.016)
-      C0 (499.53) 4.47713 (504) 9.99998 (504)
-
-      H388
-      H423.873
-      C423.873 (504) 428.96 (504) 432.529 (504)
-
-      H[596]
-      C[607.046] (504) [616] (495.046) [616] (484)
-      V10.9568
-      C[616] 5.44296 [611.523] 0.973145 [606] 0.973145
-
-      H"{574.679}"
-      C"{570.968}" 0.973145 "{567.665}" 3.11062 "{565.404}" 6.05177
-      C"{565.291}" 6.19896 "{565.177}" 6.34364 "{565.064}" 6.48562
-      L"{531.834}" 48.0602
-      C"{531.101}" 48.977 "{530.403}" 50.0063 "{529.699}" 51.0443
-      C"{527.414}" 54.416 "{525.066}" 57.8797 "{521.25}" 57.8797
-
-      H"{486.445}"
-      C"{482.936}" 57.8797 "{479.651}" 56.1576 "{477.659}" 53.2736
-      C"{475.667}" 50.3896 "{472.382}" 48.6676 "{468.873}" 48.6676
-
-      H'{147.006}'
-      C'{143.497}' 48.6676 '{140.212}' 50.3896 '{138.22}' 53.2736
-      C'{136.227}' 56.1576 '{132.942}' 57.8797 '{129.433}' 57.8797
-
-      H'{96.2352}'
-      C'{94.3265}' 57.8797 '{92.5186}' 57.0244 '{91.31}' 55.5496
-      Z`)
-    );
-  }
-
   get linearId() {
     return `__APP-CARD-DECORATE__${uuid()}`;
   }
@@ -266,8 +209,6 @@ export default class CardDecorate extends Vue {
      */
     this.resizeObserver = new ResizeObserver(this.divSizeChangeHandle);
     this.resizeObserver.observe(this.wrapper);
-
-    console.log(this.wrapper);
   }
 
   /**
@@ -297,10 +238,7 @@ export default class CardDecorate extends Vue {
     position: absolute;
     top: 0;
     left: 50%;
-    margin-left: -258px;
-    svg {
-      margin-left: -2px;
-    }
+    transform: translate(-50%, 0);
   }
   &__body {
     position: absolute;

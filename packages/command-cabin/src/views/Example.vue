@@ -26,7 +26,7 @@
         <Icon type="camera" />
       </p>
       <div>
-        <Progress v-model="progress" />
+        <Progress :width="1000" v-model="progress" />
       </div>
     </Card>
     <Card
@@ -64,7 +64,7 @@ import Progress from "@/components/Progress/index.vue";
   },
 })
 export default class Example extends Vue {
-  progress = 10;
+  progress = 60;
 
   mounted() {
     setTimeout(() => {
