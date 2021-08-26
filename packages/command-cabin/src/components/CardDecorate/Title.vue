@@ -101,7 +101,14 @@ export default class TitleDecorate extends Vue {
         rect.W = 700;
       },
     };
-    if (format[this.size]) format[this.size]();
+
+    /**
+     * 如果设置了size优先处理size
+     */
+    if (format[this.size]) {
+      format[this.size]();
+    }
+
     return rect;
   }
 
