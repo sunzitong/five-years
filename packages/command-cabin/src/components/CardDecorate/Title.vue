@@ -1,9 +1,9 @@
 <template>
   <svg
     style="vertical-align: middle"
-    :width="width"
-    :height="height"
-    :viewBox="`0 0 ${width} ${height}`"
+    :width="formatSize.W"
+    :height="formatSize.H"
+    :viewBox="`0 0 ${formatSize.W} ${formatSize.H}`"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -26,12 +26,26 @@
         <stop offset="1" stop-color="#00639F" stop-opacity="0" />
       </linearGradient>
     </defs>
+    <!-- <ellipse
+      cx="7"
+      cy="-5"
+      rx="20"
+      ry="14"
+      fill="#aaa"
+      stroke="#666"
+      stroke-width="2"
+      opacity=".8"
+    >
+      <animateMotion dur="2s" rotate="auto" repeatCount="indefinite">
+        <mpath :xlink:href="`#${uuid}_1`" />
+      </animateMotion>
+    </ellipse> -->
   </svg>
 </template>
 
 <script lang="ts">
 import { uuid } from "@guanyu/shared";
-import { Component, Vue, Prop, PropSync } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 /**
  * size 枚举
@@ -63,8 +77,8 @@ export default class TitleDecorate extends Vue {
    */
   @Prop({ default: "medium" }) size!: SizeProps;
 
-  width = 519;
-  height = 70;
+  @Prop({ default: 519 }) width!: number;
+  @Prop({ default: 70 }) height!: number;
 
   get formatSize() {
     const rect = {
@@ -76,18 +90,15 @@ export default class TitleDecorate extends Vue {
     const format = {
       // 小
       small: () => {
-        this.width = 318;
-        rect.W = this.width;
+        rect.W = 318;
       },
       // 中
       medium: () => {
-        this.width = 519;
-        rect.W = this.width;
+        rect.W = 519;
       },
       // 大
       large: () => {
-        this.width = 700;
-        rect.W = this.width;
+        rect.W = 700;
       },
     };
     if (format[this.size]) format[this.size]();
@@ -98,7 +109,6 @@ export default class TitleDecorate extends Vue {
    * 唯一id
    */
   get uuid() {
-    console.log('title', this.size);
     return uuid();
   }
 
