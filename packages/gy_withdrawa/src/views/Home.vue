@@ -14,7 +14,7 @@
               <p class="p1">
                 <em>{{data.firstTime}}</em>
                 <br>
-                是你入住冠寓的第一天sztszt
+                是你入住冠寓的第一天
                 <br>
                 从此各自的故事中有了彼此
                 <br>

@@ -25,7 +25,7 @@
               class="page-text1">
               <h2>TO  {{data.userName}}</h2>
               <p class="p1">
-                如果人生是一场奇遇sztszt
+                如果人生是一场奇遇
                 <br>
                 你带着阳光走来
                 <br>

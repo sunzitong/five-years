@@ -6,7 +6,7 @@
         @click="share(cityName)">分享</div>
       <img src="../assets/banner_main.jpg" alt="">
     </div>
-    sztszt
+    
     <div
       class="switch-city"
       @click="openCityListPopup()">
