@@ -16,10 +16,10 @@
     <defs>
       <linearGradient
         :id="uuid"
-        x1="175.946"
-        y1="7.151e-06"
-        x2="-8.51351"
-        y2="-2.80824e-06"
+        x1="0"
+        y1="0"
+        :x2="width"
+        y2="0"
         gradientUnits="userSpaceOnUse"
       >
         <stop :stop-color="fill[0]" />
