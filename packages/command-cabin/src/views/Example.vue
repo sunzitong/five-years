@@ -26,7 +26,8 @@
         <Icon type="camera" />
       </p>
       <div>
-        <Progress :width="1000" v-model="progress" />
+        <ProgressBar :width="1000" v-model="progress" />
+        <ProgressCircle :width="100" v-model="progress" />
       </div>
     </Card>
     <Card
@@ -51,7 +52,8 @@ import Subtitle from "@/components/Subtitle/index.vue";
 import Lattices from "@/components/Lattices/index.vue";
 import Card from "@/components/Card/index.vue";
 import Icon from "@/components/Icon/index.vue";
-import Progress from "@/components/Progress/index.vue";
+import ProgressBar from "@/components/Progress/ProgressBar.vue";
+import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 
 @Component({
   components: {
@@ -60,7 +62,8 @@ import Progress from "@/components/Progress/index.vue";
     Lattices,
     Card,
     Icon,
-    Progress,
+    ProgressBar,
+    ProgressCircle,
   },
 })
 export default class Example extends Vue {
