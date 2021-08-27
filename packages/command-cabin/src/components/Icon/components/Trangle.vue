@@ -43,8 +43,8 @@ export default class Trangle extends Vue {
   get iconSize() {
     const sizes = {
       large: 40,
-      medium: 30,
-      small: 20,
+      medium: 28,
+      small: 14,
     };
     return sizes[this.size] ?? this.size;
   }

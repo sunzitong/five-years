@@ -68,9 +68,9 @@ export default class Light extends Vue {
    */
   get iconSize() {
     const sizes = {
-      large: 44,
-      medium: 34,
-      small: 24,
+      large: 40,
+      medium: 28,
+      small: 14,
     };
     return sizes[this.size] ?? this.size;
   }

@@ -48,9 +48,9 @@ export default class TurnBack extends Vue {
    */
   get iconSize() {
     const sizes = {
-      large: 180,
-      medium: 120,
-      small: 60,
+      large: 40,
+      medium: 28,
+      small: 14,
     };
     return sizes[this.size] ?? this.size;
   }

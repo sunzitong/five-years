@@ -45,9 +45,9 @@ export default class Call extends Vue {
    */
   get iconSize() {
     const sizes = {
-      large: 90,
-      medium: 60,
-      small: 30,
+      large: 40,
+      medium: 28,
+      small: 14,
     };
     return sizes[this.size] ?? this.size;
   }

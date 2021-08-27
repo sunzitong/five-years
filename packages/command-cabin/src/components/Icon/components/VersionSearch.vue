@@ -45,9 +45,9 @@ export default class SearchVersion extends Vue {
    */
   get iconSize() {
     const sizes = {
-      large: 60,
-      medium: 52,
-      small: 40,
+      large: 40,
+      medium: 28,
+      small: 14,
     };
     return sizes[this.size] ?? this.size;
   }
