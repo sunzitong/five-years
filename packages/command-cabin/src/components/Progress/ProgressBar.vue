@@ -29,24 +29,12 @@
   </svg>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Ref, VModel } from "vue-property-decorator";
+import { Component, Prop, Vue, VModel } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 import { formatColorStr } from "@/utils/tools";
 
 @Component
-export default class Progress extends Vue {
-  /**
-   * 容器
-   */
-  @Ref() wrapper!: HTMLDivElement;
-
-  /**
-   * 进度类型
-   * bar 条形
-   * circle 圆形
-   */
-  @Prop() type!: "bar" | "circle";
-
+export default class ProgressBar extends Vue {
   /**
    * 宽度
    */
@@ -62,6 +50,9 @@ export default class Progress extends Vue {
    */
   @Prop({ default: 4 }) radius!: number;
 
+  /**
+   * v-model same as value
+   */
   @VModel({ type: Number }) iValue!: number;
 
   /**
@@ -80,7 +71,7 @@ export default class Progress extends Vue {
    * svg 必须使用唯一id
    */
   get uuid() {
-    return `__APP-PROGRESS__${uuid()}`;
+    return `__APP-PROGRESS-BAR__${uuid()}`;
   }
 
   /**
