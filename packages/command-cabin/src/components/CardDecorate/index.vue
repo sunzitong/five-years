@@ -29,7 +29,7 @@
             gradientUnits="userSpaceOnUse"
           >
             <stop offset="0" stop-color="#1B4986" stop-opacity="1" />
-            <stop offset="1" stop-color="#1B4986" stop-opacity="1" />
+            <stop offset="1" stop-color="#1B4986" stop-opacity="0" />
           </linearGradient>
         </defs>
         <!-- <ellipse
@@ -172,7 +172,7 @@ export default class CardDecorate extends Vue {
     };
     if (format[this.size]) format[this.size]();
     if (formatType[this.type]) formatType[this.type]();
-    rect.W = (this.width - rect.C - (rect.A + rect.B + rect.R) * 2) / 2;
+    rect.W = (this.width - rect.C - (rect.A + rect.B + rect.R) * 2) / 2 - 1;
     return rect;
   }
 
