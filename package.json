@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=static-pages-html",
-    "build": "lerna run build --scope=static-pages-html --stream",
+    "postinstall": "lerna bootstrap --scope=hd-apartment-service-letter",
+    "build": "lerna run build --scope=hd-apartment-service-letter --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
