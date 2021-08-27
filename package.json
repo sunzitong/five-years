@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=gy-welfarehous",
-    "build": "lerna run build --scope=gy-welfarehous --stream",
+    "postinstall": "lerna bootstrap --scope=gy_withdrawa",
+    "build": "lerna run build --scope=gy_withdrawa --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
