@@ -21,6 +21,11 @@ export function getDemo() {
   });
 }
 
-export default {
-  getDemo,
-};
+/**
+ * 获取地图数据
+ * @param id
+ * @returns
+ */
+export function getMapJson(id: number) {
+  return http.get<any>(`/map-json/${id}.json`);
+}
