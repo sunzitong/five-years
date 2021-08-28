@@ -22,6 +22,11 @@ const subRouter = [
     meta: "example",
   },
   {
+    path: "example-map",
+    component: () => import("@/views/ExampleMap.vue"),
+    meta: "example-map",
+  },
+  {
     path: "*",
     component: () => import("@/views/404.vue"),
   },

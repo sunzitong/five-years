@@ -28,6 +28,17 @@
       <div>
         <ProgressBar :width="1000" v-model="progress" />
         <ProgressCircle :width="100" v-model="progress" />
+        <div>
+          <Animationend key="1" :dataSource="dataSource" />
+
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
+        <div>
+          <Animationend key="2" :dataSource="dataSource1" />
+        </div>
       </div>
     </Card>
     <Card
@@ -54,6 +65,8 @@ import Card from "@/components/Card/index.vue";
 import Icon from "@/components/Icon/index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
+import Animationend from "@/components/Animationend/index.vue";
+import { getMapJson } from "@/service";
 
 @Component({
   components: {
@@ -64,10 +77,19 @@ import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
     Icon,
     ProgressBar,
     ProgressCircle,
+    Animationend,
   },
 })
 export default class Example extends Vue {
   progress = 60;
+
+  dataSource = Array.from({ length: 10 }).map((item, index) => ({
+    id: index + 1,
+  }));
+
+  dataSource1 = Array.from({ length: 10 }).map((item, index) => ({
+    id: index + 1,
+  }));
 
   mounted() {
     setTimeout(() => {
