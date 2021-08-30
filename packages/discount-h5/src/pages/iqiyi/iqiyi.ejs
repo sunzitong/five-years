@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html style="background:rgba(255,255,255,1)">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>优惠券领取sztszt</title>
+    <script src="<%= PUBLIC_PATH%>static/js/flexible.js"></script>
+  </head>
+  <body style="background:rgba(255,255,255,1)">
+    <div class="iqiyi-header">
+      <img class="iqiyi-bank-bg" src="<%= require('@/assets/iqiyi/bg.png')%>" alt="" />
+      <div class="iqiyi-header-bottom">
+        <div class="iqiyi-header-img">
+          <img class="iqiyi-long" src="<%= require('@/assets/iqiyi/logo.png')%>" alt="" />
+          <img class="iqiyi-tencent" src="<%= require('@/assets/iqiyi/sale98.png')%>" alt="" />
+        </div>
+        <div class="iqiyi-iobox">
+          <img class="iqiyi-main-bg" src="<%= require('@/assets/iqiyi/main.png')%>" alt="" />
+          <div class="tel-content">
+            <div class="codebox">
+              <img class="tel-code-img" src="<%= require('@/assets/iqiyi/tel.png')%>" alt="" />
+              <input class="iqiyi-input iqiyi-tel" type="num" placeholder="请输入手机号" />
+            </div>
+            <div class="codebox last">
+              <img class="tel-code-img" src="<%= require('@/assets/iqiyi/code.png')%>" alt="" />
+              <input type="text" maxlength="6" placeholder="输入验证码" class="iqiyi-input iqiyi-input-code">
+              <button class="iqiyi-send">发送验证码</button>
+            </div>
+            <button class="iqiyi-recive">
+              <div class="recive-text">点击领券</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="iqiyi-content">
+      <div class="iqiyi-desc">
+        <img class="desc-img" src="<%= require('@/assets/iqiyi/quotes.png')%>" alt="" />
+        <p class="desc-desc">
+          <e class="desc-title">龙湖冠寓</e>
+          始于2017年，倡导“去孤岛化”的租住理念，是社交一体化的时尚独栋式公寓。在冠寓，和有趣的年轻人住在一起！
+        </p>
+      </div>
+      <div class="iqiyi-imglist">
+        <img class="iqiyi-imglist-top" src="<%= require('@/assets/tencent/o-t.png')%>" alt="" />
+        <div class="iqiyi-imglist-bottom">
+          <img class="iqiyi-imglist-left" src="<%= require('@/assets/tencent/o-l.png')%>" alt="" />
+          <img class="iqiyi-imglist-right" src="<%= require('@/assets/tencent/o-r.png')%>" alt="" />
+        </div>
+      </div>
+      <div class="iqiyi-content-title">
+        <img class="iqiyi-content-title-img" src="<%= require('@/assets/iqiyi/title-l.png')%>" alt="" />
+        <span class="iqiyi-content-title-text">品质租房 就是冠寓</span>
+        <img class="iqiyi-content-title-img" src="<%= require('@/assets/iqiyi/title-r.png')%>" alt="" />
+      </div>
+      <div class="iqiyi-imglist">
+        <img class="iqiyi-imglist-top" src="<%= require('@/assets/tencent/t-t.png')%>" alt="" />
+        <div class="iqiyi-imglist-bottom">
+          <img class="iqiyi-imglist-left" src="<%= require('@/assets/tencent/t-l.png')%>" alt="" />
+          <img class="iqiyi-imglist-right" src="<%= require('@/assets/tencent/t-r.png')%>" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-cover"></div>
+    <div class="iqiyi-modal">
+      <img class="correct" src="<%= require('@/assets/iqiyi/correct.png')%>" alt="" />
+      <div class="success">领取成功！</div>
+      <div class="info">请使用手机号登录冠寓 APP 我的-优惠券 中查看。</div>
+      <div class="sure iqiyi">去使用</div>
+    </div>
+    <script src="<%= PUBLIC_PATH %>static/js/jquery-3.1.1.min.js"></script>
+    <!-- <script src="<%= PUBLIC_PATH %>static/js/vconsole.min.js"></script> -->
+  </body>
+</html>
