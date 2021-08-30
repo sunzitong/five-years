@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=hd-rentfree-coupon",
-    "build": "lerna run build --scope=hd-rentfree-coupon --stream",
+    "postinstall": "lerna bootstrap --scope=zt-earnest-detail",
+    "build": "lerna run build --scope=zt-earnest-detail --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
