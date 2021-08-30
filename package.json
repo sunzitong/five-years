@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=discount-h5",
-    "build": "lerna run build --scope=discount-h5 --stream",
+    "postinstall": "lerna bootstrap --scope={discount-h5,hd-rentfree-coupon,stimulate-h5,zt-earnest-detail}",
+    "build": "lerna run build --scope={discount-h5,hd-rentfree-coupon,stimulate-h5,zt-earnest-detail} --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
