@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope={gy-welfarehous,gy_checkin,gy_withdrawa,hd-apartment-service-letter}",
-    "build": "lerna run build --scope={gy-welfarehous,gy_checkin,gy_withdrawa,hd-apartment-service-letter} --stream",
+    "postinstall": "lerna bootstrap --scope=hd-rentfree-coupon",
+    "build": "lerna run build --scope=hd-rentfree-coupon --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
