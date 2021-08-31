@@ -41,6 +41,7 @@
         <Icon type="funnel" color="#01F5F1|#01F5F1" />
         <Icon type="flag" />
         <Icon type="map" />
+        <Icon type="brand" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
