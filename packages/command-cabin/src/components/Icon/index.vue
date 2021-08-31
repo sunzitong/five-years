@@ -21,6 +21,7 @@ import VersionMetting from "./components/VersionMetting.vue";
 import Camera from "./components/Camera.vue";
 import WaterDrop from "./components/WaterDrop.vue";
 import Lightning from "./components/Lightning.vue";
+import Door from "./components/Door.vue";
 
 @Component({
   components: {
@@ -36,6 +37,7 @@ import Lightning from "./components/Lightning.vue";
     Camera,
     WaterDrop,
     Lightning,
+    Door,
   },
 })
 export default class Icon extends Vue {
@@ -59,6 +61,7 @@ export default class Icon extends Vue {
     | "search-version"
     | "version-metting"
     | "water-drop"
+    | "door"
     | "lightning"
     | "trangle";
 
@@ -84,6 +87,7 @@ export default class Icon extends Vue {
       call: Call,
       camera: Camera,
       lightning: Lightning,
+      door: Door,
       "water-drop": WaterDrop,
       "version-touch": VersionTouch,
       "version-search": VersionSearch,

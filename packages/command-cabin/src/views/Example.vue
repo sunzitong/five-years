@@ -26,6 +26,7 @@
         <Icon type="camera" />
         <Icon type="water-drop" />
         <Icon type="lightning" />
+        <Icon type="door" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
