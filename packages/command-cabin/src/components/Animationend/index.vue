@@ -1,5 +1,8 @@
 <template>
-  <div class="app-animated">
+  <div
+    class="app-animated hidden-scrollbar"
+    style="height: 100px; overflow-y: scroll"
+  >
     <ul>
       <li
         v-for="(item, index) in list"
