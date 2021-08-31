@@ -28,10 +28,10 @@ export default class Arrow extends Vue {
    * Bottom 下
    */
   @Prop({ default: "arrow-right" }) type!:
-    | "arrorw-left"
-    | "arrorw-top"
-    | "arrorw-right"
-    | "arrorw-bottom";
+    | "arrow-left"
+    | "arrow-top"
+    | "arrow-right"
+    | "arrow-bottom";
 
   /**
    * 图标颜色
