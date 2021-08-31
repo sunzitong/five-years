@@ -31,6 +31,7 @@ import Brand from "./components/Brand.vue";
 import Users from "./components/Users.vue";
 import Income from "./components/Income.vue";
 import RoomNumber from "./components/RoomNumber.vue";
+import NumberOfOpeningRooms from "./components/NumberOfOpeningRooms.vue";
 
 @Component({
   components: {
@@ -56,6 +57,7 @@ import RoomNumber from "./components/RoomNumber.vue";
     Users,
     Income,
     RoomNumber,
+    NumberOfOpeningRooms,
   },
 })
 export default class Icon extends Vue {
@@ -96,6 +98,7 @@ export default class Icon extends Vue {
     | "users"
     | "income"
     | "room-number"
+    | "number-of-opening-rooms"
     | "trangle";
 
   /**
@@ -127,6 +130,7 @@ export default class Icon extends Vue {
       brand: Brand,
       users: Users,
       income: Income,
+      "number-of-opening-rooms": NumberOfOpeningRooms,
       "room-number": RoomNumber,
       "corner-top": Corner,
       "corner-left": Corner,
