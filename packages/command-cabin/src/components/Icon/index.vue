@@ -28,6 +28,7 @@ import Flag from "./components/Flag.vue";
 import Map from "./components/Map.vue";
 import Corner from "./components/Corner.vue";
 import Brand from "./components/Brand.vue";
+import Users from "./components/Users.vue";
 
 @Component({
   components: {
@@ -50,6 +51,7 @@ import Brand from "./components/Brand.vue";
     Map,
     Corner,
     Brand,
+    Users,
   },
 })
 export default class Icon extends Vue {
@@ -87,6 +89,7 @@ export default class Icon extends Vue {
     | "arrow-bottom"
     | "lightning"
     | "flag"
+    | "users"
     | "trangle";
 
   /**
@@ -116,6 +119,7 @@ export default class Icon extends Vue {
       flag: Flag,
       map: Map,
       brand: Brand,
+      users: Users,
       "corner-top": Corner,
       "corner-left": Corner,
       "corner-right": Corner,
