@@ -23,6 +23,7 @@ import WaterDrop from "./components/WaterDrop.vue";
 import Lightning from "./components/Lightning.vue";
 import Door from "./components/Door.vue";
 import Arrow from "./components/Arrorw.vue";
+import Funnel from "./components/Funnel.vue";
 
 @Component({
   components: {
@@ -40,6 +41,7 @@ import Arrow from "./components/Arrorw.vue";
     Lightning,
     Door,
     Arrow,
+    Funnel,
   },
 })
 export default class Icon extends Vue {
@@ -64,6 +66,7 @@ export default class Icon extends Vue {
     | "version-metting"
     | "water-drop"
     | "door"
+    | "funnel"
     | "arrow-right"
     | "arrow-top"
     | "arrow-left"
@@ -94,6 +97,7 @@ export default class Icon extends Vue {
       camera: Camera,
       lightning: Lightning,
       door: Door,
+      funnel: Funnel,
       "arrow-top": Arrow,
       "arrow-left": Arrow,
       "arrow-right": Arrow,
