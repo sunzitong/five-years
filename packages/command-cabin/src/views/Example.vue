@@ -32,6 +32,11 @@
         <Icon type="arrow-right" />
         <Icon type="arrow-bottom" />
         <Icon type="arrow-right" color="#fff" />
+        <Icon type="corner-top" />
+        <Icon type="corner-left" />
+        <Icon type="corner-right" />
+        <Icon type="corner-bottom" />
+        <Icon type="corner-bottom" color="#fff" />
         <Icon type="funnel" color="#01F5F1|transparent" />
         <Icon type="funnel" color="#01F5F1|#01F5F1" />
         <Icon type="flag" />

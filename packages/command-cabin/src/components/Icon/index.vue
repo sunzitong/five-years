@@ -26,6 +26,7 @@ import Arrow from "./components/Arrorw.vue";
 import Funnel from "./components/Funnel.vue";
 import Flag from "./components/Flag.vue";
 import Map from "./components/Map.vue";
+import Corner from "./components/Corner.vue";
 
 @Component({
   components: {
@@ -46,6 +47,7 @@ import Map from "./components/Map.vue";
     Funnel,
     Flag,
     Map,
+    Corner,
   },
 })
 export default class Icon extends Vue {
@@ -72,6 +74,10 @@ export default class Icon extends Vue {
     | "door"
     | "map"
     | "funnel"
+    | "corner-right"
+    | "corner-top"
+    | "corner-left"
+    | "corner-bottom"
     | "arrow-right"
     | "arrow-top"
     | "arrow-left"
@@ -106,6 +112,10 @@ export default class Icon extends Vue {
       funnel: Funnel,
       flag: Flag,
       map: Map,
+      "corner-top": Corner,
+      "corner-left": Corner,
+      "corner-right": Corner,
+      "corner-bottom": Corner,
       "arrow-top": Arrow,
       "arrow-left": Arrow,
       "arrow-right": Arrow,
