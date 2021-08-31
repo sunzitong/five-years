@@ -28,8 +28,8 @@
             y2="150"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0" stop-color="#1B4986" stop-opacity="1" />
-            <stop offset="1" stop-color="#1B4986" stop-opacity="0" />
+            <stop offset="0" stop-color="#1b3b6e" stop-opacity="1" />
+            <stop offset="1" stop-color="#1b3b6e" stop-opacity="0" />
           </linearGradient>
         </defs>
         <!-- <ellipse
@@ -80,7 +80,7 @@ export default class CardDecorate extends Vue {
   /**
    * 填充颜色
    */
-  @Prop({ default: "#0A1E58" }) fill!: string;
+  @Prop({ default: "#0B1F51" }) fill!: string;
   /**
    * 透明度
    */

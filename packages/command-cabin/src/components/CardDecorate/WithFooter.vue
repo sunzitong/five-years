@@ -58,8 +58,8 @@
             y2="471.21"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#1B4986" />
-            <stop offset="1" stop-color="#1B4986" stop-opacity="0" />
+            <stop stop-color="#1b3b6e" />
+            <stop offset="1" stop-color="#1b3b6e" stop-opacity="0" />
           </linearGradient>
         </defs>
       </svg>
@@ -121,7 +121,7 @@ export default class WithFooter extends Vue {
   /**
    * 填充颜色
    */
-  @Prop({ default: "#0A1E58" }) fill!: string;
+  @Prop({ default: "#0B1F51" }) fill!: string;
   /**
    * 透明度
    */

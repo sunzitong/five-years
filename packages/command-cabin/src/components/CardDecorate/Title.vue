@@ -9,7 +9,7 @@
   >
     <path
       :d="titlePath"
-      fill="#0B2763"
+      fill="#0B1F51"
       :stroke="`url(#${uuid})`"
       stroke-width="2"
     />
@@ -22,8 +22,8 @@
         y2="71.8853"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#1B4986" />
-        <stop offset="1" stop-color="#00639F" stop-opacity="0" />
+        <stop stop-color="#1b3b6e" />
+        <stop offset="1" stop-color="#1b3b6e" stop-opacity="0" />
       </linearGradient>
     </defs>
     <!-- <ellipse
