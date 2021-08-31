@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useRequest } from 'umi';
 import maiaCanvasBrush from '@longfor/canvasbrush';
 import { reportOrderDetail } from '@/services/workOrder';
+import { getQueryString } from '@/utils/utils';
 import 'normalize.css';
 import cls from './index.less';
 
@@ -14,7 +15,7 @@ const Layout: React.FC<{}> = props => {
 
   const { data } = useRequest(() => {
     const { hash } = location;
-    const oaAccount = hash ? hash.substr(hash.indexOf('&oa') + 4) : oa;
+    const oaAccount = hash ? getQueryString(hash, 'oa') : oa;
     return reportOrderDetail({ todoId: id, oa: oaAccount });
   });
   const account = data?.data?.oaAccount ?? '';

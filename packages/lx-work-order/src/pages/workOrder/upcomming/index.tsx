@@ -11,6 +11,7 @@ import { useRequest, useLocation } from 'umi';
 import { BaseCard, BaseImages, BaseSteps } from '@/components/base';
 import { reportOrderDetail, reportOrderIdeaBack } from '@/services/workOrder';
 import { iwant } from '@guanyu/shared';
+import { getQueryString } from '@/utils/utils';
 import cls from './index.less';
 import { baseStepsDataItemProps } from './index.d';
 
@@ -22,7 +23,7 @@ const Upcomming = () => {
   const {
     query: { id, oa },
   } = values;
-  const oaAccount = hash ? hash.substr(hash.indexOf('&oa') + 4) : oa;
+  const oaAccount = hash ? getQueryString(hash, 'oa') : oa;
 
   /**
    * 请求详情
