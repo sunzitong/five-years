@@ -27,6 +27,11 @@
         <Icon type="water-drop" />
         <Icon type="lightning" />
         <Icon type="door" />
+        <Icon type="arrow-top" />
+        <Icon type="arrow-left" />
+        <Icon type="arrow-right" />
+        <Icon type="arrow-bottom" />
+        <Icon type="arrow-right" color="#fff" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />

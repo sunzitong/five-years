@@ -22,6 +22,7 @@ import Camera from "./components/Camera.vue";
 import WaterDrop from "./components/WaterDrop.vue";
 import Lightning from "./components/Lightning.vue";
 import Door from "./components/Door.vue";
+import Arrow from "./components/Arrorw.vue";
 
 @Component({
   components: {
@@ -38,6 +39,7 @@ import Door from "./components/Door.vue";
     WaterDrop,
     Lightning,
     Door,
+    Arrow,
   },
 })
 export default class Icon extends Vue {
@@ -62,6 +64,10 @@ export default class Icon extends Vue {
     | "version-metting"
     | "water-drop"
     | "door"
+    | "arrow-right"
+    | "arrow-top"
+    | "arrow-left"
+    | "arrow-bottom"
     | "lightning"
     | "trangle";
 
@@ -88,6 +94,10 @@ export default class Icon extends Vue {
       camera: Camera,
       lightning: Lightning,
       door: Door,
+      "arrow-top": Arrow,
+      "arrow-left": Arrow,
+      "arrow-right": Arrow,
+      "arrow-bottom": Arrow,
       "water-drop": WaterDrop,
       "version-touch": VersionTouch,
       "version-search": VersionSearch,
