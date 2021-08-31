@@ -43,6 +43,7 @@
         <Icon type="map" />
         <Icon type="brand" />
         <Icon type="users" />
+        <Icon type="income" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
