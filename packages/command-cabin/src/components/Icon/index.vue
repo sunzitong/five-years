@@ -30,6 +30,7 @@ import Corner from "./components/Corner.vue";
 import Brand from "./components/Brand.vue";
 import Users from "./components/Users.vue";
 import Income from "./components/Income.vue";
+import RoomNumber from "./components/RoomNumber.vue";
 
 @Component({
   components: {
@@ -54,6 +55,7 @@ import Income from "./components/Income.vue";
     Brand,
     Users,
     Income,
+    RoomNumber,
   },
 })
 export default class Icon extends Vue {
@@ -93,6 +95,7 @@ export default class Icon extends Vue {
     | "flag"
     | "users"
     | "income"
+    | "room-number"
     | "trangle";
 
   /**
@@ -124,6 +127,7 @@ export default class Icon extends Vue {
       brand: Brand,
       users: Users,
       income: Income,
+      "room-number": RoomNumber,
       "corner-top": Corner,
       "corner-left": Corner,
       "corner-right": Corner,
