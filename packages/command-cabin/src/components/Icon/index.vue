@@ -24,6 +24,7 @@ import Lightning from "./components/Lightning.vue";
 import Door from "./components/Door.vue";
 import Arrow from "./components/Arrorw.vue";
 import Funnel from "./components/Funnel.vue";
+import Flag from "./components/Flag.vue";
 
 @Component({
   components: {
@@ -42,6 +43,7 @@ import Funnel from "./components/Funnel.vue";
     Door,
     Arrow,
     Funnel,
+    Flag,
   },
 })
 export default class Icon extends Vue {
@@ -72,6 +74,7 @@ export default class Icon extends Vue {
     | "arrow-left"
     | "arrow-bottom"
     | "lightning"
+    | "flag"
     | "trangle";
 
   /**
@@ -98,6 +101,7 @@ export default class Icon extends Vue {
       lightning: Lightning,
       door: Door,
       funnel: Funnel,
+      flag: Flag,
       "arrow-top": Arrow,
       "arrow-left": Arrow,
       "arrow-right": Arrow,

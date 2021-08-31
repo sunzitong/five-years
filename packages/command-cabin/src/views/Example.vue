@@ -34,6 +34,7 @@
         <Icon type="arrow-right" color="#fff" />
         <Icon type="funnel" color="#01F5F1|transparent" />
         <Icon type="funnel" color="#01F5F1|#01F5F1" />
+        <Icon type="flag" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
