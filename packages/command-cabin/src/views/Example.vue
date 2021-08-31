@@ -46,6 +46,7 @@
         <Icon type="income" />
         <Icon type="room-number" :size="200" />
         <Icon type="number-of-opening-rooms" :size="200" />
+        <Icon type="year-income" :size="200" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
