@@ -1,7 +1,7 @@
 <template>
   <svg
-    width="23"
-    height="29"
+    :width="iconSize"
+    :height="(iconSize * 29) / 23"
     viewBox="0 0 23 29"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -19,9 +19,9 @@
         y2="28.4357"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#F1FBFF" />
-        <stop offset="0.433627" stop-color="#77D2FE" />
-        <stop offset="1" stop-color="#0AA5FD" />
+        <stop :stop-color="fill[0]" />
+        <stop offset="0.433627" :stop-color="fill[1]" />
+        <stop offset="1" :stop-color="fill[2]" />
       </linearGradient>
     </defs>
   </svg>
@@ -51,7 +51,7 @@ export default class WaterDrop extends Vue {
     /**
      * 处理特殊场景
      */
-    return formatColorStr(this.color, 2);
+    return formatColorStr(this.color, 3);
   }
 
   /**
