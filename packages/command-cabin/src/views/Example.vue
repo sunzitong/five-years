@@ -24,6 +24,7 @@
         <Icon type="version-search" />
         <Icon type="version-metting" />
         <Icon type="camera" />
+        <Icon type="water-drop" />
       </p>
       <div>
         <ProgressBar :width="1000" v-model="progress" />

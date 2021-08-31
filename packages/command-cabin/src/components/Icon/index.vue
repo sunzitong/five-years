@@ -19,6 +19,7 @@ import VersionTouch from "./components/VersionTouch.vue";
 import VersionSearch from "./components/VersionSearch.vue";
 import VersionMetting from "./components/VersionMetting.vue";
 import Camera from "./components/Camera.vue";
+import WaterDrop from "./components/WaterDrop.vue";
 
 @Component({
   components: {
@@ -32,6 +33,7 @@ import Camera from "./components/Camera.vue";
     VersionSearch,
     VersionMetting,
     Camera,
+    WaterDrop,
   },
 })
 export default class Icon extends Vue {
@@ -54,6 +56,7 @@ export default class Icon extends Vue {
     | "touch-version"
     | "search-version"
     | "version-metting"
+    | "water-drop"
     | "trangle";
 
   /**
@@ -77,6 +80,7 @@ export default class Icon extends Vue {
       trangle: Trangle,
       call: Call,
       camera: Camera,
+      "water-drop": WaterDrop,
       "version-touch": VersionTouch,
       "version-search": VersionSearch,
       "version-metting": VersionMetting,
