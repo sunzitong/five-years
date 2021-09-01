@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>填写信息</title>
+    <link rel="stylesheet" href="<%= PUBLIC_PATH %>static/js/mpicker.css">
+    <script src="<%= PUBLIC_PATH%>static/js/flexible.js"></script>
+  </head>
+  <body>
+    <!-- <div class="loading">
+      <div class="loadingDash"></div>
+    </div> -->
+    <div class="paycontainer" style="display: block;">
+      <h3 class="paytitle">请您填写以下信息</h3>
+
+      <form name="fm">
+      <div class="formInput">
+          <p class="formLabel"><span>*</span>姓名</p>
+            <input type="text" name="name" id="name" placeholder="请输入您的真实姓名" maxlength="100">
+      </div>
+
+      <div class="formInput">
+        <p class="formLabel">手机号</p>
+          <input type="text" name="phone" id="phone" placeholder="请输入您的手机号" maxlength="20">
+     </div>
+
+     <div class="formInput">
+      <p class="formLabel"><span>*</span>房间号</p>
+          <input type="text" id="picker" placeholder="请选择您的房间号">
+    </div>
+
+      <div class="formInput">
+          <p class="formLabel">证件类型</p>
+          <select name="idType" id="idType">
+            <option value ="Id">身份证</option>
+            <option value ="Passport">护照</option>
+          </select>
+      </div>
+
+      <div class="formInput">
+          <p class="formLabel">证件编号</p>
+          <input type="text" name="idNo" id="idNo" placeholder="请输入您的证件编号" maxlength="100">
+      </div>
+    </form>
+      <div style="margin-top: 10px;">
+         <span class="isolationPrice">房费：-- 元/天</span>
+      </div>
+      <div>
+        <span class="isolationDay">天数 :--天</span>
+     </div>
+
+
+      <!-- 一键支付按钮 -->
+      <div class="buttonBox" style="padding-top: 0;">
+        <div class="buttonChild">
+            <div class="payMoney">
+              <span>合计金额 ：</span>
+              <p class="payamout isolationPayAmount">¥--</p>
+            </div>
+            <div class="toPayButton">
+              一键支付
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="<%= PUBLIC_PATH %>static/js/jquery-3.1.1.min.js"></script>
+    <script src="<%= PUBLIC_PATH %>static/js/mPicker.min.js"></script>
+    <script src="<%= PUBLIC_PATH %>static/js/jweixin-1.0.0.js"></script>
+  </body>
+</html>

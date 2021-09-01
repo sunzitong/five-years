@@ -1,0 +1,44 @@
+@import '../../../assets/style/common.less';
+
+.searchArea{
+  padding: 0 30px;
+  background-color: #fff;
+  margin-bottom: 300px;
+  :global{
+    .am-list:last-child{
+      .am-list-body {
+        border-bottom: none;
+        padding: 10px 0;
+      }
+    }
+    .am-list-body {
+      border-top: none;
+    }
+    .am-list-item .am-list-line .am-list-extra,
+    .am-list-item .am-input-control input {
+      font-size: 30px;
+      color: #9B9B9B;
+    }
+    .am-list-item {
+      .am-list-line {
+        .am-list-extra {
+          flex-basis: 75%;
+        }
+      }
+    }
+  }
+}
+
+.store {
+  color: #9B9B9B;
+  font-size: 30px;
+}
+
+.buttonSearch:extend(.button) {
+  background: @buttonColor;
+  display: block;
+  height: 80px;
+  line-height: 80px;
+  margin: 0 85px 100px;
+  box-shadow: 0 0 10px @buttonColor;
+}

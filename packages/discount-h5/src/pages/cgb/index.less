@@ -1,0 +1,316 @@
+* {
+  // -webkit-tap-highlight-color: rgba(0,0,0,0);
+  // -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 750px;
+  -webkit-font-smoothing: antialiased;
+  // background:linear-gradient(119deg,rgb(196, 59, 59) 0%,rgba(255,232,195,1) 100%);
+}
+.cgb-header {
+  position: relative;
+  .cgb-bank-bg {
+    width: 100%;
+  }
+  .cgb-header-bottom {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .cgb-header-img {
+      img {
+        display: block;
+      }
+      .cgb-long {
+        width: 190px;
+        height: 48px;
+        margin: 60px auto;
+      }
+      .cgb-tencent {
+        width: 655px;
+        height: 159px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+}
+.cgb-iobox {
+  position: relative;
+  margin-top: -25px;
+  .cgb-main-bg {
+    width: 100%;
+    // height: 676px;
+  }
+  .tel-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 132px;
+    .cgb-input {
+      width: 100%;
+      height: 70px;
+      background:rgba(255,255,255,0);
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #C1C1C1;
+      padding-left: 50px;
+      font-size: 30px;
+    }
+    .cgb-input:focus{
+      outline:none;
+    }
+    .cgb-input::placeholder {
+      font-size: 29px;
+      font-family: PingFangSC-Regular,PingFang SC;;
+      font-weight: 400;
+      color:rgba(204,204,204,1);
+    }
+    .cgb-input-code {
+      width: 264px;
+    }
+    .codebox {
+      width: 500px;
+      margin:0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      .tel-code-img {
+        width: 36px;
+        height: 36px;
+        position: absolute;
+        left: 0;
+      }
+      .send {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 60px;
+        white-space: nowrap;
+        border: none;
+        border-radius:6px;
+        font-size: 28px;
+        font-family: PingFangSC-Regular,PingFang SC;;
+        font-weight: 400;
+        color:rgba(255,255,255,1);
+        background: #FDA312;
+      }
+    }
+    .codebox.last {
+      margin-top: 34px;
+    }
+    .recive {
+      width: calc(100% - 250px);
+      height: 100px;
+      border: none;
+      background:url(../../assets/tencent/click-button.png) 0 0 no-repeat;
+      background-size: 100% 100%;
+      border-radius:40px;
+      margin: 71px 125px 0;
+      .recive-text {
+        width: 100%;
+        margin-top: -11px;
+        line-height: 1;
+        font-size:32px;
+        font-family:PingFangSC-Medium,PingFang SC;
+        font-weight:500;
+        color:rgba(167,80,47,1);
+        line-height:45px;
+      }
+    }
+  }
+}
+.cgb-content {
+  width: 100%;
+  margin-top: 650px;
+  .cgb-desc {
+    position: relative;
+    .desc-img {
+      width: 36px;
+      height: 28px;
+      position: absolute;
+      top: 0;
+      left: 50px;
+    }
+    .desc-desc {
+      font-size:26px;
+      font-family:PingFangSC-Medium,PingFang SC;
+      font-weight:500;
+      color:rgba(255,255,255,1);
+      line-height:42px;
+      padding: 0 45px 10px;
+      text-indent: 50px;
+      .desc-title {
+        font-size:34px;
+        margin: 0 10px 0;
+      }
+    }
+  }
+  .cgb-content-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px 0;
+    .cgb-content-title-img {
+      width: 66px;
+      height: 44px;
+    }
+    .cgb-content-title-text {
+      font-size:36px;
+      font-family:PingFangSC-Semibold,PingFang SC;
+      font-weight:600;
+      color:rgba(255,255,255,1);
+      margin: 0 20px 0;
+      line-height: 44px;
+    }
+  }
+  .cgb-imglist {
+    text-align: center;
+    margin-bottom: 52px;
+    img {
+      border-radius: 0;
+    }
+    .cgb-imglist-top {
+      width: 660px;
+      height: 356px;
+      margin: 0 auto;
+    }
+    .cgb-imglist-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px calc(50% - 330px) 0;
+      img {
+        width: 320px;
+        height: 355px;
+      }
+      .cgb-imglist-right {
+        border-radius: 8px;
+      }
+    }
+  }
+  .bottom {
+    p {
+      margin: 0;
+      padding: 0 !important;
+    }
+    .rules-box {
+      // width: 100%;
+      margin: 0 45px 0;
+      border-radius: 34px;
+      text-align: center;
+      position: relative;
+      // padding: 46px 0 200px;
+      .rules-top {
+        width: 402px;
+        height: 89px;
+        margin-top: -82px;
+        margin-bottom: 37px;
+      }
+      .rules-content {
+        font-size:26px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(255,255,255,1);
+        line-height:42px;
+        text-align: justify;
+        &.bold {
+          font-weight: bold;
+        }
+        &.indent {
+          text-indent: 2em;
+        }
+        &.head {
+          margin-top: 26px;
+        }
+        &.bottom {
+          padding-bottom: 86px !important;
+        }
+        a {
+          color:rgba(255,255,255,1);
+        }
+        padding-bottom: 60px;
+      }
+      .rules-content.topTitle {
+        font-size:33px;
+        font-family:SourceHanSansCN;
+        font-weight:bold;
+        color:rgba(255,255,255,1);
+        text-align: center;
+        margin: 0;
+      }
+      .rules-content.title {
+        margin: 18px 0 38px;
+        text-align: center;
+        .roles {
+          margin: 0 8px 0,
+        }
+      }
+    }
+  }
+}
+
+.cgb-modal {
+  width: 500px;
+  height: 420px;
+  background:rgba(255,255,255,1);
+  border-radius:15px;
+  position: absolute;
+  top: calc(50% - 210px);
+  left: calc(50% - 250px);
+  z-index: 1000;
+  display: none;
+  .correct {
+    width: 113px;
+    height: 113px;
+    position: absolute;
+    top: -56px;
+    left: 194px;
+  }
+  .success {
+    font-size:37px;
+    font-family:FZLTCHJW;
+    font-weight:700;
+    color:rgba(96,96,96,1);
+    text-align: center;
+    padding-top: 88px;
+  }
+  .info {
+    font-size:28px;
+    font-family:FZLTHK;
+    font-weight:normal;
+    color:rgba(96,96,96,1);
+    line-height:38px;
+    text-align: center;
+    margin: 40px 53px 0;
+  }
+  .sure {
+    width:210px;
+    height:70px;
+    line-height: 70px;
+    font-size:35px;
+    font-family:SourceHanSansCN;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    background:#F18D00;
+    border-radius:35px;
+    text-align: center;
+    margin: 50px auto 0;
+  }
+  .sure.tencent {
+    background:#F18D00;
+  }
+}
+.modal-cover {
+  background-color: rgba(51, 51, 51, 0.85);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  display: none;
+}
