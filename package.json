@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=remotepay",
-    "build": "lerna run build --scope=remotepay --stream",
+    "postinstall": "lerna bootstrap --scope=xiaoguan_operation",
+    "build": "lerna run build --scope=xiaoguan_operation --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
