@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope={crm-intermediary-offer,ex-activity-template,remotepay,xiaoguan_operation}",
-    "build": "lerna run build --scope={crm-intermediary-offer,ex-activity-template,remotepay,xiaoguan_operation} --stream",
+    "postinstall": "lerna bootstrap --scope=gy_springRenting",
+    "build": "lerna run build --scope=gy_springRenting --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
