@@ -48,6 +48,16 @@
         <Icon type="number-of-opening-rooms" :size="200" />
         <Icon type="year-income" :size="200" />
       </p>
+
+      <div>
+        <Btn>首页</Btn>
+        <Btn>拓展盘面</Btn>
+        <Btn>营造盘面</Btn>
+        <Btn>经营现状</Btn>
+        <Btn>门店</Btn>
+        <Btn>日常巡检</Btn>
+        <Btn>开业巡检</Btn>
+      </div>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
         <ProgressCircle :width="100" v-model="progress" />
@@ -89,7 +99,7 @@ import Icon from "@/components/Icon/index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import Animationend from "@/components/Animationend/index.vue";
-import { getMapJson } from "@/service";
+import Btn from "@/components/Btn/index.vue";
 
 @Component({
   components: {
@@ -101,6 +111,7 @@ import { getMapJson } from "@/service";
     ProgressBar,
     ProgressCircle,
     Animationend,
+    Btn,
   },
 })
 export default class Example extends Vue {
