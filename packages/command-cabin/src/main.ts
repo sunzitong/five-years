@@ -16,12 +16,6 @@ import "./filters";
 import "./assets/css/style.scss";
 // console
 Vue.config.productionTip = false;
-// 真机本地调试
-if (process.env.NODE_ENV === "development") {
-  import("vconsole").then((VConsole) => {
-    new VConsole.default();
-  });
-}
 // 实例
 const VIEW = new Vue({
   data: store,
