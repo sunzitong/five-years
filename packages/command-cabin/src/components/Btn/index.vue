@@ -1,9 +1,9 @@
 <template>
-  <div class="app-btn">
+  <div class="app-btn" v-on="$listeners">
     <svg
-      :width="width"
-      :height="height"
-      :viewBox="`0 0 ${width} ${height}`"
+      :width="rect.width"
+      :height="rect.height"
+      :viewBox="`0 0 ${rect.width} ${rect.height}`"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -19,33 +19,33 @@
       />
       <path
         :d="`
-          M${width - 10} ${height}
-          H${width}
-          V${height - 10}
-          L${width - 10} ${height}
+          M${rect.width - 10} ${rect.height}
+          H${rect.width}
+          V${rect.height - 10}
+          L${rect.width - 10} ${rect.height}
           Z`"
         fill="#01F4F0"
       />
       <line
         x1="5.97374"
-        :y1="height - 70 + 58.9993"
+        :y1="rect.height - 70 + 58.9993"
         x2="9.97374"
-        :y2="height - 70 + 63.9993"
+        :y2="rect.height - 70 + 63.9993"
         stroke="#01F5F1"
         stroke-width="2"
       />
       <line
         x1="7.56612"
-        :y1="height - 70 + 50.9781"
+        :y1="rect.height - 70 + 50.9781"
         x2="18.5661"
-        :y2="height - 70 + 63.9781"
+        :y2="rect.height - 70 + 63.9781"
         stroke="#01F5F1"
         stroke-width="2"
       />
       <line
-        :x1="width - 250 + 241.304"
+        :x1="rect.width - 250 + 241.304"
         y1="12.0974"
-        :x2="width - 250 + 236.606"
+        :x2="rect.width - 250 + 236.606"
         y2="7.07734"
         stroke="#01F5F1"
         stroke-width="2"
@@ -55,7 +55,7 @@
         x2="17.0294"
         y2="-1"
         :transform="`matrix(-0.712453 -0.70172 -0.70172 0.712453 ${
-          width - 10
+          rect.width - 10
         } 20.8535)`"
         stroke="#01F5F1"
         stroke-width="2"
@@ -74,7 +74,7 @@
         </linearGradient>
         <linearGradient
           :id="`${uuid}_paint1_linear`"
-          :x1="width"
+          :x1="rect.width"
           y1="69.665"
           x2="0.192874"
           y2="0.665028"
@@ -98,9 +98,28 @@ import { uuid } from "@guanyu/shared";
 
 @Component
 export default class Btn extends Vue {
-  @Prop({ default: 249 }) width!: number;
+  @Prop({ default: "medium" }) size!: number | "medium" | "small" | "large";
 
-  @Prop({ default: 70 }) height!: number;
+  get rect() {
+    const map = {
+      large: { width: 249, height: 70 },
+      medium: { width: 249, height: 70 },
+      small: { width: 249, height: 70 },
+    };
+
+    if (map[this.size]) {
+      return map[this.size];
+    }
+
+    if (typeof this.size === "number") {
+      return {
+        width: this.size,
+        height: (this.size * 70) / 249,
+      };
+    }
+
+    return map.medium;
+  }
 
   /**
    * 唯一id
@@ -113,8 +132,8 @@ export default class Btn extends Vue {
    * 按钮路径
    */
   get buttonPathD() {
-    const w = this.width - 1;
-    const h = this.height - 1;
+    const w = this.rect.width - 1;
+    const h = this.rect.height - 1;
     const r = 8;
 
     return `
@@ -137,7 +156,7 @@ export default class Btn extends Vue {
       C${w - 2 * r + 2} ${h - 2}
       ${w - 2 * r} ${h}
       ${w - 2 * r - 2} ${h}
-      
+
       L${w - 2 * r - 2} ${h}
 
 
@@ -187,6 +206,7 @@ export default class Btn extends Vue {
   display: inline-block;
   &__txt {
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -197,8 +217,11 @@ export default class Btn extends Vue {
     font-size: 30px;
     font-family: PingFang SC;
     color: #ffffff;
+    > a {
+      color: #ffffff;
+    }
   }
-  svg {
+  > svg {
     vertical-align: middle;
   }
 }

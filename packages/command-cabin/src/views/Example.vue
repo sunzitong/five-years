@@ -50,7 +50,7 @@
       </p>
 
       <div>
-        <Btn>首页</Btn>
+        <Btn @click="aaa">首页</Btn>
         <Btn>拓展盘面</Btn>
         <Btn>营造盘面</Btn>
         <Btn>经营现状</Btn>
@@ -124,6 +124,10 @@ export default class Example extends Vue {
   dataSource1 = Array.from({ length: 10 }).map((item, index) => ({
     id: index + 1,
   }));
+
+  aaa() {
+    alert('a');
+  } 
 
   mounted() {
     setTimeout(() => {
