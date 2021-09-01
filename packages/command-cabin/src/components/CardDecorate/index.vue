@@ -191,12 +191,44 @@ export default class CardDecorate extends Vue {
     return `
       M${R} ${LW}
       L${W} ${LW}
+      
+      ${W + 2} ${LW}
+      L${W + A} ${E}
+
+      C${W + A - 2} ${E - 2}
       ${W + A} ${E}
+      ${W + A + 2} ${E}
+
+      L${W + A + 2} ${E}
+      L${W + A + B - 2} ${E}
+      C${W + A + B - 2} ${E}
       ${W + A + B} ${E}
+      ${W + A + B + 2} ${E - 2}
+      L${W + A + B + 2} ${E - 2}
+
+      L${W + A + B + D} ${A}
+      C${W + A + B + D - 2} ${A + 2}
       ${W + A + B + D} ${A}
+      ${W + A + B + D + 2} ${A}
+
+      L${W + A + B + D + 2} ${A}
+      C${W + A + B + D + C - 2}  ${A}
       ${W + A + B + D + C}  ${A}
+      ${W + A + B + D + C + 2}  ${A + 2}
+      L${W + A + B + D + C + 2}  ${A + 2}
+
+
+      L${W + A + B + D + C + D - 2} ${E - 2}
+      C${W + A + B + D + C + D - 2} ${E - 2}
       ${W + A + B + D + C + D} ${E}
+      ${W + A + B + D + C + D + 2} ${E}
+      L${W + A + B + D + C + D + 2} ${E}
+
+      L${W + A + B + D + C + D + B - 2} ${E}
+      C${W + A + B + D + C + D + B - 2} ${E}
       ${W + A + B + D + C + D + B} ${E}
+      ${W + A + B + D + C + D + B + 2} ${E - 2}
+      L${W + A + B + D + C + D + B + 2} ${E - 2}
       ${W + A + B + D + C + D + B + A} ${LW}
       ${W + A + B + D + C + D + B + A + W - R} ${LW}
       C${W + A + B + D + C + D + B + A + W - R} ${LW}
