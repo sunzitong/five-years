@@ -149,7 +149,7 @@ export default {
     };
   },
   mounted() {
-    document.title = '呼朋唤友房租抹零sztszt';
+    document.title = '呼朋唤友房租抹零';
     this.token = this.getToken();
     // this.token = '92a63b08d3d29977';
     // 获取活动信息
