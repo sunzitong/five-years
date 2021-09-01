@@ -3,6 +3,15 @@
     <router-view />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
+    <!-- 控制缩放 -->
+    <div
+      v-if="env.NODE_ENV === 'development'"
+      :style="{ transform: 'scale(' + 1 / scale + ')' }"
+      class="screen-resize"
+    >
+      {{ resize ? "已启用自动缩放" : "已显示网页原始大小" }}
+      <van-switch v-model="resize" @change="resizeHandle" :size="20" />
+    </div>
   </div>
 </template>
 
@@ -18,27 +27,39 @@ import MixStore from "@/store/MixStore";
   },
 })
 export default class App extends Mixins(MixStore) {
+  resize = true;
+
+  scale = 1;
+
   resizeHandle() {
-    if (process.env.NODE_ENV === "development") return;
     const app = this.$root.$el as HTMLDivElement;
+    if (!this.resize) {
+      app.style.setProperty("transform", null);
+      document.body.style.setProperty("overflow", null);
+      this.scale = 1;
+      return;
+    }
     const fixWidth = 7680;
     const fixHeight = 3240;
     const winWidth = window.innerWidth;
     const winHeight = window.innerHeight;
     const sx = winWidth / fixWidth;
     const sy = winHeight / fixHeight;
-    console.log(sx, sy);
     if (sx <= sy) {
       app.style.setProperty(
         "transform",
         `translateY(${(winHeight - fixHeight * sx) / 2}px) scale(${sx})`
       );
+      this.scale = sx;
     } else {
       app.style.setProperty(
         "transform",
         `translateX(${(winWidth - fixWidth * sy) / 2}px) scale(${sy})`
       );
+      this.scale = sy;
     }
+    window.scroll(0, 0);
+    document.body.style.setProperty("overflow", "hidden");
   }
   created() {
     // 7680 x 3240
@@ -57,7 +78,19 @@ export default class App extends Mixins(MixStore) {
   width: 7680px;
   height: 3240px;
   transform-origin: 0 0;
-  // overflow: hidden;
-  background: #000311;
+  overflow: hidden;
+  background: #00023c;
+}
+.screen-resize {
+  @extend %flex-center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  transform-origin: 100% 0;
+  color: #fff;
+  background: #0f3f7d;
+  box-shadow: #fff -2px 2px 10px 0px;
+  font-size: 16px;
 }
 </style>

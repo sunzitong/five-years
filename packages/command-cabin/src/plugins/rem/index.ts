@@ -22,7 +22,7 @@ function setRem(vue: VueConstructor, rem?: number) {
    * 存储rootpx
    */
   vue.rpx = vue.prototype.$rpx = realPX;
-  console.log("计算大小:", calcPX, "实际大小:", realPX);
+  // console.log("计算大小:", calcPX, "实际大小:", realPX);
 }
 
 const Plugin = {

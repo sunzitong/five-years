@@ -45,7 +45,7 @@ function setDocumentTitle(title: string) {
 }
 
 export default function (router: VueRouter) {
-  router.beforeEach(function (to, from, next) {
+  router.beforeEach(function (_to, _from, next) {
     next();
   });
   router.afterEach(async function () {
