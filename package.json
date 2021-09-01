@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=gy_springRenting",
-    "build": "lerna run build --scope=gy_springRenting --stream",
+    "postinstall": "lerna bootstrap --scope=maintain_quotation",
+    "build": "lerna run build --scope=maintain_quotation --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
