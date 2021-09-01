@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=crm-intermediary-offer",
-    "build": "lerna run build --scope=crm-intermediary-offer --stream",
+    "postinstall": "lerna bootstrap --scope=ex-activity-template",
+    "build": "lerna run build --scope=ex-activity-template --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
