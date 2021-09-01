@@ -34,32 +34,33 @@ export default class App extends Mixins(MixStore) {
   resizeHandle() {
     const app = this.$root.$el as HTMLDivElement;
     if (!this.resize) {
-      app.style.setProperty("transform", null);
-      document.body.style.setProperty("overflow", null);
+      app.style.removeProperty("transform");
+      document.body.style.removeProperty("width");
+      document.body.style.removeProperty("height");
       this.scale = 1;
-      return;
-    }
-    const fixWidth = 7680;
-    const fixHeight = 3240;
-    const winWidth = window.innerWidth;
-    const winHeight = window.innerHeight;
-    const sx = winWidth / fixWidth;
-    const sy = winHeight / fixHeight;
-    if (sx <= sy) {
-      app.style.setProperty(
-        "transform",
-        `translateY(${(winHeight - fixHeight * sx) / 2}px) scale(${sx})`
-      );
-      this.scale = sx;
     } else {
-      app.style.setProperty(
-        "transform",
-        `translateX(${(winWidth - fixWidth * sy) / 2}px) scale(${sy})`
-      );
-      this.scale = sy;
+      const fixWidth = 7680;
+      const fixHeight = 3240;
+      const winWidth = window.innerWidth;
+      const winHeight = window.innerHeight;
+      const sx = winWidth / fixWidth;
+      const sy = winHeight / fixHeight;
+      if (sx <= sy) {
+        app.style.setProperty(
+          "transform",
+          `translateY(${(winHeight - fixHeight * sx) / 2}px) scale(${sx})`
+        );
+        this.scale = sx;
+      } else {
+        app.style.setProperty(
+          "transform",
+          `translateX(${(winWidth - fixWidth * sy) / 2}px) scale(${sy})`
+        );
+        this.scale = sy;
+      }
+      document.body.style.setProperty("width", "100vw");
+      document.body.style.setProperty("height", "100vh");
     }
-    window.scroll(0, 0);
-    document.body.style.setProperty("overflow", "hidden");
   }
   created() {
     // 7680 x 3240
