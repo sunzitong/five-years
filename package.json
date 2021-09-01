@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=ex-activity-template",
-    "build": "lerna run build --scope=ex-activity-template --stream",
+    "postinstall": "lerna bootstrap --scope=remotepay",
+    "build": "lerna run build --scope=remotepay --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
