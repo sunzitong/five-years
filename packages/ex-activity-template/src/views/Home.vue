@@ -18,7 +18,7 @@
               <input
                 type="text"
                 class="phone-box"
-                placeholder="请输入您的手机号sztszt"
+                placeholder="请输入您的手机号"
                 v-model="params.phone"
                 @blur="loseFocus()">
             </div>

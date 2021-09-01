@@ -16,7 +16,7 @@ class EmployeeIdentify extends Component {
     super(props);
     const { location: { query } } = props;
     this.city = Number(query?.city) || '';
-    document.title = '企业员工认证sztszt';
+    document.title = '企业员工认证';
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
@@ -99,7 +99,7 @@ class EmployeeIdentify extends Component {
       const { cityCompanys: { items } } = data;
       if (status === 'ok') {
         this.setState({
-          responseList: [{ id: '', name: 'sztszt全部区域' }, ...items],
+          responseList: [{ id: '', name: '全部区域' }, ...items],
         });
       } else {
         Toast.fail(msg);

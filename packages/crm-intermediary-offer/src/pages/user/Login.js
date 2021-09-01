@@ -159,7 +159,7 @@ class Login extends React.Component {
               </Flex.Item>
               <a onClick={this.handleGetCode} className={cls.codeBtn}>
                 {state.codeButtonClicked ? `${state.time}s` : (
-                  this.hasGeted ? '重新获取' : '获取验证码sztszt'
+                  this.hasGeted ? '重新获取' : '获取验证码'
                 )}
               </a>
             </Flex>
