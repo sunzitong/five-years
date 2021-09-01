@@ -1,0 +1,59 @@
+@buttonColor: #4F9AF8;
+@placeholderColor: #9B9B9B;
+
+
+body{
+  color: #343434;
+}
+
+ul,li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+input::-webkit-input-placeholder {
+  color: @placeholderColor;
+}
+
+.background {
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.button {
+  padding: 0;
+  display: inline-block;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 28px;
+  color: #fff;
+  background: -webkit-linear-gradient(left,  #1e5799 0%,#3866f5 0%,#36bcfc 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #1e5799 0%,#3866f5 0%,#36bcfc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.inputArea {
+  padding: 40px 80px;
+  :global{
+    .am-list-body{
+      border-top: none;
+      border-bottom: 1px solid #C1C1C1;
+      .am-list-item {
+        padding-left: 0;
+        input {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
+
+.disabled {
+  background: #C6C6C6!important;
+  border-radius: 0!important;
+  box-shadow: none!important;
+}
+
+.none {
+  display: none!important;
+}
