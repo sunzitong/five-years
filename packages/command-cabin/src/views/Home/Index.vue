@@ -56,9 +56,13 @@
             <van-col>
               <Card title="成本分析" style="width: 616px; height: 540px"></Card>
               <WhiteSpace />
-              <Card title="产品品质" style="width: 616px; height: 370px"></Card>
+              <Card title="产品品质" style="width: 616px; height: 370px">
+                <B4 />
+              </Card>
               <WhiteSpace />
-              <Card title="维保报事" style="width: 616px; height: 390px"></Card>
+              <Card title="维保报事" style="width: 616px; height: 390px">
+                <B5 />
+              </Card>
             </van-col>
           </van-row>
         </SubWrapper>
@@ -150,12 +154,17 @@ import Base from "@/views/Base";
 import SubWrapper from "@/components/SubWrapper/index.vue";
 import Card from "@/components/Card/index.vue";
 import WhiteSpace from "@/components/WhiteSpace/index.vue";
+/** Jing */
+import B4 from "./components/B4.vue";
+import B5 from "./components/B5.vue";
 
 @Component({
   components: {
     SubWrapper,
     Card,
     WhiteSpace,
+    B4,
+    B5,
   },
 })
 export default class Index extends Base {}

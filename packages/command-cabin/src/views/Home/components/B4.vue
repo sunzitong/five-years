@@ -37,7 +37,7 @@ console.log(echarts);
 @Component({
   components: {},
 })
-export default class ProductQuality extends Vue {
+export default class B4 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
 
   labels = [
@@ -49,7 +49,6 @@ export default class ProductQuality extends Vue {
   values = [20, 40, 70];
 
   mounted() {
-    console.log(this.wrapper);
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {

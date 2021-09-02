@@ -56,9 +56,7 @@
             <van-col>
               <Card title="成本分析" style="width: 616px; height: 540px"></Card>
               <WhiteSpace />
-              <Card title="产品品质" style="width: 616px; height: 370px">
-                <ProductQuality />
-              </Card>
+              <Card title="产品品质" style="width: 616px; height: 370px"></Card>
               <WhiteSpace />
               <Card title="维保报事" style="width: 616px; height: 390px"></Card>
             </van-col>
@@ -148,51 +146,19 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "./Base";
+import Base from "@/views/Base";
 import SubWrapper from "@/components/SubWrapper/index.vue";
 import Card from "@/components/Card/index.vue";
 import WhiteSpace from "@/components/WhiteSpace/index.vue";
-/** Jing */
-import ProductQuality from "@/views/Jing/0-10.vue";
 
 @Component({
   components: {
     SubWrapper,
     Card,
     WhiteSpace,
-    ProductQuality,
   },
 })
 export default class Index extends Base {}
 </script>
 
-<style lang="scss" scoped>
-.page__index {
-  width: 7680px;
-  color: #fff;
-  .header {
-    height: 100px;
-  }
-  .main {
-    display: flex;
-    margin: 0 60px;
-  }
-  .main-left {
-    max-width: 2300px;
-    min-width: 2300px;
-  }
-  .main-center {
-    flex: 1;
-  }
-  .main-right {
-    max-width: 2300px;
-    min-width: 2300px;
-  }
-
-  .main-left-row {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

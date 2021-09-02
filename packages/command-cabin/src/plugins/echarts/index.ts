@@ -7,6 +7,7 @@ import {
   CustomSeriesOption,
   BarSeriesOption,
   BarChart,
+  PieChart,
 } from "echarts/charts";
 
 import {
@@ -16,6 +17,7 @@ import {
   TooltipComponent,
   GeoComponent,
   GridComponent,
+  LegendComponent,
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
 
@@ -35,6 +37,8 @@ echarts.use([
   GeoComponent,
   GridComponent,
   BarChart,
+  LegendComponent,
+  PieChart,
 ]);
 
 export default echarts;
