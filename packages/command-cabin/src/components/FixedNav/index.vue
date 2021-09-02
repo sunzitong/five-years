@@ -177,12 +177,14 @@ export default class FixedNav extends Vue {
         opacity: 1,
         // 按钮在左，向左滑动，按钮在右向左滑动
         x: this.position === "right" ? -rect.width : rect.width,
+        duration: 0.2,
       })
     );
     this.animate.add(
       gsap.to(links, {
         x: 0,
         stagger: 0.08,
+        duration: 0.2,
       })
     );
   }
