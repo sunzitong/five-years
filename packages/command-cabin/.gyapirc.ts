@@ -1,3 +1,11 @@
+/**
+ * gyapi代码生成工具配置
+ * 接口文档 http://docs.gyapt.cn/
+ * token 在项目-设置-token配置中查找
+ * 接口分类id 在url上查找cat_{分类id}
+ * 接口id 在url上查找/interface/api/{接口id}
+ */
+
 export default {
   /**
    * 项目token
@@ -13,8 +21,8 @@ export default {
   api_ids: [112036],
   /**
    * 代码模版
-   * name 对应template里的文件
-   * output 输出路径 相对路径
+   * name 内置模版名称
+   * output 生成文件的相对路径
    */
   template: [{ name: "vue-service", output: "./src/service/", enable: true }],
 };
