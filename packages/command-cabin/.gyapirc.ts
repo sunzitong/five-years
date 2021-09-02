@@ -7,11 +7,10 @@ export default {
    * 分类id
    */
   category_ids: [16724],
-  //  category_ids: [16418],
   /**
    * 接口id(不包含在分类id内的其他接口)
    */
-  api_ids: [],
+  api_ids: [112036],
   /**
    * 代码模版
    * name 对应template里的文件
