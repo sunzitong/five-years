@@ -3,7 +3,7 @@
     class="app-animated hidden-scrollbar"
     style="height: 100px; overflow-y: scroll"
   >
-    <ul>
+    <ul class="animate-list">
       <li
         v-for="(item, index) in list"
         :class="{ aaa: index === 0 }"
@@ -67,7 +67,7 @@ export default class Animationed extends Vue {
 </script>
 
 <style lang="scss">
-ul {
+.animate-list {
   height: 200px;
   overflow: hidden;
 }
