@@ -11,6 +11,7 @@ import { useRequest, useLocation } from 'umi';
 import { BaseCard, BaseImages, BaseSteps } from '@/components/base';
 import { reportOrderDetail, reportOrderIdeaBack } from '@/services/workOrder';
 import { iwant } from '@guanyu/shared';
+import { getQueryString } from '@/utils/utils';
 import cls from './index.less';
 import { baseStepsDataItemProps } from './index.d';
 
@@ -22,12 +23,12 @@ const Upcomming = () => {
   const {
     query: { id, oa },
   } = values;
-  const oaAccount = hash ? hash.substr(hash.indexOf('&oa') + 4) : oa;
+  const oaAccount = hash ? getQueryString(hash, 'oa') : oa;
 
   /**
    * 请求详情
    */
-  const { data, run: detailReqRun } = useRequest(() => {
+  const { data, run: detailReqRun, loading } = useRequest(() => {
     return reportOrderDetail({ todoId: id, oa: oaAccount });
   });
 
@@ -68,6 +69,11 @@ const Upcomming = () => {
   });
 
   const suggest = React.useRef<string | undefined>();
+  const reportTypeStr = `${baseInfo.reportTypeDesc || ''}${
+    baseInfo.eventTypeName ? '-' + baseInfo.eventTypeName : ''
+  }`;
+
+  if (loading) Toast.loading('加载中……');
 
   return (
     <div>
@@ -86,9 +92,7 @@ const Upcomming = () => {
             { label: '门店名称', value: baseInfo.projectName },
             {
               label: '报备类型',
-              value: `${baseInfo.reportTypeDesc}${
-                baseInfo.eventTypeName ? '-' + baseInfo.eventTypeName : ''
-              }`,
+              value: reportTypeStr || '',
             },
             { label: '报备等级', value: baseInfo.reportLevel },
             { label: '故障类型', value: orderDetail.faultTypeName },
@@ -109,9 +113,7 @@ const Upcomming = () => {
             },
             {
               label: '报备类型',
-              value: `${baseInfo.reportTypeDesc}${
-                baseInfo.eventTypeName ? '-' + baseInfo.eventTypeName : ''
-              }`,
+              value: reportTypeStr || '',
             },
             { label: '报备等级', value: baseInfo.reportLevel },
             {
