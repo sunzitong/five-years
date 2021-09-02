@@ -10,6 +10,7 @@
 import { Component } from "vue-property-decorator";
 import BackHome from "@/components/BackHome.vue";
 import Base from "./Base";
+
 @Component({
   components: {
     BackHome,
