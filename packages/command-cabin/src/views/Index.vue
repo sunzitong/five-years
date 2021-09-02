@@ -87,10 +87,8 @@
               ></Card>
             </van-col>
             <van-col>
-              <Card
-                title="平均续租率"
-                style="width: 739px; height: 563px"
-              ></Card>
+              <WhiteSpace />
+              <Card style="width: 739px; height: 563px"></Card>
             </van-col>
           </van-row>
           <WhiteSpace />
