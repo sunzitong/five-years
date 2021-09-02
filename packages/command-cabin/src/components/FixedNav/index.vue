@@ -227,9 +227,8 @@ export default class FixedNav extends Vue {
   &__filter {
     position: absolute;
     top: 0;
-    left: -558px;
-    right: 0;
     bottom: 0;
+    width: 1260px;
     border-radius: 100%;
     backdrop-filter: blur(20px);
   }
@@ -260,6 +259,10 @@ export default class FixedNav extends Vue {
     .app-fixed-nav__background__svg {
       transform: scaleX(1);
     }
+
+    .app-fixed-nav__filter {
+      right: 0;
+    }
   }
 
   &__right {
@@ -273,6 +276,9 @@ export default class FixedNav extends Vue {
     }
     .app-fixed-nav__background__svg {
       transform: scaleX(-1);
+    }
+    .app-fixed-nav__filter {
+      left: 0;
     }
   }
 }
