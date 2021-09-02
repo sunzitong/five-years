@@ -160,7 +160,7 @@ export default class FixedNavBtn extends Vue {
 
   &__left {
     svg {
-      margin-left: -4px;
+      margin-left: -5px;
     }
     .app-fixed-nav-btn__text {
       margin-left: -8px;
@@ -169,7 +169,7 @@ export default class FixedNavBtn extends Vue {
 
   &__right {
     svg {
-      margin-right: -4px;
+      margin-right: -5px;
     }
     .app-fixed-nav-btn__text {
       margin-left: 8px;
