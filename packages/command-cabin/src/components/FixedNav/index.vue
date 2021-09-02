@@ -1,6 +1,7 @@
 <template>
   <div class="app-fixed-nav" :class="cls">
     <div class="app-fixed-nav__background" ref="wrapper">
+      <div class="app-fixed-nav__filter"></div>
       <svg
         class="app-fixed-nav__background__svg"
         width="558"
@@ -21,7 +22,7 @@
           />
           <path
             d="M555.21 629.902C555.21 976.507 273.031 1257.5 -75.0718 1257.5C-423.175 1257.5 -705.354 976.507 -705.354 629.902C-705.354 283.296 -423.175 2.30273 -75.0718 2.30273C273.031 2.30273 555.21 283.296 555.21 629.902Z"
-            :stroke="`url(#${uuid}_paint0_linearaaa)`"
+            :stroke="`url(#${uuid}_paint0_linear)`"
             stroke-width="4"
           />
         </g>
@@ -60,7 +61,7 @@
             />
           </filter>
           <linearGradient
-            :id="`${uuid}_paint0_linearaaa`"
+            :id="`${uuid}_paint0_linear`"
             x1="557"
             y1="574"
             x2="9.99998"
@@ -221,6 +222,16 @@ export default class FixedNav extends Vue {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  &__filter {
+    position: absolute;
+    top: 0;
+    left: -558px;
+    right: 0;
+    bottom: 0;
+    border-radius: 100%;
+    backdrop-filter: blur(20px);
   }
 
   &__content {

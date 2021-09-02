@@ -96,20 +96,10 @@
           <WhiteSpace />
           <van-row gutter="24">
             <van-col>
-              <van-row gutter="24">
-                <van-col>
-                  <Card
-                    title="经营性支出"
-                    style="width: 868px; height: 666px"
-                  ></Card>
-                </van-col>
-                <van-col>
-                  <Card
-                    title="逾期金额"
-                    style="width: 665px; height: 666px"
-                  ></Card>
-                </van-col>
-              </van-row>
+              <Card
+                title="经营性支出"
+                style="width: 1566px; height: 666px"
+              ></Card>
               <WhiteSpace />
               <van-row gutter="24">
                 <van-col>
