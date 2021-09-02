@@ -129,10 +129,10 @@
           </template>
           <van-row gutter="24">
             <van-col>
-              <Card title="无标题" style="width: 905px; height: 702px"></Card>
+              <Card style="width: 905px; height: 702px"></Card>
             </van-col>
             <van-col>
-              <Card title="无标题" style="width: 1400px; height: 702px"></Card>
+              <Card style="width: 1400px; height: 702px"></Card>
             </van-col>
           </van-row>
         </SubWrapper>

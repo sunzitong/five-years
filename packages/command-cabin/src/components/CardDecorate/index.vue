@@ -29,7 +29,7 @@
             gradientUnits="userSpaceOnUse"
           >
             <stop offset="0" stop-color="#1b3b6e" stop-opacity="1" />
-            <stop offset="1" stop-color="#1b3b6e" stop-opacity="0" />
+            <stop offset="1" stop-color="#1b3b6e" :stop-opacity="stopOpacity" />
           </linearGradient>
         </defs>
         <!-- <ellipse
@@ -120,6 +120,14 @@ export default class CardDecorate extends Vue {
     return {
       [`app-card-decorate--${this.type}`]: this.type === "box-rect",
     };
+  }
+
+  /**
+   * 边框渐变
+   */
+  get stopOpacity() {
+    if (this.type === "box-rect") return 1;
+    return 0;
   }
 
   /**
