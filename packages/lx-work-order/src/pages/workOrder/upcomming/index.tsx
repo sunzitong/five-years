@@ -28,7 +28,7 @@ const Upcomming = () => {
   /**
    * 请求详情
    */
-  const { data, run: detailReqRun } = useRequest(() => {
+  const { data, run: detailReqRun, loading } = useRequest(() => {
     return reportOrderDetail({ todoId: id, oa: oaAccount });
   });
 
@@ -69,6 +69,11 @@ const Upcomming = () => {
   });
 
   const suggest = React.useRef<string | undefined>();
+  const reportTypeStr = `${baseInfo.reportTypeDesc || ''}${
+    baseInfo.eventTypeName ? '-' + baseInfo.eventTypeName : ''
+  }`;
+
+  if (loading) Toast.loading('加载中……');
 
   return (
     <div>
@@ -87,9 +92,7 @@ const Upcomming = () => {
             { label: '门店名称', value: baseInfo.projectName },
             {
               label: '报备类型',
-              value: `${baseInfo.reportTypeDesc}${
-                baseInfo.eventTypeName ? '-' + baseInfo.eventTypeName : ''
-              }`,
+              value: reportTypeStr || '',
             },
             { label: '报备等级', value: baseInfo.reportLevel },
             { label: '故障类型', value: orderDetail.faultTypeName },
@@ -110,9 +113,7 @@ const Upcomming = () => {
             },
             {
               label: '报备类型',
-              value: `${baseInfo.reportTypeDesc}${
-                baseInfo.eventTypeName ? '-' + baseInfo.eventTypeName : ''
-              }`,
+              value: reportTypeStr || '',
             },
             { label: '报备等级', value: baseInfo.reportLevel },
             {
