@@ -20,17 +20,17 @@ export interface ExpandDiskParams {
  * 中央奖补、投后攻坚模块-返回值
  */
 export interface ExpandDiskReturn {
-  collectedSubsidies: number;
-  subsidiesCompletionRate: number;
-  collectedNetIncome: number;
+  yearCollectedSubsidies: number;
+  yearSubsidiesCompletionRate: number;
+  yearCollectedNetIncome: number;
   allCollectedNetIncome: number;
-  netIncomeCompletionRate: number;
+  yearNetIncomeCompletionRate: number;
 }
 
 /**
  * 中央奖补、投后攻坚模块
  * @createBy zhangyao03
- * @updateAt 2021/9/1 下午3:39:57
+ * @updateAt 2021/9/2 下午7:16:02
  * @method GET
  */
 export const fetchExpandDisk = (params?: ExpandDiskParams) => {
