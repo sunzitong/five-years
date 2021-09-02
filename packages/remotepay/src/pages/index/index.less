@@ -1,0 +1,148 @@
+
+@import './reset.css';
+.container{
+  padding:0 40px;
+  box-sizing: border-box;
+  margin-bottom: 136px;
+}
+
+.buttonBox{
+  // height: 136px;
+  // line-height: 136px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  box-sizing: border-box;
+  background: #fff;
+  .buttonChild{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #EBEBEB;
+    padding-top:20px;
+  }
+  .payMoney{
+    text-align: left;
+    flex:1;
+    span{
+      font-size: 24px;
+      color:#666;
+      display: block;
+      line-height:initial;
+    }
+    p{
+      color:#F18D00;
+      font-size: 48px;
+      line-height:initial;
+    }
+  }
+  .payButton{
+    flex:1;
+    height: 100px;
+    line-height: 100px;
+    color:#fff;
+    background: #F18D00;
+    text-align: center;
+    font-size: 34px;
+    border-radius:16px;
+  }
+}
+
+.header{
+  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+  padding-top: 30px;
+  padding-bottom:20px;
+  line-height: 42px;
+  color: #333333;
+}
+
+.headerAddr{
+  padding-left: 36px;
+  background: url('../../assets/address.png') no-repeat 0;
+  background-size: 30px;
+}
+
+.amountBox{
+  height: 236px;
+  text-align: center;
+  border-bottom: 1px solid #EBEBEB;
+  .amoutTitle{
+    font-size: 30px;
+    color:#666;
+    margin-top: 50px;
+    display: inline-block;
+  }
+  .amount{
+    font-size: 60px;
+    color: #F18D00;
+  }
+}
+
+
+.labelInfo{
+  font-size: 30px;
+  padding: 30px 0px;
+  border-bottom: 1px solid #EBEBEB;
+  li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .labelTitle{
+      color:#666666
+    }
+    .labelCon{
+      color: #333;
+    }
+  }
+  li:last-child{
+    margin: 0;
+  }
+}
+
+.billTitle{
+  font-size: 24px;
+  color: #666666;
+  margin-top: 30px;
+}
+
+.tips{
+  font-size: 24px;
+  color: #999999;
+}
+
+.loading{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+}
+
+.loadingDash{
+  width:140px;
+  height:140px;
+  // background:rgba(34,34,34,1);
+  border-radius:11px;
+  opacity:0.84;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);  
+  background:url('../../assets/loading.gif') no-repeat rgba(34,34,34,1);
+  background-size: 72px 72px;
+  background-position: center;
+}
+
+.toast{
+  position: fixed;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);  
+  background: rgba(34,34,34,0.84);
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+}

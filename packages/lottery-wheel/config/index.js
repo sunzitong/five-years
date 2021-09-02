@@ -6,9 +6,6 @@ const path = require('path')
 
 const pkg = require("../package.json");
 
-console.log(path.resolve(__dirname, `../../../dist/${pkg.name}`));
-console.log(__dirname);
-
 module.exports = {
   dev: {
     // Paths
