@@ -92,7 +92,7 @@
       </div>
     </div>
     <div @click="toggleNav" class="app-fixed-nav__btn">
-      <button>导航</button>
+      <FixedNavBtn :position="position" text="快捷导航" />
     </div>
   </div>
 </template>
@@ -100,11 +100,13 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import Btn from "@/components/Btn/index.vue";
+import FixedNavBtn from "./components/FixedNavBtn.vue";
 import { gsap } from "gsap";
 
 @Component({
   components: {
     Btn,
+    FixedNavBtn,
   },
 })
 export default class FixedNav extends Vue {
@@ -208,6 +210,7 @@ export default class FixedNav extends Vue {
   &__btn {
     position: absolute;
     top: 50%;
+    transform: translateY(-50%);
   }
 
   &__content {
@@ -231,7 +234,7 @@ export default class FixedNav extends Vue {
     }
     .app-fixed-nav__content {
       left: 0;
-      right: 170px;
+      right: 70px;
     }
     .app-fixed-nav__background__svg {
       transform: scaleX(1);
@@ -244,12 +247,18 @@ export default class FixedNav extends Vue {
       right: 100%;
     }
     .app-fixed-nav__content {
-      left: 170px;
+      left: 70px;
       right: 0;
     }
     .app-fixed-nav__background__svg {
       transform: scaleX(-1);
     }
+  }
+}
+
+.app-fixed-nav::v-deep {
+  .app_fixed-nav__links {
+    margin: 22px 0;
   }
 }
 </style>

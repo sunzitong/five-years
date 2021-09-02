@@ -3,6 +3,8 @@
     <router-view />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
+    <FixedNav />
+    <FixedNav position="right" />
     <!-- 控制缩放 -->
     <div
       v-if="env.NODE_ENV === 'development'"
@@ -19,15 +21,17 @@
 import { Component, Mixins } from "vue-property-decorator";
 import AppLoading from "@/components/AppLoading.vue";
 import MixStore from "@/store/MixStore";
+import FixedNav from "@/components/FixedNav/index.vue";
 
 @Component({
   name: "app",
   components: {
     AppLoading,
+    FixedNav,
   },
 })
 export default class App extends Mixins(MixStore) {
-  resize = true;
+  resize = false;
 
   scale = 1;
 

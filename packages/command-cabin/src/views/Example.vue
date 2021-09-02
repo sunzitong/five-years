@@ -50,15 +50,7 @@
       </p>
 
       <div>
-        <FixedNav>
-          <Btn @click="aaa">首页</Btn>
-          <Btn>拓展盘面</Btn>
-          <Btn>营造盘面</Btn>
-          <Btn>经营现状</Btn>
-          <Btn>门店</Btn>
-          <Btn>日常巡检</Btn>
-          <Btn>开业巡检</Btn>
-        </FixedNav>
+        
       </div>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
@@ -102,7 +94,6 @@ import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import Animationend from "@/components/Animationend/index.vue";
 import Btn from "@/components/Btn/index.vue";
-import FixedNav from "@/components/FixedNav/index.vue";
 
 @Component({
   components: {
@@ -115,7 +106,6 @@ import FixedNav from "@/components/FixedNav/index.vue";
     ProgressCircle,
     Animationend,
     Btn,
-    FixedNav,
   },
 })
 export default class Example extends Vue {
