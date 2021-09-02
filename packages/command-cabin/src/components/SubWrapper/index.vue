@@ -39,7 +39,11 @@ export default class SubWrapper extends Vue {
     @extend %bg-img-subtitle-bg;
     background-position: left center;
     background-size: 1358px 99px;
-    background-color: rgba(1, 22, 86, 1);
+    background-color: linear-gradient(
+      180deg,
+      #001d74 0%,
+      rgba(1, 22, 86, 0.61) 89.94%
+    );
   }
 
   &__title {
@@ -65,7 +69,7 @@ export default class SubWrapper extends Vue {
   }
 
   &__body {
-    padding: 30px 40px 0;
+    padding: 40px 30px 0;
     overflow: hidden;
     background: linear-gradient(
       180deg,

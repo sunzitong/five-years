@@ -38,7 +38,7 @@
     </div>
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
-      <p>{{ W }} x {{ H + 23 }} | {{ H }}</p>
+      <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
     </div>
     <div class="app-card__footer" v-if="showFooter">
       <slot name="footer">

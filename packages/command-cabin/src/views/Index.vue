@@ -9,27 +9,37 @@
           </template>
           <van-row gutter="24">
             <van-col>
-              <Card title="商机转化" style="width: 727px; height: 814px"></Card>
+              <Card title="项目获取" style="width: 720px; height: 957px"></Card>
             </van-col>
             <van-col>
-              <Card title="项目获取" style="width: 640px; height: 814px"></Card>
+              <Card
+                title="商机储备"
+                size="small"
+                style="width: 735px; height: 514px"
+              ></Card>
+              <WhiteSpace />
+              <Card
+                title="商机转化"
+                size="small"
+                style="width: 735px; height: 419px"
+              ></Card>
             </van-col>
             <van-col>
-              <Card title="战略合作" style="width: 804px; height: 382px"></Card>
+              <Card title="战略合作" style="width: 817px; height: 494px"></Card>
               <WhiteSpace />
               <van-row gutter="24">
                 <van-col>
                   <Card
                     title="中央奖补"
                     size="small"
-                    style="width: 390px; height: 400px"
+                    style="width: 394px; height: 438px"
                   ></Card>
                 </van-col>
                 <van-col>
                   <Card
                     title="投后攻坚"
                     size="small"
-                    style="width: 390px; height: 400px"
+                    style="width: 399px; height: 438px"
                   ></Card>
                 </van-col>
               </van-row>
@@ -45,20 +55,20 @@
             <van-col>
               <Card
                 title="项目开业"
-                style="width: 1580px; height: 660px"
+                style="width: 1605px; height: 634px"
               ></Card>
               <WhiteSpace />
               <Card
                 title="开业延期"
-                style="width: 1580px; height: 670px"
+                style="width: 1605px; height: 792px"
               ></Card>
             </van-col>
             <van-col>
-              <Card title="成本分析" style="width: 616px; height: 540px"></Card>
+              <Card title="成本分析" style="width: 691px; height: 634px"></Card>
               <WhiteSpace />
-              <Card title="产品品质" style="width: 616px; height: 370px"></Card>
+              <Card title="产品品质" style="width: 691px; height: 367px"></Card>
               <WhiteSpace />
-              <Card title="维保报事" style="width: 616px; height: 390px"></Card>
+              <Card title="维保报事" style="width: 691px; height: 401px"></Card>
             </van-col>
           </van-row>
         </SubWrapper>
@@ -73,13 +83,13 @@
             <van-col>
               <Card
                 title="全业态收入及完成度"
-                style="width: 1565px; height: 480px"
+                style="width: 1557px; height: 589px"
               ></Card>
             </van-col>
             <van-col>
               <Card
                 title="平均续租率"
-                style="width: 631px; height: 480px"
+                style="width: 739px; height: 563px"
               ></Card>
             </van-col>
           </van-row>
@@ -90,13 +100,13 @@
                 <van-col>
                   <Card
                     title="经营性支出"
-                    style="width: 876px; height: 587px"
+                    style="width: 868px; height: 666px"
                   ></Card>
                 </van-col>
                 <van-col>
                   <Card
-                    title="成本使用进度"
-                    style="width: 562px; height: 587px"
+                    title="逾期金额"
+                    style="width: 665px; height: 666px"
                   ></Card>
                 </van-col>
               </van-row>
@@ -105,36 +115,36 @@
                 <van-col>
                   <Card
                     title="客户洞察"
-                    style="width: 876px; height: 363px"
+                    style="width: 905px; height: 396px"
                   ></Card>
                 </van-col>
                 <van-col>
                   <Card
-                    title="设备离线率"
-                    style="width: 562px; height: 363px"
+                    title="24小时设备离线率"
+                    style="width: 628px; height: 396px"
                   ></Card>
                 </van-col>
               </van-row>
             </van-col>
             <van-col>
-              <Card title="舆情风险" style="width: 734px; height: 978px"></Card>
+              <Card
+                title="舆情风险"
+                style="width: 739px; height: 1086px"
+              ></Card>
             </van-col>
           </van-row>
         </SubWrapper>
         <WhiteSpace />
-        <SubWrapper title="舆情风险">
+        <SubWrapper title="经营现状">
           <template #extra>
             <a href="javascript:;">详情 →</a>
           </template>
           <van-row gutter="24">
             <van-col>
-              <Card title="收入预警" style="width: 706px; height: 688px"></Card>
+              <Card title="无标题" style="width: 905px; height: 702px"></Card>
             </van-col>
             <van-col>
-              <Card title="事件预警" style="width: 904px; height: 688px"></Card>
-            </van-col>
-            <van-col>
-              <Card title="监控预警" style="width: 561px; height: 688px"></Card>
+              <Card title="无标题" style="width: 1400px; height: 702px"></Card>
             </van-col>
           </van-row>
         </SubWrapper>
@@ -173,15 +183,15 @@ export default class Index extends Base {}
     margin: 0 60px;
   }
   .main-left {
-    max-width: 2300px;
-    min-width: 2300px;
+    max-width: 2400px;
+    min-width: 2400px;
   }
   .main-center {
     flex: 1;
   }
   .main-right {
-    max-width: 2300px;
-    min-width: 2300px;
+    max-width: 2400px;
+    min-width: 2400px;
   }
 
   .main-left-row {
