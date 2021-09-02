@@ -10,7 +10,7 @@
         transform="scale(1, -1)"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g filter="url(#filter0_b)">
+        <g :filter="`url(#${uuid}_filter0_b)`">
           <ellipse
             cx="-75.0718"
             cy="629.902"
@@ -21,11 +21,11 @@
           />
           <path
             d="M555.21 629.902C555.21 976.507 273.031 1257.5 -75.0718 1257.5C-423.175 1257.5 -705.354 976.507 -705.354 629.902C-705.354 283.296 -423.175 2.30273 -75.0718 2.30273C273.031 2.30273 555.21 283.296 555.21 629.902Z"
-            stroke="url(#paint0_linearaaa)"
+            :stroke="`url(#${uuid}_paint0_linearaaa)`"
             stroke-width="4"
           />
         </g>
-        <g clip-path="url(#clip0)">
+        <g :clip-path="`url(#${uuid}_clip0)`">
           <path
             d="M534.998 637.272L544.443 625.111V651.495L534.998 637.272Z"
             fill="#01E0E2"
@@ -37,7 +37,7 @@
         </g>
         <defs>
           <filter
-            id="filter0_b"
+            :id="`${uuid}_filter0_b`"
             x="-727.354"
             y="-19.6973"
             width="1304.56"
@@ -60,7 +60,7 @@
             />
           </filter>
           <linearGradient
-            id="paint0_linearaaa"
+            :id="`${uuid}_paint0_linearaaa`"
             x1="557"
             y1="574"
             x2="9.99998"
@@ -70,7 +70,7 @@
             <stop stop-color="#01F2EF" />
             <stop offset="1" stop-opacity="0" />
           </linearGradient>
-          <clipPath id="clip0">
+          <clipPath :id="`${uuid}_clip0`">
             <rect
               width="20.2317"
               height="59.5212"
@@ -99,9 +99,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
+import { gsap } from "gsap";
+import { uuid } from "@guanyu/shared";
 import Btn from "@/components/Btn/index.vue";
 import FixedNavBtn from "./components/FixedNavBtn.vue";
-import { gsap } from "gsap";
 
 @Component({
   components: {
@@ -142,6 +143,13 @@ export default class FixedNav extends Vue {
    * 导航动画
    */
   animate = gsap.timeline({ paused: true });
+
+  /**
+   * 唯一id
+   */
+  get uuid() {
+    return `app-fixed-nav${uuid()}`;
+  }
 
   /**
    * 添加类名
