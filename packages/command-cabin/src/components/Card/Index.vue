@@ -25,13 +25,7 @@
     </div>
     <div class="app-card__body">
       <div class="app-card__content">
-        <slot>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-          <p>这里是body区域</p>
-        </slot>
+        <slot></slot>
       </div>
       <DataSource v-if="dataSource" :position="dataSourcePosition">
         {{ dataSource }}
@@ -39,6 +33,7 @@
     </div>
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
+      <p>等开发</p>
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
     </div>
     <div class="app-card__footer" v-if="showFooter">
@@ -191,6 +186,7 @@ export default class Card extends Vue {
     top: 50%;
     transform: translate(-50%, -50%);
     color: rgba(255, 255, 255, 0.2);
+    text-align: center;
   }
 }
 </style>
