@@ -1,5 +1,5 @@
 <template>
-  <div class="app-white-space" :class="cls"></div>
+  <div class="app-white-space" :class="cls" :style="defaultStyle"></div>
 </template>
 
 <script lang="ts">
@@ -9,13 +9,23 @@ export default class SubWrapper extends Vue {
   /**
    * 上下留白xs,sm,md,lg,xl
    */
-  @Prop({ default: "lg" }) size!: "sm" | "md" | "lg" | "xs" | "xl";
+  @Prop({ default: "lg" }) size!: "sm" | "md" | "lg" | "xs" | "xl" | number;
 
   /**
    * 动态设置className
    */
   get cls() {
+    if (typeof this.size === "number") return "";
     return `app-white-space--${this.size}`;
+  }
+
+  get defaultStyle() {
+    if (typeof this.size === "number") {
+      return {
+        height: `${this.size}px`,
+      };
+    }
+    return {};
   }
 }
 </script>
@@ -30,7 +40,7 @@ export default class SubWrapper extends Vue {
     height: 20px;
   }
   &--lg {
-    height: 30px;
+    height: 24px;
   }
   &--xs {
     height: 40px;
