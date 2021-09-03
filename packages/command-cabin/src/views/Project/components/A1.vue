@@ -96,6 +96,7 @@ $padding-x: 82px;
   font-size: 30px;
 }
 .value {
+  font-family: DIN Alternate;
   font-size: 60px;
   color: $light;
   margin-top: 6px;
