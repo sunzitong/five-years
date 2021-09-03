@@ -93,7 +93,7 @@ export default class Animationed extends Vue {
       return false;
     }
     this.$nextTick(() => {
-      const doms = this.$el.querySelectorAll(".aaaa");
+      const doms = this.$el.querySelectorAll("[animated]");
       this.moving = true;
       gsap
         .to(doms[0], {

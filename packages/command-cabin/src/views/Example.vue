@@ -57,7 +57,7 @@
           <Animationend key="1" :dataSource="dataSource">
             <template v-slot="{ list }">
               <ul>
-                <li class="aaaa" v-for="item in list" :key="item.id">
+                <li animated class="aaaa" v-for="item in list" :key="item.id">
                   {{ item.id }}
                 </li>
               </ul>
@@ -72,7 +72,7 @@
           <Animationend key="2" :dataSource="dataSource1">
             <template v-slot="{ list }">
               <ul>
-                <li class="aaaa" v-for="item in list" :key="item.id">
+                <li animated v-for="item in list" :key="item.id">
                   {{ item.id }}
                 </li>
               </ul>
