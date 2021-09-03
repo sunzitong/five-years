@@ -48,6 +48,10 @@
         <Icon type="number-of-opening-rooms" :size="200" />
         <Icon type="year-income" :size="200" />
       </p>
+
+      <div>
+        
+      </div>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
         <ProgressCircle :width="100" v-model="progress" />
@@ -89,7 +93,7 @@ import Icon from "@/components/Icon/index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import Animationend from "@/components/Animationend/index.vue";
-import { getMapJson } from "@/service";
+import Btn from "@/components/Btn/index.vue";
 
 @Component({
   components: {
@@ -101,6 +105,7 @@ import { getMapJson } from "@/service";
     ProgressBar,
     ProgressCircle,
     Animationend,
+    Btn,
   },
 })
 export default class Example extends Vue {
@@ -113,6 +118,10 @@ export default class Example extends Vue {
   dataSource1 = Array.from({ length: 10 }).map((item, index) => ({
     id: index + 1,
   }));
+
+  aaa() {
+    alert("a");
+  }
 
   mounted() {
     setTimeout(() => {

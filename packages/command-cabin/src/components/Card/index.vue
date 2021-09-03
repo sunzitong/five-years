@@ -12,10 +12,11 @@
       key="CardDecorate"
       v-else
       :size="size"
+      :type="cardType"
       :fillOpacity="opacity"
       :showRectBackground="showRectBackground"
     />
-    <div class="app-card__head">
+    <div class="app-card__head" v-if="!!title">
       <slot name="title" v-bind="title">
         <h3 class="app-card__title">
           {{ title }}
@@ -38,7 +39,7 @@
     </div>
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
-      <p>{{ W }} x {{ H + 23 }} | {{ H }}</p>
+      <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
     </div>
     <div class="app-card__footer" v-if="showFooter">
       <slot name="footer">
@@ -112,6 +113,16 @@ export default class Card extends Vue {
     return {
       "app-card__footer--visible": this.showFooter,
     };
+  }
+
+  /**
+   * 卡片类型
+   */
+  get cardType() {
+    if (!this.title) {
+      return "box-rect";
+    }
+    return "box";
   }
 
   mounted() {
