@@ -82,14 +82,6 @@ export default class Animationed extends Vue {
   }
 
   /**
-   * 是否在运动
-   */
-  @Watch("moving")
-  onMovingChange(val: boolean) {
-    console.log("watching", val);
-  }
-
-  /**
    * 是否暂停
    */
   @Watch("pause")
