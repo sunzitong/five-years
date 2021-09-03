@@ -1,6 +1,7 @@
 <template>
-  <div class="app-blue-box" :style="style">
-    <div class="app-blue-box__background">
+  <div class="app-blur-box" :style="style">
+    <div class="app-blur-box__background">
+      <div class="app-blur-box__backdrop" :style="style"></div>
       <svg
         :width="width"
         :height="height"
@@ -53,8 +54,10 @@
           </linearGradient>
         </defs>
       </svg>
+      <div class="app-blur-box__content" :style="`bottom:${trangleSize}px`">
+        <slot></slot>
+      </div>
     </div>
-    <slot></slot>
   </div>
 </template>
 
@@ -109,8 +112,8 @@ export default class BlurBox extends Vue {
    * 自定义路径
    */
   get customerPathD() {
-    const w = this.width;
-    const h = this.height - this.trangleSize;
+    const w = this.width - 1;
+    const h = this.height - this.trangleSize - 1;
     const r = this.radius;
     const trangleX = this.trangleX;
     const trangleSize = this.trangleSize;
@@ -170,6 +173,30 @@ export default class BlurBox extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.app-blue-box {
+.app-blur-box {
+  &__background {
+    position: relative;
+    svg {
+      position: relative;
+      vertical-align: middle;
+    }
+  }
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(20px);
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
 }
 </style>
