@@ -1,17 +1,8 @@
 <template>
-  <div
-    class="app-animated hidden-scrollbar"
-    style="height: 100px; overflow-y: scroll"
-  >
-    <ul class="animate-list">
-      <li
-        v-for="(item, index) in list"
-        :class="{ aaa: index === 0 }"
-        :key="`${item.id}`"
-      >
-        {{ item.id }}
-      </li>
-    </ul>
+  <div class="app-animated hidden-scrollbar">
+    <div class="app-animated__list">
+      <slot :list="list"></slot>
+    </div>
   </div>
 </template>
 
@@ -67,8 +58,11 @@ export default class Animationed extends Vue {
 </script>
 
 <style lang="scss">
-.animate-list {
-  height: 200px;
-  overflow: hidden;
+.app-animated {
+  overflow-y: scroll;
+  &__list {
+    height: 200px;
+    overflow: hidden;
+  }
 }
 </style>

@@ -49,14 +49,18 @@
         <Icon type="year-income" :size="200" />
       </p>
 
-      <div>
-        
-      </div>
+      <div></div>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
         <ProgressCircle :width="100" v-model="progress" />
         <div>
-          <Animationend key="1" :dataSource="dataSource" />
+          <Animationend key="1" :dataSource="dataSource">
+            <template v-slot="{ list }">
+              <ul>
+                <li v-for="item in list" :key="item.id">{{ item.id }}</li>
+              </ul>
+            </template>
+          </Animationend>
 
           <br />
           <br />
