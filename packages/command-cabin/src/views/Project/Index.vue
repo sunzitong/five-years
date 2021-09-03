@@ -3,6 +3,8 @@
     <A1 />
     <A2 />
     <A3 />
+    <A4 />
+    <A5 />
   </div>
 </template>
 
@@ -15,6 +17,8 @@ import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
 import A3 from "./components/A3.vue";
+import A4 from "./components/A4.vue";
+import A5 from "./components/A5.vue";
 
 @Component({
   components: {
@@ -24,9 +28,11 @@ import A3 from "./components/A3.vue";
     A1,
     A2,
     A3,
+    A4,
+    A5,
   },
 })
-export default class Index extends Base {}
+export default class Project extends Base {}
 </script>
 
 <style lang="scss" scoped></style>

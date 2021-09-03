@@ -1,12 +1,13 @@
 <template>
   <div class="box">
     <van-row class="title">
-      <van-col span="12" class="th">姓名</van-col>
-      <van-col span="12" class="th">角色</van-col>
+      <van-col span="8" class="th">姓名</van-col>
+      <van-col span="8" class="th">专业</van-col>
+      <van-col span="8" class="th">角色</van-col>
     </van-row>
     <div class="list">
       <van-row v-for="(item, index) in list" :key="index" class="row">
-        <van-col span="12" class="td name">
+        <van-col span="8" class="td name">
           {{ item.name }}
           <div class="icon">
             <Icon
@@ -19,7 +20,8 @@
             </transition>
           </div>
         </van-col>
-        <van-col span="12" class="td role">{{ item.role }}</van-col>
+        <van-col span="8" class="td">{{ item.role }}</van-col>
+        <van-col span="8" class="td">{{ item.role }}</van-col>
       </van-row>
     </div>
   </div>
@@ -32,7 +34,7 @@ import Icon from "@/components/Icon/Index.vue";
 @Component({
   components: { Icon },
 })
-export default class A3 extends Vue {
+export default class A4 extends Vue {
   phoneIndex = -1;
   list = [
     { name: "方唐镜", role: "C6", showPhone: false },
