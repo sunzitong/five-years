@@ -49,22 +49,43 @@
         <Icon type="year-income" :size="200" />
       </p>
 
-      <div>
-
-      </div>
+      <div></div>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
         <ProgressCircle :width="100" v-model="progress" />
         <div>
-          <Animationend key="1" :dataSource="dataSource" />
-
+          <Animationend key="1" :dataSource="dataSource">
+            <template v-slot="{ list }">
+              <ul>
+                <li animated class="aaaa" v-for="item in list" :key="item.id">
+                  {{ item.id }}
+                </li>
+              </ul>
+            </template>
+          </Animationend>
           <br />
           <br />
           <br />
           <br />
         </div>
         <div>
-          <Animationend key="2" :dataSource="dataSource1" />
+          <Animationend key="2" :dataSource="dataSource1">
+            <template v-slot="{ list }">
+              <ul>
+                <li animated v-for="item in list" :key="item.id">
+                  {{ item.id }}
+                </li>
+              </ul>
+            </template>
+          </Animationend>
+          <BlurBox :trangleSize="10">
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+          </BlurBox>
         </div>
       </div>
     </Card>
@@ -94,6 +115,7 @@ import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
+import BlurBox from "@/components/BlurBox/Index.vue";
 
 @Component({
   components: {
@@ -106,12 +128,13 @@ import Btn from "@/components/Btn/Index.vue";
     ProgressCircle,
     Animationend,
     Btn,
+    BlurBox,
   },
 })
 export default class Example extends Vue {
   progress = 60;
 
-  dataSource = Array.from({ length: 10 }).map((item, index) => ({
+  dataSource = Array.from({ length: 100 }).map((item, index) => ({
     id: index + 1,
   }));
 
