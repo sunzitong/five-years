@@ -78,7 +78,7 @@
               </ul>
             </template>
           </Animationend>
-          <BlurBox :trangleSize="0">
+          <BlurBox :trangleSize="10">
             <p>BlurBox</p>
             <p>BlurBox</p>
             <p>BlurBox</p>
