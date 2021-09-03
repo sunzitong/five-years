@@ -117,7 +117,7 @@ export default class B4 extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .whole_pannel {
   display: inline-block;
   display: flex;
