@@ -52,9 +52,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import CardDecorateWithFooter from "@/components/CardDecorate/WithFooter.vue";
-import CardDecorate from "@/components/CardDecorate/index.vue";
-import Icon from "@/components/Icon/index.vue";
-import DataSource from "@/components/DataSource/index.vue";
+import CardDecorate from "@/components/CardDecorate/Index.vue";
+import Icon from "@/components/Icon/Index.vue";
+import DataSource from "@/components/DataSource/Index.vue";
 
 @Component({
   components: {

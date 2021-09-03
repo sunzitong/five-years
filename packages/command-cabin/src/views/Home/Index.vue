@@ -149,9 +149,9 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
-import SubWrapper from "@/components/SubWrapper/index.vue";
-import Card from "@/components/Card/index.vue";
-import WhiteSpace from "@/components/WhiteSpace/index.vue";
+import SubWrapper from "@/components/SubWrapper/Index.vue";
+import Card from "@/components/Card/Index.vue";
+import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 
 /** Jing */
 import B4 from "./components/B4.vue";

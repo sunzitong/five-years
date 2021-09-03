@@ -102,8 +102,8 @@
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { gsap } from "gsap";
 import { uuid } from "@guanyu/shared";
-import Btn from "@/components/Btn/index.vue";
 import FixedNavBtn from "./components/FixedNavBtn.vue";
+import Btn from "@/components/Btn/Index.vue";
 
 @Component({
   components: {

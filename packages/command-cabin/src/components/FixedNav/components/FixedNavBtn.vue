@@ -95,7 +95,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import Btn from "@/components/Btn/index.vue";
+import Btn from "@/components/Btn/Index.vue";
 import { uuid } from "@guanyu/shared";
 
 @Component({
