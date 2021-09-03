@@ -57,18 +57,27 @@
           <Animationend key="1" :dataSource="dataSource">
             <template v-slot="{ list }">
               <ul>
-                <li v-for="item in list" :key="item.id">{{ item.id }}</li>
+                <li class="aaaa" v-for="item in list" :key="item.id">
+                  {{ item.id }}
+                </li>
               </ul>
             </template>
           </Animationend>
-
           <br />
           <br />
           <br />
           <br />
         </div>
         <div>
-          <Animationend key="2" :dataSource="dataSource1" />
+          <Animationend key="2" :dataSource="dataSource1">
+            <template v-slot="{ list }">
+              <ul>
+                <li class="aaaa" v-for="item in list" :key="item.id">
+                  {{ item.id }}
+                </li>
+              </ul>
+            </template>
+          </Animationend>
         </div>
       </div>
     </Card>
@@ -115,7 +124,7 @@ import Btn from "@/components/Btn/Index.vue";
 export default class Example extends Vue {
   progress = 60;
 
-  dataSource = Array.from({ length: 10 }).map((item, index) => ({
+  dataSource = Array.from({ length: 100 }).map((item, index) => ({
     id: index + 1,
   }));
 
