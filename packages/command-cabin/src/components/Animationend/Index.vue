@@ -82,27 +82,6 @@ export default class Animationed extends Vue {
   }
 
   /**
-   * 是否暂停
-   */
-  @Watch("pause")
-  onPause(val: boolean) {
-    /**
-     * 页面加载进来不执行
-     * 暂停的时候才走倒计
-     */
-    if (val) {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
-      this.timeout = setTimeout(() => {
-        // 倒计时结束改为非暂停，然后执行动画
-        this.pause = false;
-        this.move();
-      }, this.countDown);
-    }
-  }
-
-  /**
    * 动画
    */
   move() {
@@ -136,6 +115,14 @@ export default class Animationed extends Vue {
    */
   scrollHandler() {
     this.pause = true;
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+    this.timeout = setTimeout(() => {
+      // 倒计时结束改为非暂停，然后执行动画
+      this.pause = false;
+      this.move();
+    }, this.countDown);
   }
 
   /**
