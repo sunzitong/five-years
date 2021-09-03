@@ -78,6 +78,14 @@
               </ul>
             </template>
           </Animationend>
+          <BlurBox>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+          </BlurBox>
         </div>
       </div>
     </Card>
@@ -107,6 +115,7 @@ import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
+import BlurBox from "@/components/BlurBox/Index.vue";
 
 @Component({
   components: {
@@ -119,6 +128,7 @@ import Btn from "@/components/Btn/Index.vue";
     ProgressCircle,
     Animationend,
     Btn,
+    BlurBox,
   },
 })
 export default class Example extends Vue {
