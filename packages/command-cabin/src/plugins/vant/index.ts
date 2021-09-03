@@ -8,6 +8,7 @@ import {
   Col,
   Switch,
   Popover,
+  Circle,
 } from "vant";
 import Vue from "vue";
 
@@ -22,3 +23,4 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.use(Switch);
 Vue.use(Popover);
+Vue.use(Circle);

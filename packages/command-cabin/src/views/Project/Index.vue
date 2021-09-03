@@ -5,6 +5,7 @@
     <A3 />
     <A4 />
     <A5 />
+    <C5 />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import A2 from "./components/A2.vue";
 import A3 from "./components/A3.vue";
 import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
+import C5 from "./components/C5.vue";
 
 @Component({
   components: {
@@ -30,6 +32,7 @@ import A5 from "./components/A5.vue";
     A3,
     A4,
     A5,
+    C5,
   },
 })
 export default class Project extends Base {}

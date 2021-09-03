@@ -34,7 +34,7 @@ import Icon from "@/components/Icon/Index.vue";
 @Component({
   components: { Icon },
 })
-export default class A4 extends Vue {
+export default class A5 extends Vue {
   phoneIndex = -1;
   list = [
     { name: "方唐镜", role: "C6", showPhone: false },
