@@ -1,6 +1,6 @@
 <template>
-  <div class="app-animated hidden-scrollbar">
-    <div class="app-animated__list">
+  <div class="app-animated">
+    <div class="app-animated__list hidden-scrollbar">
       <slot :list="list"></slot>
     </div>
   </div>
@@ -14,38 +14,49 @@ import { gsap } from "gsap";
   components: {},
 })
 export default class Animationed extends Vue {
+  /**
+   * 数据来源
+   */
   @Prop({ default: [] }) dataSource!: any[];
 
+  /**
+   * 动画时间
+   */
+  @Prop({ default: 1 }) duration!: number;
+
+  /**
+   * 对数据来源的拷贝
+   */
   list: any[] = [];
 
+  /**
+   * 监听数据更新list
+   */
   @Watch("dataSource", { deep: true })
   change(val: any) {
-    this.list = val;
+    this.list = [...val];
   }
 
+  /**
+   * 动画
+   */
   move() {
     this.$nextTick(() => {
+      const doms = this.$el.querySelectorAll(".aaaa");
+      if (Array.isArray(this.list) && this.list.length === 0) {
+        return false;
+      }
+      gsap.set(doms, { scaleY: 1, opacity: 1 });
       gsap
-        .to(this.$el.querySelector(".aaa"), {
-          overflow: "hidden",
-          duration: 1,
+        .to(doms[0], {
+          duration: this.duration,
           scaleY: 0,
           opacity: 0,
         })
         .delay(1)
         .then(() => {
           this.list.push(this.list.shift());
-          this.$nextTick(() => {
-            gsap
-              .to(this.$el.querySelectorAll("li"), {
-                scaleY: 1,
-                opacity: 1,
-                duration: 0,
-              })
-              .then(() => {
-                this.move();
-              });
-          });
+          this.$nextTick(this.move);
         });
     });
   }
@@ -59,10 +70,9 @@ export default class Animationed extends Vue {
 
 <style lang="scss">
 .app-animated {
-  overflow-y: scroll;
   &__list {
     height: 200px;
-    overflow: hidden;
+    overflow-y: scroll;
   }
 }
 </style>
