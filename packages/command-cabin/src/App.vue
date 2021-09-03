@@ -21,7 +21,7 @@
 import { Component, Mixins } from "vue-property-decorator";
 import AppLoading from "@/components/AppLoading.vue";
 import MixStore from "@/store/MixStore";
-import FixedNav from "@/components/FixedNav/index.vue";
+import FixedNav from "@/components/FixedNav/Index.vue";
 
 @Component({
   name: "app",
