@@ -139,8 +139,6 @@ export default class B2 extends Vue {
   riskProject = 5;
 
   storeNum = 100;
-
-  mounted() {}
 }
 </script>
 
@@ -170,9 +168,9 @@ export default class B2 extends Vue {
 
   .table_head {
     background: rgba(36, 56, 109, 0.7);
-    
-    .special{
-        line-height: 50px;
+
+    .special {
+      line-height: 50px;
     }
   }
 

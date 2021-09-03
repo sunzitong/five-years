@@ -53,10 +53,9 @@
           </template>
           <van-row gutter="24">
             <van-col>
-              <Card
-                title="项目开业"
-                style="width: 1605px; height: 634px"
-              ></Card>
+              <Card title="项目开业" style="width: 1605px; height: 634px">
+                <B1 />
+              </Card>
               <WhiteSpace />
               <Card title="开业延期" style="width: 1605px; height: 792px">
                 <B2 />
@@ -153,6 +152,7 @@ import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 
 /** Jing */
+import B1 from "./components/B1.vue";
 import B2 from "./components/B2.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
@@ -162,6 +162,7 @@ import B5 from "./components/B5.vue";
     SubWrapper,
     Card,
     WhiteSpace,
+    B1,
     B2,
     B4,
     B5,
