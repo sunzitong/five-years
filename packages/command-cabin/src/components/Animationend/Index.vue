@@ -95,15 +95,12 @@ export default class Animationed extends Vue {
     this.$nextTick(() => {
       const doms = this.$el.querySelectorAll("[animated]");
       this.moving = true;
+      const h = doms[0].getBoundingClientRect().height;
       gsap
-        .to(doms[0], {
-          duration: this.duration,
-          scaleY: 0,
-          opacity: 0,
-        })
-        .delay(1)
+        .to(doms, { duration: this.duration, y: -h })
+        .delay(2)
         .then(() => {
-          gsap.set(doms, { scaleY: 1, opacity: 1 });
+          gsap.set(doms, { y: 0 });
           this.list.push(this.list.shift());
           this.$nextTick(this.move);
         });
