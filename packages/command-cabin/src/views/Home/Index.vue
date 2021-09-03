@@ -58,11 +58,8 @@
                 style="width: 1605px; height: 634px"
               ></Card>
               <WhiteSpace />
-              <Card
-                title="开业延期"
-                style="width: 1605px; height: 792px"
-              >
-              <B2 />
+              <Card title="开业延期" style="width: 1605px; height: 792px">
+                <B2 />
               </Card>
             </van-col>
             <van-col>
