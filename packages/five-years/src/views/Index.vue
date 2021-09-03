@@ -1,6 +1,14 @@
 <template>
   <div class="page__index">
     <header class="header">
+      <div
+        id="wxLaunchBox"
+        v-html="
+          renderDom(
+            'https://goyoo-assets.longfor.com/test/app/d5ZnuZTaRUaGjmplRJjVTA.png'
+          )
+        "
+      ></div>
       <aside class="share" @click="share">分享</aside>
     </header>
     <main class="main">
@@ -8,7 +16,6 @@
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
-        @load="getDemo"
       >
         <van-cell
           v-for="item in list"
@@ -139,7 +146,7 @@
 <script lang="ts">
 import { Component, Inject, Watch } from "vue-property-decorator";
 import Base from "./Base";
-import { Demo, getDemo } from "@/service";
+import { Demo, getDemo, getWxSign } from "@/service";
 import { getToken, toLogin } from "@/utils/guanyu";
 
 @Component
@@ -154,9 +161,12 @@ export default class Index extends Base {
    * 来源 App.vue中定义
    */
   @Inject() share!: () => void;
+  $dialog: any;
+
 
   mounted() {
     document.title = "冠寓";
+    this.getWxSign();
     if (this.visitSource === "小程序") {
       this.share();
     }
@@ -179,7 +189,6 @@ export default class Index extends Base {
   set finished(_val) {
     this.pageNum = 100;
   }
-
   loading = false;
   pageNum = 1;
   list: Demo[] = [];
@@ -210,6 +219,27 @@ export default class Index extends Base {
   }
 
   /**
+   * 获取数据
+   */
+  async getWxSign() {
+    const res = await getWxSign({
+      url: location.href.split("#")[0],
+    });
+    if ((res as any)?.code == "1000") {
+      window.wx.config({
+        debug: false, // 是否开启调试模式
+        appId: (res as any)?.data?.appId, 
+        timestamp: (res as any)?.data?.timestamp, 
+        nonceStr: (res as any)?.data?.nonceStr, 
+        signature: (res as any)?.data?.signature, 
+        jsApiList: [],
+        openTagList:[
+          "wx-open-launch-weapp", //跳转小程序
+        ],
+      });
+    }
+  }
+  /**
    * 调用App和小程序登录
    */
   login() {
@@ -219,6 +249,15 @@ export default class Index extends Base {
       toLogin();
       return;
     }
+  }
+
+  //动态渲染微信开发标签 跳转小程序
+  renderDom(imgUrl: any) {
+    let script = document.createElement("script");
+    script.type = "text/wxtag-template";
+    script.text = `<div style="height:100%;width:100%;text-align:center;"> <img src="${imgUrl}" width="46px" height="46px"/><p style="color: #333;font-size: 12px;">跳转</p></div>` 
+    let html = `<wx-open-launch-weapp style="width:100%;display:block;height:100%;" username="gh_738f1aad612a" path="pages/index/index.html">${script.outerHTML}</wx-open-launch-weapp>`
+    return html;
   }
 }
 </script>

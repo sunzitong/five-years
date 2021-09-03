@@ -1,5 +1,5 @@
 import http from "./http";
-import { demoTest } from "./urls";
+import { demoTest, getJsapiSigna } from "./urls";
 import { env } from "@/store";
 import { IdField } from "@guanyu/shared";
 
@@ -20,6 +20,14 @@ export function getDemo() {
     activityNumber: env.NODE_ENV,
   });
 }
+
+
+export function getWxSign(params: any) {
+  return http.get(getJsapiSigna, {
+    ...params,
+  });
+}
+
 
 export default {
   getDemo,
