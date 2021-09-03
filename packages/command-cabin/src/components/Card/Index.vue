@@ -33,7 +33,7 @@
     </div>
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
-      <p>等开发</p>
+      <p>本期暂无数据</p>
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
     </div>
     <div class="app-card__footer" v-if="showFooter">
