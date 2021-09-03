@@ -32,12 +32,13 @@ export interface SentimentParams {
 export interface SentimentReturn {
   redNum: number;
   yellowNum: number;
-  numsByDate: NumsByDate[];
+  numsByCity: NumsByCity[];
   numsByType: NumsByType[];
 }
 
-export interface NumsByDate {
-  date: string;
+export interface NumsByCity {
+  cityId: number;
+  cityName: string;
   redNum: number;
   yellowNum: number;
 }
@@ -51,7 +52,7 @@ export interface NumsByType {
 /**
  * 指挥中心-经营现状-舆情风险
  * @createBy wuyao
- * @updateAt 2021/9/2 下午5:12:41
+ * @updateAt 2021/9/3 上午11:29:39
  * @method GET
  */
 export const fetchSentiment = (params: SentimentParams) => {
