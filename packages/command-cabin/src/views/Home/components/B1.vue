@@ -213,7 +213,4 @@ export default class Example extends Vue {
 .pannel_right {
   margin-left: 41px;
 }
-
-.app-echarts {
-}
 </style>
