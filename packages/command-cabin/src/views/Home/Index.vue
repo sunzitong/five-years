@@ -61,7 +61,9 @@
               <Card
                 title="开业延期"
                 style="width: 1605px; height: 792px"
-              ></Card>
+              >
+              <B2 />
+              </Card>
             </van-col>
             <van-col>
               <Card title="成本分析" style="width: 691px; height: 634px"></Card>
@@ -154,6 +156,7 @@ import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 
 /** Jing */
+import B2 from "./components/B2.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 
@@ -162,6 +165,7 @@ import B5 from "./components/B5.vue";
     SubWrapper,
     Card,
     WhiteSpace,
+    B2,
     B4,
     B5,
   },
