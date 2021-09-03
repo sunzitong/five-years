@@ -116,7 +116,6 @@ export default class Animationed extends Vue {
     this.$nextTick(() => {
       const doms = this.$el.querySelectorAll(".aaaa");
       this.moving = true;
-      gsap.set(doms, { scaleY: 1, opacity: 1 });
       gsap
         .to(doms[0], {
           duration: this.duration,
@@ -125,6 +124,7 @@ export default class Animationed extends Vue {
         })
         .delay(1)
         .then(() => {
+          gsap.set(doms, { scaleY: 1, opacity: 1 });
           this.list.push(this.list.shift());
           this.$nextTick(this.move);
         });
