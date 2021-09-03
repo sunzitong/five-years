@@ -13,10 +13,9 @@
         :size="300"
         stroke-linecap="butt"
       >
-        <div>
-          {{ currentRate }}
-          <br />
-          总分
+        <div class="rate-text">
+          <div class="value">{{ currentRate }}</div>
+          <div class="desc">总分</div>
         </div>
       </van-circle>
     </div>
@@ -64,6 +63,22 @@ $light: #01f5f1;
   position: absolute;
   top: 28px;
   right: 50px;
+}
+.content {
+  .rate-text {
+    @extend %flex-center;
+    flex-flow: column nowrap;
+    height: 100%;
+    line-height: 1;
+    .value {
+      font-family: DIN Alternate;
+      font-weight: bold;
+      font-size: 60px;
+    }
+    .desc {
+      font-size: 30px;
+    }
+  }
 }
 .fade-enter-active {
   animation: fadeIn 1s;
