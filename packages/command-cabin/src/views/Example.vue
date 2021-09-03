@@ -89,15 +89,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Box from "@/components/Box/index.vue";
-import Subtitle from "@/components/Subtitle/index.vue";
-import Lattices from "@/components/Lattices/index.vue";
-import Card from "@/components/Card/index.vue";
-import Icon from "@/components/Icon/index.vue";
+import Box from "@/components/Box/Index.vue";
+import Subtitle from "@/components/Subtitle/Index.vue";
+import Lattices from "@/components/Lattices/Index.vue";
+import Card from "@/components/Card/Index.vue";
+import Icon from "@/components/Icon/Index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
-import Animationend from "@/components/Animationend/index.vue";
-import Btn from "@/components/Btn/index.vue";
+import Animationend from "@/components/Animationend/Index.vue";
+import Btn from "@/components/Btn/Index.vue";
 
 @Component({
   components: {
