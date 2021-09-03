@@ -2,6 +2,7 @@
   <div class="page__index">
     <A1 />
     <A2 />
+    <A3 />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import A3 from "./components/A3.vue";
 
 @Component({
   components: {
@@ -21,6 +23,7 @@ import A2 from "./components/A2.vue";
     WhiteSpace,
     A1,
     A2,
+    A3,
   },
 })
 export default class Index extends Base {}

@@ -14,6 +14,8 @@ import "./directives";
 import "./filters";
 // 样式表
 import "./assets/css/style.scss";
+// 动画样式
+import "animate.css";
 // console
 Vue.config.productionTip = false;
 // 实例

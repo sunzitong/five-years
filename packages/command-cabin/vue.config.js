@@ -97,9 +97,9 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        // target: "http://docs.gyapt.cn/mock/382",
+        target: "http://docs.gyapt.cn/mock/712",
         // target: "http://oms.test109.gyapt.cn",
-        target: "http://localhost:3000",
+        // target: "http://localhost:3000",
         secure: false,
         changeOrigin: true,
         pathRewrite: {
