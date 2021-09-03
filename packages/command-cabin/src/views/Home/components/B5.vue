@@ -129,7 +129,7 @@ export default class B5 extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .whole_pannel {
   display: flex;
   flex-flow: row nowrap;
