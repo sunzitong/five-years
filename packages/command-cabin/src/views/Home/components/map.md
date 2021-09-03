@@ -34,6 +34,6 @@ export default class Example extends Vue {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="scss" scoped></style>
 
 ```
