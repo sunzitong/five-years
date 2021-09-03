@@ -1,6 +1,7 @@
 <template>
   <div class="page__index">
     <A1 />
+    <A2 />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import SubWrapper from "@/components/SubWrapper/Index.vue";
 import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
+import A2 from "./components/A2.vue";
 
 @Component({
   components: {
@@ -18,6 +20,7 @@ import A1 from "./components/A1.vue";
     Card,
     WhiteSpace,
     A1,
+    A2,
   },
 })
 export default class Index extends Base {}
