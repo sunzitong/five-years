@@ -108,7 +108,7 @@ export default class D5 extends Vue {
     height: 100%;
     top: 0;
     left: 0;
-    @extend .value__letter;
+    @extend %value__letter;
     font-weight: bold;
     font-size: 40px;
     color: #01f5f1;

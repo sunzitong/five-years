@@ -89,7 +89,7 @@ export default class E4 extends Vue {
       height: 100%;
       line-height: 1;
       .value {
-        @extend .value__letter;
+        @extend %value__letter;
         font-weight: bold;
         font-size: 32px;
       }

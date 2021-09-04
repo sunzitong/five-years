@@ -96,7 +96,7 @@ export default class App extends Mixins(MixStore) {
 }
 /* 数字字体文件 */
 .value__letter {
-  font-family: "DIN Alternate";
+  @extend %value__letter;
 }
 .screen-resize {
   @extend %flex-center;

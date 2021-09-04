@@ -200,7 +200,7 @@ export default class Example extends Vue {
     color: #ffffff;
 
     span {
-      @extend .value__letter;
+      @extend %value__letter;
       font-weight: bold;
       font-size: 40px;
       line-height: 36px;

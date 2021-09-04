@@ -142,7 +142,7 @@ export default class B5 extends Vue {
     flex-flow: row nowrap;
     justify-content: space-around;
     color: #01f5f1;
-    @extend .value__letter;
+    @extend %value__letter;
     font-weight: bold;
     font-size: 34px;
 

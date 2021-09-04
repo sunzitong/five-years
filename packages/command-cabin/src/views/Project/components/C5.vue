@@ -100,7 +100,7 @@ $light: #01f5f1;
       height: 100%;
       line-height: 1;
       .value {
-        @extend .value__letter;
+        @extend %value__letter;
         font-weight: bold;
         font-size: 60px;
       }
@@ -117,7 +117,7 @@ $light: #01f5f1;
         font-size: 30px;
       }
       .value {
-        @extend .value__letter;
+        @extend %value__letter;
         font-weight: bold;
         font-size: 60px;
         color: $light;
