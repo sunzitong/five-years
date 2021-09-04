@@ -67,7 +67,6 @@
         ></div>
       </van-col>
     </van-row>
-    <div class="pie_charts"></div>
   </div>
 </template>
 
