@@ -182,7 +182,7 @@ export default class B2 extends Vue {
   color: #ffffff;
 
   span {
-    font-family: "DIN Alternate";
+    @extend %value__letter;
     color: #ff2a76;
     font-size: 40px;
     line-height: 36px;

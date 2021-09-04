@@ -146,7 +146,7 @@ export default class B4 extends Vue {
 
     .item_value_item {
       margin: 0 24px 0 0px;
-      font-family: "DIN Alternate";
+      @extend %value__letter;
       font-size: 34px;
       line-height: 36px;
     }

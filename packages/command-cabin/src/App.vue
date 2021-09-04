@@ -92,6 +92,11 @@ export default class App extends Mixins(MixStore) {
   transform-origin: 0 0;
   overflow: hidden;
   background: #00023c;
+  font-family: "PingFang SC";
+}
+/* 数字字体文件 */
+.value__letter {
+  @extend %value__letter;
 }
 .screen-resize {
   @extend %flex-center;

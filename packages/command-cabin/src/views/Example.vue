@@ -25,43 +25,81 @@
       <van-col :span="8">
         <Card title="Icon">
           <p>
+            desc:
             <Icon type="desc" />
+            asce:
             <Icon type="asce" />
+            data-source:
             <Icon type="data-source" />
+            light:
             <Icon type="light" />
+            light:
             <Icon type="light" color="#FF598C|#EB2763" />
+            call:
             <Icon type="call" color="#65DA7A" />
+            call:
             <Icon type="call" color="#EB4477" />
+            call:
             <Icon type="call" color="rgba(0,0,0,0)" />
+            trangle:
             <Icon type="trangle" />
+            turn-back:
             <Icon type="turn-back" />
+            version-touch:
             <Icon type="version-touch" color="#00A1FF" />
+            version-search:
             <Icon type="version-search" />
+            version-metting:
             <Icon type="version-metting" />
+            camera:
             <Icon type="camera" />
+            water-drop:
             <Icon type="water-drop" />
+            lightning:
             <Icon type="lightning" />
+            door:
             <Icon type="door" />
+            arrow-top:
             <Icon type="arrow-top" />
+            arrow-left:
             <Icon type="arrow-left" />
+            arrow-right:
             <Icon type="arrow-right" />
+            arrow-bottom:
             <Icon type="arrow-bottom" />
+            arrow-right:
             <Icon type="arrow-right" color="#fff" />
+            corner-top:
             <Icon type="corner-top" />
+            corner-left:
             <Icon type="corner-left" />
+            corner-right:
             <Icon type="corner-right" />
+            corner-bottom:
             <Icon type="corner-bottom" />
+            corner-bottom:
             <Icon type="corner-bottom" color="#fff" />
+            funnel:
             <Icon type="funnel" color="#01F5F1|transparent" />
+            funnel:
             <Icon type="funnel" color="#01F5F1|#01F5F1" />
+            flag:
             <Icon type="flag" />
+            map:
             <Icon type="map" />
+            brand:
             <Icon type="brand" />
+            users:
             <Icon type="users" />
+            income:
             <Icon type="income" />
+            room-number:
             <Icon type="room-number" :size="200" />
+            number-of-opening-rooms:
             <Icon type="number-of-opening-rooms" :size="200" />
+            year-income:
             <Icon type="year-income" :size="200" />
+            power:
             <Icon type="power" :size="200" />
           </p>
         </Card>

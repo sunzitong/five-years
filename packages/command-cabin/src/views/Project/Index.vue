@@ -135,7 +135,9 @@
               <Card
                 title="24小时设备离线率"
                 style="width: 665px; height: 392px"
-              ></Card>
+              >
+                <D5 />
+              </Card>
             </van-col>
             <van-col>
               <Card
@@ -171,6 +173,7 @@ import A3 from "./components/A3.vue";
 import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
 import C5 from "./components/C5.vue";
+import D5 from "./components/D5.vue";
 
 @Component({
   components: {
@@ -183,6 +186,7 @@ import C5 from "./components/C5.vue";
     A4,
     A5,
     C5,
+    D5,
   },
 })
 export default class Index extends Base {}
