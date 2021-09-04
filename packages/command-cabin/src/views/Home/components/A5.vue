@@ -19,7 +19,6 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { ECharts } from "echarts/core";
 
 console.log(echarts);
 
