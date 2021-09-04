@@ -14,7 +14,10 @@
                 <A1 />
               </Card>
               <WhiteSpace />
-              <Card style="width: 1098px; height: 560px">
+              <Card :showFooter="true" style="width: 1098px; height: 560px">
+                <template #footer>
+                  <a>查看详情→</a>
+                </template>
                 <A2 />
               </Card>
             </van-col>
@@ -132,13 +135,17 @@
               <Card
                 title="24小时设备离线率"
                 style="width: 665px; height: 392px"
-              ></Card>
+              >
+                <D5 />
+              </Card>
             </van-col>
             <van-col>
               <Card
                 title="能源费用(收支差)"
                 style="width: 723px; height: 312px"
-              ></Card>
+              >
+                <D8 />
+              </Card>
             </van-col>
           </van-row>
           <WhiteSpace />
@@ -168,6 +175,8 @@ import A3 from "./components/A3.vue";
 import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
 import C5 from "./components/C5.vue";
+import D5 from "./components/D5.vue";
+import D8 from "./components/D8.vue";
 
 @Component({
   components: {
@@ -180,6 +189,8 @@ import C5 from "./components/C5.vue";
     A4,
     A5,
     C5,
+    D5,
+    D8,
   },
 })
 export default class Index extends Base {}
