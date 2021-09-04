@@ -28,6 +28,10 @@ html {
 body {
   font-size: 24px;
   background-color: #000;
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
 // 微信长按hotfix
 .wx-callout {
@@ -66,7 +70,6 @@ body {
 .hidden-scrollbar::-webkit-scrollbar {
   width: 0;
   height: 0;
-  // background-color: transparent;
 }
 .none {
   display: none;
