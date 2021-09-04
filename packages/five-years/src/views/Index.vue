@@ -9,6 +9,7 @@
           )
         "
       ></div>
+      <a href='weixin://dl/business/?t=UWD6sWSZ2Ro'>打开小程序</a>
       <aside class="share" @click="share">分享</aside>
     </header>
     <main class="main">
@@ -228,11 +229,11 @@ export default class Index extends Base {
     if ((res as any)?.code == "1000") {
       window.wx.config({
         debug: false, // 是否开启调试模式
-        appId: (res as any)?.data?.appId, 
-        timestamp: (res as any)?.data?.timestamp, 
-        nonceStr: (res as any)?.data?.nonceStr, 
-        signature: (res as any)?.data?.signature, 
-        jsApiList: [],
+        appId: (res as any)?.data?.appId,
+        timestamp: (res as any)?.data?.timestamp,
+        nonceStr: (res as any)?.data?.nonceStr,
+        signature: (res as any)?.data?.signature,
+        jsApiList: ['chooseImage', 'previewImage'],
         openTagList:[
           "wx-open-launch-weapp", //跳转小程序
         ],
@@ -256,7 +257,7 @@ export default class Index extends Base {
     let script = document.createElement("script");
     script.type = "text/wxtag-template";
     script.text = `<div style="height:100%;width:100%;text-align:center;"> <img src="${imgUrl}" width="46px" height="46px"/><p style="color: #333;font-size: 12px;">跳转</p></div>` 
-    let html = `<wx-open-launch-weapp style="width:100%;display:block;height:100%;" username="gh_738f1aad612a" path="pages/index/index.html">${script.outerHTML}</wx-open-launch-weapp>`
+    let html = `<wx-open-launch-weapp style="width:100%;display:block;height:100%;" username="gh_738f1aad612a" path="pages/index/index.html">${script.outerHTML}</wx-open-launch-weapp>`;
     return html;
   }
 }

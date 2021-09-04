@@ -16,6 +16,7 @@ import "./filters";
 import "./assets/css/style.scss";
 // console
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = ["wx-open-launch-weapp"];
 // 真机本地调试
 if (process.env.NODE_ENV === "development") {
   import("vconsole").then((VConsole) => {
