@@ -1,22 +1,41 @@
 <template>
   <div class="page__maintenance_report__map">
-    <div
-      class="app-echarts"
-      ref="wrapper"
-      style="width: 100%; height: 250px"
-    ></div>
+    <div class="chart">
+      <div v-for="(item, index) in data" v-bind:key="index" class="chart-item">
+        <div class="chart-icon">
+          <Icon :type="iconArr[index]" size="22" />
+        </div>
+        <van-circle
+          v-model="item.value"
+          :rate="item.value"
+          :speed="100"
+          :color="colors[index]"
+          layer-color="#14437F"
+          :stroke-width="70"
+          :size="160"
+          stroke-linecap="butt"
+          :clockwise="true"
+        >
+          <div class="rate-text">
+            <div class="value">{{ item.value }}%</div>
+            <div class="desc">水</div>
+          </div>
+        </van-circle>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
-import Vector from "./Vector.png";
+import Icon from "@/components/Icon/Index.vue";
 
 // console.log(echarts);
 
 @Component({
-  components: {},
+  components: {
+    Icon,
+  },
 })
 export default class E4 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
@@ -34,100 +53,51 @@ export default class E4 extends Vue {
       value: 50,
     },
   ];
-
-  mounted() {
-    const myChart = echarts.init(this.wrapper);
-    let titleArr: any[] = [];
-    let seriesArr: any[] = [];
-    const colors = [["#59D1FE"], ["#8E3AFF"], ["#EEBC4A"]];
-    this.data.forEach(function (item, index) {
-      titleArr.push({
-        text: item.name,
-        top: "50%",
-        textAlign: "center",
-        left: index * 35 + 15 + "%",
-        textStyle: {
-          fontWeight: "normal",
-          fontSize: "16",
-          color: "#fff",
-          textAlign: "center",
-        },
-      });
-      seriesArr.push({
-        name: item.name,
-        type: "pie",
-        startAngle: 30,
-        radius: [60, 70],
-        top: -20,
-        center: [index * 35 + 15 + "%", "50%"],
-        // radius: ["48%", "50%"],
-        hoverAnimation: false,
-        data: [
-          {
-            //画中间的图标
-            name: "",
-            value: 0,
-            label: {
-              position: "inside",
-              backgroundColor: {
-                image: Vector,
-              },
-              width: 45,
-              height: 45,
-              borderRadius: 50,
-              padding: 0,
-            },
-          },
-          {
-            value: item.value,
-            itemStyle: {
-              normal: {
-                color: colors[index],
-              },
-            },
-            label: {
-              show: true,
-              position: "center",
-              fontSize: "20",
-              fontWeight: "bold",
-              color: "#fff",
-              formatter: function (params: any) {
-                return params.value + "%";
-              },
-            },
-          },
-          {
-            name: "",
-            value: 100 - item.value,
-            label: {
-              show: false,
-            },
-            itemStyle: {
-              normal: {
-                color: "#14437F",
-              },
-            },
-          },
-        ],
-      });
-    });
-
-    const option = {
-      tooltip: {
-        formatter: (params: any) => {
-          const { value } = params;
-          return "占比" + "：" + value + " %";
-        },
-      },
-      title: titleArr,
-      series: seriesArr,
-    };
-    option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
-  }
+  colors = ["#59D1FE", "#8E3AFF", "#EEBC4A"];
+  iconArr = ["water-drop", "lightning", "door"];
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="scss" scoped>
+.chart {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+  .chart-item {
+    transform: rotate(45deg);
+    position: relative;
+    z-index: 1;
+    .chart-icon {
+      transform: rotate(-45deg);
+      width: 45px;
+      height: 45px;
+      box-sizing: border-box;
+      background: #14437f;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -20px;
+      right: 60px;
+      z-index: 100;
+    }
+    .rate-text {
+      transform: rotate(-45deg);
+      @extend %flex-center;
+      flex-flow: column nowrap;
+      height: 100%;
+      line-height: 1;
+      .value {
+        font-family: DIN Alternate;
+        font-weight: bold;
+        font-size: 32px;
+      }
+      .desc {
+        font-size: 24px;
+        margin-top: 8px;
+      }
+    }
+  }
+}
+</style>
