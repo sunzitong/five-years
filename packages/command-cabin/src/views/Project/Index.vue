@@ -123,7 +123,9 @@
               <Card title="逾期金额" style="width: 665px; height: 556px"></Card>
             </van-col>
             <van-col>
-              <Card title="舆情风险" style="width: 723px; height: 556px"></Card>
+              <Card title="舆情风险" style="width: 723px; height: 556px">
+                <D7 />
+              </Card>
             </van-col>
           </van-row>
           <WhiteSpace />
@@ -143,7 +145,9 @@
               <Card
                 title="能源费用(收支差)"
                 style="width: 723px; height: 312px"
-              ></Card>
+              >
+                <D8 />
+              </Card>
             </van-col>
           </van-row>
           <WhiteSpace />
@@ -174,6 +178,8 @@ import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
 import C5 from "./components/C5.vue";
 import D5 from "./components/D5.vue";
+import D7 from "./components/D7.vue";
+import D8 from "./components/D8.vue";
 
 @Component({
   components: {
@@ -187,6 +193,8 @@ import D5 from "./components/D5.vue";
     A5,
     C5,
     D5,
+    D7,
+    D8,
   },
 })
 export default class Index extends Base {}
