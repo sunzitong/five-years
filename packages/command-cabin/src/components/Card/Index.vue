@@ -1,18 +1,10 @@
 <template>
   <div ref="card" class="app-card" :class="includeFooterCls">
-    <!-- SVG 背景没有footer -->
-    <CardDecorateWithFooter
-      key="CardDecorateWithFooter"
-      v-if="showFooter"
-      :size="size"
-      :fillOpacity="opacity"
-      :showRectBackground="showRectBackground"
-    />
     <CardDecorate
       key="CardDecorate"
-      v-else
       :size="size"
       :type="cardType"
+      :showFooter="showFooter"
       :fillOpacity="opacity"
       :showRectBackground="showRectBackground"
     />
@@ -46,7 +38,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
-import CardDecorateWithFooter from "@/components/CardDecorate/WithFooter.vue";
 import CardDecorate from "@/components/CardDecorate/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
@@ -54,7 +45,6 @@ import DataSource from "@/components/DataSource/Index.vue";
 @Component({
   components: {
     CardDecorate,
-    CardDecorateWithFooter,
     Icon,
     DataSource,
   },
