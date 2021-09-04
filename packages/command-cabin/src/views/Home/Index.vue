@@ -79,7 +79,9 @@
           </van-row>
         </SubWrapper>
       </div>
-      <div class="main-center">main-center</div>
+      <div class="main-center">
+        <C1 />
+      </div>
       <div class="main-right">
         <SubWrapper title="经营现状">
           <template #extra>
@@ -164,6 +166,7 @@ import B2 from "./components/B2.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
+import C1 from "./components/C1.vue";
 import E5 from "./components/E5.vue";
 
 @Component({
@@ -177,6 +180,7 @@ import E5 from "./components/E5.vue";
     B2,
     B4,
     B5,
+    C1,
     E4,
     E5,
   },

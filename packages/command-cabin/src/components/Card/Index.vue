@@ -17,7 +17,11 @@
     </div>
     <div class="app-card__body">
       <div class="app-card__content">
-        <slot></slot>
+        <slot>
+          <p style="text-align: center; padding-top: 50px; opacity: 0.2">
+            本期暂无数据
+          </p>
+        </slot>
       </div>
       <DataSource v-if="dataSource" :position="dataSourcePosition">
         {{ dataSource }}
@@ -25,7 +29,6 @@
     </div>
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
-      <p>本期暂无数据</p>
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
     </div>
     <div class="app-card__footer" v-if="showFooter">

@@ -32,35 +32,20 @@
             <stop offset="1" stop-color="#1b3b6e" :stop-opacity="stopOpacity" />
           </linearGradient>
         </defs>
-      </svg>
-    </div>
-    <div class="app-card-decorate__footer" v-if="showFooter">
-      <svg
-        width="266"
-        height="60"
-        viewBox="0 0 266 60"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M28.0651 5.37634C29.7655 2.44977 32.8946 0.648926 36.2793 0.648926H245.272C256.042 0.648926 264.772 9.37937 264.772 20.1489V49.1008C264.772 54.3475 260.519 58.6008 255.272 58.6008H6.69732C2.4567 58.6008 -0.188636 54.0043 1.94175 50.3377L28.0651 5.37634Z"
-          :fill="fill"
-          :fill-opacity="fillOpacity"
-          :stroke="`url(#${uuid}_footer)`"
-        />
-        <defs>
-          <linearGradient
-            :id="`${uuid}_footer`"
-            x1="110.772"
-            y1="0.148926"
-            x2="110.772"
-            y2="59.1008"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#1B4986" />
-            <stop offset="1" stop-opacity="0" />
-          </linearGradient>
-        </defs>
+        <!-- <ellipse
+          cx="7"
+          cy="-5"
+          rx="20"
+          ry="14"
+          fill="#aaa"
+          stroke="#666"
+          stroke-width="2"
+          opacity=".8"
+        >
+          <animateMotion dur="2s" rotate="auto" repeatCount="indefinite">
+            <mpath :xlink:href="`#${uuid}_1`" />
+          </animateMotion>
+        </ellipse> -->
       </svg>
     </div>
     <div v-if="showRectBackground" class="app-card-decorate__lattices"></div>
@@ -114,11 +99,6 @@ export default class CardDecorate extends Vue {
   @Prop({ default: "box" }) type!: "box" | "box-rect";
 
   /**
-   * 是否显示页脚
-   */
-  @Prop({ default: false }) showFooter!: boolean;
-
-  /**
    * 背景默认宽度
    */
   width = 1000;
@@ -146,7 +126,6 @@ export default class CardDecorate extends Vue {
    * 边框渐变
    */
   get stopOpacity() {
-    if (this.showFooter) return 0.2;
     if (this.type === "box-rect") return 1;
     return 0;
   }
@@ -175,6 +154,7 @@ export default class CardDecorate extends Vue {
       E: 60,
       R: 10, // 圆角
       LW: 1, // 线条宽度
+      SR: 2, // 小圆角
     };
     const format = {
       // 小
@@ -194,9 +174,10 @@ export default class CardDecorate extends Vue {
     const formatType = {
       // 中
       "box-rect": () => {
-        rect.A = 0;
+        rect.A = 1;
         rect.B = 0;
-        rect.E = 0;
+        rect.E = 1;
+        rect.SR = 0;
       },
     };
     if (format[this.size]) format[this.size]();
@@ -206,10 +187,7 @@ export default class CardDecorate extends Vue {
   }
 
   get customerD() {
-    const FT = this.showFooter
-      ? { h: 68, w: 225, r: 5, lw: 225 + 45 }
-      : { h: 0, w: 0, r: 0, lw: 0 };
-    const { W, H, C, A, B, D, E, R, LW } = this.formatSize;
+    const { W, H, C, A, B, D, E, R, LW, SR } = this.formatSize;
     /**
      *----W----A-------                              -----W---R
      *|        |\                                   /         |
@@ -224,65 +202,54 @@ export default class CardDecorate extends Vue {
       M${R} ${LW}
       L${W} ${LW}
       
-      ${W + 2} ${LW}
+      ${W + SR} ${LW}
       L${W + A} ${E}
 
-      C${W + A - 2} ${E - 2}
+      C${W + A - SR} ${E - SR}
       ${W + A} ${E}
-      ${W + A + 2} ${E}
+      ${W + A + SR} ${E}
 
-      L${W + A + 2} ${E}
-      L${W + A + B - 2} ${E}
-      C${W + A + B - 2} ${E}
+      L${W + A + SR} ${E}
+      L${W + A + B - SR} ${E}
+      C${W + A + B - SR} ${E}
       ${W + A + B} ${E}
-      ${W + A + B + 2} ${E - 2}
-      L${W + A + B + 2} ${E - 2}
+      ${W + A + B + SR} ${E - SR}
+      L${W + A + B + SR} ${E - SR}
 
       L${W + A + B + D} ${A}
-      C${W + A + B + D - 2} ${A + 2}
+      C${W + A + B + D - SR} ${A + SR}
       ${W + A + B + D} ${A}
-      ${W + A + B + D + 2} ${A}
+      ${W + A + B + D + SR} ${A}
 
-      L${W + A + B + D + 2} ${A}
-      C${W + A + B + D + C - 2}  ${A}
+      L${W + A + B + D + SR} ${A}
+      C${W + A + B + D + C - SR}  ${A}
       ${W + A + B + D + C}  ${A}
-      ${W + A + B + D + C + 2}  ${A + 2}
-      L${W + A + B + D + C + 2}  ${A + 2}
+      ${W + A + B + D + C + SR}  ${A + SR}
+      L${W + A + B + D + C + SR}  ${A + SR}
 
 
-      L${W + A + B + D + C + D - 2} ${E - 2}
-      C${W + A + B + D + C + D - 2} ${E - 2}
+      L${W + A + B + D + C + D - SR} ${E - SR}
+      C${W + A + B + D + C + D - SR} ${E - SR}
       ${W + A + B + D + C + D} ${E}
-      ${W + A + B + D + C + D + 2} ${E}
-      L${W + A + B + D + C + D + 2} ${E}
+      ${W + A + B + D + C + D + SR} ${E}
+      L${W + A + B + D + C + D + SR} ${E}
 
-      L${W + A + B + D + C + D + B - 2} ${E}
-      C${W + A + B + D + C + D + B - 2} ${E}
+      L${W + A + B + D + C + D + B - SR} ${E}
+      C${W + A + B + D + C + D + B - SR} ${E}
       ${W + A + B + D + C + D + B} ${E}
-      ${W + A + B + D + C + D + B + 2} ${E - 2}
-      L${W + A + B + D + C + D + B + 2} ${E - 2}
+      ${W + A + B + D + C + D + B + SR} ${E - SR}
+      L${W + A + B + D + C + D + B + SR} ${E - SR}
       ${W + A + B + D + C + D + B + A} ${LW}
       ${W + A + B + D + C + D + B + A + W - R} ${LW}
       C${W + A + B + D + C + D + B + A + W - R} ${LW}
       ${W + A + B + D + C + D + B + A + W} ${LW}
       ${W + A + B + D + C + D + B + A + W} ${R}
       L${W + A + B + D + C + D + B + A + W} ${R}
-
-      L${W + A + B + D + C + D + B + A + W} ${H - R - FT.h}
-      C${W + A + B + D + C + D + B + A + W} ${H - R - FT.h}
-      ${W + A + B + D + C + D + B + A + W} ${H - FT.h}
-      ${W + A + B + D + C + D + B + A + W - R} ${H - FT.h}
-      L${W + A + B + D + C + D + B + A + W - R - FT.w} ${H - FT.h}
-      C${W + A + B + D + C + D + B + A + W - R - FT.w + R} ${H - FT.h}
-      ${W + A + B + D + C + D + B + A + W - R - FT.w} ${H - FT.h}
-      ${W + A + B + D + C + D + B + A + W - R - FT.w - FT.r} ${H - FT.h + FT.r}
-      L${W + A + B + D + C + D + B + A + W - R - FT.w - FT.r} ${H - FT.h + FT.r}
-      L${W + A + B + D + C + D + B + A + W - R - FT.lw + FT.r} ${H - FT.r}
-      C${W + A + B + D + C + D + B + A + W - R - FT.lw + FT.r} ${H - FT.r}
-      ${W + A + B + D + C + D + B + A + W - R - FT.lw} ${H}
-      ${W + A + B + D + C + D + B + A + W - R - FT.lw - FT.r} ${H}
-      L${W + A + B + D + C + D + B + A + W - R - FT.lw - FT.r} ${H}
-
+      L${W + A + B + D + C + D + B + A + W} ${H - R}
+      C${W + A + B + D + C + D + B + A + W} ${H - R}
+      ${W + A + B + D + C + D + B + A + W} ${H}
+      ${W + A + B + D + C + D + B + A + W - R} ${H}
+      L${W + A + B + D + C + D + B + A + W - R} ${H}
       L${R} ${H}
       C${R} ${H}
       ${LW} ${H}
@@ -382,12 +349,6 @@ export default class CardDecorate extends Vue {
   }
   svg {
     vertical-align: middle;
-  }
-
-  &__footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
 
   &--box-rect {
