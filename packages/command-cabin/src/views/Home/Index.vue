@@ -168,7 +168,7 @@ import B5 from "./components/B5.vue";
     B5,
   },
 })
-export default class Index extends Base {}
+export default class Home extends Base {}
 </script>
 
 <style lang="scss" scoped>
