@@ -119,10 +119,9 @@
               </van-row>
             </van-col>
             <van-col>
-              <Card
-                title="舆情风险"
-                style="width: 739px; height: 1086px"
-              ></Card>
+              <Card title="舆情风险" style="width: 739px; height: 1086px">
+                <E5 />
+              </Card>
             </van-col>
           </van-row>
         </SubWrapper>
@@ -159,6 +158,7 @@ import B2 from "./components/B2.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
+import E5 from "./components/E5.vue";
 
 @Component({
   components: {
@@ -170,6 +170,7 @@ import E4 from "./components/E4.vue";
     B4,
     B5,
     E4,
+    E5,
   },
 })
 export default class Index extends Base {}
