@@ -18,7 +18,7 @@
         >
           <div class="rate-text">
             <div class="value">{{ item.value }}%</div>
-            <div class="desc">水</div>
+            <div class="desc">{{ item.name }}</div>
           </div>
         </van-circle>
       </div>
