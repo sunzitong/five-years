@@ -146,7 +146,7 @@ export default class CardDecorate extends Vue {
    * 边框渐变
    */
   get stopOpacity() {
-    if (this.showFooter) return 1;
+    if (this.showFooter) return 0.2;
     if (this.type === "box-rect") return 1;
     return 0;
   }
@@ -167,7 +167,7 @@ export default class CardDecorate extends Vue {
   get formatSize() {
     const rect = {
       W: 235, // 中心线宽度
-      H: this.height, // 高度
+      H: this.height - 1, // 高度
       C: 330, // 中心凹进去的中间宽度
       A: 50, //
       B: 40,
