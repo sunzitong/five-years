@@ -29,7 +29,7 @@
         <van-col :span="3" class="table_col">{{ indexName[7] }}</van-col>
       </van-row>
       <div class="table_body">
-        <Animationend :height="480" :dataSource="col">
+        <Animationend :scrollMinCount="5" :height="480" :dataSource="col">
           <template v-slot="{ list }">
             <van-row
               animated

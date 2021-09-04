@@ -13,6 +13,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch, Ref } from "vue-property-decorator";
 import { gsap } from "gsap";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -44,6 +45,11 @@ export default class Animationed extends Vue {
   @Prop({ default: 20000 }) countDown!: number;
 
   /**
+   * 是否开启动画
+   */
+  @Prop({ default: Number.MAX_VALUE, required: true }) scrollMinCount!: number;
+
+  /**
    * 对数据来源的拷贝
    */
   list: any[] = [];
@@ -51,7 +57,7 @@ export default class Animationed extends Vue {
   /**
    * 是否在运动
    */
-  moving = true;
+  moving = false;
 
   /**
    * 是否暂停
@@ -73,12 +79,10 @@ export default class Animationed extends Vue {
   /**
    * 监听数据更新list
    */
-  @Watch("dataSource", { deep: true })
+  @Watch("dataSource", { deep: true, immediate: true })
   change(val: any) {
-    this.list = [...val];
-    if (!this.moving) {
-      this.move();
-    }
+    this.list = [...iwant.array(val)];
+    this.move();
   }
 
   /**
@@ -86,15 +90,15 @@ export default class Animationed extends Vue {
    */
   move() {
     // 如果动画暂停返回
-    if (!this.moving || this.pause) return false;
+    if (this.moving || this.pause) return false;
     /** 如果没有数据不执行动画 */
-    if (Array.isArray(this.list) && this.list.length === 0) {
+    if (this.list.length <= this.scrollMinCount) {
       this.moving = false;
       return false;
     }
+    this.moving = true;
     this.$nextTick(() => {
       const doms = this.$el.querySelectorAll("[animated]");
-      this.moving = true;
       // const h = doms[0].getBoundingClientRect().height;
       // const h = parseInt(getComputedStyle(doms[0]).height);
       const h = (doms[0] as HTMLDivElement).offsetHeight;
@@ -104,6 +108,7 @@ export default class Animationed extends Vue {
         .then(() => {
           gsap.set(doms, { y: 0 });
           this.list.push(this.list.shift());
+          this.moving = false;
           this.$nextTick(this.move);
         });
     });
@@ -128,13 +133,11 @@ export default class Animationed extends Vue {
    * 组件渲染
    */
   mounted() {
-    /** 更新list */
-    this.list = this.dataSource;
-
     /** 执行动画 */
     this.move();
 
     /** 容器滚动时暂停动画 */
+    this.container.addEventListener("click", this.scrollHandler);
     this.container.addEventListener("scroll", this.scrollHandler);
   }
 
@@ -142,6 +145,7 @@ export default class Animationed extends Vue {
    * 组件卸载
    */
   unmounted() {
+    this.container.removeEventListener("click", this.scrollHandler);
     this.container.removeEventListener("scroll", this.scrollHandler);
     this.timeout = null;
   }
