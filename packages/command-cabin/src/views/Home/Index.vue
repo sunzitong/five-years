@@ -33,14 +33,18 @@
                     title="中央奖补"
                     size="small"
                     style="width: 394px; height: 438px"
-                  ></Card>
+                  >
+                    <A5 />
+                  </Card>
                 </van-col>
                 <van-col>
                   <Card
                     title="投后攻坚"
                     size="small"
                     style="width: 399px; height: 438px"
-                  ></Card>
+                  >
+                    <A6 />
+                  </Card>
                 </van-col>
               </van-row>
             </van-col>
@@ -119,10 +123,9 @@
               </van-row>
             </van-col>
             <van-col>
-              <Card
-                title="舆情风险"
-                style="width: 739px; height: 1086px"
-              ></Card>
+              <Card title="舆情风险" style="width: 739px; height: 1086px">
+                <E5 />
+              </Card>
             </van-col>
           </van-row>
         </SubWrapper>
@@ -154,22 +157,28 @@ import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 
 /** Jing */
+import A5 from "./components/A5.vue";
+import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
 import B2 from "./components/B2.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
+import E5 from "./components/E5.vue";
 
 @Component({
   components: {
     SubWrapper,
     Card,
     WhiteSpace,
+    A5,
+    A6,
     B1,
     B2,
     B4,
     B5,
     E4,
+    E5,
   },
 })
 export default class Home extends Base {}
