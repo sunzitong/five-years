@@ -6,7 +6,7 @@
       <van-col span="8" class="th">角色</van-col>
     </van-row>
     <div class="list">
-      <Animationend :height="224" :dataSource="list">
+      <Animationend :height="224" :dataSource="list" :scrollMinCount="3">
         <template v-slot="{ list }">
           <van-row
             v-for="(item, index) in list"
