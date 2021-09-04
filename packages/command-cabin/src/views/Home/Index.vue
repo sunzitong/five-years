@@ -172,7 +172,7 @@ import E4 from "./components/E4.vue";
     E4,
   },
 })
-export default class Index extends Base {}
+export default class Home extends Base {}
 </script>
 
 <style lang="scss" scoped>
