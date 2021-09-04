@@ -257,7 +257,7 @@ export default class Index extends Base {
     if (this.visitSource === "小程序") {
       window.wx.navigateToMiniProgram({
         appId: "wx5ecb96056a1b7be5",
-        path: "page/index/index?id=123",
+        path: "/page/index/index?id=123",
         extraData: {
           foo: "bar",
         },
