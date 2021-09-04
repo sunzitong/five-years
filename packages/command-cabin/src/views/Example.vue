@@ -99,8 +99,8 @@
             <Icon type="number-of-opening-rooms" :size="200" />
             year-income:
             <Icon type="year-income" :size="200" />
-            power:
-            <Icon type="power" :size="200" />
+            energy:
+            <Icon type="energy" :size="200" />
           </p>
         </Card>
 

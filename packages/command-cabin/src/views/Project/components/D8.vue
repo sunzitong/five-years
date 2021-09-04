@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="content">
-      <Icon type="power" :size="160" />
+      <Icon type="energy" :size="160" />
       <div class="desc">
         <span class="value__letter value">-34</span>
         <span class="unit">万</span>
