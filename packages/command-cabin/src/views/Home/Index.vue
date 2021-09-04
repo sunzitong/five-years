@@ -33,14 +33,18 @@
                     title="中央奖补"
                     size="small"
                     style="width: 394px; height: 438px"
-                  ></Card>
+                  >
+                    <A5 />
+                  </Card>
                 </van-col>
                 <van-col>
                   <Card
                     title="投后攻坚"
                     size="small"
                     style="width: 399px; height: 438px"
-                  ></Card>
+                  >
+                    <A6 />
+                  </Card>
                 </van-col>
               </van-row>
             </van-col>
@@ -154,6 +158,8 @@ import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 
 /** Jing */
+import A5 from "./components/A5.vue";
+import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
 import B2 from "./components/B2.vue";
 import B4 from "./components/B4.vue";
@@ -165,6 +171,8 @@ import E4 from "./components/E4.vue";
     SubWrapper,
     Card,
     WhiteSpace,
+    A5,
+    A6,
     B1,
     B2,
     B4,
