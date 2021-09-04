@@ -2,7 +2,7 @@
   <div class="pannel_left">
     <div class="pannel_text">
       累计已开业间数：
-      <span>{{ openingNum }}</span>
+      <span>{{ sepNumber(openingNum) }}</span>
     </div>
     <div
       class="app-echarts"
@@ -15,6 +15,7 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
+import { sepNumber } from "@/utils/tools";
 
 console.log(echarts);
 
@@ -22,6 +23,8 @@ console.log(echarts);
   components: {},
 })
 export default class B1A extends Vue {
+  sepNumber = sepNumber;
+
   @Ref() wrapper!: HTMLDivElement;
 
   openingNum = 1218900;

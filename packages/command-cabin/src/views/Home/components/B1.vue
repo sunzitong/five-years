@@ -34,5 +34,9 @@ export default class B1 extends Vue {}
     width: 687px;
     height: 100%;
   }
+
+  .on_right {
+    flex: 1;
+  }
 }
 </style>
