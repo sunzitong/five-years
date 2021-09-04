@@ -29,27 +29,32 @@
         <van-col :span="3" class="table_col">{{ indexName[7] }}</van-col>
       </van-row>
       <div class="table_body">
-        <van-row
-          v-for="(item, index) in col"
-          :key="index"
-          justify="space-between"
-          type="flex"
-          class="table_row"
-        >
-          <van-col :span="3" class="table_col">{{ item.a }}</van-col>
-          <van-col :span="3" class="table_col">{{ item.b }}</van-col>
-          <van-col :span="3" class="table_col">{{ item.c }}</van-col>
-          <van-col :span="2" class="table_col">{{ item.d }}</van-col>
-          <van-col :span="4" class="table_col">
-            <div class="van-multi-ellipsis--l2">
-              {{ item.e }}
-            </div>
-          </van-col>
-          <van-col :span="2" class="table_col">{{ item.f }}</van-col>
-          <van-col :span="2" class="table_col">{{ item.g }}</van-col>
-          <van-col :span="2" class="table_col">{{ item.h }}</van-col>
-          <van-col :span="3" class="table_col">{{ item.i }}</van-col>
-        </van-row>
+        <Animationend :height="480" :dataSource="col">
+          <template v-slot="{ list }">
+            <van-row
+              animated
+              v-for="(item, index) in list"
+              :key="index"
+              justify="space-between"
+              type="flex"
+              class="table_row"
+            >
+              <van-col :span="3" class="table_col">{{ item.a }}</van-col>
+              <van-col :span="3" class="table_col">{{ item.b }}</van-col>
+              <van-col :span="3" class="table_col">{{ item.c }}</van-col>
+              <van-col :span="2" class="table_col">{{ item.d }}</van-col>
+              <van-col :span="4" class="table_col">
+                <div class="van-multi-ellipsis--l2">
+                  {{ item.e }}
+                </div>
+              </van-col>
+              <van-col :span="2" class="table_col">{{ item.f }}</van-col>
+              <van-col :span="2" class="table_col">{{ item.g }}</van-col>
+              <van-col :span="2" class="table_col">{{ item.h }}</van-col>
+              <van-col :span="3" class="table_col">{{ item.i }}</van-col>
+            </van-row>
+          </template>
+        </Animationend>
       </div>
     </div>
   </div>
@@ -57,9 +62,12 @@
 
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
+import Animationend from "@/components/Animationend/Index.vue";
 
 @Component({
-  components: {},
+  components: {
+    Animationend,
+  },
 })
 export default class B2 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
@@ -133,6 +141,28 @@ export default class B2 extends Vue {
       g: 6,
       h: 6,
       i: 6,
+    },
+    {
+      a: 7,
+      b: 7,
+      c: 7,
+      d: 7,
+      e: 7,
+      f: 7,
+      g: 7,
+      h: 7,
+      i: 7,
+    },
+    {
+      a: 8,
+      b: 8,
+      c: 8,
+      d: 8,
+      e: 8,
+      f: 8,
+      g: 8,
+      h: 8,
+      i: 8,
     },
   ];
 

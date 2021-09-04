@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <AppHeader />
     <router-view />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
@@ -22,12 +23,14 @@ import { Component, Mixins } from "vue-property-decorator";
 import AppLoading from "@/components/AppLoading.vue";
 import MixStore from "@/store/MixStore";
 import FixedNav from "@/components/FixedNav/Index.vue";
+import AppHeader from "@/components/Header/Index.vue";
 
 @Component({
   name: "app",
   components: {
     AppLoading,
     FixedNav,
+    AppHeader,
   },
 })
 export default class App extends Mixins(MixStore) {
