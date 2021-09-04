@@ -33,6 +33,42 @@ import Income from "./components/Income.vue";
 import RoomNumber from "./components/RoomNumber.vue";
 import NumberOfOpeningRooms from "./components/NumberOfOpeningRooms.vue";
 import YearIncome from "./components/YearIncome.vue";
+import Power from "./components/Power.vue";
+
+const conponents = {
+  asce: AsceAndDesc,
+  desc: AsceAndDesc,
+  light: Light,
+  trangle: Trangle,
+  call: Call,
+  camera: Camera,
+  lightning: Lightning,
+  door: Door,
+  funnel: Funnel,
+  flag: Flag,
+  map: Map,
+  brand: Brand,
+  users: Users,
+  income: Income,
+  "year-income": YearIncome,
+  "number-of-opening-rooms": NumberOfOpeningRooms,
+  "room-number": RoomNumber,
+  "corner-top": Corner,
+  "corner-left": Corner,
+  "corner-right": Corner,
+  "corner-bottom": Corner,
+  "arrow-top": Arrow,
+  "arrow-left": Arrow,
+  "arrow-right": Arrow,
+  "arrow-bottom": Arrow,
+  "water-drop": WaterDrop,
+  "version-touch": VersionTouch,
+  "version-search": VersionSearch,
+  "version-metting": VersionMetting,
+  "turn-back": TurnBack,
+  "data-source": DataSource,
+  power: Power,
+};
 
 @Component({
   components: {
@@ -60,6 +96,7 @@ import YearIncome from "./components/YearIncome.vue";
     RoomNumber,
     NumberOfOpeningRooms,
     YearIncome,
+    Power,
   },
 })
 export default class Icon extends Vue {
@@ -71,38 +108,7 @@ export default class Icon extends Vue {
    * 灯：light
    * 三角形：trangle
    */
-  @Prop({ required: true }) type!:
-    | "desc"
-    | "asce"
-    | "data-source"
-    | "light"
-    | "call"
-    | "camera"
-    | "turn-back"
-    | "touch-version"
-    | "search-version"
-    | "version-metting"
-    | "water-drop"
-    | "door"
-    | "map"
-    | "funnel"
-    | "brand"
-    | "corner-right"
-    | "corner-top"
-    | "corner-left"
-    | "corner-bottom"
-    | "arrow-right"
-    | "arrow-top"
-    | "arrow-left"
-    | "arrow-bottom"
-    | "lightning"
-    | "flag"
-    | "users"
-    | "income"
-    | "room-number"
-    | "number-of-opening-rooms"
-    | "year-income"
-    | "trangle";
+  @Prop({ required: true }) type!: keyof typeof conponents;
 
   /**
    * 图标颜色
@@ -118,39 +124,6 @@ export default class Icon extends Vue {
    * 获取动态组件
    */
   get currentIconComponent() {
-    const conponents = {
-      asce: AsceAndDesc,
-      desc: AsceAndDesc,
-      light: Light,
-      trangle: Trangle,
-      call: Call,
-      camera: Camera,
-      lightning: Lightning,
-      door: Door,
-      funnel: Funnel,
-      flag: Flag,
-      map: Map,
-      brand: Brand,
-      users: Users,
-      income: Income,
-      "year-income": YearIncome,
-      "number-of-opening-rooms": NumberOfOpeningRooms,
-      "room-number": RoomNumber,
-      "corner-top": Corner,
-      "corner-left": Corner,
-      "corner-right": Corner,
-      "corner-bottom": Corner,
-      "arrow-top": Arrow,
-      "arrow-left": Arrow,
-      "arrow-right": Arrow,
-      "arrow-bottom": Arrow,
-      "water-drop": WaterDrop,
-      "version-touch": VersionTouch,
-      "version-search": VersionSearch,
-      "version-metting": VersionMetting,
-      "turn-back": TurnBack,
-      "data-source": DataSource,
-    };
     return conponents[this.type] ?? null;
   }
 }
