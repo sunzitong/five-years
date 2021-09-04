@@ -5,22 +5,33 @@
       <van-col span="12" class="th">角色</van-col>
     </van-row>
     <div class="list">
-      <van-row v-for="(item, index) in list" :key="index" class="row">
-        <van-col span="12" class="td name">
-          {{ item.name }}
-          <div class="icon">
-            <Icon
-              type="call"
-              color="#7BE7A1"
-              @click.native="phoneIndex = index"
-            />
-            <transition name="fade">
-              <div class="phone" v-if="phoneIndex === index">13333333333</div>
-            </transition>
-          </div>
-        </van-col>
-        <van-col span="12" class="td role">{{ item.role }}</van-col>
-      </van-row>
+      <Animationend :height="224" :dataSource="list">
+        <template v-slot="{ list }">
+          <van-row
+            v-for="(item, index) in list"
+            :key="index"
+            class="row"
+            animated
+          >
+            <van-col span="12" class="td name">
+              {{ item.name }}
+              <div class="icon">
+                <Icon
+                  type="call"
+                  color="#7BE7A1"
+                  @click.native="phoneIndex = phoneIndex === index ? -1 : index"
+                />
+                <transition name="fade">
+                  <div class="phone" v-if="phoneIndex === index">
+                    13333333333
+                  </div>
+                </transition>
+              </div>
+            </van-col>
+            <van-col span="12" class="td role">{{ item.role }}</van-col>
+          </van-row>
+        </template>
+      </Animationend>
     </div>
   </div>
 </template>
@@ -28,17 +39,18 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
+import Animationend from "@/components/Animationend/Index.vue";
 
 @Component({
-  components: { Icon },
+  components: { Icon, Animationend },
 })
 export default class A3 extends Vue {
   phoneIndex = -1;
   list = [
-    { name: "方唐镜", role: "C6", showPhone: false },
-    { name: "方唐镜", role: "C6", showPhone: false },
-    { name: "方唐镜", role: "C6", showPhone: false },
-    { name: "方唐镜", role: "C6", showPhone: false },
+    { name: "方唐镜1", role: "C6", showPhone: false },
+    { name: "方唐镜2", role: "C6", showPhone: false },
+    { name: "方唐镜3", role: "C6", showPhone: false },
+    { name: "方唐镜4", role: "C6", showPhone: false },
   ];
 }
 </script>
@@ -46,14 +58,16 @@ export default class A3 extends Vue {
 <style lang="scss" scoped>
 $light: #01f5f1;
 .box {
+  position: relative;
   width: 764px;
   height: 300px;
+  margin-top: 16px;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
   font-family: PingFang SC;
   font-size: 30px;
   color: #fff;
   text-align: center;
-  position: relative;
-  overflow: auto;
 }
 .title {
   background: #24386d;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <AppHeader />
-    <router-view />
+    <router-view :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
     <FixedNav hidden />
@@ -12,6 +12,8 @@
       :style="{ transform: 'scale(' + 1 / scale + ')' }"
       class="screen-resize"
     >
+      {{ showShadow ? "已显示内容边框" : "已隐藏内容边框" }}
+      <van-switch v-model="showShadow" :size="20" />
       {{ resize ? "已启用自动缩放" : "已显示网页原始大小" }}
       <van-switch v-model="resize" @change="resizeHandle" :size="20" />
     </div>
@@ -35,6 +37,8 @@ import AppHeader from "@/components/Header/Index.vue";
 })
 export default class App extends Mixins(MixStore) {
   resize = false;
+
+  showShadow = false;
 
   scale = 1;
 
@@ -100,5 +104,8 @@ export default class App extends Mixins(MixStore) {
   background: #0f3f7d;
   box-shadow: #fff -2px 2px 10px 0px;
   font-size: 16px;
+}
+.show-shadow .app-card__content > * {
+  box-shadow: 0 0 10px #fff;
 }
 </style>

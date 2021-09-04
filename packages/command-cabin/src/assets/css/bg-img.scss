@@ -13,10 +13,13 @@ $img-map: (
   "box-lattices": "box-lattices.png",
   "subtitle-bg": "subtitle-bg.png",
   "header": "header.png",
+  "circle-border": "circle-border.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
     @extend %bg-top;
-    background-image: url($VUE_APP_BASE_IMG+$map);
+    background-image: url($VUE_APP_BASE_IMG + $map);
   }
 }
+
+$circle-border: $VUE_APP_BASE_IMG + map-get($img-map, "circle-border");
