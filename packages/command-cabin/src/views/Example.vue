@@ -52,9 +52,9 @@
       <div></div>
       <div>
         <ProgressBar :width="1000" v-model="progress" />
-        <ProgressCircle :width="100" v-model="progress" />
+        <ProgressCircle :size="300" v-model="progress" />
         <div>
-          <Animationend key="1" :dataSource="dataSource">
+          <Animationend key="1" :scrollMinCount="10" :dataSource="dataSource">
             <template v-slot="{ list }">
               <ul>
                 <li animated class="aaaa" v-for="item in list" :key="item.id">
@@ -69,7 +69,7 @@
           <br />
         </div>
         <div>
-          <Animationend key="2" :dataSource="dataSource1">
+          <Animationend key="2" :scrollMinCount="10" :dataSource="dataSource1">
             <template v-slot="{ list }">
               <ul>
                 <li animated v-for="item in list" :key="item.id">
