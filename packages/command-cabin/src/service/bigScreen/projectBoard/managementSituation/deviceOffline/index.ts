@@ -11,17 +11,12 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface DeviceOfflineParams {
   /**
-   * group:全国；area:大区；city:城市
+   * 门店ID
    */
-  regionType: number;
+  projectId: number;
 
   /**
-   * 大区ID/城市ID，默认是空
-   */
-  regionId?: number;
-
-  /**
-   * 统计哪个时间的数据，默认是当前时间
+   * 统计哪个时间的的数据，默认是当前时间
    */
   dataTime?: number;
 }
@@ -39,12 +34,12 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/3 下午5:39:23
+ * @updateAt 2021/9/3 下午5:39:04
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
   return http.get<DeviceOfflineReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/managementSituation/deviceOffline`,
+    `${BASE_URL}/bigScreen/projectBoard/managementSituation/deviceOffline`,
     {
       ...params,
     }
