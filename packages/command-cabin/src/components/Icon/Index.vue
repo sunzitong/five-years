@@ -33,7 +33,7 @@ import Income from "./components/Income.vue";
 import RoomNumber from "./components/RoomNumber.vue";
 import NumberOfOpeningRooms from "./components/NumberOfOpeningRooms.vue";
 import YearIncome from "./components/YearIncome.vue";
-import Power from "./components/Power.vue";
+import Energy from "./components/Energy.vue";
 
 const conponents = {
   asce: AsceAndDesc,
@@ -67,7 +67,7 @@ const conponents = {
   "version-metting": VersionMetting,
   "turn-back": TurnBack,
   "data-source": DataSource,
-  power: Power,
+  energy: Energy,
 };
 
 @Component({
@@ -96,7 +96,7 @@ const conponents = {
     RoomNumber,
     NumberOfOpeningRooms,
     YearIncome,
-    Power,
+    Energy,
   },
 })
 export default class Icon extends Vue {

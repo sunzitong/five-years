@@ -115,7 +115,7 @@ import { formatColorStr } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class Power extends Vue {
+export default class Energy extends Vue {
   /**
    * 箭头方向
    * Left 左
