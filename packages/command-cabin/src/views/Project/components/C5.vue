@@ -1,13 +1,14 @@
 <template>
   <div class="box">
-    <div class="tag">9月试算</div>
-    <Icon type="trangle" class="icon" :size="70" />
+    <div class="tag-year">9月试算</div>
+    <Icon type="trangle" class="icon-warn" :size="70" />
     <div class="content">
-      <div class="chart">
+      <div class="chart animate__animated">
+        <AnimateBgCircle />
         <van-circle
           v-model="currentRate"
           :rate="rate"
-          :speed="100"
+          :speed="50"
           :text="text"
           layer-color="#14437F"
           :stroke-width="240"
@@ -42,9 +43,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
+import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
 
 @Component({
-  components: { Icon },
+  components: { Icon, AnimateBgCircle },
 })
 export default class C5 extends Vue {
   currentRate = 20;
@@ -65,7 +67,7 @@ $light: #01f5f1;
   overflow: hidden;
   margin-top: -60px;
 }
-.tag {
+.tag-year {
   @extend %flex-center;
   position: absolute;
   top: 34px;
@@ -76,7 +78,7 @@ $light: #01f5f1;
   background: #24386d;
   border-radius: 6px;
 }
-.icon {
+.icon-warn {
   position: absolute;
   top: 28px;
   right: 50px;
@@ -87,6 +89,7 @@ $light: #01f5f1;
   width: 100%;
   height: 100%;
   .chart {
+    position: relative;
     @extend %flex-center;
     width: 424px;
     height: 424px;

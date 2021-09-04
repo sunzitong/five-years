@@ -90,7 +90,7 @@ $padding-x: 82px;
   font-weight: 500;
   font-size: 36px;
   padding-left: $padding-x;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 .label {
   font-size: 30px;
