@@ -10,11 +10,9 @@
       :d="customPathD"
       :stroke="fill[0]"
       stroke-opacity="0.3"
-      stroke-width="14"
+      :stroke-width="strokeWidth"
     />
-    <path :d="customPathD" :stroke="fill[0]" :stroke-width="strokeWidth">
-      <animate attributeName="d" dur="0.8s" repeatCount="indefinite" />
-    </path>
+    <!-- <path :d="customPathD" :stroke="fill[0]" :stroke-width="strokeWidth" /> -->
     <ellipse
       cx="90"
       cy="91.0039"
@@ -35,6 +33,7 @@
         <stop :stop-color="fill[1]" stop-opacity="0" />
         <stop offset="1" :stop-color="fill[2]" stop-opacity="0.61">
           <animate
+            v-if="animate"
             attributeName="stop-opacity"
             dur="0.8s"
             repeatCount="indefinite"
@@ -63,6 +62,11 @@ export default class ProgressCircle extends Vue {
   @Prop({ default: 14 }) strokeWidth!: number;
 
   /**
+   * 边框宽度
+   */
+  @Prop({ default: false }) animate!: boolean;
+
+  /**
    * v-model same as value
    */
   @VModel({ type: Number }) iValue!: number;
@@ -83,20 +87,8 @@ export default class ProgressCircle extends Vue {
    * 用户自定义路径
    */
   get customPathD() {
-    console.log(this.progress);
     const r = 90 - this.strokeWidth / 2;
-    const d2a = (n: number) => {
-      return (n / Math.PI) * 180;
-    };
-
-    console.log(r, this.iValue);
-    const ex = r * Math.sin(d2a(this.iValue)) + r;
-    const ey = r * Math.cos(d2a(this.iValue)) + r;
-
-    console.log(ex, ey);
-
-    return `M90 90 a${r},${r} 0 1,1 130,163`;
-    // return `M50 163 a${r},${r} 0 1,1 130,163`;
+    return `M50 163 A${r},${r} 0 1,1 130,163`;
   }
 
   /**
