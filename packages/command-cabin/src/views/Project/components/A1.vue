@@ -70,7 +70,7 @@ $padding-x: 82px;
   font-family: PingFang SC;
   line-height: 1;
   width: 1098px;
-  height: 560px;
+  /* height: 560px; */
   .list {
     display: flex;
     flex-wrap: wrap;
@@ -90,7 +90,7 @@ $padding-x: 82px;
   font-weight: 500;
   font-size: 36px;
   padding-left: $padding-x;
-  margin-top: 30px;
+  margin-top: 6px;
 }
 .label {
   font-size: 30px;

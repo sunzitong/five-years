@@ -10,9 +10,13 @@
           <van-row gutter="24">
             <van-col>
               <!-- 资产类型 -->
-              <Card style="width: 1098px; height: 560px"></Card>
+              <Card style="width: 1098px; height: 560px">
+                <A1 />
+              </Card>
               <WhiteSpace />
-              <Card style="width: 1098px; height: 560px"></Card>
+              <Card style="width: 1098px; height: 560px">
+                <A2 />
+              </Card>
             </van-col>
             <van-col>
               <Card style="width: 1218px; height: 1145px"></Card>
@@ -25,21 +29,27 @@
                 title="经营团队"
                 size="small"
                 style="width: 764px; height: 408px"
-              ></Card>
+              >
+                <A3 />
+              </Card>
             </van-col>
             <van-col>
               <Card
                 title="设计团队"
                 size="small"
                 style="width: 764px; height: 408px"
-              ></Card>
+              >
+                <A4 />
+              </Card>
             </van-col>
             <van-col>
               <Card
                 title="施工团队"
                 size="small"
                 style="width: 764px; height: 408px"
-              ></Card>
+              >
+                <A5 />
+              </Card>
             </van-col>
           </van-row>
           <WhiteSpace />
@@ -64,10 +74,9 @@
               <Card style="width: 1506px; height: 2398px"></Card>
             </van-col>
             <van-col>
-              <Card
-                title="综合经营指数"
-                style="width: 1050px; height: 597px"
-              ></Card>
+              <Card title="综合经营指数" style="width: 1050px; height: 597px">
+                <C5 />
+              </Card>
               <WhiteSpace />
               <Card
                 title="当前投资实现情况"
@@ -153,12 +162,24 @@ import Base from "@/views/Base";
 import SubWrapper from "@/components/SubWrapper/Index.vue";
 import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
+import A1 from "./components/A1.vue";
+import A2 from "./components/A2.vue";
+import A3 from "./components/A3.vue";
+import A4 from "./components/A4.vue";
+import A5 from "./components/A5.vue";
+import C5 from "./components/C5.vue";
 
 @Component({
   components: {
     SubWrapper,
     Card,
     WhiteSpace,
+    A1,
+    A2,
+    A3,
+    A4,
+    A5,
+    C5,
   },
 })
 export default class Index extends Base {}

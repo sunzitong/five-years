@@ -57,13 +57,13 @@ export default class C5 extends Vue {
 $light: #01f5f1;
 .box {
   width: 1050px;
-  height: 528px;
+  height: 550px;
   font-family: PingFang SC;
   font-size: 30px;
   color: #fff;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 10px #fff;
+  margin-top: -60px;
 }
 .tag {
   @extend %flex-center;
