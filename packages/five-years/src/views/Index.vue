@@ -9,7 +9,7 @@
           )
         "
       ></div>
-      <a href='weixin://dl/business/?t=UWD6sWSZ2Ro'>打开小程序</a>
+      <a @click="handleGoPage">打开小程序</a>
       <aside class="share" @click="share">分享</aside>
     </header>
     <main class="main">
@@ -157,6 +157,7 @@ export default class Index extends Base {
    * 来源 App.vue中定义
    */
   @Inject() visitSource!: string;
+  
   /**
    * 分享方法
    * 来源 App.vue中定义
@@ -168,6 +169,7 @@ export default class Index extends Base {
   mounted() {
     document.title = "冠寓";
     this.getWxSign();
+    console.log("this.visitSource", this.visitSource);
     if (this.visitSource === "小程序") {
       this.share();
     }
@@ -251,7 +253,31 @@ export default class Index extends Base {
       return;
     }
   }
-
+  handleGoPage(){
+    if (this.visitSource === "小程序") {
+      window.wx.navigateToMiniProgram({
+        appId: "wx5ecb96056a1b7be5",
+        path: "page/index/index?id=123",
+        extraData: {
+          foo: "bar",
+        },
+        envVersion: "develop",
+        success(res: any) {
+          console.log("success", res);
+          // 打开成功
+        },
+        fail(res: any) {
+          // 打开失败
+          console.log("fail", res);
+        },
+        complete() {
+          // 调用结束  不管成功还是失败都执行
+        },
+      });
+    } else {
+      location.href = "weixin://dl/business/?t=UWD6sWSZ2Ro";
+    }
+  }
   //动态渲染微信开发标签 跳转小程序
   renderDom(imgUrl: any) {
     let script = document.createElement("script");
