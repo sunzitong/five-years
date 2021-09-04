@@ -1,10 +1,4 @@
-0 首屏
-0-5 中央奖补
-0-6 透后攻坚
-0-8 成本分析
-0-9 产品品质
-0-10 维保报事
-0-11 维保报事
+
 
 --模板--
 
@@ -40,6 +34,6 @@ export default class Example extends Vue {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="scss" scoped></style>
 
 ```

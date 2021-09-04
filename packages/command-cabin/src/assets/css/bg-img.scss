@@ -12,6 +12,7 @@ $img-map: (
   "box-footer-bg": "box-footer-bg.png",
   "box-lattices": "box-lattices.png",
   "subtitle-bg": "subtitle-bg.png",
+  "header": "header.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
