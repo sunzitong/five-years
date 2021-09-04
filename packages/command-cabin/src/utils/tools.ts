@@ -63,3 +63,26 @@ export const formatColorStr: FormatColorStr = (
   }
   return [str].concat(Array(length - 1).fill("#FFF"));
 };
+
+/**
+ * 千分符格式化数字
+ * @param number 要格式化的数字
+ * @param sep 默认逗号分隔符
+ * @param stepLen 默认按3位分隔
+ */
+export const sepNumber = (number: number, sep = ",", stepLen = 3) => {
+  const arr = number.toString().split(".");
+  const str = arr[0];
+  let step = str.length % stepLen;
+  let result = str.slice(0, step);
+  while (step < str.length) {
+    console.log(step);
+    if (step > 0) result += sep;
+    result += str.slice(step, step + stepLen);
+    step += stepLen;
+  }
+  if (arr[1]) {
+    result += "." + arr[1];
+  }
+  return result;
+};
