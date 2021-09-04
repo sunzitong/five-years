@@ -14,7 +14,10 @@
                 <A1 />
               </Card>
               <WhiteSpace />
-              <Card style="width: 1098px; height: 560px">
+              <Card :showFooter="true" style="width: 1098px; height: 560px">
+                <template #footer>
+                  <a>查看详情→</a>
+                </template>
                 <A2 />
               </Card>
             </van-col>
