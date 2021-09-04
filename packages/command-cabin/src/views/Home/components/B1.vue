@@ -131,6 +131,7 @@ export default class Example extends Vue {
           barGap: "-100%",
           position: "insideBottom",
           barWidth: 30,
+          distance: 10,
           label: {
             normal: {
               show: true,
@@ -153,6 +154,30 @@ export default class Example extends Vue {
           yAxisIndex: 0,
           color: "#FFEF69",
           barWidth: 30,
+          label: {
+            show: true,
+            position: "insideTopLeft",
+            offset: [-13, -10],
+            align: "right",
+            formatter: (params: any) => {
+              if (!params) return;
+              return "{a|" + params.value + "}{one|\n▼}";
+            },
+            rich: {
+              a: {
+                position: "insideTopLeft",
+                fontSize: 22,
+                lineHeight: 22,
+                color: "#FFFFFF",
+              },
+              one: {
+                position: "insideTopLeft",
+                fontSize: 16,
+                lineHeight: 16,
+                color: "#FFEF69",
+              },
+            },
+          },
           data: this.data1,
         },
         {
@@ -162,6 +187,31 @@ export default class Example extends Vue {
           yAxisIndex: 0,
           color: "#57A6FB",
           barWidth: 30,
+          label: {
+            show: true,
+            position: "insideTopLeft",
+            offset: [-13, -10],
+            align: "right",
+            formatter: (params: any) => {
+              if (!params) return;
+              return "{a|" + params.value + "}{two|\n▼}";
+            },
+            rich: {
+              a: {
+                position: "insideTopLeft",
+                fontSize: 22,
+                lineHeight: 22,
+                color: "#FFFFFF",
+              },
+
+              two: {
+                position: "insideTopLeft",
+                fontSize: 16,
+                lineHeight: 16,
+                color: "#57A6FB",
+              },
+            },
+          },
           data: this.data2,
         },
         {
@@ -171,6 +221,31 @@ export default class Example extends Vue {
           yAxisIndex: 0,
           color: "#A957FB",
           barWidth: 30,
+          distance: 4,
+          label: {
+            show: true,
+            position: "insideTopLeft",
+            offset: [-13, -10],
+            align: "right",
+            formatter: (params: any) => {
+              if (!params) return;
+              return "{a|" + params.value + "}{three|\n▼}";
+            },
+            rich: {
+              a: {
+                position: "insideTopLeft",
+                fontSize: 22,
+                lineHeight: 22,
+                color: "#FFFFFF",
+              },
+              three: {
+                position: "insideTopLeft",
+                fontSize: 16,
+                lineHeight: 16,
+                color: "#A957FB",
+              },
+            },
+          },
           data: this.data3,
         },
       ],
