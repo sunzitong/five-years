@@ -91,7 +91,6 @@
             <stop offset="1" stop-opacity="0" />
           </linearGradient>
         </defs>
-        
       </svg>
     </div>
     <div v-if="showRectBackground" class="app-card-decorate__lattices"></div>
