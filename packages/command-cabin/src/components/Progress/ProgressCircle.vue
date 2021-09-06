@@ -332,7 +332,14 @@ export default class ProgressCircle extends Vue {
    * 进度条端口风格
    */
   @Prop({ default: "butt" }) strokeLinecap!: "butt" | "round";
+  /**
+   * 进度条宽度
+   */
   @Prop({ default: 100 }) strokeWidth!: number;
+  /**
+   * 进度条大小
+   */
+  @Prop({ default: 100 }) strokeSize!: number;
   /**
    * false: 仪表盘风格
    * true: 进度条风格
@@ -353,17 +360,17 @@ export default class ProgressCircle extends Vue {
     const vantProps = [
       {
         value: this.gap ? 80 : 100,
-        strokeWidth: 210,
         color: "#14437F",
         size: 210,
         strokeLinecap: this.strokeLinecap,
+        strokeWidth: this.strokeWidth,
         style: this.gap ? `transform: rotate(216deg)` : null,
       },
       {
-        strokeWidth: 210,
         color: this.color,
         size: 210,
         strokeLinecap: this.strokeLinecap,
+        strokeWidth: this.strokeWidth,
         style: this.gap
           ? `transform: rotate(${this.clockwise ? "+" : "-"}216deg)`
           : null,
@@ -371,22 +378,16 @@ export default class ProgressCircle extends Vue {
       },
     ];
     if (this.styleType === 1) {
-      vantProps[0].strokeWidth = this.size * 0.3;
-      vantProps[1].strokeWidth = this.size * 0.3;
       vantProps[0].size = this.size * 0.68;
       vantProps[1].size = this.size * 0.68;
       return { vantProps, borderR: [] };
     }
     if (this.styleType === 2) {
-      vantProps[0].strokeWidth = this.size * 0.7;
-      vantProps[1].strokeWidth = this.size * 0.7;
       vantProps[0].size = this.size * 0.7;
       vantProps[1].size = this.size * 0.7;
       return { vantProps, borderR: [172, 190, 208] };
     }
     if (this.styleType === 3) {
-      vantProps[0].strokeWidth = this.size * 0.4;
-      vantProps[1].strokeWidth = this.size * 0.4;
       vantProps[0].size = this.size * 0.68;
       vantProps[1].size = this.size * 0.68;
       return { vantProps, borderR: [170, 180, 190], showDial: true };

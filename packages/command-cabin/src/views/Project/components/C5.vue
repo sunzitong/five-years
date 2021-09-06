@@ -2,9 +2,14 @@
   <div class="box">
     <div class="tag-year">9月试算</div>
     <Icon type="trangle" class="icon-warn" :size="70" />
-    <div class="content">
-      <div class="chart animate__animated">
-        <ProgressCircle :styleType="2" :rate="rate" :size="400">
+    <div class="content animate__animated">
+      <div class="chart">
+        <ProgressCircle
+          :styleType="2"
+          :rate="rate"
+          :size="400"
+          :strokeWidth="210"
+        >
           <template v-slot="{ value }">
             <div class="rate-text">
               <div class="value">{{ value }}</div>
