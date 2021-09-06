@@ -39,7 +39,7 @@ export interface NumsByType {
 /**
  * 门店屏幕-经营现状-舆情风险
  * @createBy wuyao
- * @updateAt 2021/9/1 下午8:08:22
+ * @updateAt 2021/9/6 上午10:42:54
  * @method GET
  */
 export const fetchSentiment = (params: SentimentParams) => {
