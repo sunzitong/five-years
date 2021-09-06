@@ -1,0 +1,6 @@
+- /api/project/get [获取项目基本信息]
+- /api/interface/getCatMenu [获取所有分类]
+- /api/interface/list_menu [获取所有分类和接口]
+- /api/interface/list [获取接口列表分页]
+- /api/interface/list_cat [获取某个分类下接口列表分页]
+- /api/interface/get [获取接口详情]
