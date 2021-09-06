@@ -7,7 +7,7 @@
         :rate="50"
         :size="280"
         :strokeWidth="100"
-        :strokeSize="180"
+        :strokeSize="185"
         strokeLinecap="round"
         color="#F7D14A"
         primary
