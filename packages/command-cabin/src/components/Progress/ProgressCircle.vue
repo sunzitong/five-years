@@ -154,12 +154,12 @@
           dur="3s"
           repeatCount="indefinite"
         />
-        <animate
+        <!-- <animate
           attributeName="opacity"
           values="0.5;1;0.5"
           dur="2s"
           repeatCount="indefinite"
-        />
+        /> -->
       </g>
       <defs>
         <filter
