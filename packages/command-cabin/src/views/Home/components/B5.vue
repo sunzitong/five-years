@@ -83,7 +83,6 @@ export default class B5 extends Vue {
       key: "name",
       value: "ratio",
     });
-    
   }
 
   mounted() {
