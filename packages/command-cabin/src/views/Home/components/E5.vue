@@ -230,8 +230,6 @@ export default class E5 extends Vue {
           },
           label: {
             show: true,
-            offset: [0, -10],
-            width: 100,
             align: "center",
             textStyle: {
               color: "#fff",
