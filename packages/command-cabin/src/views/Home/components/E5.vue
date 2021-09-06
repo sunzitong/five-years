@@ -11,6 +11,7 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import * as echarts from "echarts";
+import { ECOption } from "@/plugins/echarts";
 
 @Component
 export default class E5 extends Vue {
@@ -23,7 +24,7 @@ export default class E5 extends Vue {
 
   mounted() {
     const myChart = echarts.init(this.wrapper);
-    const option = {
+    const option: ECOption = {
       grid: {
         top: "12%",
         right: "5%",
@@ -31,7 +32,12 @@ export default class E5 extends Vue {
         bottom: "12%",
       },
       tooltip: {
-        show: false,
+        show: true,
+        trigger: "axis",
+        axisPointer: {
+          type: "shadow",
+        },
+        showContent: false,
       },
       dataZoom: [
         {
@@ -87,9 +93,7 @@ export default class E5 extends Vue {
             margin: 20,
             rotate: 60, //x轴倾斜40°
             color: "#fff",
-            textStyle: {
-              fontSize: 14,
-            },
+            fontSize: 14,
           },
         },
       ],
@@ -155,7 +159,7 @@ export default class E5 extends Vue {
             38,
             98,
           ],
-          stack: true,
+          stack: "a",
           barWidth: 20,
           itemStyle: {
             color: new echarts.graphic.LinearGradient(
@@ -178,15 +182,13 @@ export default class E5 extends Vue {
           },
           label: {
             show: true,
-            textStyle: {
-              color: "#fff",
-              fontSize: 18,
-            },
+            color: "#fff",
+            fontSize: 18,
           },
         },
         {
           type: "bar",
-          stack: true,
+          stack: "a",
           data: [
             20,
             2,
@@ -224,10 +226,8 @@ export default class E5 extends Vue {
           label: {
             show: true,
             align: "center",
-            textStyle: {
-              color: "#fff",
-              fontSize: 18,
-            },
+            color: "#fff",
+            fontSize: 18,
           },
         },
       ],
