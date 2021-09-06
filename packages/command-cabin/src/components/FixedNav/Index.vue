@@ -83,7 +83,7 @@
       </svg>
       <div class="app-fixed-nav__content">
         <Btn
-          @click="toggleNav"
+          @click="toPage(item)"
           class="app_fixed-nav__links"
           v-for="item in menus"
           :key="item.title"
@@ -112,6 +112,8 @@ import { uuid } from "@guanyu/shared";
 import FixedNavBtn from "./components/FixedNavBtn.vue";
 import Btn from "@/components/Btn/Index.vue";
 
+export type MenuItem = { title: string; href: string };
+
 @Component({
   components: {
     Btn,
@@ -132,12 +134,12 @@ export default class FixedNav extends Vue {
   /**
    * 菜单
    */
-  menus = [
-    { title: "首页", href: "/" },
+  menus: MenuItem[] = [
+    { title: "首页", href: "/home" },
     { title: "拓展盘面", href: "/" },
     { title: "营造盘面", href: "/" },
     { title: "经营现状", href: "/" },
-    { title: "门店", href: "/" },
+    { title: "门店", href: "/project" },
     { title: "日常巡检", href: "/" },
     { title: "开业巡检", href: "/" },
   ];
@@ -202,6 +204,14 @@ export default class FixedNav extends Vue {
    */
   mounted() {
     this.createNavAnimate();
+  }
+
+  /**
+   * 跳转到页面
+   */
+  toPage(item: MenuItem) {
+    this.$router.push(item.href);
+    this.toggleNav();
   }
 
   /**
