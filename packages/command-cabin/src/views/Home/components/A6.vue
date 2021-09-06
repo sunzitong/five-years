@@ -28,6 +28,11 @@
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { sepNumber } from "@/utils/tools";
+import dayjs from "dayjs";
+import {
+  fetchExpandDisk,
+  ExpandDiskReturn,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk";
 
 console.log(echarts);
 
@@ -36,13 +41,25 @@ console.log(echarts);
 })
 export default class A6 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<ExpandDiskReturn> = {};
+
+  year = dayjs().year();
 
   sepNumber = sepNumber;
 
-  currentYear = 8200;
-  wholeCycle = 3553;
+  get currentYear() {
+    return this.resData.yearNetIncomeCompletionRate;
+  }
+  get wholeCycle() {
+    return this.resData.allCollectedNetIncome;
+  }
 
-  mounted() {
+  async mounted() {
+    const response = await fetchExpandDisk({ year: this.year });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    }
+
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {};

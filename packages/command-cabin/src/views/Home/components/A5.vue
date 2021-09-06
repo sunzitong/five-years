@@ -9,7 +9,7 @@
       ></div>
       <div class="top_text">全年已到账</div>
       <div class="bottom_text">
-        <span>{{ billNum }}</span>
+        <span>{{ sepNumber(resData.yearCollectedSubsidies) }}</span>
         万
       </div>
     </div>
@@ -19,6 +19,12 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
+import dayjs from "dayjs";
+import {
+  fetchExpandDisk,
+  ExpandDiskReturn,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk";
+import { sepNumber } from "@/utils/tools";
 
 console.log(echarts);
 
@@ -27,10 +33,18 @@ console.log(echarts);
 })
 export default class A5 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
+  sepNumber = sepNumber;
 
-  billNum = 332;
+  resData: Partial<ExpandDiskReturn> = {};
 
-  mounted() {
+  year = dayjs().year();
+
+  async mounted() {
+    const response = await fetchExpandDisk({ year: this.year });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    }
+
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {};
