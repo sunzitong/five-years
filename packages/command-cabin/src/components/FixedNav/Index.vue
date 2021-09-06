@@ -95,6 +95,13 @@
     <div @click="toggleNav" class="app-fixed-nav__btn">
       <FixedNavBtn :position="position" text="快捷导航" />
     </div>
+    <div
+      v-if="!['home', 'index'].includes($route.meta)"
+      @click="$router.go(-1)"
+      class="app-fixed-nav__back"
+    >
+      <FixedNavBtn :position="position" text="返回" />
+    </div>
   </div>
 </template>
 
@@ -224,6 +231,11 @@ export default class FixedNav extends Vue {
     transform: translateY(-50%);
   }
 
+  &__back {
+    position: absolute;
+    bottom: 0;
+  }
+
   &__filter {
     position: absolute;
     top: 0;
@@ -252,6 +264,9 @@ export default class FixedNav extends Vue {
     .app-fixed-nav__btn {
       left: 100%;
     }
+    .app-fixed-nav__back {
+      left: 100%;
+    }
     .app-fixed-nav__content {
       left: 0;
       right: 70px;
@@ -268,6 +283,9 @@ export default class FixedNav extends Vue {
   &__right {
     right: -555px;
     .app-fixed-nav__btn {
+      right: 100%;
+    }
+    .app-fixed-nav__back {
       right: 100%;
     }
     .app-fixed-nav__content {
