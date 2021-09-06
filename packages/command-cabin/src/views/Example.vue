@@ -109,6 +109,8 @@
         </Card>
         <Card title="ProgressCircle">
           <ProgressCircle :size="180" v-model="progress" />
+
+          <ProgressCircle1 :size="180" v-model="progress" />
         </Card>
         <Card title="Animationend">
           <Animationend key="1" :scrollMinCount="10" :dataSource="dataSource">
@@ -174,6 +176,7 @@ import Card from "@/components/Card/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
+import ProgressCircle1 from "@/components/Progress/ProgressCircle1.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
@@ -188,6 +191,7 @@ import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
     Icon,
     ProgressBar,
     ProgressCircle,
+    ProgressCircle1,
     Animationend,
     Btn,
     BlurBox,
