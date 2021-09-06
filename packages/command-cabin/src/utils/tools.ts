@@ -86,3 +86,10 @@ export const sepNumber = (number: number, sep = ",", stepLen = 3) => {
   }
   return result;
 };
+
+/**
+ * 角度转弧度
+ * @param n number 角度
+ * @returns angle 弧度
+ */
+export const d2a = (n: number): number => (n * Math.PI) / 180;
