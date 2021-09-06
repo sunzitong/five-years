@@ -13,7 +13,7 @@ export interface ListParams {
   /**
    * group:全国；area:大区；city:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空
@@ -28,12 +28,12 @@ export interface ListParams {
   /**
    * 项目阶段  Open("已开业"), NotOpen("未开业");
    */
-  stage?: number;
+  stage?: string;
 
   /**
    * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")
    */
-  riskType?: number;
+  riskType?: string;
 }
 
 /**

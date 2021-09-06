@@ -18,7 +18,7 @@ export interface DeviceOfflineParams {
   /**
    * 统计哪个时间的的数据，默认是当前时间
    */
-  dataTime?: number;
+  dataTime?: string;
 }
 
 /**
@@ -34,7 +34,7 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/3 下午5:39:04
+ * @updateAt 2021/9/6 下午2:32:02
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {

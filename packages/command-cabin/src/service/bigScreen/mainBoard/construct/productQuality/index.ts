@@ -13,7 +13,7 @@ export interface ProductQualityParams {
   /**
    * group:全国；area:大区；city:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空

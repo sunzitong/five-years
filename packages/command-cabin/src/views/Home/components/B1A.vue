@@ -16,8 +16,12 @@
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { sepNumber } from "@/utils/tools";
-
-console.log(echarts);
+import {
+  fetchProjectOpen,
+  ProjectOpenReturn,
+} from "@/service/bigScreen/mainBoard/construct/projectOpen/";
+import dayjs from "dayjs";
+import { iwant, Nullable } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -26,28 +30,54 @@ export default class B1A extends Vue {
   sepNumber = sepNumber;
 
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<ProjectOpenReturn> = {};
 
-  openingNum = 1218900;
-  targetNum = 15432;
+  year = dayjs().year();
+
+  openingNum: Nullable<number> = null;
 
   legendName = ["重资产", "中资产", "轻资产"];
 
-  data1 = [3513, 5545, 5545, 5545, 5545];
-  data2 = [3513, 6543, 65322, 65322, 65322];
-  data3 = [0, 4634, 4634, 4634, 4634];
-  //   total = [9832, 89832, 93832, 373832, 473832];
+  years: number[] = [];
+  data1: number[] = [];
+  data2: number[] = [];
+  data3: number[] = [];
+  totals: number[] = [];
 
-  getTotal() {
-    let total = [];
-    for (let i = 0; i < this.data1.length; i++) {
-      let num = Number(this.data1[i] + this.data2[i] + this.data3[i]);
-      total.push(num);
+  getSubData() {
+    const list = iwant.array(this.resData.totalOpenList);
+    for (const el of list) {
+      this.years.push(el.year);
+      this.totals.push(el.total);
+      el.list.forEach((item) => {
+        if (item.transactionModel === "重资产") {
+          this.data1.push(item.roomNum);
+        } else if (item.transactionModel === "中资产") {
+          this.data2.push(item.roomNum);
+        } else if (item.transactionModel === "轻资产") {
+          this.data3.push(item.roomNum);
+        }
+      });
     }
-    console.log(this.total);
-    return total;
   }
 
-  mounted() {
+  async created() {
+    const response = await fetchProjectOpen({
+      regionType: "group",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+
+      this.openingNum = this.resData.totalOpenNum;
+
+      this.getSubData();
+      this.paintChart();
+    }
+  }
+
+  paintChart() {
     const myChart = echarts.init(this.wrapper);
     let option = {
       legend: {
@@ -72,7 +102,7 @@ export default class B1A extends Vue {
           lineHeight: 30,
           color: "#FFFFFF",
         },
-        data: [2017, 2018, 2019, 2020, 2021],
+        data: this.years,
         axisLine: { show: false },
         axisTick: { show: false },
       },
@@ -126,7 +156,7 @@ export default class B1A extends Vue {
           itemStyle: {
             color: "rgba(128,128,128,0)",
           },
-          data: this.getTotal(),
+          data: this.totals,
         },
         {
           name: "重资产",
