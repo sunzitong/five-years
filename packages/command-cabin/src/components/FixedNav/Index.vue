@@ -83,7 +83,7 @@
       </svg>
       <div class="app-fixed-nav__content">
         <Btn
-          @click="toggleNav"
+          @click="toPage(item)"
           class="app_fixed-nav__links"
           v-for="item in menus"
           :key="item.title"
@@ -95,6 +95,13 @@
     <div @click="toggleNav" class="app-fixed-nav__btn">
       <FixedNavBtn :position="position" text="快捷导航" />
     </div>
+    <div
+      v-if="!['home', 'index'].includes($route.meta)"
+      @click="$router.go(-1)"
+      class="app-fixed-nav__back"
+    >
+      <FixedNavBtn :position="position" text="返回" />
+    </div>
   </div>
 </template>
 
@@ -104,6 +111,8 @@ import { gsap } from "gsap";
 import { uuid } from "@guanyu/shared";
 import FixedNavBtn from "./components/FixedNavBtn.vue";
 import Btn from "@/components/Btn/Index.vue";
+
+export type MenuItem = { title: string; href: string };
 
 @Component({
   components: {
@@ -125,12 +134,12 @@ export default class FixedNav extends Vue {
   /**
    * 菜单
    */
-  menus = [
-    { title: "首页", href: "/" },
+  menus: MenuItem[] = [
+    { title: "首页", href: "/home" },
     { title: "拓展盘面", href: "/" },
     { title: "营造盘面", href: "/" },
     { title: "经营现状", href: "/" },
-    { title: "门店", href: "/" },
+    { title: "门店", href: "/project" },
     { title: "日常巡检", href: "/" },
     { title: "开业巡检", href: "/" },
   ];
@@ -198,6 +207,14 @@ export default class FixedNav extends Vue {
   }
 
   /**
+   * 跳转到页面
+   */
+  toPage(item: MenuItem) {
+    this.$router.push(item.href);
+    this.toggleNav();
+  }
+
+  /**
    * 切换快捷导航
    */
   toggleNav() {
@@ -222,6 +239,11 @@ export default class FixedNav extends Vue {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  &__back {
+    position: absolute;
+    bottom: 0;
   }
 
   &__filter {
@@ -252,6 +274,9 @@ export default class FixedNav extends Vue {
     .app-fixed-nav__btn {
       left: 100%;
     }
+    .app-fixed-nav__back {
+      left: 100%;
+    }
     .app-fixed-nav__content {
       left: 0;
       right: 70px;
@@ -268,6 +293,9 @@ export default class FixedNav extends Vue {
   &__right {
     right: -555px;
     .app-fixed-nav__btn {
+      right: 100%;
+    }
+    .app-fixed-nav__back {
       right: 100%;
     }
     .app-fixed-nav__content {
