@@ -9,6 +9,7 @@
           :rate="rate"
           :size="400"
           :strokeWidth="210"
+          :strokeSize="280"
         >
           <template v-slot="{ value }">
             <div class="rate-text">

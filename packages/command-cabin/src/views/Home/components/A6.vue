@@ -2,11 +2,28 @@
   <div class="page__attack_after_throwing__map">
     <div class="text_pannel">
       <!-- 仪表盘组件 -->
-      <div
-        class="app-echarts"
-        ref="wrapper"
-        style="width: 183px; height: 183px"
-      ></div>
+      <ProgressCircle
+        :styleType="1"
+        :rate="50"
+        :size="280"
+        :strokeWidth="100"
+        :strokeSize="180"
+        strokeLinecap="round"
+        color="#4182C7"
+        primary
+        style="height: 190px"
+      >
+        <template v-slot="{ value }">
+          <div class="rate-text">
+            <div class="value">{{ value }}%</div>
+            <div class="desc">
+              预算达成率
+              <br />
+              （全周期）
+            </div>
+          </div>
+        </template>
+      </ProgressCircle>
       <div class="top_text">净全年利润攻坚贡献值</div>
       <van-row class="text_row">
         <van-col :span="12" class="left_text">当年</van-col>
@@ -26,6 +43,7 @@
 
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
+import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import echarts from "@/plugins/echarts";
 import { sepNumber } from "@/utils/tools";
 import dayjs from "dayjs";
@@ -37,7 +55,7 @@ import {
 console.log(echarts);
 
 @Component({
-  components: {},
+  components: { ProgressCircle },
 })
 export default class A6 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
@@ -120,6 +138,22 @@ export default class A6 extends Vue {
     font-family: "DIN Alternate";
     font-size: 40px;
     line-height: 36px;
+  }
+}
+
+/* 仪表盘 */
+.rate-text {
+  .value {
+    @extend %value__letter;
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 38px;
+    color: #fff;
+  }
+  .desc {
+    color: #65d4fc;
+    font-size: 20px;
+    line-height: 20px;
   }
 }
 </style>

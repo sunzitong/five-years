@@ -1,5 +1,9 @@
 <template>
-  <div class="progress-circle" :class="`progress-circle--${styleType}`">
+  <div
+    class="progress-circle"
+    :class="`progress-circle--${styleType}`"
+    :style="{ height: size + 'px' }"
+  >
     <!-- 圈层动画 -->
     <svg
       :width="size"
@@ -361,14 +365,14 @@ export default class ProgressCircle extends Vue {
       {
         value: this.gap ? 80 : 100,
         color: "#14437F",
-        size: 210,
+        size: this.strokeSize,
         strokeLinecap: this.strokeLinecap,
         strokeWidth: this.strokeWidth,
         style: this.gap ? `transform: rotate(216deg)` : null,
       },
       {
         color: this.color,
-        size: 210,
+        size: this.strokeSize,
         strokeLinecap: this.strokeLinecap,
         strokeWidth: this.strokeWidth,
         style: this.gap
@@ -378,18 +382,12 @@ export default class ProgressCircle extends Vue {
       },
     ];
     if (this.styleType === 1) {
-      vantProps[0].size = this.size * 0.68;
-      vantProps[1].size = this.size * 0.68;
       return { vantProps, borderR: [] };
     }
     if (this.styleType === 2) {
-      vantProps[0].size = this.size * 0.7;
-      vantProps[1].size = this.size * 0.7;
       return { vantProps, borderR: [172, 190, 208] };
     }
     if (this.styleType === 3) {
-      vantProps[0].size = this.size * 0.68;
-      vantProps[1].size = this.size * 0.68;
       return { vantProps, borderR: [170, 180, 190], showDial: true };
     }
     return { vantProps };
@@ -416,7 +414,6 @@ export default class ProgressCircle extends Vue {
 .progress-circle {
   position: relative;
   width: 100%;
-  height: 100%;
   &__outer,
   &__inner,
   &__text,
