@@ -254,9 +254,10 @@ export default class Index extends Base {
     }
   }
   handleGoPage(){
+    console.log(this.visitSource, "this.visitSource ");
     if (this.visitSource === "小程序") {
       window.wx.miniProgram.navigateTo({
-        url: "/pages/shopTypeList/shopTypeList",
+        url: "/pages/index/demo",
       });
     } else {
       location.href = "weixin://dl/business/?t=UWD6sWSZ2Ro";
