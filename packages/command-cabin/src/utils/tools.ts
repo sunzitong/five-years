@@ -1,5 +1,6 @@
 import Vue from "vue";
 import { iwant } from "@guanyu/shared";
+import _ from "lodash";
 
 export interface ToPixel {
   (px: number, unit?: false): number;
@@ -71,6 +72,7 @@ export const formatColorStr: FormatColorStr = (
  * @param stepLen 默认按3位分隔
  */
 export const sepNumber = (number: number, sep = ",", stepLen = 3) => {
+  if (_.isNil(number)) return "";
   const arr = number.toString().split(".");
   const str = arr[0];
   let step = str.length % stepLen;
