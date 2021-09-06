@@ -255,24 +255,8 @@ export default class Index extends Base {
   }
   handleGoPage(){
     if (this.visitSource === "小程序") {
-      window.wx.navigateToMiniProgram({
-        appId: "wx5ecb96056a1b7be5",
-        path: "/page/index/index?id=123",
-        extraData: {
-          foo: "bar",
-        },
-        envVersion: "develop",
-        success(res: any) {
-          console.log("success", res);
-          // 打开成功
-        },
-        fail(res: any) {
-          // 打开失败
-          console.log("fail", res);
-        },
-        complete() {
-          // 调用结束  不管成功还是失败都执行
-        },
+      window.wx.miniProgram.navigateTo({
+        url: "/pages/shopTypeList/shopTypeList",
       });
     } else {
       location.href = "weixin://dl/business/?t=UWD6sWSZ2Ro";
