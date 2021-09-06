@@ -2,9 +2,22 @@
   <div class="page__maintenance_report__map">
     <div
       class="app-echarts"
-      ref="wrapper"
+      ref="barChart"
       style="width: 100%; height: 500px"
     ></div>
+    <div class="pie-chart">
+      <div class="header">
+        <div class="red">
+          红
+          <span class="value__letter">12</span>
+        </div>
+        <div class="orange">
+          橙
+          <span class="value__letter">23</span>
+        </div>
+      </div>
+      <div class="chart" ref="pieChart"></div>
+    </div>
   </div>
 </template>
 
@@ -12,18 +25,32 @@
 import { Component, Ref, Vue } from "vue-property-decorator";
 import * as echarts from "echarts";
 import { ECOption } from "@/plugins/echarts";
+import { arrayToObject } from "@guanyu/shared";
 
 @Component
 export default class E5 extends Vue {
-  @Ref() wrapper!: HTMLDivElement;
+  @Ref() barChart!: HTMLDivElement;
 
   /**
    * 定时器
    */
-  timer: null | number = null;
+  barTimer: null | number = null;
+
+  /**
+   * 组件卸载
+   */
+  unmounted() {
+    if (this.barTimer) clearTimeout(this.barTimer);
+    this.barTimer = null;
+  }
 
   mounted() {
-    const myChart = echarts.init(this.wrapper);
+    this.renderBarChart();
+    this.renderPieChart();
+  }
+
+  renderBarChart() {
+    const myChart = echarts.init(this.barChart);
     const option: ECOption = {
       grid: {
         top: "12%",
@@ -251,30 +278,147 @@ export default class E5 extends Vue {
           },
         ],
       });
-      this.timer = setTimeout(nextLoop, 1000);
+      this.barTimer = setTimeout(nextLoop, 1000);
     };
-    this.timer = setTimeout(nextLoop, 1000);
-
+    this.barTimer = setTimeout(nextLoop, 1000);
     /**
      * 数据缩放事件
      */
     myChart.on("datazoom", (e) => {
       index = Math.floor(e.batch[0].start);
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(nextLoop, 5000);
+      if (this.barTimer) {
+        clearTimeout(this.barTimer);
+        this.barTimer = setTimeout(nextLoop, 5000);
       }
     });
   }
 
-  /**
-   * 组件卸载
-   */
-  unmounted() {
-    if (this.timer) clearTimeout(this.timer);
-    this.timer = null;
+  @Ref() pieChart!: HTMLDivElement;
+
+  renderPieChart() {
+    const pieData = [
+      {
+        name: "01",
+        value: "43",
+      },
+      {
+        name: "02",
+        value: "53",
+      },
+      {
+        name: "03",
+        value: "43",
+      },
+      {
+        name: "04",
+        value: "43",
+      },
+      {
+        name: "05",
+        value: "43",
+      },
+      {
+        name: "06",
+        value: "43",
+      },
+      {
+        name: "07",
+        value: "43",
+      },
+    ];
+    const pieObjData = arrayToObject(pieData, {
+      key: "name",
+      value: "value",
+    });
+    const myChart = echarts.init(this.pieChart);
+    let option = {
+      legend: {
+        orient: "vertical",
+        right: "10%",
+        top: "center",
+        icon: "rec",
+        itemWidth: 20,
+        itemHeight: 20,
+        itemGap: 16,
+        data: pieData,
+        formatter: (params: any) => {
+          return `{a|${params}}{b|  ${pieObjData[params]}%}`;
+        },
+        textStyle: {
+          rich: {
+            a: {
+              color: "#BFC0C1",
+              fontFamily: "DIN Alternate",
+              fontSize: 26,
+              width: 84,
+            },
+            b: {
+              color: "#01F5F1",
+              fontFamily: "DIN Alternate",
+              fontSize: 34,
+              align: "right",
+              width: 120,
+              marginLeft: 84,
+            },
+          },
+        },
+      },
+      series: [
+        {
+          type: "pie",
+          avoidLabelOverlap: false,
+          radius: ["35%", 130],
+          center: ["25%", "52%"],
+          color: [
+            "#FF2A76",
+            "#F4BD44",
+            "#E49981",
+            "#4988FD",
+            "#67E1FB",
+            "#55E49E",
+            "#F9D399",
+          ],
+          label: {
+            show: false,
+          },
+          data: pieData,
+        },
+      ],
+    };
+    option && myChart.setOption(option);
+    window.addEventListener("resize", () => {
+      myChart.resize();
+    });
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+$light: #01f5f1;
+.pie-chart {
+  margin-top: 50px;
+  .header {
+    display: flex;
+    margin: 0 50% -40px 0;
+    .red,
+    .orange {
+      font-size: 30px;
+      span {
+        font-size: 40;
+        color: $light;
+      }
+    }
+    .red {
+      margin: 0 42px 0 auto;
+    }
+
+    .orange {
+      margin: 0 auto 0 42px;
+    }
+  }
+  .chart {
+    width: 100%;
+    height: 400px;
+  }
+}
+</style>
