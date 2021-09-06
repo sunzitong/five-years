@@ -31,14 +31,7 @@ export default class E5 extends Vue {
         bottom: "12%",
       },
       tooltip: {
-        show: true,
-        axisPointer: {
-          // 坐标轴指示器，坐标轴触发有效
-          type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
-          shadowStyle: {
-            color: "#F50",
-          },
-        },
+        show: false,
       },
       dataZoom: [
         {
