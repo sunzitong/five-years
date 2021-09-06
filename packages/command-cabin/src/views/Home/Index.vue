@@ -147,7 +147,9 @@
         </SubWrapper>
       </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+      <FooterBackground />
+    </div>
   </div>
 </template>
 
@@ -157,6 +159,7 @@ import Base from "@/views/Base";
 import SubWrapper from "@/components/SubWrapper/Index.vue";
 import Card from "@/components/Card/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
+import FooterBackground from "@/components/FooterBackground/Index.vue";
 
 /** Jing */
 import A5 from "./components/A5.vue";
@@ -171,6 +174,7 @@ import E5 from "./components/E5.vue";
 
 @Component({
   components: {
+    FooterBackground,
     SubWrapper,
     Card,
     WhiteSpace,

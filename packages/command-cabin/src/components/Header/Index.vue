@@ -209,7 +209,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component({
   components: {},
 })
-export default class FixedNav extends Vue {}
+export default class Header extends Vue {}
 </script>
 
 <style lang="scss" scoped>
