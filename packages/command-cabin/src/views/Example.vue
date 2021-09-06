@@ -142,11 +142,7 @@
         </Card>
       </van-col>
       <van-col :span="8">
-        <Card
-          title="AnimateBgCircle"
-          :showFooter="true"
-          :showRectBackground="false"
-        >
+        <Card title="...." :showFooter="true" :showRectBackground="false">
           <div
             style="
               position: relative;
@@ -155,7 +151,6 @@
               display: flex;
             "
           >
-            <AnimateBgCircle />
             <div style="margin: auto">内容内容内容</div>
           </div>
         </Card>
@@ -177,7 +172,6 @@ import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
-import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
 
 @Component({
   components: {
@@ -191,7 +185,6 @@ import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
     Animationend,
     Btn,
     BlurBox,
-    AnimateBgCircle,
   },
 })
 export default class Example extends Vue {
