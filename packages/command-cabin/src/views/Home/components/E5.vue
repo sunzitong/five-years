@@ -12,43 +12,46 @@
 import { Component, Ref, Vue } from "vue-property-decorator";
 import * as echarts from "echarts";
 
-// console.log(echarts);
-
-@Component({
-  components: {},
-})
+@Component
 export default class E5 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
-  data = {
-    redNum: 23, //红色数
-    yellowNum: 2323, //橙色数
-    numsByCity: [
-      {
-        cityId: 1, //城市id
-        cityName: "北京", //城市名称
-        redNum: 23, //红色数
-        yellowNum: 2323, //橙色数
-      },
-    ], //各月红橙舆情条数
-    numsByType: [
-      {
-        typeNum: 1, //类型
-        num: 23, //数值
-        ratio: 23.23, //占比
-      },
-    ], //红橙舆情分类分布
-  };
+
+  /**
+   * 定时器
+   */
+  timer: null | number = null;
 
   mounted() {
     const myChart = echarts.init(this.wrapper);
-
     const option = {
       grid: {
         top: "12%",
-        right: "8%",
+        right: "5%",
         left: "8%",
         bottom: "12%",
       },
+      tooltip: {
+        show: true,
+        axisPointer: {
+          // 坐标轴指示器，坐标轴触发有效
+          type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+          shadowStyle: {
+            color: "#F50",
+          },
+        },
+      },
+      dataZoom: [
+        {
+          type: "inside",
+          zoomLock: true,
+          start: 1,
+          end: 50,
+        },
+        {
+          type: "slider",
+          show: false,
+        },
+      ],
       xAxis: [
         {
           type: "category",
@@ -67,11 +70,24 @@ export default class E5 extends Vue {
             "福建",
             "浙江",
             "江西",
+            "北京1",
+            "上海1",
+            "广西1",
+            "广州1",
+            "四川1",
+            "重庆1",
+            "天津1",
+            "河北1",
+            "河南1",
+            "湖南1",
+            "湖北1",
+            "福建1",
+            "浙江1",
+            "江西1",
           ],
           axisLine: {
             lineStyle: {
-              color: "#FFFFFF",
-              fontSize: "18px",
+              color: "rgba(0,0,0,0)",
             },
           },
           axisLabel: {
@@ -89,7 +105,7 @@ export default class E5 extends Vue {
           axisLabel: {
             formatter: "{value}",
             color: "#fff",
-            fontSize: "20px",
+            fontSize: 20,
           },
           axisLine: {
             show: false,
@@ -116,75 +132,156 @@ export default class E5 extends Vue {
       series: [
         {
           type: "bar",
-          data: [60, 87, 140, 60, 80, 112, 22, 46, 87, 64, 120, 78, 38, 98],
-          barWidth: "28px",
+          data: [
+            60,
+            87,
+            140,
+            60,
+            80,
+            112,
+            22,
+            46,
+            87,
+            64,
+            120,
+            78,
+            38,
+            98,
+            60,
+            87,
+            140,
+            60,
+            80,
+            112,
+            22,
+            46,
+            87,
+            64,
+            120,
+            78,
+            38,
+            98,
+          ],
+          stack: true,
+          barWidth: 20,
           itemStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(
-                0,
-                0,
-                0,
-                1,
-                [
-                  {
-                    offset: 0,
-                    color: "#1A91FF", // 0% 处的颜色
-                  },
-                  {
-                    offset: 1,
-                    color: "#60E0FD", // 100% 处的颜色
-                  },
-                ],
-                false
-              ),
-              shadowColor: "rgba(0,160,221,1)",
-              shadowBlur: 4,
-            },
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "#1A91FF", // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "#60E0FD", // 100% 处的颜色
+                },
+              ],
+              false
+            ),
           },
           label: {
-            normal: {
-              show: true,
-              lineHeight: 30,
-              position: "end",
-              textStyle: {
-                color: "#fff",
-                fontSize: 18,
-              },
+            show: true,
+            textStyle: {
+              color: "#fff",
+              fontSize: 18,
             },
           },
         },
         {
-          name: "趋势",
-          type: "line",
-          symbolSize: 10,
-          symbol: "rect",
+          type: "bar",
+          stack: true,
+          data: [
+            20,
+            2,
+            2,
+            20,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            20,
+            2,
+            2,
+            2,
+            2,
+          ],
+          barWidth: 20,
           itemStyle: {
-            normal: {
-              color: "#EEBC4A",
-              borderWidth: "10",
-              label: {
-                show: true,
-                position: "top",
-                color: "#EEBC4A",
-                fontSize: "18px",
-              },
+            color: "#EEBC4A",
+          },
+          label: {
+            show: true,
+            offset: [0, -10],
+            width: 100,
+            align: "center",
+            textStyle: {
+              color: "#fff",
+              fontSize: 18,
             },
           },
-          lineStyle: {
-            normal: {
-              color: "#EEBC4A",
-              shadowColor: "#EEBC4A",
-              type: "dotted",
-            },
-          },
-          data: [60, 87, 140, 60, 80, 112, 22, 46, 87, 64, 120, 78, 38, 98],
         },
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
+    let index = 1;
+    const nextLoop = () => {
+      index += 1;
+      const opt: any = myChart.getOption();
+      if (opt.dataZoom[0]?.end >= 100) {
+        index = 0;
+        myChart.setOption({ animation: false });
+      } else {
+        myChart.setOption({ animation: true });
+      }
+      myChart.setOption({
+        dataZoom: [
+          {
+            start: index,
+            end: Math.min(index + 51, 100),
+          },
+        ],
+      });
+      this.timer = setTimeout(nextLoop, 1000);
+    };
+    this.timer = setTimeout(nextLoop, 1000);
+
+    /**
+     * 数据缩放事件
+     */
+    myChart.on("datazoom", (e) => {
+      index = Math.floor(e.batch[0].start);
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(nextLoop, 5000);
+      }
     });
+  }
+
+  /**
+   * 组件卸载
+   */
+  unmounted() {
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = null;
   }
 }
 </script>
