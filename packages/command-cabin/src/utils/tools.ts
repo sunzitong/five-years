@@ -76,7 +76,6 @@ export const sepNumber = (number: number, sep = ",", stepLen = 3) => {
   let step = str.length % stepLen;
   let result = str.slice(0, step);
   while (step < str.length) {
-    console.log(step);
     if (step > 0) result += sep;
     result += str.slice(step, step + stepLen);
     step += stepLen;
