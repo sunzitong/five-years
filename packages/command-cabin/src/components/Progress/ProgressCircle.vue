@@ -15,11 +15,19 @@
     <!-- <path :d="customPathD" :stroke="fill[0]" :stroke-width="strokeWidth" /> -->
     <ellipse
       cx="90"
-      cy="91.0039"
-      rx="65.4961"
+      cy="91"
+      rx="65"
       ry="65"
-      transform="rotate(-90 90 91.0039)"
       :fill="`url(#${uuid}_paint0_radial)`"
+    />
+    <ellipse
+      cx="90"
+      cy="91"
+      rx="63"
+      ry="63"
+      :stroke="fill[0]"
+      stroke-width="4"
+      stroke-dasharray="2 4"
     />
     <defs>
       <radialGradient
@@ -62,7 +70,7 @@ export default class ProgressCircle extends Vue {
   @Prop({ default: 14 }) strokeWidth!: number;
 
   /**
-   * 边框宽度
+   * 动画
    */
   @Prop({ default: false }) animate!: boolean;
 
