@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+const { spawn } = require("child_process");
+const glob = require("glob");
+const path = require("path");
+
+const __cwdname = process.cwd();
+
+let projectPath = path.join(__cwdname, "node_modules");
+
+while (true) {
+  // 检测配置文件
+  if (glob.sync(projectPath).length) {
+    projectPath = path.join(projectPath, "../", "{.gyapirc,.gyapirc.*}");
+    const configFile = glob.sync(projectPath)[0];
+    if (!configFile) {
+      throw new Error("未找到配置文件");
+    }
+    console.log("[config]", "file:", configFile);
+    runProgram(configFile);
+    break;
+  }
+  // 接近系统根目录
+  if (projectPath.match(new RegExp(path.sep, "g")).length < 4) {
+    break;
+  }
+  projectPath = path.join(projectPath, "../..", "node_modules");
+}
+
+function runProgram(configFile) {
+  spawn(
+    process.platform === "win32" ? "npm.cmd" : "npm",
+    ["run", "start", configFile],
+    {
+      stdio: "inherit",
+      cwd: __dirname,
+    }
+  );
+}
