@@ -7,7 +7,7 @@
         :rate="50"
         :size="280"
         :strokeWidth="100"
-        :strokeSize="180"
+        :strokeSize="185"
         strokeLinecap="round"
         color="#4182C7"
         primary
@@ -153,7 +153,8 @@ export default class A6 extends Vue {
   .desc {
     color: #65d4fc;
     font-size: 20px;
-    line-height: 20px;
+    line-height: 22px;
+    margin-top: 4px;
   }
 }
 </style>

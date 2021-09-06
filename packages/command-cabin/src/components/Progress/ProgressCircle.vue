@@ -4,6 +4,48 @@
     :class="`progress-circle--${styleType}`"
     :style="{ height: size + 'px' }"
   >
+    <!-- 中间内容 -->
+    <svg
+      :width="size * 0.6"
+      :height="size * 0.6"
+      viewBox="0 0 180 180"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="progress-circle__inner"
+    >
+      <ellipse
+        cx="90"
+        cy="90"
+        rx="66"
+        ry="66"
+        :fill="`url(#${uuid}_paint0_radial)`"
+      />
+      <defs>
+        <radialGradient
+          :id="`${uuid}_paint0_radial`"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(90 90) rotate(0) scale(66 66)"
+        >
+          <template v-if="warning">
+            <stop stop-color="#FE3AD3" stop-opacity="0" />
+            <stop offset="1" stop-color="#FE3A98" stop-opacity="0.6">
+              <animate
+                attributeName="stop-opacity"
+                dur="0.8s"
+                repeatCount="indefinite"
+                values="0.4;0.6;0.2"
+              />
+            </stop>
+          </template>
+          <template v-else-if="primary">
+            <stop stop-color="#14437F" stop-opacity="1" />
+          </template>
+        </radialGradient>
+      </defs>
+    </svg>
     <!-- 圈层动画 -->
     <svg
       :width="size"
@@ -112,12 +154,12 @@
           dur="3s"
           repeatCount="indefinite"
         />
-        <animate
+        <!-- <animate
           attributeName="opacity"
           values="0.5;1;0.5"
           dur="2s"
           repeatCount="indefinite"
-        />
+        /> -->
       </g>
       <defs>
         <filter
@@ -231,48 +273,6 @@
           <stop offset="0.844796" stop-color="#49C3FD" stop-opacity="0" />
           <stop offset="1" stop-color="#49C3FD" />
         </linearGradient>
-      </defs>
-    </svg>
-    <!-- 中间内容 -->
-    <svg
-      :width="size * 0.6"
-      :height="size * 0.6"
-      viewBox="0 0 180 180"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      class="progress-circle__inner"
-    >
-      <ellipse
-        cx="90"
-        cy="90"
-        rx="66"
-        ry="66"
-        :fill="`url(#${uuid}_paint0_radial)`"
-      />
-      <defs>
-        <radialGradient
-          :id="`${uuid}_paint0_radial`"
-          cx="0"
-          cy="0"
-          r="1"
-          gradientUnits="userSpaceOnUse"
-          gradientTransform="translate(90 90) rotate(0) scale(66 66)"
-        >
-          <template v-if="warning">
-            <stop stop-color="#FE3AD3" stop-opacity="0" />
-            <stop offset="1" stop-color="#FE3A98" stop-opacity="0.6">
-              <animate
-                attributeName="stop-opacity"
-                dur="0.8s"
-                repeatCount="indefinite"
-                values="0.4;0.6;0.2"
-              />
-            </stop>
-          </template>
-          <template v-else-if="primary">
-            <stop stop-color="#14437F" stop-opacity="1" />
-          </template>
-        </radialGradient>
       </defs>
     </svg>
     <!-- 轨道 -->
@@ -428,12 +428,6 @@ export default class ProgressCircle extends Vue {
   &__text {
     @extend %flex-center;
     text-align: center;
-  }
-
-  &--3 &__outer {
-    background: linear-gradient(180deg, #011656 0%, #0a173f 100%);
-    box-shadow: inset 0px 6px 14px #03084f;
-    border-radius: 50%;
   }
 }
 </style>
