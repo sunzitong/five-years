@@ -17,7 +17,6 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { sepNumber } from "@/utils/tools";
 import { arrayToObject } from "@guanyu/shared";
 
 console.log(echarts);
@@ -26,8 +25,6 @@ console.log(echarts);
   components: {},
 })
 export default class D7 extends Vue {
-  sepNumber = sepNumber;
-
   @Ref() chart!: HTMLDivElement;
 
   pieData = [

@@ -9,7 +9,8 @@
     "lint": "vue-cli-service lint",
     "mock": "cd ./mock && npm run start",
     "prettier": "prettier --write ./src/**/*",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "gyapi": "gyapi"
   },
   "dependencies": {
     "@guanyu/guanyu-h5-tools": "^1.1.3",

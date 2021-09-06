@@ -1,103 +1,406 @@
 <template>
-  <svg
-    :width="size"
-    :height="size"
-    viewBox="0 0 180 180"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
+    class="progress-circle"
+    :class="`progress-circle--${styleType}`"
+    :style="{ height: size + 'px' }"
   >
-    <path
-      :d="customPathD"
-      :stroke="fill[0]"
-      stroke-opacity="0.3"
-      :stroke-width="strokeWidth"
-    />
-    <!-- <path :d="customPathD" :stroke="fill[0]" :stroke-width="strokeWidth" /> -->
-    <ellipse
-      cx="90"
-      cy="91"
-      rx="65"
-      ry="65"
-      :fill="`url(#${uuid}_paint0_radial)`"
-    />
-    <ellipse
-      cx="90"
-      cy="91"
-      rx="63"
-      ry="63"
-      :stroke="fill[0]"
-      stroke-width="4"
-      stroke-dasharray="2 4"
-    />
-    <defs>
-      <radialGradient
-        :id="`${uuid}_paint0_radial`"
-        cx="0"
-        cy="0"
-        r="1"
-        gradientUnits="userSpaceOnUse"
-        gradientTransform="translate(90 91.0039) rotate(90) scale(65 65.4961)"
+    <!-- 中间内容 -->
+    <svg
+      :width="size * 0.6"
+      :height="size * 0.6"
+      viewBox="0 0 180 180"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="progress-circle__inner"
+    >
+      <ellipse
+        cx="90"
+        cy="90"
+        rx="66"
+        ry="66"
+        :fill="`url(#${uuid}_paint0_radial)`"
+      />
+      <defs>
+        <radialGradient
+          :id="`${uuid}_paint0_radial`"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(90 90) rotate(0) scale(66 66)"
+        >
+          <template v-if="warning">
+            <stop stop-color="#FE3AD3" stop-opacity="0" />
+            <stop offset="1" stop-color="#FE3A98" stop-opacity="0.6">
+              <animate
+                attributeName="stop-opacity"
+                dur="0.8s"
+                repeatCount="indefinite"
+                values="0.4;0.6;0.2"
+              />
+            </stop>
+          </template>
+          <template v-else-if="primary">
+            <stop stop-color="#14437F" stop-opacity="1" />
+          </template>
+        </radialGradient>
+      </defs>
+    </svg>
+    <!-- 圈层动画 -->
+    <svg
+      :width="size"
+      :height="size"
+      viewBox="0 0 420 420"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="progress-circle__outer"
+    >
+      <!-- 外圈刻度 -->
+      <ellipse
+        cx="210"
+        cy="210"
+        rx="158"
+        ry="158"
+        stroke="rgba(30, 130, 177, 0.4)"
+        stroke-width="8"
+        stroke-dasharray="4 5"
+        v-if="styleConfig.showDial"
       >
-        <stop :stop-color="fill[1]" stop-opacity="0" />
-        <stop offset="1" :stop-color="fill[2]" stop-opacity="0.61">
-          <animate
-            v-if="animate"
-            attributeName="stop-opacity"
-            dur="0.8s"
-            repeatCount="indefinite"
-            values="0.2;0.4;0.61"
+        <animateTransform
+          attributeName="transform"
+          from="0 210 210"
+          to="360 210 210"
+          type="rotate"
+          dur="180s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+      <!-- 内圈刻度 -->
+      <ellipse
+        cx="210"
+        cy="210"
+        rx="88"
+        ry="88"
+        stroke="#49C3FD"
+        stroke-width="6"
+        stroke-dasharray="3 5"
+        v-if="styleConfig.showDial"
+      >
+        <animateTransform
+          attributeName="transform"
+          from="360 210 210"
+          to="0 210 210"
+          type="rotate"
+          dur="180s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+
+      <!-- 外圈线条 -->
+      <g :filter="`url(#${uuid}_filter1_b)`">
+        <circle
+          cx="210"
+          cy="210"
+          :r="styleConfig.borderR[2]"
+          transform="rotate(90 210 210)"
+          :stroke="`url(#${uuid}_paint1_linear)`"
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+        <animateTransform
+          attributeName="transform"
+          from="0 210 210"
+          to="360 210 210"
+          type="rotate"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </g>
+      <!-- 中圈线条 -->
+      <g :filter="`url(#${uuid}_filter0_b)`">
+        <circle
+          cx="210"
+          cy="210"
+          :r="styleConfig.borderR[1]"
+          :stroke="`url(#${uuid}_paint0_linear)`"
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+        <animateTransform
+          attributeName="transform"
+          from="360 210 210"
+          to="0 210 210"
+          type="rotate"
+          dur="2s"
+          repeatCount="indefinite"
+        />
+      </g>
+      <!-- 内圈线条 -->
+      <g :filter="`url(#${uuid}_filter2_b)`">
+        <circle
+          cx="210"
+          cy="210"
+          :r="styleConfig.borderR[0]"
+          transform="rotate(30 210 210)"
+          :stroke="`url(#${uuid}_paint2_linear)`"
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+        <animateTransform
+          attributeName="transform"
+          from="0 210 210"
+          to="360 210 210"
+          type="rotate"
+          dur="3s"
+          repeatCount="indefinite"
+        />
+        <!-- <animate
+          attributeName="opacity"
+          values="0.5;1;0.5"
+          dur="2s"
+          repeatCount="indefinite"
+        /> -->
+      </g>
+      <defs>
+        <filter
+          :id="`${uuid}_filter0_b`"
+          x="-1.15015"
+          y="-0.789062"
+          width="420"
+          height="420"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
+          <feComposite
+            in2="SourceAlpha"
+            operator="in"
+            result="effect1_backgroundBlur"
           />
-        </stop>
-      </radialGradient>
-    </defs>
-  </svg>
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_backgroundBlur"
+            result="shape"
+          />
+        </filter>
+        <filter
+          :id="`${uuid}_filter1_b`"
+          x="-20"
+          y="-20"
+          width="462.85"
+          height="462.85"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
+          <feComposite
+            in2="SourceAlpha"
+            operator="in"
+            result="effect1_backgroundBlur"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_backgroundBlur"
+            result="shape"
+          />
+        </filter>
+        <filter
+          :id="`${uuid}_filter2_b`"
+          x="17.8499"
+          y="18.0557"
+          width="385.483"
+          height="385.483"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
+          <feComposite
+            in2="SourceAlpha"
+            operator="in"
+            result="effect1_backgroundBlur"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_backgroundBlur"
+            result="shape"
+          />
+        </filter>
+        <linearGradient
+          :id="`${uuid}_paint0_linear`"
+          x1="402.022"
+          y1="212.732"
+          x2="18.8499"
+          y2="212.732"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#49C3FD" />
+          <stop offset="0.242216" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="0.595904" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="0.844796" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="1" stop-color="#49C3FD" />
+        </linearGradient>
+        <linearGradient
+          :id="`${uuid}_paint1_linear`"
+          x1="410.705"
+          y1="125.925"
+          x2="47.2051"
+          y2="381.925"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#49C3FD" />
+          <stop offset="0.242216" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="0.595904" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="0.844796" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="1" stop-color="#49C3FD" />
+        </linearGradient>
+        <linearGradient
+          :id="`${uuid}_paint2_linear`"
+          x1="212.336"
+          y1="38.0557"
+          x2="212.336"
+          y2="383.539"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#49C3FD" />
+          <stop offset="0.242216" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="0.595904" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="0.844796" stop-color="#49C3FD" stop-opacity="0" />
+          <stop offset="1" stop-color="#49C3FD" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <!-- 轨道 -->
+    <van-circle
+      layer-color="rgba(0,0,0,0)"
+      class="progress-circle__chart"
+      v-bind="styleConfig.vantProps[0]"
+    />
+    <!-- 进度 -->
+    <van-circle
+      v-model="currentRate"
+      :rate="realRate"
+      layer-color="rgba(0,0,0,0)"
+      :speed="50"
+      class="progress-circle__chart"
+      v-bind="styleConfig.vantProps[1]"
+    />
+    <div class="progress-circle__text">
+      <slot :value="calcCurrentRate(currentRate)"></slot>
+    </div>
+  </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, VModel } from "vue-property-decorator";
-import { uuid } from "@guanyu/shared";
-import { formatColorStr } from "@/utils/tools";
-
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { iwant, uuid } from "@guanyu/shared";
+// "#2A7CB2|#FE3AD3|#FE3A98"
 @Component
 export default class ProgressCircle extends Vue {
   /**
+   * 进度 0 - 100
+   */
+  @Prop({ default: 0 }) rate!: number;
+  /**
+   * 渲染进度(按比例计算)
+   */
+  get realRate() {
+    if (this.gap) return this.rate * 0.8;
+    return this.rate;
+  }
+  /**
+   * v-model实时进度(vant提供)
+   */
+  currentRate = 0;
+  /**
+   * slot实时进度(反向计算提供给调用方)
+   */
+  calcCurrentRate() {
+    if (this.gap) return iwant.calc(this.currentRate / 0.8, 1);
+    return this.currentRate;
+  }
+
+  /**
    * 宽度
    */
-  @Prop({ default: 180 }) size!: number;
-
+  @Prop({ default: 200 }) size!: number;
   /**
-   * 边框宽度
+   * 进度条颜色
    */
-  @Prop({ default: 14 }) strokeWidth!: number;
-
+  @Prop({ default: "#57A6FB" }) color!: string;
   /**
-   * 动画
+   * 进度条端口风格
    */
-  @Prop({ default: false }) animate!: boolean;
-
+  @Prop({ default: "butt" }) strokeLinecap!: "butt" | "round";
   /**
-   * v-model same as value
+   * 进度条宽度
    */
-  @VModel({ type: Number }) iValue!: number;
-
+  @Prop({ default: 100 }) strokeWidth!: number;
   /**
-   * 颜色
+   * 进度条大小
    */
-  @Prop({ default: "#2A7CB2|#FE3AD3|#FE3A98" }) color!: string;
-
+  @Prop({ default: 100 }) strokeSize!: number;
   /**
-   * 填充颜色
+   * false: 仪表盘风格
+   * true: 进度条风格
    */
-  get fill() {
-    return formatColorStr(this.color, 3);
+  @Prop({ default: true }) gap!: boolean;
+  /**
+   * 顺时针转
+   */
+  @Prop({ default: true }) clockwise!: boolean;
+  /**
+   * 显示风格
+   */
+  @Prop({ default: 3, type: Number }) styleType!: number;
+  /**
+   * 样式配置
+   */
+  get styleConfig() {
+    const vantProps = [
+      {
+        value: this.gap ? 80 : 100,
+        color: "#14437F",
+        size: this.strokeSize,
+        strokeLinecap: this.strokeLinecap,
+        strokeWidth: this.strokeWidth,
+        style: this.gap ? `transform: rotate(216deg)` : null,
+      },
+      {
+        color: this.color,
+        size: this.strokeSize,
+        strokeLinecap: this.strokeLinecap,
+        strokeWidth: this.strokeWidth,
+        style: this.gap
+          ? `transform: rotate(${this.clockwise ? "+" : "-"}216deg)`
+          : null,
+        clockwise: this.clockwise,
+      },
+    ];
+    if (this.styleType === 1) {
+      return { vantProps, borderR: [] };
+    }
+    if (this.styleType === 2) {
+      return { vantProps, borderR: [172, 190, 208] };
+    }
+    if (this.styleType === 3) {
+      return { vantProps, borderR: [170, 180, 190], showDial: true };
+    }
+    return { vantProps };
   }
 
   /**
-   * 用户自定义路径
+   * 警告
    */
-  get customPathD() {
-    const r = 90 - this.strokeWidth / 2;
-    return `M50 163 A${r},${r} 0 1,1 130,163`;
-  }
+  @Prop({ default: false, type: Boolean }) warning!: boolean;
+  /**
+   * 内容填充
+   */
+  @Prop({ default: false, type: Boolean }) primary!: boolean;
 
   /**
    * svg 必须使用唯一id
@@ -107,4 +410,24 @@ export default class ProgressCircle extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.progress-circle {
+  position: relative;
+  width: 100%;
+  &__outer,
+  &__inner,
+  &__text,
+  &__chart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+  &__text {
+    @extend %flex-center;
+    text-align: center;
+  }
+}
+</style>

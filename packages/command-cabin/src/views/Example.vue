@@ -145,20 +145,140 @@
       </van-col>
       <van-col :span="8">
         <Card
-          title="AnimateBgCircle"
+          title="ProgressCircle"
           :showFooter="true"
           :showRectBackground="false"
         >
           <div
-            style="
-              position: relative;
-              width: 300px;
-              height: 300px;
-              display: flex;
-            "
+            style="display: flex; flex-flow: row wrap; justify-content: center"
           >
-            <AnimateBgCircle />
-            <div style="margin: auto">内容内容内容</div>
+            <ProgressCircle
+              :styleType="1"
+              :rate="45"
+              :size="400"
+              :strokeWidth="210"
+              :strokeSize="280"
+              style="height: 400px; width: 400px"
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}%</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="1"
+              :rate="45"
+              :size="400"
+              style="height: 400px; width: 400px"
+              color="yellow"
+              strokeLinecap="round"
+              :strokeWidth="100"
+              :strokeSize="180"
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}%</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="1"
+              :rate="45"
+              :size="400"
+              style="height: 400px; width: 400px"
+              color="yellow"
+              strokeLinecap="round"
+              :strokeWidth="100"
+              :strokeSize="180"
+              :gap="false"
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}%</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="2"
+              :rate="45"
+              :size="400"
+              :strokeWidth="210"
+              :strokeSize="280"
+              style="height: 400px; width: 400px"
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}</div>
+                  <div class="desc">总分</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="2"
+              :rate="45"
+              :size="400"
+              :strokeWidth="210"
+              :strokeSize="280"
+              style="height: 400px; width: 400px"
+              :gap="false"
+              :clockwise="false"
+              color="green"
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}</div>
+                  <div class="desc">总分</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="3"
+              :rate="45"
+              :size="400"
+              :strokeWidth="210"
+              :strokeSize="280"
+              style="height: 400px; width: 400px"
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}</div>
+                  <div class="desc">总分</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="3"
+              :rate="45"
+              :size="400"
+              :strokeWidth="210"
+              :strokeSize="280"
+              style="height: 400px; width: 400px"
+              warning
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}</div>
+                  <div class="desc">总分</div>
+                </div>
+              </template>
+            </ProgressCircle>
+            <ProgressCircle
+              :styleType="3"
+              :rate="45"
+              :size="400"
+              :strokeWidth="210"
+              :strokeSize="280"
+              style="height: 400px; width: 400px"
+              primary
+            >
+              <template v-slot="{ value }">
+                <div class="rate-text">
+                  <div class="value">{{ value }}</div>
+                  <div class="desc">总分</div>
+                </div>
+              </template>
+            </ProgressCircle>
           </div>
         </Card>
       </van-col>
@@ -180,7 +300,6 @@ import ProgressCircle1 from "@/components/Progress/ProgressCircle1.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
-import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
 
 @Component({
   components: {
@@ -195,7 +314,6 @@ import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
     Animationend,
     Btn,
     BlurBox,
-    AnimateBgCircle,
   },
 })
 export default class Example extends Vue {

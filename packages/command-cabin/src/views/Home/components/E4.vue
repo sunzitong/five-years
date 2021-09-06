@@ -6,7 +6,7 @@
           <Icon :type="iconArr[index]" size="22" />
         </div>
         <van-circle
-          v-model="item.value"
+          v-model="item.currentRate"
           :rate="item.value"
           :speed="100"
           :color="colors[index]"
@@ -43,14 +43,17 @@ export default class E4 extends Vue {
     {
       name: "水",
       value: 10,
+      currentRate: 0,
     },
     {
       name: "电",
       value: 25,
+      currentRate: 0,
     },
     {
       name: "门禁",
       value: 50,
+      currentRate: 0,
     },
   ];
   colors = ["#59D1FE", "#8E3AFF", "#EEBC4A"];

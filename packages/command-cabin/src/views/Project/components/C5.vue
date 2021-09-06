@@ -2,25 +2,22 @@
   <div class="box">
     <div class="tag-year">9月试算</div>
     <Icon type="trangle" class="icon-warn" :size="70" />
-    <div class="content">
-      <div class="chart animate__animated">
-        <AnimateBgCircle />
-        <van-circle
-          v-model="currentRate"
+    <div class="content animate__animated">
+      <div class="chart">
+        <ProgressCircle
+          :styleType="2"
           :rate="rate"
-          :speed="50"
-          :text="text"
-          layer-color="#14437F"
-          :stroke-width="240"
-          :size="300"
-          stroke-linecap="butt"
-          :clockwise="false"
+          :size="400"
+          :strokeWidth="210"
+          :strokeSize="280"
         >
-          <div class="rate-text">
-            <div class="value">{{ currentRate }}</div>
-            <div class="desc">总分</div>
-          </div>
-        </van-circle>
+          <template v-slot="{ value }">
+            <div class="rate-text">
+              <div class="value">{{ value }}</div>
+              <div class="desc">总分</div>
+            </div>
+          </template>
+        </ProgressCircle>
       </div>
       <ul class="list">
         <li class="item">
@@ -43,15 +40,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
-import AnimateBgCircle from "@/components/AnimateBgCircle/Index.vue";
+import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 
 @Component({
-  components: { Icon, AnimateBgCircle },
+  components: { Icon, ProgressCircle },
 })
 export default class C5 extends Vue {
-  currentRate = 20;
   rate = 80;
-  text = "text";
 }
 </script>
 
