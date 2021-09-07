@@ -7,19 +7,70 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import * as echarts from "echarts";
 import { ECOption } from "@/plugins/echarts";
 import Base from "@/views/Base";
+import { SentimentReturn } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
+import { iwant } from "@guanyu/shared";
+
+type BarData = {
+  xAxis: string[];
+  yellowNums: number[];
+  redNums: number[];
+};
 
 @Component
 export default class E5A extends Base {
   @Ref() barChart!: HTMLDivElement;
 
   /**
+   * 父组件传进来的数据
+   */
+  @Prop({ required: true }) response!: SentimentReturn;
+
+  /**
    * 定时器
    */
   barTimer: null | number = null;
+
+  /**
+   * 数据
+   */
+  bar: BarData = {
+    xAxis: [],
+    yellowNums: [],
+    redNums: [],
+  };
+
+  @Watch("response", { deep: true, immediate: true })
+  onResponse(response: SentimentReturn) {
+    const barData: BarData = {
+      xAxis: [],
+      yellowNums: [],
+      redNums: [],
+    };
+
+    iwant.array(response.numsByCity).forEach((item) => {
+      barData.xAxis?.push(item.cityName);
+      barData.yellowNums?.push(item.yellowNum);
+      barData.redNums?.push(item.redNum);
+    });
+
+    this.echarts.setOption({
+      xAxis: {
+        data: barData.xAxis,
+      },
+      series: [
+        {
+          data: barData.yellowNums,
+        },
+        {
+          data: barData.redNums,
+        },
+      ],
+    });
+  }
 
   /**
    * 组件卸载
@@ -31,10 +82,11 @@ export default class E5A extends Base {
 
   mounted() {
     this.renderBarChart();
+    this.moveBarChart();
   }
 
   renderBarChart() {
-    const myChart = echarts.init(this.barChart);
+    this.echarts = echarts.init(this.barChart);
     const option: ECOption = {
       grid: {
         top: "12%",
@@ -65,36 +117,7 @@ export default class E5A extends Base {
       xAxis: [
         {
           type: "category",
-          data: [
-            "北京",
-            "上海",
-            "广西",
-            "广州",
-            "四川",
-            "重庆",
-            "天津",
-            "河北",
-            "河南",
-            "湖南",
-            "湖北",
-            "福建",
-            "浙江",
-            "江西",
-            "北京1",
-            "上海1",
-            "广西1",
-            "广州1",
-            "四川1",
-            "重庆1",
-            "天津1",
-            "河北1",
-            "河南1",
-            "湖南1",
-            "湖北1",
-            "福建1",
-            "浙江1",
-            "江西1",
-          ],
+          data: this.bar.xAxis,
           axisLine: {
             lineStyle: {
               color: "rgba(0,0,0,0)",
@@ -140,36 +163,7 @@ export default class E5A extends Base {
       series: [
         {
           type: "bar",
-          data: [
-            60,
-            87,
-            140,
-            60,
-            80,
-            112,
-            22,
-            46,
-            87,
-            64,
-            120,
-            78,
-            38,
-            98,
-            60,
-            87,
-            140,
-            60,
-            80,
-            112,
-            22,
-            46,
-            87,
-            64,
-            120,
-            78,
-            38,
-            98,
-          ],
+          data: this.bar.yellowNums,
           stack: "a",
           barWidth: 20,
           itemStyle: {
@@ -200,36 +194,7 @@ export default class E5A extends Base {
         {
           type: "bar",
           stack: "a",
-          data: [
-            20,
-            2,
-            2,
-            20,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            20,
-            2,
-            2,
-            2,
-            2,
-          ],
+          data: this.bar.redNums,
           barWidth: 20,
           itemStyle: {
             color: "#EEBC4A",
@@ -243,18 +208,21 @@ export default class E5A extends Base {
         },
       ],
     };
-    option && myChart.setOption(option);
+    option && this.echarts.setOption(option);
+  }
+
+  moveBarChart() {
     let index = 1;
     const nextLoop = () => {
       index += 1;
-      const opt: any = myChart.getOption();
+      const opt: any = this.echarts.getOption();
       if (opt.dataZoom[0]?.end >= 100) {
         index = 0;
-        myChart.setOption({ animation: false });
+        this.echarts.setOption({ animation: false });
       } else {
-        myChart.setOption({ animation: true });
+        this.echarts.setOption({ animation: true });
       }
-      myChart.setOption({
+      this.echarts.setOption({
         dataZoom: [
           {
             start: index,
@@ -268,7 +236,7 @@ export default class E5A extends Base {
     /**
      * 数据缩放事件
      */
-    myChart.on("datazoom", (e) => {
+    this.echarts.on("datazoom", (e: any) => {
       index = Math.floor(e.batch[0].start);
       if (this.barTimer) {
         clearTimeout(this.barTimer);
