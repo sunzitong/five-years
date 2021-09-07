@@ -8,9 +8,11 @@
       <div class="pannel_sub_text">
         <div class="left">
           已开业间数：
-          <van-row>
-            <van-col :span="11" class="value_details">{{ hasOpen }}</van-col>
-            <van-col :span="11" class="value_details">
+          <van-row class="data_row" :gutter="20">
+            <van-col :span="6" class="value_details">
+              {{ sepNumber(hasOpen) }}
+            </van-col>
+            <van-col :span="6" class="value_details">
               {{ hasOpenRatio }}%
             </van-col>
           </van-row>
@@ -24,24 +26,24 @@
             </div>
             <div class="text_container">
               <div>
-                <van-row :gutter="20">
-                  <van-col :span="12" class="text_abstract">待获取：</van-col>
+                <van-row :gutter="20" type="flex" justify="flex-end">
+                  <van-col :span="8" class="text_abstract">待获取：</van-col>
                   <van-col :span="6" class="value_details">
-                    {{ toGet }}
+                    {{ sepNumber(toGet) }}
                   </van-col>
                   <van-col :span="6" class="value_details">
-                    {{ toGetRatio }}%
+                    {{ toGetRatio + "%" }}
                   </van-col>
                 </van-row>
               </div>
               <div>
-                <van-row :gutter="20">
-                  <van-col :span="12" class="text_abstract">已获取：</van-col>
+                <van-row :gutter="20" type="flex" justify="flex-end">
+                  <van-col :span="8" class="text_abstract">已获取：</van-col>
                   <van-col :span="6" class="value_details">
-                    {{ hasGet }}
+                    {{ sepNumber(hasGet) }}
                   </van-col>
                   <van-col :span="6" class="value_details">
-                    {{ hasGetRatio }}%
+                    {{ hasGetRatio + "%" }}
                   </van-col>
                 </van-row>
               </div>
@@ -52,18 +54,18 @@
     </div>
 
     <van-row>
-      <van-col :span="11">
+      <van-col :span="12">
         <div
           class="left_echarts"
           ref="leftCharts"
-          style="width: 430px; height: 300px"
+          style="width: 450px; height: 300px"
         ></div>
       </van-col>
-      <van-col :span="11">
+      <van-col :span="12">
         <div
           class="right_echarts"
           ref="rightCharts"
-          style="width: 430px; height: 300px"
+          style="width: 450px; height: 300px"
         ></div>
       </van-col>
     </van-row>
@@ -73,10 +75,14 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
+import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import { sepNumber } from "@/utils/tools";
-import { arrayToObject } from "@guanyu/shared";
-
-console.log(echarts);
+import {
+  fetchProjectOpen,
+  ProjectOpenReturn,
+} from "@/service/bigScreen/mainBoard/construct/projectOpen/";
+import dayjs from "dayjs";
+// import { iwant, Nullable } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -88,62 +94,88 @@ export default class B1B extends Vue {
 
   @Ref() rightCharts!: HTMLDivElement;
 
-  targetNum = 15432;
+  resData: Partial<ProjectOpenReturn> = {};
 
-  hasOpen = 8961;
-  hasOpenRatio = 43;
+  year = dayjs().year();
 
-  toGet = 8961;
-  toGetRatio = 43;
+  targetNum: number | "--" = "--";
 
-  hasGet = 8961;
-  hasGetRatio = 43;
+  hasOpen: number | "--" = "--";
+  hasOpenRatio: number | "--" = "--";
 
-  pieData1 = [
-    {
-      name: "重资产",
-      value: "43",
-    },
-    {
-      name: "中资产",
-      value: "43",
-    },
-    {
-      name: "轻资产",
-      value: "43",
-    },
-  ];
+  toGet: number | "--" = "--";
+  toGetRatio: number | "--" = "--";
 
-  pieData2 = [
-    {
-      name: "重资产",
-      value: "43",
-    },
-    {
-      name: "中资产",
-      value: "43",
-    },
-    {
-      name: "轻资产",
-      value: "43",
-    },
-  ];
+  hasGet: number | "--" = "--";
+  hasGetRatio: number | "--" = "--";
 
-  objData1 = arrayToObject(this.pieData1, { key: "name", value: "value" });
-  objData2 = arrayToObject(this.pieData1, { key: "name", value: "value" });
+  pieData1: AnyObject[] = [];
 
-  mounted() {
+  pieData2: AnyObject[] = [];
+
+  objData1: AnyObject = {};
+  objData2: AnyObject = {};
+
+  async created() {
+    const response = await fetchProjectOpen({
+      regionType: "group",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+
+      this.targetNum = this.resData.openTargetNum ?? "--";
+
+      this.hasOpen = this.resData.openInfo?.total ?? "--";
+      this.hasOpenRatio = this.resData.openInfo?.ratio ?? "--";
+
+      this.toGet = this.resData.notOpenNotGetNum ?? "--";
+      this.toGetRatio = this.resData.notOpenNotGetRatio ?? "--";
+
+      this.hasGet = this.resData.notOpenInfo?.total ?? "--";
+      this.hasGetRatio = this.resData.notOpenInfo?.ratio ?? "--";
+
+      this.pieData1 = iwant.array(this.resData.openInfo?.list).map((el) => {
+        return {
+          name: el.transactionModel,
+          value: iwant.calc(el.ratio, 2, true),
+        };
+      });
+      this.pieData2 = iwant.array(this.resData.notOpenInfo?.list).map((el) => {
+        return {
+          name: el.transactionModel,
+          value: iwant.calc(el.ratio, 2, true),
+        };
+      });
+
+      // console.log("饼图数据1", this.pieData1, this.pieData2);
+      this.objData1 = arrayToObject(this.pieData1, {
+        key: "name",
+        value: "value",
+      });
+      this.objData2 = arrayToObject(this.pieData2, {
+        key: "name",
+        value: "value",
+      });
+      // console.log("饼图数据2", this.objData1, this.objData2);
+
+      this.paintChart();
+    }
+  }
+
+  paintChart() {
     const myLeftChart = echarts.init(this.leftCharts);
     // myChart.showLoading();
     let option1 = {
       legend: {
         orient: "vertical",
-        left: "50%",
-        top: "10%",
+        right: "3%",
+        top: "18%",
         icon: "rec",
         itemWidth: 20,
         itemHeight: 20,
-        itemGap: 43,
+        itemGap: 35,
         data: this.pieData1,
         formatter: (params: any) => {
           return `{a|${params}}{b|  ${this.objData1[params]}%}`;
@@ -169,8 +201,8 @@ export default class B1B extends Vue {
         {
           type: "pie",
           avoidLabelOverlap: false,
-          radius: ["30%", 75],
-          center: ["25%", "45%"],
+          radius: ["25%", 70],
+          center: ["20%", "48%"],
           color: ["#F7D14A", "#57A6FB", "#A957FB"],
           label: {
             show: false,
@@ -189,12 +221,12 @@ export default class B1B extends Vue {
     let option2 = {
       legend: {
         orient: "vertical",
-        left: "50%",
-        top: "10%",
+        right: "3%",
+        top: "18%",
         icon: "rec",
         itemWidth: 20,
         itemHeight: 20,
-        itemGap: 43,
+        itemGap: 35,
         data: this.pieData2,
         formatter: (params: any) => {
           return `{a|${params}}{b|  ${this.objData1[params]}%}`;
@@ -220,8 +252,8 @@ export default class B1B extends Vue {
         {
           type: "pie",
           avoidLabelOverlap: false,
-          radius: ["30%", 75],
-          center: ["25%", "45%"],
+          radius: ["25%", 70],
+          center: ["20%", "48%"],
           color: ["#F7D14A", "#57A6FB", "#A957FB"],
           label: {
             show: false,
@@ -290,9 +322,16 @@ export default class B1B extends Vue {
       color: #01f5f1;
 
       padding-top: 12px;
+      width: 110px;
+      text-align: right;
+    }
+
+    .data_row {
+      width: 340px;
     }
 
     .right {
+      flex: 1;
       .right_bottom {
         display: flex;
         flex-flow: row nowrap;
@@ -315,10 +354,15 @@ export default class B1B extends Vue {
         .text_container {
           margin-left: 100px;
           height: 100px;
+          width: 300px;
 
           display: flex;
           flex-flow: column nowrap;
           justify-content: flex-end;
+
+          .van-row {
+            width: 400px;
+          }
         }
       }
     }

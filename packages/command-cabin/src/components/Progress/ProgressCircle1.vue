@@ -1,52 +1,71 @@
 <template>
-  <svg
-    :width="size"
-    :height="size"
-    viewBox="0 0 180 180"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <!-- <path :d="customPathD" :stroke="fill[0]" :stroke-width="strokeWidth" /> -->
-
-    <path
-      :d="customPathDBottom"
-      :stroke="fill[0]"
-      stroke-opacity="0.3"
-      :stroke-width="strokeWidth"
-    />
-    <path
-      :d="customPathD"
-      :stroke="fill[0]"
-      stroke-opacity="1"
-      :stroke-width="strokeWidth"
-    />
-    <defs>
-      <radialGradient
-        :id="`${uuid}_paint0_radial`"
-        cx="0"
-        cy="0"
-        r="1"
-        gradientUnits="userSpaceOnUse"
-        gradientTransform="translate(90 91.0039) rotate(90) scale(65 65.4961)"
-      >
-        <stop :stop-color="fill[1]" stop-opacity="0" />
-        <stop offset="1" :stop-color="fill[2]" stop-opacity="0.61">
-          <animate
-            v-if="animate"
-            attributeName="stop-opacity"
-            dur="0.8s"
-            repeatCount="indefinite"
-            values="0.2;0.4;0.61"
-          />
-        </stop>
-      </radialGradient>
-    </defs>
-  </svg>
+  <div>
+    <svg
+      :width="size"
+      :height="size"
+      :viewBox="`0 0 ${size} ${size}`"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        :d="customPathDBottom"
+        :stroke="fill[0]"
+        stroke-opacity="0.3"
+        :stroke-width="strokeWidth"
+        :stroke-linecap="strokeLine"
+      />
+      <path
+        :d="customPathD"
+        :stroke="fill[0]"
+        stroke-opacity="1"
+        y
+        :stroke-width="strokeWidth"
+        :stroke-linecap="strokeLine"
+      />
+      <circle
+        :cx="circle.x"
+        :cy="circle.y"
+        r="66"
+        :fill="`url(#${uuid}_paint0_radial)`"
+      />
+      <circle
+        :cx="circle.x"
+        :cy="circle.y"
+        r="64"
+        :stroke="fill[0]"
+        stroke-width="4"
+        stroke-dasharray="2, 4"
+      />
+      <defs>
+        <radialGradient
+          :id="`${uuid}_paint0_radial`"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          :gradientTransform="`translate(${circle.x} ${circle.y}) rotate(90) scale(66)`"
+        >
+          <stop :stop-color="fill[1]" stop-opacity="0" />
+          <stop offset="1" :stop-color="fill[2]" stop-opacity="0.61">
+            <animate
+              v-if="animate"
+              attributeName="stop-opacity"
+              dur="0.8s"
+              repeatCount="indefinite"
+              values="0.2;0.4;0.61"
+            />
+          </stop>
+        </radialGradient>
+      </defs>
+    </svg>
+    {{ a }}
+  </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, VModel } from "vue-property-decorator";
+import { Component, Prop, Vue, VModel, Watch } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 import { d2a, formatColors } from "@/utils/tools";
+import { gsap } from "gsap";
 
 @Component
 export default class ProgressCircle extends Vue {
@@ -61,9 +80,24 @@ export default class ProgressCircle extends Vue {
   @Prop({ default: 14 }) strokeWidth!: number;
 
   /**
+   * 线条末尾形状
+   */
+  @Prop({ default: 25 }) strokeLine!: "rect" | "round";
+
+  /**
    * 动画
    */
   @Prop({ default: false }) animate!: boolean;
+
+  /**
+   * 敞开角度
+   */
+  @Prop({ default: 25 }) openAngel!: number;
+
+  /**
+   * 开始角度
+   */
+  @Prop({ default: 90 }) startAngel!: number;
 
   /**
    * v-model same as value
@@ -75,6 +109,8 @@ export default class ProgressCircle extends Vue {
    */
   @Prop({ default: "#2A7CB2|#FE3AD3|#FE3A98" }) color!: string | string[];
 
+  a = 0;
+
   /**
    * 填充颜色
    */
@@ -83,23 +119,53 @@ export default class ProgressCircle extends Vue {
   }
 
   /**
+   * 圆环的属性
+   */
+  get circle() {
+    console.log(this.size / 2 - this.strokeWidth / 2);
+    console.log(this.size / 2);
+    return {
+      x: this.size / 2,
+      y: this.size / 2,
+      r: this.size / 2 - this.strokeWidth,
+      sAngle: this.openAngel + this.startAngel,
+      eMaxAngle: 360 - this.openAngel * 2,
+    };
+  }
+
+  @Watch("iValue", { immediate: true })
+  onchange(v: number) {
+    gsap.to(this, { duration: 0.4, a: v });
+  }
+
+  /**
    * 用户自定义路径
    */
   get customPathD() {
-    const x = this.size / 2;
-    const r = x - this.strokeWidth / 2;
-    const k = 25;
-    return this.createPathArc(x, x, r, 90 + k, 90 + k + (360 - 300 - k * 2));
+    /** 最大值100，最小值0 */
+    const v = Math.max(Math.min(this.a, 100), 0);
+    const eMaxAngle = this.circle.eMaxAngle;
+    return this.createPathArc(
+      this.circle.x,
+      this.circle.y,
+      this.circle.r,
+      this.circle.sAngle,
+      this.circle.sAngle +
+        Math.max(Math.min(eMaxAngle, v * (eMaxAngle / 100)), 0)
+    );
   }
 
   /**
    * 轨迹
    */
   get customPathDBottom() {
-    const x = this.size / 2;
-    const r = x - this.strokeWidth / 2;
-    const k = 25;
-    return this.createPathArc(x, x, r, 90 + k, 90 + k + (360 - k * 2));
+    return this.createPathArc(
+      this.circle.x,
+      this.circle.y,
+      this.circle.r,
+      this.circle.sAngle,
+      this.circle.sAngle + this.circle.eMaxAngle
+    );
   }
 
   /**
