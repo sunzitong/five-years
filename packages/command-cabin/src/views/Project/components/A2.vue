@@ -41,7 +41,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class A1 extends Vue {}
+export default class A2 extends Vue {}
 </script>
 
 <style lang="scss" scoped>

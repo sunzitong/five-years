@@ -30,7 +30,9 @@
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
-      <p v-if="$children[1]">{{ $children[1].$options.name }}</p>
+      <p v-if="$children[1]" style="font-size: 2em">
+        {{ $children[1].$options.name }}
+      </p>
     </div>
     <div class="app-card__footer" v-if="showFooter">
       <slot name="footer">

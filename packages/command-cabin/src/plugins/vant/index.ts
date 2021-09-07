@@ -9,6 +9,8 @@ import {
   Switch,
   Popover,
   Circle,
+  Radio,
+  RadioGroup,
 } from "vant";
 import Vue from "vue";
 
@@ -24,3 +26,5 @@ Vue.use(Col);
 Vue.use(Switch);
 Vue.use(Popover);
 Vue.use(Circle);
+Vue.use(Radio);
+Vue.use(RadioGroup);

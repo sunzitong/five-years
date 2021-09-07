@@ -14,6 +14,9 @@ $img-map: (
   "subtitle-bg": "subtitle-bg.png",
   "header": "header.png",
   "circle-border": "circle-border.png",
+  "btn-arrow": "btn-arrow.png",
+  "btn-checked": "btn-checked.png",
+  "btn-normal": "btn-normal.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
