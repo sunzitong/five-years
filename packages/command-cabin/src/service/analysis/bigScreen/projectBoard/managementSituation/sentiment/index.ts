@@ -31,7 +31,7 @@ export interface SentimentReturn {
 }
 
 export interface NumsByType {
-  typeNum: number;
+  typeNum: string;
   num: number;
   ratio: number;
 }
@@ -39,7 +39,7 @@ export interface NumsByType {
 /**
  * 门店屏幕-经营现状-舆情风险
  * @createBy wuyao
- * @updateAt 2021/9/6 上午10:42:54
+ * @updateAt 2021/9/7 下午3:43:31
  * @method GET
  */
 export const fetchSentiment = (params: SentimentParams) => {

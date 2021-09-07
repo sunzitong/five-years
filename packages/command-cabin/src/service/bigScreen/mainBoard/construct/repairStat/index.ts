@@ -30,14 +30,15 @@ export interface RepairStatParams {
  * 营造盘面-维保报事-返回值
  */
 export interface RepairStatReturn {
-  electricRepair: Repair;
-  decorationRepair: Repair;
-  plumbingRepair: Repair;
-  leakageRepair: Repair;
-  deviceRepair: Repair;
+  electricRepair: DecorationRepair;
+  decorationRepair: DecorationRepair;
+  plumbingRepair: DecorationRepair;
+  leakageRepair: DecorationRepair;
+  deviceRepair: DecorationRepair;
+  other: DecorationRepair;
 }
 
-export interface Repair {
+export interface DecorationRepair {
   count: number;
   ratio: number;
 }
@@ -45,7 +46,7 @@ export interface Repair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/7 上午10:01:27
+ * @updateAt 2021/9/7 下午4:29:20
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {
