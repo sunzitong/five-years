@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProjectDelayInfoParams {
   /**
-   * group:全国；area:大区；city:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空
@@ -66,7 +66,7 @@ export enum TransactionModel {
 /**
  * 营造盘面-开业延期
  * @createBy huyanan
- * @updateAt 2021/9/6 上午10:00:43
+ * @updateAt 2021/9/6 下午5:32:26
  * @method GET
  */
 export const fetchProjectDelayInfo = (params: ProjectDelayInfoParams) => {
