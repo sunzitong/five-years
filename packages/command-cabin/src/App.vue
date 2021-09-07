@@ -4,7 +4,7 @@
     <router-view :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
-    <FixedNav hidden />
+    <FixedNav />
     <FixedNav position="right" />
     <!-- 控制缩放 -->
     <div
