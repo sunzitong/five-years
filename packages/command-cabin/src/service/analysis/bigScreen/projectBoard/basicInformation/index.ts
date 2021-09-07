@@ -27,6 +27,9 @@ export interface BasicInformationReturn {
   parkingSpaceNum: number;
   valueAddedPoint: number;
   acquireTime: number;
+  term: number;
+  projectBeginTime: number;
+  projectEndTime: number;
   transactionOpponent: string;
   acquireManner: string;
   cooperationModel: string;
@@ -39,7 +42,7 @@ export interface BasicInformationReturn {
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/1 下午5:09:41
+ * @updateAt 2021/9/7 下午6:29:04
  * @method GET
  */
 export const fetchBasicInformation = (params?: BasicInformationParams) => {

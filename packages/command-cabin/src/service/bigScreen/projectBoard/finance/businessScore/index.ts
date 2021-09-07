@@ -35,7 +35,7 @@ export interface TMonthScore {
 /**
  * 财务相关指标-综合经营指数
  * @createBy huyanan
- * @updateAt 2021/9/7 上午10:16:38
+ * @updateAt 2021/9/7 下午4:37:39
  * @method GET
  */
 export const fetchBusinessScore = (params: BusinessScoreParams) => {

@@ -3,46 +3,63 @@
     <ul class="list">
       <li class="item">
         <div class="name">资产类型</div>
-        <div class="desc">中、轻、重</div>
+        <div class="desc">{{ formatValue(response.transactionModel) }}</div>
       </li>
       <li class="item">
         <div class="name">交易对手</div>
-        <div class="desc">重庆市三快在线有限公司</div>
+        <div class="desc">{{ formatValue(response.transactionOpponent) }}</div>
       </li>
       <li class="item">
         <div class="name">获取方式</div>
-        <div class="desc">招投标、直委、联交所、其他</div>
+        <div class="desc">{{ formatValue(response.acquireManner) }}</div>
       </li>
       <li class="item">
         <div class="name">合作模式</div>
-        <div class="desc">委托管理（轻），毛坯交付（中）</div>
+        <div class="desc">{{ formatValue(response.cooperationModel) }}</div>
       </li>
       <li class="item">
         <div class="name">租赁面积</div>
-        <div class="desc">公寓</div>
+        <div class="desc">
+          {{ formatValue(sepNumber(response.rentalArea)) }}
+        </div>
       </li>
       <li class="item">
         <div class="name">土地性质</div>
-        <div class="desc">中、重</div>
+        <div class="desc">{{ formatValue(response.landProperty) }}</div>
       </li>
       <li class="item">
         <div class="name">楼体性质</div>
-        <div class="desc">中、重</div>
+        <div class="desc">{{ formatValue(response.buildingProperty) }}</div>
       </li>
       <li class="item">
         <div class="name">证照产权</div>
-        <div class="desc">中重</div>
+        <div class="desc">{{ response.licensePropertyRight }}</div>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
+import {
+  BasicInformationReturn,
+  fetchBasicInformation,
+} from "@/service/analysis/bigScreen/projectBoard/basicInformation";
+import { sepNumber } from "@/utils/tools";
 import Base from "@/views/Base";
+import dayjs from "dayjs";
 import { Component } from "vue-property-decorator";
 
 @Component
-export default class A2 extends Base {}
+export default class A2 extends Base {
+  sepNumber = sepNumber;
+  response: Partial<BasicInformationReturn> = {};
+  async created() {
+    const response = await fetchBasicInformation({ year: dayjs().year() });
+    if (response?.status === "ok") {
+      this.response = response.data;
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +68,7 @@ $padding-x: 85px;
 .box {
   width: 1098px;
   box-sizing: border-box;
-  padding: 37px $padding-x;
+  padding: 10px $padding-x;
   font-family: PingFang SC;
   font-size: 34px;
   line-height: 1;
