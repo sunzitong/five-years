@@ -106,15 +106,16 @@
           :stroke="`url(#${uuid}_paint1_linear)`"
           stroke-width="3"
           stroke-linejoin="round"
-        />
-        <animateTransform
-          attributeName="transform"
-          from="0 210 210"
-          to="360 210 210"
-          type="rotate"
-          dur="5s"
-          repeatCount="indefinite"
-        />
+        >
+          <animateTransform
+            attributeName="transform"
+            from="0 210 210"
+            to="360 210 210"
+            type="rotate"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </circle>
       </g>
       <!-- 中圈线条 -->
       <g :filter="`url(#${uuid}_filter0_b)`">
@@ -125,15 +126,16 @@
           :stroke="`url(#${uuid}_paint0_linear)`"
           stroke-width="3"
           stroke-linejoin="round"
-        />
-        <animateTransform
-          attributeName="transform"
-          from="360 210 210"
-          to="0 210 210"
-          type="rotate"
-          dur="2s"
-          repeatCount="indefinite"
-        />
+        >
+          <animateTransform
+            attributeName="transform"
+            from="360 210 210"
+            to="0 210 210"
+            type="rotate"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
       </g>
       <!-- 内圈线条 -->
       <g :filter="`url(#${uuid}_filter2_b)`">
@@ -145,21 +147,22 @@
           :stroke="`url(#${uuid}_paint2_linear)`"
           stroke-width="3"
           stroke-linejoin="round"
-        />
-        <animateTransform
-          attributeName="transform"
-          from="0 210 210"
-          to="360 210 210"
-          type="rotate"
-          dur="3s"
-          repeatCount="indefinite"
-        />
-        <!-- <animate
+        >
+          <animateTransform
+            attributeName="transform"
+            from="0 210 210"
+            to="360 210 210"
+            type="rotate"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+          <!-- <animate
           attributeName="opacity"
           values="0.5;1;0.5"
           dur="2s"
           repeatCount="indefinite"
         /> -->
+        </circle>
       </g>
       <defs>
         <filter
@@ -309,7 +312,7 @@ export default class ProgressCircle extends Vue {
    * 渲染进度(按比例计算)
    */
   get realRate() {
-    if (this.gap) return this.rate * 0.8;
+    if (this.arc) return this.rate * 0.8;
     return this.rate;
   }
   /**
@@ -320,7 +323,7 @@ export default class ProgressCircle extends Vue {
    * slot实时进度(反向计算提供给调用方)
    */
   calcCurrentRate() {
-    if (this.gap) return iwant.calc(this.currentRate / 0.8, 1);
+    if (this.arc) return iwant.calc(this.currentRate / 0.8, 1);
     return this.currentRate;
   }
 
@@ -348,7 +351,7 @@ export default class ProgressCircle extends Vue {
    * false: 仪表盘风格
    * true: 进度条风格
    */
-  @Prop({ default: true }) gap!: boolean;
+  @Prop({ default: true }) arc!: boolean;
   /**
    * 顺时针转
    */
@@ -363,19 +366,19 @@ export default class ProgressCircle extends Vue {
   get styleConfig() {
     const vantProps = [
       {
-        value: this.gap ? 80 : 100,
+        value: this.arc ? 80 : 100,
         color: "#14437F",
         size: this.strokeSize,
         strokeLinecap: this.strokeLinecap,
         strokeWidth: this.strokeWidth,
-        style: this.gap ? `transform: rotate(216deg)` : null,
+        style: this.arc ? `transform: rotate(216deg)` : null,
       },
       {
         color: this.color,
         size: this.strokeSize,
         strokeLinecap: this.strokeLinecap,
         strokeWidth: this.strokeWidth,
-        style: this.gap
+        style: this.arc
           ? `transform: rotate(${this.clockwise ? "+" : "-"}216deg)`
           : null,
         clockwise: this.clockwise,
