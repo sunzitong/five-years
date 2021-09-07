@@ -23,7 +23,12 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { AnyObject, arrayToObject } from "@guanyu/shared";
+import { AnyObject } from "@guanyu/shared";
+import {
+  fetchRepairStat,
+  RepairStatReturn,
+} from "@/service/bigScreen/mainBoard/construct/repairStat";
+import dayjs from "dayjs";
 
 console.log(echarts);
 
@@ -32,60 +37,43 @@ console.log(echarts);
 })
 export default class B5 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<RepairStatReturn> = {};
+  year = dayjs().year();
 
   names = ["电器类", "硬装类", "水暖类", "渗漏类", "设备类", "其他"];
 
-  values = [88, 12, 97, 97, 100, 100];
+  data: AnyObject[] = [];
 
-  ratios = [88, 12, 97, 7, 20, 20];
-
-  data = [
-    {
-      name: "电器类",
-      value: 88,
-      ratio: 88,
-    },
-    {
-      name: "硬装类",
-      value: 88,
-      ratio: 12,
-    },
-    {
-      name: "水暖类",
-      value: 88,
-      ratio: 97,
-    },
-    {
-      name: "渗漏类",
-      value: 88,
-      ratio: 7,
-    },
-    {
-      name: "设备类",
-      value: 88,
-      ratio: 20,
-    },
-    {
-      name: "其他",
-      value: 88,
-      ratio: 20,
-    },
-  ];
   objData1: AnyObject = {};
   objData2: AnyObject = {};
 
-  created() {
-    this.objData1 = arrayToObject(this.data, {
-      key: "name",
-      value: "value",
-    });
-    this.objData2 = arrayToObject(this.data, {
-      key: "name",
-      value: "ratio",
+  buildData(resData: AnyObject) {
+    let i = 0;
+    Object.keys(resData).forEach((el1) => {
+      let keys = resData[el1];
+      let name = this.names[i++];
+      this.objData1[name] = keys.count;
+      this.objData2[name] = keys.ratio;
+      this.data.push({ name: name, value: keys.count, ratio: keys.ratio });
     });
   }
 
-  mounted() {
+  async created() {
+    const response = await fetchRepairStat({
+      regionType: "CITY",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+
+      this.buildData(this.resData);
+
+      this.paintChart();
+    }
+  }
+
+  paintChart() {
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {
@@ -99,8 +87,6 @@ export default class B5 extends Vue {
         itemGap: 18,
         data: this.names,
         formatter: (params: any) => {
-          console.log(1111111, this.objData1[params], params);
-
           return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${this.objData2[params]}%}`;
         },
         textStyle: {
