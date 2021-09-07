@@ -6,8 +6,6 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <!-- <path :d="customPathD" :stroke="fill[0]" :stroke-width="strokeWidth" /> -->
-
     <path
       :d="customPathDBottom"
       :stroke="fill[0]"
@@ -19,6 +17,15 @@
       :stroke="fill[0]"
       stroke-opacity="1"
       :stroke-width="strokeWidth"
+    />
+    <circle cx="90" cy="90" r="66" :fill="`url(#${uuid}_paint0_radial)`" />
+    <circle
+      cx="90"
+      cy="90"
+      r="64"
+      :stroke="fill[0]"
+      stroke-width="4"
+      stroke-dasharray="2, 4"
     />
     <defs>
       <radialGradient
@@ -66,6 +73,16 @@ export default class ProgressCircle extends Vue {
   @Prop({ default: false }) animate!: boolean;
 
   /**
+   * 敞开角度
+   */
+  @Prop({ default: 25 }) openAngel!: number;
+
+  /**
+   * 开始角度
+   */
+  @Prop({ default: 90 }) startAngel!: number;
+
+  /**
    * v-model same as value
    */
   @VModel({ type: Number }) iValue!: number;
@@ -83,23 +100,46 @@ export default class ProgressCircle extends Vue {
   }
 
   /**
+   * 圆环的属性
+   */
+  get circle() {
+    return {
+      x: this.size / 2,
+      y: this.size / 2,
+      r: this.size / 2 - this.strokeWidth / 2,
+      sAngle: this.openAngel + this.startAngel,
+      eMaxAngle: 360 - this.openAngel * 2,
+    };
+  }
+
+  /**
    * 用户自定义路径
    */
   get customPathD() {
-    const x = this.size / 2;
-    const r = x - this.strokeWidth / 2;
-    const k = 25;
-    return this.createPathArc(x, x, r, 90 + k, 90 + k + (360 - 300 - k * 2));
+    /** 最大值100，最小值0 */
+    const v = Math.max(Math.min(this.iValue, 100), 0);
+    const eMaxAngle = this.circle.eMaxAngle;
+    return this.createPathArc(
+      this.circle.x,
+      this.circle.y,
+      this.circle.r,
+      this.circle.sAngle,
+      this.circle.sAngle +
+        Math.max(Math.min(eMaxAngle, v * (eMaxAngle / 100)), 0)
+    );
   }
 
   /**
    * 轨迹
    */
   get customPathDBottom() {
-    const x = this.size / 2;
-    const r = x - this.strokeWidth / 2;
-    const k = 25;
-    return this.createPathArc(x, x, r, 90 + k, 90 + k + (360 - k * 2));
+    return this.createPathArc(
+      this.circle.x,
+      this.circle.y,
+      this.circle.r,
+      this.circle.sAngle,
+      this.circle.sAngle + this.circle.eMaxAngle
+    );
   }
 
   /**
