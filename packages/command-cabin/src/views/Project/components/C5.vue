@@ -47,6 +47,8 @@ import {
   fetchBusinessScore,
 } from "@/service/bigScreen/projectBoard/finance/businessScore";
 
+type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
+
 @Component({
   components: { Icon, ProgressCircle },
 })
@@ -71,16 +73,18 @@ export default class C5 extends Vue {
    */
   get monthData() {
     const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
-    const response = this.response?.[key] ?? {};
+    const response: MonthData = this.response?.[key] ?? {};
     // 转换日期为月
     const month = dayjs(response.dataDate).format("M");
     // 如果当前月去掉试算
-    response.dataDateDesc = `${month}${
-      this.showCurrentMonth ? "月" : "月试算"
-    }`;
+    const dataDateDesc = `${month}${this.showCurrentMonth ? "月" : "月试算"}`;
     // 综合经营指数报警
-    response.warn = response.totalScore < 90;
-    return response;
+    const warn = response.totalScore && response.totalScore < 90;
+    return {
+      ...response,
+      dataDateDesc,
+      warn,
+    };
   }
 
   /**
