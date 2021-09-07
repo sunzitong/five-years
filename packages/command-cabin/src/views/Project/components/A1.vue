@@ -40,13 +40,25 @@
           <span class="unit">个</span>
         </div>
       </li>
+      <!-- 重资产 -->
       <li class="item">
+        <div class="label">获取时间</div>
+        <div class="value">
+          {{ formatValue(response.acquireTime) }}
+        </div>
+      </li>
+      <!-- 中轻资产 -->
+      <li class="item" v-show="false">
         <div class="label">年限</div>
         <div class="value">
-          {{ formatValue(sepNumber(null)) }}
+          {{ formatValue(sepNumber(response.term)) }}
           <span class="unit">年</span>
         </div>
-        <div class="year">{{ formatValue(response.acquireTime) }}</div>
+        <div class="year">
+          {{ formatValue(response.projectBeginTime) }}
+          ~
+          {{ formatValue(response.projectEndTime) }}
+        </div>
       </li>
     </ul>
   </div>

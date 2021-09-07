@@ -15,7 +15,7 @@
             animated
           >
             <van-col span="8" class="td name">
-              {{ item.name }}
+              {{ item.person }}
               <div class="icon">
                 <Icon
                   type="call"
@@ -24,13 +24,13 @@
                 />
                 <transition name="fade">
                   <div class="phone" v-if="phoneIndex === index">
-                    13333333333
+                    {{ item.tel }}
                   </div>
                 </transition>
               </div>
             </van-col>
-            <van-col span="8" class="td">{{ item.role }}</van-col>
-            <van-col span="8" class="td">{{ item.role }}</van-col>
+            <van-col span="8" class="td">{{ item.specialty }}</van-col>
+            <van-col span="8" class="td">{{ item.company }}</van-col>
           </van-row>
         </template>
       </Animationend>
@@ -43,18 +43,26 @@ import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Base from "@/views/Base";
+import { iwant } from "@guanyu/shared";
+import {
+  fetchGroupInfo,
+  GroupInfoReturn,
+} from "@/service/bigScreen/projectBoard/basicInformation/groupInfo";
 
 @Component({
   components: { Icon, Animationend },
 })
 export default class A4 extends Base {
   phoneIndex = -1;
-  list = [
-    { name: "方唐镜", role: "C6", showPhone: false },
-    { name: "方唐镜", role: "C6", showPhone: false },
-    { name: "方唐镜", role: "C6", showPhone: false },
-    { name: "方唐镜", role: "C6", showPhone: false },
-  ];
+  list: GroupInfoReturn["designGroups"] = [];
+  async created() {
+    const response = await fetchGroupInfo({
+      projectId: this.store.global.projectId,
+    });
+    if (response?.status === "ok") {
+      this.list = iwant.array(response.data.designGroups);
+    }
+  }
 }
 </script>
 
