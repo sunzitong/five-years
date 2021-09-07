@@ -35,6 +35,7 @@ import {
   fetchProductQuality,
   ProductQualityReturn,
 } from "@/service/bigScreen/mainBoard/construct/productQuality";
+import dayjs from "dayjs";
 
 @Component({
   components: {},
@@ -42,6 +43,7 @@ import {
 export default class B4 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
   resData: Partial<ProductQualityReturn> = {};
+  year = dayjs().year();
 
   labels = [
     "IPD产品\n封装率",
@@ -53,7 +55,7 @@ export default class B4 extends Vue {
 
   async created() {
     const response = await fetchProductQuality({
-      regionType: "group",
+      regionType: "CITY",
       regionId: 85,
       dataTime: this.year,
     });

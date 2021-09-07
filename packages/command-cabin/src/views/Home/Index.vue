@@ -147,8 +147,77 @@
       </div>
     </div>
     <div class="footer">
-      <div style="flex: 1">aaa</div>
       <FooterBackground />
+      <div class="global-button">
+        <div class="left">
+          <ButtonGroup>
+            <van-radio-group value="拓展盘面详情" direction="horizontal">
+              <van-radio name="拓展盘面详情">
+                拓展盘面详情
+                <Icon
+                  type="arrow-right"
+                  :size="36"
+                  class="button-icon--right"
+                />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+          <ButtonGroup>
+            <van-radio-group value="营造盘面详情" direction="horizontal">
+              <van-radio name="营造盘面详情">
+                营造盘面详情
+                <Icon
+                  type="arrow-right"
+                  :size="36"
+                  class="button-icon--right"
+                />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+        </div>
+        <div class="center">
+          <ButtonGroup>
+            <van-radio-group value="main" direction="horizontal">
+              <van-radio name="main">
+                <Icon type="map" :size="36" class="button-icon--left" />
+                总盘面
+              </van-radio>
+              <van-radio name="guanyu">
+                <Icon type="flag" :size="36" class="button-icon--left" />
+                冠寓大事记
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+          <ButtonGroup>
+            <van-radio-group
+              v-model="scopeValue"
+              @change="scopeChange"
+              direction="horizontal"
+            >
+              <van-radio :name="DateScopes.YEARLY">年累计</van-radio>
+              <van-radio :name="DateScopes.MONTHLY">月累计</van-radio>
+              <van-radio name="guanyu">
+                东北大区
+                <van-icon name="arrow-up" />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+        </div>
+        <div class="right">
+          <ButtonGroup>
+            <van-radio-group value="经营现状详情" direction="horizontal">
+              <van-radio name="经营现状详情">
+                经营现状详情
+                <Icon
+                  type="arrow-right"
+                  :size="36"
+                  class="button-icon--right"
+                />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -160,6 +229,10 @@ import Card from "@/components/Card/Index.vue";
 import SubWrapper from "@/components/SubWrapper/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
+import ButtonGroup from "@/components/ButtonGroup/Index.vue";
+import Icon from "@/components/Icon/Index.vue";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
+console.log(DateScopes);
 
 /** Jing */
 import A5 from "./components/A5.vue";
@@ -187,9 +260,32 @@ import E5 from "./components/E5.vue";
     C1,
     E4,
     E5,
+    ButtonGroup,
+    Icon,
   },
 })
-export default class Home extends Base {}
+export default class Home extends Base {
+  /**
+   * 时间范围枚举
+   */
+  DateScopes = DateScopes;
+  /**
+   * 范围选择
+   */
+  scopeValue: null | string = null;
+  scopeChange(value: any) {
+    if ([DateScopes.YEARLY, DateScopes.MONTHLY].includes(value)) {
+      this.store.global.dateScope = value;
+      this.scopeValue = value;
+    } else {
+      console.log(value);
+    }
+  }
+
+  created() {
+    this.scopeValue = this.store.global.dateScope;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -221,6 +317,37 @@ export default class Home extends Base {}
   .footer {
     position: relative;
     height: 253px;
+  }
+}
+.global-button {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 140px;
+  .button-icon--right {
+    margin-left: 12px;
+  }
+  .button-icon--left {
+    margin-right: 12px;
+  }
+  .left,
+  .center,
+  .right {
+    display: flex;
+  }
+  .left {
+    width: 32%;
+    justify-content: flex-start;
+  }
+  .center {
+    width: 36%;
+    justify-content: space-between;
+    margin: -20px 0 auto;
+  }
+  .right {
+    width: 32%;
+    justify-content: flex-end;
   }
 }
 </style>

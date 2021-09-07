@@ -11,7 +11,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface DeviceOfflineParams {
   /**
-   * group:全国；area:大区；city:城市
+   * OMS-公用枚举-dataLevels 组织级别
    */
   regionType: string;
 
@@ -21,7 +21,7 @@ export interface DeviceOfflineParams {
   regionId?: number;
 
   /**
-   * 统计哪个时间的数据，默认是当前时间
+   * 最新统计日，默认是当前时间，yyyy-mm-dd
    */
   dataTime?: string;
 }
@@ -33,13 +33,14 @@ export interface DeviceOfflineReturn {
   elecDeviceOfflineRatio: number;
   waterDeviceOfflineRatio: number;
   doorDeviceOfflineRatio: number;
+  dataSource: string;
   updateTime: string;
 }
 
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/6 下午6:20:26
+ * @updateAt 2021/9/7 下午3:24:52
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
