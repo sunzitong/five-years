@@ -43,7 +43,7 @@ export default class E5A extends Base {
     redNums: [],
   };
 
-  @Watch("response", { deep: true, immediate: true })
+  @Watch("response", { deep: true })
   onResponse(response: SentimentReturn) {
     const barData: BarData = {
       xAxis: [],

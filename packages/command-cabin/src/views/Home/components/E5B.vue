@@ -15,53 +15,62 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import * as echarts from "echarts";
-import { ECOption } from "@/plugins/echarts";
-import { arrayToObject } from "@guanyu/shared";
+import { arrayToObject, iwant } from "@guanyu/shared";
 import Base from "@/views/Base";
+import { SentimentReturn } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 
 @Component
 export default class E5B extends Base {
   @Ref() pieChart!: HTMLDivElement;
 
-  renderPieChart() {
-    const pieData = [
-      {
-        name: "01",
-        value: "43",
-      },
-      {
-        name: "02",
-        value: "53",
-      },
-      {
-        name: "03",
-        value: "43",
-      },
-      {
-        name: "04",
-        value: "43",
-      },
-      {
-        name: "05",
-        value: "43",
-      },
-      {
-        name: "06",
-        value: "43",
-      },
-      {
-        name: "07",
-        value: "43",
-      },
-    ];
-    const pieObjData = arrayToObject(pieData, {
-      key: "name",
-      value: "value",
+  /**
+   * 父组件传进来的数据
+   */
+  @Prop({ required: true }) response!: SentimentReturn;
+
+  /**
+   * 按照数据类型为索引赋值
+   */
+  responseMap = {};
+
+  /**
+   * 数据更新重绘Echart
+   */
+  @Watch("response", { deep: true })
+  onResponse(response: SentimentReturn) {
+    /**
+     * 转换数据类型
+     */
+    const data = iwant.array(response.numsByType).map((item) => {
+      return {
+        name: item.typeNum,
+        value: item.num,
+      };
     });
-    const myChart = echarts.init(this.pieChart);
-    let option = {
+    /**
+     * 存储数据
+     */
+    this.responseMap = arrayToObject(response.numsByType, {
+      key: "typeNum",
+      value: "num",
+    });
+
+    /**
+     * 重绘图表
+     */
+    this.echarts.setOption({
+      series: [{ data }],
+    });
+  }
+
+  /**
+   * 渲染bar
+   */
+  renderPieChart() {
+    this.echarts = echarts.init(this.pieChart);
+    const option = {
       legend: {
         orient: "vertical",
         right: "10%",
@@ -70,9 +79,9 @@ export default class E5B extends Base {
         itemWidth: 20,
         itemHeight: 20,
         itemGap: 16,
-        data: pieData,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${pieObjData[params]}%}`;
+          console.log(params);
+          return `{a|${params}}{b|  ${this.responseMap[params]}%}`;
         },
         textStyle: {
           rich: {
@@ -111,14 +120,11 @@ export default class E5B extends Base {
           label: {
             show: false,
           },
-          data: pieData,
+          data: [],
         },
       ],
     };
-    option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
+    option && this.echarts.setOption(option);
   }
 
   mounted() {
