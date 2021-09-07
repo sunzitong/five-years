@@ -1,12 +1,12 @@
 <template>
-  <div class="box">
-    <div class="tag-year">9月试算</div>
-    <Icon type="trangle" class="icon-warn" :size="70" />
+  <div class="box" v-if="monthData">
+    <div class="tag-year">{{ monthData.dataDateDesc }}</div>
+    <Icon v-if="monthData.warn" type="trangle" class="icon-warn" :size="70" />
     <div class="content animate__animated">
       <div class="chart">
         <ProgressCircle
           :styleType="2"
-          :rate="rate"
+          :rate="monthData.totalScore"
           :size="400"
           :strokeWidth="210"
           :strokeSize="280"
@@ -22,15 +22,15 @@
       <ul class="list">
         <li class="item">
           <div class="name">信用指数</div>
-          <div class="value">65.66</div>
+          <div class="value">{{ monthData.creditScore }}</div>
         </li>
         <li class="item">
           <div class="name">渠道效能值</div>
-          <div class="value">65.66</div>
+          <div class="value">{{ monthData.channelEffectScore }}</div>
         </li>
         <li class="item">
           <div class="name">运营健康度</div>
-          <div class="value">65.66</div>
+          <div class="value">{{ monthData.healthyScore }}</div>
         </li>
       </ul>
     </div>
@@ -41,12 +41,81 @@
 import { Component, Vue } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
+import dayjs from "dayjs";
+import {
+  BusinessScoreReturn,
+  fetchBusinessScore,
+} from "@/service/bigScreen/projectBoard/finance/businessScore";
 
 @Component({
   components: { Icon, ProgressCircle },
 })
 export default class C5 extends Vue {
-  rate = 80;
+  /**
+   * 返回数据
+   */
+  response: null | BusinessScoreReturn = null;
+
+  /**
+   * 定时器
+   */
+  timer: number | null = null;
+
+  /**
+   * 显示当月数据
+   */
+  showCurrentMonth = true;
+
+  /**
+   * 当前展示数据
+   */
+  get monthData() {
+    const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
+    const response = this.response?.[key] ?? {};
+    // 转换日期为月
+    const month = dayjs(response.dataDate).format("M");
+    // 如果当前月去掉试算
+    response.dataDateDesc = `${month}${
+      this.showCurrentMonth ? "月" : "月试算"
+    }`;
+    // 综合经营指数报警
+    response.warn = response.totalScore < 90;
+    return response;
+  }
+
+  /**
+   * 组件创建
+   */
+  async created() {
+    const response = await fetchBusinessScore({ projectId: 1001 });
+    if (response?.status === "ok") {
+      this.response = response.data ?? {};
+    }
+  }
+
+  /**
+   * 显示月数据
+   */
+  showMonthData() {
+    // 10秒钟刷新一次数据
+    const time = 10 * 1000;
+    const next = () => {
+      this.showCurrentMonth = !this.showCurrentMonth;
+      this.timer = setTimeout(next, time);
+    };
+    this.timer = setTimeout(next, time);
+  }
+
+  mounted() {
+    this.showMonthData();
+  }
+
+  unmounted() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+  }
 }
 </script>
 
