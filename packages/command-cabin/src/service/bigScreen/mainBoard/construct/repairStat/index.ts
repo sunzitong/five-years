@@ -11,7 +11,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface RepairStatParams {
   /**
-   * group:全国；area:大区；city:城市
+   * OMS-公用枚举-dataLevels 组织级别
    */
   regionType: string;
 
@@ -21,7 +21,7 @@ export interface RepairStatParams {
   regionId?: number;
 
   /**
-   * 统计哪一年的数据，默认是当前年份
+   * 年累，默认是当前年份，yyyy
    */
   dataTime?: number;
 }
@@ -45,7 +45,7 @@ export interface Repair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/6 下午2:27:56
+ * @updateAt 2021/9/7 上午10:01:27
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {
