@@ -65,6 +65,8 @@ export default class Btn extends Vue {
         border-top: 3px solid rgba(1, 245, 241, 0.3);
         border-bottom: 3px solid rgba(1, 245, 241, 0.3);
         box-sizing: border-box;
+        font-size: 36px;
+        font-weight: 500;
       }
       &:nth-child(1) .van-radio__label {
         padding-left: 40px;
@@ -128,12 +130,11 @@ export default class Btn extends Vue {
           display: block;
           content: "";
           position: absolute;
-          right: -30px;
+          left: -20px;
           width: 43px;
           height: 100%;
           @extend %bg-img-btn-arrow;
           opacity: 0.3;
-          left: -30px;
           transform: rotate(180deg);
         }
       }
@@ -148,7 +149,7 @@ export default class Btn extends Vue {
         .van-icon::after {
           content: "";
           position: absolute;
-          right: -30px;
+          right: -20px;
           width: 43px;
           height: 100%;
           @extend %bg-img-btn-arrow;

@@ -1,3 +1,8 @@
+import {
+  DataLevels,
+  DateScopes,
+} from "@/service/analysis/commandCabin/publicEnum";
+
 const store = {
   /**
    * 运行时参数
@@ -7,7 +12,23 @@ const store = {
     err: "",
   } as Env,
 
-  /* TODO: 其他数据 */
+  /**
+   * 全局参数
+   */
+  global: {
+    /**
+     * 数据范围
+     */
+    dataLevel: DataLevels.GROUP,
+    /**
+     * 时间维度
+     */
+    dateScope: DateScopes.YEARLY,
+    /**
+     * 门店ID
+     */
+    projectId: 0,
+  },
 };
 
 export default store;
