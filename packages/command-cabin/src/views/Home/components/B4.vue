@@ -35,7 +35,6 @@ import {
   fetchProductQuality,
   ProductQualityReturn,
 } from "@/service/bigScreen/mainBoard/construct/productQuality";
-import { iwant, objectToArray } from "@guanyu/shared";
 
 @Component({
   components: {},
