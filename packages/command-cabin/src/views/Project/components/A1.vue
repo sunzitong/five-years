@@ -2,51 +2,51 @@
   <div class="box">
     <div class="title">
       资产类型：
-      <span class="light">轻资产</span>
+      <span class="light">{{ formatValue(response.transactionModel) }}</span>
     </div>
     <ul class="list">
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          {{ sepNumber(5343) }}
+          {{ formatValue(sepNumber(response.openRoomNum)) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
-        <div class="label">开业间数</div>
+        <div class="label">底商面积</div>
         <div class="value">
-          {{ sepNumber(5343) }}
-          <span class="unit">间</span>
+          {{ formatValue(sepNumber(response.businessArea)) }}
+          <span class="unit">m²</span>
         </div>
       </li>
       <li class="item">
-        <div class="label">开业间数</div>
+        <div class="label">一展工位数</div>
         <div class="value">
-          {{ sepNumber(5343) }}
-          <span class="unit">间</span>
+          {{ formatValue(sepNumber(response.workstationNum)) }}
+          <span class="unit">个</span>
         </div>
       </li>
       <li class="item">
-        <div class="label">开业间数</div>
+        <div class="label">车位个数</div>
         <div class="value">
-          {{ sepNumber(5343) }}
-          <span class="unit">间</span>
+          {{ formatValue(sepNumber(response.parkingSpaceNum)) }}
+          <span class="unit">个</span>
         </div>
       </li>
       <li class="item">
-        <div class="label">开业间数</div>
+        <div class="label">增值点位</div>
         <div class="value">
-          {{ sepNumber(5343) }}
-          <span class="unit">间</span>
+          {{ formatValue(sepNumber(response.valueAddedPoint)) }}
+          <span class="unit">个</span>
         </div>
       </li>
       <li class="item">
-        <div class="label">开业间数</div>
+        <div class="label">年限</div>
         <div class="value">
-          {{ sepNumber(5343) }}
-          <span class="unit">间</span>
+          {{ formatValue(sepNumber(null)) }}
+          <span class="unit">年</span>
         </div>
-        <div class="year">2021/01/01～2030/01/01</div>
+        <div class="year">{{ formatValue(response.acquireTime) }}</div>
       </li>
     </ul>
   </div>
@@ -56,10 +56,22 @@
 import { Component } from "vue-property-decorator";
 import { sepNumber } from "@/utils/tools";
 import Base from "@/views/Base";
+import {
+  BasicInformationReturn,
+  fetchBasicInformation,
+} from "@/service/analysis/bigScreen/projectBoard/basicInformation";
+import dayjs from "dayjs";
 
 @Component
 export default class A1 extends Base {
   sepNumber = sepNumber;
+  response: Partial<BasicInformationReturn> = {};
+  async created() {
+    const response = await fetchBasicInformation({ year: dayjs().year() });
+    if (response?.status === "ok") {
+      this.response = response.data;
+    }
+  }
 }
 </script>
 
