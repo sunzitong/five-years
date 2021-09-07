@@ -10,8 +10,8 @@
     <div class="scroll_table">
       <van-row justify="space-between" type="flex" class="table_row table_head">
         <!-- <van-col :span="6" class="special"> -->
-          <!-- <van-row>{{ indexName[0].name }}</van-row> -->
-          <!-- <van-row>
+        <!-- <van-row>{{ indexName[0].name }}</van-row> -->
+        <!-- <van-row>
             <van-col :span="12" class="special">
               {{ indexName[0].value[0] }}
             </van-col>
@@ -20,13 +20,13 @@
             </van-col>
           </van-row> -->
         <!-- </van-col> -->
+        <van-col :span="4" class="table_col">{{ indexName[0] }}</van-col>
         <van-col :span="3" class="table_col">{{ indexName[1] }}</van-col>
-        <van-col :span="2" class="table_col">{{ indexName[2] }}</van-col>
-        <van-col :span="4" class="table_col">{{ indexName[3] }}</van-col>
-        <van-col :span="2" class="table_col">{{ indexName[4] }}</van-col>
-        <van-col :span="2" class="table_col">{{ indexName[5] }}</van-col>
-        <van-col :span="2" class="table_col">{{ indexName[6] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[7] }}</van-col>
+        <van-col :span="4" class="table_col">{{ indexName[2] }}</van-col>
+        <van-col :span="3" class="table_col">{{ indexName[3] }}</van-col>
+        <van-col :span="3" class="table_col">{{ indexName[4] }}</van-col>
+        <van-col :span="3" class="table_col">{{ indexName[5] }}</van-col>
+        <van-col :span="4" class="table_col">{{ indexName[6] }}</van-col>
       </van-row>
       <div class="table_body">
         <Animationend :scrollMinCount="5" :height="504" :dataSource="col">
@@ -39,19 +39,27 @@
               type="flex"
               class="table_row"
             >
-              <van-col :span="3" class="table_col">{{ item.a }}</van-col>
-              <van-col :span="3" class="table_col">{{ item.b }}</van-col>
-              <van-col :span="3" class="table_col">{{ item.c }}</van-col>
-              <van-col :span="2" class="table_col">{{ item.d }}</van-col>
+              <!-- <van-col :span="3" class="table_col">{{ item.a }}</van-col>
+              <van-col :span="3" class="table_col">{{ item.b }}</van-col> -->
+              <van-col :span="4" class="table_col">
+                {{ item.planOpenDate }}
+              </van-col>
+              <van-col :span="3" class="table_col">{{ item.cityName }}</van-col>
               <van-col :span="4" class="table_col">
                 <div class="van-multi-ellipsis--l2">
-                  {{ item.e }}
+                  {{ item.projectName }}
                 </div>
               </van-col>
-              <van-col :span="2" class="table_col">{{ item.f }}</van-col>
-              <van-col :span="2" class="table_col">{{ item.g }}</van-col>
-              <van-col :span="2" class="table_col">{{ item.h }}</van-col>
-              <van-col :span="3" class="table_col">{{ item.i }}</van-col>
+              <van-col :span="3" class="table_col">
+                {{ item.transactionModel }}
+              </van-col>
+              <van-col :span="3" class="table_col">
+                {{ sepNumber(item.roomNum) }}
+              </van-col>
+              <van-col :span="3" class="table_col">{{ item.riskType }}</van-col>
+              <van-col :span="4" class="table_col">
+                {{ item.chokePoint }}
+              </van-col>
             </van-row>
           </template>
         </Animationend>
@@ -64,7 +72,11 @@
 import { Component, Ref, Vue } from "vue-property-decorator";
 import Animationend from "@/components/Animationend/Index.vue";
 import { sepNumber } from "@/utils/tools";
-import { fetchProjectDelayInfo } from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
+import {
+  fetchProjectDelayInfo,
+  ProjectDelayInfoReturn,
+} from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
+import { AnyObject, iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -74,6 +86,7 @@ import { fetchProjectDelayInfo } from "@/service/bigScreen/mainBoard/construct/p
 export default class B2 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
   sepNumber = sepNumber;
+  resData: Partial<ProjectDelayInfoReturn> = {};
 
   indexName = [
     // {
@@ -89,89 +102,11 @@ export default class B2 extends Vue {
     "项目卡点",
   ];
 
-  col = [
-    {
-      a: "2021.9.3",
-      b: "2021.9.1",
-      c: "2021.7.9",
-      d: "成都",
-      e: "北京回龙观项目冠寓深圳xxxxxxx",
-      f: "重资产",
-      g: 343442,
-      h: "延期",
-      i: "消防证照办理",
-    },
-    {
-      a: 2,
-      b: 2,
-      c: 2,
-      d: 2,
-      e: 2,
-      f: 2,
-      g: 2,
-      h: 2,
-      i: 2,
-    },
-    {
-      a: 4,
-      b: 4,
-      c: 4,
-      d: 4,
-      e: 4,
-      f: 4,
-      g: 4,
-      h: 4,
-      i: 4,
-    },
-    {
-      a: 5,
-      b: 5,
-      c: 5,
-      d: 5,
-      e: 5,
-      f: 5,
-      g: 5,
-      h: 5,
-      i: 5,
-    },
-    {
-      a: 6,
-      b: 6,
-      c: 6,
-      d: 6,
-      e: 6,
-      f: 6,
-      g: 6,
-      h: 6,
-      i: 6,
-    },
-    {
-      a: 7,
-      b: 7,
-      c: 7,
-      d: 7,
-      e: 7,
-      f: 7,
-      g: 7,
-      h: 7,
-      i: 7,
-    },
-    {
-      a: 8,
-      b: 8,
-      c: 8,
-      d: 8,
-      e: 8,
-      f: 8,
-      g: 8,
-      h: 8,
-      i: 8,
-    },
-  ];
+  col: AnyObject[] = [];
 
-  riskProject = 5;
+  riskProject: number | "--" = "--";
 
-  storeNum = 100000;
+  storeNum: number | "--" = "--";
 
   async created() {
     const response = await fetchProjectDelayInfo({
@@ -181,6 +116,21 @@ export default class B2 extends Vue {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
+
+      this.riskProject = this.resData.delayProjectNum ?? "--";
+      this.storeNum = this.resData.delayRoomNum ?? "--";
+
+      this.col = iwant.array(this.resData.delayModelList).map((el) => {
+        return {
+          planOpenDate: el.planOpenDate ? el.planOpenDate : "--",
+          cityName: el.cityName ? el.cityName : "--",
+          projectName: el.projectName ? el.projectName : "--",
+          transactionModel: el.transactionModel ? el.transactionModel : "--",
+          roomNum: el.roomNum ? el.roomNum : "--",
+          riskType: el.riskType ? el.riskType : "--",
+          chokePoint: el.chokePoint ? el.chokePoint : "--",
+        };
+      });
     }
   }
 }
