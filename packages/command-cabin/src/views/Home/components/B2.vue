@@ -4,22 +4,22 @@
       当前开业风险项目
       <span>{{ riskProject }}</span>
       个，共计
-      <span>{{ storeNum }}</span>
+      <span>{{ sepNumber(storeNum) }}</span>
       间
     </div>
     <div class="scroll_table">
       <van-row justify="space-between" type="flex" class="table_row table_head">
-        <van-col :span="6" class="special">
-          <van-row>{{ indexName[0].name }}</van-row>
-          <van-row>
+        <!-- <van-col :span="6" class="special"> -->
+          <!-- <van-row>{{ indexName[0].name }}</van-row> -->
+          <!-- <van-row>
             <van-col :span="12" class="special">
               {{ indexName[0].value[0] }}
             </van-col>
             <van-col :span="12" class="special">
               {{ indexName[0].value[1] }}
             </van-col>
-          </van-row>
-        </van-col>
+          </van-row> -->
+        <!-- </van-col> -->
         <van-col :span="3" class="table_col">{{ indexName[1] }}</van-col>
         <van-col :span="2" class="table_col">{{ indexName[2] }}</van-col>
         <van-col :span="4" class="table_col">{{ indexName[3] }}</van-col>
@@ -63,6 +63,8 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import Animationend from "@/components/Animationend/Index.vue";
+import { sepNumber } from "@/utils/tools";
+import { fetchProjectDelayInfo } from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
 
 @Component({
   components: {
@@ -71,12 +73,13 @@ import Animationend from "@/components/Animationend/Index.vue";
 })
 export default class B2 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
+  sepNumber = sepNumber;
 
   indexName = [
-    {
-      name: "开业时间",
-      value: ["预计算开业时间", "投委会开业时间"],
-    },
+    // {
+    //   name: "开业时间",
+    //   value: ["预计算开业时间", "投委会开业时间"],
+    // },
     "预计开业时间",
     "地区",
     "项目",
@@ -168,7 +171,18 @@ export default class B2 extends Vue {
 
   riskProject = 5;
 
-  storeNum = 100;
+  storeNum = 100000;
+
+  async created() {
+    const response = await fetchProjectDelayInfo({
+      regionType: "group",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    }
+  }
 }
 </script>
 
