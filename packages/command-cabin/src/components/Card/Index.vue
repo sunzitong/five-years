@@ -23,9 +23,6 @@
           </p>
         </slot>
       </div>
-      <DataSource v-if="dataSource" :position="dataSourcePosition">
-        {{ dataSource }}
-      </DataSource>
     </div>
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
@@ -39,6 +36,9 @@
         <a href="javascript::">查看详情→</a>
       </slot>
     </div>
+    <DataSource v-if="dataSource" :position="dataSourcePosition">
+      {{ dataSource }}
+    </DataSource>
   </div>
 </template>
 
@@ -90,7 +90,7 @@ export default class Card extends Vue {
   /**
    * 数据来源位置
    */
-  @Prop({ default: "" }) dataSourcePosition!: "right top";
+  @Prop({ default: "left bottom" }) dataSourcePosition!: "left bottom";
 
   W = 0;
   H = 0;

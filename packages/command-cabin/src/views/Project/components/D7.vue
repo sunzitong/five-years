@@ -42,8 +42,8 @@ export default class D7 extends Base {
 
   async created() {
     const response = await fetchSentiment({
-      projectId: 1,
-      dateScope: "year",
+      projectId: this.store.global.projectId,
+      dateScope: this.store.global.dateScope,
     });
 
     if (response?.status === "ok") {

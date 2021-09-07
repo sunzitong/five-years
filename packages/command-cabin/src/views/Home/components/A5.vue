@@ -22,7 +22,7 @@
       </ProgressCircle>
       <div class="top_text">全年已到账</div>
       <div class="bottom_text">
-        <span>{{ sepNumber(resData.yearCollectedSubsidies) }}</span>
+        <span>{{ sepNumber(resData.yearSubsidiesCollected) }}</span>
         万
       </div>
     </div>
