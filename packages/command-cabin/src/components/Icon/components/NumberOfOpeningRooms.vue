@@ -500,7 +500,7 @@
 </template>
 
 <script lang="ts">
-import { formatColorStr } from "@/utils/tools";
+import { formatColors } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 
@@ -509,7 +509,7 @@ export default class NumberOfOpeningRooms extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#C4C4C4|#4DC8AA" }) color!: string;
+  @Prop({ default: "#C4C4C4|#4DC8AA" }) color!: string | string[];
 
   /**
    * 图标大小
@@ -523,7 +523,7 @@ export default class NumberOfOpeningRooms extends Vue {
     /**
      * 处理特殊场景
      */
-    return formatColorStr(this.color, 2);
+    return formatColors(this.color, 2);
   }
 
   /**

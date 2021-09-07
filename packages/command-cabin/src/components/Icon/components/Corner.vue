@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { formatColorStr } from "@/utils/tools";
+import { formatColors } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -36,7 +36,7 @@ export default class Corner extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#01F5F1" }) color!: string;
+  @Prop({ default: "#01F5F1" }) color!: string | string[];
 
   /**
    * 图标大小
@@ -50,7 +50,7 @@ export default class Corner extends Vue {
     /**
      * 处理特殊场景
      */
-    return formatColorStr(this.color, 2);
+    return formatColors(this.color, 2);
   }
 
   get transform() {
