@@ -97,143 +97,68 @@
       </ellipse>
 
       <!-- 外圈线条 -->
-      <g :filter="`url(#${uuid}_filter1_b)`">
-        <circle
-          cx="210"
-          cy="210"
-          :r="styleConfig.borderR[2]"
-          transform="rotate(90 210 210)"
-          :stroke="`url(#${uuid}_paint1_linear)`"
-          stroke-width="3"
-          stroke-linejoin="round"
-        >
-          <animateTransform
-            attributeName="transform"
-            from="0 210 210"
-            to="360 210 210"
-            type="rotate"
-            dur="5s"
-            repeatCount="indefinite"
-          />
-        </circle>
-      </g>
+      <circle
+        cx="210"
+        cy="210"
+        :r="styleConfig.borderR[2]"
+        transform="rotate(90 210 210)"
+        :stroke="`url(#${uuid}_paint1_linear)`"
+        stroke-width="3"
+        stroke-linejoin="round"
+      >
+        <animateTransform
+          attributeName="transform"
+          from="0 210 210"
+          to="360 210 210"
+          type="rotate"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
       <!-- 中圈线条 -->
-      <g :filter="`url(#${uuid}_filter0_b)`">
-        <circle
-          cx="210"
-          cy="210"
-          :r="styleConfig.borderR[1]"
-          :stroke="`url(#${uuid}_paint0_linear)`"
-          stroke-width="3"
-          stroke-linejoin="round"
-        >
-          <animateTransform
-            attributeName="transform"
-            from="360 210 210"
-            to="0 210 210"
-            type="rotate"
-            dur="2s"
-            repeatCount="indefinite"
-          />
-        </circle>
-      </g>
+      <circle
+        cx="210"
+        cy="210"
+        :r="styleConfig.borderR[1]"
+        :stroke="`url(#${uuid}_paint0_linear)`"
+        stroke-width="3"
+        stroke-linejoin="round"
+      >
+        <animateTransform
+          attributeName="transform"
+          from="360 210 210"
+          to="0 210 210"
+          type="rotate"
+          dur="2s"
+          repeatCount="indefinite"
+        />
+      </circle>
       <!-- 内圈线条 -->
-      <g :filter="`url(#${uuid}_filter2_b)`">
-        <circle
-          cx="210"
-          cy="210"
-          :r="styleConfig.borderR[0]"
-          transform="rotate(30 210 210)"
-          :stroke="`url(#${uuid}_paint2_linear)`"
-          stroke-width="3"
-          stroke-linejoin="round"
-        >
-          <animateTransform
-            attributeName="transform"
-            from="0 210 210"
-            to="360 210 210"
-            type="rotate"
-            dur="3s"
-            repeatCount="indefinite"
-          />
-          <!-- <animate
+      <circle
+        cx="210"
+        cy="210"
+        :r="styleConfig.borderR[0]"
+        transform="rotate(30 210 210)"
+        :stroke="`url(#${uuid}_paint2_linear)`"
+        stroke-width="3"
+        stroke-linejoin="round"
+      >
+        <animateTransform
+          attributeName="transform"
+          from="0 210 210"
+          to="360 210 210"
+          type="rotate"
+          dur="3s"
+          repeatCount="indefinite"
+        />
+        <!-- <animate
           attributeName="opacity"
           values="0.5;1;0.5"
           dur="2s"
           repeatCount="indefinite"
         /> -->
-        </circle>
-      </g>
+      </circle>
       <defs>
-        <filter
-          :id="`${uuid}_filter0_b`"
-          x="-1.15015"
-          y="-0.789062"
-          width="420"
-          height="420"
-          filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
-        >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
-          <feComposite
-            in2="SourceAlpha"
-            operator="in"
-            result="effect1_backgroundBlur"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_backgroundBlur"
-            result="shape"
-          />
-        </filter>
-        <filter
-          :id="`${uuid}_filter1_b`"
-          x="-20"
-          y="-20"
-          width="462.85"
-          height="462.85"
-          filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
-        >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
-          <feComposite
-            in2="SourceAlpha"
-            operator="in"
-            result="effect1_backgroundBlur"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_backgroundBlur"
-            result="shape"
-          />
-        </filter>
-        <filter
-          :id="`${uuid}_filter2_b`"
-          x="17.8499"
-          y="18.0557"
-          width="385.483"
-          height="385.483"
-          filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
-        >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
-          <feComposite
-            in2="SourceAlpha"
-            operator="in"
-            result="effect1_backgroundBlur"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_backgroundBlur"
-            result="shape"
-          />
-        </filter>
         <linearGradient
           :id="`${uuid}_paint0_linear`"
           x1="402.022"
