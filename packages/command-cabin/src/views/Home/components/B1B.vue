@@ -109,39 +109,12 @@ export default class B1B extends Vue {
   hasGet: number | "--" = "--";
   hasGetRatio: number | "--" = "--";
 
-  pieData1: AnyObject[] = [
-    {
-      name: "重资产",
-      value: "43",
-    },
-    {
-      name: "中资产",
-      value: "43",
-    },
-    {
-      name: "轻资产",
-      value: "43",
-    },
-  ];
+  pieData1: AnyObject[] = [];
 
-  pieData2: AnyObject[] = [
-    {
-      name: "重资产",
-      value: "43",
-    },
-    {
-      name: "中资产",
-      value: "43",
-    },
-    {
-      name: "轻资产",
-      value: "43",
-    },
-  ];
+  pieData2: AnyObject[] = [];
 
-  objData1 = arrayToObject(this.pieData1, { key: "name", value: "value" });
-  objData2 = arrayToObject(this.pieData1, { key: "name", value: "value" });
-  a = iwant.calc(11.1111, 2, true);
+  objData1: AnyObject = {};
+  objData2: AnyObject = {};
 
   async created() {
     const response = await fetchProjectOpen({

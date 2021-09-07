@@ -8,42 +8,42 @@
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          5343
+          {{ sepNumber(5343) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          5343
+          {{ sepNumber(5343) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          5343
+          {{ sepNumber(5343) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          5343
+          {{ sepNumber(5343) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          5343
+          {{ sepNumber(5343) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          5343
+          {{ sepNumber(5343) }}
           <span class="unit">间</span>
         </div>
         <div class="year">2021/01/01～2030/01/01</div>
@@ -54,9 +54,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { sepNumber } from "@/utils/tools";
 
 @Component
-export default class A1 extends Vue {}
+export default class A1 extends Vue {
+  sepNumber = sepNumber;
+}
 </script>
 
 <style lang="scss" scoped>

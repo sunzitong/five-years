@@ -31,7 +31,6 @@
 
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
@@ -39,8 +38,6 @@ import {
   ExpandDiskReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk";
 import { sepNumber } from "@/utils/tools";
-
-console.log(echarts);
 
 @Component({
   components: { ProgressCircle },
@@ -58,14 +55,6 @@ export default class A5 extends Vue {
     if (response?.status === "ok") {
       this.resData = response.data;
     }
-
-    const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
-    let option = {};
-    option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
   }
 }
 </script>

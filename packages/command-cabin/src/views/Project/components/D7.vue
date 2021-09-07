@@ -19,8 +19,6 @@ import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { arrayToObject } from "@guanyu/shared";
 
-console.log(echarts);
-
 @Component({
   components: {},
 })
