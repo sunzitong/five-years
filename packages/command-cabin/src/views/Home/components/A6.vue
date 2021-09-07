@@ -3,8 +3,32 @@
     <div class="text_pannel">
       <!-- 仪表盘组件 -->
       <ProgressCircle
+        v-if="cycleFlag"
         :styleType="1"
-        :rate="50"
+        :rate="yearRate"
+        :size="280"
+        :strokeWidth="100"
+        :strokeSize="185"
+        strokeLinecap="round"
+        color="#4182C7"
+        primary
+        style="height: 190px"
+      >
+        <template v-slot="{ value }">
+          <div class="rate-text">
+            <div class="value">{{ value }}%</div>
+            <div class="desc">
+              预算达成率
+              <br />
+              （全年）
+            </div>
+          </div>
+        </template>
+      </ProgressCircle>
+      <ProgressCircle
+        v-if="!cycleFlag"
+        :styleType="1"
+        :rate="cycleRate"
         :size="280"
         :strokeWidth="100"
         :strokeSize="185"
@@ -42,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Mixins, Ref } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import { sepNumber } from "@/utils/tools";
 import dayjs from "dayjs";
@@ -50,29 +74,51 @@ import {
   fetchExpandDisk,
   ExpandDiskReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk";
+import { iwant } from "@guanyu/shared";
+import _ from "lodash";
+import MixStore from "@/store/MixStore";
 
 @Component({
   components: { ProgressCircle },
 })
-export default class A6 extends Vue {
+export default class A6 extends Mixins(MixStore) {
   @Ref() wrapper!: HTMLDivElement;
   resData: Partial<ExpandDiskReturn> = {};
+
+  cycleFlag = true;
+
+  cycleRate: number | "--" = "--";
+  yearRate: number | "--" = "--";
 
   year = dayjs().year();
 
   sepNumber = sepNumber;
 
-  get currentYear() {
-    return this.resData.yearNetIncomeCompletionRate;
-  }
-  get wholeCycle() {
-    return this.resData.allCollectedNetIncome;
-  }
+  currentYear: number | string = "--";
+  wholeCycle: number | string = "--";
 
   async mounted() {
     const response = await fetchExpandDisk({ year: this.year });
     if (response?.status === "ok") {
       this.resData = response.data;
+
+      this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
+        ? "--"
+        : iwant.calc(this.resData.yearNetIncomeCollected as number, 2, true);
+      this.wholeCycle = _.isNil(this.resData.allNetIncomeCollected)
+        ? "--"
+        : iwant.calc(this.resData.allNetIncomeCollected as number, 2, true);
+
+      this.cycleRate = _.isNil(this.resData.allNetIncomeCompletionRate)
+        ? "--"
+        : this.resData.allNetIncomeCompletionRate;
+      this.yearRate = _.isNil(this.resData.yearNetIncomeCompletionRate)
+        ? "--"
+        : this.resData.yearNetIncomeCompletionRate;
+
+      setInterval(() => {
+        this.cycleFlag = !this.cycleFlag;
+      }, 1000);
     }
   }
 }
