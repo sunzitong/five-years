@@ -11,7 +11,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ListParams {
   /**
-   * group:全国；area:大区；city:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
   regionType: string;
 
@@ -103,7 +103,7 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/6 上午10:08:27
+ * @updateAt 2021/9/6 下午5:32:52
  * @method GET
  */
 export const fetchList = (params: ListParams) => {

@@ -33,13 +33,13 @@ export interface DeviceOfflineReturn {
   elecDeviceOfflineRatio: number;
   waterDeviceOfflineRatio: number;
   doorDeviceOfflineRatio: number;
-  updateTime: Date;
+  updateTime: string;
 }
 
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/6 下午2:31:46
+ * @updateAt 2021/9/6 下午6:20:26
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {

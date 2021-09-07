@@ -11,7 +11,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProjectOpenParams {
   /**
-   * group:全国；area:大区；city:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
   regionType: string;
 
@@ -32,13 +32,16 @@ export interface ProjectOpenParams {
 export interface ProjectOpenReturn {
   totalOpenNum: number;
   totalOpenList: TotalOpenList[];
+  openTargetNum: number;
+  notOpenNotGetNum: number;
+  notOpenNotGetRatio: number;
   openInfo: OpenInfo;
   notOpenInfo: OpenInfo;
 }
 
 export interface OpenInfo {
-  year: number;
   total: number;
+  ratio: number;
   list: NotOpenInfoList[];
 }
 
@@ -68,7 +71,7 @@ export interface TotalOpenListList {
 /**
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/6 下午4:55:53
+ * @updateAt 2021/9/6 下午6:09:35
  * @method GET
  */
 export const fetchProjectOpen = (params: ProjectOpenParams) => {
