@@ -108,8 +108,6 @@
           <ProgressBar :width="1000" v-model="progress" />
         </Card>
         <Card title="ProgressCircle">
-          <ProgressCircle :size="180" v-model="progress" />
-
           <ProgressCircle1 :size="180" v-model="progress" />
         </Card>
         <Card title="Animationend">
