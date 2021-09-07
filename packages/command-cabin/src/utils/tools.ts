@@ -97,3 +97,13 @@ export const sepNumber = (number: number, sep = ",", stepLen = 3) => {
  * @returns angle 弧度
  */
 export const d2a = (n: number): number => (n * Math.PI) / 180;
+
+/**
+ * 渲染 默认'--'
+ * @param value value
+ * @param defaultValue 默认值
+ * @returns value | '--'
+ */
+export const formatValue = (value: unknown, defaultValue = "--") => {
+  return _.isNil(value) || value === "" ? defaultValue : value;
+};
