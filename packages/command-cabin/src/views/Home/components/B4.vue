@@ -31,12 +31,17 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
+import {
+  fetchProductQuality,
+  ProductQualityReturn,
+} from "@/service/bigScreen/mainBoard/construct/productQuality";
 
 @Component({
   components: {},
 })
 export default class B4 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<ProductQualityReturn> = {};
 
   labels = [
     "IPD产品\n封装率",
@@ -44,9 +49,27 @@ export default class B4 extends Vue {
     "移交质量评估\n平均合格率",
   ];
 
-  values = [20, 40, 70];
+  values = [0, 0, 0];
 
-  mounted() {
+  async created() {
+    const response = await fetchProductQuality({
+      regionType: "group",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+
+      this.values = [];
+      for (let key in this.resData) {
+        this.values.push(this.resData[key]);
+      }
+
+      this.paintChart();
+    }
+  }
+
+  paintChart() {
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {
