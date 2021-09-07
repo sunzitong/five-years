@@ -220,9 +220,10 @@ export default class Header extends Vue {}
   color: #fff;
   @extend %bg-img-header;
   h1 {
+    margin: 0;
+    padding-top: 45px;
     font-size: 100px;
     line-height: 100px;
-    padding-top: 45px;
   }
 }
 </style>
