@@ -8,9 +8,11 @@
       <div class="pannel_sub_text">
         <div class="left">
           已开业间数：
-          <van-row>
-            <van-col :span="11" class="value_details">{{ hasOpen }}</van-col>
-            <van-col :span="11" class="value_details">
+          <van-row class="data_row">
+            <van-col :span="6" class="value_details">
+              {{ sepNumber(hasOpen) }}
+            </van-col>
+            <van-col :span="6" class="value_details">
               {{ hasOpenRatio }}%
             </van-col>
           </van-row>
@@ -24,10 +26,10 @@
             </div>
             <div class="text_container">
               <div>
-                <van-row :gutter="20">
-                  <van-col :span="12" class="text_abstract">待获取：</van-col>
+                <van-row :gutter="20" type="flex" justify="flex-end">
+                  <van-col :span="11" class="text_abstract">待获取：</van-col>
                   <van-col :span="6" class="value_details">
-                    {{ toGet }}
+                    {{ sepNumber(toGet) }}
                   </van-col>
                   <van-col :span="6" class="value_details">
                     {{ toGetRatio }}%
@@ -35,10 +37,10 @@
                 </van-row>
               </div>
               <div>
-                <van-row :gutter="20">
-                  <van-col :span="12" class="text_abstract">已获取：</van-col>
+                <van-row :gutter="20" type="flex" justify="flex-end">
+                  <van-col :span="11" class="text_abstract">已获取：</van-col>
                   <van-col :span="6" class="value_details">
-                    {{ hasGet }}
+                    {{ sepNumber(hasGet) }}
                   </van-col>
                   <van-col :span="6" class="value_details">
                     {{ hasGetRatio }}%
@@ -73,10 +75,14 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { sepNumber } from "@/utils/tools";
 import { arrayToObject } from "@guanyu/shared";
-
-console.log(echarts);
+import { sepNumber } from "@/utils/tools";
+import {
+  fetchProjectOpen,
+  ProjectOpenReturn,
+} from "@/service/bigScreen/mainBoard/construct/projectOpen/";
+import dayjs from "dayjs";
+// import { iwant, Nullable } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -88,16 +94,20 @@ export default class B1B extends Vue {
 
   @Ref() rightCharts!: HTMLDivElement;
 
-  targetNum = 15432;
+  resData: Partial<ProjectOpenReturn> = {};
 
-  hasOpen = 8961;
-  hasOpenRatio = 43;
+  year = dayjs().year();
 
-  toGet = 8961;
-  toGetRatio = 43;
+  targetNum: number | "--" = "--";
 
-  hasGet = 8961;
-  hasGetRatio = 43;
+  hasOpen: number | "--" = "--";
+  hasOpenRatio: number | "--" = "--";
+
+  toGet: number | "--" = "--";
+  toGetRatio: number | "--" = "--";
+
+  hasGet: number | "--" = "--";
+  hasGetRatio: number | "--" = "--";
 
   pieData1 = [
     {
@@ -131,6 +141,28 @@ export default class B1B extends Vue {
 
   objData1 = arrayToObject(this.pieData1, { key: "name", value: "value" });
   objData2 = arrayToObject(this.pieData1, { key: "name", value: "value" });
+
+  async created() {
+    const response = await fetchProjectOpen({
+      regionType: "group",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+
+      this.targetNum = this.resData.openTargetNum ?? "--";
+
+      this.hasOpen = this.resData.openInfo?.total ?? "--";
+      this.hasOpenRatio = this.resData.openInfo?.ratio ?? "--";
+
+      this.toGet = this.resData.notOpenNotGetNum ?? "--";
+      this.toGetRatio = this.resData.notOpenNotGetRatio ?? "--";
+
+      this.hasGet = this.resData.notOpenInfo?.total ?? "--";
+      this.hasGetRatio = this.resData.notOpenInfo?.ratio ?? "--";
+    }
+  }
 
   mounted() {
     const myLeftChart = echarts.init(this.leftCharts);
@@ -292,7 +324,12 @@ export default class B1B extends Vue {
       padding-top: 12px;
     }
 
+    .data_row {
+      width: 350px;
+    }
+
     .right {
+      // width: 480px;
       .right_bottom {
         display: flex;
         flex-flow: row nowrap;
@@ -315,6 +352,7 @@ export default class B1B extends Vue {
         .text_container {
           margin-left: 100px;
           height: 100px;
+          width: 300px;
 
           display: flex;
           flex-flow: column nowrap;
