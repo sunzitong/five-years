@@ -78,7 +78,8 @@ export default class ProgressBar extends Vue {
    * 计算百分比
    */
   get progress() {
-    return (this.iValue * this.width) / 100;
+    const v = Math.min(Math.max(this.iValue, 0), 100);
+    return (v * this.width) / 100;
   }
 }
 </script>
