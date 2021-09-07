@@ -1,6 +1,5 @@
 <template>
   <div class="page__index">
-    <div class="header"></div>
     <div class="main">
       <div class="main-left">
         <SubWrapper title="拓展盘面">
@@ -148,6 +147,7 @@
       </div>
     </div>
     <div class="footer">
+      <div style="flex: 1">aaa</div>
       <FooterBackground />
     </div>
   </div>
@@ -156,8 +156,8 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
-import SubWrapper from "@/components/SubWrapper/Index.vue";
 import Card from "@/components/Card/Index.vue";
+import SubWrapper from "@/components/SubWrapper/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 
@@ -196,9 +196,7 @@ export default class Home extends Base {}
 .page__index {
   width: 7680px;
   color: #fff;
-  .header {
-    height: 100px;
-  }
+  padding-top: 55px;
   .main {
     display: flex;
     margin: 0 60px;
@@ -219,6 +217,10 @@ export default class Home extends Base {}
     padding: 20px;
     display: flex;
     justify-content: space-between;
+  }
+  .footer {
+    position: relative;
+    height: 253px;
   }
 }
 </style>

@@ -55,3 +55,15 @@ export default class FooterBackground extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.app-footer-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  svg {
+    vertical-align: middle;
+  }
+}
+</style>

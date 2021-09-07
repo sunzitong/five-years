@@ -9,7 +9,9 @@
             </van-col>
             <van-col>
               <div class="title">累计获取房间数(万)</div>
-              <div class="num" style="color: #48cdfc">12438</div>
+              <div class="num" style="color: #48cdfc">
+                {{ response.getRoomNum }}
+              </div>
             </van-col>
           </van-row>
         </Card>
@@ -19,7 +21,9 @@
           </van-col>
           <van-col>
             <div class="title">品牌指数</div>
-            <div class="num" style="color: #ee7647">NO.1</div>
+            <div class="num" style="color: #ee7647">
+              NO.{{ response.brandPointNum }}
+            </div>
           </van-col>
         </van-row>
       </van-col>
@@ -31,7 +35,9 @@
             </van-col>
             <van-col>
               <div class="title">累计开业房间数(间)</div>
-              <div class="num" style="color: #b07df7">12438</div>
+              <div class="num" style="color: #b07df7">
+                {{ response.openRoomNum }}
+              </div>
             </van-col>
           </van-row>
         </Card>
@@ -41,7 +47,9 @@
           </van-col>
           <van-col>
             <div class="title">累计服务用户数</div>
-            <div class="num" style="color: #5fceb3">100w+</div>
+            <div class="num" style="color: #5fceb3">
+              {{ response.servedPersonNum }}
+            </div>
           </van-col>
         </van-row>
       </van-col>
@@ -51,7 +59,9 @@
             <van-col><Icon type="year-income" :size="200" /></van-col>
             <van-col>
               <div class="title">年累总收入(亿)</div>
-              <div class="num" style="color: #5fceb3">100w+</div>
+              <div class="num" style="color: #5fceb3">
+                {{ response.incomeNum }}
+              </div>
             </van-col>
           </van-row>
         </Card>
@@ -61,7 +71,9 @@
           </van-col>
           <van-col>
             <div class="title">累计租户</div>
-            <div class="num" style="color: #4770ff">55,457</div>
+            <div class="num" style="color: #4770ff">
+              {{ response.tenantNum }}
+            </div>
           </van-col>
         </van-row>
       </van-col>
@@ -73,6 +85,10 @@
 import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/Card/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
+import {
+  fetchNumYearly,
+  NumYearlyReturn,
+} from "@/service/analysis/bigScreen/mainBoard/center/numYearly";
 
 @Component({
   components: {
@@ -80,7 +96,32 @@ import Icon from "@/components/Icon/Index.vue";
     Icon,
   },
 })
-export default class C1 extends Vue {}
+export default class C1 extends Vue {
+  /**
+   * 返回数据
+   */
+  response: NumYearlyReturn = {
+    /** 房间间数 */
+    getRoomNum: 0,
+    /** 累计开业房间间数 */
+    openRoomNum: 0,
+    /** 年累计收 */
+    incomeNum: 0,
+    /** 品牌指数 */
+    brandPointNum: 1,
+    /** 累计服务用户数 */
+    servedPersonNum: 0,
+    /** 累计租户 */
+    tenantNum: 0,
+  };
+
+  async created() {
+    const response = await fetchNumYearly();
+    if (response?.status === "ok") {
+      this.response = response.data ?? {};
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .main-top-info {

@@ -1,6 +1,6 @@
 <template>
-  <div class="page__index">
-    <div class="header"></div>
+  <div class="page__project">
+    <div class="header">龙湖冠寓重庆佳华北宸里店</div>
     <div class="main">
       <div class="main-left">
         <SubWrapper title="财务相关指标及预估">
@@ -201,11 +201,15 @@ export default class Index extends Base {}
 </script>
 
 <style lang="scss" scoped>
-.page__index {
+.page__project {
   width: 7680px;
   color: #fff;
   .header {
-    height: 100px;
+    height: 120px;
+    line-height: 120px;
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 45px;
   }
   .main {
     display: flex;

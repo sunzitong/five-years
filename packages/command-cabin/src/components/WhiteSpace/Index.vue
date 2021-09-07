@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
-export default class SubWrapper extends Vue {
+export default class WhiteSpace extends Vue {
   /**
    * 上下留白xs,sm,md,lg,xl
    */
