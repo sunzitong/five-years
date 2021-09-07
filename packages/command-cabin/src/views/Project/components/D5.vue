@@ -69,6 +69,11 @@
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
+import {
+  DeviceOfflineReturn,
+  fetchDeviceOffline,
+} from "@/service/bigScreen/projectBoard/managementSituation/deviceOffline";
+import dayjs from "dayjs";
 
 @Component({
   components: { Icon },
@@ -76,6 +81,22 @@ import Base from "@/views/Base";
 export default class D5 extends Base {
   currentRate = 0;
   rate = 40;
+
+  /**
+   * 返回数据
+   */
+  response: Partial<DeviceOfflineReturn> = {};
+
+  async created() {
+    const response = await fetchDeviceOffline({
+      projectNo: "11111",
+      dataTime: dayjs().format("YYYY-MM-DD"),
+    });
+
+    if (response?.status === "ok") {
+      this.response = response.data ?? {};
+    }
+  }
 }
 </script>
 
