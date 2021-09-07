@@ -5,7 +5,7 @@
         <div class="item">
           <van-circle
             v-model="item.currentRate"
-            :rate="item.rate * 100"
+            :rate="item.rate"
             :speed="50"
             layer-color="#14437F"
             :color="item.color"
