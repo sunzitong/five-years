@@ -176,7 +176,7 @@ export default class B1B extends Vue {
         };
       });
 
-      console.log("饼图数据1", this.pieData1, this.pieData2);
+      // console.log("饼图数据1", this.pieData1, this.pieData2);
       this.objData1 = arrayToObject(this.pieData1, {
         key: "name",
         value: "value",
@@ -185,7 +185,7 @@ export default class B1B extends Vue {
         key: "name",
         value: "value",
       });
-      console.log("饼图数据2", this.objData1, this.objData2);
+      // console.log("饼图数据2", this.objData1, this.objData2);
 
       this.paintChart();
     }
