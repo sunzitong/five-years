@@ -13,7 +13,7 @@ export interface RepairStatParams {
   /**
    * group:全国；area:大区；city:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空
@@ -45,7 +45,7 @@ export interface Repair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/3 下午6:16:23
+ * @updateAt 2021/9/6 下午2:27:56
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {

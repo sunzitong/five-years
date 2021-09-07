@@ -13,7 +13,7 @@ export interface DeviceOfflineParams {
   /**
    * group:全国；area:大区；city:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空
@@ -23,7 +23,7 @@ export interface DeviceOfflineParams {
   /**
    * 统计哪个时间的数据，默认是当前时间
    */
-  dataTime?: number;
+  dataTime?: string;
 }
 
 /**
@@ -33,13 +33,13 @@ export interface DeviceOfflineReturn {
   elecDeviceOfflineRatio: number;
   waterDeviceOfflineRatio: number;
   doorDeviceOfflineRatio: number;
-  updateTime: Date;
+  updateTime: string;
 }
 
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/3 下午5:39:23
+ * @updateAt 2021/9/6 下午6:20:26
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
