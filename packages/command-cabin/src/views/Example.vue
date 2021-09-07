@@ -109,8 +109,7 @@
         </Card>
         <Card title="ProgressCircle">
           <ProgressCircle :size="180" v-model="progress" />
-
-          <ProgressCircle1 :size="180" v-model="progress" />
+          <ProgressCircle1 :size="240" :strokeWidth="10" v-model="progress" />
         </Card>
         <Card title="Animationend">
           <Animationend key="1" :scrollMinCount="10" :dataSource="dataSource">
