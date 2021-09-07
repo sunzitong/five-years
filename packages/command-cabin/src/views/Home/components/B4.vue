@@ -29,18 +29,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import {
   fetchProductQuality,
   ProductQualityReturn,
 } from "@/service/bigScreen/mainBoard/construct/productQuality";
 import dayjs from "dayjs";
+import Base from "@/views/Base";
 
 @Component({
   components: {},
 })
-export default class B4 extends Vue {
+export default class B4 extends Base {
   @Ref() wrapper!: HTMLDivElement;
   resData: Partial<ProductQualityReturn> = {};
   year = dayjs().year();

@@ -105,5 +105,7 @@ export const d2a = (n: number): number => (n * Math.PI) / 180;
  * @returns value | '--'
  */
 export const formatValue = (value: unknown, defaultValue = "--") => {
-  return _.isNil(value) || value === "" ? defaultValue : value;
+  return _.isNil(value) || value === "" || _.isNaN(value)
+    ? defaultValue
+    : value;
 };

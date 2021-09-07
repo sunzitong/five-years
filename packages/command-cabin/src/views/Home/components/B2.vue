@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import Animationend from "@/components/Animationend/Index.vue";
 import { sepNumber } from "@/utils/tools";
 import {
@@ -78,13 +78,14 @@ import {
 } from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
 import dayjs from "dayjs";
+import Base from "@/views/Base";
 
 @Component({
   components: {
     Animationend,
   },
 })
-export default class B2 extends Vue {
+export default class B2 extends Base {
   @Ref() wrapper!: HTMLDivElement;
   sepNumber = sepNumber;
   resData: Partial<ProjectDelayInfoReturn> = {};

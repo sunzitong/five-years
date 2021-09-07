@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import { sepNumber } from "@/utils/tools";
@@ -82,12 +82,13 @@ import {
   ProjectOpenReturn,
 } from "@/service/bigScreen/mainBoard/construct/projectOpen/";
 import dayjs from "dayjs";
+import Base from "@/views/Base";
 // import { iwant, Nullable } from "@guanyu/shared";
 
 @Component({
   components: {},
 })
-export default class B1B extends Vue {
+export default class B1B extends Base {
   sepNumber = sepNumber;
 
   @Ref() leftCharts!: HTMLDivElement;

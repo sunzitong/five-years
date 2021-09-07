@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { AnyObject } from "@guanyu/shared";
 import {
@@ -29,13 +29,14 @@ import {
   RepairStatReturn,
 } from "@/service/bigScreen/mainBoard/construct/repairStat";
 import dayjs from "dayjs";
+import Base from "@/views/Base";
 
 console.log(echarts);
 
 @Component({
   components: {},
 })
-export default class B5 extends Vue {
+export default class B5 extends Base {
   @Ref() wrapper!: HTMLDivElement;
   resData: Partial<RepairStatReturn> = {};
   year = dayjs().year();

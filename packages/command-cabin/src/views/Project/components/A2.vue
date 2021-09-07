@@ -38,10 +38,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Base from "@/views/Base";
+import { Component } from "vue-property-decorator";
 
 @Component
-export default class A2 extends Vue {}
+export default class A2 extends Base {}
 </script>
 
 <style lang="scss" scoped>

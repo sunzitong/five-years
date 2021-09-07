@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import { sepNumber } from "@/utils/tools";
 import dayjs from "dayjs";
@@ -50,11 +50,12 @@ import {
   fetchExpandDisk,
   ExpandDiskReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk";
+import Base from "@/views/Base";
 
 @Component({
   components: { ProgressCircle },
 })
-export default class A6 extends Vue {
+export default class A6 extends Base {
   @Ref() wrapper!: HTMLDivElement;
   resData: Partial<ExpandDiskReturn> = {};
 

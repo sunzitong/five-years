@@ -39,14 +39,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Animationend from "@/components/Animationend/Index.vue";
+import Base from "@/views/Base";
 
 @Component({
   components: { Icon, Animationend },
 })
-export default class A4 extends Vue {
+export default class A4 extends Base {
   phoneIndex = -1;
   list = [
     { name: "方唐镜", role: "C6", showPhone: false },

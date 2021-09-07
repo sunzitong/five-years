@@ -82,13 +82,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Card from "@/components/Card/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import {
   fetchNumYearly,
   NumYearlyReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/numYearly";
+import Base from "@/views/Base";
 
 @Component({
   components: {
@@ -96,7 +97,7 @@ import {
     Icon,
   },
 })
-export default class C1 extends Vue {
+export default class C1 extends Base {
   /**
    * 返回数据
    */

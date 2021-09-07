@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
@@ -38,11 +38,12 @@ import {
   ExpandDiskReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk";
 import { sepNumber } from "@/utils/tools";
+import Base from "@/views/Base";
 
 @Component({
   components: { ProgressCircle },
 })
-export default class A5 extends Vue {
+export default class A5 extends Base {
   @Ref() wrapper!: HTMLDivElement;
   sepNumber = sepNumber;
 
