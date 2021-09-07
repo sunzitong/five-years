@@ -32,20 +32,35 @@
             <stop offset="1" stop-color="#1b3b6e" :stop-opacity="stopOpacity" />
           </linearGradient>
         </defs>
-        <!-- <ellipse
-          cx="7"
-          cy="-5"
-          rx="20"
-          ry="14"
-          fill="#aaa"
-          stroke="#666"
-          stroke-width="2"
-          opacity=".8"
-        >
-          <animateMotion dur="2s" rotate="auto" repeatCount="indefinite">
-            <mpath :xlink:href="`#${uuid}_1`" />
-          </animateMotion>
-        </ellipse> -->
+      </svg>
+    </div>
+    <div class="app-card-decorate__footer" v-if="showFooter">
+      <svg
+        width="266"
+        height="60"
+        viewBox="0 0 266 60"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M28.0651 5.37634C29.7655 2.44977 32.8946 0.648926 36.2793 0.648926H245.272C256.042 0.648926 264.772 9.37937 264.772 20.1489V49.1008C264.772 54.3475 260.519 58.6008 255.272 58.6008H6.69732C2.4567 58.6008 -0.188636 54.0043 1.94175 50.3377L28.0651 5.37634Z"
+          :fill="fill"
+          :fill-opacity="fillOpacity"
+          :stroke="`url(#${uuid}_footer)`"
+        />
+        <defs>
+          <linearGradient
+            :id="`${uuid}_footer`"
+            x1="110.772"
+            y1="0.148926"
+            x2="110.772"
+            y2="59.1008"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#1B4986" />
+            <stop offset="1" stop-opacity="0" />
+          </linearGradient>
+        </defs>
       </svg>
     </div>
     <div v-if="showRectBackground" class="app-card-decorate__lattices"></div>
@@ -99,6 +114,11 @@ export default class CardDecorate extends Vue {
   @Prop({ default: "box" }) type!: "box" | "box-rect";
 
   /**
+   * 是否显示页脚
+   */
+  @Prop({ default: false }) showFooter!: boolean;
+
+  /**
    * 背景默认宽度
    */
   width = 1000;
@@ -126,6 +146,7 @@ export default class CardDecorate extends Vue {
    * 边框渐变
    */
   get stopOpacity() {
+    if (this.showFooter) return 0.2;
     if (this.type === "box-rect") return 1;
     return 0;
   }
@@ -187,6 +208,9 @@ export default class CardDecorate extends Vue {
   }
 
   get customerD() {
+    const FT = this.showFooter
+      ? { h: 68, w: 225, r: 5, lw: 225 + 45 }
+      : { h: 0, w: 0, r: 0, lw: 0 };
     const { W, H, C, A, B, D, E, R, LW, SR } = this.formatSize;
     /**
      *----W----A-------                              -----W---R
@@ -245,11 +269,22 @@ export default class CardDecorate extends Vue {
       ${W + A + B + D + C + D + B + A + W} ${LW}
       ${W + A + B + D + C + D + B + A + W} ${R}
       L${W + A + B + D + C + D + B + A + W} ${R}
-      L${W + A + B + D + C + D + B + A + W} ${H - R}
-      C${W + A + B + D + C + D + B + A + W} ${H - R}
-      ${W + A + B + D + C + D + B + A + W} ${H}
-      ${W + A + B + D + C + D + B + A + W - R} ${H}
-      L${W + A + B + D + C + D + B + A + W - R} ${H}
+
+      L${W + A + B + D + C + D + B + A + W} ${H - R - FT.h}
+      C${W + A + B + D + C + D + B + A + W} ${H - R - FT.h}
+      ${W + A + B + D + C + D + B + A + W} ${H - FT.h}
+      ${W + A + B + D + C + D + B + A + W - R} ${H - FT.h}
+      L${W + A + B + D + C + D + B + A + W - R - FT.w} ${H - FT.h}
+      C${W + A + B + D + C + D + B + A + W - R - FT.w + R} ${H - FT.h}
+      ${W + A + B + D + C + D + B + A + W - R - FT.w} ${H - FT.h}
+      ${W + A + B + D + C + D + B + A + W - R - FT.w - FT.r} ${H - FT.h + FT.r}
+      L${W + A + B + D + C + D + B + A + W - R - FT.w - FT.r} ${H - FT.h + FT.r}
+      L${W + A + B + D + C + D + B + A + W - R - FT.lw + FT.r} ${H - FT.r}
+      C${W + A + B + D + C + D + B + A + W - R - FT.lw + FT.r} ${H - FT.r}
+      ${W + A + B + D + C + D + B + A + W - R - FT.lw} ${H}
+      ${W + A + B + D + C + D + B + A + W - R - FT.lw - FT.r} ${H}
+      L${W + A + B + D + C + D + B + A + W - R - FT.lw - FT.r} ${H}
+
       L${R} ${H}
       C${R} ${H}
       ${LW} ${H}
@@ -349,6 +384,12 @@ export default class CardDecorate extends Vue {
   }
   svg {
     vertical-align: middle;
+  }
+
+  &__footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 
   &--box-rect {
