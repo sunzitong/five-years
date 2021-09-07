@@ -3,11 +3,11 @@
     <div class="header">
       <div class="red">
         红
-        <span class="value__letter">12</span>
+        <span class="value__letter">{{ response.redNum }}</span>
       </div>
       <div class="orange">
         橙
-        <span class="value__letter">23</span>
+        <span class="value__letter">{{ response.yellowNum }}</span>
       </div>
     </div>
     <div class="chart" ref="chart"></div>
@@ -15,9 +15,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { arrayToObject } from "@guanyu/shared";
+import { arrayToObject, iwant } from "@guanyu/shared";
+import {
+  fetchSentiment,
+  NumsByType,
+  SentimentReturn,
+} from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
 
 @Component({
   components: {},
@@ -25,38 +30,52 @@ import { arrayToObject } from "@guanyu/shared";
 export default class D7 extends Vue {
   @Ref() chart!: HTMLDivElement;
 
-  pieData = [
-    {
-      name: "01",
-      value: "43",
-    },
-    {
-      name: "02",
-      value: "53",
-    },
-    {
-      name: "03",
-      value: "43",
-    },
-    {
-      name: "04",
-      value: "43",
-    },
-    {
-      name: "05",
-      value: "43",
-    },
-    {
-      name: "06",
-      value: "43",
-    },
-  ];
+  /**
+   * 返回值
+   */
+  response: SentimentReturn = {
+    redNum: 0,
+    yellowNum: 0,
+    numsByType: [],
+  };
 
-  objData = arrayToObject(this.pieData, { key: "name", value: "value" });
+  async created() {
+    const response = await fetchSentiment({
+      projectId: 1,
+      dateScope: "year",
+    });
+
+    if (response?.status === "ok") {
+      this.response = response.data ?? {};
+    }
+  }
+
+  /**
+   * 取出数据的百分比值
+   */
+  get numsByTypeMaps() {
+    return this.response.numsByType.reduce((prev, curr) => {
+      const newPrev = prev;
+      newPrev[curr.typeNum] = curr.ratio;
+      return newPrev;
+    }, {});
+  }
+
+  /**
+   * 更新数据并重绘Echarts
+   */
+  @Watch("response.numsByType", { immediate: true })
+  onNumsByTypeChange(list: NumsByType) {
+    if (!this.echarts) return;
+    const val = iwant.array(list).map((item) => {
+      return { name: item.typeNum, value: item.num };
+    });
+    this.echarts.setOption({ series: [{ data: val }] });
+  }
 
   mounted() {
-    const myChart = echarts.init(this.chart);
-    let option = {
+    this.echarts = echarts.init(this.chart);
+    const option = {
       legend: {
         orient: "vertical",
         right: "10%",
@@ -65,9 +84,8 @@ export default class D7 extends Vue {
         itemWidth: 20,
         itemHeight: 20,
         itemGap: 16,
-        data: this.pieData,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData[params]}%}`;
+          return `{a|${params}}{b|  ${this.numsByTypeMaps[params]}%}`;
         },
         textStyle: {
           rich: {
@@ -105,14 +123,11 @@ export default class D7 extends Vue {
           label: {
             show: false,
           },
-          data: this.pieData,
+          data: this.pipData,
         },
       ],
     };
-    option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
+    this.echarts.setOption(option);
   }
 }
 </script>
