@@ -11,12 +11,12 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface DeviceOfflineParams {
   /**
-   * 门店ID
+   * 门店编号
    */
-  projectId: number;
+  projectNo: string;
 
   /**
-   * 统计哪个时间的的数据，默认是当前时间
+   * 最新统计日，默认是当前时间，yyyy-mm-dd
    */
   dataTime?: string;
 }
@@ -28,13 +28,14 @@ export interface DeviceOfflineReturn {
   elecDeviceOfflineRatio: number;
   waterDeviceOfflineRatio: number;
   doorDeviceOfflineRatio: number;
+  dataSource: string;
   updateTime: string;
 }
 
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/6 下午6:20:39
+ * @updateAt 2021/9/7 下午3:25:34
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {

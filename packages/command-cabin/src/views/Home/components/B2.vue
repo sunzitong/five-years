@@ -77,6 +77,7 @@ import {
   ProjectDelayInfoReturn,
 } from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
+import dayjs from "dayjs";
 
 @Component({
   components: {
@@ -87,6 +88,7 @@ export default class B2 extends Vue {
   @Ref() wrapper!: HTMLDivElement;
   sepNumber = sepNumber;
   resData: Partial<ProjectDelayInfoReturn> = {};
+  year = dayjs().year();
 
   indexName = [
     // {

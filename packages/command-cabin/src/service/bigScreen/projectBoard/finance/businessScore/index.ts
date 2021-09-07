@@ -20,16 +20,22 @@ export interface BusinessScoreParams {
  * 财务相关指标-综合经营指数-返回值
  */
 export interface BusinessScoreReturn {
+  lastMonthScore: TMonthScore;
+  currentMonthScore: TMonthScore;
+}
+
+export interface TMonthScore {
   totalScore: number;
   creditScore: number;
   channelEffectScore: number;
   healthyScore: number;
+  dataDate: Date;
 }
 
 /**
  * 财务相关指标-综合经营指数
  * @createBy huyanan
- * @updateAt 2021/9/6 下午3:38:20
+ * @updateAt 2021/9/7 上午10:16:38
  * @method GET
  */
 export const fetchBusinessScore = (params: BusinessScoreParams) => {

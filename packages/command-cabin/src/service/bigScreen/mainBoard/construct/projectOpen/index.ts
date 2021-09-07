@@ -71,7 +71,7 @@ export interface TotalOpenListList {
 /**
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/6 下午6:09:35
+ * @updateAt 2021/9/7 上午11:27:59
  * @method GET
  */
 export const fetchProjectOpen = (params: ProjectOpenParams) => {
