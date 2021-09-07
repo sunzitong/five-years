@@ -65,6 +65,7 @@
 import { Component, Prop, Vue, VModel, Watch } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 import { d2a, formatColors } from "@/utils/tools";
+import { gsap } from "gsap";
 
 @Component
 export default class ProgressCircle extends Vue {
