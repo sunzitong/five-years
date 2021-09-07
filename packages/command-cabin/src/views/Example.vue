@@ -157,6 +157,7 @@
               :strokeWidth="210"
               :strokeSize="280"
               style="height: 400px; width: 400px"
+              primary
             >
               <template v-slot="{ value }">
                 <div class="rate-text">
@@ -199,39 +200,6 @@
             </ProgressCircle>
             <ProgressCircle
               :styleType="2"
-              :rate="45"
-              :size="400"
-              :strokeWidth="210"
-              :strokeSize="280"
-              style="height: 400px; width: 400px"
-            >
-              <template v-slot="{ value }">
-                <div class="rate-text">
-                  <div class="value">{{ value }}</div>
-                  <div class="desc">总分</div>
-                </div>
-              </template>
-            </ProgressCircle>
-            <ProgressCircle
-              :styleType="2"
-              :rate="45"
-              :size="400"
-              :strokeWidth="210"
-              :strokeSize="280"
-              style="height: 400px; width: 400px"
-              :arc="false"
-              :clockwise="false"
-              color="green"
-            >
-              <template v-slot="{ value }">
-                <div class="rate-text">
-                  <div class="value">{{ value }}</div>
-                  <div class="desc">总分</div>
-                </div>
-              </template>
-            </ProgressCircle>
-            <ProgressCircle
-              :styleType="3"
               :rate="45"
               :size="400"
               :strokeWidth="210"
@@ -261,23 +229,39 @@
                 </div>
               </template>
             </ProgressCircle>
-            <ProgressCircle
-              :styleType="3"
-              :rate="45"
-              :size="400"
-              :strokeWidth="210"
-              :strokeSize="280"
-              style="height: 400px; width: 400px"
-              primary
-            >
-              <template v-slot="{ value }">
-                <div class="rate-text">
-                  <div class="value">{{ value }}</div>
-                  <div class="desc">总分</div>
-                </div>
-              </template>
-            </ProgressCircle>
           </div>
+        </Card>
+
+        <Card
+          title="ButtonGroup"
+          :showFooter="true"
+          :showRectBackground="false"
+        >
+          <ButtonGroup>
+            <van-radio-group v-model="radio" direction="horizontal">
+              <van-radio :name="1">单选框 1</van-radio>
+              <van-radio :name="12">单选框 1</van-radio>
+              <van-radio :name="13">单选框 1</van-radio>
+              <van-radio :name="2">
+                单选框 2
+                <van-icon name="arrow" />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+          <ButtonGroup>
+            <van-radio-group v-model="radio" direction="horizontal">
+              <van-radio :name="1">单选框 1</van-radio>
+              <van-radio :name="2">
+                单选框 2
+                <van-icon name="arrow" />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroup>
+          <ButtonGroup>
+            <van-radio-group v-model="radio" direction="horizontal">
+              <van-radio :name="1">单选框 1</van-radio>
+            </van-radio-group>
+          </ButtonGroup>
         </Card>
       </van-col>
     </van-row>
@@ -298,6 +282,7 @@ import ProgressCircle1 from "@/components/Progress/ProgressCircle1.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
+import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 
 @Component({
   components: {
@@ -312,6 +297,7 @@ import BlurBox from "@/components/BlurBox/Index.vue";
     Animationend,
     Btn,
     BlurBox,
+    ButtonGroup,
   },
 })
 export default class Example extends Vue {
@@ -324,6 +310,8 @@ export default class Example extends Vue {
   dataSource1 = Array.from({ length: 10 }).map((item, index) => ({
     id: index + 1,
   }));
+
+  radio = 1;
 
   aaa() {
     alert("a");
