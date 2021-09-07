@@ -299,7 +299,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { iwant, uuid } from "@guanyu/shared";
 // "#2A7CB2|#FE3AD3|#FE3A98"
 @Component
@@ -314,6 +314,10 @@ export default class ProgressCircle extends Vue {
   get realRate() {
     if (this.arc) return this.rate * 0.8;
     return this.rate;
+  }
+  @Watch("rate")
+  rateChanged() {
+    this.currentRate = 0;
   }
   /**
    * v-model实时进度(vant提供)
