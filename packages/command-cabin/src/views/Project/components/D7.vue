@@ -54,11 +54,10 @@ export default class D7 extends Vue {
    * 取出数据的百分比值
    */
   get numsByTypeMaps() {
-    return this.response.numsByType.reduce((prev, curr) => {
-      const newPrev = prev;
-      newPrev[curr.typeNum] = curr.ratio;
-      return newPrev;
-    }, {});
+    return arrayToObject(this.response.numsByType, {
+      key: "typeNum",
+      value: "ratio",
+    });
   }
 
   /**
