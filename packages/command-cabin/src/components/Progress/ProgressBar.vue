@@ -31,7 +31,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, VModel } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
-import { formatColorStr } from "@/utils/tools";
+import { formatColors } from "@/utils/tools";
 
 @Component
 export default class ProgressBar extends Vue {
@@ -58,13 +58,13 @@ export default class ProgressBar extends Vue {
   /**
    * 颜色
    */
-  @Prop({ default: "#5CDCFE|#1D94FF|#143F79" }) color!: string;
+  @Prop({ default: "#5CDCFE|#1D94FF|#143F79" }) color!: string | string[];
 
   /**
    * 填充颜色
    */
   get fill() {
-    return formatColorStr(this.color, 3);
+    return formatColors(this.color, 3);
   }
 
   /**

@@ -13,7 +13,7 @@ export interface SentimentParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: number;
+  dataLevel: string;
 
   /**
    * 组织id
@@ -23,7 +23,7 @@ export interface SentimentParams {
   /**
    * 时间范围：见公用枚举
    */
-  dateScope: number;
+  dateScope: string;
 }
 
 /**

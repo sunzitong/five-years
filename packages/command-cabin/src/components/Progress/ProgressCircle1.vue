@@ -64,8 +64,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, VModel, Watch } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
-import { d2a, formatColorStr } from "@/utils/tools";
-import { gsap } from "gsap";
+import { d2a, formatColors } from "@/utils/tools";
 
 @Component
 export default class ProgressCircle extends Vue {
@@ -107,7 +106,7 @@ export default class ProgressCircle extends Vue {
   /**
    * 颜色
    */
-  @Prop({ default: "#2A7CB2|#FE3AD3|#FE3A98" }) color!: string;
+  @Prop({ default: "#2A7CB2|#FE3AD3|#FE3A98" }) color!: string | string[];
 
   a = 0;
 
@@ -115,7 +114,7 @@ export default class ProgressCircle extends Vue {
    * 填充颜色
    */
   get fill() {
-    return formatColorStr(this.color, 3);
+    return formatColors(this.color, 3);
   }
 
   /**
@@ -189,8 +188,8 @@ export default class ProgressCircle extends Vue {
 
     return `
       M${cx} ${cy}
-      A${r},${r} 0 ${eAngle - sAngle < 180 ? 0 : 1}, 
-      ${counterclockwise ? 1 : 0} 
+      A${r},${r} 0 ${eAngle - sAngle < 180 ? 0 : 1},
+      ${counterclockwise ? 1 : 0}
       ${cx1},${cy1}
     `;
   }

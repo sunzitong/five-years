@@ -32,8 +32,6 @@
 import { Component, Ref, Vue } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 
-console.log(echarts);
-
 @Component({
   components: {},
 })
@@ -77,10 +75,6 @@ export default class B4 extends Vue {
           color: "#FFFFFF",
           fontSize: 28,
           lineHeight: 32,
-          // textStyle: {
-          //   align: "left",
-          //   baseline: "middle",
-          // },
         },
         data: this.labels,
       },

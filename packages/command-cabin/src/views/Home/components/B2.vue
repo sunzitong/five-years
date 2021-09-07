@@ -29,7 +29,7 @@
         <van-col :span="3" class="table_col">{{ indexName[7] }}</van-col>
       </van-row>
       <div class="table_body">
-        <Animationend :scrollMinCount="5" :height="480" :dataSource="col">
+        <Animationend :scrollMinCount="5" :height="504" :dataSource="col">
           <template v-slot="{ list }">
             <van-row
               animated
@@ -173,8 +173,13 @@ export default class B2 extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.page__opening_extension__map {
+  margin-top: 12px;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+}
 .abstract_text {
-  margin: 30px 0 33px 30px;
+  margin: 10px 0 30px 30px;
   font-family: "PingFang SC";
   font-size: 30px;
   line-height: 34px;

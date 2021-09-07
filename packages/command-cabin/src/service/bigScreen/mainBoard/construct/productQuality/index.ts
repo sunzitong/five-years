@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProductQualityParams {
   /**
-   * group:全国；area:大区；city:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空
@@ -38,7 +38,7 @@ export interface ProductQualityReturn {
 /**
  * 营造盘面-产品品质
  * @createBy huyanan
- * @updateAt 2021/9/6 上午10:03:22
+ * @updateAt 2021/9/6 下午5:32:37
  * @method GET
  */
 export const fetchProductQuality = (params: ProductQualityParams) => {

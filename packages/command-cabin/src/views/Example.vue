@@ -190,7 +190,7 @@
               strokeLinecap="round"
               :strokeWidth="100"
               :strokeSize="180"
-              :gap="false"
+              :arc="false"
             >
               <template v-slot="{ value }">
                 <div class="rate-text">
@@ -220,7 +220,7 @@
               :strokeWidth="210"
               :strokeSize="280"
               style="height: 400px; width: 400px"
-              :gap="false"
+              :arc="false"
               :clockwise="false"
               color="green"
             >

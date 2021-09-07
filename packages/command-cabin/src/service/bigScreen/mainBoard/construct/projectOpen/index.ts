@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProjectOpenParams {
   /**
-   * group:全国；area:大区；city:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
-  regionType: number;
+  regionType: string;
 
   /**
    * 大区ID/城市ID，默认是空
@@ -30,20 +30,25 @@ export interface ProjectOpenParams {
  * 营造盘面-项目开业-返回值
  */
 export interface ProjectOpenReturn {
-  totalOpenList: NotOpenInfo[];
-  openInfo: NotOpenInfo;
-  notOpenInfo: NotOpenInfo;
+  totalOpenNum: number;
+  totalOpenList: TotalOpenList[];
+  openTargetNum: number;
+  notOpenNotGetNum: number;
+  notOpenNotGetRatio: number;
+  openInfo: OpenInfo;
+  notOpenInfo: OpenInfo;
 }
 
-export interface NotOpenInfo {
-  year: number;
+export interface OpenInfo {
   total: number;
-  list: List[];
+  ratio: number;
+  list: NotOpenInfoList[];
 }
 
-export interface List {
+export interface NotOpenInfoList {
   transactionModel: TransactionModel;
   roomNum: number;
+  ratio: number;
 }
 
 export enum TransactionModel {
@@ -52,10 +57,21 @@ export enum TransactionModel {
   重资产 = "重资产",
 }
 
+export interface TotalOpenList {
+  year: number;
+  total: number;
+  list: TotalOpenListList[];
+}
+
+export interface TotalOpenListList {
+  transactionModel: TransactionModel;
+  roomNum: number;
+}
+
 /**
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/6 上午10:00:16
+ * @updateAt 2021/9/6 下午6:09:35
  * @method GET
  */
 export const fetchProjectOpen = (params: ProjectOpenParams) => {

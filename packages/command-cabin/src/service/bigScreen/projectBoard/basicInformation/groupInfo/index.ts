@@ -28,13 +28,14 @@ export interface GroupInfoReturn {
 export interface Group {
   person: string;
   tel: string;
-  company: string;
+  specialty: string;
+  company: null | string;
 }
 
 /**
  * 门店基本信息-团队信息
  * @createBy huyanan
- * @updateAt 2021/9/6 上午10:28:35
+ * @updateAt 2021/9/6 下午3:35:00
  * @method GET
  */
 export const fetchGroupInfo = (params: GroupInfoParams) => {
