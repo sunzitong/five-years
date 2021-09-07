@@ -116,7 +116,7 @@ export default class B4 extends Base {
           },
           itemStyle: {
             color: "#57A6FB",
-            barBorderRadius: 40,
+            borderRadius: 40,
             width: 338,
           },
           label: {

@@ -145,14 +145,12 @@ export default class B1A extends Base {
           barWidth: 30,
           distance: 10,
           label: {
-            normal: {
-              show: true,
-              distance: 10,
-              position: "top",
-              color: "#FFF",
-              fontSize: 22,
-              lineHeight: 22,
-            },
+            show: true,
+            distance: 10,
+            position: "top",
+            color: "#FFF",
+            fontSize: 22,
+            lineHeight: 22,
           },
           itemStyle: {
             color: "rgba(128,128,128,0)",
