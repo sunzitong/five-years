@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { formatColorStr } from "@/utils/tools";
+import { formatColors } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 
@@ -40,7 +40,7 @@ export default class Brand extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#FFAD8D|#BE5126|#BE5126" }) color!: string;
+  @Prop({ default: "#FFAD8D|#BE5126|#BE5126" }) color!: string | string[];
 
   /**
    * 图标大小
@@ -54,7 +54,7 @@ export default class Brand extends Vue {
     /**
      * 处理特殊场景
      */
-    return formatColorStr(this.color, 3);
+    return formatColors(this.color, 3);
   }
 
   /**

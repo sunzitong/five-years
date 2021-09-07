@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { formatColorStr } from "@/utils/tools";
+import { formatColors } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -26,7 +26,7 @@ export default class Camera extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#01F5F1" }) color!: string;
+  @Prop({ default: "#01F5F1" }) color!: string | string[];
 
   /**
    * 图标大小
@@ -37,7 +37,7 @@ export default class Camera extends Vue {
    * 填充颜色
    */
   get fill() {
-    return formatColorStr(this.color, 1);
+    return formatColors(this.color, 1);
   }
 
   /**
