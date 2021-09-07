@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
@@ -46,11 +46,12 @@ import {
   BusinessScoreReturn,
   fetchBusinessScore,
 } from "@/service/bigScreen/projectBoard/finance/businessScore";
+import Base from "@/views/Base";
 
 @Component({
   components: { Icon, ProgressCircle },
 })
-export default class C5 extends Vue {
+export default class C5 extends Base {
   /**
    * 返回数据
    */

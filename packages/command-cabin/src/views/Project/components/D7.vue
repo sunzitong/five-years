@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue, Watch } from "vue-property-decorator";
+import { Component, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { arrayToObject, iwant } from "@guanyu/shared";
 import {
@@ -23,11 +23,12 @@ import {
   NumsByType,
   SentimentReturn,
 } from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
+import Base from "@/views/Base";
 
 @Component({
   components: {},
 })
-export default class D7 extends Vue {
+export default class D7 extends Base {
   @Ref() chart!: HTMLDivElement;
 
   /**

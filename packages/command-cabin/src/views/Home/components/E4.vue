@@ -27,17 +27,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
-
-// console.log(echarts);
+import Base from "@/views/Base";
 
 @Component({
   components: {
     Icon,
   },
 })
-export default class E4 extends Vue {
+export default class E4 extends Base {
   @Ref() wrapper!: HTMLDivElement;
   data = [
     {

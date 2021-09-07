@@ -53,11 +53,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import { sepNumber } from "@/utils/tools";
+import Base from "@/views/Base";
 
 @Component
-export default class A1 extends Vue {
+export default class A1 extends Base {
   sepNumber = sepNumber;
 }
 </script>

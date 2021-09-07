@@ -8,11 +8,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 
 import B1A from "./B1A.vue";
 import B1B from "./B1B.vue";
+import Base from "@/views/Base";
 
 console.log(echarts);
 
@@ -22,7 +23,7 @@ console.log(echarts);
     B1B,
   },
 })
-export default class B1 extends Vue {}
+export default class B1 extends Base {}
 </script>
 
 <style lang="scss" scoped>

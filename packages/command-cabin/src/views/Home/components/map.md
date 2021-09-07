@@ -19,7 +19,7 @@ console.log(echarts);
 @Component({
   components: {},
 })
-export default class Example extends Vue {
+export default class Example extends Base {
   @Ref() wrapper!: HTMLDivElement;
 
   mounted() {

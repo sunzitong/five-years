@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { sepNumber } from "@/utils/tools";
 import {
@@ -22,11 +22,12 @@ import {
 } from "@/service/bigScreen/mainBoard/construct/projectOpen/";
 import dayjs from "dayjs";
 import { iwant, Nullable } from "@guanyu/shared";
+import Base from "@/views/Base";
 
 @Component({
   components: {},
 })
-export default class B1A extends Vue {
+export default class B1A extends Base {
   sepNumber = sepNumber;
 
   @Ref() wrapper!: HTMLDivElement;

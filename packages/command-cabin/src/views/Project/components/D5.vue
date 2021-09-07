@@ -66,13 +66,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
+import Base from "@/views/Base";
 
 @Component({
   components: { Icon },
 })
-export default class D5 extends Vue {
+export default class D5 extends Base {
   currentRate = 0;
   rate = 40;
 }

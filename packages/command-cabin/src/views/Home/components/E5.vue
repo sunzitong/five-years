@@ -22,13 +22,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import * as echarts from "echarts";
 import { ECOption } from "@/plugins/echarts";
 import { arrayToObject } from "@guanyu/shared";
+import Base from "@/views/Base";
 
 @Component
-export default class E5 extends Vue {
+export default class E5 extends Base {
   @Ref() barChart!: HTMLDivElement;
 
   /**
