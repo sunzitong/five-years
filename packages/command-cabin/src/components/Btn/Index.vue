@@ -12,6 +12,7 @@
         :d="buttonPathD"
         :fill="`url(#${uuid}_paint0_linear)`"
         :stroke="`url(#${uuid}_paint1_linear)`"
+        :fill-opacity="animate ? 1 : 0.1"
         stroke-width="2"
       />
       <path
