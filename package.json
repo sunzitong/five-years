@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=doubleEleven-part-three",
-    "build": "lerna run build --scope=doubleEleven-part-three --stream",
+    "postinstall": "lerna bootstrap --scope=xiaoguanapp-h5",
+    "build": "lerna run build --scope=xiaoguanapp-h5 --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
