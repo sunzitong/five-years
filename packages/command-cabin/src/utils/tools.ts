@@ -79,13 +79,21 @@ export const sepNumber = (number: unknown, sep = ",", stepLen = 3) => {
     return "";
   }
   const arr = `${number}`.split(".");
-  const str = arr[0];
+  let str = arr[0];
+  // 负数
+  const signed = +str < 0;
+  if (signed) {
+    str = str.substr(1);
+  }
   let step = str.length % stepLen;
   let result = str.slice(0, step);
   while (step < str.length) {
     if (step > 0) result += sep;
     result += str.slice(step, step + stepLen);
     step += stepLen;
+  }
+  if (signed) {
+    result = "-" + result;
   }
   if (arr[1]) {
     result += "." + arr[1];
@@ -119,19 +127,23 @@ export const stepNumber = (
   {
     to,
     from = 0,
-    ms = 1000,
-    precision = 2,
-  }: { to: number; from?: number; ms?: number; precision?: number },
+    duration = 1000,
+    precision = 0,
+  }: { to: number; from?: number; duration?: number; precision?: number },
   callback: (to: number) => void
 ) => {
-  const plus = (to - from) / (ms / 30);
+  const plus = (to - from) / (duration / 30);
   const timer = setInterval(() => {
-    from = iwant.calc(from + plus, precision);
+    from = from + plus;
     if ((plus > 0 && to > from) || (plus < 0 && to < from)) {
-      callback(from);
+      // ...
     } else {
       clearInterval(timer);
-      callback((from = to));
+      from = to;
     }
+    callback(iwant.calc(from, precision));
   }, 30);
+  return {
+    clear: () => clearInterval(timer),
+  };
 };
