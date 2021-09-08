@@ -36,8 +36,8 @@
         <a href="javascript::">查看详情→</a>
       </slot>
     </div>
-    <DataSource v-if="dataSource" :position="dataSourcePosition">
-      {{ dataSource }}
+    <DataSource v-if="dataSourceInner" :position="dataSourcePosition">
+      {{ dataSourceInner }}
     </DataSource>
   </div>
 </template>
@@ -98,6 +98,11 @@ export default class Card extends Vue {
   debug = process.env.NODE_ENV === "development";
 
   /**
+   * 子组件传过来的数据来源
+   */
+  dataSourceFromChildren = "";
+
+  /**
    * 是否包含footer
    */
   get includeFooterCls() {
@@ -114,6 +119,28 @@ export default class Card extends Vue {
       return "box-rect";
     }
     return "box";
+  }
+
+  /**
+   * 设置数据来源
+   */
+  get dataSourceInner() {
+    /**
+     * 如果组件设置了数据来源属性，优先返回props的来源
+     * 然后返回子组件调用的数据来源
+     */
+    return this.dataSource || this.dataSourceFromChildren;
+  }
+
+  /**
+   * 设置数据来源
+   * @param source 来源
+   * @param time 时间
+   * @returns 数据来源
+   */
+  setDataSource(source: string, time: string) {
+    if (!source || !time) return;
+    this.dataSourceFromChildren = `数据来自${source}|更新时间：${time}`;
   }
 
   mounted() {
