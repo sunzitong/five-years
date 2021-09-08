@@ -49,6 +49,7 @@ import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
 
 @Component({
+  name: "Card",
   components: {
     CardDecorate,
     Icon,
