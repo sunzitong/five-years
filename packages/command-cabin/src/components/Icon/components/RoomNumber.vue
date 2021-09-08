@@ -6,15 +6,15 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g :clip-path="`url(#${uuid})`">
+    <g>
       <circle cx="99.5" cy="122.5" r="93.5" fill="#144079" />
-      <g :filter="`url(#${uuid}_2)`">
+      <g>
         <path
           d="M98.4588 109.616C99.7193 108.998 101.195 109 102.454 109.62L184.191 149.917C186.453 151.032 186.432 154.263 184.157 155.349L102.583 195.795C101.345 196.386 99.9072 196.384 98.6714 195.79L16.9216 155.016C14.6491 153.924 14.6364 150.693 16.9001 149.583L98.4588 109.616Z"
           fill="#0E246E"
         />
       </g>
-      <g :filter="`url(#${uuid}_3)`">
+      <g >
         <path
           d="M98.4588 87.7284C99.7193 87.1107 101.195 87.1125 102.454 87.7331L184.191 128.03C186.453 129.144 186.432 132.376 184.157 133.462L102.583 172.398C101.345 172.989 99.9072 172.987 98.6714 172.394L16.9216 133.128C14.6491 132.037 14.6364 128.806 16.9001 127.696L98.4588 87.7284Z"
           :fill="`url(#${uuid}_7)`"
@@ -31,7 +31,7 @@
         d="M0 14.5474H200L154.717 117.189H45.283L0 14.5474Z"
         :fill="`url(#${uuid}_8)`"
       />
-      <g :filter="`url(#${uuid}_4)`">
+      <g >
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -132,83 +132,6 @@
       </g>
     </g>
     <defs>
-      <filter
-        :id="`${uuid}_2`"
-        x="11.2097"
-        y="105.154"
-        width="178.666"
-        height="95.083"
-        filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
-      >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feGaussianBlur in="BackgroundImage" stdDeviation="2" />
-        <feComposite
-          in2="SourceAlpha"
-          operator="in"
-          result="effect1_backgroundBlur"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_backgroundBlur"
-          result="shape"
-        />
-      </filter>
-      <filter
-        :id="`${uuid}_3`"
-        x="8.95117"
-        y="38.981"
-        width="183.183"
-        height="183.183"
-        filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
-      >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feGaussianBlur in="BackgroundImage" stdDeviation="2.5" />
-        <feComposite
-          in2="SourceAlpha"
-          operator="in"
-          result="effect1_backgroundBlur"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_backgroundBlur"
-          result="shape"
-        />
-      </filter>
-      <filter
-        :id="`${uuid}_4`"
-        x="45.283"
-        y="115.68"
-        width="109.434"
-        height="28.5283"
-        filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
-      >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="BackgroundImageFix"
-          result="shape"
-        />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-          result="hardAlpha"
-        />
-        <feOffset dy="4" />
-        <feGaussianBlur stdDeviation="2" />
-        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0.192157 0 0 0 0 0.709804 0 0 0 0 0.792157 0 0 0 0.19 0"
-        />
-        <feBlend mode="normal" in2="shape" result="effect1_innerShadow" />
-      </filter>
       <filter
         :id="`${uuid}_5`"
         x="67.2266"

@@ -9,38 +9,13 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g :filter="`url(#${uuid}_filter0_b)`">
-          <path :d="customerPathD" fill="#113069" fill-opacity="0.6" />
-          <path
-            :d="customerPathD"
-            :stroke="`url(#${uuid}_paint0_linear)`"
-            stroke-width="2"
-          />
-        </g>
+        <path :d="customerPathD" fill="#113069" fill-opacity="0.6" />
+        <path
+          :d="customerPathD"
+          :stroke="`url(#${uuid}_paint0_linear)`"
+          stroke-width="2"
+        />
         <defs>
-          <filter
-            :id="`${uuid}_filter0_b`"
-            x="-14"
-            y="-14"
-            width="458"
-            height="145.113"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
-          >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feGaussianBlur in="BackgroundImage" stdDeviation="7" />
-            <feComposite
-              in2="SourceAlpha"
-              operator="in"
-              result="effect1_backgroundBlur"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect1_backgroundBlur"
-              result="shape"
-            />
-          </filter>
           <linearGradient
             :id="`${uuid}_paint0_linear`"
             x1="258.935"

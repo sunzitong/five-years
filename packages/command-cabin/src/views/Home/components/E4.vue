@@ -34,6 +34,13 @@
 import { Component, Ref } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
+import {
+  DeviceOfflineReturn,
+  fetchDeviceOffline,
+} from "@/service/bigScreen/mainBoard/managementSituation/deviceOffline";
+import dayjs from "dayjs";
+import { sepNumber } from "@/utils/tools";
+import { AnyObject } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -42,25 +49,65 @@ import Base from "@/views/Base";
 })
 export default class E4 extends Base {
   @Ref() wrapper!: HTMLDivElement;
-  data = [
-    {
-      name: "水",
-      value: 10,
-      currentRate: 0,
-    },
-    {
-      name: "电",
-      value: 25,
-      currentRate: 0,
-    },
-    {
-      name: "门禁",
-      value: 50,
-      currentRate: 0,
-    },
-  ];
+
+  resData: Partial<DeviceOfflineReturn> = {};
+  year = dayjs().year();
+
+  sepNumber = sepNumber;
+
+  // data = [
+  //   {
+  //     name: "水",
+  //     value: 10,
+  //     currentRate: 0,
+  //   },
+  //   {
+  //     name: "电",
+  //     value: 100.01,
+  //     currentRate: 0,
+  //   },
+  //   {
+  //     name: "门禁",
+  //     value: 50,
+  //     currentRate: 0,
+  //   },
+  // ];
+
+  data: AnyObject[] = [];
+
   colors = ["#59D1FE", "#8E3AFF", "#EEBC4A"];
   iconArr = ["water-drop", "lightning", "door"];
+
+  async created() {
+    const response = await fetchDeviceOffline({
+      regionType: "CITY",
+      regionId: 85,
+      dataTime: this.year,
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+
+      this.data = [
+        {
+          name: "水",
+          value: sepNumber(this.resData.waterDeviceOfflineRatio),
+          currentRate: 0,
+        },
+        {
+          name: "电",
+          value: sepNumber(this.resData.elecDeviceOfflineRatio),
+          currentRate: 0,
+        },
+        {
+          name: "门禁",
+          value: sepNumber(this.resData.doorDeviceOfflineRatio),
+          currentRate: 0,
+        },
+      ];
+
+      console.log(2324, this.resData, this.data);
+    }
+  }
 }
 </script>
 
