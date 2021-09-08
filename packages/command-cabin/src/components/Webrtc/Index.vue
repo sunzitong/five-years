@@ -1,0 +1,63 @@
+<template>
+  <div ref="webrtc" class="app-webrtc"></div>
+</template>
+<script lang="ts">
+import { Component, Prop, Ref, Vue, Watch } from "vue-property-decorator";
+import { PlayerConfig } from "./webrtc.type";
+export { PlayerConfig } from "./webrtc.type";
+
+@Component
+export default class Webrtc extends Vue {
+  /**
+   * 容器
+   */
+  @Ref() webrtc!: HTMLDivElement;
+
+  /**
+   * 播放器配置
+   */
+  @Prop() config!: PlayerConfig;
+
+  /**
+   * 组件挂载
+   */
+  mounted() {
+    this.initPlayer();
+  }
+
+  /**
+   * 初始化webrtc 播放器
+   */
+  @Watch("config")
+  onConfigChange(value: PlayerConfig) {
+    this.initPlayer(value);
+  }
+
+  /**
+   * 初始化播放器
+   */
+  initPlayer(val?: PlayerConfig) {
+    const config = {
+      ...(val ?? {}),
+    };
+    this.destroyPlayer();
+    this.player = new window.Player(this.webrtc, config);
+  }
+
+  /**
+   * 销毁播放器
+   */
+  destroyPlayer() {
+    if (this.player) this.player.destroy();
+  }
+
+  /**
+   * 组件卸载
+   */
+  unmounted() {
+    // 销毁播放器
+    this.destroyPlayer();
+  }
+}
+</script>
+<style lang="scss" scoped></style>

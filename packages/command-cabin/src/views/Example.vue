@@ -110,6 +110,9 @@
         <Card title="ProgressCircle">
           <ProgressCircle1 :size="180" v-model="progress" />
         </Card>
+        <Card title="Webrtc">
+          <Webrtc />
+        </Card>
         <Card title="Animationend">
           <Animationend key="1" :scrollMinCount="10" :dataSource="dataSource">
             <template v-slot="{ list }">
@@ -283,6 +286,7 @@ import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
+import Webrtc from "@/components/Webrtc/Index.vue";
 
 @Component({
   components: {
@@ -298,6 +302,7 @@ import ButtonGroup from "@/components/ButtonGroup/Index.vue";
     Btn,
     BlurBox,
     ButtonGroup,
+    Webrtc,
   },
 })
 export default class Example extends Vue {
