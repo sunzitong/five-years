@@ -5,7 +5,10 @@
         {{ title }}
       </div>
       <div class="app-subwrapper__extra">
-        <slot name="extra">详情</slot>
+        <DataSource v-if="dataSource">
+          {{ dataSource }}
+        </DataSource>
+        <slot name="extra"></slot>
       </div>
     </div>
     <div class="app-subwrapper__body">
@@ -18,12 +21,36 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-@Component
+import DataSource from "@/components/DataSource/Index.vue";
+import { SourceType } from "../Card/Index.vue";
+
+@Component({
+  components: {
+    DataSource,
+  },
+})
 export default class SubWrapper extends Vue {
   /**
    * 标题
    */
   @Prop({ default: "" }) title!: string;
+
+  /**
+   * 数据来源
+   */
+  @Prop({ default: "" }) dataSource!: string;
+
+  /**
+   * 设置数据来源
+   * @param source 来源
+   * @param time 时间
+   * @returns 数据来源
+   */
+  setCardDataSource(source: SourceType) {
+    const { from, time } = source ?? {};
+    if (!from || !time) return;
+    this.dataSource = `数据取自${from.toUpperCase()} | 更新时间${time}`;
+  }
 
   mounted() {
     console.log(this.title);
@@ -62,6 +89,7 @@ export default class SubWrapper extends Vue {
     color: #fff;
     transform: translateY(-50%);
     font-size: 26px;
+    display: flex;
 
     a {
       color: #fff;

@@ -4,9 +4,6 @@
     <div class="main">
       <div class="main-left">
         <SubWrapper title="财务相关指标及预估">
-          <template #extra>
-            数据取自主数据、龙头、智计划、成本管理系统｜更新时间08-23 17:00
-          </template>
           <van-row gutter="24">
             <van-col>
               <!-- 资产类型 -->
@@ -68,9 +65,6 @@
       </div>
       <div class="main-center">
         <SubWrapper title="财务指标达成及预估">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <WhiteSpace />
@@ -96,9 +90,6 @@
       </div>
       <div class="main-right">
         <SubWrapper title="经营现状">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <Card
@@ -197,6 +188,7 @@ import D5 from "./components/D5.vue";
 import D7 from "./components/D7.vue";
 import D8 from "./components/D8.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
+import DataSource from "@/components/DataSource/Index.vue";
 
 @Component({
   components: {
@@ -213,6 +205,7 @@ import ButtonGroup from "@/components/ButtonGroup/Index.vue";
     D7,
     D8,
     ButtonGroup,
+    DataSource,
   },
 })
 export default class Index extends Base {

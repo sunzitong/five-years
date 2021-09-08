@@ -37,9 +37,7 @@
       </span>
     </div>
     <div class="app-card__footer" v-if="showFooter">
-      <slot name="footer">
-        <a href="javascript::">查看详情→</a>
-      </slot>
+      <slot name="footer"></slot>
     </div>
     <DataSource v-if="dataSourceInner" :position="dataSourcePosition">
       {{ dataSourceInner }}
@@ -53,7 +51,7 @@ import CardDecorate from "@/components/CardDecorate/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
 
-type SourceType = {
+export type SourceType = {
   /**
    * 来源
    */

@@ -3,9 +3,6 @@
     <div class="main">
       <div class="main-left">
         <SubWrapper title="拓展盘面">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <Card title="项目获取" style="width: 720px; height: 957px"></Card>
@@ -83,9 +80,6 @@
       </div>
       <div class="main-right">
         <SubWrapper title="经营现状">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <Card
@@ -137,9 +131,6 @@
         </SubWrapper>
         <WhiteSpace />
         <SubWrapper title="经营现状">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <Card style="width: 905px; height: 702px"></Card>
