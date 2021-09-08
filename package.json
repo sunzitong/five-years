@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=doubleEleven-part-two",
-    "build": "lerna run build --scope=doubleEleven-part-two --stream",
+    "postinstall": "lerna bootstrap --scope=doubleEleven-part-three",
+    "build": "lerna run build --scope=doubleEleven-part-three --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
