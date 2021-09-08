@@ -1,8 +1,13 @@
 <template>
   <div class="box" v-if="monthData">
     <div class="tag-year">{{ monthData.dataDateDesc }}</div>
-    <Icon v-if="monthData.warn" type="trangle" class="icon-warn" :size="70" />
-    <div class="content animate__animated">
+    <Icon
+      v-if="monthData.warn"
+      type="trangle"
+      class="icon-warn animate__animated animate__infinite animate__flash animate__slower"
+      :size="70"
+    />
+    <div class="content">
       <div class="chart">
         <ProgressCircle
           :styleType="2"
