@@ -42,16 +42,25 @@ import Base from "@/views/Base";
   components: {},
 })
 export default class B4 extends Base {
+  /**
+   * 条形图
+   */
   @Ref() wrapper!: HTMLDivElement;
+  /**
+   * 接口返回值
+   * /bigScreen/mainBoard/construct/productQuality
+   */
   resData: Partial<ProductQualityReturn> = {};
   year = dayjs().year();
 
+  // name标签
   labels = [
     "IPD产品\n封装率",
     "中期停止点\n检查平均得分",
     "移交质量评估\n平均合格率",
   ];
 
+  // 数值标签
   values = [0, 0, 0];
 
   async created() {

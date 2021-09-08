@@ -27,21 +27,31 @@ import Base from "@/views/Base";
   components: {},
 })
 export default class B1A extends Base {
+  /**
+   * 堆叠柱状图
+   */
   @Ref() wrapper!: HTMLDivElement;
+  /**
+   * 接口返回值
+   * /bigScreen/mainBoard/construct/projectOpen
+   */
   resData: Partial<ProjectOpenReturn> = {};
 
   year = dayjs().year();
 
-  openingNum: Nullable<number> = null;
+  openingNum: Nullable<number> = null; // 累计已开业间数
 
   legendName = ["重资产", "中资产", "轻资产"];
 
   years: number[] = [];
-  data1: number[] = [];
-  data2: number[] = [];
-  data3: number[] = [];
-  totals: number[] = [];
+  data1: number[] = []; // 重资产数据
+  data2: number[] = []; // 中资产数据
+  data3: number[] = []; // 轻资产数据
+  totals: number[] = []; // 三种资产类型之和
 
+  /**
+   * 处理接口返回值，构建三种资产数组
+   */
   getSubData() {
     const list = iwant.array(this.resData.totalOpenList);
     for (const el of list) {
@@ -133,10 +143,11 @@ export default class B1A extends Base {
       },
       series: [
         {
+          // 总和label，该bar隐藏
           name: "总计",
           type: "bar",
           yAxisIndex: 1,
-          stack: "two",
+          stack: "two", // 不参与堆叠
           barGap: "-100%",
           position: "insideBottom",
           barWidth: 30,
@@ -157,16 +168,17 @@ export default class B1A extends Base {
         {
           name: "重资产",
           type: "bar",
-          stack: "one",
+          stack: "one", // 堆叠栈
           yAxisIndex: 0,
           color: "#FFEF69",
           barWidth: 30,
           label: {
             show: true,
             position: "insideTopLeft",
-            offset: [-13, -10],
+            offset: [-13, -10], // label定位
             align: "right",
             formatter: (params: any) => {
+              // 富文本构建
               if (!params) return;
               return "{a|" + params.value + "}{one|\n▼}";
             },

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
 import E2B from "./E2B.vue";
 
@@ -20,9 +20,7 @@ import E2B from "./E2B.vue";
     E2B,
   },
 })
-export default class Example extends Base {
-  @Ref() wrapper!: HTMLDivElement;
-
+export default class E2 extends Base {
   //   mounted() {}
 }
 </script>
