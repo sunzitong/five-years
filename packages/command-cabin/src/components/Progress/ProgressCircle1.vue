@@ -92,12 +92,17 @@ export default class ProgressCircle extends Vue {
   /**
    * 敞开角度
    */
-  @Prop({ default: 25 }) openAngel!: number;
+  @Prop({ default: () => 25 }) openAngel!: number | number[];
 
   /**
    * 开始角度
    */
   @Prop({ default: 90 }) startAngel!: number;
+
+  /**
+   * 开始角度
+   */
+  @Prop({ default: true }) clockwise!: boolean;
 
   /**
    * v-model same as value
@@ -122,15 +127,28 @@ export default class ProgressCircle extends Vue {
    * 圆环的属性
    */
   get circle() {
-    console.log(this.size / 2 - this.strokeWidth / 2);
-    console.log(this.size / 2);
-    return {
+    const circle = {
       x: this.size / 2,
       y: this.size / 2,
       r: this.size / 2 - this.strokeWidth,
-      sAngle: this.openAngel + this.startAngel,
-      eMaxAngle: 360 - this.openAngel * 2,
+      sAngle: 0,
+      eMaxAngle: 360,
+      clockwise: this.clockwise,
     };
+
+    if (typeof this.openAngel === "number") {
+      circle.sAngle = this.openAngel + this.startAngel;
+      circle.eMaxAngle = 360 - this.openAngel * 2;
+    }
+
+    if (Array.isArray(this.openAngel) && this.openAngel.length === 2) {
+      circle.sAngle = this.openAngel[0] + this.startAngel;
+      circle.eMaxAngle = 360 - (this.openAngel[0] + this.openAngel[1]);
+    }
+
+    console.log("circle", circle);
+
+    return circle;
   }
 
   @Watch("iValue", { immediate: true })
@@ -151,7 +169,8 @@ export default class ProgressCircle extends Vue {
       this.circle.r,
       this.circle.sAngle,
       this.circle.sAngle +
-        Math.max(Math.min(eMaxAngle, v * (eMaxAngle / 100)), 0)
+        Math.max(Math.min(eMaxAngle, v * (eMaxAngle / 100)), 0),
+      this.circle.clockwise
     );
   }
 
@@ -164,7 +183,8 @@ export default class ProgressCircle extends Vue {
       this.circle.y,
       this.circle.r,
       this.circle.sAngle,
-      this.circle.sAngle + this.circle.eMaxAngle
+      this.circle.sAngle + this.circle.eMaxAngle,
+      this.circle.clockwise
     );
   }
 
@@ -177,20 +197,25 @@ export default class ProgressCircle extends Vue {
     r: number,
     sAngle: number,
     eAngle: number,
-    counterclockwise = true
+    clockwise = true
   ) {
     if (sAngle === 0 && eAngle === 0) {
       r = 0;
     }
-    const cx = Math.cos(d2a(sAngle)) * r + x;
-    const cy = Math.sin(d2a(sAngle)) * r + y;
-    const cx1 = Math.cos(d2a(eAngle - 0.01)) * r + x;
-    const cy1 = Math.sin(d2a(eAngle - 0.01)) * r + y;
+
+    const sA = clockwise ? sAngle : 360 - sAngle;
+    const eA = clockwise ? eAngle : 360 - eAngle;
+
+    console.log("this.circle.clockwise", clockwise);
+    const cx = Math.cos(d2a(sA)) * r + x;
+    const cy = Math.sin(d2a(sA)) * r + y;
+    const cx1 = Math.cos(d2a(eA - 0.01)) * r + x;
+    const cy1 = Math.sin(d2a(eA - 0.01)) * r + y;
 
     return `
       M${cx} ${cy}
       A${r},${r} 0 ${eAngle - sAngle < 180 ? 0 : 1},
-      ${counterclockwise ? 1 : 0}
+      ${clockwise ? 1 : 0}
       ${cx1},${cy1}
     `;
   }
