@@ -104,7 +104,9 @@
               <Card
                 title="全业态收入及完成度"
                 style="width: 1593px; height: 578px"
-              ></Card>
+              >
+                <template #data-cycle>{{ dataCycle }}</template>
+              </Card>
             </van-col>
             <van-col>
               <WhiteSpace />
@@ -213,7 +215,12 @@ import ButtonGroup from "@/components/ButtonGroup/Index.vue";
     ButtonGroup,
   },
 })
-export default class Index extends Base {}
+export default class Index extends Base {
+  /**
+   * 数据周期
+   */
+  dataCycle = "月";
+}
 </script>
 
 <style lang="scss" scoped>
