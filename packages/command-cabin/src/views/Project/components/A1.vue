@@ -66,7 +66,6 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { sepNumber } from "@/utils/tools";
 import Base from "@/views/Base";
 import {
   BasicInformationReturn,
@@ -76,7 +75,6 @@ import dayjs from "dayjs";
 
 @Component
 export default class A1 extends Base {
-  sepNumber = sepNumber;
   response: Partial<BasicInformationReturn> = {};
   async created() {
     const response = await fetchBasicInformation({ year: dayjs().year() });

@@ -15,7 +15,6 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { sepNumber } from "@/utils/tools";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
@@ -28,8 +27,6 @@ import Base from "@/views/Base";
   components: {},
 })
 export default class B1A extends Base {
-  sepNumber = sepNumber;
-
   @Ref() wrapper!: HTMLDivElement;
   resData: Partial<ProjectOpenReturn> = {};
 

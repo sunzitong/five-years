@@ -71,7 +71,6 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import Animationend from "@/components/Animationend/Index.vue";
-import { sepNumber } from "@/utils/tools";
 import {
   fetchProjectDelayInfo,
   ProjectDelayInfoReturn,
@@ -87,7 +86,6 @@ import Base from "@/views/Base";
 })
 export default class B2 extends Base {
   @Ref() wrapper!: HTMLDivElement;
-  sepNumber = sepNumber;
   resData: Partial<ProjectDelayInfoReturn> = {};
   year = dayjs().year();
 

@@ -1,10 +1,11 @@
 import { Component, Mixins } from "vue-property-decorator";
 import MixStore from "@/store/MixStore";
-import { formatValue } from "@/utils/tools";
+import { formatValue, sepNumber } from "@/utils/tools";
 
 @Component({})
 export default class Base extends Mixins(MixStore) {
   formatValue = formatValue;
+  sepNumber = sepNumber;
   /**
    * 设置数据来源
    * @param payload 数据来源

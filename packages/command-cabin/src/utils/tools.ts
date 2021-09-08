@@ -74,9 +74,11 @@ export const formatColors = (
  * @param sep 默认逗号分隔符
  * @param stepLen 默认按3位分隔
  */
-export const sepNumber = (number?: number, sep = ",", stepLen = 3) => {
-  if (_.isNil(number)) return "";
-  const arr = number.toString().split(".");
+export const sepNumber = (number: unknown, sep = ",", stepLen = 3) => {
+  if (formatValue(number, null) === null) {
+    return "";
+  }
+  const arr = `${number}`.split(".");
   const str = arr[0];
   let step = str.length % stepLen;
   let result = str.slice(0, step);
@@ -104,8 +106,32 @@ export const d2a = (n: number): number => (n * Math.PI) / 180;
  * @param defaultValue 默认值
  * @returns value | '--'
  */
-export const formatValue = (value: unknown, defaultValue = "--") => {
+export const formatValue = (value: unknown, defaultValue: any = "--") => {
   return _.isNil(value) || value === "" || _.isNaN(value)
     ? defaultValue
     : value;
+};
+
+/**
+ * 数字变化
+ */
+export const stepNumber = (
+  {
+    to,
+    from = 0,
+    ms = 1000,
+    precision = 2,
+  }: { to: number; from?: number; ms?: number; precision?: number },
+  callback: (to: number) => void
+) => {
+  const plus = (to - from) / (ms / 30);
+  const timer = setInterval(() => {
+    from = iwant.calc(from + plus, precision);
+    if ((plus > 0 && to > from) || (plus < 0 && to < from)) {
+      callback(from);
+    } else {
+      clearInterval(timer);
+      callback((from = to));
+    }
+  }, 30);
 };

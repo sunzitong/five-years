@@ -36,7 +36,6 @@ import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
 import { fetchDeviceOffline } from "@/service/bigScreen/mainBoard/managementSituation/deviceOffline";
 import dayjs from "dayjs";
-import { sepNumber } from "@/utils/tools";
 import { iwant } from "@guanyu/shared";
 
 @Component({
@@ -45,8 +44,6 @@ import { iwant } from "@guanyu/shared";
   },
 })
 export default class E4 extends Base {
-  sepNumber = sepNumber;
-
   data: {
     name: string;
     value: number;

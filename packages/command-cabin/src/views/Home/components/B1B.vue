@@ -76,7 +76,6 @@
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
-import { sepNumber } from "@/utils/tools";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
@@ -89,8 +88,6 @@ import Base from "@/views/Base";
   components: {},
 })
 export default class B1B extends Base {
-  sepNumber = sepNumber;
-
   @Ref() leftCharts!: HTMLDivElement;
 
   @Ref() rightCharts!: HTMLDivElement;
