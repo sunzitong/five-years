@@ -27,7 +27,7 @@
     <div class="app-card__debug" v-if="debug">
       <!-- <p>{{ W }} x {{ H }}</p> -->
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
-      <p v-if="$children[1]" style="font-size: 2em">
+      <p v-if="$children[1]" style="font-size: 3em">
         {{ $children[1].$options.name }}
       </p>
     </div>
