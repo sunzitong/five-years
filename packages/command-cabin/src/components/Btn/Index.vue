@@ -32,7 +32,7 @@
         x="0"
         y="-1"
         height="2"
-        width="20"
+        width="30"
         :fill="`url(#${uuid}_paint1_linear2)`"
       >
         <animateMotion dur="4s" rotate="auto" repeatCount="indefinite">
@@ -90,7 +90,7 @@
           :id="`${uuid}_paint1_linear2`"
           x1="0"
           y1="0"
-          x2="30"
+          x2="50"
           y2="0"
           gradientUnits="userSpaceOnUse"
         >
