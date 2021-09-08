@@ -60,6 +60,7 @@ type SourceType = {
 };
 
 @Component({
+  name: "Card",
   components: {
     CardDecorate,
     Icon,
