@@ -1,6 +1,6 @@
 <template>
   <span>
-    {{ currentValue }}
+    <slot :value="currentValue">{{ currentValue }}</slot>
   </span>
 </template>
 
@@ -64,7 +64,6 @@ export default class StepNumber extends Vue {
   }
 
   callback(n: number | null) {
-    console.log(n);
     this.currentValue = formatValue(sepNumber(n));
     this.$emit("input", n);
   }
