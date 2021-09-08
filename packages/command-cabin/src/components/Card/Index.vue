@@ -48,6 +48,17 @@ import CardDecorate from "@/components/CardDecorate/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
 
+type SourceType = {
+  /**
+   * 来源
+   */
+  from: string;
+  /**
+   * 更新时间
+   */
+  time: string;
+};
+
 @Component({
   components: {
     CardDecorate,
@@ -138,9 +149,10 @@ export default class Card extends Vue {
    * @param time 时间
    * @returns 数据来源
    */
-  setDataSource(source: string, time: string) {
-    if (!source || !time) return;
-    this.dataSourceFromChildren = `数据来自${source}|更新时间：${time}`;
+  setCardDataSource(source: SourceType) {
+    const { from, time } = source ?? {};
+    if (!from || !time) return;
+    this.dataSourceFromChildren = `数据取自${from.toUpperCase()} | 更新时间${time}`;
   }
 
   mounted() {
