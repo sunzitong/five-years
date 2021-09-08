@@ -1,64 +1,24 @@
 <template>
   <div class="box">
     <van-row justify="space-around">
-      <van-col :span="8">
+      <van-col :span="8" v-for="(item, index) in response" :key="index">
         <div class="item">
           <van-circle
-            v-model="currentRate"
-            :rate="rate"
+            v-model="item.currentRate"
+            :rate="item.rate"
             :speed="50"
             layer-color="#14437F"
-            color="#57A6FB"
+            :color="item.color"
             :size="140"
             :stroke-width="60"
             stroke-linecap="butt"
             class="chart"
           />
-          <div class="chart__text">{{ currentRate }}%</div>
+          <div class="chart__text">{{ formatValue(item.currentRate) }}%</div>
           <div class="icon">
-            <Icon type="water-drop" :size="22" />
+            <Icon :type="item.icon" :size="22" />
           </div>
-          <div class="name">水</div>
-        </div>
-      </van-col>
-      <van-col :span="8">
-        <div class="item">
-          <van-circle
-            v-model="currentRate"
-            :rate="rate"
-            :speed="50"
-            layer-color="#14437F"
-            color="#A957FB"
-            :size="140"
-            :stroke-width="60"
-            stroke-linecap="butt"
-            class="chart"
-          />
-          <div class="chart__text">{{ currentRate }}%</div>
-          <div class="icon">
-            <Icon type="lightning" :size="22" />
-          </div>
-          <div class="name">电</div>
-        </div>
-      </van-col>
-      <van-col :span="8">
-        <div class="item">
-          <van-circle
-            v-model="currentRate"
-            :rate="rate"
-            :speed="50"
-            layer-color="#14437F"
-            color="#FBEE7E"
-            :size="140"
-            :stroke-width="60"
-            stroke-linecap="butt"
-            class="chart"
-          />
-          <div class="chart__text">{{ currentRate }}%</div>
-          <div class="icon">
-            <Icon type="door" :size="22" />
-          </div>
-          <div class="name">门禁</div>
+          <div class="name">{{ item.name }}</div>
         </div>
       </van-col>
     </van-row>
@@ -69,32 +29,53 @@
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
-import {
-  DeviceOfflineReturn,
-  fetchDeviceOffline,
-} from "@/service/bigScreen/projectBoard/managementSituation/deviceOffline";
+import { fetchDeviceOffline } from "@/service/bigScreen/projectBoard/managementSituation/deviceOffline";
 import dayjs from "dayjs";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: { Icon },
 })
 export default class D5 extends Base {
-  currentRate = 0;
-  rate = 40;
-
   /**
-   * 返回数据
+   * 返回数据(格式化后)
    */
-  response: Partial<DeviceOfflineReturn> = {};
+  response: {
+    name: string;
+    icon: string;
+    color: string;
+    rate: number;
+    currentRate: number;
+  }[] = [];
 
   async created() {
     const response = await fetchDeviceOffline({
-      projectNo: "11111",
+      projectNo: this.store.global.projectId.toString(),
       dataTime: dayjs().format("YYYY-MM-DD"),
     });
-
     if (response?.status === "ok") {
-      this.response = response.data ?? {};
+      const data = iwant.object(response.data);
+      this.response.push({
+        name: "水",
+        icon: "water-drop",
+        color: "#57A6FB",
+        rate: data.waterDeviceOfflineRatio,
+        currentRate: 0,
+      });
+      this.response.push({
+        name: "电",
+        icon: "lightning",
+        color: "#A957FB",
+        rate: data.elecDeviceOfflineRatio,
+        currentRate: 0,
+      });
+      this.response.push({
+        name: "门禁",
+        icon: "door",
+        color: "#FBEE7E",
+        rate: data.doorDeviceOfflineRatio,
+        currentRate: 0,
+      });
     }
   }
 }

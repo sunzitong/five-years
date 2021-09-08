@@ -162,6 +162,20 @@
         </SubWrapper>
       </div>
     </div>
+    <div class="footer">
+      <div class="global-button">
+        <ButtonGroup>
+          <van-radio-group value="会议中心" direction="horizontal">
+            <van-radio name="会议中心">会议中心</van-radio>
+            <van-radio name="实时指挥中心">实时指挥中心</van-radio>
+            <van-radio name="门店选择">
+              门店选择
+              <van-icon name="arrow-up" />
+            </van-radio>
+          </van-radio-group>
+        </ButtonGroup>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -180,6 +194,7 @@ import C5 from "./components/C5.vue";
 import D5 from "./components/D5.vue";
 import D7 from "./components/D7.vue";
 import D8 from "./components/D8.vue";
+import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 
 @Component({
   components: {
@@ -195,6 +210,7 @@ import D8 from "./components/D8.vue";
     D5,
     D7,
     D8,
+    ButtonGroup,
   },
 })
 export default class Index extends Base {}
@@ -229,6 +245,22 @@ export default class Index extends Base {}
     padding: 20px;
     display: flex;
     justify-content: space-between;
+  }
+}
+.footer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  margin: auto;
+  .global-button {
+    position: absolute;
+    width: 34.6%;
+    display: flex;
+    justify-content: flex-end;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
   }
 }
 </style>
