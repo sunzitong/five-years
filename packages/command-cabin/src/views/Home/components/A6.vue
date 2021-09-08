@@ -3,7 +3,7 @@
     <div class="text_pannel">
       <!-- 仪表盘组件 -->
       <ProgressCircle
-        v-if="cycleFlag"
+        v-if="yearFlag"
         :styleType="1"
         :rate="yearRate"
         :size="280"
@@ -26,7 +26,7 @@
         </template>
       </ProgressCircle>
       <ProgressCircle
-        v-if="!cycleFlag"
+        v-if="!yearFlag"
         :styleType="1"
         :rate="cycleRate"
         :size="280"
@@ -66,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
@@ -81,17 +81,34 @@ import _ from "lodash";
   components: { ProgressCircle },
 })
 export default class A6 extends Base {
-  @Ref() wrapper!: HTMLDivElement;
+  /**
+   * 接口返回值
+   * /analysis/bigScreen/mainBoard/expandDisk
+   */
   resData: Partial<ExpandDiskReturn> = {};
-
-  cycleFlag = true;
-
+  /**
+   * 显示全年时，此值为true
+   */
+  yearFlag = true;
+  /**
+   * 全周期预算达成率
+   */
   cycleRate: number | "--" = "--";
+  /**
+   * 全年预算达成率
+   */
   yearRate: number | "--" = "--";
-
+  /**
+   * 入参：年份
+   */
   year = dayjs().year();
-
+  /**
+   * 全年利润攻坚贡献值
+   */
   currentYear: number | string = "--";
+  /**
+   * 全周期利润攻坚贡献值
+   */
   wholeCycle: number | string = "--";
 
   async mounted() {
@@ -113,8 +130,11 @@ export default class A6 extends Base {
         ? "--"
         : this.resData.yearNetIncomeCompletionRate;
 
+      /**
+       * 全周期与全年取值循环切换
+       */
       setInterval(() => {
-        this.cycleFlag = !this.cycleFlag;
+        this.yearFlag = !this.yearFlag;
       }, 1000);
     }
   }

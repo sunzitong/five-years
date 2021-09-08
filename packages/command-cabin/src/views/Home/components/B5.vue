@@ -37,18 +37,26 @@ console.log(echarts);
   components: {},
 })
 export default class B5 extends Base {
+  /**
+   * 饼图
+   */
   @Ref() wrapper!: HTMLDivElement;
+  /**
+   * 接口返回值
+   * /bigScreen/mainBoard/construct/repairStat
+   */
   resData: Partial<RepairStatReturn> = {};
   year = dayjs().year();
 
-  names = ["电器类", "硬装类", "水暖类", "渗漏类", "设备类", "其他"];
+  names = ["电器类", "硬装类", "水暖类", "渗漏类", "设备类", "其他"]; // name标签
 
-  data: AnyObject[] = [];
+  data: AnyObject[] = []; // 饼图对象数组
 
-  objData1: AnyObject = {};
-  objData2: AnyObject = {};
+  objData1: AnyObject = {}; // name-count键值对对象
+  objData2: AnyObject = {}; // name-ratio键值对对象
 
   buildData(resData: AnyObject) {
+    // 构建配置数据
     let i = 0;
     Object.keys(resData).forEach((el1) => {
       let keys = resData[el1];

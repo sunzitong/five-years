@@ -88,31 +88,38 @@ import Base from "@/views/Base";
   components: {},
 })
 export default class B1B extends Base {
+  /**
+   * 左侧饼图
+   */
   @Ref() leftCharts!: HTMLDivElement;
-
+  /**
+   * 右侧饼图
+   */
   @Ref() rightCharts!: HTMLDivElement;
-
+  /**
+   * 接口返回值
+   * /bigScreen/mainBoard/construct/projectOpen
+   */
   resData: Partial<ProjectOpenReturn> = {};
 
   year = dayjs().year();
 
-  targetNum: number | "--" = "--";
+  targetNum: number | "--" = "--"; // 年开业目标间数
 
-  hasOpen: number | "--" = "--";
-  hasOpenRatio: number | "--" = "--";
+  hasOpen: number | "--" = "--"; // 已开业间数
+  hasOpenRatio: number | "--" = "--"; // 已开业间数百分比
 
-  toGet: number | "--" = "--";
-  toGetRatio: number | "--" = "--";
+  toGet: number | "--" = "--"; // 待获取
+  toGetRatio: number | "--" = "--"; // 待获取百分比
 
-  hasGet: number | "--" = "--";
-  hasGetRatio: number | "--" = "--";
+  hasGet: number | "--" = "--"; // 已获取
+  hasGetRatio: number | "--" = "--"; // 已获取百分比
 
-  pieData1: AnyObject[] = [];
+  pieData1: AnyObject[] = []; // 左侧饼图对象数组
+  pieData2: AnyObject[] = []; // 右侧饼图对象数组
 
-  pieData2: AnyObject[] = [];
-
-  objData1: AnyObject = {};
-  objData2: AnyObject = {};
+  objData1: AnyObject = {}; // 左侧饼图name-value键值对对象
+  objData2: AnyObject = {}; // 右侧饼图name-value键值对对象
 
   async created() {
     const response = await fetchProjectOpen({
@@ -147,7 +154,6 @@ export default class B1B extends Base {
         };
       });
 
-      // console.log("饼图数据1", this.pieData1, this.pieData2);
       this.objData1 = arrayToObject(this.pieData1, {
         key: "name",
         value: "value",
@@ -156,7 +162,6 @@ export default class B1B extends Base {
         key: "name",
         value: "value",
       });
-      // console.log("饼图数据2", this.objData1, this.objData2);
 
       this.paintChart();
     }
