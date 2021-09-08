@@ -44,7 +44,7 @@ export interface NumsByCity {
 }
 
 export interface NumsByType {
-  typeNum: number;
+  typeNum: string;
   num: number;
   ratio: number;
 }
@@ -52,7 +52,7 @@ export interface NumsByType {
 /**
  * 指挥中心-经营现状-舆情风险
  * @createBy wuyao
- * @updateAt 2021/9/3 上午11:29:39
+ * @updateAt 2021/9/7 下午6:54:36
  * @method GET
  */
 export const fetchSentiment = (params: SentimentParams) => {

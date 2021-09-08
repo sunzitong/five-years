@@ -5,7 +5,7 @@
         <div class="item">
           <van-circle
             v-model="item.currentRate"
-            :rate="item.rate"
+            :rate="item.rate * 100"
             :speed="50"
             layer-color="#14437F"
             :color="item.color"
@@ -15,7 +15,10 @@
             class="chart"
           />
           <div class="chart__text">{{ formatValue(item.currentRate) }}%</div>
-          <div class="icon">
+          <div
+            class="icon animate__animated animate__infinite animate__pulse"
+            :style="{ 'animation-delay': index * 0.3 + 's' }"
+          >
             <Icon :type="item.icon" :size="22" />
           </div>
           <div class="name">{{ item.name }}</div>
@@ -101,7 +104,7 @@ export default class D5 extends Base {
     right: 0;
   }
   .chart {
-    transform: rotate(30deg);
+    transform: rotate(45deg);
     transform-origin: 50% 50%;
   }
   .chart__text {

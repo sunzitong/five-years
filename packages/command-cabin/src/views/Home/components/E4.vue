@@ -2,7 +2,10 @@
   <div class="page__maintenance_report__map">
     <div class="chart">
       <div v-for="(item, index) in data" v-bind:key="index" class="chart-item">
-        <div class="chart-icon">
+        <div
+          class="chart-icon animate__animated animate__infinite animate__pulse"
+          :style="{ 'animation-delay': index * 0.3 + 's' }"
+        >
           <Icon :type="iconArr[index]" size="22" />
         </div>
         <van-circle
@@ -15,9 +18,10 @@
           :size="160"
           stroke-linecap="butt"
           :clockwise="true"
+          class="chart-circle"
         >
           <div class="rate-text">
-            <div class="value">{{ item.value }}%</div>
+            <div class="value">{{ item.currentRate }}%</div>
             <div class="desc">{{ item.name }}</div>
           </div>
         </van-circle>
@@ -113,11 +117,9 @@ export default class E4 extends Base {
   justify-content: space-around;
   padding-top: 50px;
   .chart-item {
-    transform: rotate(45deg);
     position: relative;
     z-index: 1;
     .chart-icon {
-      transform: rotate(-45deg);
       width: 45px;
       height: 45px;
       box-sizing: border-box;
@@ -127,8 +129,8 @@ export default class E4 extends Base {
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: -20px;
-      right: 60px;
+      top: 0;
+      right: 0;
       z-index: 100;
     }
     .rate-text {
@@ -148,5 +150,8 @@ export default class E4 extends Base {
       }
     }
   }
+}
+.chart-circle {
+  transform: rotate(45deg);
 }
 </style>

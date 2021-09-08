@@ -21,6 +21,7 @@ export interface BasicInformationParams {
  */
 export interface BasicInformationReturn {
   transactionModel: string;
+  transactionModelType: string;
   openRoomNum: number;
   businessArea: number;
   workstationNum: number;
@@ -42,7 +43,7 @@ export interface BasicInformationReturn {
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/7 下午6:29:04
+ * @updateAt 2021/9/8 上午10:18:45
  * @method GET
  */
 export const fetchBasicInformation = (params?: BasicInformationParams) => {
