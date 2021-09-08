@@ -12,6 +12,7 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
+          :id="`${uuid}_move`"
           fill-rule="evenodd"
           clip-rule="evenodd"
           :d="customerD"
@@ -19,7 +20,34 @@
           :fill-opacity="fillOpacity"
         />
         <path :stroke="`url(#${uuid})`" stroke-width="2" :d="customerD" />
+
+        <rect
+          v-if="animate"
+          x="0"
+          y="-1"
+          height="2"
+          width="300"
+          :fill="`url(#${uuid}_paint1_linear2)`"
+        >
+          <animateMotion dur="10s" rotate="auto" repeatCount="indefinite">
+            <mpath :xlink:href="`#${uuid}_move`" />
+          </animateMotion>
+        </rect>
+
         <defs>
+          <linearGradient
+            v-if="animate"
+            :id="`${uuid}_paint1_linear2`"
+            x1="0"
+            y1="0"
+            x2="300"
+            y2="0"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#01F5F1" stop-opacity="0.1" />
+            <stop offset="0.510417" stop-color="#01F5F1" stop-opacity="0.99" />
+            <stop offset="1" stop-color="#01F5F1" stop-opacity="0"></stop>
+          </linearGradient>
           <linearGradient
             :id="uuid"
             x1="0"
@@ -117,6 +145,8 @@ export default class CardDecorate extends Vue {
    * 是否显示页脚
    */
   @Prop({ default: false }) showFooter!: boolean;
+
+  animate = false;
 
   /**
    * 背景默认宽度
@@ -320,6 +350,7 @@ export default class CardDecorate extends Vue {
    */
   mounted() {
     this.divSizeChangeHandle();
+
     /**
      * 监听容器尺寸变化
      */
