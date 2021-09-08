@@ -91,32 +91,37 @@
               <Card
                 title="全业态收入及完成度"
                 style="width: 1557px; height: 589px"
-              ></Card>
+              >
+                <template #data-cycle>{{ dataCycle }}</template>
+              </Card>
             </van-col>
             <van-col>
               <WhiteSpace />
-              <Card style="width: 739px; height: 563px"></Card>
+              <Card style="width: 739px; height: 563px">
+                <template #data-cycle>{{ dataCycle }}</template>
+              </Card>
             </van-col>
           </van-row>
           <WhiteSpace />
           <van-row gutter="24">
             <van-col>
               <Card title="经营性支出" style="width: 1566px; height: 666px">
+                <template #data-cycle>{{ dataCycle }}</template>
                 <E2 />
               </Card>
               <WhiteSpace />
               <van-row gutter="24">
                 <van-col>
-                  <Card
-                    title="客户洞察"
-                    style="width: 905px; height: 396px"
-                  ></Card>
+                  <Card title="客户洞察" style="width: 905px; height: 396px">
+                    <template #data-cycle>{{ dataCycle }}</template>
+                  </Card>
                 </van-col>
                 <van-col>
                   <Card
                     title="24小时设备离线率"
                     style="width: 628px; height: 396px"
                   >
+                    <template #data-cycle>{{ dataCycle }}</template>
                     <E4 />
                   </Card>
                 </van-col>
@@ -124,6 +129,7 @@
             </van-col>
             <van-col>
               <Card title="舆情风险" style="width: 739px; height: 1086px">
+                <template #data-cycle>{{ dataCycle }}</template>
                 <E5 />
               </Card>
             </van-col>
@@ -267,9 +273,15 @@ import E5 from "./components/E5.vue";
 })
 export default class Home extends Base {
   /**
+   * 数据周期
+   */
+  dataCycle = "月";
+
+  /**
    * 时间范围枚举
    */
   DateScopes = DateScopes;
+
   /**
    * 范围选择
    */
