@@ -7,28 +7,12 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle cx="69.092" cy="37.2653" r="11.2653" fill="#16945C" />
-    <mask
-      :id="uuid"
-      mask-type="alpha"
-      maskUnits="userSpaceOnUse"
-      x="44"
-      y="41"
-      width="49"
-      height="46"
-    >
-      <path
-        d="M44 87H89C91.2091 87 93 85.2091 93 83V41H44V87Z"
-        fill="#C4C4C4"
-      />
-    </mask>
-    <g :mask="`url(#${uuid})`">
-      <ellipse
-        rx="23.9388"
-        ry="34.148"
-        transform="matrix(1 0 0 -1 69.0916 85.4951)"
-        fill="#16945C"
-      />
-    </g>
+    <ellipse
+      rx="23.9388"
+      ry="34.148"
+      transform="matrix(1 0 0 -1 69.0916 85.4951)"
+      fill="#16945C"
+    />
     <circle cx="34" cy="16" r="16" fill="#4DC8AA" />
     <mask
       :id="`${uuid}_1`"
