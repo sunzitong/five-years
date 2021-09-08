@@ -74,7 +74,7 @@ export const formatColors = (
  * @param sep 默认逗号分隔符
  * @param stepLen 默认按3位分隔
  */
-export const sepNumber = (number: number, sep = ",", stepLen = 3) => {
+export const sepNumber = (number?: number, sep = ",", stepLen = 3) => {
   if (_.isNil(number)) return "";
   const arr = number.toString().split(".");
   const str = arr[0];
