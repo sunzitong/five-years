@@ -11,7 +11,7 @@
         transform="scale(1, -1)"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g :filter="`url(#${uuid}_filter0_b)`">
+        <g>
           <ellipse
             cx="-75.0718"
             cy="629.902"
@@ -26,40 +26,15 @@
             stroke-width="4"
           />
         </g>
-        <g :clip-path="`url(#${uuid}_clip0)`">
-          <path
-            d="M534.998 637.272L544.443 625.111V651.495L534.998 637.272Z"
-            fill="#01E0E2"
-          />
-          <path
-            d="M524.211 637.272L544.442 607.658V623.345L542.097 619.24L529.489 637.272L542.097 656.331L544.442 653.105V667.179L524.211 637.272Z"
-            fill="white"
-          />
-        </g>
+        <path
+          d="M534.998 637.272L544.443 625.111V651.495L534.998 637.272Z"
+          fill="#01E0E2"
+        />
+        <path
+          d="M524.211 637.272L544.442 607.658V623.345L542.097 619.24L529.489 637.272L542.097 656.331L544.442 653.105V667.179L524.211 637.272Z"
+          fill="white"
+        />
         <defs>
-          <filter
-            :id="`${uuid}_filter0_b`"
-            x="-727.354"
-            y="-19.6973"
-            width="1304.56"
-            height="1299.2"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
-          >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feGaussianBlur in="BackgroundImage" stdDeviation="10" />
-            <feComposite
-              in2="SourceAlpha"
-              operator="in"
-              result="effect1_backgroundBlur"
-            />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="effect1_backgroundBlur"
-              result="shape"
-            />
-          </filter>
           <linearGradient
             :id="`${uuid}_paint0_linear`"
             x1="557"
@@ -71,14 +46,6 @@
             <stop stop-color="#01F2EF" />
             <stop offset="1" stop-opacity="0" />
           </linearGradient>
-          <clipPath :id="`${uuid}_clip0`">
-            <rect
-              width="20.2317"
-              height="59.5212"
-              fill="white"
-              transform="translate(524.211 607.658)"
-            />
-          </clipPath>
         </defs>
       </svg>
       <div class="app-fixed-nav__content">
