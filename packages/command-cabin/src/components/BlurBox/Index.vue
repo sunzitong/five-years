@@ -132,10 +132,11 @@ export default class BlurBox extends Vue {
       ${x} ${h}
       ${x} ${h - r}
 
-      L${x + sx} ${h - r - sy}
-      ${x + sx - s} ${h - r - s / 2 - sy}
-      ${x + sx} ${h - r - s - sy}
+      L${x} ${h - r - sy}
+      ${x - s} ${h - r - s / 2 - sy}
+      ${x} ${h - r - s - sy}
 
+      L${x} ${r}
       C${x} ${r}
       ${x} ${y}
       ${x + r} ${y}
