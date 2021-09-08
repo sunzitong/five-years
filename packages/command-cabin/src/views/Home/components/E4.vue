@@ -6,13 +6,13 @@
           class="chart-icon animate__animated animate__infinite animate__pulse"
           :style="{ 'animation-delay': index * 0.3 + 's' }"
         >
-          <Icon :type="iconArr[index]" size="22" />
+          <Icon :type="item.icon" size="22" />
         </div>
         <van-circle
           v-model="item.currentRate"
           :rate="item.value"
-          :speed="100"
-          :color="colors[index]"
+          :speed="50"
+          :color="item.color"
           layer-color="#14437F"
           :stroke-width="70"
           :size="160"
@@ -31,16 +31,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
-import {
-  DeviceOfflineReturn,
-  fetchDeviceOffline,
-} from "@/service/bigScreen/mainBoard/managementSituation/deviceOffline";
+import { fetchDeviceOffline } from "@/service/bigScreen/mainBoard/managementSituation/deviceOffline";
 import dayjs from "dayjs";
 import { sepNumber } from "@/utils/tools";
-import { AnyObject } from "@guanyu/shared";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -48,64 +45,47 @@ import { AnyObject } from "@guanyu/shared";
   },
 })
 export default class E4 extends Base {
-  @Ref() wrapper!: HTMLDivElement;
-
-  resData: Partial<DeviceOfflineReturn> = {};
-  year = dayjs().year();
-
   sepNumber = sepNumber;
 
-  // data = [
-  //   {
-  //     name: "水",
-  //     value: 10,
-  //     currentRate: 0,
-  //   },
-  //   {
-  //     name: "电",
-  //     value: 100.01,
-  //     currentRate: 0,
-  //   },
-  //   {
-  //     name: "门禁",
-  //     value: 50,
-  //     currentRate: 0,
-  //   },
-  // ];
-
-  data: AnyObject[] = [];
-
-  colors = ["#59D1FE", "#8E3AFF", "#EEBC4A"];
-  iconArr = ["water-drop", "lightning", "door"];
+  data: {
+    name: string;
+    value: number;
+    currentRate: number;
+    color: string;
+    icon: string;
+  }[] = [];
 
   async created() {
     const response = await fetchDeviceOffline({
       regionType: "CITY",
       regionId: 85,
-      dataTime: this.year,
+      dataTime: dayjs().year().toString(),
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
-
+      const data = iwant.object(response.data);
       this.data = [
         {
           name: "水",
-          value: sepNumber(this.resData.waterDeviceOfflineRatio),
+          value: data.waterDeviceOfflineRatio * 100,
           currentRate: 0,
+          color: "#59D1FE",
+          icon: "water-drop",
         },
         {
           name: "电",
-          value: sepNumber(this.resData.elecDeviceOfflineRatio),
+          value: data.elecDeviceOfflineRatio * 100,
           currentRate: 0,
+          color: "#8E3AFF",
+          icon: "lightning",
         },
         {
           name: "门禁",
-          value: sepNumber(this.resData.doorDeviceOfflineRatio),
+          value: data.doorDeviceOfflineRatio * 100,
           currentRate: 0,
+          color: "#EEBC4A",
+          icon: "door",
         },
       ];
-
-      console.log(2324, this.resData, this.data);
     }
   }
 }
