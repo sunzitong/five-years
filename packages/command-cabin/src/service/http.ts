@@ -1,8 +1,7 @@
 import service from "./service";
 import isPlainObject from "lodash/isPlainObject";
-import { Nullable, ResponseData } from "@guanyu/shared";
-import { Toast } from "vant";
-import { VanToast } from "vant/types/toast";
+import { ResponseData } from "@guanyu/shared";
+import { Notify } from "vant";
 
 const unify = <T>(url: string, obj: T) => {
   if (!isPlainObject(obj)) return url;
@@ -13,9 +12,7 @@ const unify = <T>(url: string, obj: T) => {
     return s;
   });
 };
-
 const loading = {
-  toast: null as Nullable<VanToast>,
   count: 0,
 };
 
@@ -25,22 +22,26 @@ const mergeOptions = (partial?: Partial<ServiceOptions>): ServiceOptions => {
   return { showLoading: true, ...partial };
 };
 
-const after = (partial?: Partial<ServiceOptions>) => {
+const before = (partial?: Partial<ServiceOptions>) => {
   const options = mergeOptions(partial);
   if (!options.showLoading) return;
-  if (loading.count <= 0 && !loading.toast) {
-    loading.toast = Toast.loading({ duration: 0 });
+  if (loading.count <= 0) {
+    Notify({
+      type: "primary",
+      duration: 0,
+      message: "加载中...",
+      background: "rgba(25,137,250,.3)",
+    });
   }
   loading.count++;
 };
 
-const before = (partial?: Partial<ServiceOptions>) => {
+const after = (partial?: Partial<ServiceOptions>) => {
   const options = mergeOptions(partial);
   if (!options.showLoading) return;
   loading.count--;
-  if (loading.count <= 0 && loading.toast) {
-    loading.toast.clear();
-    loading.toast = null;
+  if (loading.count <= 0) {
+    Notify.clear();
   }
 };
 
@@ -50,12 +51,12 @@ const http = {
     params?: P,
     options?: Partial<ServiceOptions>
   ) {
-    after(options);
+    before(options);
     const res = await service.get<unknown, ResponseData<T> | undefined>(
       unify(url, params),
       { params }
     );
-    before(options);
+    after(options);
     return res;
   },
 
@@ -64,12 +65,12 @@ const http = {
     data?: P,
     options?: Partial<ServiceOptions>
   ) {
-    after(options);
+    before(options);
     const res = await service.post<unknown, ResponseData<T> | undefined>(
       unify(url, data),
       data
     );
-    before(options);
+    after(options);
     return res;
   },
 };
