@@ -44,14 +44,12 @@ import {
   BasicInformationReturn,
   fetchBasicInformation,
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation";
-import { sepNumber } from "@/utils/tools";
 import Base from "@/views/Base";
 import dayjs from "dayjs";
 import { Component } from "vue-property-decorator";
 
 @Component
 export default class A2 extends Base {
-  sepNumber = sepNumber;
   response: Partial<BasicInformationReturn> = {};
   async created() {
     const response = await fetchBasicInformation({ year: dayjs().year() });

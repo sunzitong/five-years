@@ -266,6 +266,31 @@
             </van-radio-group>
           </ButtonGroup>
         </Card>
+        <Card title="StepNumber" :showFooter="true" :showRectBackground="false">
+          <van-row>
+            <van-col :span="3">
+              基础用法
+              <StepNumber :to="stepNum" />
+            </van-col>
+            <van-col :span="3">
+              每次都从0开始算
+              <StepNumber :to="stepNum" :from="0" />
+            </van-col>
+            <van-col :span="3">
+              保留小数
+              <StepNumber :to="stepNum" :precision="2" />
+            </van-col>
+            <van-col :span="6">
+              插槽
+              <StepNumber :to="stepNum">
+                <template v-slot="{ value }">
+                  value:{{ value }}
+                  (和v-model一致)
+                </template>
+              </StepNumber>
+            </van-col>
+          </van-row>
+        </Card>
       </van-col>
     </van-row>
     <!-- <Lattices :width="1000" :height="1000" /> -->
@@ -287,6 +312,7 @@ import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Webrtc from "@/components/Webrtc/Index.vue";
+import StepNumber from "@/components/StepNumber/Index.vue";
 
 @Component({
   components: {
@@ -303,6 +329,7 @@ import Webrtc from "@/components/Webrtc/Index.vue";
     BlurBox,
     ButtonGroup,
     Webrtc,
+    StepNumber,
   },
 })
 export default class Example extends Vue {
@@ -318,10 +345,15 @@ export default class Example extends Vue {
 
   radio = 1;
 
-  aaa() {
-    alert("a");
-  }
+  stepNum = 0;
 
+  created() {
+    this.stepNum = Math.random() * 10000;
+    setInterval(() => {
+      // this.stepNum = Math.random() * 100000;
+      this.stepNum += 10;
+    }, 3000);
+  }
   mounted() {
     setTimeout(() => {
       console.log(this.progress);

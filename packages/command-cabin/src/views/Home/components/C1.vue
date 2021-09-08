@@ -10,7 +10,7 @@
             <van-col>
               <div class="title">累计获取房间数(万)</div>
               <div class="num" style="color: #48cdfc">
-                {{ response.getRoomNum }}
+                <StepNumber :to="response.getRoomNum" />
               </div>
             </van-col>
           </van-row>
@@ -22,7 +22,8 @@
           <van-col>
             <div class="title">品牌指数</div>
             <div class="num" style="color: #ee7647">
-              NO.{{ response.brandPointNum }}
+              NO.
+              <StepNumber :to="response.brandPointNum" />
             </div>
           </van-col>
         </van-row>
@@ -36,7 +37,7 @@
             <van-col>
               <div class="title">累计开业房间数(间)</div>
               <div class="num" style="color: #b07df7">
-                {{ response.openRoomNum }}
+                <StepNumber :to="response.openRoomNum" />
               </div>
             </van-col>
           </van-row>
@@ -48,7 +49,7 @@
           <van-col>
             <div class="title">累计服务用户数</div>
             <div class="num" style="color: #5fceb3">
-              {{ response.servedPersonNum }}
+              <StepNumber :to="response.servedPersonNum" />
             </div>
           </van-col>
         </van-row>
@@ -60,7 +61,7 @@
             <van-col>
               <div class="title">年累总收入(亿)</div>
               <div class="num" style="color: #5fceb3">
-                {{ response.incomeNum }}
+                <StepNumber :to="response.incomeNum" />
               </div>
             </van-col>
           </van-row>
@@ -72,7 +73,7 @@
           <van-col>
             <div class="title">累计租户</div>
             <div class="num" style="color: #4770ff">
-              {{ response.tenantNum }}
+              <StepNumber :to="response.tenantNum" />
             </div>
           </van-col>
         </van-row>
@@ -90,11 +91,13 @@ import {
   NumYearlyReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/numYearly";
 import Base from "@/views/Base";
+import StepNumber from "@/components/StepNumber/Index.vue";
 
 @Component({
   components: {
     Card,
     Icon,
+    StepNumber,
   },
 })
 export default class C1 extends Base {

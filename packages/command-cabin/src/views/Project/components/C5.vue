@@ -27,15 +27,21 @@
       <ul class="list">
         <li class="item">
           <div class="name">信用指数</div>
-          <div class="value">{{ monthData.creditScore }}</div>
+          <div class="value">
+            <StepNumber :duration="100" :to="monthData.creditScore" />
+          </div>
         </li>
         <li class="item">
           <div class="name">渠道效能值</div>
-          <div class="value">{{ monthData.channelEffectScore }}</div>
+          <div class="value">
+            <StepNumber :duration="100" :to="monthData.channelEffectScore" />
+          </div>
         </li>
         <li class="item">
           <div class="name">运营健康度</div>
-          <div class="value">{{ monthData.healthyScore }}</div>
+          <div class="value">
+            <StepNumber :duration="100" :to="monthData.healthyScore" />
+          </div>
         </li>
       </ul>
     </div>
@@ -52,11 +58,12 @@ import {
   fetchBusinessScore,
 } from "@/service/bigScreen/projectBoard/finance/businessScore";
 import Base from "@/views/Base";
+import StepNumber from "@/components/StepNumber/Index.vue";
 
 type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 
 @Component({
-  components: { Icon, ProgressCircle },
+  components: { Icon, ProgressCircle, StepNumber },
 })
 export default class C5 extends Base {
   /**

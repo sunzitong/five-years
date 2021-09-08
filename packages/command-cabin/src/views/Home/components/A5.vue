@@ -37,7 +37,6 @@ import {
   fetchExpandDisk,
   ExpandDiskReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk";
-import { sepNumber } from "@/utils/tools";
 import Base from "@/views/Base";
 
 @Component({
@@ -45,7 +44,6 @@ import Base from "@/views/Base";
 })
 export default class A5 extends Base {
   @Ref() wrapper!: HTMLDivElement;
-  sepNumber = sepNumber;
 
   resData: Partial<ExpandDiskReturn> = {};
 

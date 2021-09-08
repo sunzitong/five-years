@@ -68,7 +68,6 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
-import { sepNumber } from "@/utils/tools";
 import dayjs from "dayjs";
 import {
   fetchExpandDisk,
@@ -91,8 +90,6 @@ export default class A6 extends Base {
   yearRate: number | "--" = "--";
 
   year = dayjs().year();
-
-  sepNumber = sepNumber;
 
   currentYear: number | string = "--";
   wholeCycle: number | string = "--";
