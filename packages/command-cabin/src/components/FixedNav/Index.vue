@@ -54,6 +54,7 @@
           class="app_fixed-nav__links"
           v-for="item in menus"
           :key="item.title"
+          :animate="$route.path === item.href"
         >
           {{ item.title }}
         </Btn>

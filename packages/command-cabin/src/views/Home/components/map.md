@@ -10,11 +10,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { ECharts } from "echarts/core";
-
-console.log(echarts);
+import Base from "@/views/Base";
 
 @Component({
   components: {},

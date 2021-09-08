@@ -8,9 +8,11 @@
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
+        :id="`${uuid}_curve`"
         :d="buttonPathD"
         :fill="`url(#${uuid}_paint0_linear)`"
         :stroke="`url(#${uuid}_paint1_linear)`"
+        :fill-opacity="animate ? 1 : 0.1"
         stroke-width="2"
       />
       <path
@@ -26,6 +28,18 @@
           Z`"
         fill="#01F4F0"
       />
+      <rect
+        v-if="animate"
+        x="0"
+        y="-1"
+        height="2"
+        width="30"
+        :fill="`url(#${uuid}_paint1_linear2)`"
+      >
+        <animateMotion dur="4s" rotate="auto" repeatCount="indefinite">
+          <mpath :xlink:href="`#${uuid}_curve`" />
+        </animateMotion>
+      </rect>
       <line
         x1="5.97374"
         :y1="rect.height - 70 + 58.9993"
@@ -73,6 +87,19 @@
           <stop offset="1" stop-color="#060847" />
         </linearGradient>
         <linearGradient
+          v-if="animate"
+          :id="`${uuid}_paint1_linear2`"
+          x1="0"
+          y1="0"
+          x2="50"
+          y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#01F5F1" stop-opacity="0.1" />
+          <stop offset="0.510417" stop-color="#01F5F1" stop-opacity="0.99" />
+          <stop offset="1" stop-color="#01F5F1" stop-opacity="0"></stop>
+        </linearGradient>
+        <linearGradient
           :id="`${uuid}_paint1_linear`"
           :x1="rect.width"
           y1="69.665"
@@ -82,7 +109,7 @@
         >
           <stop stop-color="#01F5F1" stop-opacity="0.1" />
           <stop offset="0.510417" stop-color="#01F5F1" stop-opacity="0.99" />
-          <stop offset="1" stop-color="#01F5F1" stop-opacity="0" />
+          <stop offset="1" stop-color="#01F5F1" stop-opacity="0"></stop>
         </linearGradient>
       </defs>
     </svg>
@@ -99,6 +126,11 @@ import { uuid } from "@guanyu/shared";
 @Component
 export default class Btn extends Vue {
   @Prop({ default: "medium" }) size!: number | "medium" | "small" | "large";
+
+  /**
+   * 执行动画
+   */
+  @Prop({ default: false }) animate!: boolean;
 
   get rect() {
     const map = {
