@@ -14,18 +14,18 @@
             animated
           >
             <van-col span="12" class="td name">
-              {{ item.person }}
-              <div class="icon">
-                <Icon
-                  type="call"
-                  color="#7BE7A1"
-                  @click.native="phoneIndex = phoneIndex === index ? -1 : index"
-                />
-                <transition name="fade">
-                  <div class="phone" v-if="phoneIndex === index">
-                    {{ item.tel }}
-                  </div>
-                </transition>
+              <div class="person">
+                {{ item.person }}
+              </div>
+              <div class="icon" @click.stop="telClick(item)">
+                <Icon type="call" color="#7BE7A1" />
+                <BlurBox
+                  class="tel-tips value__letter"
+                  :height="70"
+                  v-if="item.person == telIndex"
+                >
+                  {{ sepNumber(item.tel, " ", 4) }}
+                </BlurBox>
               </div>
             </van-col>
             <van-col span="12" class="td role">{{ item.specialty }}</van-col>
@@ -44,14 +44,16 @@ import Base from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import {
   fetchGroupInfo,
+  Group,
   GroupInfoReturn,
 } from "@/service/bigScreen/projectBoard/basicInformation/groupInfo";
+import BlurBox from "@/components/BlurBox/Index.vue";
 
 @Component({
-  components: { Icon, Animationend },
+  components: { Icon, Animationend, BlurBox },
 })
 export default class A3 extends Base {
-  phoneIndex = -1;
+  telIndex = "";
   list: GroupInfoReturn["businessGroups"] = [];
   async created() {
     const response = await fetchGroupInfo({
@@ -60,6 +62,22 @@ export default class A3 extends Base {
     if (response?.status === "ok") {
       this.list = iwant.array(response.data.businessGroups);
     }
+  }
+
+  mounted() {
+    this.$root.$el.addEventListener("click", this.telClear);
+  }
+
+  unmounted() {
+    this.$root.$el.removeEventListener("click", this.telClear);
+  }
+
+  telClick(item: Group) {
+    this.telIndex = item.person;
+  }
+
+  telClear() {
+    this.telIndex = "";
   }
 }
 </script>
@@ -103,20 +121,29 @@ $light: #01f5f1;
     border: none;
   }
 }
+.person {
+  min-width: 4em;
+}
 .icon {
   display: flex;
   margin-left: 10px;
   position: relative;
-  .phone {
+  .tel {
     position: absolute;
     left: 0;
     bottom: 100%;
   }
 }
-.fade-enter-active {
-  animation: fadeIn 1s;
-}
-.fade-leave-active {
-  animation: fadeOut 1s;
+.tel-tips {
+  position: absolute;
+  left: 120%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  &::v-deep {
+    .app-blur-box__content {
+      @extend %flex-center;
+    }
+  }
 }
 </style>
