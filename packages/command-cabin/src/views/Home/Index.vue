@@ -22,10 +22,14 @@
                 title="商机转化"
                 size="small"
                 style="width: 735px; height: 419px"
-              ></Card>
+              >
+                <A3 />
+              </Card>
             </van-col>
             <van-col>
-              <Card title="战略合作" style="width: 817px; height: 494px"></Card>
+              <Card title="战略合作" style="width: 817px; height: 494px">
+                <A4 />
+              </Card>
               <WhiteSpace />
               <van-row gutter="24">
                 <van-col>
@@ -239,6 +243,8 @@ console.log(DateScopes);
 /** Jing */
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import A3 from "./components/A3.vue";
+import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
@@ -260,6 +266,8 @@ import OrgPanel from "./components/OrgPanel.vue";
     WhiteSpace,
     A1,
     A2,
+    A3,
+    A4,
     A5,
     A6,
     B1,

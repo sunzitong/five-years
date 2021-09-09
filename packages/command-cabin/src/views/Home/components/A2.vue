@@ -28,7 +28,7 @@ import { AnyObject, arrayToObject } from "@guanyu/shared";
 @Component({
   components: {},
 })
-export default class A1 extends Base {
+export default class A2 extends Base {
   /**
    * 饼图
    */
