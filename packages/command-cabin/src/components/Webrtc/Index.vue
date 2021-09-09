@@ -4,7 +4,7 @@
 <script lang="ts">
 import { Component, Prop, Ref, Vue, Watch } from "vue-property-decorator";
 import { PlayerConfig } from "./webrtc.type";
-export { PlayerConfig } from "./webrtc.type";
+export type { PlayerConfig } from "./webrtc.type";
 
 @Component
 export default class Webrtc extends Vue {
