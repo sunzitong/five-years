@@ -70,7 +70,9 @@
               </Card>
             </van-col>
             <van-col>
-              <Card title="成本分析" style="width: 691px; height: 634px"></Card>
+              <Card title="成本分析" style="width: 691px; height: 634px">
+                <B3 />
+              </Card>
               <WhiteSpace />
               <Card title="产品品质" style="width: 691px; height: 367px">
                 <B4 />
@@ -249,6 +251,7 @@ import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
 import B2 from "./components/B2.vue";
+import B3 from "./components/B3.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
@@ -272,6 +275,7 @@ import OrgPanel from "./components/OrgPanel.vue";
     A6,
     B1,
     B2,
+    B3,
     B4,
     B5,
     C1,
