@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface DeviceOfflineParams {
   /**
-   * 门店编号
+   * 门店组织ID
    */
-  projectNo: string;
+  orgId: number;
 
   /**
    * 最新统计日，默认是当前时间，yyyy-mm-dd
@@ -35,7 +35,7 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/8 上午10:15:55
+ * @updateAt 2021/9/8 下午8:11:56
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
