@@ -53,13 +53,10 @@
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
 import {
-  fetchOrgTree,
-  OrgTreeReturn,
-} from "@/service/bigScreen/mainBoard/orgTree";
-import {
   DataLevels,
   DateScopes,
 } from "@/service/analysis/commandCabin/publicEnum";
+import { fetchOrgTree, OrgTreeReturn } from "@/service/commandCabin/orgTree";
 
 @Component
 export default class OrgPanel extends Base {

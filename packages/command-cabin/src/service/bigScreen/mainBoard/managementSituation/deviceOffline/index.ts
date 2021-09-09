@@ -16,9 +16,9 @@ export interface DeviceOfflineParams {
   orgType: string;
 
   /**
-   * 大区ID/城市ID，默认是空
+   * 国家组织ID/大区组织ID/城市组织ID
    */
-  orgId?: number;
+  orgId: number;
 
   /**
    * 最新统计日，默认是当前时间，yyyy-mm-dd
@@ -40,7 +40,7 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/8 下午8:11:02
+ * @updateAt 2021/9/9 下午2:31:56
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {

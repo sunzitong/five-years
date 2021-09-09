@@ -53,8 +53,7 @@ export default class D5 extends Base {
 
   async created() {
     const response = await fetchDeviceOffline({
-      projectNo: this.store.global.projectId.toString(),
-      dataTime: dayjs().format("YYYY-MM-DD"),
+      orgId: this.store.global.orgId,
     });
     if (response?.status === "ok") {
       const data = iwant.object(response.data);
