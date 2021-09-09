@@ -79,8 +79,8 @@ export default class E2B extends Base {
       res.series.push({
         // 展示数据
         type: "pie",
-        clockWise: false, //顺时加载
-        hoverAnimation: false, //鼠标移入变大
+        clockwise: false, //顺时加载
+        emphasis: { scale: false }, //鼠标移入变大
         radius: [165 - i * 33, 150 - i * 33],
         center: ["45%", "50%"],
         label: {
@@ -110,7 +110,7 @@ export default class E2B extends Base {
               borderWidth: 0,
             },
             tooltip: { show: false },
-            hoverAnimation: false,
+            emphasis: { scale: false },
           },
         ],
       });
@@ -119,9 +119,9 @@ export default class E2B extends Base {
         name: "",
         type: "pie",
         silent: true,
-        clockWise: false, //顺时加载
+        clockwise: false, //顺时加载
         z: 1, // 控制叠加层级
-        hoverAnimation: false, //鼠标移入变大
+        emphasis: { scale: false }, //鼠标移入变大
         radius: [165 - i * 33, 150 - i * 33], //数组的第一项是内半径，第二项是外半径
         borderRadius: 88,
         center: ["45%", "50%"],
