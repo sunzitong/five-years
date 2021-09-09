@@ -13,12 +13,12 @@ export interface DeviceOfflineParams {
   /**
    * OMS-公用枚举-dataLevels 组织级别
    */
-  regionType: string;
+  orgType: string;
 
   /**
    * 大区ID/城市ID，默认是空
    */
-  regionId?: number;
+  orgId?: number;
 
   /**
    * 最新统计日，默认是当前时间，yyyy-mm-dd
@@ -40,7 +40,7 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/8 上午10:15:01
+ * @updateAt 2021/9/8 下午8:11:02
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {

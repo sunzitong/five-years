@@ -5,7 +5,9 @@
         <SubWrapper title="拓展盘面">
           <van-row gutter="24">
             <van-col>
-              <Card title="项目获取" style="width: 720px; height: 957px"></Card>
+              <Card title="项目获取" style="width: 720px; height: 957px">
+                <A1 />
+              </Card>
             </van-col>
             <van-col>
               <Card
@@ -231,6 +233,7 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 console.log(DateScopes);
 
 /** Jing */
+import A1 from "./components/A1.vue";
 import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
@@ -248,6 +251,7 @@ import E5 from "./components/E5.vue";
     SubWrapper,
     Card,
     WhiteSpace,
+    A1,
     A5,
     A6,
     B1,
