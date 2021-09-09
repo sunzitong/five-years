@@ -95,6 +95,7 @@
               <WhiteSpace />
               <Card style="width: 739px; height: 563px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <C2 />
               </Card>
             </van-col>
           </van-row>
@@ -242,6 +243,7 @@ import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
 import C1 from "./components/C1.vue";
+import C2 from "./components/C2.vue";
 import E2 from "./components/E2.vue";
 import E5 from "./components/E5.vue";
 
@@ -259,6 +261,7 @@ import E5 from "./components/E5.vue";
     B4,
     B5,
     C1,
+    C2,
     E2,
     E4,
     E5,
