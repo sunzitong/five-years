@@ -25,6 +25,10 @@ const store = {
      */
     dateScope: DateScopes.YEARLY,
     /**
+     * 全国地区城市ID
+     */
+    orgId: 0,
+    /**
      * 门店ID
      */
     projectId: 0,
