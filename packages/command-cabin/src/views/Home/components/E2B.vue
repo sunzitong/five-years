@@ -232,7 +232,7 @@ export default class E2B extends Base {
           axisLabel: {
             show: true,
             intervel: 0,
-            textStyle: "#FFFFFF",
+            color: "#FFFFFF",
             fontSize: 24,
           },
           data: res.yAxis,
