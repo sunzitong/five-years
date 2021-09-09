@@ -33,7 +33,6 @@ import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
 import { fetchDeviceOffline } from "@/service/bigScreen/projectBoard/managementSituation/deviceOffline";
-import dayjs from "dayjs";
 import { iwant } from "@guanyu/shared";
 
 @Component({
