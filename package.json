@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=xyac",
-    "build": "lerna run build --scope=xyac --stream",
+    "postinstall": "lerna bootstrap --scope=threeyears",
+    "build": "lerna run build --scope=threeyears --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
