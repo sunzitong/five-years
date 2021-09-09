@@ -5,7 +5,9 @@
         <SubWrapper title="拓展盘面">
           <van-row gutter="24">
             <van-col>
-              <Card title="项目获取" style="width: 720px; height: 957px"></Card>
+              <Card title="项目获取" style="width: 720px; height: 957px">
+                <A1 />
+              </Card>
             </van-col>
             <van-col>
               <Card
@@ -93,6 +95,7 @@
               <WhiteSpace />
               <Card style="width: 739px; height: 563px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <C2 />
               </Card>
             </van-col>
           </van-row>
@@ -232,6 +235,7 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 console.log(DateScopes);
 
 /** Jing */
+import A1 from "./components/A1.vue";
 import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
@@ -240,6 +244,7 @@ import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
 import C1 from "./components/C1.vue";
+import C2 from "./components/C2.vue";
 import E2 from "./components/E2.vue";
 import E5 from "./components/E5.vue";
 import OrgPanel from "./components/OrgPanel.vue";
@@ -250,6 +255,7 @@ import OrgPanel from "./components/OrgPanel.vue";
     SubWrapper,
     Card,
     WhiteSpace,
+    A1,
     A5,
     A6,
     B1,
@@ -257,6 +263,7 @@ import OrgPanel from "./components/OrgPanel.vue";
     B4,
     B5,
     C1,
+    C2,
     E2,
     E4,
     E5,
