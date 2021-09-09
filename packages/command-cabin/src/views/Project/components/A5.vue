@@ -8,12 +8,7 @@
     <div class="list">
       <Animationend :height="224" :dataSource="list" :scrollMinCount="3">
         <template v-slot="{ list }">
-          <van-row
-            v-for="(item, index) in list"
-            :key="index"
-            class="row"
-            animated
-          >
+          <van-row v-for="item in list" :key="item.id" class="row" animated>
             <van-col span="8" class="td name">
               <div class="person">
                 {{ item.person }}
@@ -23,7 +18,7 @@
                 <BlurBox
                   class="tel-tips value__letter"
                   :height="70"
-                  v-if="item.person == telIndex"
+                  v-if="item.id == telId"
                 >
                   {{ sepNumber(item.tel, " ", 4) }}
                 </BlurBox>
@@ -43,26 +38,29 @@ import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Base from "@/views/Base";
-import { iwant } from "@guanyu/shared";
+import { iwant, uuid } from "@guanyu/shared";
 import {
   fetchGroupInfo,
   Group,
-  GroupInfoReturn,
 } from "@/service/bigScreen/projectBoard/basicInformation/groupInfo";
 import BlurBox from "@/components/BlurBox/Index.vue";
+
+type Item = Group & { id: string };
 
 @Component({
   components: { Icon, Animationend, BlurBox },
 })
 export default class A4 extends Base {
-  telIndex = "";
-  list: GroupInfoReturn["constructGroups"] = [];
+  telId = "";
+  list: Item[] = [];
   async created() {
     const response = await fetchGroupInfo({
       projectId: this.store.global.projectId,
     });
     if (response?.status === "ok") {
-      this.list = iwant.array(response.data.constructGroups);
+      this.list = iwant
+        .array(response.data.businessGroups)
+        .map((item) => ({ ...item, id: uuid() }));
     }
   }
 
@@ -74,12 +72,12 @@ export default class A4 extends Base {
     this.$root.$el.removeEventListener("click", this.telClear);
   }
 
-  telClick(item: Group) {
-    this.telIndex = item.person;
+  telClick(item: Item) {
+    this.telId = item.person;
   }
 
   telClear() {
-    this.telIndex = "";
+    this.telId = "";
   }
 }
 </script>

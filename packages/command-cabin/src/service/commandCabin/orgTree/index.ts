@@ -7,7 +7,7 @@ import http from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 地区筛选（全国-大区-地区-城市）-返回值
+ * 地区筛选（国家-大区-城市）-返回值
  */
 export interface OrgTreeReturn {
   orgLevel: number;
@@ -18,13 +18,13 @@ export interface OrgTreeReturn {
 }
 
 /**
- * 地区筛选（全国-大区-地区-城市）
+ * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/9/9 下午1:58:17
+ * @updateAt 2021/9/9 下午2:28:46
  * @method GET
  */
 export const fetchOrgTree = (params?: Record<string, unknown>) => {
-  return http.get<OrgTreeReturn>(`${BASE_URL}/bigScreen/mainBoard/orgTree`, {
+  return http.get<OrgTreeReturn>(`${BASE_URL}/commandCabin/orgTree`, {
     ...params,
   });
 };

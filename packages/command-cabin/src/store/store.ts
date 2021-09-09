@@ -17,11 +17,11 @@ const store = {
    */
   global: {
     /**
-     * 数据范围
+     * 数据范围枚举 全国 地区 城市
      */
     dataLevel: DataLevels.GROUP,
     /**
-     * 时间维度
+     * 时间枚举 年 月 日
      */
     dateScope: DateScopes.YEARLY,
     /**

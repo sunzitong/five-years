@@ -16,9 +16,9 @@ export interface RepairStatParams {
   orgType: string;
 
   /**
-   * 大区ID/城市ID，默认是空
+   * 国家组织ID/大区组织ID/城市组织ID
    */
-  orgId?: number;
+  orgId: number;
 
   /**
    * 年累，默认是当前年份，yyyy
@@ -46,7 +46,7 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/9 上午9:11:50
+ * @updateAt 2021/9/9 下午2:32:07
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {
