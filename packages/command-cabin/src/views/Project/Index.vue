@@ -13,7 +13,10 @@
               <WhiteSpace />
               <Card :showFooter="true" style="width: 1098px; height: 560px">
                 <template #footer>
-                  <a>查看详情→</a>
+                  <a>
+                    投资任务书
+                    <Icon type="arrow-right" color="#fff" />
+                  </a>
                 </template>
                 <A2 />
               </Card>
@@ -188,7 +191,7 @@ import D5 from "./components/D5.vue";
 import D7 from "./components/D7.vue";
 import D8 from "./components/D8.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
-import DataSource from "@/components/DataSource/Index.vue";
+import Icon from "@/components/Icon/Index.vue";
 
 @Component({
   components: {
@@ -205,7 +208,7 @@ import DataSource from "@/components/DataSource/Index.vue";
     D7,
     D8,
     ButtonGroup,
-    DataSource,
+    Icon,
   },
 })
 export default class Index extends Base {
