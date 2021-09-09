@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=didigoyoo",
-    "build": "lerna run build --scope=didigoyoo --stream",
+    "postinstall": "lerna bootstrap --scope=serviceTreaty",
+    "build": "lerna run build --scope=serviceTreaty --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
