@@ -4,9 +4,6 @@
     <div class="main">
       <div class="main-left">
         <SubWrapper title="财务相关指标及预估">
-          <template #extra>
-            数据取自主数据、龙头、智计划、成本管理系统｜更新时间08-23 17:00
-          </template>
           <van-row gutter="24">
             <van-col>
               <!-- 资产类型 -->
@@ -71,9 +68,6 @@
       </div>
       <div class="main-center">
         <SubWrapper title="财务指标达成及预估">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <WhiteSpace />
@@ -99,15 +93,14 @@
       </div>
       <div class="main-right">
         <SubWrapper title="经营现状">
-          <template #extra>
-            <a href="javascript:;">详情 →</a>
-          </template>
           <van-row gutter="24">
             <van-col>
               <Card
                 title="全业态收入及完成度"
                 style="width: 1593px; height: 578px"
-              ></Card>
+              >
+                <template #data-cycle>{{ dataCycle }}</template>
+              </Card>
             </van-col>
             <van-col>
               <WhiteSpace />
@@ -218,7 +211,12 @@ import Icon from "@/components/Icon/Index.vue";
     Icon,
   },
 })
-export default class Index extends Base {}
+export default class Index extends Base {
+  /**
+   * 数据周期
+   */
+  dataCycle = "月";
+}
 </script>
 
 <style lang="scss" scoped>

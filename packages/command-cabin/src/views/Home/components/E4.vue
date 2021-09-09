@@ -83,6 +83,8 @@ export default class E4 extends Base {
           icon: "door",
         },
       ];
+
+      this.setCardDataSource({ from: data.dataSource, time: data.updateTime });
     }
   }
 }

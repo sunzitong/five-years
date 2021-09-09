@@ -1,7 +1,10 @@
 <template>
   <div class="app-blur-box" :style="style">
     <div class="app-blur-box__background">
-      <div class="app-blur-box__backdrop" :style="style"></div>
+      <div
+        class="app-blur-box__backdrop"
+        :style="`left: ${this.trangleSize}px`"
+      ></div>
       <svg
         :width="width"
         :height="height"
@@ -10,18 +13,22 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <path :d="customerPathD" fill="#113069" fill-opacity="0.6" />
-        <path
-          :d="customerPathD"
-          :stroke="`url(#${uuid}_paint0_linear)`"
+        <path id="a" :d="customerPathD" stroke="#1B4986" stroke-width="2" />
+
+        <!-- <path
+          transform="translate(12, 40) scale(-1, 1)"
+          :d="customerTrangel"
+          stroke="#1B4986"
           stroke-width="2"
-        />
+        /> -->
+
         <defs>
           <linearGradient
             :id="`${uuid}_paint0_linear`"
-            x1="258.935"
-            y1="-80"
-            x2="258.935"
-            y2="98.9999"
+            x1="0"
+            y1="0"
+            x2="0"
+            :y2="height"
             gradientUnits="userSpaceOnUse"
           >
             <stop stop-color="#04879B" />
@@ -29,7 +36,7 @@
           </linearGradient>
         </defs>
       </svg>
-      <div class="app-blur-box__content" :style="`bottom:${trangleSize}px`">
+      <div class="app-blur-box__content" :style="`left:${trangleSize}px`">
         <slot></slot>
       </div>
     </div>
@@ -64,7 +71,7 @@ export default class BlurBox extends Vue {
   /**
    * 三角距左的距离
    */
-  @Prop({ default: 100 }) trangleX!: number;
+  @Prop({ default: () => [0, 22] }) trangleX!: number[];
 
   /**
    * 容器宽高
@@ -83,67 +90,118 @@ export default class BlurBox extends Vue {
     return `blur-box-${uuid()}`;
   }
 
+  get customerTrangel() {
+    const t = this.trangleSize;
+    return `
+      M${0} ${t / 2}
+      L${t} ${t}
+      ${0} ${t + t / 2} 
+    `;
+  }
+
   /**
    * 自定义路径
    */
   get customerPathD() {
-    const w = this.width - 1;
-    const h = this.height - this.trangleSize - 1;
     const r = this.radius;
-    const trangleX = this.trangleX;
-    const trangleSize = this.trangleSize;
+    const w = this.width - 1;
+    const h = this.height - 1;
+    const x = 1 + this.trangleSize;
+    const y = 1;
+    const s = this.trangleSize;
+    const [sx, sy] = this.trangleX;
 
     return `
-    M${r} 1
-    L${w - r} 1 
+      M${x + r} ${y}
 
-    C${w - r} 1 
-    ${w} 1 
-    ${w} ${r}
+      L${w - r} ${y}
 
-    L${w} ${h - r}
+      C${w - r} ${y}
+      ${w} ${y}
+      ${w} ${y + r}
 
-    C${w} ${h - r}
-    ${w} ${h}
-    ${w - r} ${h}
+      L${w} ${h - r}
 
-    L${trangleX} ${h}
-    ${trangleX - trangleSize / 2} ${h + trangleSize}
-    ${trangleX - trangleSize} ${h}
-    
-    L${Math.min(r, trangleSize)} ${h}
-    C${r} ${h}
-    ${1} ${h}
-    ${1} ${h - r}
+      C${w} ${h - r}
+      ${w} ${h} 
+      ${w - r} ${h}
 
-    L${1} ${h - r}
-    L${1} ${r}
+      L${x + r} ${h}
 
-    C${1} ${r}
-    1 1
-    ${r} 1
-    
-    Z
+      C${x + r} ${h}
+      ${x} ${h}
+      ${x} ${h - r}
+
+      L${x} ${h - r - sy}
+      ${x - s} ${h - r - s / 2 - sy}
+      ${x} ${h - r - s - sy}
+
+      L${x} ${r}
+      C${x} ${r}
+      ${x} ${y}
+      ${x + r} ${y}
+      Z
     `;
-    // return `
-    // M1 6
-    // C1 3.23858 3.23858 1 6 1
-    // H424
-    // C426.761 1 429 3.23858 429 6
-    // V93
-    // C429 95.7614 426.761 98 424 98
-    // H67.8972
-    // C65.4383 98 63.1598 99.2901 61.8947 101.399
-    // L53.3575 115.627
-    // C52.9691 116.275 52.0309 116.275 51.6425 115.627
-    // L43.1053 101.399
-    // C41.8402 99.2901 39.5617 98 37.1029 98
-    // H6
-    // C3.23858 98 1 95.7614 1 93
-    // V6
-    // Z
-    // `;
   }
+
+  // get customerPathD() {
+  //   const w = this.width - 1;
+  //   const h = this.height - this.trangleSize - 1;
+  //   const r = this.radius;
+  //   const trangleX = this.trangleX;
+  //   const trangleSize = this.trangleSize;
+
+  //   return `
+  //   M${r} 1
+  //   L${w - r} 1
+
+  //   C${w - r} 1
+  //   ${w} 1
+  //   ${w} ${r}
+
+  //   L${w} ${h - r}
+
+  //   C${w} ${h - r}
+  //   ${w} ${h}
+  //   ${w - r} ${h}
+
+  //   L${trangleX} ${h}
+  //   ${trangleX - trangleSize / 2} ${h + trangleSize}
+  //   ${trangleX - trangleSize} ${h}
+
+  //   L${Math.min(r, trangleSize)} ${h}
+  //   C${r} ${h}
+  //   ${1} ${h}
+  //   ${1} ${h - r}
+
+  //   L${1} ${h - r}
+  //   L${1} ${r}
+
+  //   C${1} ${r}
+  //   1 1
+  //   ${r} 1
+
+  //   Z
+  //   `;
+  //   // return `
+  //   // M1 6
+  //   // C1 3.23858 3.23858 1 6 1
+  //   // H424
+  //   // C426.761 1 429 3.23858 429 6
+  //   // V93
+  //   // C429 95.7614 426.761 98 424 98
+  //   // H67.8972
+  //   // C65.4383 98 63.1598 99.2901 61.8947 101.399
+  //   // L53.3575 115.627
+  //   // C52.9691 116.275 52.0309 116.275 51.6425 115.627
+  //   // L43.1053 101.399
+  //   // C41.8402 99.2901 39.5617 98 37.1029 98
+  //   // H6
+  //   // C3.23858 98 1 95.7614 1 93
+  //   // V6
+  //   // Z
+  //   // `;
+  // }
 }
 </script>
 

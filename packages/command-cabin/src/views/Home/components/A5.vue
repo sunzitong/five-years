@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
@@ -43,10 +43,14 @@ import Base from "@/views/Base";
   components: { ProgressCircle },
 })
 export default class A5 extends Base {
-  @Ref() wrapper!: HTMLDivElement;
-
+  /**
+   * 接口返回值
+   * /analysis/bigScreen/mainBoard/expandDisk
+   */
   resData: Partial<ExpandDiskReturn> = {};
-
+  /**
+   * 入参：年份
+   */
   year = dayjs().year();
 
   async mounted() {

@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Animationend from "@/components/Animationend/Index.vue";
 import {
   fetchProjectDelayInfo,
@@ -85,11 +85,15 @@ import Base from "@/views/Base";
   },
 })
 export default class B2 extends Base {
-  @Ref() wrapper!: HTMLDivElement;
+  /**
+   * 接口返回值
+   * /bigScreen/mainBoard/construct/projectDelayInfo
+   */
   resData: Partial<ProjectDelayInfoReturn> = {};
   year = dayjs().year();
 
   indexName = [
+    // 表头
     // {
     //   name: "开业时间",
     //   value: ["预计算开业时间", "投委会开业时间"],
@@ -103,11 +107,14 @@ export default class B2 extends Base {
     "项目卡点",
   ];
 
+  /**
+   * 表格数据
+   */
   col: AnyObject[] = [];
 
-  riskProject: number | "--" = "--";
+  riskProject: number | "--" = "--"; // 当前开业风险项目
 
-  storeNum: number | "--" = "--";
+  storeNum: number | "--" = "--"; // 风险房间数
 
   async created() {
     const response = await fetchProjectDelayInfo({

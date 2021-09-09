@@ -18,6 +18,10 @@ import { AnyObject } from "@guanyu/shared";
   components: {},
 })
 export default class E2B extends Base {
+  /**
+   * 接口返回值
+   *
+   */
   @Ref() wrapper!: HTMLDivElement;
 
   /**
@@ -57,9 +61,9 @@ export default class E2B extends Base {
     return res;
   };
 
-  names = ["三费", "营销费用", "运营成本", "管理成本", "租金成本"];
-  values = this.getArrayValue(this.resData, "value");
-  sum = this.values.reduce((pre, cur) => pre + cur, 0);
+  names = ["三费", "营销费用", "运营成本", "管理成本", "租金成本"]; // name标签
+  values = this.getArrayValue(this.resData, "value"); // value数组
+  sum = this.values.reduce((pre, cur) => pre + cur, 0); // 所有成本之和
   color = ["#55D5F3", "#A957FB", "#57A6FB", "#FFEF69", "#FE513A"];
 
   /**
@@ -116,7 +120,7 @@ export default class E2B extends Base {
         type: "pie",
         silent: true,
         clockWise: false, //顺时加载
-        z: 1,
+        z: 1, // 控制叠加层级
         hoverAnimation: false, //鼠标移入变大
         radius: [165 - i * 33, 150 - i * 33], //数组的第一项是内半径，第二项是外半径
         borderRadius: 88,

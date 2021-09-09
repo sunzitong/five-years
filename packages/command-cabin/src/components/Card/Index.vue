@@ -31,10 +31,13 @@
         {{ $children[1].$options.name }}
       </p>
     </div>
+    <div class="app-card__datacycle">
+      <span class="mark">
+        <slot name="data-cycle"></slot>
+      </span>
+    </div>
     <div class="app-card__footer" v-if="showFooter">
-      <slot name="footer">
-        <a href="javascript::">查看详情→</a>
-      </slot>
+      <slot name="footer"></slot>
     </div>
     <DataSource v-if="dataSourceInner" :position="dataSourcePosition">
       {{ dataSourceInner }}
@@ -48,7 +51,7 @@ import CardDecorate from "@/components/CardDecorate/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
 
-type SourceType = {
+export type SourceType = {
   /**
    * 来源
    */
@@ -212,6 +215,20 @@ export default class Card extends Vue {
   &__footer--visible {
     .app-card__body {
       padding-bottom: 80px;
+    }
+  }
+
+  &__datacycle {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    .mark {
+      display: inline-block;
+      padding: 0 5px;
+      background: #10265b;
+      border-radius: 10px;
+      font-size: 20px;
+      color: #777777;
     }
   }
 
