@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=threeyears",
-    "build": "lerna run build --scope=threeyears --stream",
+    "postinstall": "lerna bootstrap --scope=newfriend",
+    "build": "lerna run build --scope=newfriend --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
