@@ -55,13 +55,13 @@ export default class A1 extends Base {
   objData2: AnyObject = {}; // 左侧饼图name-room键值对对象
 
   mounted() {
-    this.objData1 = arrayToObject(this.pieData1, {
+    this.objData1 = arrayToObject(this.pieData, {
       key: "name",
       value: "value",
     });
-    this.objData2 = arrayToObject(this.pieData2, {
+    this.objData2 = arrayToObject(this.pieData, {
       key: "name",
-      value: "value",
+      value: "room",
     });
     this.paintPieChart();
   }
@@ -75,7 +75,7 @@ export default class A1 extends Base {
       },
       legend: {
         orient: "vertical",
-        right: "16%",
+        right: "5%",
         top: "center",
         icon: "rec",
         itemWidth: 20,
@@ -83,7 +83,9 @@ export default class A1 extends Base {
         itemGap: 35,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}:}{b|${this.objData1[params]}}{c|个}{b|${this.objData2[params]}}{c|间}`;
+          return `{a|${params}:}{b|${this.sepNumber(
+            this.objData1[params]
+          )}}{c|个}{b|${this.sepNumber(this.objData2[params])}}{c|间}`;
         },
         textStyle: {
           rich: {
@@ -91,7 +93,7 @@ export default class A1 extends Base {
               color: "#FFFFFF",
               fontSize: 28,
               lineHeight: 39,
-              width: 168,
+              width: 160,
             },
             b: {
               fontFamily: "DIN Alternate",
@@ -100,14 +102,14 @@ export default class A1 extends Base {
               fontSize: 34,
               lineHeight: 36,
               align: "right",
-              marginLeft: 20,
+              width: 100,
             },
             c: {
               fontFamily: "DIN Alternate",
               color: "#01F5F1",
               fontSize: 26,
               lineHeight: 26,
-              marginLeft: 6,
+              width: 30,
               align: "right",
             },
           },
@@ -117,8 +119,8 @@ export default class A1 extends Base {
         {
           type: "pie",
           avoidLabelOverlap: false,
-          radius: ["60%", 120],
-          center: ["31%", "48%"],
+          radius: ["40%", 90],
+          center: ["18%", "48%"],
           color: ["#F7D14A", "#57A6FB"],
           label: {
             show: false,
