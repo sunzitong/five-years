@@ -145,7 +145,7 @@ export default class A1 extends Base {
   line-height: 30px;
   color: #ffffff;
 
-  padding: 28px 0;
-  margin: 0 30px;
+  padding: 40px 0 28px 0;
+  margin: 0 30px 37px 30px;
 }
 </style>
