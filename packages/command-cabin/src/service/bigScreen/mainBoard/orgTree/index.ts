@@ -14,21 +14,13 @@ export interface OrgTreeReturn {
   orgName: string;
   orgId: number;
   parentOrgId: number;
-  childList: ChildList[];
-}
-
-export interface ChildList {
-  orgLevel: number;
-  orgName: string;
-  orgId: number;
-  parentOrgId: number;
-  childList?: ChildList[];
+  childList?: OrgTreeReturn[];
 }
 
 /**
  * 地区筛选（全国-大区-地区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/9/8 下午6:56:12
+ * @updateAt 2021/9/9 下午1:58:17
  * @method GET
  */
 export const fetchOrgTree = (params?: Record<string, unknown>) => {

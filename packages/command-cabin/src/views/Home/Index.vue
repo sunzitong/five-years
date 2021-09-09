@@ -201,6 +201,7 @@
               </van-radio>
             </van-radio-group>
           </ButtonGroup>
+          <OrgPanel />
         </div>
         <div class="right">
           <ButtonGroup>
@@ -246,6 +247,7 @@ import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import E2 from "./components/E2.vue";
 import E5 from "./components/E5.vue";
+import OrgPanel from "./components/OrgPanel.vue";
 
 @Component({
   components: {
@@ -267,6 +269,7 @@ import E5 from "./components/E5.vue";
     E5,
     ButtonGroup,
     Icon,
+    OrgPanel,
   },
 })
 export default class Home extends Base {
@@ -346,6 +349,7 @@ export default class Home extends Base {
   .center,
   .right {
     display: flex;
+    position: relative;
   }
   .left {
     width: 32%;
