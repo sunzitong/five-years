@@ -13,12 +13,12 @@ export interface RepairStatParams {
   /**
    * OMS-公用枚举-dataLevels 组织级别
    */
-  regionType: string;
+  orgType: string;
 
   /**
    * 大区ID/城市ID，默认是空
    */
-  regionId?: number;
+  orgId?: number;
 
   /**
    * 年累，默认是当前年份，yyyy
@@ -46,7 +46,7 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/8 上午10:15:34
+ * @updateAt 2021/9/9 上午9:11:50
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {
