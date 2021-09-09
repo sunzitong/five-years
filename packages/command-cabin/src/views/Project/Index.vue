@@ -19,7 +19,7 @@
               </Card>
             </van-col>
             <van-col>
-              <Card style="width: 1218px; height: 1145px"></Card>
+              <Card style="width: 1218px; height: 1145px"><A6 /></Card>
             </van-col>
           </van-row>
           <WhiteSpace />
@@ -183,6 +183,7 @@ import A2 from "./components/A2.vue";
 import A3 from "./components/A3.vue";
 import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
+import A6 from "./components/A6.vue";
 import C5 from "./components/C5.vue";
 import D5 from "./components/D5.vue";
 import D7 from "./components/D7.vue";
@@ -200,6 +201,7 @@ import DataSource from "@/components/DataSource/Index.vue";
     A3,
     A4,
     A5,
+    A6,
     C5,
     D5,
     D7,
