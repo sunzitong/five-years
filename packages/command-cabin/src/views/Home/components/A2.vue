@@ -144,5 +144,8 @@ export default class A1 extends Base {
   font-size: 30px;
   line-height: 30px;
   color: #ffffff;
+
+  padding: 28px 0;
+  margin: 0 30px;
 }
 </style>
