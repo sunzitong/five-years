@@ -9,17 +9,6 @@
     </div>
     <div class="scroll_table">
       <van-row justify="space-between" type="flex" class="table_row table_head">
-        <!-- <van-col :span="6" class="special"> -->
-        <!-- <van-row>{{ indexName[0].name }}</van-row> -->
-        <!-- <van-row>
-            <van-col :span="12" class="special">
-              {{ indexName[0].value[0] }}
-            </van-col>
-            <van-col :span="12" class="special">
-              {{ indexName[0].value[1] }}
-            </van-col>
-          </van-row> -->
-        <!-- </van-col> -->
         <van-col :span="4" class="table_col">{{ indexName[0] }}</van-col>
         <van-col :span="3" class="table_col">{{ indexName[1] }}</van-col>
         <van-col :span="4" class="table_col">{{ indexName[2] }}</van-col>
@@ -39,8 +28,6 @@
               type="flex"
               class="table_row"
             >
-              <!-- <van-col :span="3" class="table_col">{{ item.a }}</van-col>
-              <van-col :span="3" class="table_col">{{ item.b }}</van-col> -->
               <van-col :span="4" class="table_col">
                 {{ item.planOpenDate }}
               </van-col>
@@ -94,10 +81,6 @@ export default class B2 extends Base {
 
   indexName = [
     // 表头
-    // {
-    //   name: "开业时间",
-    //   value: ["预计算开业时间", "投委会开业时间"],
-    // },
     "预计开业时间",
     "地区",
     "项目",
@@ -118,9 +101,8 @@ export default class B2 extends Base {
 
   async created() {
     const response = await fetchProjectDelayInfo({
-      regionType: "group",
-      regionId: 85,
-      dataTime: this.year,
+      regionType: this.store.global.dataLevel,
+      regionId: this.store.global.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;
@@ -175,10 +157,6 @@ export default class B2 extends Base {
 
   .table_head {
     background: rgba(36, 56, 109, 0.7);
-
-    .special {
-      line-height: 50px;
-    }
   }
 
   .table_col {

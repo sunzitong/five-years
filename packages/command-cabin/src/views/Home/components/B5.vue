@@ -69,9 +69,8 @@ export default class B5 extends Base {
 
   async created() {
     const response = await fetchRepairStat({
-      regionType: "CITY",
-      regionId: 85,
-      dataTime: this.year,
+      orgType: this.store.global.dataLevel,
+      orgId: this.store.global.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;

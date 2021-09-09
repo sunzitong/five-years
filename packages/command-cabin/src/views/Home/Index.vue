@@ -14,7 +14,9 @@
                 title="商机储备"
                 size="small"
                 style="width: 735px; height: 514px"
-              ></Card>
+              >
+                <A2 />
+              </Card>
               <WhiteSpace />
               <Card
                 title="商机转化"
@@ -236,6 +238,7 @@ console.log(DateScopes);
 
 /** Jing */
 import A1 from "./components/A1.vue";
+import A2 from "./components/A2.vue";
 import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
@@ -256,6 +259,7 @@ import OrgPanel from "./components/OrgPanel.vue";
     Card,
     WhiteSpace,
     A1,
+    A2,
     A5,
     A6,
     B1,

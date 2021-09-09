@@ -71,9 +71,8 @@ export default class B1A extends Base {
 
   async created() {
     const response = await fetchProjectOpen({
-      regionType: "group",
-      regionId: 85,
-      dataTime: this.year,
+      regionType: this.store.global.dataLevel,
+      regionId: this.store.global.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;
