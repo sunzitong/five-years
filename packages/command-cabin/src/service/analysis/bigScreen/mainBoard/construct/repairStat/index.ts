@@ -30,10 +30,8 @@ export interface RepairStatParams {
  * 营造盘面-维保报事-返回值
  */
 export interface RepairStatReturn {
-  electricRepair: DecorationRepair;
+  plumbingElectricRepair: DecorationRepair;
   decorationRepair: DecorationRepair;
-  plumbingRepair: DecorationRepair;
-  leakageRepair: DecorationRepair;
   deviceRepair: DecorationRepair;
   other: DecorationRepair;
 }
@@ -46,7 +44,7 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/10 下午2:40:49
+ * @updateAt 2021/9/10 下午4:14:25
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {

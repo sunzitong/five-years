@@ -252,8 +252,14 @@ export default class ProgressCircle extends Vue {
    * slot实时进度(反向计算提供给调用方)
    */
   calcCurrentRate() {
-    if (this.arc) return iwant.calc(this.currentRate / 0.8, 1);
-    return this.currentRate;
+    let value;
+    if (this.arc) {
+      value = this.currentRate / 0.8;
+    } else {
+      value = this.currentRate;
+    }
+    value = iwant.calc(value, 1);
+    return Number.isNaN(value) ? "--" : value;
   }
 
   /**

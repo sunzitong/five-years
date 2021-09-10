@@ -107,7 +107,7 @@ export default class B1B extends Base {
   targetNum: number | "--" = "--"; // 年开业目标间数
 
   hasOpen: number | "--" = "--"; // 已开业间数
-  hasOpenRatio: number | "--" = "--"; // 已开业间数百分比
+  hasOpenRatio = "--"; // 已开业间数百分比
 
   toGet: number | "--" = "--"; // 待获取
   toGetRatio: number | "--" = "--"; // 待获取百分比
@@ -121,7 +121,7 @@ export default class B1B extends Base {
   objData1: AnyObject = {}; // 左侧饼图name-value键值对对象
   objData2: AnyObject = {}; // 右侧饼图name-value键值对对象
 
-  async created() {
+  async mounted() {
     const response = await fetchProjectOpen({
       regionType: this.store.global.dataLevel,
       regionId: this.store.global.orgTree.orgId,
@@ -132,7 +132,8 @@ export default class B1B extends Base {
       this.targetNum = this.resData.openTargetNum ?? "--";
 
       this.hasOpen = this.resData.openInfo?.total ?? "--";
-      this.hasOpenRatio = this.resData.openInfo?.ratio ?? "--";
+      this.hasOpenRatio =
+        iwant.calc(this.resData.openInfo?.ratio ?? NaN, 1, true) ?? "--";
 
       this.toGet = this.resData.notOpenNotGetNum ?? "--";
       this.toGetRatio = this.resData.notOpenNotGetRatio ?? "--";
@@ -143,13 +144,13 @@ export default class B1B extends Base {
       this.pieData1 = iwant.array(this.resData.openInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          value: iwant.calc(el.ratio, 2, true),
+          value: iwant.calc(el.ratio, 1, true),
         };
       });
       this.pieData2 = iwant.array(this.resData.notOpenInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          value: iwant.calc(el.ratio, 2, true),
+          value: iwant.calc(el.ratio, 1, true),
         };
       });
 
@@ -180,7 +181,11 @@ export default class B1B extends Base {
         itemGap: 35,
         data: this.pieData1,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}%}`;
+          return `{a|${params}}{b|  ${iwant.calc(
+            this.objData1[params],
+            1,
+            true
+          )}%}`;
         },
         textStyle: {
           rich: {
@@ -231,7 +236,11 @@ export default class B1B extends Base {
         itemGap: 35,
         data: this.pieData2,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}%}`;
+          return `{a|${params}}{b|  ${iwant.calc(
+            this.objData1[params],
+            1,
+            true
+          )}%}`;
         },
         textStyle: {
           rich: {
