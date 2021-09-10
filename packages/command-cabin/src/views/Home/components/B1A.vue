@@ -69,7 +69,7 @@ export default class B1A extends Base {
     }
   }
 
-  async created() {
+  async mounted() {
     const response = await fetchProjectOpen({
       regionType: this.store.global.dataLevel,
       regionId: this.store.global.orgId,
@@ -171,6 +171,7 @@ export default class B1A extends Base {
           yAxisIndex: 0,
           color: "#FFEF69",
           barWidth: 30,
+          z: 3,
           label: {
             show: true,
             position: "insideTopLeft",
@@ -192,7 +193,7 @@ export default class B1A extends Base {
                 position: "insideTopLeft",
                 fontSize: 16,
                 lineHeight: 16,
-                color: "#FFEF69",
+                color: "#F7D14A",
               },
             },
           },
@@ -205,6 +206,7 @@ export default class B1A extends Base {
           yAxisIndex: 0,
           color: "#57A6FB",
           barWidth: 30,
+          z: 2,
           label: {
             show: true,
             position: "insideTopLeft",
@@ -240,6 +242,7 @@ export default class B1A extends Base {
           color: "#A957FB",
           barWidth: 30,
           distance: 4,
+          z: 1,
           label: {
             show: true,
             position: "insideTopLeft",

@@ -13,7 +13,7 @@
               {{ sepNumber(hasOpen) }}
             </van-col>
             <van-col :span="6" class="value_details">
-              {{ hasOpenRatio }}%
+              {{ iwant.calc(hasOpenRatio, 1, true) }}%
             </van-col>
           </van-row>
         </div>
@@ -121,7 +121,7 @@ export default class B1B extends Base {
   objData1: AnyObject = {}; // 左侧饼图name-value键值对对象
   objData2: AnyObject = {}; // 右侧饼图name-value键值对对象
 
-  async created() {
+  async mounted() {
     const response = await fetchProjectOpen({
       regionType: this.store.global.dataLevel,
       regionId: this.store.global.orgId,
@@ -143,13 +143,13 @@ export default class B1B extends Base {
       this.pieData1 = iwant.array(this.resData.openInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          value: iwant.calc(el.ratio, 2, true),
+          value: iwant.calc(el.ratio, 1, true),
         };
       });
       this.pieData2 = iwant.array(this.resData.notOpenInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          value: iwant.calc(el.ratio, 2, true),
+          value: iwant.calc(el.ratio, 1, true),
         };
       });
 
@@ -180,7 +180,11 @@ export default class B1B extends Base {
         itemGap: 35,
         data: this.pieData1,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}%}`;
+          return `{a|${params}}{b|  ${iwant.calc(
+            this.objData1[params],
+            1,
+            true
+          )}%}`;
         },
         textStyle: {
           rich: {
@@ -231,7 +235,11 @@ export default class B1B extends Base {
         itemGap: 35,
         data: this.pieData2,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}%}`;
+          return `{a|${params}}{b|  ${iwant.calc(
+            this.objData1[params],
+            1,
+            true
+          )}%}`;
         },
         textStyle: {
           rich: {

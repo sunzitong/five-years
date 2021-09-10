@@ -23,7 +23,7 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { AnyObject } from "@guanyu/shared";
+import { AnyObject, iwant } from "@guanyu/shared";
 import {
   fetchRepairStat,
   RepairStatReturn,
@@ -67,7 +67,7 @@ export default class B5 extends Base {
     });
   }
 
-  async created() {
+  async mounted() {
     const response = await fetchRepairStat({
       orgType: this.store.global.dataLevel,
       orgId: this.store.global.orgId,
@@ -95,7 +95,11 @@ export default class B5 extends Base {
         itemGap: 18,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${this.objData2[params]}%}`;
+          return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${iwant.calc(
+            this.objData2[params],
+            1,
+            true
+          )}%}`;
         },
         textStyle: {
           color: "#FFFFFF",
