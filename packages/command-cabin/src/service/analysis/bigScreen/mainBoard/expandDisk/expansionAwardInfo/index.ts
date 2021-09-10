@@ -9,7 +9,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
 /**
  * 中央奖补、投后攻坚模块-参数
  */
-export interface ExpandDiskParams {
+export interface ExpansionAwardInfoParams {
   /**
    * 年份
    */
@@ -19,7 +19,7 @@ export interface ExpandDiskParams {
 /**
  * 中央奖补、投后攻坚模块-返回值
  */
-export interface ExpandDiskReturn {
+export interface ExpansionAwardInfoReturn {
   yearSubsidiesCollected: number;
   yearSubsidiesCompletionRate: number;
   yearNetIncomeCollected: number;
@@ -31,12 +31,12 @@ export interface ExpandDiskReturn {
 /**
  * 中央奖补、投后攻坚模块
  * @createBy zhangyao03
- * @updateAt 2021/9/10 下午2:40:15
+ * @updateAt 2021/9/10 下午3:08:10
  * @method GET
  */
-export const fetchExpandDisk = (params?: ExpandDiskParams) => {
-  return http.get<ExpandDiskReturn>(
-    `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk`,
+export const fetchExpansionAwardInfo = (params?: ExpansionAwardInfoParams) => {
+  return http.get<ExpansionAwardInfoReturn>(
+    `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo`,
     {
       ...params,
     }

@@ -34,9 +34,9 @@ import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
-  fetchExpandDisk,
-  ExpandDiskReturn,
-} from "@/service/analysis/bigScreen/mainBoard/expandDisk";
+  fetchExpansionAwardInfo,
+  ExpansionAwardInfoReturn,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import Base from "@/views/Base";
 
 @Component({
@@ -47,14 +47,14 @@ export default class A5 extends Base {
    * 接口返回值
    * /analysis/bigScreen/mainBoard/expandDisk
    */
-  resData: Partial<ExpandDiskReturn> = {};
+  resData: Partial<ExpansionAwardInfoReturn> = {};
   /**
    * 入参：年份
    */
   year = dayjs().year();
 
   async mounted() {
-    const response = await fetchExpandDisk({ year: this.year });
+    const response = await fetchExpansionAwardInfo({ year: this.year });
     if (response?.status === "ok") {
       this.resData = response.data;
     }

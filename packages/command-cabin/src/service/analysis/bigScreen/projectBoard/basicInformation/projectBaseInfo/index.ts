@@ -9,17 +9,18 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
 /**
  * 门店基本信息模块-参数
  */
-export interface BasicInformationParams {
+export interface ProjectBaseInfoParams {
   /**
-   * 年份
+   * 门店分期id
    */
-  year?: number;
+  phId: string;
 }
 
 /**
  * 门店基本信息模块-返回值
  */
-export interface BasicInformationReturn {
+export interface ProjectBaseInfoReturn {
+  phId: string;
   transactionModel: string;
   transactionModelType: string;
   openRoomNum: number;
@@ -43,12 +44,12 @@ export interface BasicInformationReturn {
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/8 上午10:18:45
+ * @updateAt 2021/9/10 下午3:10:58
  * @method GET
  */
-export const fetchBasicInformation = (params?: BasicInformationParams) => {
-  return http.get<BasicInformationReturn>(
-    `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation`,
+export const fetchProjectBaseInfo = (params: ProjectBaseInfoParams) => {
+  return http.get<ProjectBaseInfoReturn>(
+    `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo`,
     {
       ...params,
     }
