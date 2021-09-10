@@ -21,7 +21,7 @@
           v-for="(itemValue, index) in values"
           :key="index"
         >
-          {{ itemValue }}
+          {{ index === 1 ? itemValue : itemValue + "%" }}
         </div>
       </div>
     </div>
@@ -37,6 +37,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/construct/productQuality";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
+import { iwant, NumberLike } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -61,7 +62,7 @@ export default class B4 extends Base {
   ];
 
   // 数值标签
-  values = [0, 0, 0];
+  values: NumberLike[] = [0, 0, 0];
 
   async created() {
     const response = await fetchProductQuality({
@@ -73,7 +74,7 @@ export default class B4 extends Base {
 
       this.values = [];
       for (let key in this.resData) {
-        this.values.push(this.resData[key]);
+        this.values.push(iwant.calc(this.resData[key], 1, true));
       }
 
       this.paintChart();
