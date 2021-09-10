@@ -1,47 +1,49 @@
 <template>
   <div class="org-panel">
     <template v-if="response">
-      <div class="row">
-        <div
-          class="item region"
-          :class="{
-            active:
-              store.global.dataLevel === DataLevels.GROUP &&
-              orgIds[0] === response.orgId,
-          }"
-          @click="setDataOrgId(DataLevels.GROUP, response.orgId)"
-        >
-          {{ response.orgName }}
-        </div>
-      </div>
-      <div class="row" v-for="item in response.childList" :key="item.orgId">
-        <div
-          class="item region"
-          :class="{
-            active:
-              store.global.dataLevel === DataLevels.AREA &&
-              orgIds[0] === item.orgId,
-          }"
-          @click="setDataOrgId(DataLevels.AREA, item.orgId)"
-        >
-          {{ item.orgName }}
-        </div>
-        <div
-          class="item cities"
-          :class="{
-            active:
-              store.global.dataLevel === DataLevels.CITY &&
-              orgIds[0] === item.orgId,
-          }"
-        >
+      <div v-for="group in response" :key="group.orgId">
+        <div class="row">
           <div
-            class="city"
-            :class="{ active: orgIds[1] === city.orgId }"
-            v-for="city in item.childList"
-            :key="city.orgId"
-            @click="setDataOrgId(DataLevels.CITY, item.orgId, city.orgId)"
+            class="col region"
+            :class="{
+              active:
+                store.global.dataLevel === DataLevels.GROUP &&
+                orgIds[0] === group.orgId,
+            }"
+            @click="setDataOrgId(DataLevels.GROUP, group.orgId)"
           >
-            {{ city.orgName }}
+            {{ group.orgName }}
+          </div>
+        </div>
+        <div class="row" v-for="area in group.childList" :key="area.orgId">
+          <div
+            class="col region"
+            :class="{
+              active:
+                store.global.dataLevel === DataLevels.AREA &&
+                orgIds[0] === area.orgId,
+            }"
+            @click="setDataOrgId(DataLevels.AREA, area.orgId)"
+          >
+            {{ area.orgName }}
+          </div>
+          <div
+            class="col cities"
+            :class="{
+              active:
+                store.global.dataLevel === DataLevels.CITY &&
+                orgIds[0] === area.orgId,
+            }"
+          >
+            <div
+              class="city"
+              :class="{ active: orgIds[1] === city.orgId }"
+              v-for="city in area.childList"
+              :key="city.orgId"
+              @click="setDataOrgId(DataLevels.CITY, area.orgId, city.orgId)"
+            >
+              {{ city.orgName }}
+            </div>
           </div>
         </div>
       </div>
@@ -56,13 +58,17 @@ import {
   DataLevels,
   DateScopes,
 } from "@/service/analysis/commandCabin/publicEnum";
-import { fetchOrgTree, OrgTreeReturn } from "@/service/commandCabin/orgTree";
+import {
+  fetchOrgTree,
+  OrgTreeItemReturn,
+} from "@/service/commandCabin/orgTree";
+import { iwant } from "@guanyu/shared";
 
 @Component
 export default class OrgPanel extends Base {
   DateScopes = DateScopes;
   DataLevels = DataLevels;
-  response: OrgTreeReturn | null = null;
+  response: OrgTreeItemReturn[] | null = null;
 
   // 区域或全国ID,城市ID
   orgIds: [number?, number?] = [];
@@ -73,7 +79,7 @@ export default class OrgPanel extends Base {
   async mounted() {
     const response = await fetchOrgTree();
     if (response?.status === "ok") {
-      this.response = response.data;
+      this.response = iwant.array(response.data);
     }
   }
 
@@ -158,7 +164,7 @@ export default class OrgPanel extends Base {
     }
   }
 }
-.item {
+.col {
   @extend %flex-center;
   margin: 0 10px;
   height: 72px;
