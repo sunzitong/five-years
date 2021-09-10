@@ -9,22 +9,22 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
 /**
  * 地区筛选（国家-大区-城市）-返回值
  */
-export interface OrgTreeReturn {
+export interface OrgTreeItemReturn {
   orgLevel: number;
-  orgName: string;
   orgId: number;
+  orgName: string;
   parentOrgId: number;
-  childList?: OrgTreeReturn[];
+  childList: OrgTreeItemReturn[] | null;
 }
 
 /**
  * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/9/9 下午2:28:46
+ * @updateAt 2021/9/9 下午4:06:38
  * @method GET
  */
 export const fetchOrgTree = (params?: Record<string, unknown>) => {
-  return http.get<OrgTreeReturn>(`${BASE_URL}/commandCabin/orgTree`, {
+  return http.get<OrgTreeItemReturn[]>(`${BASE_URL}/commandCabin/orgTree`, {
     ...params,
   });
 };
