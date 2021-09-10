@@ -16,7 +16,7 @@ const pkg = require("./package.json");
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
-  outputDir: "dist",
+  outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
   // indexPath,
@@ -79,8 +79,7 @@ module.exports = {
       less: {
         // http://lesscss.org/usage/#less-options-strict-units `Global Variables`
         lessOptions: {
-          globalVars: {
-          },
+          globalVars: {},
         },
       },
     },
