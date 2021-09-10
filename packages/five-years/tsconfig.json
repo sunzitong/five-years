@@ -16,6 +16,7 @@
     "sourceMap": false,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+     "noImplicitAny": false,
     // "downlevelIteration": true,
     "baseUrl": ".",
     "types": ["webpack-env"],
