@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .app-loading {
   width: 100%;
   height: 100%;
