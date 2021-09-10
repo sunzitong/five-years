@@ -40,7 +40,7 @@
               :class="{ active: orgIds[1] === city.orgId }"
               v-for="city in area.childList"
               :key="city.orgId"
-              @click="setDataOrgId(DataLevels.CITY, area.orgId, city)"
+              @click="setDataOrgId(DataLevels.CITY, area, city)"
             >
               {{ city.orgName }}
             </div>
@@ -158,7 +158,8 @@ export default class OrgPanel extends Base {
         height: 24px;
         background: #445da5;
       }
-      &.active {
+      &.active,
+      &:hover {
         color: #01f5f1;
       }
       transition: 300ms;
@@ -177,10 +178,16 @@ export default class OrgPanel extends Base {
   border-radius: 4px;
   font-size: 28px;
   letter-spacing: 2.5px;
-  &.active {
+  &.active,
+  &:hover {
     color: #01f5f1;
     border: 2px solid rgba(0, 222, 255, 0.7);
   }
   transition: 300ms;
+  cursor: pointer;
+}
+.readonly {
+  border: none !important;
+  pointer-events: none;
 }
 </style>
