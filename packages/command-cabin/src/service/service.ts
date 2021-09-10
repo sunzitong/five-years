@@ -1,6 +1,6 @@
 import { getToken } from "@/utils/guanyu";
 import axios from "axios";
-import { Notify } from "vant";
+import { Toast } from "vant";
 
 const service = axios.create({
   withCredentials: true, // 是否携带cookie信息
@@ -19,7 +19,7 @@ service.interceptors.request.use(
     return config;
   },
   () => {
-    Notify("出错了");
+    Toast.fail("出错了");
     return;
   }
 );
@@ -31,11 +31,11 @@ service.interceptors.response.use(
   },
   (error) => {
     if (!error) {
-      Notify("出错了");
+      Toast.fail("出错了");
       return;
     }
     if (error.message.includes("timeout")) {
-      Notify("请求超时，请稍后再试");
+      Toast.fail("请求超时，请稍后再试");
       return;
     }
     if (error.response) {
@@ -76,10 +76,10 @@ service.interceptors.response.use(
         default:
           error.message = "请求失败，请稍后再试";
       }
-      Notify(error.message);
+      Toast.fail(error.message);
       return;
     }
-    Notify("出错了");
+    Toast.fail("出错了");
     return;
   }
 );
