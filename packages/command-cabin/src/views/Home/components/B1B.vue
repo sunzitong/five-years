@@ -124,7 +124,7 @@ export default class B1B extends Base {
   async created() {
     const response = await fetchProjectOpen({
       regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgId,
+      regionId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;

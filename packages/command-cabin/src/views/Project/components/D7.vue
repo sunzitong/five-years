@@ -42,7 +42,7 @@ export default class D7 extends Base {
 
   async created() {
     const response = await fetchSentiment({
-      projectId: this.store.global.projectId,
+      projectId: this.store.global.project.projectId,
       dateScope: this.store.global.dateScope,
     });
 

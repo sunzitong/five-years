@@ -54,7 +54,7 @@ export default class E4 extends Base {
   async created() {
     const response = await fetchDeviceOffline({
       orgType: this.store.global.dataLevel,
-      orgId: this.store.global.orgId,
+      orgId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       const data = iwant.object(response.data);

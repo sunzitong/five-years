@@ -10,7 +10,7 @@
                 store.global.dataLevel === DataLevels.GROUP &&
                 orgIds[0] === group.orgId,
             }"
-            @click="setDataOrgId(DataLevels.GROUP, group.orgId)"
+            @click="setDataOrgId(DataLevels.GROUP, group)"
           >
             {{ group.orgName }}
           </div>
@@ -23,7 +23,7 @@
                 store.global.dataLevel === DataLevels.AREA &&
                 orgIds[0] === area.orgId,
             }"
-            @click="setDataOrgId(DataLevels.AREA, area.orgId)"
+            @click="setDataOrgId(DataLevels.AREA, area)"
           >
             {{ area.orgName }}
           </div>
@@ -40,7 +40,7 @@
               :class="{ active: orgIds[1] === city.orgId }"
               v-for="city in area.childList"
               :key="city.orgId"
-              @click="setDataOrgId(DataLevels.CITY, area.orgId, city.orgId)"
+              @click="setDataOrgId(DataLevels.CITY, area.orgId, city)"
             >
               {{ city.orgName }}
             </div>
@@ -74,7 +74,7 @@ export default class OrgPanel extends Base {
   orgIds: [number?, number?] = [];
 
   created() {
-    this.orgIds = [this.store.global.orgId];
+    this.orgIds = [this.store.global.orgTree?.orgId];
   }
   async mounted() {
     const response = await fetchOrgTree();
@@ -84,14 +84,18 @@ export default class OrgPanel extends Base {
   }
 
   // 设置区域范围和ID
-  setDataOrgId(level: DataLevels, regionId: number, cityId?: number) {
+  setDataOrgId(
+    level: DataLevels,
+    region: OrgTreeItemReturn,
+    city?: OrgTreeItemReturn
+  ) {
     this.store.global.dataLevel = level;
-    this.orgIds = [regionId, cityId];
+    this.orgIds = [region.orgId, city?.orgId];
     if (level === DataLevels.GROUP || level === DataLevels.AREA) {
-      this.store.global.orgId = regionId;
+      this.store.global.orgTree = region;
     }
-    if (level === DataLevels.CITY && cityId) {
-      this.store.global.orgId = cityId;
+    if (level === DataLevels.CITY && city) {
+      this.store.global.orgTree = city;
     }
   }
 }

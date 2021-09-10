@@ -66,7 +66,7 @@ export default class B4 extends Base {
   async created() {
     const response = await fetchProductQuality({
       regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgId,
+      regionId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;

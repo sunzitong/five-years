@@ -70,7 +70,7 @@ export default class B5 extends Base {
   async created() {
     const response = await fetchRepairStat({
       orgType: this.store.global.dataLevel,
-      orgId: this.store.global.orgId,
+      orgId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;
