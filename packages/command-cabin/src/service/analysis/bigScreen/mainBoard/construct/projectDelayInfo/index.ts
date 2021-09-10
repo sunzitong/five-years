@@ -66,12 +66,12 @@ export enum TransactionModel {
 /**
  * 营造盘面-开业延期
  * @createBy huyanan
- * @updateAt 2021/9/6 下午5:32:26
+ * @updateAt 2021/9/10 下午2:40:39
  * @method GET
  */
 export const fetchProjectDelayInfo = (params: ProjectDelayInfoParams) => {
   return http.get<ProjectDelayInfoReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/construct/projectDelayInfo`,
+    `${BASE_URL}/analysis/bigScreen/mainBoard/construct/projectDelayInfo`,
     {
       ...params,
     }

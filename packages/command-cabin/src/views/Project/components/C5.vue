@@ -56,7 +56,7 @@ import dayjs from "dayjs";
 import {
   BusinessScoreReturn,
   fetchBusinessScore,
-} from "@/service/bigScreen/projectBoard/finance/businessScore";
+} from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
 import Base from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 

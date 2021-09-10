@@ -33,12 +33,12 @@ export interface ProjectListItemReturn {
 /**
  * 所有门店列表
  * @createBy baishiqiang
- * @updateAt 2021/9/9 下午2:28:23
+ * @updateAt 2021/9/10 下午2:40:01
  * @method GET
  */
 export const fetchProjectList = (params?: Record<string, unknown>) => {
   return http.get<ProjectListItemReturn[]>(
-    `${BASE_URL}/commandCabin/projectList`,
+    `${BASE_URL}/analysis/commandCabin/projectList`,
     {
       ...params,
     }

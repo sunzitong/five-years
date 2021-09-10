@@ -18,7 +18,7 @@ import echarts from "@/plugins/echarts";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
-} from "@/service/bigScreen/mainBoard/construct/projectOpen/";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen/";
 import dayjs from "dayjs";
 import { iwant, Nullable } from "@guanyu/shared";
 import Base from "@/views/Base";

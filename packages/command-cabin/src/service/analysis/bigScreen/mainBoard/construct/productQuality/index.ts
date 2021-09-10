@@ -38,12 +38,12 @@ export interface ProductQualityReturn {
 /**
  * 营造盘面-产品品质
  * @createBy huyanan
- * @updateAt 2021/9/6 下午5:32:37
+ * @updateAt 2021/9/10 下午2:40:44
  * @method GET
  */
 export const fetchProductQuality = (params: ProductQualityParams) => {
   return http.get<ProductQualityReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/construct/productQuality`,
+    `${BASE_URL}/analysis/bigScreen/mainBoard/construct/productQuality`,
     {
       ...params,
     }

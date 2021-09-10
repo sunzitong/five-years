@@ -35,12 +35,12 @@ export interface Group {
 /**
  * 门店基本信息-团队信息
  * @createBy huyanan
- * @updateAt 2021/9/6 下午3:35:00
+ * @updateAt 2021/9/10 下午2:39:25
  * @method GET
  */
 export const fetchGroupInfo = (params: GroupInfoParams) => {
   return http.get<GroupInfoReturn>(
-    `${BASE_URL}/bigScreen/projectBoard/basicInformation/groupInfo`,
+    `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation/groupInfo`,
     {
       ...params,
     }

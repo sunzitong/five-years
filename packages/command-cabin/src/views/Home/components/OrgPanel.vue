@@ -61,7 +61,7 @@ import {
 import {
   fetchOrgTree,
   OrgTreeItemReturn,
-} from "@/service/commandCabin/orgTree";
+} from "@/service/analysis/commandCabin/orgTree";
 import { iwant } from "@guanyu/shared";
 
 @Component

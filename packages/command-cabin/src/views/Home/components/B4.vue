@@ -34,7 +34,7 @@ import echarts from "@/plugins/echarts";
 import {
   fetchProductQuality,
   ProductQualityReturn,
-} from "@/service/bigScreen/mainBoard/construct/productQuality";
+} from "@/service/analysis/bigScreen/mainBoard/construct/productQuality";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 

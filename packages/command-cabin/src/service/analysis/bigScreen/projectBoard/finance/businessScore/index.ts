@@ -35,12 +35,12 @@ export interface TMonthScore {
 /**
  * 财务相关指标-综合经营指数
  * @createBy huyanan
- * @updateAt 2021/9/7 下午4:37:39
+ * @updateAt 2021/9/10 下午2:39:32
  * @method GET
  */
 export const fetchBusinessScore = (params: BusinessScoreParams) => {
   return http.get<BusinessScoreReturn>(
-    `${BASE_URL}/bigScreen/projectBoard/finance/businessScore`,
+    `${BASE_URL}/analysis/bigScreen/projectBoard/finance/businessScore`,
     {
       ...params,
     }

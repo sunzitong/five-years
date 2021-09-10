@@ -71,12 +71,12 @@ export interface TotalOpenListList {
 /**
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/7 上午11:27:59
+ * @updateAt 2021/9/10 下午2:40:34
  * @method GET
  */
 export const fetchProjectOpen = (params: ProjectOpenParams) => {
   return http.get<ProjectOpenReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/construct/projectOpen`,
+    `${BASE_URL}/analysis/bigScreen/mainBoard/construct/projectOpen`,
     {
       ...params,
     }

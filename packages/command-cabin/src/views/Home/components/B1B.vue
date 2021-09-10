@@ -79,7 +79,7 @@ import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
-} from "@/service/bigScreen/mainBoard/construct/projectOpen/";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen/";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 // import { iwant, Nullable } from "@guanyu/shared";

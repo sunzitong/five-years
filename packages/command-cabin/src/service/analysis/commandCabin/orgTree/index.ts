@@ -20,11 +20,14 @@ export interface OrgTreeItemReturn {
 /**
  * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/9/9 下午4:06:38
+ * @updateAt 2021/9/10 下午2:40:07
  * @method GET
  */
 export const fetchOrgTree = (params?: Record<string, unknown>) => {
-  return http.get<OrgTreeItemReturn[]>(`${BASE_URL}/commandCabin/orgTree`, {
-    ...params,
-  });
+  return http.get<OrgTreeItemReturn[]>(
+    `${BASE_URL}/analysis/commandCabin/orgTree`,
+    {
+      ...params,
+    }
+  );
 };

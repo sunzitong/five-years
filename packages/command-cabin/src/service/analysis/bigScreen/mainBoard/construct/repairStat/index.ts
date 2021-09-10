@@ -46,12 +46,12 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/9 下午2:32:07
+ * @updateAt 2021/9/10 下午2:40:49
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {
   return http.get<RepairStatReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/construct/repairStat`,
+    `${BASE_URL}/analysis/bigScreen/mainBoard/construct/repairStat`,
     {
       ...params,
     }

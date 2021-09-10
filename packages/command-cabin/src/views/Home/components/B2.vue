@@ -61,7 +61,7 @@ import Animationend from "@/components/Animationend/Index.vue";
 import {
   fetchProjectDelayInfo,
   ProjectDelayInfoReturn,
-} from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
 import dayjs from "dayjs";
 import Base from "@/views/Base";

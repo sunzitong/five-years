@@ -103,12 +103,12 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/6 下午5:32:52
+ * @updateAt 2021/9/10 下午2:40:27
  * @method GET
  */
 export const fetchList = (params: ListParams) => {
   return http.get<ListReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/construct/list`,
+    `${BASE_URL}/analysis/bigScreen/mainBoard/construct/list`,
     {
       ...params,
     }

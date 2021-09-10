@@ -11,12 +11,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface DeviceOfflineParams {
   /**
-   * OMS-公用枚举-dataLevels 组织级别
-   */
-  orgType: string;
-
-  /**
-   * 国家组织ID/大区组织ID/城市组织ID
+   * 门店组织ID
    */
   orgId: number;
 
@@ -40,12 +35,12 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/9 下午2:31:56
+ * @updateAt 2021/9/10 下午2:39:38
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
   return http.get<DeviceOfflineReturn>(
-    `${BASE_URL}/bigScreen/mainBoard/managementSituation/deviceOffline`,
+    `${BASE_URL}/analysis/bigScreen/projectBoard/managementSituation/deviceOffline`,
     {
       ...params,
     }

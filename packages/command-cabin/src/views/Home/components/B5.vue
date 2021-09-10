@@ -27,7 +27,7 @@ import { AnyObject } from "@guanyu/shared";
 import {
   fetchRepairStat,
   RepairStatReturn,
-} from "@/service/bigScreen/mainBoard/construct/repairStat";
+} from "@/service/analysis/bigScreen/mainBoard/construct/repairStat";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 
