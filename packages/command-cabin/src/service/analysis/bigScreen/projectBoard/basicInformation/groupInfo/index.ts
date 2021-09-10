@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface GroupInfoParams {
   /**
-   * 门店ID
+   * 门店分期ID
    */
-  projectId: number;
+  phId: string;
 }
 
 /**
@@ -35,7 +35,7 @@ export interface Group {
 /**
  * 门店基本信息-团队信息
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:39:25
+ * @updateAt 2021/9/10 下午3:21:31
  * @method GET
  */
 export const fetchGroupInfo = (params: GroupInfoParams) => {

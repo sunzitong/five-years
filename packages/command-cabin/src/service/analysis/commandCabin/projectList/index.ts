@@ -33,7 +33,7 @@ export interface ProjectListItemReturn {
 /**
  * 所有门店列表
  * @createBy baishiqiang
- * @updateAt 2021/9/10 下午2:40:01
+ * @updateAt 2021/9/10 下午3:22:53
  * @method GET
  */
 export const fetchProjectList = (params?: Record<string, unknown>) => {

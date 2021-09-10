@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface BusinessScoreParams {
   /**
-   * 门店ID
+   * 门店分期ID
    */
-  projectId: number;
+  phId: string;
 }
 
 /**
@@ -35,7 +35,7 @@ export interface TMonthScore {
 /**
  * 财务相关指标-综合经营指数
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:39:32
+ * @updateAt 2021/9/10 下午3:22:51
  * @method GET
  */
 export const fetchBusinessScore = (params: BusinessScoreParams) => {
