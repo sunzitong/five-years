@@ -240,7 +240,6 @@ import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
-console.log(DateScopes);
 
 /** Jing */
 import A1 from "./components/A1.vue";
@@ -259,7 +258,7 @@ import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import E2 from "./components/E2.vue";
 import E5 from "./components/E5.vue";
-import OrgPanel from "./components/OrgPanel.vue";
+import OrgPanel from "@/views/components/OrgPanel.vue";
 
 @Component({
   components: {
