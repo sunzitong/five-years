@@ -1,10 +1,13 @@
 <template>
-  <div class="org-panel">
-    <template v-if="response">
-      <div v-for="group in response" :key="group.orgId">
-        <div class="row">
+  <div class="org-panel" v-if="show">
+    <div
+      class="org-tree animate__animated animate__fadeInLeft"
+      v-show="showOrgTree"
+    >
+      <div v-for="group in resOrgTree" :key="group.orgId">
+        <div class="row" v-if="type === 'orgTree'">
           <div
-            class="col region"
+            class="col left"
             :class="{
               active:
                 store.global.dataLevel === DataLevels.GROUP &&
@@ -15,45 +18,82 @@
             {{ group.orgName }}
           </div>
         </div>
-        <div class="row" v-for="area in group.childList" :key="area.orgId">
-          <div
-            class="col region"
-            :class="{
-              active:
-                store.global.dataLevel === DataLevels.AREA &&
-                orgIds[0] === area.orgId,
-            }"
-            @click="setDataOrgId(DataLevels.AREA, area)"
-          >
-            {{ area.orgName }}
-          </div>
-          <div
-            class="col cities"
-            :class="{
-              active:
-                store.global.dataLevel === DataLevels.CITY &&
-                orgIds[0] === area.orgId,
-            }"
-          >
+        <template v-for="area in group.childList">
+          <div class="row" :key="area.orgId" v-if="area.childList">
             <div
-              class="city"
-              :class="{ active: orgIds[1] === city.orgId }"
-              v-for="city in area.childList"
-              :key="city.orgId"
-              @click="setDataOrgId(DataLevels.CITY, area, city)"
+              class="col left"
+              :class="{
+                active:
+                  store.global.dataLevel === DataLevels.AREA &&
+                  orgIds[0] === area.orgId,
+                readonly: type === 'project',
+              }"
+              @click="setDataOrgId(DataLevels.AREA, area)"
             >
-              {{ city.orgName }}
+              {{ area.orgName }}
+            </div>
+            <div
+              class="col right"
+              :class="{
+                active:
+                  false &&
+                  store.global.dataLevel === DataLevels.CITY &&
+                  orgIds[0] === area.orgId,
+              }"
+            >
+              <div
+                class="city"
+                :class="{ active: orgIds[1] === city.orgId }"
+                v-for="city in area.childList"
+                :key="city.orgId"
+                @click="setDataOrgId(DataLevels.CITY, area, city)"
+              >
+                {{ city.orgName }}
+              </div>
             </div>
           </div>
+        </template>
+      </div>
+    </div>
+    <div
+      class="project-list animate__animated animate__fadeInRight"
+      v-show="!showOrgTree"
+    >
+      <Icon
+        type="arrow-left"
+        color="#fff"
+        :size="35"
+        @click.native="$set(orgIds, '1', undefined)"
+        class="icon-back"
+      />
+      <div
+        class="row"
+        v-for="(project, index) in projectList"
+        :key="project.projectId"
+      >
+        <div class="col left readonly">
+          <span v-if="index === 0">{{ project.cityName }}</span>
+        </div>
+        <div class="col right" @click="setProject(project)">
+          <span
+            class="city"
+            :class="{
+              active: store.global.project.projectId === project.projectId,
+            }"
+          >
+            {{ project.projectName }}
+          </span>
         </div>
       </div>
-    </template>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import Base from "@/views/Base";
+import { iwant } from "@guanyu/shared";
+import Icon from "@/components/Icon/Index.vue";
 import {
   DataLevels,
   DateScopes,
@@ -62,24 +102,64 @@ import {
   fetchOrgTree,
   OrgTreeItemReturn,
 } from "@/service/analysis/commandCabin/orgTree";
-import { iwant } from "@guanyu/shared";
+import {
+  fetchProjectList,
+  ProjectListItemReturn,
+} from "@/service/analysis/commandCabin/projectList";
 
-@Component
+@Component({
+  components: { Icon },
+})
 export default class OrgPanel extends Base {
   DateScopes = DateScopes;
   DataLevels = DataLevels;
-  response: OrgTreeItemReturn[] | null = null;
+  resOrgTree: OrgTreeItemReturn[] | null = null;
+  resProjectList: ProjectListItemReturn[] | null = null;
+
+  @Prop({ required: true }) type!: "project" | "orgTree";
+  @Prop({ default: false }) show!: false;
 
   // 区域或全国ID,城市ID
   orgIds: [number?, number?] = [];
 
-  created() {
-    this.orgIds = [this.store.global.orgTree?.orgId];
+  // 显示隐藏区域选择
+  get showOrgTree() {
+    if (!this.resOrgTree) return false;
+    if (this.type === "project" && this.projectList.length) return false;
+    return true;
   }
-  async mounted() {
-    const response = await fetchOrgTree();
-    if (response?.status === "ok") {
-      this.response = iwant.array(response.data);
+
+  // 当前城市门店列表
+  get projectList() {
+    const all = iwant.array(this.resProjectList);
+    return all.filter((item) => item.cityOrgId === this.orgIds[1]);
+  }
+
+  created() {
+    // 城市
+    if (this.store.global.orgTree.orgLevel === 3) {
+      this.orgIds = [
+        // this.store.global.orgTree.parentOrgId, // 地区ID不是大区ID
+        undefined,
+        this.store.global.orgTree.orgId,
+      ];
+    }
+  }
+
+  mounted() {
+    this.fetchData();
+  }
+
+  async fetchData() {
+    // 获取区域数据
+    const resOrgTree = await fetchOrgTree();
+    if (resOrgTree?.status === "ok") {
+      this.resOrgTree = iwant.array(resOrgTree.data);
+    }
+    // 获取门店数据
+    const resProjectList = await fetchProjectList();
+    if (resProjectList?.status === "ok") {
+      this.resProjectList = iwant.array(resProjectList.data);
     }
   }
 
@@ -89,14 +169,23 @@ export default class OrgPanel extends Base {
     region: OrgTreeItemReturn,
     city?: OrgTreeItemReturn
   ) {
-    this.store.global.dataLevel = level;
     this.orgIds = [region.orgId, city?.orgId];
-    if (level === DataLevels.GROUP || level === DataLevels.AREA) {
-      this.store.global.orgTree = region;
+    if (this.type === "orgTree") {
+      this.store.global.dataLevel = level;
+      if (level === DataLevels.GROUP || level === DataLevels.AREA) {
+        this.store.global.orgTree = region;
+      }
+      if (level === DataLevels.CITY && city) {
+        this.store.global.orgTree = city;
+      }
+      this.$emit("update:show", false);
     }
-    if (level === DataLevels.CITY && city) {
-      this.store.global.orgTree = city;
-    }
+  }
+
+  // 设置门店
+  setProject(project: ProjectListItemReturn) {
+    this.store.global.project = project;
+    this.$emit("update:show", false);
   }
 }
 </script>
@@ -107,7 +196,7 @@ export default class OrgPanel extends Base {
   bottom: 120%;
   right: 20px;
   min-width: 1040px;
-  min-height: 400px;
+  /* min-height: 400px; */
   box-sizing: border-box;
   padding: 2px 18px;
   background: rgba(11, 31, 81, 0.7);
@@ -136,10 +225,10 @@ export default class OrgPanel extends Base {
   display: flex;
   flex-flow: row nowrap;
   margin: 28px 0;
-  .region {
+  .left {
     width: 184px;
   }
-  .cities {
+  .right {
     flex: 1;
     min-width: 780px;
     justify-content: flex-start;
@@ -186,8 +275,30 @@ export default class OrgPanel extends Base {
   transition: 300ms;
   cursor: pointer;
 }
+.project-list {
+  box-sizing: border-box;
+  padding: 24px 12px;
+  max-height: 1000px;
+  overflow: auto;
+  .icon-back {
+    cursor: pointer;
+  }
+  .right {
+    box-sizing: border-box;
+    padding-left: 30px;
+  }
+}
 .readonly {
   border: none !important;
   pointer-events: none;
+}
+.fade-enter-active {
+  animation: 200ms fadeIn 600ms;
+}
+.fade-leave-active {
+  animation: 200ms fadeOut;
+}
+.org-panel {
+  --animate-duration: 200ms;
 }
 </style>

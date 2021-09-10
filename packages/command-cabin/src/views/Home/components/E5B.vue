@@ -3,11 +3,11 @@
     <div class="header">
       <div class="red">
         红
-        <span class="value__letter">12</span>
+        <span class="value__letter">{{ response.redNum }}</span>
       </div>
       <div class="orange">
         橙
-        <span class="value__letter">23</span>
+        <span class="value__letter">{{ response.yellowNum }}</span>
       </div>
     </div>
     <div class="chart" ref="pieChart"></div>
