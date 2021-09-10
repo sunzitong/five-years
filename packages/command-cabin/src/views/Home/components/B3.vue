@@ -80,7 +80,7 @@ export default class B3 extends Base {
         x2: 0,
         y2: -20,
         left: "0%",
-        right: "5%",
+        right: "0%",
         containLabel: true,
       },
       xAxis: { show: false, max: 100 },
@@ -165,11 +165,11 @@ export default class B3 extends Base {
     color: #fff;
 
     .item_name_item {
-      margin: 19px 20px;
+      margin: 20px 0;
       font-family: "PingFang SC";
       font-size: 28px;
       line-height: 32px;
-      width: 135px;
+      width: 200px;
     }
   }
 
