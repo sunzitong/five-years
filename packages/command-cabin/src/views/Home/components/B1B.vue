@@ -13,7 +13,7 @@
               {{ sepNumber(hasOpen) }}
             </van-col>
             <van-col :span="6" class="value_details">
-              {{ iwant.calc(hasOpenRatio, 1, true) }}%
+              {{ hasOpenRatio }}%
             </van-col>
           </van-row>
         </div>
@@ -107,7 +107,7 @@ export default class B1B extends Base {
   targetNum: number | "--" = "--"; // 年开业目标间数
 
   hasOpen: number | "--" = "--"; // 已开业间数
-  hasOpenRatio: number | "--" = "--"; // 已开业间数百分比
+  hasOpenRatio = "--"; // 已开业间数百分比
 
   toGet: number | "--" = "--"; // 待获取
   toGetRatio: number | "--" = "--"; // 待获取百分比
@@ -132,7 +132,8 @@ export default class B1B extends Base {
       this.targetNum = this.resData.openTargetNum ?? "--";
 
       this.hasOpen = this.resData.openInfo?.total ?? "--";
-      this.hasOpenRatio = this.resData.openInfo?.ratio ?? "--";
+      this.hasOpenRatio =
+        iwant.calc(this.resData.openInfo?.ratio ?? NaN, 1, true) ?? "--";
 
       this.toGet = this.resData.notOpenNotGetNum ?? "--";
       this.toGetRatio = this.resData.notOpenNotGetRatio ?? "--";
