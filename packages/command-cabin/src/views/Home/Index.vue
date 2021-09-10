@@ -22,10 +22,14 @@
                 title="商机转化"
                 size="small"
                 style="width: 735px; height: 419px"
-              ></Card>
+              >
+                <A3 />
+              </Card>
             </van-col>
             <van-col>
-              <Card title="战略合作" style="width: 817px; height: 494px"></Card>
+              <Card title="战略合作" style="width: 817px; height: 494px">
+                <A4 />
+              </Card>
               <WhiteSpace />
               <van-row gutter="24">
                 <van-col>
@@ -66,7 +70,9 @@
               </Card>
             </van-col>
             <van-col>
-              <Card title="成本分析" style="width: 691px; height: 634px"></Card>
+              <Card title="成本分析" style="width: 691px; height: 634px">
+                <B3 />
+              </Card>
               <WhiteSpace />
               <Card title="产品品质" style="width: 691px; height: 367px">
                 <B4 />
@@ -234,15 +240,17 @@ import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
-console.log(DateScopes);
 
 /** Jing */
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import A3 from "./components/A3.vue";
+import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
 import B1 from "./components/B1.vue";
 import B2 from "./components/B2.vue";
+import B3 from "./components/B3.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
@@ -250,7 +258,7 @@ import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import E2 from "./components/E2.vue";
 import E5 from "./components/E5.vue";
-import OrgPanel from "./components/OrgPanel.vue";
+import OrgPanel from "@/views/components/OrgPanel.vue";
 
 @Component({
   components: {
@@ -260,10 +268,13 @@ import OrgPanel from "./components/OrgPanel.vue";
     WhiteSpace,
     A1,
     A2,
+    A3,
+    A4,
     A5,
     A6,
     B1,
     B2,
+    B3,
     B4,
     B5,
     C1,

@@ -73,15 +73,27 @@ export default class App extends Mixins(MixStore) {
       document.body.style.setProperty("height", "100vh");
     }
   }
+
+  contentMenuHandle(e: MouseEvent) {
+    e.preventDefault();
+    return false;
+  }
+
   created() {
     // 7680 x 3240
     window.addEventListener("resize", this.resizeHandle);
+    if (process.env.NODE_ENV !== "development") {
+      document.addEventListener("contextmenu", this.contentMenuHandle);
+    }
   }
   mounted() {
     this.resizeHandle();
   }
   destroyed() {
     window.removeEventListener("resize", this.resizeHandle);
+    if (process.env.NODE_ENV !== "development") {
+      document.removeEventListener("contextmenu", this.contentMenuHandle);
+    }
   }
 }
 </script>

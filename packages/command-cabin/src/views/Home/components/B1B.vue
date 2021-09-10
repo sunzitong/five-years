@@ -79,7 +79,7 @@ import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
-} from "@/service/bigScreen/mainBoard/construct/projectOpen/";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen/";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 // import { iwant, Nullable } from "@guanyu/shared";
@@ -124,7 +124,7 @@ export default class B1B extends Base {
   async created() {
     const response = await fetchProjectOpen({
       regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgId,
+      regionId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;

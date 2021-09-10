@@ -28,7 +28,7 @@ import { AnyObject, arrayToObject } from "@guanyu/shared";
 @Component({
   components: {},
 })
-export default class A1 extends Base {
+export default class A2 extends Base {
   /**
    * 饼图
    */
@@ -93,7 +93,7 @@ export default class A1 extends Base {
               color: "#FFFFFF",
               fontSize: 28,
               lineHeight: 39,
-              width: 160,
+              width: 140,
             },
             b: {
               fontFamily: "DIN Alternate",
@@ -144,5 +144,24 @@ export default class A1 extends Base {
   font-size: 30px;
   line-height: 30px;
   color: #ffffff;
+
+  padding: 28px 0 28px 0;
+  margin: 0 30px 0px 30px;
+
+  .value_col span:nth-child(1) {
+    font-family: "DIN Alternate";
+    color: #01f5f1;
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 36px;
+  }
+
+  .value_col span:nth-child(2) {
+    font-family: "DIN Alternate";
+    color: #01f5f1;
+    font-size: 26px;
+    line-height: 26px;
+    margin-left: 6px;
+  }
 }
 </style>

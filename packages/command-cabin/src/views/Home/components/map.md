@@ -12,7 +12,6 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { ECharts } from "echarts/core";
 import Base from "@/views/Base";
 
 @Component({

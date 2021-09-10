@@ -41,18 +41,17 @@
 
 <script lang="ts">
 import {
-  BasicInformationReturn,
-  fetchBasicInformation,
-} from "@/service/analysis/bigScreen/projectBoard/basicInformation";
+  ProjectBaseInfoReturn,
+  fetchProjectBaseInfo,
+} from "@/service/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo";
 import Base from "@/views/Base";
-import dayjs from "dayjs";
 import { Component } from "vue-property-decorator";
 
 @Component
 export default class A2 extends Base {
-  response: Partial<BasicInformationReturn> = {};
+  response: Partial<ProjectBaseInfoReturn> = {};
   async created() {
-    const response = await fetchBasicInformation({ year: dayjs().year() });
+    const response = await fetchProjectBaseInfo({ phId: "L-CD00-CDCDL00.01" });
     if (response?.status === "ok") {
       this.response = response.data;
     }

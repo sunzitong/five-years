@@ -56,7 +56,7 @@ import dayjs from "dayjs";
 import {
   BusinessScoreReturn,
   fetchBusinessScore,
-} from "@/service/bigScreen/projectBoard/finance/businessScore";
+} from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
 import Base from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 
@@ -104,7 +104,7 @@ export default class C5 extends Base {
    * 组件创建
    */
   async created() {
-    const response = await fetchBusinessScore({ projectId: 1001 });
+    const response = await fetchBusinessScore({ phId: "L-CD00-CDCDL00.01" });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }

@@ -61,7 +61,7 @@ import Animationend from "@/components/Animationend/Index.vue";
 import {
   fetchProjectDelayInfo,
   ProjectDelayInfoReturn,
-} from "@/service/bigScreen/mainBoard/construct/projectDelayInfo";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
@@ -102,7 +102,7 @@ export default class B2 extends Base {
   async created() {
     const response = await fetchProjectDelayInfo({
       regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgId,
+      regionId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;

@@ -40,7 +40,7 @@ import { iwant, uuid } from "@guanyu/shared";
 import {
   fetchGroupInfo,
   Group,
-} from "@/service/bigScreen/projectBoard/basicInformation/groupInfo";
+} from "@/service/analysis/bigScreen/projectBoard/basicInformation/groupInfo";
 import BlurBox from "@/components/BlurBox/Index.vue";
 
 type Item = Group & { id: string };
@@ -53,7 +53,7 @@ export default class A3 extends Base {
   list: Item[] = [];
   async created() {
     const response = await fetchGroupInfo({
-      projectId: this.store.global.projectId,
+      phId: "L-CD00-CDCDL00.01",
     });
     if (response?.status === "ok") {
       this.list = iwant

@@ -27,7 +27,7 @@ import { AnyObject } from "@guanyu/shared";
 import {
   fetchRepairStat,
   RepairStatReturn,
-} from "@/service/bigScreen/mainBoard/construct/repairStat";
+} from "@/service/analysis/bigScreen/mainBoard/construct/repairStat";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 
@@ -70,7 +70,7 @@ export default class B5 extends Base {
   async created() {
     const response = await fetchRepairStat({
       orgType: this.store.global.dataLevel,
-      orgId: this.store.global.orgId,
+      orgId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       this.resData = response.data;

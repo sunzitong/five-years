@@ -70,9 +70,9 @@ import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
-  fetchExpandDisk,
-  ExpandDiskReturn,
-} from "@/service/analysis/bigScreen/mainBoard/expandDisk";
+  fetchExpansionAwardInfo,
+  ExpansionAwardInfoReturn,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import Base from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import _ from "lodash";
@@ -85,7 +85,7 @@ export default class A6 extends Base {
    * 接口返回值
    * /analysis/bigScreen/mainBoard/expandDisk
    */
-  resData: Partial<ExpandDiskReturn> = {};
+  resData: Partial<ExpansionAwardInfoReturn> = {};
   /**
    * 显示全年时，此值为true
    */
@@ -112,7 +112,7 @@ export default class A6 extends Base {
   wholeCycle: number | string = "--";
 
   async mounted() {
-    const response = await fetchExpandDisk({ year: this.year });
+    const response = await fetchExpansionAwardInfo({ year: this.year });
     if (response?.status === "ok") {
       this.resData = response.data;
 

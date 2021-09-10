@@ -1,9 +1,21 @@
+js
 <template>
-  <div class="page__product_quality__map">
-    <div class="whole_pannel">
+  <div class="page__b3__map">
+    <van-row class="abstract_text">
+      <van-col :span="12">成本风险预警项目</van-col>
+      <van-col class="span_style1">
+        {{ projecttNum }}
+        <span>个</span>
+      </van-col>
+    </van-row>
+    <van-row class="abstract_text">
+      <van-col :span="12">总体成本差异率</van-col>
+      <van-col class="span_style2">{{ differRatio }}%</van-col>
+    </van-row>
+    <div class="whole_chart">
       <div class="item_name">
         <div
-          class="item_name_item"
+          class="item_name_item van-ellipsis"
           v-for="(itemName, index) in labels"
           :key="index"
         >
@@ -12,8 +24,8 @@
       </div>
       <div
         class="app-echarts"
-        style="width: 280px; height: 270px"
         ref="wrapper"
+        style="width: 270px; height: 217px"
       ></div>
       <div class="item_value">
         <div
@@ -21,7 +33,7 @@
           v-for="(itemValue, index) in values"
           :key="index"
         >
-          {{ itemValue }}
+          {{ itemValue }}%
         </div>
       </div>
     </div>
@@ -31,56 +43,34 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import {
-  fetchProductQuality,
-  ProductQualityReturn,
-} from "@/service/analysis/bigScreen/mainBoard/construct/productQuality";
-import dayjs from "dayjs";
 import Base from "@/views/Base";
 
 @Component({
   components: {},
 })
-export default class B4 extends Base {
+export default class B3 extends Base {
   /**
    * 条形图
    */
   @Ref() wrapper!: HTMLDivElement;
-  /**
-   * 接口返回值
-   * /bigScreen/mainBoard/construct/productQuality
-   */
-  resData: Partial<ProductQualityReturn> = {};
-  year = dayjs().year();
+
+  projecttNum = 4; // 成本风险预警项目
+  differRatio = -15; // 总体成本差异率
 
   // name标签
   labels = [
-    "IPD产品\n封装率",
-    "中期停止点\n检查平均得分",
-    "移交质量评估\n平均合格率",
+    "回龙观",
+    "大学城",
+    "南二环",
+    "望京北路",
+    // "麦旋风",
+    // "苹果派",
   ];
 
   // 数值标签
-  values = [0, 0, 0];
+  values = [7.2, 44.7, 100, 76];
 
-  async created() {
-    const response = await fetchProductQuality({
-      regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgTree.orgId,
-    });
-    if (response?.status === "ok") {
-      this.resData = response.data;
-
-      this.values = [];
-      for (let key in this.resData) {
-        this.values.push(this.resData[key]);
-      }
-
-      this.paintChart();
-    }
-  }
-
-  paintChart() {
+  mounted() {
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {
@@ -90,7 +80,7 @@ export default class B4 extends Base {
         x2: 0,
         y2: -20,
         left: "0%",
-        right: "5%",
+        right: "0%",
         containLabel: true,
       },
       xAxis: { show: false, max: 100 },
@@ -100,39 +90,24 @@ export default class B4 extends Base {
         axisLine: { show: false },
         splitLine: { show: false },
         axisTick: { show: false },
-        axisLabel: {
-          show: false,
-          width: 64,
-          interval: 0,
-          margin: 31,
-          left: -200,
-          color: "#FFFFFF",
-          fontSize: 28,
-          lineHeight: 32,
-        },
+        axisLabel: { show: false },
         data: this.labels,
       },
       series: [
         {
           type: "bar",
           stack: "total",
-          barWidth: 8,
+          barWidth: 37,
+          barCateGoryGap: 23,
           showBackground: true,
           backgroundStyle: {
             color: "#143F79",
-            borderRadius: 40,
           },
           itemStyle: {
             color: "#57A6FB",
-            borderRadius: 40,
             width: 338,
           },
-          label: {
-            show: false,
-            color: "#01F5F1",
-            fontSize: 34,
-            lineHeight: 36,
-          },
+          label: { show: false },
           data: this.values,
         },
       ],
@@ -146,22 +121,55 @@ export default class B4 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.whole_pannel {
+.page__b3__map {
+  margin-top: 40px;
+}
+.abstract_text {
+  font-family: "PingFang SC";
+  font-size: 30px;
+  line-height: 30px;
+  color: #ffffff;
+  margin: 18px 0 18px 18px;
+}
+.span_style1 {
+  font-family: "DIN Alternate";
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 36px;
+  color: #01f5f1;
+
+  span {
+    margin-left: 6px;
+    font-size: 26px;
+    line-height: 26px;
+    font-weight: normal;
+  }
+}
+.span_style2 {
+  font-family: "DIN Alternate";
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 36px;
+  color: #ff2a76;
+}
+
+.whole_chart {
   display: inline-block;
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
   justify-content: space-around;
+  margin-top: 76px;
 
   .item_name {
-    white-space: pre-line;
     color: #fff;
 
     .item_name_item {
-      margin: 20px 31px;
+      margin: 20px 0;
       font-family: "PingFang SC";
       font-size: 28px;
       line-height: 32px;
+      width: 200px;
     }
   }
 
@@ -177,6 +185,7 @@ export default class B4 extends Base {
       @extend %value__letter;
       font-size: 34px;
       line-height: 36px;
+      text-align: right;
     }
   }
 }

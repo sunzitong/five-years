@@ -32,7 +32,7 @@
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
-import { fetchDeviceOffline } from "@/service/bigScreen/projectBoard/managementSituation/deviceOffline";
+import { fetchDeviceOffline } from "@/service/analysis/bigScreen/projectBoard/managementSituation/deviceOffline";
 import { iwant } from "@guanyu/shared";
 
 @Component({
@@ -52,7 +52,7 @@ export default class D5 extends Base {
 
   async created() {
     const response = await fetchDeviceOffline({
-      orgId: this.store.global.orgId,
+      orgId: this.store.global.orgTree.orgId,
     });
     if (response?.status === "ok") {
       const data = iwant.object(response.data);

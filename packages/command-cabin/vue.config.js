@@ -16,7 +16,7 @@ const pkg = require("./package.json");
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
-  outputDir: "dist",
+  outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
   // indexPath,
@@ -49,7 +49,7 @@ module.exports = {
       postcss: {
         plugins: (function () {
           // 生产环境转rem
-          if (process.env.NODE_ENV === "production") {
+          if (false) {
             return [
               // #region vw转换
               require("postcss-px-to-viewport")({
@@ -79,8 +79,7 @@ module.exports = {
       less: {
         // http://lesscss.org/usage/#less-options-strict-units `Global Variables`
         lessOptions: {
-          globalVars: {
-          },
+          globalVars: {},
         },
       },
     },
@@ -97,8 +96,8 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: "http://docs.gyapt.cn/mock/712",
-        // target: "http://oms.test109.gyapt.cn",
+        // target: "http://docs.gyapt.cn/mock/712",
+        target: "http://oms.test109.gyapt.cn",
         // target: "http://localhost:3000",
         secure: false,
         changeOrigin: true,
