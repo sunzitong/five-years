@@ -118,10 +118,10 @@ export default class A6 extends Base {
 
       this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
         ? "--"
-        : iwant.calc(this.resData.yearNetIncomeCollected as number, 2, true);
+        : iwant.calc(this.resData.yearNetIncomeCollected as number, 1, true);
       this.wholeCycle = _.isNil(this.resData.allNetIncomeCollected)
         ? "--"
-        : iwant.calc(this.resData.allNetIncomeCollected as number, 2, true);
+        : iwant.calc(this.resData.allNetIncomeCollected as number, 1, true);
 
       this.cycleRate = _.isNil(this.resData.allNetIncomeCompletionRate)
         ? "--"
