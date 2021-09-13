@@ -1,7 +1,7 @@
 <template>
   <div ref="card" class="app-card" :class="includeFooterCls">
-    <CardDecorate
-      key="CardDecorate"
+    <CardBackground
+      key="CardBackground"
       :size="size"
       :type="cardType"
       :showFooter="showFooter"
@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
-import CardDecorate from "@/components/CardDecorate/Index.vue";
+import CardBackground from "@/components/Card/CardBackground.vue";
 import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
 
@@ -65,7 +65,7 @@ export type SourceType = {
 @Component({
   name: "Card",
   components: {
-    CardDecorate,
+    CardBackground,
     Icon,
     DataSource,
   },
