@@ -32,12 +32,12 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
-import dayjs from "dayjs";
 import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { ProgressCircle },
@@ -48,13 +48,11 @@ export default class A5 extends Base {
    * /analysis/bigScreen/mainBoard/expandDisk
    */
   resData: Partial<ExpansionAwardInfoReturn> = {};
-  /**
-   * 入参：年份
-   */
-  year = dayjs().year();
 
   async mounted() {
-    const response = await fetchExpansionAwardInfo({ year: this.year });
+    const response = await useStore(fetchExpansionAwardInfo, {
+      key: StoreKey.HomeExpansionAwardInfo,
+    });
     if (response?.status === "ok") {
       this.resData = response.data;
     }

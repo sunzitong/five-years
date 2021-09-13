@@ -36,6 +36,7 @@ import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
 import { fetchDeviceOffline } from "@/service/analysis/bigScreen/mainBoard/managementSituation/deviceOffline";
 import { iwant } from "@guanyu/shared";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
@@ -52,9 +53,12 @@ export default class E4 extends Base {
   }[] = [];
 
   async created() {
-    const response = await fetchDeviceOffline({
-      orgType: this.store.global.dataLevel,
-      orgId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchDeviceOffline, {
+      key: StoreKey.HomeDeviceOffline,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       const data = iwant.object(response.data);
