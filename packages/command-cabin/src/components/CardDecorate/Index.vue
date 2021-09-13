@@ -127,7 +127,7 @@ export default class CardDecorate extends Vue {
   /**
    * 透明度
    */
-  @Prop({ default: 1 }) fillOpacity!: number;
+  @Prop({ default: 0.6 }) fillOpacity!: number;
 
   /**
    * 尺寸
