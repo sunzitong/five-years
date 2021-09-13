@@ -113,8 +113,8 @@
         <Card title="Webrtc">
           <Webrtc />
         </Card>
-        <Card title="Loading">
-          <Loading />
+        <Card title="Spin">
+          <Spin />
         </Card>
         <Card title="Animationend">
           <Animationend key="1" :scrollMinCount="10" :dataSource="dataSource">
@@ -316,7 +316,7 @@ import BlurBox from "@/components/BlurBox/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Webrtc from "@/components/Webrtc/Index.vue";
 import StepNumber from "@/components/StepNumber/Index.vue";
-import Loading from "@/components/Loading/Index.vue";
+import Spin from "@/components/Spin/Index.vue";
 
 @Component({
   components: {
@@ -334,7 +334,7 @@ import Loading from "@/components/Loading/Index.vue";
     ButtonGroup,
     Webrtc,
     StepNumber,
-    Loading,
+    Spin,
   },
 })
 export default class Example extends Vue {
