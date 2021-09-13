@@ -43,6 +43,7 @@ interface useStoreHook {
     options: { key: StoreKey; force?: boolean }
   ): ReturnType<F>;
 }
+
 /**
  * @param service service请求
  * @param param 配置
@@ -52,15 +53,16 @@ export const useStore: useStoreHook = (
   service: any,
   { key, params, force = false }: any
 ) => {
+  const { $service } = store;
   // 已缓存
-  if (!force && store.$service[key]) {
+  if (!force && $service[key]) {
     // 参数一致
-    if (_.isEqual(store.$service[key].params, params)) {
-      return store.$service[key].promise;
+    if (_.isEqual($service[key].params, params)) {
+      return $service[key].promise;
     }
   }
   // 请求service
-  return (store.$service[key] = {
+  return ($service[key] = {
     params,
     promise: service(params),
   }).promise;
