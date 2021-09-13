@@ -23,7 +23,7 @@
             <div class="title">品牌指数</div>
             <div class="num" style="color: #ee7647">
               NO.
-              <StepNumber :to="response.brandPointNum" />
+              {{ formatValue(response.brandPointNum) }}
             </div>
           </van-col>
         </van-row>
@@ -92,6 +92,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/center/numYearly";
 import Base from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
@@ -112,7 +113,7 @@ export default class C1 extends Base {
     /** 年累计收 */
     incomeNum: 0,
     /** 品牌指数 */
-    brandPointNum: 1,
+    brandPointNum: 0,
     /** 累计服务用户数 */
     servedPersonNum: 0,
     /** 累计租户 */
@@ -120,7 +121,9 @@ export default class C1 extends Base {
   };
 
   async created() {
-    const response = await fetchNumYearly();
+    const response = await useStore(fetchNumYearly, {
+      key: StoreKey.HomeNumYearly,
+    });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }

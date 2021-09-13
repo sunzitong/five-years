@@ -1,4 +1,3 @@
-js
 <template>
   <div class="page__b3__map">
     <van-row class="abstract_text">

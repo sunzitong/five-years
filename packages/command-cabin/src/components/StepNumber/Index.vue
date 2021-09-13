@@ -48,7 +48,7 @@ export default class StepNumber extends Vue {
     } else {
       from = this.from;
     }
-    // 清楚上次未完成的值
+    // 清除上次未完成的值
     if (this.ins) {
       this.ins.clear();
     }

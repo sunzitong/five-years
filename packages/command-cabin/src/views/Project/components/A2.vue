@@ -44,6 +44,7 @@ import {
   ProjectBaseInfoReturn,
   fetchProjectBaseInfo,
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo";
+import { StoreKey, useStore } from "@/store";
 import Base from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import { Component } from "vue-property-decorator";
@@ -52,8 +53,9 @@ import { Component } from "vue-property-decorator";
 export default class A2 extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
   async created() {
-    const response = await fetchProjectBaseInfo({
-      phId: this.store.global.project.phId,
+    const response = await useStore(fetchProjectBaseInfo, {
+      key: StoreKey.ProjectBaseInfo,
+      params: { phId: this.store.global.project.phId },
     });
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);

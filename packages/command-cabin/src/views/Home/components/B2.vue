@@ -65,6 +65,7 @@ import {
 import { AnyObject, iwant } from "@guanyu/shared";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
@@ -100,9 +101,12 @@ export default class B2 extends Base {
   storeNum: number | "--" = "--"; // 风险房间数
 
   async created() {
-    const response = await fetchProjectDelayInfo({
-      regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchProjectDelayInfo, {
+      key: StoreKey.HomeProjectDelayInfo,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;

@@ -59,6 +59,7 @@ import {
 } from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
 import Base from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import { StoreKey, useStore } from "@/store";
 
 type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 
@@ -104,8 +105,9 @@ export default class C5 extends Base {
    * 组件创建
    */
   async created() {
-    const response = await fetchBusinessScore({
-      phId: this.store.global.project.phId,
+    const response = await useStore(fetchBusinessScore, {
+      key: StoreKey.ProjectBusinessScore,
+      params: { phId: this.store.global.project.phId },
     });
     if (response?.status === "ok") {
       this.response = response.data ?? {};

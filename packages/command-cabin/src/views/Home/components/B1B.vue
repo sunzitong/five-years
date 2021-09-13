@@ -79,9 +79,10 @@ import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
-} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen/";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 // import { iwant, Nullable } from "@guanyu/shared";
 
 @Component({
@@ -122,9 +123,12 @@ export default class B1B extends Base {
   objData2: AnyObject = {}; // 右侧饼图name-value键值对对象
 
   async mounted() {
-    const response = await fetchProjectOpen({
-      regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchProjectOpen, {
+      key: StoreKey.HomeProjectOpen,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;

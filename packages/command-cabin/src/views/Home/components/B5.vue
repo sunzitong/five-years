@@ -30,6 +30,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/construct/repairStat";
 import dayjs from "dayjs";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 
 console.log(echarts);
 
@@ -68,9 +69,12 @@ export default class B5 extends Base {
   }
 
   async mounted() {
-    const response = await fetchRepairStat({
-      orgType: this.store.global.dataLevel,
-      orgId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchRepairStat, {
+      key: StoreKey.HomeRepairStat,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;

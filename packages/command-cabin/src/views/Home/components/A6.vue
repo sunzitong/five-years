@@ -68,7 +68,6 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
-import dayjs from "dayjs";
 import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
@@ -76,6 +75,7 @@ import {
 import Base from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import _ from "lodash";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { ProgressCircle },
@@ -99,10 +99,6 @@ export default class A6 extends Base {
    */
   yearRate: number | "--" = "--";
   /**
-   * 入参：年份
-   */
-  year = dayjs().year();
-  /**
    * 全年利润攻坚贡献值
    */
   currentYear: number | string = "--";
@@ -112,7 +108,9 @@ export default class A6 extends Base {
   wholeCycle: number | string = "--";
 
   async mounted() {
-    const response = await fetchExpansionAwardInfo({ year: this.year });
+    const response = await useStore(fetchExpansionAwardInfo, {
+      key: StoreKey.HomeExpansionAwardInfo,
+    });
     if (response?.status === "ok") {
       this.resData = response.data;
 

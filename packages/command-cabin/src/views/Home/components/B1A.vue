@@ -18,10 +18,11 @@ import echarts from "@/plugins/echarts";
 import {
   fetchProjectOpen,
   ProjectOpenReturn,
-} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen/";
+} from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
 import dayjs from "dayjs";
 import { iwant, Nullable } from "@guanyu/shared";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
@@ -70,9 +71,12 @@ export default class B1A extends Base {
   }
 
   async mounted() {
-    const response = await fetchProjectOpen({
-      regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchProjectOpen, {
+      key: StoreKey.HomeProjectOpen,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;

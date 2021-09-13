@@ -36,7 +36,7 @@ import AppHeader from "@/components/Header/Index.vue";
   },
 })
 export default class App extends Mixins(MixStore) {
-  resize = false;
+  resize = !!sessionStorage.getItem("resize");
 
   showShadow = false;
 
@@ -71,6 +71,11 @@ export default class App extends Mixins(MixStore) {
       }
       document.body.style.setProperty("width", "100vw");
       document.body.style.setProperty("height", "100vh");
+    }
+    if (this.resize) {
+      sessionStorage.setItem("resize", "resize");
+    } else {
+      sessionStorage.removeItem("resize");
     }
   }
 

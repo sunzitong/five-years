@@ -44,6 +44,7 @@ import {
   Group,
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation/groupInfo";
 import BlurBox from "@/components/BlurBox/Index.vue";
+import { StoreKey, useStore } from "@/store";
 
 type Item = Group & { id: string };
 
@@ -54,8 +55,9 @@ export default class A4 extends Base {
   telId = "";
   list: Item[] = [];
   async created() {
-    const response = await fetchGroupInfo({
-      phId: this.store.global.project.phId,
+    const response = await useStore(fetchGroupInfo, {
+      key: StoreKey.ProjectGroupInfo,
+      params: { phId: this.store.global.project.phId },
     });
     if (response?.status === "ok") {
       this.list = iwant
