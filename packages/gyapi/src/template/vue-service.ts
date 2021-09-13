@@ -10,8 +10,8 @@ export const tools = { ...baseTools };
  */
 export default `
 /**
- * 本文件自动生成 勿手动更改
- * 如需修改可以在同目录下进行扩展
+ * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
+ * 接口文档: http://docs.gyapt.cn/project/{{=it.api.project_id}}/interface/api/{{=it.api._id}}
  */
 
 import http from "@/service/http";

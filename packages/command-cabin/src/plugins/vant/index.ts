@@ -11,6 +11,8 @@ import {
   Circle,
   Radio,
   RadioGroup,
+  Checkbox,
+  CheckboxGroup,
 } from "vant";
 import Vue from "vue";
 
@@ -28,3 +30,5 @@ Vue.use(Popover);
 Vue.use(Circle);
 Vue.use(Radio);
 Vue.use(RadioGroup);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);

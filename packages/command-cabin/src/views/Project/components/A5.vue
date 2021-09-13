@@ -55,7 +55,7 @@ export default class A4 extends Base {
   list: Item[] = [];
   async created() {
     const response = await fetchGroupInfo({
-      phId: "L-CD00-CDCDL00.01",
+      phId: this.store.global.project.phId,
     });
     if (response?.status === "ok") {
       this.list = iwant

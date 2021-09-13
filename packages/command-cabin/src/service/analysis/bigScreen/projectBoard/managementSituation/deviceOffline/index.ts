@@ -1,6 +1,6 @@
 /**
- * 本文件自动生成 勿手动更改
- * 如需修改可以在同目录下进行扩展
+ * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
+ * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113624
  */
 
 import http from "@/service/http";

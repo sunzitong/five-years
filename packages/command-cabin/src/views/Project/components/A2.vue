@@ -51,7 +51,9 @@ import { Component } from "vue-property-decorator";
 export default class A2 extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
   async created() {
-    const response = await fetchProjectBaseInfo({ phId: "L-CD00-CDCDL00.01" });
+    const response = await fetchProjectBaseInfo({
+      phId: this.store.global.project.phId,
+    });
     if (response?.status === "ok") {
       this.response = response.data;
     }
