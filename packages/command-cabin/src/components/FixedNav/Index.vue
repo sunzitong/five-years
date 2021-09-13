@@ -48,6 +48,7 @@
           </linearGradient>
         </defs>
       </svg>
+      <div @click="toggleNav" class="app-fixed-nav__close"></div>
       <div class="app-fixed-nav__content">
         <Btn
           @click="toPage(item)"
@@ -237,8 +238,20 @@ export default class FixedNav extends Vue {
     margin: 22px 0;
   }
 
+  &__close {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    margin-top: -40px;
+    cursor: pointer;
+  }
+
   &__left {
     left: -555px;
+    .app-fixed-nav__close {
+      right: 0;
+    }
     .app-fixed-nav__btn {
       left: 100%;
     }
@@ -260,6 +273,9 @@ export default class FixedNav extends Vue {
 
   &__right {
     right: -555px;
+    .app-fixed-nav__close {
+      left: 0;
+    }
     .app-fixed-nav__btn {
       right: 100%;
     }

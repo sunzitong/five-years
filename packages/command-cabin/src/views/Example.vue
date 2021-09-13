@@ -113,6 +113,9 @@
         <Card title="Webrtc">
           <Webrtc />
         </Card>
+        <Card title="Spin">
+          <Spin />
+        </Card>
         <Card title="Animationend">
           <Animationend key="1" :scrollMinCount="10" :dataSource="dataSource">
             <template v-slot="{ list }">
@@ -313,6 +316,7 @@ import BlurBox from "@/components/BlurBox/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Webrtc from "@/components/Webrtc/Index.vue";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import Spin from "@/components/Spin/Index.vue";
 
 @Component({
   components: {
@@ -330,6 +334,7 @@ import StepNumber from "@/components/StepNumber/Index.vue";
     ButtonGroup,
     Webrtc,
     StepNumber,
+    Spin,
   },
 })
 export default class Example extends Vue {
