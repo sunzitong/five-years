@@ -106,6 +106,7 @@ import {
   fetchProjectList,
   ProjectListItemReturn,
 } from "@/service/analysis/commandCabin/projectList";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { Icon },
@@ -152,12 +153,14 @@ export default class OrgPanel extends Base {
 
   async fetchData() {
     // 获取区域数据
-    const resOrgTree = await fetchOrgTree();
+    const resOrgTree = await useStore(fetchOrgTree, { key: StoreKey.OrgTree });
     if (resOrgTree?.status === "ok") {
       this.resOrgTree = iwant.array(resOrgTree.data);
     }
     // 获取门店数据
-    const resProjectList = await fetchProjectList();
+    const resProjectList = await useStore(fetchProjectList, {
+      key: StoreKey.ProjectList,
+    });
     if (resProjectList?.status === "ok") {
       this.resProjectList = iwant.array(resProjectList.data);
     }
