@@ -2,7 +2,7 @@
   <div class="page__index">
     <div class="main">
       <div class="main-left">
-        <SubWrapper title="拓展盘面">
+        <SubWrapperA title="拓展盘面">
           <van-row gutter="24">
             <van-col>
               <CardA title="项目获取" style="width: 720px; height: 957px">
@@ -53,9 +53,9 @@
               </van-row>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
         <WhiteSpace />
-        <SubWrapper title="营造盘面">
+        <SubWrapperA title="营造盘面">
           <template #extra>
             <a href="javascript:;">详情 →</a>
           </template>
@@ -83,13 +83,13 @@
               </CardA>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
       </div>
       <div class="main-center">
         <C1 />
       </div>
       <div class="main-right">
-        <SubWrapper title="经营现状">
+        <SubWrapperA title="经营现状">
           <van-row gutter="24">
             <van-col>
               <CardA
@@ -139,9 +139,9 @@
               </CardA>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
         <WhiteSpace />
-        <SubWrapper title="经营现状">
+        <SubWrapperA title="经营现状">
           <van-row gutter="24">
             <van-col>
               <CardA style="width: 905px; height: 702px"></CardA>
@@ -150,7 +150,7 @@
               <CardA style="width: 1400px; height: 702px"></CardA>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
       </div>
     </div>
     <div class="footer">
@@ -245,7 +245,7 @@
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
 import CardA from "@/components/CardA/Index.vue";
-import SubWrapper from "@/components/SubWrapper/Index.vue";
+import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
@@ -274,7 +274,7 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
 @Component({
   components: {
     FooterBackground,
-    SubWrapper,
+    SubWrapperA,
     CardA,
     WhiteSpace,
     A1,
