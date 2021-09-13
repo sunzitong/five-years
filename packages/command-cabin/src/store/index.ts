@@ -70,6 +70,10 @@ export enum StoreKey {
    * 指挥中心-经营现状-舆情风险
    */
   HomeSentiment = "HomeSentiment",
+  /**
+   * 营造盘面详情
+   */
+  ConstructList = "ConstructList",
 }
 /**
  * 方法重载

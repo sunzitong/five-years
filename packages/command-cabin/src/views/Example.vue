@@ -22,6 +22,7 @@
           :opacity="0.6"
         />
         <CardA title="营造盘面" />
+        <SubWrapperA title="拓展盘面" />
       </van-col>
       <van-col :span="8">
         <Card title="Icon">
@@ -319,6 +320,7 @@ import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Webrtc from "@/components/Webrtc/Index.vue";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import Spin from "@/components/Spin/Index.vue";
+import SubWrapperA from "@/components/SubWrapperA/Index.vue"
 
 @Component({
   components: {
@@ -338,6 +340,7 @@ import Spin from "@/components/Spin/Index.vue";
     StepNumber,
     Spin,
     CardA,
+    SubWrapperA,
   },
 })
 export default class Example extends Vue {
