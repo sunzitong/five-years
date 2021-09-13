@@ -177,7 +177,11 @@
           </van-checkbox-group>
         </ButtonGroup>
       </div>
-      <OrgPanel :show.sync="showOrgPanel" type="project" />
+      <OrgPanel
+        :show="showOrgPanel"
+        @update:show="centerChange('project')"
+        type="project"
+      />
     </div>
   </div>
 </template>
