@@ -3,41 +3,29 @@
     <div class="main">
       <div class="main-left">
         <SubWrapperA style="width: 2694px; height: 1203px" title="拓展盘面">
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
-              <CardA title="项目获取" style="width: 720px; height: 957px">
+              <CardA title="项目获取" style="width: 866px; height: 1046px">
                 <A1 />
               </CardA>
             </van-col>
             <van-col>
-              <CardA
-                title="商机储备"
-                size="small"
-                style="width: 735px; height: 514px"
-              >
+              <CardA title="商机储备" style="width: 866px; height: 425px">
                 <A2 />
               </CardA>
               <WhiteSpace />
-              <CardA
-                title="商机转化"
-                size="small"
-                style="width: 735px; height: 419px"
-              >
+              <CardA title="商机转化" style="width: 866px; height: 574px">
                 <A3 />
               </CardA>
             </van-col>
             <van-col>
-              <CardA title="战略合作" style="width: 817px; height: 494px">
+              <CardA title="战略合作" style="width: 870px; height: 452px">
                 <A4 />
               </CardA>
               <WhiteSpace />
-              <van-row gutter="24">
+              <van-row gutter="20">
                 <van-col>
-                  <CardA
-                    title="中央奖补"
-                    size="small"
-                    style="width: 394px; height: 438px"
-                  >
+                  <CardA title="中央奖补" style="width: 425px; height: 574px">
                     <A5 />
                   </CardA>
                 </van-col>
@@ -45,7 +33,7 @@
                   <CardA
                     title="投后攻坚"
                     size="small"
-                    style="width: 399px; height: 438px"
+                    style="width: 425px; height: 574px"
                   >
                     <A6 />
                   </CardA>
@@ -59,26 +47,26 @@
           <template #extra>
             <a href="javascript:;">详情 →</a>
           </template>
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
-              <CardA title="项目开业" style="width: 1605px; height: 634px">
+              <CardA title="项目开业" style="width: 1720px; height: 813px">
                 <B1 />
               </CardA>
               <WhiteSpace />
-              <CardA title="开业延期" style="width: 1605px; height: 792px">
+              <CardA title="开业延期" style="width: 1720px; height: 750px">
                 <B2 />
               </CardA>
             </van-col>
             <van-col>
-              <CardA title="成本分析" style="width: 691px; height: 634px">
+              <CardA title="成本分析" style="width: 902px; height: 660px">
                 <B3 />
               </CardA>
               <WhiteSpace />
-              <CardA title="产品品质" style="width: 691px; height: 367px">
+              <CardA title="产品品质" style="width: 902px; height: 490px">
                 <B4 />
               </CardA>
               <WhiteSpace />
-              <CardA title="维保报事" style="width: 691px; height: 401px">
+              <CardA title="维保报事" style="width: 902px; height: 394px">
                 <B5 />
               </CardA>
             </van-col>
@@ -90,7 +78,7 @@
       </div>
       <div class="main-right">
         <SubWrapperA title="经营现状">
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
               <CardA
                 title="全业态收入及完成度"
@@ -108,14 +96,14 @@
             </van-col>
           </van-row>
           <WhiteSpace />
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
               <CardA title="经营性支出" style="width: 1566px; height: 666px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <E2 />
               </CardA>
               <WhiteSpace />
-              <van-row gutter="24">
+              <van-row gutter="20">
                 <van-col>
                   <CardA title="客户洞察" style="width: 905px; height: 396px">
                     <template #data-cycle>{{ dataCycle }}</template>
@@ -142,7 +130,7 @@
         </SubWrapperA>
         <WhiteSpace />
         <SubWrapperA title="经营现状">
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
               <CardA style="width: 905px; height: 702px"></CardA>
             </van-col>
@@ -351,16 +339,9 @@ export default class Home extends Base {
     display: flex;
     margin: 0 60px;
   }
-  .main-left {
-    max-width: 2400px;
-    min-width: 2400px;
-  }
+
   .main-center {
     flex: 1;
-  }
-  .main-right {
-    max-width: 2400px;
-    min-width: 2400px;
   }
 
   .main-left-row {

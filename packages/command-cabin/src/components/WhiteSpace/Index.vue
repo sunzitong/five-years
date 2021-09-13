@@ -9,7 +9,7 @@ export default class WhiteSpace extends Vue {
   /**
    * 上下留白xs,sm,md,lg,xl
    */
-  @Prop({ default: "lg" }) size!: "sm" | "md" | "lg" | "xs" | "xl" | number;
+  @Prop({ default: "md" }) size!: "sm" | "md" | "lg" | "xs" | "xl" | number;
 
   /**
    * 动态设置className
