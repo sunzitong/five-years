@@ -206,7 +206,7 @@ export default class SubWrapperA extends Vue {
     /**
      * 设置宽高
      */
-    const wrapper = window.getComputedStyle(this.header);
+    const wrapper = window.getComputedStyle(this.wrapper);
     this.width = Math.max(parseInt(wrapper.width), 1760);
     this.height = Math.max(parseInt(wrapper.height), 150);
   }
@@ -280,11 +280,12 @@ export default class SubWrapperA extends Vue {
 
   &__body {
     overflow: hidden;
-    background: linear-gradient(
-      180deg,
-      rgba(1, 22, 86, 0.5) 0%,
-      rgba(1, 22, 86, 0.61) 100%
-    );
+    padding: 130px 26px 26px 26px;
+    // background: linear-gradient(
+    //   180deg,
+    //   rgba(1, 22, 86, 0.5) 0%,
+    //   rgba(1, 22, 86, 0.61) 100%
+    // );
   }
 }
 </style>
