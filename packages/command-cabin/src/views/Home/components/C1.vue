@@ -112,7 +112,7 @@ export default class C1 extends Base {
     /** 年累计收 */
     incomeNum: 0,
     /** 品牌指数 */
-    brandPointNum: 1,
+    brandPointNum: 0,
     /** 累计服务用户数 */
     servedPersonNum: 0,
     /** 累计租户 */
