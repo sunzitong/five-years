@@ -76,6 +76,7 @@ import {
 import Base from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import _ from "lodash";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { ProgressCircle },
@@ -112,7 +113,10 @@ export default class A6 extends Base {
   wholeCycle: number | string = "--";
 
   async mounted() {
-    const response = await fetchExpansionAwardInfo({ year: this.year });
+    const response = await useStore(fetchExpansionAwardInfo, {
+      key: StoreKey.HomeExpansionAwardInfo,
+      params: { year: this.year },
+    });
     if (response?.status === "ok") {
       this.resData = response.data;
 

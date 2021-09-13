@@ -38,6 +38,7 @@ import {
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { iwant, NumberLike } from "@guanyu/shared";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
@@ -65,9 +66,12 @@ export default class B4 extends Base {
   values: NumberLike[] = [0, 0, 0];
 
   async created() {
-    const response = await fetchProductQuality({
-      regionType: this.store.global.dataLevel,
-      regionId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchProductQuality, {
+      key: StoreKey.HomeProductQuality,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;

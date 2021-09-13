@@ -92,6 +92,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/center/numYearly";
 import Base from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
@@ -120,7 +121,9 @@ export default class C1 extends Base {
   };
 
   async created() {
-    const response = await fetchNumYearly();
+    const response = await useStore(fetchNumYearly, {
+      key: StoreKey.HomeNumYearly,
+    });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }

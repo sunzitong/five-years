@@ -38,6 +38,7 @@ import {
   ExpansionAwardInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { ProgressCircle },
@@ -54,7 +55,10 @@ export default class A5 extends Base {
   year = dayjs().year();
 
   async mounted() {
-    const response = await fetchExpansionAwardInfo({ year: this.year });
+    const response = await useStore(fetchExpansionAwardInfo, {
+      key: StoreKey.HomeExpansionAwardInfo,
+      params: { year: this.year },
+    });
     if (response?.status === "ok") {
       this.resData = response.data;
     }

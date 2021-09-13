@@ -6,6 +6,9 @@ export default store;
 
 export const env = store.env;
 
+/**
+ * service data keys
+ */
 export enum StoreKey {
   /**
    * 地区筛选（国家-大区-城市）
@@ -35,6 +38,38 @@ export enum StoreKey {
    * 门店屏幕-经营现状-舆情风险
    */
   ProjectSentiment = "ProjectSentiment",
+  /**
+   * 中央奖补、投后攻坚模块
+   */
+  HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
+  /**
+   * 营造盘面-项目开业
+   */
+  HomeProjectOpen = "HomeProjectOpen",
+  /**
+   * 营造盘面-开业延期
+   */
+  HomeProjectDelayInfo = "HomeProjectDelayInfo",
+  /**
+   * 营造盘面-产品品质
+   */
+  HomeProductQuality = "HomeProductQuality",
+  /**
+   * 营造盘面-维保报事
+   */
+  HomeRepairStat = "HomeRepairStat",
+  /**
+   * 指挥中心-头部数据-年累计块
+   */
+  HomeNumYearly = "HomeNumYearly",
+  /**
+   * 经营现状-设备离线率
+   */
+  HomeDeviceOffline = "HomeDeviceOffline",
+  /**
+   * 指挥中心-经营现状-舆情风险
+   */
+  HomeSentiment = "HomeSentiment",
 }
 /**
  * 方法重载
