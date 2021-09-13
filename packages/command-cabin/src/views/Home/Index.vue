@@ -196,21 +196,31 @@
             </van-radio-group>
           </ButtonGroup>
           <ButtonGroup>
-            <van-radio-group
-              v-model="scopeValue"
-              @change="scopeChange"
-              direction="horizontal"
-            >
-              <van-radio :name="DateScopes.YEARLY">年累计</van-radio>
-              <van-radio :name="DateScopes.MONTHLY">月累计</van-radio>
-              <van-radio name="orgTree">
+            <van-checkbox-group :value="scopeValue" direction="horizontal">
+              <van-checkbox
+                :name="DateScopes.YEARLY"
+                @click="scopeChange(DateScopes.YEARLY)"
+              >
+                年累计
+              </van-checkbox>
+              <van-checkbox
+                :name="DateScopes.MONTHLY"
+                @click="scopeChange(DateScopes.MONTHLY)"
+              >
+                月累计
+              </van-checkbox>
+              <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
                 {{ store.global.orgTree.orgName }}
-                <van-icon name="arrow-up" />
-              </van-radio>
-            </van-radio-group>
+                <van-icon :name="showOrgPanel ? 'arrow-down' : 'arrow-up'" />
+              </van-checkbox>
+            </van-checkbox-group>
           </ButtonGroup>
           <!-- 区域选择 -->
-          <OrgPanel type="orgTree" :show.sync="showOrgPanel" />
+          <OrgPanel
+            type="orgTree"
+            :show="showOrgPanel"
+            @update:show="scopeChange('orgTree')"
+          />
         </div>
         <div class="right">
           <ButtonGroup>
@@ -305,19 +315,24 @@ export default class Home extends Base {
   /**
    * 范围选择
    */
-  scopeValue: null | string = null;
+  scopeValue: string[] = [];
   scopeChange(value: any) {
     if ([DateScopes.YEARLY, DateScopes.MONTHLY].includes(value)) {
       this.store.global.dateScope = value;
       this.showOrgPanel = false;
-      this.scopeValue = value;
+      this.scopeValue = [value];
     } else {
-      this.showOrgPanel = true;
+      if (this.showOrgPanel) {
+        this.scopeValue = this.scopeValue.filter((a) => a !== value);
+      } else {
+        this.scopeValue.push(value);
+      }
+      this.showOrgPanel = !this.showOrgPanel;
     }
   }
 
   created() {
-    this.scopeValue = this.store.global.dateScope;
+    this.scopeValue = [this.store.global.dateScope];
   }
 }
 </script>
