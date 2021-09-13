@@ -1,7 +1,7 @@
 <template>
   <div class="app-card-decorate" :class="cls">
     <div class="app-card-decorate__header" v-if="showHeader">
-      <CardDecorateTitle :size="size" />
+      <CardTitle :size="size" />
     </div>
     <div ref="wrapper" class="app-card-decorate__body">
       <svg
@@ -99,14 +99,12 @@
 import { Component, Vue, Ref, Prop } from "vue-property-decorator";
 import { ResizeObserver } from "resize-observer";
 import { uuid } from "@guanyu/shared";
-import CardDecorateTitle, {
-  SizeProps,
-} from "@/components/CardDecorate/Title.vue";
+import CardTitle, { SizeProps } from "@/components/Card/CardTitle.vue";
 
 @Component({
   name: "CardDecorate",
   components: {
-    CardDecorateTitle,
+    CardTitle,
   },
 })
 export default class CardDecorate extends Vue {

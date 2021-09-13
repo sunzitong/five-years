@@ -1,22 +1,15 @@
 <template>
-  <div ref="card" class="app-card" :class="includeFooterCls">
-    <CardBackground
-      key="CardBackground"
-      :size="size"
-      :type="cardType"
-      :showFooter="showFooter"
-      :fillOpacity="opacity"
-      :showRectBackground="showRectBackground"
-    />
-    <div class="app-card__head" v-if="!!title">
+  <div ref="card" class="app-card-a">
+    <CardABackground :showHeader="!!title" />
+    <div class="app-card-a__head" v-if="!!title">
       <slot name="title" v-bind="title">
-        <h3 class="app-card__title">
+        <h3 class="app-card-a__title">
           {{ title }}
         </h3>
       </slot>
     </div>
-    <div class="app-card__body">
-      <div class="app-card__content">
+    <div class="app-card-a__body">
+      <div class="app-card-a__content">
         <slot>
           <p style="text-align: center; padding-top: 50px; opacity: 0.2">
             本期暂无数据
@@ -24,30 +17,31 @@
         </slot>
       </div>
     </div>
-    <div class="app-card__debug" v-if="debug">
-      <!-- <p>{{ W }} x {{ H }}</p> -->
+    <div class="app-card-a__debug" v-if="debug">
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
       <p v-if="$children[1]" style="font-size: 3em">
         {{ $children[1].$options.name }}
       </p>
     </div>
-    <div class="app-card__datacycle">
+    <div class="app-card-a__datacycle">
       <span class="mark">
         <slot name="data-cycle"></slot>
       </span>
     </div>
-    <div class="app-card__footer" v-if="showFooter">
-      <slot name="footer"></slot>
+    <div class="app-card-a__extra">
+      <slot name="extra"></slot>
+      <div v-if="!!dataSourceInner">
+        <DataSource>
+          {{ dataSourceInner }}
+        </DataSource>
+      </div>
     </div>
-    <DataSource v-if="dataSourceInner" :position="dataSourcePosition">
-      {{ dataSourceInner }}
-    </DataSource>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
-import CardBackground from "@/components/Card/CardBackground.vue";
+import CardABackground from "./CardABackground.vue";
 import Icon from "@/components/Icon/Index.vue";
 import DataSource from "@/components/DataSource/Index.vue";
 
@@ -63,14 +57,14 @@ export type SourceType = {
 };
 
 @Component({
-  name: "Card",
+  name: "CardA",
   components: {
-    CardBackground,
+    CardABackground,
     Icon,
     DataSource,
   },
 })
-export default class Card extends Vue {
+export default class CardA extends Vue {
   @Ref() card!: HTMLDivElement;
   /**
    * 标题
@@ -102,11 +96,6 @@ export default class Card extends Vue {
    */
   @Prop({ default: "" }) dataSource!: string;
 
-  /**
-   * 数据来源位置
-   */
-  @Prop({ default: "left bottom" }) dataSourcePosition!: "left bottom";
-
   W = 0;
   H = 0;
 
@@ -116,25 +105,6 @@ export default class Card extends Vue {
    * 子组件传过来的数据来源
    */
   dataSourceFromChildren = "";
-
-  /**
-   * 是否包含footer
-   */
-  get includeFooterCls() {
-    return {
-      "app-card__footer--visible": this.showFooter,
-    };
-  }
-
-  /**
-   * 卡片类型
-   */
-  get cardType() {
-    if (!this.title) {
-      return "box-rect";
-    }
-    return "box";
-  }
 
   /**
    * 设置数据来源
@@ -170,25 +140,47 @@ export default class Card extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.app-card {
+$title-color: #5180e4;
+
+.app-card-a {
   position: relative;
-  min-width: 340px;
   &__head {
     position: relative;
     z-index: 10;
     display: flex;
-    height: 70px;
+    height: 92px;
     margin: 0 auto;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      bottom: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(83, 214, 255, 0.05) 0%,
+        rgba(81, 128, 228, 0.5) 49.92%,
+        rgba(83, 214, 255, 0.05) 100%
+      );
+    }
   }
   &__title {
-    margin: 5px auto auto;
-    font-size: 36px;
-    color: #fff;
+    padding: 0 52px;
+    line-height: 92px;
+    font-size: 40px;
+    color: $title-color;
+    text-align: center;
+    background: linear-gradient(
+      180deg,
+      rgba(83, 214, 255, 0) 0%,
+      rgba(81, 128, 228, 0.1) 100%
+    );
+    border-bottom: 2px solid $title-color;
   }
 
   &__body {
     position: relative;
-    padding: 24px 0;
     z-index: 10;
   }
 
@@ -197,25 +189,12 @@ export default class Card extends Vue {
     color: #fff;
   }
 
-  &__footer {
-    height: 60px;
+  &__extra {
     position: absolute;
+    top: 34px;
     right: 20px;
-    bottom: 0;
-    width: 210px;
-    text-align: center;
-    overflow: hidden;
-    line-height: 60px;
-    color: #fff;
-    a {
-      color: #fff;
-    }
-  }
-
-  &__footer--visible {
-    .app-card__body {
-      padding-bottom: 80px;
-    }
+    z-index: 11;
+    display: flex;
   }
 
   &__datacycle {
