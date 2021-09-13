@@ -104,7 +104,9 @@ export default class C5 extends Base {
    * 组件创建
    */
   async created() {
-    const response = await fetchBusinessScore({ phId: "L-CD00-CDCDL00.01" });
+    const response = await fetchBusinessScore({
+      phId: this.store.global.project.phId,
+    });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }

@@ -65,6 +65,7 @@ export const inferJsonType = async (
   const { lines } = await quicktype({
     inputData,
     lang: tsLang,
+    // inferEnums: false,
     rendererOptions: {
       "just-types": "on",
     },

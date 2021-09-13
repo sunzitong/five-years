@@ -71,14 +71,17 @@ import {
   ProjectBaseInfoReturn,
   fetchProjectBaseInfo,
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo";
+import { iwant } from "@guanyu/shared";
 
 @Component
 export default class A1 extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
   async created() {
-    const response = await fetchProjectBaseInfo({ phId: "L-CD00-CDCDL00.01" });
+    const response = await fetchProjectBaseInfo({
+      phId: this.store.global.project.phId,
+    });
     if (response?.status === "ok") {
-      this.response = response.data;
+      this.response = iwant.object(response.data);
     }
   }
 }

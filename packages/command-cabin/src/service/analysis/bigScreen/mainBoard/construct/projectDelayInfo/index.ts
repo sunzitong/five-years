@@ -1,6 +1,6 @@
 /**
- * 本文件自动生成 勿手动更改
- * 如需修改可以在同目录下进行扩展
+ * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
+ * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113942
  */
 
 import http from "@/service/http";
@@ -38,18 +38,12 @@ export interface ProjectDelayInfoReturn {
 export interface DelayModelList {
   id: number;
   planOpenDate: null | string;
-  cityName: CityName;
+  cityName: string;
   projectName: string;
   transactionModel: TransactionModel;
   roomNum: number;
   riskType: RiskType;
   chokePoint: null | string;
-}
-
-export enum CityName {
-  Bj = "bj",
-  厦门 = "厦门",
-  成都 = "成都",
 }
 
 export enum RiskType {
@@ -66,7 +60,7 @@ export enum TransactionModel {
 /**
  * 营造盘面-开业延期
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:40:39
+ * @updateAt 2021/9/13 上午10:31:31
  * @method GET
  */
 export const fetchProjectDelayInfo = (params: ProjectDelayInfoParams) => {
