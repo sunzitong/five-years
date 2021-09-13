@@ -23,7 +23,7 @@
             <div class="title">品牌指数</div>
             <div class="num" style="color: #ee7647">
               NO.
-              <StepNumber :to="response.brandPointNum" />
+              {{ formatValue(response.brandPointNum) }}
             </div>
           </van-col>
         </van-row>
