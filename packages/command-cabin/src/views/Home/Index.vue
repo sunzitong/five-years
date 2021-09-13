@@ -203,13 +203,14 @@
             >
               <van-radio :name="DateScopes.YEARLY">年累计</van-radio>
               <van-radio :name="DateScopes.MONTHLY">月累计</van-radio>
-              <van-radio name="guanyu">
-                东北大区
+              <van-radio name="orgTree">
+                {{ store.global.orgTree.orgName }}
                 <van-icon name="arrow-up" />
               </van-radio>
             </van-radio-group>
           </ButtonGroup>
-          <OrgPanel />
+          <!-- 区域选择 -->
+          <OrgPanel type="orgTree" :show.sync="showOrgPanel" />
         </div>
         <div class="right">
           <ButtonGroup>
@@ -297,7 +298,10 @@ export default class Home extends Base {
    * 时间范围枚举
    */
   DateScopes = DateScopes;
-
+  /**
+   * 显示隐藏区域选择
+   */
+  showOrgPanel = false;
   /**
    * 范围选择
    */
@@ -305,9 +309,10 @@ export default class Home extends Base {
   scopeChange(value: any) {
     if ([DateScopes.YEARLY, DateScopes.MONTHLY].includes(value)) {
       this.store.global.dateScope = value;
+      this.showOrgPanel = false;
       this.scopeValue = value;
     } else {
-      console.log(value);
+      this.showOrgPanel = true;
     }
   }
 
