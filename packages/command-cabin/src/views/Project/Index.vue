@@ -163,16 +163,21 @@
     <div class="footer">
       <div class="global-button">
         <ButtonGroup>
-          <van-radio-group value="会议中心" direction="horizontal">
-            <van-radio name="会议中心">会议中心</van-radio>
-            <van-radio name="实时指挥中心">实时指挥中心</van-radio>
-            <van-radio name="门店选择">
+          <van-checkbox-group :value="centerType" direction="horizontal">
+            <van-checkbox name="meeting" @click="centerChange('meeting')">
+              会议中心
+            </van-checkbox>
+            <van-checkbox name="command" @click="centerChange('command')">
+              实时指挥中心
+            </van-checkbox>
+            <van-checkbox name="project" @click="centerChange('project')">
               门店选择
-              <van-icon name="arrow-up" />
-            </van-radio>
-          </van-radio-group>
+              <van-icon :name="showOrgPanel ? 'arrow-down' : 'arrow-up'" />
+            </van-checkbox>
+          </van-checkbox-group>
         </ButtonGroup>
       </div>
+      <OrgPanel :show.sync="showOrgPanel" type="project" />
     </div>
   </div>
 </template>
@@ -196,6 +201,8 @@ import D7 from "./components/D7.vue";
 import D8 from "./components/D8.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
+import OrgPanel from "@/views/components/OrgPanel.vue";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 
 @Component({
   components: {
@@ -215,13 +222,39 @@ import Icon from "@/components/Icon/Index.vue";
     D8,
     ButtonGroup,
     Icon,
+    OrgPanel,
   },
 })
 export default class Index extends Base {
   /**
    * 数据周期
    */
-  dataCycle = "月";
+  get dataCycle() {
+    if (this.store.global.dateScope === DateScopes.MONTHLY) {
+      return "月";
+    }
+    return null;
+  }
+  showOrgPanel = false;
+  /**
+   * 会议中心 实时指挥中心
+   */
+  centerType = ["meeting"];
+  /**
+   * 切换
+   */
+  centerChange(type: string) {
+    if (["meeting", "command"].includes(type)) {
+      this.centerType = [type];
+    } else {
+      if (!this.showOrgPanel) {
+        this.centerType.push(type);
+      } else {
+        this.centerType = this.centerType.filter((a) => a !== type);
+      }
+      this.showOrgPanel = !this.showOrgPanel;
+    }
+  }
 }
 </script>
 
@@ -271,5 +304,9 @@ export default class Index extends Base {
     bottom: 0;
     margin: auto;
   }
+}
+.org-panel {
+  right: 2525px;
+  bottom: 160px;
 }
 </style>

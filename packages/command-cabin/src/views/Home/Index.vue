@@ -302,7 +302,12 @@ export default class Home extends Base {
   /**
    * 数据周期
    */
-  dataCycle = "月";
+  get dataCycle() {
+    if (this.store.global.dateScope === DateScopes.MONTHLY) {
+      return "月";
+    }
+    return null;
+  }
 
   /**
    * 时间范围枚举
@@ -399,5 +404,9 @@ export default class Home extends Base {
     width: 32%;
     justify-content: flex-end;
   }
+}
+.org-panel {
+  bottom: 120%;
+  right: 20px;
 }
 </style>

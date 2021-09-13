@@ -193,8 +193,9 @@ export default class OrgPanel extends Base {
 <style lang="scss" scoped>
 .org-panel {
   position: absolute;
-  bottom: 120%;
-  right: 20px;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
   min-width: 1040px;
   /* min-height: 400px; */
   box-sizing: border-box;
