@@ -2,7 +2,7 @@
   <div class="page__index">
     <div class="main">
       <div class="main-left">
-        <SubWrapperA title="拓展盘面">
+        <SubWrapperA style="width: 2694px; height: 1203px" title="拓展盘面">
           <van-row gutter="24">
             <van-col>
               <CardA title="项目获取" style="width: 720px; height: 957px">
@@ -55,7 +55,7 @@
           </van-row>
         </SubWrapperA>
         <WhiteSpace />
-        <SubWrapperA title="营造盘面">
+        <SubWrapperA style="width: 2694px; height: 1741px" title="营造盘面">
           <template #extra>
             <a href="javascript:;">详情 →</a>
           </template>

@@ -108,7 +108,7 @@ export default class App extends Mixins(MixStore) {
   height: 3240px;
   transform-origin: 0 0;
   overflow: hidden;
-  background: #00023c;
+  background: #09080c;
   font-family: "PingFang SC";
 }
 /* 数字字体文件 */
@@ -123,7 +123,7 @@ export default class App extends Mixins(MixStore) {
   z-index: 999;
   transform-origin: 100% 0;
   color: #fff;
-  background: #0f3f7d;
+  background: #09080c;
   box-shadow: #fff -2px 2px 10px 0px;
   font-size: 16px;
 }
