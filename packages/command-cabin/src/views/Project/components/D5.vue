@@ -34,6 +34,7 @@ import Icon from "@/components/Icon/Index.vue";
 import Base from "@/views/Base";
 import { fetchDeviceOffline } from "@/service/analysis/bigScreen/projectBoard/managementSituation/deviceOffline";
 import { iwant } from "@guanyu/shared";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { Icon },
@@ -51,8 +52,11 @@ export default class D5 extends Base {
   }[] = [];
 
   async created() {
-    const response = await fetchDeviceOffline({
-      orgId: this.store.global.orgTree.orgId,
+    const response = await useStore(fetchDeviceOffline, {
+      key: StoreKey.ProjectDeviceOffline,
+      params: {
+        orgId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       const data = iwant.object(response.data);
