@@ -68,7 +68,6 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
-import dayjs from "dayjs";
 import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
