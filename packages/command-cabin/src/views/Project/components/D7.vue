@@ -24,6 +24,7 @@ import {
   SentimentReturn,
 } from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
 import Base from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
@@ -41,9 +42,12 @@ export default class D7 extends Base {
   };
 
   async created() {
-    const response = await fetchSentiment({
-      projectId: this.store.global.project.projectId,
-      dateScope: this.store.global.dateScope,
+    const response = await useStore(fetchSentiment, {
+      key: StoreKey.ProjectSentiment,
+      params: {
+        projectId: this.store.global.project.projectId,
+        dateScope: this.store.global.dateScope,
+      },
     });
 
     if (response?.status === "ok") {

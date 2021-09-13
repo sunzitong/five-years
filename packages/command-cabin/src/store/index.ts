@@ -23,6 +23,18 @@ export enum StoreKey {
    * 门店团队信息
    */
   ProjectGroupInfo = "ProjectGroupInfo",
+  /**
+   * 财务相关指标-综合经营指数
+   */
+  ProjectBusinessScore = "ProjectBusinessScore",
+  /**
+   * 经营现状-设备离线率
+   */
+  ProjectDeviceOffline = "ProjectDeviceOffline",
+  /**
+   * 门店屏幕-经营现状-舆情风险
+   */
+  ProjectSentiment = "ProjectSentiment",
 }
 /**
  * 方法重载
