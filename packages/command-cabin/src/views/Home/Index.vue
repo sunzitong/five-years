@@ -74,10 +74,61 @@
         </SubWrapperA>
       </div>
       <div class="main-center">
-        <C1 />
+        <div style="height: 2050px">
+          <C1 />
+        </div>
+        <SubWrapperA style="width: 2113px; height: 680px" title="现场风险监控">
+          现场风险监控
+        </SubWrapperA>
+        <div class="footer">
+          <div class="global-button">
+            <div class="center">
+              <ButtonGroup>
+                <van-radio-group value="main" direction="horizontal">
+                  <van-radio name="main">
+                    <Icon type="map" :size="36" class="button-icon--left" />
+                    总盘面
+                  </van-radio>
+                  <van-radio name="guanyu">
+                    <Icon type="flag" :size="36" class="button-icon--left" />
+                    冠寓大事记
+                  </van-radio>
+                </van-radio-group>
+              </ButtonGroup>
+              <ButtonGroup>
+                <van-checkbox-group :value="scopeValue" direction="horizontal">
+                  <van-checkbox
+                    :name="DateScopes.YEARLY"
+                    @click="scopeChange(DateScopes.YEARLY)"
+                  >
+                    年累计
+                  </van-checkbox>
+                  <van-checkbox
+                    :name="DateScopes.MONTHLY"
+                    @click="scopeChange(DateScopes.MONTHLY)"
+                  >
+                    月累计
+                  </van-checkbox>
+                  <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
+                    {{ store.global.orgTree.orgName }}
+                    <van-icon
+                      :name="showOrgPanel ? 'arrow-down' : 'arrow-up'"
+                    />
+                  </van-checkbox>
+                </van-checkbox-group>
+              </ButtonGroup>
+              <!-- 区域选择 -->
+              <OrgPanel
+                type="orgTree"
+                :show="showOrgPanel"
+                @update:show="scopeChange('orgTree')"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <div class="main-right">
-        <SubWrapperA title="经营现状">
+        <SubWrapperA style="width: 2694px" title="经营现状">
           <van-row gutter="20">
             <van-col>
               <CardA
@@ -139,91 +190,6 @@
             </van-col>
           </van-row>
         </SubWrapperA>
-      </div>
-    </div>
-    <div class="footer">
-      <FooterBackground />
-      <div class="global-button">
-        <div class="left">
-          <ButtonGroup>
-            <van-radio-group value="拓展盘面详情" direction="horizontal">
-              <van-radio name="拓展盘面详情">
-                拓展盘面详情
-                <Icon
-                  type="arrow-right"
-                  :size="36"
-                  class="button-icon--right"
-                />
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-          <ButtonGroup>
-            <van-radio-group value="营造盘面详情" direction="horizontal">
-              <van-radio name="营造盘面详情">
-                营造盘面详情
-                <Icon
-                  type="arrow-right"
-                  :size="36"
-                  class="button-icon--right"
-                />
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-        </div>
-        <div class="center">
-          <ButtonGroup>
-            <van-radio-group value="main" direction="horizontal">
-              <van-radio name="main">
-                <Icon type="map" :size="36" class="button-icon--left" />
-                总盘面
-              </van-radio>
-              <van-radio name="guanyu">
-                <Icon type="flag" :size="36" class="button-icon--left" />
-                冠寓大事记
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-          <ButtonGroup>
-            <van-checkbox-group :value="scopeValue" direction="horizontal">
-              <van-checkbox
-                :name="DateScopes.YEARLY"
-                @click="scopeChange(DateScopes.YEARLY)"
-              >
-                年累计
-              </van-checkbox>
-              <van-checkbox
-                :name="DateScopes.MONTHLY"
-                @click="scopeChange(DateScopes.MONTHLY)"
-              >
-                月累计
-              </van-checkbox>
-              <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
-                {{ store.global.orgTree.orgName }}
-                <van-icon :name="showOrgPanel ? 'arrow-down' : 'arrow-up'" />
-              </van-checkbox>
-            </van-checkbox-group>
-          </ButtonGroup>
-          <!-- 区域选择 -->
-          <OrgPanel
-            type="orgTree"
-            :show="showOrgPanel"
-            @update:show="scopeChange('orgTree')"
-          />
-        </div>
-        <div class="right">
-          <ButtonGroup>
-            <van-radio-group value="经营现状详情" direction="horizontal">
-              <van-radio name="经营现状详情">
-                经营现状详情
-                <Icon
-                  type="arrow-right"
-                  :size="36"
-                  class="button-icon--right"
-                />
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-        </div>
       </div>
     </div>
   </div>
@@ -341,6 +307,7 @@ export default class Home extends Base {
   }
 
   .main-center {
+    padding: 0 30px;
     flex: 1;
   }
 
@@ -373,16 +340,13 @@ export default class Home extends Base {
     position: relative;
   }
   .left {
-    width: 32%;
     justify-content: flex-start;
   }
   .center {
-    width: 36%;
     justify-content: space-between;
     margin: -20px 0 auto;
   }
   .right {
-    width: 32%;
     justify-content: flex-end;
   }
 }
