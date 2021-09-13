@@ -100,10 +100,6 @@ export default class A6 extends Base {
    */
   yearRate: number | "--" = "--";
   /**
-   * 入参：年份
-   */
-  year = dayjs().year();
-  /**
    * 全年利润攻坚贡献值
    */
   currentYear: number | string = "--";
@@ -115,7 +111,6 @@ export default class A6 extends Base {
   async mounted() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
-      params: { year: this.year },
     });
     if (response?.status === "ok") {
       this.resData = response.data;

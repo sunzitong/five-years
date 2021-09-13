@@ -49,15 +49,10 @@ export default class A5 extends Base {
    * /analysis/bigScreen/mainBoard/expandDisk
    */
   resData: Partial<ExpansionAwardInfoReturn> = {};
-  /**
-   * 入参：年份
-   */
-  year = dayjs().year();
 
   async mounted() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
-      params: { year: this.year },
     });
     if (response?.status === "ok") {
       this.resData = response.data;
