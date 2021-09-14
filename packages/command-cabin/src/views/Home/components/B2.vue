@@ -9,13 +9,11 @@
     </div>
     <div class="scroll_table">
       <van-row justify="space-between" type="flex" class="table_row table_head">
-        <van-col :span="4" class="table_col">{{ indexName[0] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[1] }}</van-col>
-        <van-col :span="4" class="table_col">{{ indexName[2] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[3] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[4] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[5] }}</van-col>
-        <van-col :span="4" class="table_col">{{ indexName[6] }}</van-col>
+        <van-col :span="5" class="table_col">预计开业时间</van-col>
+        <van-col :span="5" class="table_col">项目</van-col>
+        <van-col :span="4" class="table_col">资产类型</van-col>
+        <van-col :span="5" class="table_col">房间数</van-col>
+        <van-col :span="5" class="table_col">延期卡点</van-col>
       </van-row>
       <div class="table_body">
         <Animationend :scrollMinCount="4" :height="400" :dataSource="col">
@@ -28,23 +26,21 @@
               type="flex"
               class="table_row"
             >
-              <van-col :span="4" class="table_col">
+              <van-col :span="5" class="table_col">
                 {{ item.planOpenDate }}
               </van-col>
-              <van-col :span="3" class="table_col">{{ item.cityName }}</van-col>
-              <van-col :span="4" class="table_col">
+              <van-col :span="5" class="table_col">
                 <div class="van-multi-ellipsis--l2">
                   {{ item.projectName }}
                 </div>
               </van-col>
-              <van-col :span="3" class="table_col">
+              <van-col :span="4" class="table_col">
                 {{ item.transactionModel }}
               </van-col>
-              <van-col :span="3" class="table_col">
+              <van-col :span="5" class="table_col">
                 {{ sepNumber(item.roomNum) }}
               </van-col>
-              <van-col :span="3" class="table_col">{{ item.riskType }}</van-col>
-              <van-col :span="4" class="table_col">
+              <van-col :span="5" class="table_col">
                 {{ item.chokePoint }}
               </van-col>
             </van-row>
@@ -63,7 +59,6 @@ import {
   ProjectDelayInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
-import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 
@@ -78,18 +73,6 @@ export default class B2 extends Base {
    * /bigScreen/mainBoard/construct/projectDelayInfo
    */
   resData: Partial<ProjectDelayInfoReturn> = {};
-  year = dayjs().year();
-
-  indexName = [
-    // 表头
-    "预计开业时间",
-    "地区",
-    "项目",
-    "资产类型",
-    "房间数",
-    "延期类型",
-    "项目卡点",
-  ];
 
   /**
    * 表格数据
