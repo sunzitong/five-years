@@ -110,6 +110,7 @@ export default class App extends Mixins(MixStore) {
   overflow: hidden;
   background: #09080c;
   font-family: "PingFang SC";
+  position: relative;
 }
 /* 数字字体文件 */
 .value__letter {
