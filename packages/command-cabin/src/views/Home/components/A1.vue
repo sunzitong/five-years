@@ -50,10 +50,6 @@
         </div>
       </div>
       <!-- 饼图 -->
-      <!-- <div
-        class="right_bottom_text"
-        style="width: 300px; height: 534px; background: #5180e4"
-      ></div> -->
       <div class="right_bottom_text chart" ref="wrapper"></div>
     </div>
   </div>
@@ -153,6 +149,7 @@ export default class A1 extends Base {
         itemHeight: 12,
         itemWidth: 12,
         textStyle: {
+          padding: [0, 0, 0, 18],
           fontFamily: "PingFang SC",
           fontSize: 36,
           lineHeight: 36,
@@ -166,8 +163,6 @@ export default class A1 extends Base {
         {
           // 展示数据
           type: "pie",
-          clockwise: false, //顺时加载
-          emphasis: { scale: false }, //鼠标移入变大
           radius: [121, 108],
           center: ["50%", "37%"],
           label: {
@@ -175,31 +170,9 @@ export default class A1 extends Base {
           },
           itemStyle: {
             borderRadius: 88,
-            label: { show: false },
-            labelLine: { show: false },
-            borderWidth: 13,
           },
-          data: [
-            {
-              name: this.pieData[0].name,
-              value: this.pieData[0].value,
-              itemStyle: {
-                color: "#F7D14A",
-              },
-            },
-            {
-              // 阴影
-              name: this.pieData[1].name,
-              value: this.pieData[1].value,
-              itemStyle: {
-                borderRadius: 88,
-                color: "#5180E4",
-                borderWidth: 0,
-              },
-              tooltip: { show: false },
-              emphasis: { scale: false },
-            },
-          ],
+          color: ["#F7D14A", "#57A6FB"],
+          data: this.pieData,
         },
       ],
     };
@@ -215,7 +188,6 @@ export default class A1 extends Base {
 .page__a1__map {
   display: flex;
   flex-flow: column nowrap;
-  // justify-content: space-between;
 
   font-family: "PingFang SC";
   color: #90a4c3;
@@ -223,7 +195,6 @@ export default class A1 extends Base {
   .top_text {
     display: flex;
     flex-flow: row nowrap;
-    // justify-content: space-between;
     align-items: center;
     margin: 43px 50px 0 50px;
 
