@@ -17,6 +17,8 @@ $img-map: (
   "btn-arrow": "btn-arrow.png",
   "btn-checked": "btn-checked.png",
   "btn-normal": "btn-normal.png",
+  "circle-1": "circle-1.png",
+  "circle-2": "circle-2.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
