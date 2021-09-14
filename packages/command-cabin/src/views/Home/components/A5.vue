@@ -1,25 +1,8 @@
 <template>
   <div class="page__central_award_supplement__map">
     <div class="text_pannel">
-      <!-- 仪表盘组件 -->
-      <ProgressCircle
-        :styleType="1"
-        :rate="50"
-        :size="280"
-        :strokeWidth="100"
-        :strokeSize="185"
-        strokeLinecap="round"
-        color="#F7D14A"
-        primary
-        style="height: 190px; margin-bottom: 16px"
-      >
-        <template v-slot="{ value }">
-          <div class="rate-text">
-            <div class="value">{{ value }}%</div>
-            <div class="desc">预算达成率</div>
-          </div>
-        </template>
-      </ProgressCircle>
+      <!-- 饼图 -->
+      <div class="chart" ref="wrapper"></div>
       <div class="top_text">全年已到账</div>
       <div class="bottom_text">
         <span>{{ sepNumber(resData.yearSubsidiesCollected) }}</span>
@@ -30,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import {
   fetchExpansionAwardInfo,
@@ -38,6 +21,9 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import echarts from "@/plugins/echarts";
+import { EChartsOption } from "echarts";
+import { AnyObject, iwant } from "@guanyu/shared";
 
 @Component({
   components: { ProgressCircle },
@@ -47,7 +33,10 @@ export default class A5 extends Base {
    * 接口返回值
    * /analysis/bigScreen/mainBoard/expandDisk
    */
+  @Ref() wrapper!: HTMLDivElement;
+
   resData: Partial<ExpansionAwardInfoReturn> = {};
+  pieData: AnyObject[] = [];
 
   async mounted() {
     const response = await useStore(fetchExpansionAwardInfo, {
@@ -55,7 +44,83 @@ export default class A5 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
+
+      this.pieData = [
+        // 饼图对象数组
+        {
+          name: "all",
+          value: 100,
+        },
+        {
+          name: "reach",
+          value: this.resData.yearSubsidiesCompletionRate,
+        },
+      ];
+      this.paintChart();
     }
+  }
+
+  paintChart() {
+    const myChart = echarts.init(this.wrapper);
+    // myChart.showLoading();
+    let option: EChartsOption = {
+      title: {
+        //中心数值
+        text:
+          iwant.calc(
+            this.resData.yearSubsidiesCompletionRate as number,
+            1,
+            true
+          ) + "%",
+        left: "center",
+        top: "53%",
+        z: 100,
+        textStyle: {
+          fontFamily: "DIN Alternate",
+          fontWeight: "bold",
+          fontSize: 40,
+          lineHeight: 48,
+          color: "#DBF0FF",
+        },
+      },
+      graphic: {
+        // 中心文字
+        type: "text",
+        left: "center",
+        top: "41%",
+        z: 100,
+        style: {
+          text: "完成率",
+          textAlign: "center",
+          fontFamily: "PingFang SC",
+          fontSize: 24,
+          lineHeight: 24,
+          fill: "#8090AA",
+        },
+      },
+      xAxis: { show: false },
+      yAxis: { show: false },
+      series: [
+        {
+          // 展示数据
+          type: "pie",
+          radius: [81, 74],
+          center: ["50%", "57%"],
+          label: {
+            show: false,
+          },
+          itemStyle: {
+            borderRadius: 88,
+          },
+          color: ["#57A6FB", "#F7D14A"],
+          data: this.pieData,
+        },
+      ],
+    };
+    option && myChart.setOption(option);
+    window.addEventListener("resize", () => {
+      myChart.resize();
+    });
   }
 }
 </script>
@@ -63,11 +128,11 @@ export default class A5 extends Base {
 <style lang="scss" scoped>
 .top_text {
   font-family: "PingFang SC";
-  font-size: 30px;
-  line-height: 26px;
-  color: #ffffff;
+  font-size: 36px;
+  line-height: 36px;
+  color: #90a4c3;
 
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .text_pannel {
@@ -78,29 +143,24 @@ export default class A5 extends Base {
 }
 
 .bottom_text {
-  font-size: 26px;
-  line-height: 26px;
-  color: #01f5f1;
+  font-size: 32px;
+  line-height: 44px;
+  color: #90a4c3;
 
   span {
     font-family: "DIN Alternate";
-    font-size: 40px;
-    line-height: 36px;
+    font-size: 48px;
+    line-height: 48px;
+    color: #dbf0ff;
   }
 }
 
-/* 仪表盘 */
-.rate-text {
-  .value {
-    @extend %value__letter;
-    font-weight: bold;
-    font-size: 38px;
-    line-height: 40px;
-    color: #fff;
-  }
-  .desc {
-    color: #f2b040;
-    font-size: 20px;
-  }
+.chart {
+  width: 240px;
+  height: 240px;
+  @extend %bg-img-circle-1;
+  background-size: 100%;
+
+  margin: 30px auto;
 }
 </style>
