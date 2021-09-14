@@ -6,7 +6,7 @@ import * as baseTools from "../tools";
 export const tools = { ...baseTools };
 
 /**
- * 简单格式的mock
+ * vue模版service层
  */
 export default `
 /**

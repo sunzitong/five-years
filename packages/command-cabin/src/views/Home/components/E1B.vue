@@ -62,7 +62,7 @@ import Icon from "@/components/Icon/Index.vue";
     Icon,
   },
 })
-export default class C2 extends Base {
+export default class E1B extends Base {
   mounted() {
     this.$parent.setCardDataSource({ from: " oms", time: "08-02: 17:00" });
   }

@@ -76,6 +76,7 @@
       <div class="main-center">
         <div style="height: 2050px">
           <C1 />
+          <C2 />
         </div>
         <SubWrapperA style="width: 2113px; height: 680px" title="现场风险监控">
           现场风险监控
@@ -131,10 +132,7 @@
         <SubWrapperA style="width: 2693px; height: 2027px" title="经营现状">
           <van-row gutter="20">
             <van-col>
-              <CardA
-                title="全业态收入及完成度"
-                style="width: 1820px; height: 1100px"
-              >
+              <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
               <WhiteSpace />
@@ -153,12 +151,10 @@
             <van-col>
               <CardA title="经营性支出" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
-                <E2 />
               </CardA>
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
-                <C2 />
               </CardA>
             </van-col>
           </van-row>

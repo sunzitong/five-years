@@ -9,16 +9,14 @@
     </div>
     <div class="scroll_table">
       <van-row justify="space-between" type="flex" class="table_row table_head">
-        <van-col :span="4" class="table_col">{{ indexName[0] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[1] }}</van-col>
-        <van-col :span="4" class="table_col">{{ indexName[2] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[3] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[4] }}</van-col>
-        <van-col :span="3" class="table_col">{{ indexName[5] }}</van-col>
-        <van-col :span="4" class="table_col">{{ indexName[6] }}</van-col>
+        <van-col :span="5" class="table_col">预计开业时间</van-col>
+        <van-col :span="5" class="table_col">项目</van-col>
+        <van-col :span="4" class="table_col">资产类型</van-col>
+        <van-col :span="5" class="table_col">房间数</van-col>
+        <van-col :span="5" class="table_col">延期卡点</van-col>
       </van-row>
       <div class="table_body">
-        <Animationend :scrollMinCount="5" :height="504" :dataSource="col">
+        <Animationend :scrollMinCount="4" :height="400" :dataSource="col">
           <template v-slot="{ list }">
             <van-row
               animated
@@ -28,23 +26,21 @@
               type="flex"
               class="table_row"
             >
-              <van-col :span="4" class="table_col">
+              <van-col :span="5" class="table_col">
                 {{ item.planOpenDate }}
               </van-col>
-              <van-col :span="3" class="table_col">{{ item.cityName }}</van-col>
-              <van-col :span="4" class="table_col">
+              <van-col :span="5" class="table_col">
                 <div class="van-multi-ellipsis--l2">
                   {{ item.projectName }}
                 </div>
               </van-col>
-              <van-col :span="3" class="table_col">
+              <van-col :span="4" class="table_col">
                 {{ item.transactionModel }}
               </van-col>
-              <van-col :span="3" class="table_col">
+              <van-col :span="5" class="table_col">
                 {{ sepNumber(item.roomNum) }}
               </van-col>
-              <van-col :span="3" class="table_col">{{ item.riskType }}</van-col>
-              <van-col :span="4" class="table_col">
+              <van-col :span="5" class="table_col">
                 {{ item.chokePoint }}
               </van-col>
             </van-row>
@@ -63,7 +59,6 @@ import {
   ProjectDelayInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
-import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 
@@ -78,18 +73,6 @@ export default class B2 extends Base {
    * /bigScreen/mainBoard/construct/projectDelayInfo
    */
   resData: Partial<ProjectDelayInfoReturn> = {};
-  year = dayjs().year();
-
-  indexName = [
-    // 表头
-    "预计开业时间",
-    "地区",
-    "项目",
-    "资产类型",
-    "房间数",
-    "延期类型",
-    "项目卡点",
-  ];
 
   /**
    * 表格数据
@@ -132,22 +115,19 @@ export default class B2 extends Base {
 
 <style lang="scss" scoped>
 .page__opening_extension__map {
-  margin-top: 12px;
-  border-radius: 0 0 14px 14px;
-  overflow: hidden;
+  color: #90a4c3;
 }
 .abstract_text {
-  margin: 10px 0 30px 30px;
+  margin: 50px;
   font-family: "PingFang SC";
-  font-size: 30px;
-  line-height: 34px;
+  font-size: 40px;
+  line-height: 40px;
   letter-spacing: 2.5px;
-  color: #ffffff;
 
   span {
     @extend %value__letter;
-    color: #ff2a76;
-    font-size: 40px;
+    color: #ff3980;
+    font-size: 48px;
     line-height: 36px;
   }
 }
@@ -155,12 +135,16 @@ export default class B2 extends Base {
 .scroll_table {
   text-align: center;
   font-family: "PingFang SC";
-  font-size: 26px;
+  font-size: 36px;
   line-height: 40px;
-  color: #ffffff;
+  margin: 0 10px;
 
   .table_head {
-    background: rgba(36, 56, 109, 0.7);
+    color: #fff;
+    font-size: 40px;
+    .table_col {
+      height: 90px;
+    }
   }
 
   .table_col {
@@ -170,17 +154,19 @@ export default class B2 extends Base {
   }
 
   .van-row {
-    border-bottom: 1px solid #3e5290;
-    &:nth-last-child(1) {
-      border: none;
+    &.table_head {
+      background: rgba(14, 23, 60, 1) !important;
+    }
+    &:nth-child(even) {
+      background: rgba(14, 23, 60, 0.8);
+    }
+    &:nth-child(odd) {
+      background: rgba(14, 23, 60, 0.3);
     }
   }
-
-  .van-col {
-    border-right: 1px solid #3e5290;
-    &:nth-last-child(1) {
-      border: none;
-    }
+  .table_body {
+    height: 400px;
+    overflow: hidden;
   }
 }
 </style>

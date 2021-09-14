@@ -36,7 +36,7 @@ export default class Lightning extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#AD6FFF|#7A48EA" }) color!: string | string[];
+  @Prop({ default: "#AD6FFF|#AE95F6" }) color!: string | string[];
 
   /**
    * 图标大小

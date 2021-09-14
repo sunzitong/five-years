@@ -38,7 +38,7 @@ export default class Door extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#F5C151|#ED9A3A" }) color!: string | string[];
+  @Prop({ default: "#EEBC4A|#EEBC4A" }) color!: string | string[];
 
   /**
    * 图标大小

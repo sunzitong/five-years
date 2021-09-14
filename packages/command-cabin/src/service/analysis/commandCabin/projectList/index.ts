@@ -7,7 +7,22 @@ import http from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 所有门店列表-返回值
+ * 门店列表获取-参数
+ */
+export interface ProjectListParams {
+  /**
+   * 城市组织ID
+   */
+  cityOrgId?: number;
+
+  /**
+   * 大区组织ID
+   */
+  areaOrgId?: number;
+}
+
+/**
+ * 门店列表获取-返回值
  */
 export interface ProjectListItemReturn {
   groupOrgId: number;
@@ -31,12 +46,12 @@ export interface ProjectListItemReturn {
 }
 
 /**
- * 所有门店列表
+ * 门店列表获取
  * @createBy baishiqiang
- * @updateAt 2021/9/10 下午3:22:53
+ * @updateAt 2021/9/13 下午4:05:06
  * @method GET
  */
-export const fetchProjectList = (params?: Record<string, unknown>) => {
+export const fetchProjectList = (params?: ProjectListParams) => {
   return http.get<ProjectListItemReturn[]>(
     `${BASE_URL}/analysis/commandCabin/projectList`,
     {
