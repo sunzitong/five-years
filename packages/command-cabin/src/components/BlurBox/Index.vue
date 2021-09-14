@@ -95,7 +95,7 @@ export default class BlurBox extends Vue {
     return `
       M${0} ${t / 2}
       L${t} ${t}
-      ${0} ${t + t / 2} 
+      ${0} ${t + t / 2}
     `;
   }
 
@@ -109,7 +109,7 @@ export default class BlurBox extends Vue {
     const x = 1 + this.trangleSize;
     const y = 1;
     const s = this.trangleSize;
-    const [sx, sy] = this.trangleX;
+    const [, sy] = this.trangleX;
 
     return `
       M${x + r} ${y}
@@ -123,7 +123,7 @@ export default class BlurBox extends Vue {
       L${w} ${h - r}
 
       C${w} ${h - r}
-      ${w} ${h} 
+      ${w} ${h}
       ${w - r} ${h}
 
       L${x + r} ${h}
