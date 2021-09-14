@@ -52,20 +52,7 @@ export default class C1 extends Base {
   /**
    * 返回数据
    */
-  response: NumYearlyReturn = {
-    /** 房间间数 */
-    getRoomNum: 0,
-    /** 累计开业房间间数 */
-    openRoomNum: 0,
-    /** 年累计收 */
-    incomeNum: 0,
-    /** 品牌指数 */
-    brandPointNum: 0,
-    /** 累计服务用户数 */
-    servedPersonNum: 0,
-    /** 累计租户 */
-    tenantNum: 0,
-  };
+  response: Partial<NumYearlyReturn> = {};
 
   async created() {
     const response = await useStore(fetchNumYearly, {
