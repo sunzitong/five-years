@@ -69,6 +69,7 @@ export type YApiConfig = {
     name: string;
     output: string;
     enable: boolean;
+    extname: string;
   }[];
   /**
    * 项目token

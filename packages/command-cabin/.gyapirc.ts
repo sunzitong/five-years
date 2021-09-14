@@ -24,5 +24,18 @@ export default {
    * name 内置模版名称
    * output 生成文件的相对路径
    */
-  template: [{ name: "vue-service", output: "./src/service/", enable: true }],
+  template: [
+    {
+      name: "vue-service",
+      output: "./src/service/",
+      extname: ".ts",
+      enable: true,
+    },
+    {
+      name: "express-mock",
+      output: "./mock/data/",
+      extname: ".js",
+      enable: true,
+    },
+  ],
 };

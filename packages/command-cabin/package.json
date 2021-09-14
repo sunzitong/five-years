@@ -3,8 +3,8 @@
   "version": "2.0.4",
   "private": true,
   "scripts": {
-    "dev": "npm-run-all -p mock serve",
-    "serve": "nodemon -w vue.config.js -x vue-cli-service serve ",
+    "dev": "npm-run-all -p serve mock",
+    "serve": "nodemon -w vue.config.js -x vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "mock": "cd ./mock && npm run start",

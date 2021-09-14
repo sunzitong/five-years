@@ -51,7 +51,7 @@ type Item = Group & { id: string };
 @Component({
   components: { Icon, Animationend, BlurBox },
 })
-export default class A4 extends Base {
+export default class A5 extends Base {
   telId = "";
   list: Item[] = [];
   async created() {
