@@ -12,16 +12,19 @@ const path = require("path");
 
 const timeout = 400;
 
-const files = glob(path.join(__dirname, "../data/*.js"), {
+const files = glob(path.join(__dirname, "../data/**/*.js"), {
   sync: true,
 });
-
-files.forEach((filePath) => {
-  const api = require(filePath);
-  proxy[api.path] = api.response;
-  router.get(api.path, function (req, res, next) {
+console.log("files", files);
+files.forEach((file) => {
+  const api = require(file);
+  router[api.method.toLowerCase()](api.path, function (req, res, next) {
     setTimeout(() => {
-      res.json(api.response);
+      if (api.response) {
+        res.json(api.response);
+      } else {
+        res.send();
+      }
     }, timeout);
   });
 });

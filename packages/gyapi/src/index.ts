@@ -49,7 +49,7 @@ const callback = async (api: Api) => {
         tmpl.output,
         api.basepath,
         api.path,
-        "index.ts"
+        `index${tmpl.extname}`
       )
       .replace(/{|}/g, "");
     console.log(`写入${fullPath}`);
