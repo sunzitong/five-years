@@ -48,7 +48,7 @@ if (host) {
 router.get("/test", function (req, res, next) {
   res.json(
     Mock.mock({
-      status: 'ok',
+      status: "ok",
       "data|10-30": [
         {
           "name|5-8": /[a-zA-Z]/,
@@ -61,3 +61,11 @@ router.get("/test", function (req, res, next) {
 });
 
 module.exports = router;
+
+// 'Accept': '*/*',
+// 'Accept-Encoding': 'utf-8',
+// 'Accept-Language': 'zh-CN,zh;q=0.8',
+// 'Connection': 'keep-alive',
+// 'Cookie': 'BAIDUID=A78C39414751FF9349AAFB0FDA505058:FG=1; true; __bsi=12248088537049104479_00_7_N_R_33_0303_cca8_Y',
+// 'Host': 'ai.jd.com',
+// 'Referer': 'http://miaosha.jd.com'

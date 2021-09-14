@@ -1,19 +1,29 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var Mock = require('mockjs');
+var Mock = require("mockjs");
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-	res.render('index', { title: 'Express' });
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Express" });
+});
+
+const glob = require("glob");
+const path = require("path");
+
+const timeout = 400;
+
+const files = glob(path.join(__dirname, "../data/*.js"), {
+  sync: true,
+});
+
+files.forEach((filePath) => {
+  const api = require(filePath);
+  proxy[api.path] = api.response;
+  router.get(api.path, function (req, res, next) {
+    setTimeout(() => {
+      res.json(api.response);
+    }, timeout);
+  });
 });
 
 module.exports = router;
-
-
-// 'Accept': '*/*',
-// 'Accept-Encoding': 'utf-8',
-// 'Accept-Language': 'zh-CN,zh;q=0.8',
-// 'Connection': 'keep-alive',
-// 'Cookie': 'BAIDUID=A78C39414751FF9349AAFB0FDA505058:FG=1; true; __bsi=12248088537049104479_00_7_N_R_33_0303_cca8_Y',
-// 'Host': 'ai.jd.com',
-// 'Referer': 'http://miaosha.jd.com'
