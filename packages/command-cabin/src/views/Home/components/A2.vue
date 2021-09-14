@@ -1,16 +1,5 @@
 <template>
   <div class="page__a1__map">
-    <van-row justify="space-between" type="flex" class="top_text">
-      <van-col :span="12">机会总数</van-col>
-      <van-col :span="6" class="value_col">
-        <span>{{ sepNumber(chanceNum) }}</span>
-        <span>个</span>
-      </van-col>
-      <van-col :span="6" class="value_col">
-        <span>{{ sepNumber(ChanceRoom) }}</span>
-        <span>间</span>
-      </van-col>
-    </van-row>
     <div
       class="app-echarts"
       ref="wrapper"
@@ -137,31 +126,4 @@ export default class A2 extends Base {
 }
 </script>
 
-<style lang="scss" scoped>
-.top_text {
-  border-bottom: 1px solid #1b4985;
-  font-family: "PingFang SC";
-  font-size: 30px;
-  line-height: 30px;
-  color: #ffffff;
-
-  padding: 28px 0 28px 0;
-  margin: 0 30px 0px 30px;
-
-  .value_col span:nth-child(1) {
-    font-family: "DIN Alternate";
-    color: #01f5f1;
-    font-weight: bold;
-    font-size: 34px;
-    line-height: 36px;
-  }
-
-  .value_col span:nth-child(2) {
-    font-family: "DIN Alternate";
-    color: #01f5f1;
-    font-size: 26px;
-    line-height: 26px;
-    margin-left: 6px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

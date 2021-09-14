@@ -50,23 +50,21 @@
         </div>
       </div>
       <!-- 饼图 -->
-      <div
+      <!-- <div
         class="right_bottom_text"
         style="width: 300px; height: 534px; background: #5180e4"
-      >
-        <div class="chart">
-          <van-circle :value="40" :rate="40" :stroke-width="60" :size="200" />
-        </div>
-      </div>
+      ></div> -->
+      <div class="right_bottom_text chart" ref="wrapper"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-// import echarts from "@/plugins/echarts";
+import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
+import { EChartsOption } from "echarts/types/dist/shared";
 
 @Component({
   components: {},
@@ -98,84 +96,118 @@ export default class A1 extends Base {
     },
   ];
 
+  getArrayValue = (array: AnyObject[], key: string) => {
+    key = key || "value";
+    let res: number[] = [];
+    if (array) {
+      array.forEach(function (t) {
+        res.push(t[key]);
+      });
+    }
+    return res;
+  };
+
+  values = this.getArrayValue(this.resData, "value"); // value数组
+
   centerVlue = 80; // 饼图中心值文本
 
-  //   mounted() {
-  //     this.paintPieChart();
-  //   }
+  mounted() {
+    const myChart = echarts.init(this.wrapper);
+    // myChart.showLoading();
+    let option: EChartsOption = {
+      title: {
+        //中心数值
+        text: this.centerVlue + "%",
+        left: "center",
+        top: "35%",
+        z: 100,
+        textStyle: {
+          fontFamily: "DIN Alternate",
+          fontWeight: "bold",
+          fontSize: 48,
+          lineHeight: 48,
+          color: "#DBF0FF",
+        },
+      },
+      graphic: {
+        // 中心文字
+        type: "text",
+        left: "center",
+        top: "30%",
+        z: 100,
+        style: {
+          text: "拓展完成率",
+          textAlign: "center",
+          fontFamily: "PingFang SC",
+          fontSize: 24,
+          lineHeight: 24,
+          fill: "#8090AA",
+        },
+      },
 
-  //   paintPieChart() {
-  //     const myChart = echarts.init(this.wrapper);
-  //     // myChart.showLoading();
-  //     let option = {
-  //       grid: {
-  //         x: "40%",
-  //       },
-  //       title: {
-  //         //中心数值
-  //         text: this.centerVlue + "%",
-  //         left: "27%",
-  //         top: "30%",
-  //         z: 100,
-  //         textStyle: {
-  //           fontFamily: "DIN Alternate",
-  //           fontWeight: "bold",
-  //           fontSize: 40,
-  //           lineHeight: 36,
-  //           color: "#01F5F1",
-  //         },
-  //       },
-  //       graphic: {
-  //         // 中心文字
-  //         type: "text",
-  //         left: "23%",
-  //         top: "50%",
-  //         z: 100,
-  //         style: {
-  //           text: "拓展完成率",
-  //           textAlign: "center",
-  //           fontFamily: "PingFang SC",
-  //           fontSize: 24,
-  //           lineHeight: 20,
-  //           fill: "#FFFFFF",
-  //         },
-  //       },
-  //       legend: {
-  //         orient: "vertical",
-  //         right: "16%",
-  //         top: "center",
-  //         icon: "rec",
-  //         itemWidth: 20,
-  //         itemHeight: 20,
-  //         itemGap: 35,
-  //         data: this.pieData,
-  //         textStyle: {
-  //           fontFamily: "PingFang SC",
-  //           color: "#FFFFFF",
-  //           fontSize: 28,
-  //           lineHeight: 39,
-  //           // width: 84,
-  //         },
-  //       },
-  //       series: [
-  //         {
-  //           type: "pie",
-  //           avoidLabelOverlap: false,
-  //           radius: ["60%", 120],
-  //           center: ["31%", "48%"],
-  //           color: ["#F7D14A", "#57A6FB"],
-  //           label: {
-  //             show: false,
-  //           },
-  //           data: this.pieData,
-  //         },
-  //       ],
-  //     };
-  //     option && myChart.setOption(option);
-  //     window.addEventListener("resize", () => {
-  //       myChart.resize();
-  //     });
-  //   }
+      legend: {
+        show: true,
+        icon: "rec",
+        bottom: 39,
+        itemGap: 20,
+        itemHeight: 12,
+        itemWidth: 12,
+        textStyle: {
+          fontFamily: "PingFang SC",
+          fontSize: 36,
+          lineHeight: 36,
+          color: "#90A4C3",
+        },
+        data: this.names,
+      },
+      xAxis: { show: false },
+      yAxis: { show: false },
+      series: [
+        {
+          // 展示数据
+          type: "pie",
+          clockwise: false, //顺时加载
+          emphasis: { scale: false }, //鼠标移入变大
+          radius: [121, 108],
+          center: ["50%", "37%"],
+          label: {
+            show: false,
+          },
+          itemStyle: {
+            borderRadius: 88,
+            label: { show: false },
+            labelLine: { show: false },
+            borderWidth: 13,
+          },
+          data: [
+            {
+              name: this.pieData[0].name,
+              value: this.pieData[0].value,
+              itemStyle: {
+                color: "#F7D14A",
+              },
+            },
+            {
+              // 阴影
+              name: this.pieData[1].name,
+              value: this.pieData[1].value,
+              itemStyle: {
+                borderRadius: 88,
+                color: "#5180E4",
+                borderWidth: 0,
+              },
+              tooltip: { show: false },
+              emphasis: { scale: false },
+            },
+          ],
+        },
+      ],
+    };
+    option && myChart.setOption(option);
+    window.addEventListener("resize", () => {
+      myChart.resize();
+    });
+  }
 }
 </script>
 
@@ -281,8 +313,8 @@ export default class A1 extends Base {
 
 .chart {
   width: 300px;
-  height: 340px;
+  height: 534px;
   @extend %bg-img-circle-1;
-  @extend %flex-center;
+  background-size: 90%;
 }
 </style>
