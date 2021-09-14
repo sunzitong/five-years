@@ -87,7 +87,7 @@ export type PlayerConfig = {
    * @requires true
    * @example "admin"
    */
-  watermark: string;
+  watermark?: string;
 
   /**
    * 回放开始时间 - command为 playBackReq时必选， 播放器播放参数
@@ -95,7 +95,7 @@ export type PlayerConfig = {
    * @requires true
    * @example "格式:‘YYYY-MM- DD hh:mm:ss’ 示例:‘2020-08-01 13:14:51’"
    */
-  startTime: string;
+  startTime?: string;
 
   /**
    * 回放结束时间 - command为 playBackReq时必选， 播放器播放参数
@@ -103,77 +103,77 @@ export type PlayerConfig = {
    * @requires true
    * @example "格式:‘YYYY-MM- DD hh:mm:ss’ 示例:‘2020-08-01 13:14:51’"
    */
-  endTime: string;
+  endTime?: string;
 
   /**
    * webrtc播放时的编码方 式
    * @default "vp8"
    * @example "可选值:"vp8"、 "h264"
    */
-  encoding: "vp8" | "h264";
+  encoding?: "vp8" | "h264";
 
   /**
    * webrtc播放时的编码方 式
    * @default 1
    * @example "可选值:0 高清、1"
    */
-  channel: 0 | 1;
+  channel?: 0 | 1;
 
   /**
    * 环境配置
    * @default "prod"
    * @example "可选值:prod: iot生 产环境、uat: iot uat 环境、sit: iot sit环境"
    */
-  env: "prod" | "uat" | "sit";
+  env?: "prod" | "uat" | "sit";
 
   /**
    * 播放超时时长，单位秒
    * @default 15
    * @example "15"
    */
-  videoOverTime: number;
+  videoOverTime?: number;
 
   /**
    * 播放失败重试次数
    * @default 8
    * @example "8"
    */
-  maxReConnect: number;
+  maxReConnect?: number;
 
   /**
    * 是否自动播放
    * @default true
    * @example "true"
    */
-  autoplay: boolean;
+  autoplay?: boolean;
 
   /**
    * 是否显示码流类型切换按钮
    * @default true
    * @example "true"
    */
-  toggleChannelAbility: boolean;
+  toggleChannelAbility?: boolean;
 
   /**
    * 是否显示云台控制按钮
    * @default false
    * @example "true"
    */
-  ptzAbility: boolean;
+  ptzAbility?: boolean;
 
   /**
    * 是否显示播放时长
    * @default true
    * @example "true"
    */
-  showTimeEle: boolean;
+  showTimeEle?: boolean;
 
   /**
    * 封面图
    * @default ""
    * @example ""
    */
-  poster: string;
+  poster?: string;
 
   /**
    * 访问标识
