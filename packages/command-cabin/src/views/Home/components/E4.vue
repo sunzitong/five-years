@@ -16,7 +16,7 @@
           layer-color="#14437F"
           :stroke-width="70"
           :size="160"
-          stroke-linecap="butt"
+          stroke-linecap="round"
           :clockwise="true"
           class="chart-circle"
         >
@@ -67,21 +67,21 @@ export default class E4 extends Base {
           name: "水",
           value: data.waterDeviceOfflineRatio * 100,
           currentRate: 0,
-          color: "#59D1FE",
+          color: "#5180E4",
           icon: "water-drop",
         },
         {
           name: "电",
           value: data.elecDeviceOfflineRatio * 100,
           currentRate: 0,
-          color: "#8E3AFF",
+          color: "#AE95F6",
           icon: "lightning",
         },
         {
           name: "门禁",
           value: data.doorDeviceOfflineRatio * 100,
           currentRate: 0,
-          color: "#EEBC4A",
+          color: "#F7D14A",
           icon: "door",
         },
       ];
