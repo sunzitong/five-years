@@ -37,7 +37,7 @@ export default class WaterDrop extends Vue {
   /**
    * 图标颜色
    */
-  @Prop({ default: "#F1FBFF|#77D2FE|#0AA5FD" }) color!: string | string[];
+  @Prop({ default: "#729EF9|#729EF9|#2153BF" }) color!: string | string[];
 
   /**
    * 图标大小
