@@ -146,7 +146,14 @@ export default class SubWrapperA extends Vue {
    */
   get customTitlePathD() {
     const L = this.titleRight;
-    return `M${L} 34.7478H1709.64L1718.71 46.3304H${L - 10}L${L} 34.7478Z`;
+    return `
+      M${L} 34.7478
+      H1709.64
+      L1718.71 46.3304
+      H${L - 10}
+      L${L} 34.7478
+      Z
+    `;
   }
 
   /**
@@ -280,7 +287,7 @@ export default class SubWrapperA extends Vue {
 
   &__body {
     overflow: hidden;
-    padding: 130px 26px 26px 26px;
+    padding: 129px 26px 26px 26px;
     // background: linear-gradient(
     //   180deg,
     //   rgba(1, 22, 86, 0.5) 0%,
