@@ -291,4 +291,11 @@ export default class A1 extends Base {
     color: #ff3980;
   }
 }
+
+.chart {
+  width: 300px;
+  height: 340px;
+  @extend %bg-img-circle-1;
+  @extend %flex-center;
+}
 </style>
