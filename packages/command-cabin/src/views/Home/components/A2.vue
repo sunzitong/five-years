@@ -1,10 +1,6 @@
 <template>
   <div class="page__a1__map">
-    <div
-      class="app-echarts"
-      ref="wrapper"
-      style="width: 100%; height: 250px"
-    ></div>
+    <div class="chart" ref="wrapper"></div>
   </div>
 </template>
 
@@ -59,46 +55,47 @@ export default class A2 extends Base {
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {
-      grid: {
-        x: "40%",
-      },
       legend: {
         orient: "vertical",
-        right: "5%",
+        left: "5%",
         top: "center",
         icon: "rec",
-        itemWidth: 20,
-        itemHeight: 20,
-        itemGap: 35,
+        itemWidth: 12,
+        itemHeight: 12,
+        itemGap: 46,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}:}{b|${this.sepNumber(
+          return `{a|${params}:}{b|\n${this.sepNumber(
             this.objData1[params]
           )}}{c|个}{b|${this.sepNumber(this.objData2[params])}}{c|间}`;
         },
         textStyle: {
           rich: {
             a: {
-              color: "#FFFFFF",
-              fontSize: 28,
-              lineHeight: 39,
+              color: "#90A4C3",
+              fontSize: 36,
+              // lineHeight: 36,
+              padding: [65, 0, 20, 40],
               width: 140,
             },
             b: {
               fontFamily: "DIN Alternate",
-              color: "#01F5F1",
+              color: "#DBF0FF",
               fontWeight: "bold",
-              fontSize: 34,
-              lineHeight: 36,
-              align: "right",
-              width: 100,
+              fontSize: 48,
+              // lineHeight: 36,
+              align: "left",
+              // width: 100,
+              padding: [0, 0, 0, 40],
             },
             c: {
               fontFamily: "DIN Alternate",
-              color: "#01F5F1",
-              fontSize: 26,
-              lineHeight: 26,
-              width: 30,
+              color: "#90A4C3",
+              fontSize: 36,
+              // lineHeight: 36,
+              marginLeft: 6,
+              width: 36,
+              padding: [0, 1, 0, 6],
               align: "right",
             },
           },
@@ -107,9 +104,11 @@ export default class A2 extends Base {
       series: [
         {
           type: "pie",
-          avoidLabelOverlap: false,
-          radius: ["40%", 90],
-          center: ["18%", "48%"],
+          itemStyle: {
+            borderRadius: 88,
+          },
+          radius: [81, 74],
+          center: ["75%", "50%"],
           color: ["#F7D14A", "#57A6FB"],
           label: {
             show: false,
@@ -126,4 +125,13 @@ export default class A2 extends Base {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.chart {
+  width: 766px;
+  height: 334px;
+  @extend %bg-img-circle-1;
+  margin: 5px 50px;
+  background-position: 457px 34px;
+  background-size: 234px;
+}
+</style>
