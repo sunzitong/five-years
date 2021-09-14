@@ -95,6 +95,9 @@
             <Icon type="users" />
             income:
             <Icon type="income" />
+            warning:
+            <Icon type="warning" color="#FF3980|#fff" />
+            <Icon type="warning" color="#6F6F6F|#C1C1C1" />
             room-number:
             <Icon type="room-number" :size="200" />
             number-of-opening-rooms:
