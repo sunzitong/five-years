@@ -2,240 +2,194 @@
   <div class="page__index">
     <div class="main">
       <div class="main-left">
-        <SubWrapper title="拓展盘面">
-          <van-row gutter="24">
+        <SubWrapperA style="width: 2694px; height: 1203px" title="拓展盘面">
+          <van-row gutter="20">
             <van-col>
-              <Card title="项目获取" style="width: 720px; height: 957px">
+              <CardA title="项目获取" style="width: 866px; height: 1046px">
                 <A1 />
-              </Card>
+              </CardA>
             </van-col>
             <van-col>
-              <Card
-                title="商机储备"
-                size="small"
-                style="width: 735px; height: 514px"
-              >
+              <CardA title="商机储备" style="width: 866px; height: 425px">
                 <A2 />
-              </Card>
+              </CardA>
               <WhiteSpace />
-              <Card
-                title="商机转化"
-                size="small"
-                style="width: 735px; height: 419px"
-              >
+              <CardA title="商机转化" style="width: 866px; height: 574px">
                 <A3 />
-              </Card>
+              </CardA>
             </van-col>
             <van-col>
-              <Card title="战略合作" style="width: 817px; height: 494px">
+              <CardA title="战略合作" style="width: 870px; height: 452px">
                 <A4 />
-              </Card>
+              </CardA>
               <WhiteSpace />
-              <van-row gutter="24">
+              <van-row gutter="20">
                 <van-col>
-                  <Card
-                    title="中央奖补"
-                    size="small"
-                    style="width: 394px; height: 438px"
-                  >
+                  <CardA title="中央奖补" style="width: 425px; height: 574px">
                     <A5 />
-                  </Card>
+                  </CardA>
                 </van-col>
                 <van-col>
-                  <Card
+                  <CardA
                     title="投后攻坚"
                     size="small"
-                    style="width: 399px; height: 438px"
+                    style="width: 425px; height: 574px"
                   >
                     <A6 />
-                  </Card>
+                  </CardA>
                 </van-col>
               </van-row>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
         <WhiteSpace />
-        <SubWrapper title="营造盘面">
+        <SubWrapperA style="width: 2694px; height: 1741px" title="营造盘面">
           <template #extra>
             <a href="javascript:;">详情 →</a>
           </template>
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
-              <Card title="项目开业" style="width: 1605px; height: 634px">
+              <CardA title="项目开业" style="width: 1720px; height: 813px">
                 <B1 />
-              </Card>
+              </CardA>
               <WhiteSpace />
-              <Card title="开业延期" style="width: 1605px; height: 792px">
+              <CardA title="开业延期" style="width: 1720px; height: 750px">
                 <B2 />
-              </Card>
+              </CardA>
             </van-col>
             <van-col>
-              <Card title="成本分析" style="width: 691px; height: 634px">
+              <CardA title="成本分析" style="width: 902px; height: 660px">
                 <B3 />
-              </Card>
+              </CardA>
               <WhiteSpace />
-              <Card title="产品品质" style="width: 691px; height: 367px">
+              <CardA title="产品品质" style="width: 902px; height: 490px">
                 <B4 />
-              </Card>
+              </CardA>
               <WhiteSpace />
-              <Card title="维保报事" style="width: 691px; height: 401px">
+              <CardA title="维保报事" style="width: 902px; height: 394px">
                 <B5 />
-              </Card>
+              </CardA>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
       </div>
       <div class="main-center">
-        <C1 />
+        <div style="height: 2050px">
+          <C1 />
+        </div>
+        <SubWrapperA style="width: 2113px; height: 680px" title="现场风险监控">
+          现场风险监控
+        </SubWrapperA>
+        <div class="footer">
+          <div class="global-button">
+            <div class="center">
+              <ButtonGroup>
+                <van-radio-group value="main" direction="horizontal">
+                  <van-radio name="main">
+                    <Icon type="map" :size="36" class="button-icon--left" />
+                    总盘面
+                  </van-radio>
+                  <van-radio name="guanyu">
+                    <Icon type="flag" :size="36" class="button-icon--left" />
+                    冠寓大事记
+                  </van-radio>
+                </van-radio-group>
+              </ButtonGroup>
+              <ButtonGroup>
+                <van-checkbox-group :value="scopeValue" direction="horizontal">
+                  <van-checkbox
+                    :name="DateScopes.YEARLY"
+                    @click="scopeChange(DateScopes.YEARLY)"
+                  >
+                    年累计
+                  </van-checkbox>
+                  <van-checkbox
+                    :name="DateScopes.MONTHLY"
+                    @click="scopeChange(DateScopes.MONTHLY)"
+                  >
+                    月累计
+                  </van-checkbox>
+                  <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
+                    {{ store.global.orgTree.orgName }}
+                    <van-icon
+                      :name="showOrgPanel ? 'arrow-down' : 'arrow-up'"
+                    />
+                  </van-checkbox>
+                </van-checkbox-group>
+              </ButtonGroup>
+              <!-- 区域选择 -->
+              <OrgPanel
+                type="orgTree"
+                :show="showOrgPanel"
+                @update:show="scopeChange('orgTree')"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <div class="main-right">
-        <SubWrapper title="经营现状">
-          <van-row gutter="24">
+        <SubWrapperA style="width: 2694px" title="经营现状">
+          <van-row gutter="20">
             <van-col>
-              <Card
+              <CardA
                 title="全业态收入及完成度"
                 style="width: 1557px; height: 589px"
               >
                 <template #data-cycle>{{ dataCycle }}</template>
-              </Card>
+              </CardA>
             </van-col>
             <van-col>
               <WhiteSpace />
-              <Card style="width: 739px; height: 563px">
+              <CardA style="width: 739px; height: 563px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <C2 />
-              </Card>
+              </CardA>
             </van-col>
           </van-row>
           <WhiteSpace />
-          <van-row gutter="24">
+          <van-row gutter="20">
             <van-col>
-              <Card title="经营性支出" style="width: 1566px; height: 666px">
+              <CardA title="经营性支出" style="width: 1566px; height: 666px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <E2 />
-              </Card>
+              </CardA>
               <WhiteSpace />
-              <van-row gutter="24">
+              <van-row gutter="20">
                 <van-col>
-                  <Card title="客户洞察" style="width: 905px; height: 396px">
+                  <CardA title="客户洞察" style="width: 905px; height: 396px">
                     <template #data-cycle>{{ dataCycle }}</template>
-                  </Card>
+                  </CardA>
                 </van-col>
                 <van-col>
-                  <Card
+                  <CardA
                     title="24小时设备离线率"
                     style="width: 628px; height: 396px"
                   >
                     <template #data-cycle>{{ dataCycle }}</template>
                     <E4 />
-                  </Card>
+                  </CardA>
                 </van-col>
               </van-row>
             </van-col>
             <van-col>
-              <Card title="舆情风险" style="width: 739px; height: 1086px">
+              <CardA title="舆情风险" style="width: 739px; height: 1086px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <E5 />
-              </Card>
+              </CardA>
             </van-col>
           </van-row>
-        </SubWrapper>
+        </SubWrapperA>
         <WhiteSpace />
-        <SubWrapper title="经营现状">
-          <van-row gutter="24">
+        <SubWrapperA title="经营现状">
+          <van-row gutter="20">
             <van-col>
-              <Card style="width: 905px; height: 702px"></Card>
+              <CardA style="width: 905px; height: 702px"></CardA>
             </van-col>
             <van-col>
-              <Card style="width: 1400px; height: 702px"></Card>
+              <CardA style="width: 1400px; height: 702px"></CardA>
             </van-col>
           </van-row>
-        </SubWrapper>
-      </div>
-    </div>
-    <div class="footer">
-      <FooterBackground />
-      <div class="global-button">
-        <div class="left">
-          <ButtonGroup>
-            <van-radio-group value="拓展盘面详情" direction="horizontal">
-              <van-radio name="拓展盘面详情">
-                拓展盘面详情
-                <Icon
-                  type="arrow-right"
-                  :size="36"
-                  class="button-icon--right"
-                />
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-          <ButtonGroup>
-            <van-radio-group value="营造盘面详情" direction="horizontal">
-              <van-radio name="营造盘面详情">
-                营造盘面详情
-                <Icon
-                  type="arrow-right"
-                  :size="36"
-                  class="button-icon--right"
-                />
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-        </div>
-        <div class="center">
-          <ButtonGroup>
-            <van-radio-group value="main" direction="horizontal">
-              <van-radio name="main">
-                <Icon type="map" :size="36" class="button-icon--left" />
-                总盘面
-              </van-radio>
-              <van-radio name="guanyu">
-                <Icon type="flag" :size="36" class="button-icon--left" />
-                冠寓大事记
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-          <ButtonGroup>
-            <van-checkbox-group :value="scopeValue" direction="horizontal">
-              <van-checkbox
-                :name="DateScopes.YEARLY"
-                @click="scopeChange(DateScopes.YEARLY)"
-              >
-                年累计
-              </van-checkbox>
-              <van-checkbox
-                :name="DateScopes.MONTHLY"
-                @click="scopeChange(DateScopes.MONTHLY)"
-              >
-                月累计
-              </van-checkbox>
-              <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
-                {{ store.global.orgTree.orgName }}
-                <van-icon :name="showOrgPanel ? 'arrow-down' : 'arrow-up'" />
-              </van-checkbox>
-            </van-checkbox-group>
-          </ButtonGroup>
-          <!-- 区域选择 -->
-          <OrgPanel
-            type="orgTree"
-            :show="showOrgPanel"
-            @update:show="scopeChange('orgTree')"
-          />
-        </div>
-        <div class="right">
-          <ButtonGroup>
-            <van-radio-group value="经营现状详情" direction="horizontal">
-              <van-radio name="经营现状详情">
-                经营现状详情
-                <Icon
-                  type="arrow-right"
-                  :size="36"
-                  class="button-icon--right"
-                />
-              </van-radio>
-            </van-radio-group>
-          </ButtonGroup>
-        </div>
+        </SubWrapperA>
       </div>
     </div>
   </div>
@@ -244,8 +198,8 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
-import Card from "@/components/Card/Index.vue";
-import SubWrapper from "@/components/SubWrapper/Index.vue";
+import CardA from "@/components/CardA/Index.vue";
+import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
@@ -274,8 +228,8 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
 @Component({
   components: {
     FooterBackground,
-    SubWrapper,
-    Card,
+    SubWrapperA,
+    CardA,
     WhiteSpace,
     A1,
     A2,
@@ -351,16 +305,10 @@ export default class Home extends Base {
     display: flex;
     margin: 0 60px;
   }
-  .main-left {
-    max-width: 2400px;
-    min-width: 2400px;
-  }
+
   .main-center {
+    padding: 0 30px;
     flex: 1;
-  }
-  .main-right {
-    max-width: 2400px;
-    min-width: 2400px;
   }
 
   .main-left-row {
@@ -392,16 +340,13 @@ export default class Home extends Base {
     position: relative;
   }
   .left {
-    width: 32%;
     justify-content: flex-start;
   }
   .center {
-    width: 36%;
     justify-content: space-between;
     margin: -20px 0 auto;
   }
   .right {
-    width: 32%;
     justify-content: flex-end;
   }
 }
