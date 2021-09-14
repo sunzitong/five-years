@@ -54,11 +54,7 @@
         class="right_bottom_text"
         style="width: 300px; height: 534px; background: #5180e4"
       ></div> -->
-      <div
-        class="right_bottom_text"
-        ref="wrapper"
-        style="width: 300px; height: 534px"
-      ></div>
+      <div class="right_bottom_text chart" ref="wrapper"></div>
     </div>
   </div>
 </template>
@@ -68,6 +64,7 @@ import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
+import { EChartsOption } from "echarts/types/dist/shared";
 
 @Component({
   components: {},
@@ -117,12 +114,41 @@ export default class A1 extends Base {
   mounted() {
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
-    let option = {
+    let option: EChartsOption = {
+      title: {
+        //中心数值
+        text: this.centerVlue + "%",
+        left: "center",
+        top: "35%",
+        z: 100,
+        textStyle: {
+          fontFamily: "DIN Alternate",
+          fontWeight: "bold",
+          fontSize: 48,
+          lineHeight: 48,
+          color: "#DBF0FF",
+        },
+      },
+      graphic: {
+        // 中心文字
+        type: "text",
+        left: "center",
+        top: "30%",
+        z: 100,
+        style: {
+          text: "拓展完成率",
+          textAlign: "center",
+          fontFamily: "PingFang SC",
+          fontSize: 24,
+          lineHeight: 24,
+          fill: "#8090AA",
+        },
+      },
+
       legend: {
         show: true,
         icon: "rec",
-        y: "bottom",
-        x: "center",
+        bottom: 39,
         itemGap: 20,
         itemHeight: 12,
         itemWidth: 12,
@@ -134,13 +160,6 @@ export default class A1 extends Base {
         },
         data: this.names,
       },
-      grid: {
-        top: "13%",
-        left: "48%",
-        width: "40%",
-        height: "20%",
-        containlabel: false,
-      },
       xAxis: { show: false },
       yAxis: { show: false },
       series: [
@@ -150,7 +169,7 @@ export default class A1 extends Base {
           clockwise: false, //顺时加载
           emphasis: { scale: false }, //鼠标移入变大
           radius: [121, 108],
-          center: ["45%", "50%"],
+          center: ["50%", "37%"],
           label: {
             show: false,
           },
@@ -294,8 +313,8 @@ export default class A1 extends Base {
 
 .chart {
   width: 300px;
-  height: 340px;
+  height: 534px;
   @extend %bg-img-circle-1;
-  @extend %flex-center;
+  background-size: 90%;
 }
 </style>
