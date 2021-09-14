@@ -53,7 +53,11 @@
       <div
         class="right_bottom_text"
         style="width: 300px; height: 534px; background: #5180e4"
-      ></div>
+      >
+        <div class="chart">
+          <van-circle :value="40" :rate="40" :stroke-width="60" :size="200" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -273,5 +277,12 @@ export default class A1 extends Base {
   .spcial span {
     color: #ff3980;
   }
+}
+
+.chart {
+  width: 300px;
+  height: 340px;
+  @extend %bg-img-circle-1;
+  @extend %flex-center;
 }
 </style>
