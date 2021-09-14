@@ -128,68 +128,58 @@
         </div>
       </div>
       <div class="main-right">
-        <SubWrapperA style="width: 2694px" title="经营现状">
+        <SubWrapperA style="width: 2693px; height: 2027px" title="经营现状">
           <van-row gutter="20">
             <van-col>
               <CardA
                 title="全业态收入及完成度"
-                style="width: 1557px; height: 589px"
+                style="width: 1820px; height: 1100px"
               >
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
+              <WhiteSpace />
+              <CardA title="客户洞察" style="width: 1820px; height: 420px">
+                <template #data-cycle>{{ dataCycle }}</template>
+              </CardA>
+              <WhiteSpace />
+              <CardA
+                title="24小时设备离线率"
+                style="width: 1820px; height: 310px"
+              >
+                <template #data-cycle>{{ dataCycle }}</template>
+                <E4 />
+              </CardA>
             </van-col>
             <van-col>
+              <CardA title="经营性支出" style="width: 801px; height: 924px">
+                <template #data-cycle>{{ dataCycle }}</template>
+                <E2 />
+              </CardA>
               <WhiteSpace />
-              <CardA style="width: 739px; height: 563px">
+              <CardA title="逾期金额" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <C2 />
               </CardA>
             </van-col>
           </van-row>
-          <WhiteSpace />
-          <van-row gutter="20">
-            <van-col>
-              <CardA title="经营性支出" style="width: 1566px; height: 666px">
-                <template #data-cycle>{{ dataCycle }}</template>
-                <E2 />
-              </CardA>
-              <WhiteSpace />
-              <van-row gutter="20">
-                <van-col>
-                  <CardA title="客户洞察" style="width: 905px; height: 396px">
-                    <template #data-cycle>{{ dataCycle }}</template>
-                  </CardA>
-                </van-col>
-                <van-col>
-                  <CardA
-                    title="24小时设备离线率"
-                    style="width: 628px; height: 396px"
-                  >
-                    <template #data-cycle>{{ dataCycle }}</template>
-                    <E4 />
-                  </CardA>
-                </van-col>
-              </van-row>
-            </van-col>
-            <van-col>
-              <CardA title="舆情风险" style="width: 739px; height: 1086px">
-                <template #data-cycle>{{ dataCycle }}</template>
-                <E5 />
-              </CardA>
-            </van-col>
-          </van-row>
         </SubWrapperA>
         <WhiteSpace />
-        <SubWrapperA title="经营现状">
-          <van-row gutter="20">
-            <van-col>
-              <CardA style="width: 905px; height: 702px"></CardA>
-            </van-col>
-            <van-col>
-              <CardA style="width: 1400px; height: 702px"></CardA>
-            </van-col>
-          </van-row>
-        </SubWrapperA>
+        <van-row gutter="20">
+          <van-col>
+            <SubWrapperA title="异常预警" style="width: 1845px; height: 920px">
+              <CardA>
+                <E5 />
+              </CardA>
+            </SubWrapperA>
+          </van-col>
+          <van-col>
+            <SubWrapperA title="舆情风险" style="width: 828px; height: 920px">
+              <CardA title="舆情风险" style="width: 776px; height: 777px">
+                <E5 />
+              </CardA>
+            </SubWrapperA>
+          </van-col>
+        </van-row>
       </div>
     </div>
   </div>
@@ -300,7 +290,7 @@ export default class Home extends Base {
 .page__index {
   width: 7680px;
   color: #fff;
-  padding-top: 55px;
+  padding-top: 18px;
   .main {
     display: flex;
     margin: 0 60px;
