@@ -14,15 +14,15 @@
           :speed="50"
           :color="item.color"
           layer-color="#14437F"
-          :stroke-width="70"
-          :size="160"
+          :stroke-width="56"
+          :size="200"
           stroke-linecap="round"
           :clockwise="true"
           class="chart-circle"
         >
           <div class="rate-text">
-            <div class="value">{{ item.currentRate }}%</div>
             <div class="desc">{{ item.name }}</div>
+            <div class="value">{{ item.currentRate }}%</div>
           </div>
         </van-circle>
       </div>
@@ -95,11 +95,12 @@ export default class E4 extends Base {
 <style lang="scss" scoped>
 .chart {
   display: flex;
-  justify-content: space-around;
-  padding-top: 50px;
+  justify-content: space-between;
+  padding: 10px 304px 0 456px;
   .chart-item {
     position: relative;
     z-index: 1;
+    @extend %bg-img-circle-2;
     .chart-icon {
       width: 45px;
       height: 45px;
@@ -111,7 +112,7 @@ export default class E4 extends Base {
       align-items: center;
       position: absolute;
       top: 0;
-      right: 0;
+      right: 10px;
       z-index: 100;
     }
     .rate-text {
@@ -126,8 +127,9 @@ export default class E4 extends Base {
         font-size: 32px;
       }
       .desc {
-        font-size: 24px;
-        margin-top: 8px;
+        font-size: 36px;
+        margin-bottom: 18px;
+        color: #90a4c3;
       }
     }
   }
