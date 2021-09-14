@@ -131,10 +131,7 @@
         <SubWrapperA style="width: 2693px; height: 2027px" title="经营现状">
           <van-row gutter="20">
             <van-col>
-              <CardA
-                title="全业态收入及完成度"
-                style="width: 1820px; height: 1100px"
-              >
+              <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
               <WhiteSpace />
@@ -157,7 +154,6 @@
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
-                <C2 />
               </CardA>
             </van-col>
           </van-row>
@@ -209,7 +205,6 @@ import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import E4 from "./components/E4.vue";
 import C1 from "./components/C1.vue";
-import C2 from "./components/C2.vue";
 import E2 from "./components/E2.vue";
 import E5 from "./components/E5.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
@@ -232,7 +227,6 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
     B4,
     B5,
     C1,
-    C2,
     E2,
     E4,
     E5,
