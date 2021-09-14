@@ -15,7 +15,6 @@ const timeout = 400;
 const files = glob(path.join(__dirname, "../data/**/*.js"), {
   sync: true,
 });
-console.log("files", files);
 files.forEach((file) => {
   const api = require(file);
   router[api.method.toLowerCase()](api.path, function (req, res, next) {
