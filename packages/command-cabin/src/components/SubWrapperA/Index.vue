@@ -9,21 +9,27 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M98.9648 34.7478L1709.18 34.7478L1758.21 97.2938H49.9365L98.9648 34.7478Z"
+          :d="`
+            M98.9648 34.7478
+            L${titleRect.w}.18 34.7478
+            L${titleRect.w + 48}.21 97.2938
+            H49.9365
+            L98.9648 34.7478
+            Z`"
           fill="#193497"
           fill-opacity="0.3"
         />
         <g>
           <path
-            id="AAAAAAA"
+            :id="`${uuid}`"
             d="M98.6597 34.7478H104.306L56.4922 97.2938H49.9365L98.6597 34.7478Z"
-            fill="url(#paint0_linear)"
+            :fill="`url(#${uuid}_paint0_linear)`"
             fill-opacity="0.5"
           />
           <use
-            v-for="item in 160"
+            v-for="item in titleRect.repeat"
             :key="item"
-            xlink:href="#AAAAAAA"
+            :xlink:href="`#${uuid}`"
             :transform="`translate(${item * 10}, 0)`"
           />
         </g>
@@ -31,20 +37,23 @@
           y1="-1"
           x2="76.5285"
           y2="-1"
-          transform="matrix(0.616927 0.787021 -0.616927 0.787021 1714.37 44.0656)"
-          stroke="url(#paint156_linear)"
+          :transform="`
+            matrix(0.616927 0.787021 -0.616927 0.787021 ${
+              titleRect.w + 5
+            } 44.0656)`"
+          :stroke="`url(#${uuid}_paint156_linear)`"
           stroke-width="2"
         />
-        <path :d="customTitlePathD" fill="url(#paint157_linear)" />
+        <path :d="customTitlePathD" :fill="`url(#${uuid}_paint157_linear)`" />
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
           :d="customPathD"
-          fill="url(#paint158_linear)"
+          :fill="`url(#${uuid}_paint158_linear)`"
         />
         <defs>
           <linearGradient
-            id="paint0_linear"
+            :id="`${uuid}_paint0_linear`"
             x1="49.9365"
             y1="97.2938"
             x2="1755.42"
@@ -55,7 +64,7 @@
             <stop offset="1" stop-color="#0E1740" />
           </linearGradient>
           <linearGradient
-            id="paint156_linear"
+            :id="`${uuid}_paint156_linear`"
             x1="0"
             y1="0"
             x2="56.3448"
@@ -66,10 +75,10 @@
             <stop offset="1" stop-color="#193497" />
           </linearGradient>
           <linearGradient
-            id="paint157_linear"
-            x1="719"
+            :id="`${uuid}_paint157_linear`"
+            :x1="titleRect.w / 2"
             y1="34.7478"
-            x2="1710.54"
+            :x2="titleRect.w"
             y2="34.7478"
             gradientUnits="userSpaceOnUse"
           >
@@ -77,7 +86,7 @@
             <stop offset="0.936398" stop-color="#193497" stop-opacity="0" />
           </linearGradient>
           <linearGradient
-            id="paint158_linear"
+            :id="`${uuid}_paint158_linear`"
             x1="63.9813"
             y1="34.7478"
             x2="-21.9916"
@@ -104,6 +113,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { ResizeObserver } from "resize-observer";
+import { sample } from "lodash";
+import { uuid } from "@guanyu/shared";
 
 @Component
 export default class SubWrapperA extends Vue {
@@ -120,6 +131,11 @@ export default class SubWrapperA extends Vue {
    * 标题
    */
   @Prop({ default: "" }) title!: string;
+
+  /**
+   * 尺寸
+   */
+  @Prop({ default: "medium" }) size!: "small" | "medium" | "large";
 
   /**
    * 盒子宽度
@@ -141,15 +157,37 @@ export default class SubWrapperA extends Vue {
    */
   resizeObserver: ResizeObserver | null = null;
 
+  get uuid() {
+    return `${uuid()}`;
+  }
+  /**
+   * 标题尺寸
+   */
+  get titleRect() {
+    const rect = {
+      x: this.titleRight,
+      repeat: 160,
+      w: 1709,
+    };
+
+    if (this.size === "small") {
+      rect.w = 750;
+      rect.repeat = 65;
+    }
+
+    return rect;
+  }
+
   /**
    * 标题的path
    */
   get customTitlePathD() {
-    const L = this.titleRight;
+    const L = this.titleRect.x;
+    const W = this.titleRect.w;
     return `
       M${L} 34.7478
-      H1709.64
-      L1718.71 46.3304
+      H${W}.64
+      L${W}.71 46.3304
       H${L - 10}
       L${L} 34.7478
       Z
@@ -177,7 +215,7 @@ export default class SubWrapperA extends Vue {
         H${W + 2}
         L${W + 2} 94.2392
         V92.2406
-        H1754.12
+        H${this.titleRect.w + 45}.12
         V94.2392
         H${W}
         L${W} ${H}
@@ -214,7 +252,7 @@ export default class SubWrapperA extends Vue {
      * 设置宽高
      */
     const wrapper = window.getComputedStyle(this.wrapper);
-    this.width = Math.max(parseInt(wrapper.width), 1760);
+    this.width = parseInt(wrapper.width);
     this.height = Math.max(parseInt(wrapper.height), 150);
   }
 
