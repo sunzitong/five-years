@@ -320,7 +320,7 @@ import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Webrtc from "@/components/Webrtc/Index.vue";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import Spin from "@/components/Spin/Index.vue";
-import SubWrapperA from "@/components/SubWrapperA/Index.vue"
+import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 
 @Component({
   components: {
