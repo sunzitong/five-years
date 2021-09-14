@@ -1,66 +1,60 @@
 <template>
   <div class="page__a1__map">
-    <!-- 顶部文字 -->
+    <!-- 上半部分 -->
     <div class="top_text">
-      <van-row justify="space-between" type="flex" class="top_text">
-        <van-col :span="18">已签约间数</van-col>
-        <van-col :span="6" class="abstract_style">
-          {{ sepNumber(signRoom) }}
-        </van-col>
-      </van-row>
-      <div class="point_line"></div>
-      <van-row justify="space-between" type="flex" class="middle_text">
-        <van-col :span="8">
-          <span>重</span>
-          <span>{{ sepNumber(heavyNum) }}</span>
-        </van-col>
-        <van-col :span="8">
-          <span>中</span>
-          <span>{{ sepNumber(middleNum) }}</span>
-        </van-col>
-        <van-col :span="8">
-          <span>轻</span>
-          <span>{{ sepNumber(lightNum) }}</span>
-        </van-col>
-      </van-row>
-      <!-- 中部列表 -->
-      <ul class="middle_ul">
-        <li>
-          <van-row justify="space-between" type="flex" class="ul_text">
-            <van-col>获取目标</van-col>
-            <van-col class="abstract_style">
-              {{ sepNumber(gainTarget) }}
-            </van-col>
-          </van-row>
-        </li>
-        <li>
-          <van-row justify="space-between" type="flex" class="ul_text">
-            <van-col>目标差额</van-col>
-            <van-col class="abstract_style special">
-              {{ sepNumber(targetDiffer) }}
-            </van-col>
-          </van-row>
-        </li>
-        <li>
-          <van-row justify="space-between" type="flex" class="ul_text">
-            <van-col>
-              已签约间数
-              <span>（非协同）</span>
-            </van-col>
-            <van-col class="abstract_style">
-              {{ sepNumber(signedRoom) }}
-            </van-col>
-          </van-row>
-        </li>
-      </ul>
-      <!-- 下部饼图 -->
+      <div class="left_text">
+        已签约间数
+        <div class="num">
+          <span>{{ sepNumber(signRoom) }}</span>
+          万
+        </div>
+      </div>
+      <div class="right_top_text">
+        <div class="row_content">
+          重资产
+          <span class="value">{{ sepNumber(heavyNum) }}</span>
+        </div>
+        <div class="row_content">
+          中资产
+          <span class="value">{{ sepNumber(middleNum) }}</span>
+        </div>
+        <div class="row_content">
+          轻资产
+          <span class="value">{{ sepNumber(lightNum) }}</span>
+        </div>
+      </div>
     </div>
-    <div class="middle_text"></div>
-    <div
-      class="app-echarts"
-      ref="wrapper"
-      style="width: 100%; height: 250px"
-    ></div>
+    <!-- 下半部分 -->
+    <div class="bottom_content">
+      <div class="left_bottom_text">
+        <div class="left_text">
+          获取目标
+          <div class="num">
+            <span>{{ sepNumber(gainTarget) }}</span>
+            万
+          </div>
+        </div>
+        <div class="left_text">
+          目标差额
+          <div class="num spcial">
+            <span>{{ sepNumber(targetDiffer) }}</span>
+            万
+          </div>
+        </div>
+        <div class="left_text">
+          已签约间数
+          <div class="num">
+            <span>{{ sepNumber(signedRoom) }}</span>
+            万
+          </div>
+        </div>
+      </div>
+      <!-- 饼图 -->
+      <div
+        class="right_bottom_text"
+        style="width: 300px; height: 534px; background: #5180e4"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -102,157 +96,182 @@ export default class A1 extends Base {
 
   centerVlue = 80; // 饼图中心值文本
 
-  mounted() {
-    this.paintPieChart();
-  }
+  //   mounted() {
+  //     this.paintPieChart();
+  //   }
 
-  paintPieChart() {
-    const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
-    let option = {
-      grid: {
-        x: "40%",
-      },
-      title: {
-        //中心数值
-        text: this.centerVlue + "%",
-        left: "27%",
-        top: "30%",
-        z: 100,
-        textStyle: {
-          fontFamily: "DIN Alternate",
-          fontWeight: "bold",
-          fontSize: 40,
-          lineHeight: 36,
-          color: "#01F5F1",
-        },
-      },
-      graphic: {
-        // 中心文字
-        type: "text",
-        left: "23%",
-        top: "50%",
-        z: 100,
-        style: {
-          text: "拓展完成率",
-          textAlign: "center",
-          fontFamily: "PingFang SC",
-          fontSize: 24,
-          lineHeight: 20,
-          fill: "#FFFFFF",
-        },
-      },
-      legend: {
-        orient: "vertical",
-        right: "16%",
-        top: "center",
-        icon: "rec",
-        itemWidth: 20,
-        itemHeight: 20,
-        itemGap: 35,
-        data: this.pieData,
-        textStyle: {
-          fontFamily: "PingFang SC",
-          color: "#FFFFFF",
-          fontSize: 28,
-          lineHeight: 39,
-          // width: 84,
-        },
-      },
-      series: [
-        {
-          type: "pie",
-          avoidLabelOverlap: false,
-          radius: ["60%", 120],
-          center: ["31%", "48%"],
-          color: ["#F7D14A", "#57A6FB"],
-          label: {
-            show: false,
-          },
-          data: this.pieData,
-        },
-      ],
-    };
-    option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
-  }
+  //   paintPieChart() {
+  //     const myChart = echarts.init(this.wrapper);
+  //     // myChart.showLoading();
+  //     let option = {
+  //       grid: {
+  //         x: "40%",
+  //       },
+  //       title: {
+  //         //中心数值
+  //         text: this.centerVlue + "%",
+  //         left: "27%",
+  //         top: "30%",
+  //         z: 100,
+  //         textStyle: {
+  //           fontFamily: "DIN Alternate",
+  //           fontWeight: "bold",
+  //           fontSize: 40,
+  //           lineHeight: 36,
+  //           color: "#01F5F1",
+  //         },
+  //       },
+  //       graphic: {
+  //         // 中心文字
+  //         type: "text",
+  //         left: "23%",
+  //         top: "50%",
+  //         z: 100,
+  //         style: {
+  //           text: "拓展完成率",
+  //           textAlign: "center",
+  //           fontFamily: "PingFang SC",
+  //           fontSize: 24,
+  //           lineHeight: 20,
+  //           fill: "#FFFFFF",
+  //         },
+  //       },
+  //       legend: {
+  //         orient: "vertical",
+  //         right: "16%",
+  //         top: "center",
+  //         icon: "rec",
+  //         itemWidth: 20,
+  //         itemHeight: 20,
+  //         itemGap: 35,
+  //         data: this.pieData,
+  //         textStyle: {
+  //           fontFamily: "PingFang SC",
+  //           color: "#FFFFFF",
+  //           fontSize: 28,
+  //           lineHeight: 39,
+  //           // width: 84,
+  //         },
+  //       },
+  //       series: [
+  //         {
+  //           type: "pie",
+  //           avoidLabelOverlap: false,
+  //           radius: ["60%", 120],
+  //           center: ["31%", "48%"],
+  //           color: ["#F7D14A", "#57A6FB"],
+  //           label: {
+  //             show: false,
+  //           },
+  //           data: this.pieData,
+  //         },
+  //       ],
+  //     };
+  //     option && myChart.setOption(option);
+  //     window.addEventListener("resize", () => {
+  //       myChart.resize();
+  //     });
+  //   }
 }
 </script>
 
 <style lang="scss" scoped>
-.top_text {
-  margin: 50px 30px 10px 30px;
+.page__a1__map {
+  display: flex;
+  flex-flow: column nowrap;
+  // justify-content: space-between;
 
   font-family: "PingFang SC";
-  font-size: 30px;
-  line-height: 30px;
-  color: #ffffff;
+  color: #90a4c3;
 
-  .abstract_style {
-    font-family: "DIN Alternate";
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 36px;
-    text-align: right;
-    color: #01f5f1;
-  }
+  .top_text {
+    display: flex;
+    flex-flow: row nowrap;
+    // justify-content: space-between;
+    align-items: center;
+    margin: 43px 50px 0 50px;
 
-  .point_line {
-    position: relative;
-    left: 77px;
-    width: 69px;
-    height: 53px;
-    border-left: 1px solid #1b4985;
-    border-bottom: 1px solid #1b4985;
-  }
+    .left_text {
+      flex: 1;
+    }
 
-  .middle_text {
-    position: relative;
-    top: -15px;
-    margin-left: 160px;
-    margin-bottom: 25px;
-  }
-  .middle_text span:nth-child(1) {
-    font-family: "PingFang SC";
-    font-size: 28px;
-    line-height: 39px;
-    color: #ffffff;
-  }
-  .middle_text span:nth-child(2) {
-    font-family: "DIN Alternate";
-    font-weight: bold;
-    font-size: 34px;
-    line-height: 36px;
-    color: #01f5f1;
+    .right_top_text {
+      flex: 1;
+    }
 
-    margin-left: 6px;
-  }
-
-  .middle_ul {
-    margin: 0 30px 56px 0;
-
-    li {
-      border-bottom: 1px dashed #1b4985;
-      .ul_text {
-        padding: 30px 0;
-
-        span {
-          font-size: 26px;
-          line-height: 22px;
-          letter-spacing: 2.5px;
-          color: #777777;
-        }
+    .row_content {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      background: linear-gradient(
+        89.96deg,
+        rgba(5, 203, 253, 0.1) 0%,
+        rgba(0, 127, 249, 0) 100.9%
+      );
+      backdrop-filter: blur(10px);
+      margin: 20px 0;
+      &::before {
+        content: "";
+        width: 2px;
+        height: 100%;
+        background: #5180e4;
+        box-shadow: 0px 0px 10px #5180e4;
+        margin-right: 30px;
+      }
+      .value {
+        margin-left: 36px;
+        font-family: "DIN Alternate";
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 42px;
+        color: #dbf0ff;
+        opacity: 0.9;
       }
     }
-    li:nth-child(1) {
-      border-top: 1px dashed #1b4985;
+  }
+}
+
+.bottom_content {
+  margin: 47px 50px;
+
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  height: 534px;
+}
+
+.left_bottom_text {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.right_bottom_text {
+  flex: 1;
+}
+
+.left_text {
+  font-size: 40px;
+  line-height: 40px;
+
+  .num {
+    padding-top: 18px;
+    font-size: 36px;
+    line-height: 48px;
+
+    span {
+      margin-left: 6px;
+      font-family: "DIN Alternate";
+      font-weight: bold;
+      font-size: 66px;
+      line-height: 60px;
+      color: #dbf0ff;
     }
   }
 
-  .special {
-    color: #ff2a76;
+  .spcial span {
+    color: #ff3980;
   }
 }
 </style>
