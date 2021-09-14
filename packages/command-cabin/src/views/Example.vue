@@ -103,6 +103,8 @@
             <Icon type="security" color="#FFCB7B" />
             <Icon type="security" color="#99B7F6" />
             <Icon type="security" color="#B491FD" />
+            checked:
+            <Icon type="checked" />
             room-number:
             <Icon type="room-number" :size="200" />
             number-of-opening-rooms:

@@ -36,6 +36,7 @@ import YearIncome from "./components/YearIncome.vue";
 import Energy from "./components/Energy.vue";
 import Warning from "./components/Warning.vue";
 import Security from "./components/Security.vue";
+import Checked from "./components/Checked.vue";
 
 const conponents = {
   asce: AsceAndDesc,
@@ -53,6 +54,7 @@ const conponents = {
   users: Users,
   income: Income,
   warning: Warning,
+  checked: Checked,
   security: Security,
   "year-income": YearIncome,
   "number-of-opening-rooms": NumberOfOpeningRooms,
