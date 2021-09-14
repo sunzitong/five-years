@@ -153,7 +153,6 @@
             <van-col>
               <CardA title="经营性支出" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
-                <E2 />
               </CardA>
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 924px">
