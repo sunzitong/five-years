@@ -1,79 +1,33 @@
 <template>
-  <div class="main-top-info">
-    <van-row gutter="30">
-      <van-col span="8">
-        <van-row gutter="44" class="row">
-          <van-col>
-            <Icon type="room-number" :size="200" />
-          </van-col>
-          <van-col>
-            <div class="title">累计获取房间数(万)</div>
-            <div class="num" style="color: #48cdfc">
-              <StepNumber :to="response.getRoomNum" />
-            </div>
-          </van-col>
-        </van-row>
-        <van-row gutter="34" class="srow" type="flex" justify="center">
-          <van-col>
-            <Icon type="brand" :size="77" />
-          </van-col>
-          <van-col>
-            <div class="title">品牌指数</div>
-            <div class="num" style="color: #ee7647">
-              NO.
-              {{ formatValue(response.brandPointNum) }}
-            </div>
-          </van-col>
-        </van-row>
-      </van-col>
-      <van-col span="8">
-        <van-row gutter="44" class="row">
-          <van-col>
-            <Icon type="number-of-opening-rooms" :size="200" />
-          </van-col>
-          <van-col>
-            <div class="title">累计开业房间数(间)</div>
-            <div class="num" style="color: #b07df7">
-              <StepNumber :to="response.openRoomNum" />
-            </div>
-          </van-col>
-        </van-row>
-        <van-row gutter="34" class="srow" type="flex" justify="center">
-          <van-col>
-            <Icon type="users" :size="93" />
-          </van-col>
-          <van-col>
-            <div class="title">累计服务用户数</div>
-            <div class="num" style="color: #5fceb3">
-              <StepNumber :to="response.servedPersonNum" />
-            </div>
-          </van-col>
-        </van-row>
-      </van-col>
-      <van-col span="8">
-        <van-row gutter="44" class="row">
-          <van-col><Icon type="year-income" :size="200" /></van-col>
-          <van-col>
-            <div class="title">年累总收入(亿)</div>
-            <div class="num" style="color: #5fceb3">
-              <StepNumber :to="response.incomeNum" />
-            </div>
-          </van-col>
-        </van-row>
-        <van-row gutter="34" class="srow" type="flex" justify="center">
-          <van-col>
-            <Icon type="income" :size="81" />
-          </van-col>
-          <van-col>
-            <div class="title">累计租户</div>
-            <div class="num" style="color: #4770ff">
-              <StepNumber :to="response.tenantNum" />
-            </div>
-          </van-col>
-        </van-row>
-      </van-col>
-    </van-row>
-    <div class="c1"></div>
+  <div class="box">
+    <div class="item">
+      <Icon type="brand" :size="40" />
+      <div class="info">
+        <div class="title">品牌指数</div>
+        <div class="num value__letter">
+          NO.
+          {{ formatValue(response.brandPointNum) }}
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <Icon type="users" :size="40" />
+      <div class="info">
+        <div class="title">累计服务用户数</div>
+        <div class="num value__letter">
+          <StepNumber :to="response.servedPersonNum" />
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <Icon type="income" :size="40" />
+      <div class="info">
+        <div class="title">累计租户</div>
+        <div class="num value__letter">
+          <StepNumber :to="response.tenantNum" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -94,7 +48,7 @@ import { StoreKey, useStore } from "@/store";
     StepNumber,
   },
 })
-export default class C1 extends Base {
+export default class C2 extends Base {
   /**
    * 返回数据
    */
@@ -124,33 +78,25 @@ export default class C1 extends Base {
 }
 </script>
 <style lang="scss" scoped>
-.main-top-info {
-  margin: 0 66px;
-  .row {
-    padding-left: 113px;
-    .title {
-      padding-top: 41px;
-      font-size: 40px;
-      color: #fff;
-    }
-    .num {
-      font-size: 100px;
-      font-weight: bold;
-      @extend %value__letter;
-    }
-  }
-
-  .srow {
-    margin: 30px auto;
-    .title {
-      font-size: 30px;
-      color: #fff;
-    }
-    .num {
-      font-size: 66px;
-      font-weight: bold;
-      @extend %value__letter;
-    }
+.box {
+  width: 968px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: 36px;
+  color: #90a4c3;
+  position: absolute;
+  top: 42px;
+  right: 100px;
+}
+.item {
+  display: flex;
+}
+.info {
+  margin-left: 25px;
+  .num {
+    font-size: 66px;
+    color: #dbf0ff;
   }
 }
 </style>
