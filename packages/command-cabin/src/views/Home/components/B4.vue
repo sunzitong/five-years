@@ -12,7 +12,7 @@
       </div>
       <div
         class="app-echarts"
-        style="width: 280px; height: 270px"
+        style="width: 350px; height: 340px"
         ref="wrapper"
       ></div>
       <div class="item_value">
@@ -90,12 +90,10 @@ export default class B4 extends Base {
     // myChart.showLoading();
     let option = {
       grid: {
-        x: 0,
-        y: 0,
-        x2: 0,
-        y2: -20,
+        top: "0%",
+        bottom: "0%",
         left: "0%",
-        right: "5%",
+        right: "3%",
         containLabel: true,
       },
       xAxis: { show: false, max: 100 },
@@ -105,39 +103,35 @@ export default class B4 extends Base {
         axisLine: { show: false },
         splitLine: { show: false },
         axisTick: { show: false },
-        axisLabel: {
-          show: false,
-          width: 64,
-          interval: 0,
-          margin: 31,
-          left: -200,
-          color: "#FFFFFF",
-          fontSize: 28,
-          lineHeight: 32,
-        },
+        axisLabel: { show: false },
         data: this.labels,
       },
       series: [
         {
           type: "bar",
           stack: "total",
-          barWidth: 8,
+          barWidth: 14,
           showBackground: true,
           backgroundStyle: {
-            color: "#143F79",
-            borderRadius: 40,
+            color: "#172C47",
+            // borderRadius: 40,
           },
+          barCategoryGap: "30%",
           itemStyle: {
-            color: "#57A6FB",
-            borderRadius: 40,
+            color: new echarts.graphic.LinearGradient(
+              1,
+              0,
+              0,
+              0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+              [
+                { offset: 0, color: "#5180E4" },
+                { offset: 1, color: "rgba(81, 128, 228, 0)" },
+              ]
+            ),
+            // borderRadius: 40,
             width: 338,
           },
-          label: {
-            show: false,
-            color: "#01F5F1",
-            fontSize: 34,
-            lineHeight: 36,
-          },
+          label: { show: false },
           data: this.values,
         },
       ],
@@ -151,6 +145,9 @@ export default class B4 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.page__product_quality__map {
+  padding: 56px 30px 44px 30px;
+}
 .whole_pannel {
   display: inline-block;
   display: flex;
@@ -160,28 +157,29 @@ export default class B4 extends Base {
 
   .item_name {
     white-space: pre-line;
-    color: #fff;
+    color: #90a4c3;
 
     .item_name_item {
       margin: 20px 31px;
       font-family: "PingFang SC";
-      font-size: 28px;
-      line-height: 32px;
+      font-size: 36px;
+      line-height: 40px;
     }
   }
 
   .item_value {
-    color: #01f5f1;
+    color: #dbf0ff;
     display: inline-block;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
+    height: 330px;
 
     .item_value_item {
       margin: 0 24px 0 0px;
       @extend %value__letter;
-      font-size: 34px;
-      line-height: 36px;
+      font-size: 50px;
+      line-height: 66px;
     }
   }
 }
