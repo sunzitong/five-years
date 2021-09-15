@@ -97,7 +97,6 @@ export default class A6 extends Base {
     left: 29.166666%;
     bottom: 0;
     margin-left: -6px;
-    width: 10px;
     background-image: linear-gradient(
       to bottom,
       #4d609d 0%,
