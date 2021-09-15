@@ -49,7 +49,7 @@ export default class A5 extends Base {
         // 饼图对象数组
         {
           name: "all",
-          value: 100,
+          value: 100 - iwant.number(this.resData.yearSubsidiesCompletionRate),
         },
         {
           name: "reach",
@@ -68,7 +68,7 @@ export default class A5 extends Base {
         //中心数值
         text:
           iwant.calc(
-            this.resData.yearSubsidiesCompletionRate as number,
+            iwant.number(this.resData.yearSubsidiesCompletionRate) * 100,
             1,
             true
           ) + "%",
@@ -112,7 +112,7 @@ export default class A5 extends Base {
           itemStyle: {
             borderRadius: 88,
           },
-          color: ["#57A6FB", "#F7D14A"],
+          color: ["#F7D14A", "#57A6FB"],
           data: this.pieData,
         },
       ],
@@ -161,6 +161,6 @@ export default class A5 extends Base {
   @extend %bg-img-circle-1;
   background-size: 100%;
 
-  margin: 30px auto;
+  margin: 0px auto 23px auto;
 }
 </style>
