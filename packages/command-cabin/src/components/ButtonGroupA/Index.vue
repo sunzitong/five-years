@@ -97,6 +97,7 @@ export default class ButtonGroupA extends Vue {
         left: 24px;
         right: 16px;
         @extend %bg-img-btn-shadow;
+        pointer-events: none;
       }
       /* 首尾背景图 */
       &:nth-child(1),
@@ -205,6 +206,7 @@ export default class ButtonGroupA extends Vue {
         left: 24px;
         right: 16px;
         @extend %bg-img-btn-shadow;
+        pointer-events: none;
       }
       /* 首尾背景图 */
       &:nth-child(1),
