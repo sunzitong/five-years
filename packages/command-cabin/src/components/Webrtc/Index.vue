@@ -59,7 +59,7 @@ export default class Webrtc extends Vue {
   /**
    * 组件卸载
    */
-  unmounted() {
+  beforeDestroy() {
     // 销毁播放器
     this.destroyPlayer();
   }

@@ -382,7 +382,7 @@ export default class Example extends Vue {
       console.log(this.progress);
     }, 3000);
   }
-  unmounted() {
+  beforeDestroy() {
     clearTimeout(this.timer);
   }
 }

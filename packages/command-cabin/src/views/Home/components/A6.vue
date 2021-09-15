@@ -129,7 +129,7 @@ export default class A6 extends Base {
     }
   }
 
-  unmounted() {
+  beforeDestroy() {
     clearTimeout(this.timer);
   }
 
