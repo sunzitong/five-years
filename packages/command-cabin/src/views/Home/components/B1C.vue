@@ -90,8 +90,13 @@ export default class Example extends Base {
   @Watch("pieData", { deep: true })
   paintChart() {
     const res = this.buildConfiguration();
-
-    const myChart = echarts.init(this.charts);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.charts);
+      mitter.on(EventName.ResizeEcharts, () => {
+        this.myChart.resize();
+      });
+    }
+    const { myChart } = this;
     // myChart.showLoading();
     let option = {
       legend: {
@@ -160,9 +165,6 @@ export default class Example extends Base {
       series: res.series,
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
   }
 }
 </script>
