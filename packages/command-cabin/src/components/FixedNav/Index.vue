@@ -28,7 +28,7 @@
         </g>
         <path
           d="M534.998 637.272L544.443 625.111V651.495L534.998 637.272Z"
-          fill="#01E0E2"
+          fill="#5180E4"
         />
         <path
           d="M524.211 637.272L544.442 607.658V623.345L542.097 619.24L529.489 637.272L542.097 656.331L544.442 653.105V667.179L524.211 637.272Z"
@@ -43,7 +43,7 @@
             y2="574"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#01F2EF" />
+            <stop stop-color="#5180E4" />
             <stop offset="1" stop-opacity="0" />
           </linearGradient>
         </defs>
