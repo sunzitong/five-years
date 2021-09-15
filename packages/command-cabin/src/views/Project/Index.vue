@@ -46,6 +46,7 @@
               ></CardA>
               <SubWrapperA
                 title="风险监控"
+                size="small"
                 style="width: 1193px; height: 736px"
               >
                 <CardA style="width: 1168px; height: 591px"></CardA>
@@ -95,14 +96,18 @@
           </van-row>
         </SubWrapperA>
         <WhiteSpace />
-        <van-row>
+        <van-row gutter="20">
           <van-col>
             <SubWrapperA title="风险预警" style="width: 1846px; height: 920px">
               <CardA style="width: 1794px; height: 764px"></CardA>
             </SubWrapperA>
           </van-col>
           <van-col>
-            <SubWrapperA title="舆情风险" style="width: 828px; height: 920px">
+            <SubWrapperA
+              size="small"
+              title="舆情风险"
+              style="width: 828px; height: 920px"
+            >
               <CardA style="width: 776px; height: 777px"></CardA>
             </SubWrapperA>
           </van-col>
