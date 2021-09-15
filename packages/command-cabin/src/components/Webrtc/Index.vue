@@ -38,6 +38,11 @@ export default class Webrtc extends Vue {
    */
   initPlayer(val?: PlayerConfig) {
     const config = {
+      accessChannel: "huiyan",
+      watermark: "jxxxx",
+      autoplay: false,
+      // cameraId: "00bcf8bbe82e0c36daa781e8568cd7d4",
+      cameraId: "16c01eaf613008b444a842d860911a17",
       ...(val ?? {}),
     };
     this.destroyPlayer();

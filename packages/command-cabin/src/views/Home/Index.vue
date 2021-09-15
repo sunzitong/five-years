@@ -169,7 +169,11 @@
             </SubWrapperA>
           </van-col>
           <van-col>
-            <SubWrapperA title="舆情风险" style="width: 828px; height: 920px">
+            <SubWrapperA
+              size="small"
+              title="舆情风险"
+              style="width: 828px; height: 920px"
+            >
               <CardA title="舆情风险" style="width: 776px; height: 777px">
                 <E5 />
               </CardA>

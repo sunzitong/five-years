@@ -95,6 +95,16 @@
             <Icon type="users" />
             income:
             <Icon type="income" />
+            warning:
+            <Icon type="warning" color="#FF3980|#fff" />
+            <Icon type="warning" color="#6F6F6F|#C1C1C1" />
+            security:
+            <Icon type="security" />
+            <Icon type="security" color="#FFCB7B" />
+            <Icon type="security" color="#99B7F6" />
+            <Icon type="security" color="#B491FD" />
+            checked:
+            <Icon type="checked" />
             room-number:
             <Icon type="room-number" :size="200" />
             number-of-opening-rooms:
