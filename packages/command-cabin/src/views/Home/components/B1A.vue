@@ -23,6 +23,7 @@ import dayjs from "dayjs";
 import { iwant, Nullable } from "@guanyu/shared";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -142,6 +143,7 @@ export default class B1A extends Base {
           name: "总计",
           type: "bar",
           yAxisIndex: 0,
+          z: -2,
           stack: "all", // 不参与堆叠
           barGap: "-50%",
           // position: "insideBottom",
@@ -152,7 +154,7 @@ export default class B1A extends Base {
             color: "#DBF0FF",
             fontSize: 36,
             lineHeight: 42,
-            padding: [0, -30, 20, 0],
+            padding: [0, -30, 18, 0],
           },
           itemStyle: {
             color: "rgba(128,128,128,0)",
@@ -266,7 +268,7 @@ export default class B1A extends Base {
           type: "bar",
           stack: "right", // 堆叠栈
           yAxisIndex: 2,
-          barGap: 0,
+          barGap: "-1%",
           color: "#4776DB",
           barWidth: 15,
           label: { show: false },
@@ -277,7 +279,7 @@ export default class B1A extends Base {
           type: "bar",
           stack: "right",
           yAxisIndex: 2,
-          barGap: 0,
+          barGap: "-1%",
           color: "#E6C345",
           barWidth: 15,
           label: { show: false },
@@ -288,7 +290,7 @@ export default class B1A extends Base {
           type: "bar",
           stack: "right",
           yAxisIndex: 2,
-          barGap: 0,
+          barGap: "-1%",
           color: "#996DF3",
           barWidth: 15,
           distance: 4,
@@ -298,7 +300,7 @@ export default class B1A extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }

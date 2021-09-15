@@ -42,6 +42,7 @@ import _ from "lodash";
 import { StoreKey, useStore } from "@/store";
 import echarts from "@/plugins/echarts";
 import { EChartsOption } from "echarts";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: { ProgressCircle },
@@ -136,8 +137,11 @@ export default class A6 extends Base {
   paintChart() {
     if (!this.myChart) {
       this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        this.myChart.resize();
+      });
     }
-    const myChart = this.myChart;
+    const { myChart } = this;
     // myChart.showLoading();
     let option: EChartsOption = {
       title: {
@@ -189,9 +193,6 @@ export default class A6 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
   }
 }
 </script>

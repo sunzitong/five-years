@@ -1,6 +1,7 @@
 import VueRouter, { Route } from "vue-router";
 import store from "@/store";
 import noop from "lodash/noop";
+import mitter, { EventName } from "@/utils/mitter";
 
 /**
  * 跳转错误页
@@ -46,6 +47,10 @@ function setDocumentTitle(title: string) {
 
 export default function (router: VueRouter) {
   router.beforeEach(function (_to, _from, next) {
+    /**
+     * 删除echarts重绘事件
+     */
+    mitter.all.delete(EventName.ResizeEcharts);
     next();
   });
   router.afterEach(async function () {
