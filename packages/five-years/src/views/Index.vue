@@ -167,6 +167,7 @@ export default class Index extends Base {
 
 
   mounted() {
+    location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
     document.title = "冠寓";
     this.getWxSign();
     console.log("this.visitSource", this.visitSource);
