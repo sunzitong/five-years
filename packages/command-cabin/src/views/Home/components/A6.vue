@@ -1,81 +1,47 @@
 <template>
   <div class="page__attack_after_throwing__map">
     <div class="text_pannel">
-      <!-- 仪表盘组件 -->
-      <ProgressCircle
-        v-if="yearFlag"
-        :styleType="1"
-        :rate="yearRate"
-        :size="280"
-        :strokeWidth="100"
-        :strokeSize="185"
-        strokeLinecap="round"
-        color="#4182C7"
-        primary
-        style="height: 190px"
-      >
-        <template v-slot="{ value }">
-          <div class="rate-text">
-            <div class="value">{{ value }}%</div>
-            <div class="desc">
-              预算达成率
-              <br />
-              （全年）
-            </div>
-          </div>
-        </template>
-      </ProgressCircle>
-      <ProgressCircle
-        v-if="!yearFlag"
-        :styleType="1"
-        :rate="cycleRate"
-        :size="280"
-        :strokeWidth="100"
-        :strokeSize="185"
-        strokeLinecap="round"
-        color="#4182C7"
-        primary
-        style="height: 190px"
-      >
-        <template v-slot="{ value }">
-          <div class="rate-text">
-            <div class="value">{{ value }}%</div>
-            <div class="desc">
-              预算达成率
-              <br />
-              （全周期）
-            </div>
-          </div>
-        </template>
-      </ProgressCircle>
-      <div class="top_text">净全年利润攻坚贡献值</div>
-      <van-row class="text_row">
-        <van-col :span="12" class="left_text">当年</van-col>
-        <van-col :span="12" class="right_text">
-          {{ sepNumber(currentYear) }}万
-        </van-col>
-      </van-row>
-      <van-row class="text_row">
-        <van-col :span="12" class="left_text">全周期</van-col>
-        <van-col :span="12" class="right_text">
-          {{ sepNumber(wholeCycle) }}万
-        </van-col>
-      </van-row>
+      <!-- 饼图 -->
+      <div class="chart" ref="wrapper"></div>
+      <div class="content_box">
+        <div class="top_text">净利润贡献值</div>
+        <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div>
+      </div>
+      <div class="container">
+        <div class="text_row">
+          <van-row>
+            <van-col :span="10" class="left_text">当年</van-col>
+            <van-col :span="11" class="right_text">
+              <span>{{ sepNumber(currentYear) }}</span>
+              万
+            </van-col>
+          </van-row>
+          <van-row>
+            <van-col :span="10" class="left_text">全周期</van-col>
+            <van-col :span="11" class="right_text">
+              <span>{{ sepNumber(wholeCycle) }}</span>
+              万
+            </van-col>
+          </van-row>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import Base from "@/views/Base";
-import { iwant } from "@guanyu/shared";
+import { AnyObject, iwant } from "@guanyu/shared";
 import _ from "lodash";
 import { StoreKey, useStore } from "@/store";
+import echarts from "@/plugins/echarts";
+import { EChartsOption } from "echarts";
 
 @Component({
   components: { ProgressCircle },
@@ -85,7 +51,9 @@ export default class A6 extends Base {
    * 接口返回值
    * /analysis/bigScreen/mainBoard/expandDisk
    */
+  @Ref() wrapper!: HTMLDivElement;
   resData: Partial<ExpansionAwardInfoReturn> = {};
+  pieData: AnyObject[] = [];
   /**
    * 显示全年时，此值为true
    */
@@ -106,6 +74,8 @@ export default class A6 extends Base {
    * 全周期利润攻坚贡献值
    */
   wholeCycle: number | string = "--";
+
+  value = 0; //中心数值
 
   async mounted() {
     const response = await useStore(fetchExpansionAwardInfo, {
@@ -128,52 +98,159 @@ export default class A6 extends Base {
         ? "--"
         : this.resData.yearNetIncomeCompletionRate;
 
+      this.pieData = [
+        // 饼图对象数组
+        {
+          name: "all",
+          value:
+            100 - iwant.number(this.resData.yearNetIncomeCompletionRate) * 100,
+        },
+        {
+          name: "reach",
+          value: iwant.number(this.resData.yearNetIncomeCompletionRate) * 100,
+        },
+      ];
+      this.paintChart();
+
       /**
        * 全周期与全年取值循环切换
        */
       setInterval(() => {
+        if (this.yearFlag) {
+          this.pieData[1].value =
+            iwant.number(this.resData.allNetIncomeCompletionRate) * 100;
+        } else {
+          this.pieData[1].value =
+            iwant.number(this.resData.yearNetIncomeCompletionRate) * 100;
+        }
         this.yearFlag = !this.yearFlag;
+        this.paintChart();
       }, 1000);
     }
+  }
+
+  paintChart() {
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+    }
+    const myChart = this.myChart;
+    // myChart.showLoading();
+    let option: EChartsOption = {
+      title: {
+        //中心数值
+        text: iwant.calc(this.pieData[1].value, 1, true) + "%",
+        left: "center",
+        top: "53%",
+        z: 100,
+        textStyle: {
+          fontFamily: "DIN Alternate",
+          fontWeight: "bold",
+          fontSize: 40,
+          lineHeight: 48,
+          color: "#DBF0FF",
+        },
+      },
+      graphic: {
+        // 中心文字
+        type: "text",
+        left: "center",
+        top: "41%",
+        z: 100,
+        style: {
+          text: "完成率",
+          textAlign: "center",
+          fontFamily: "PingFang SC",
+          fontSize: 24,
+          lineHeight: 24,
+          fill: "#8090AA",
+        },
+      },
+      xAxis: { show: false },
+      yAxis: { show: false },
+      series: [
+        {
+          // 展示数据
+          type: "pie",
+          radius: [81, 74],
+          center: ["50%", "57%"],
+          label: {
+            show: false,
+          },
+          itemStyle: {
+            borderRadius: 88,
+          },
+          color: ["#57A6FB", "#F7D14A"],
+          data: this.pieData,
+        },
+      ],
+    };
+    option && myChart.setOption(option);
+    window.addEventListener("resize", () => {
+      myChart.resize();
+    });
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.top_text {
-  font-family: "PingFang SC";
-  font-size: 30px;
-  line-height: 26px;
-  color: #ffffff;
-
-  margin-bottom: 26px;
-}
-
 .text_pannel {
   text-align: center;
 }
-
-.text_row {
-  margin: 0 30px 0 30px;
-  .left_text {
-    font-size: 28px;
-    line-height: 28px;
-    text-align: left;
-
-    margin-bottom: 19px;
+.content_box {
+  margin-bottom: 20px;
+  .top_text {
+    font-family: "PingFang SC";
+    font-size: 36px;
+    line-height: 40px;
+    color: #90a4c3;
   }
-  .right_text {
-    font-size: 26px;
-    line-height: 24px;
-    color: #01f5f1;
-    text-align: right;
+}
 
-    span {
-      font-family: "DIN Alternate";
-      font-weight: bold;
-      font-size: 40px;
-      line-height: 40px;
-    }
+.container {
+  display: flex;
+  align-items: center;
+  height: 96px;
+  background: linear-gradient(
+    89.96deg,
+    rgba(5, 203, 253, 0.1) 0%,
+    rgba(0, 127, 249, 0) 100.9%
+  );
+  backdrop-filter: blur(10px);
+  margin: 20px 0;
+  &::before {
+    content: "";
+    width: 2px;
+    height: 100%;
+    background: #5180e4;
+    box-shadow: 0px 0px 10px #5180e4;
+    margin-right: 30px;
+  }
+}
+.text_row {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.left_text {
+  font-size: 36px;
+  line-height: 36px;
+  text-align: left;
+  color: #90a4c3;
+}
+.right_text {
+  font-size: 26px;
+  line-height: 36px;
+  color: #90a4c3;
+  text-align: right;
+
+  span {
+    font-family: "DIN Alternate";
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    color: #dbf0ff;
   }
 }
 
@@ -191,20 +268,12 @@ export default class A6 extends Base {
   }
 }
 
-/* 仪表盘 */
-.rate-text {
-  .value {
-    @extend %value__letter;
-    font-weight: bold;
-    font-size: 38px;
-    line-height: 38px;
-    color: #fff;
-  }
-  .desc {
-    color: #65d4fc;
-    font-size: 20px;
-    line-height: 22px;
-    margin-top: 4px;
-  }
+.chart {
+  width: 240px;
+  height: 240px;
+  @extend %bg-img-circle-1;
+  background-size: 100%;
+
+  margin: 0px auto 23px auto;
 }
 </style>
