@@ -1,7 +1,7 @@
 <template>
   <div class="pannel_left">
     <div class="pannel_text">
-      累计已开业间数：
+      <span>累计已开业间数：</span>
       <span>{{ sepNumber(openingNum) }}</span>
     </div>
     <div
@@ -286,22 +286,25 @@ export default class B1A extends Base {
 <style lang="scss" scoped>
 .pannel_left {
   width: 676px;
-  border-right: 2px dashed #1b4985;
 
   .pannel_text {
-    margin: 30px 0 54px 30px;
+    padding: 40px 0 0 50px;
     font-family: "PingFang SC";
-    font-size: 30px;
-    line-height: 30px;
-    color: #ffffff;
+    font-size: 40px;
+    line-height: 40px;
+    color: #90a4c3;
 
-    span {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    span:nth-child(2) {
+      padding: 18px 0 45px 0;
       font-family: "DIN Alternate";
       font-weight: bold;
-      font-size: 40px;
-      line-height: 36px;
-      text-align: right;
-      color: #01f5f1;
+      font-size: 66px;
+      line-height: 60px;
+      color: #dbf0ff;
     }
   }
 }

@@ -4,6 +4,20 @@
       <B1A class="on_left" />
       <B1B class="on_right" />
     </div>
+    <van-row class="legend-group">
+      <van-col :span="8">
+        <span class="legend"></span>
+        <span>重资产</span>
+      </van-col>
+      <van-col :span="8">
+        <div class="legend"></div>
+        <span>中资产</span>
+      </van-col>
+      <van-col :span="8">
+        <div class="legend"></div>
+        <span>轻资产</span>
+      </van-col>
+    </van-row>
   </div>
 </template>
 
@@ -32,12 +46,45 @@ export default class B1 extends Base {}
   flex-flow: row nowrap;
 
   .on_left {
-    width: 687px;
-    height: 100%;
+    width: 787px;
+    height: 664px;
   }
 
   .on_right {
     flex: 1;
+    height: 664px;
   }
+}
+
+.van-col {
+  span {
+    vertical-align: middle;
+    margin-left: 18px;
+  }
+}
+
+.legend-group {
+  font-size: 36px;
+  line-height: 36px;
+  color: #90a4c3;
+  width: 486px;
+  margin: 0 auto;
+
+  .legend {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 20px;
+  }
+}
+
+.van-col:nth-child(1) .legend {
+  background-color: #5180e4;
+}
+.van-col:nth-child(2) .legend {
+  background-color: #f7d14a;
+}
+.van-col:nth-child(3) .legend {
+  background-color: #b491fd;
 }
 </style>
