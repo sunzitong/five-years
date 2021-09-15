@@ -24,6 +24,7 @@ import { StoreKey, useStore } from "@/store";
 import echarts from "@/plugins/echarts";
 import { EChartsOption } from "echarts";
 import { AnyObject, iwant } from "@guanyu/shared";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: { ProgressCircle },
@@ -118,7 +119,7 @@ export default class A5 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }

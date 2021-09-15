@@ -4,6 +4,15 @@ import mitt from "mitt";
  * 事件 event emitter / pubsub.
  */
 export default mitt();
+/**
+ * 事件管理
+ */
+export enum EventName {
+  /**
+   * resize时重绘echarts
+   */
+  ResizeEcharts = "resize-echarts",
+}
 
 /*
 // 示例

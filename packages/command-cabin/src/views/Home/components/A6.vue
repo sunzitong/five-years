@@ -42,6 +42,7 @@ import _ from "lodash";
 import { StoreKey, useStore } from "@/store";
 import echarts from "@/plugins/echarts";
 import { EChartsOption } from "echarts";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: { ProgressCircle },
@@ -189,7 +190,7 @@ export default class A6 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }

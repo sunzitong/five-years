@@ -21,6 +21,7 @@ import {
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import mitter, { EventName } from "@/utils/mitter";
 
 console.log(echarts);
 
@@ -135,7 +136,7 @@ export default class B5 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }

@@ -61,6 +61,7 @@ import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
 import { EChartsOption } from "echarts/types/dist/shared";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -177,7 +178,7 @@ export default class A1 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }

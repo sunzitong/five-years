@@ -80,6 +80,7 @@ import {
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import mitter, { EventName } from "@/utils/mitter";
 // import { iwant, Nullable } from "@guanyu/shared";
 
 @Component({
@@ -220,7 +221,7 @@ export default class B1B extends Base {
       ],
     };
     option1 && myLeftChart.setOption(option1);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myLeftChart.resize();
     });
 
@@ -275,7 +276,7 @@ export default class B1B extends Base {
       ],
     };
     option2 && myRightChart.setOption(option2);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myRightChart.resize();
     });
   }

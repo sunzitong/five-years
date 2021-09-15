@@ -23,6 +23,7 @@ import dayjs from "dayjs";
 import { iwant, Nullable } from "@guanyu/shared";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -298,7 +299,7 @@ export default class B1A extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }

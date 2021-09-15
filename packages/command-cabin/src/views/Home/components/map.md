@@ -23,7 +23,7 @@ export default class Example extends Base {
     // myChart.showLoading();
     let option = {};
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }
