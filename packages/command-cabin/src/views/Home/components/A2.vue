@@ -9,6 +9,7 @@ import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject, arrayToObject } from "@guanyu/shared";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -118,7 +119,7 @@ export default class A2 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
+    mitter.on(EventName.ResizeEcharts, () => {
       myChart.resize();
     });
   }
