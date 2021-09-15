@@ -260,7 +260,8 @@ export default class Index extends Base {
         url: "/pages/index/demo",
       });
     } else {
-      location.href = "weixin://dl/business/?t=UWD6sWSZ2Ro";
+      // location.href = "weixin://dl/business/?t=UWD6sWSZ2Ro";
+      location.href = "weixin://dl/business/?t=l2yNlq5JVed";
     }
   }
   //动态渲染微信开发标签 跳转小程序
