@@ -27,6 +27,7 @@ import AppLoading from "@/components/AppLoading.vue";
 import MixStore from "@/store/MixStore";
 import FixedNav from "@/components/FixedNav/Index.vue";
 import AppHeader from "@/components/Header/Index.vue";
+import mitter, { EventName } from "./utils/mitter";
 
 @Component({
   name: "app",
@@ -43,7 +44,14 @@ export default class App extends Mixins(MixStore) {
 
   scale = 1;
 
-  resizeHandle() {
+  resizeHandle(event?: UIEvent) {
+    /**
+     * 触发mitt事件重绘echarts
+     */
+    mitter.emit(EventName.ResizeEcharts, event);
+    /**
+     * 计算网页大小
+     */
     const app = this.$root.$el as HTMLDivElement;
     if (!this.resize) {
       app.style.removeProperty("transform");
