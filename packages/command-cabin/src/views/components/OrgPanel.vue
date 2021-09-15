@@ -96,7 +96,11 @@
       </div>
     </template>
     <template v-if="'dateScope' === this.type">
-      <div v-for="scope in dateScopes" :key="scope.value">
+      <div
+        v-for="scope in dateScopes"
+        :key="scope.value"
+        class="animate__animated animate__fadeInUp"
+      >
         <div class="row">
           <div
             class="col left"
