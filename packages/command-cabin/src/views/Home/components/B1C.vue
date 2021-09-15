@@ -9,7 +9,6 @@ import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
-import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -66,7 +65,7 @@ export default class Example extends Base {
         label: {
           normal: {
             position: "outer",
-            formatter: (name: any) => {
+            formatter: () => {
               return (
                 "{title|" +
                 this.pieData[i].name +
