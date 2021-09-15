@@ -1,17 +1,17 @@
 <template>
   <div class="five-years-container">
-    <!-- <img
+    <img
       class="user-avatar"
       :src="
         userImg
           ? userImg
-          : 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/CMS/e0NRKFirS3Q.png?x-oss-process=image/resize,s_230/interlace,1/format,jpg'
+          : 'http://prod-longzhubao-dahuiyuan.oss-cn-beijing.aliyuncs.com/longfor/member-head/21d24/r8_kWMpkqb8.jpg?Expires=1782832309&OSSAccessKeyId=LTAI5tBRjY8pEFAoxCXFTWEa&Signature=mlYq2KpYiOnyBy6f55IP1z6u7%2B4%3D'
       "
       alt
-    /> -->
+    />
     <img
       class="bg"
-      src="https://goyoo-assets.longfor.com/prod/app/mn1WFwkfWLbqhiIZC3ysBA.png"
+      src="https://goyoo-assets.longfor.com/prod/app/9rNgoa1vuMcypa7c5TYeqA.png"
       alt=""
     />
     <div class="name">
