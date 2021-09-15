@@ -84,7 +84,7 @@
         <div class="footer">
           <div class="global-button">
             <div class="center">
-              <ButtonGroup>
+              <ButtonGroupA>
                 <van-radio-group value="main" direction="horizontal">
                   <van-radio name="main">
                     <Icon type="map" :size="36" class="button-icon--left" />
@@ -95,8 +95,8 @@
                     冠寓大事记
                   </van-radio>
                 </van-radio-group>
-              </ButtonGroup>
-              <ButtonGroup>
+              </ButtonGroupA>
+              <ButtonGroupA>
                 <van-checkbox-group :value="scopeValue" direction="horizontal">
                   <van-checkbox
                     :name="DateScopes.YEARLY"
@@ -117,7 +117,7 @@
                     />
                   </van-checkbox>
                 </van-checkbox-group>
-              </ButtonGroup>
+              </ButtonGroupA>
               <!-- 区域选择 -->
               <OrgPanel
                 type="orgTree"
@@ -192,7 +192,7 @@ import CardA from "@/components/CardA/Index.vue";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
-import ButtonGroup from "@/components/ButtonGroup/Index.vue";
+import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 
@@ -237,7 +237,7 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
     E2,
     E4,
     E5,
-    ButtonGroup,
+    ButtonGroupA,
     Icon,
     OrgPanel,
   },
