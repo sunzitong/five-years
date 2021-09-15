@@ -55,9 +55,14 @@
           class="app_fixed-nav__links"
           v-for="item in menus"
           :key="item.title"
+          :fill="$route.path === item.href ? `#01F4F0` : '#5180E4'"
           :animate="$route.path === item.href"
         >
-          {{ item.title }}
+          <span
+            :style="`color:${$route.path === item.href ? `#01F4F0` : '#fff'};`"
+          >
+            {{ item.title }}
+          </span>
         </Btn>
       </div>
     </div>
