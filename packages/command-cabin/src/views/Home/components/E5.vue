@@ -1,7 +1,26 @@
 <template>
   <div class="page__e5a__e5b">
-    <E5A :response="response" />
-    <E5B :response="response" />
+    <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
+      <van-swipe-item>
+        <E5A :response="response" />
+      </van-swipe-item>
+      <van-swipe-item>
+        <E5B :response="response" />
+      </van-swipe-item>
+      <template #indicator>
+        <div class="custom-indicator">
+          <div
+            class="item"
+            :class="{ current: current === index }"
+            v-for="(item, index) of 2"
+            :key="item"
+          >
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </template>
+    </van-swipe>
   </div>
 </template>
 
@@ -25,8 +44,17 @@ export default class E5 extends Base {
    */
   response = {};
 
+  current = 0;
+
   created() {
     this.fetch();
+  }
+
+  /**
+   * 幻灯片改变
+   */
+  onSwipeChangeHandle(index: number) {
+    this.current = index;
   }
 
   /**
@@ -49,4 +77,19 @@ export default class E5 extends Base {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.custom-indicator {
+  display: flex;
+  justify-content: center;
+  > .item {
+    flex: 1;
+    max-width: 36px;
+    min-width: 36px;
+    height: 6px;
+    background: rgba(83, 214, 255, 0.3);
+  }
+  > .current {
+    background: #01f5f1;
+  }
+}
+</style>

@@ -2,7 +2,7 @@
   <div
     class="app-echarts"
     ref="barChart"
-    style="width: 100%; height: 500px"
+    style="width: 100%; height: 650px"
   ></div>
 </template>
 
@@ -91,7 +91,7 @@ export default class E5A extends Base {
       grid: {
         top: "12%",
         right: "5%",
-        left: "8%",
+        left: "12%",
         bottom: "12%",
       },
       tooltip: {
