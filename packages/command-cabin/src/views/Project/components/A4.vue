@@ -70,7 +70,7 @@ export default class A4 extends Base {
     this.$root.$el.addEventListener("click", this.telClear);
   }
 
-  unmounted() {
+  beforeDestroy() {
     this.$root.$el.removeEventListener("click", this.telClear);
   }
 

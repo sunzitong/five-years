@@ -144,7 +144,7 @@ export default class Animationed extends Vue {
   /**
    * 组件卸载
    */
-  unmounted() {
+  beforeDestroy() {
     this.container.removeEventListener("click", this.scrollHandler);
     this.container.removeEventListener("scroll", this.scrollHandler);
     this.timeout = null;

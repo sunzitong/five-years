@@ -115,7 +115,7 @@ export default class A6 extends Base {
       /**
        * 全周期与全年取值循环切换
        */
-      setInterval(() => {
+      this.timer = setInterval(() => {
         if (this.yearFlag) {
           this.pieData[1].value =
             iwant.number(this.resData.allNetIncomeCompletionRate) * 100;
@@ -127,6 +127,10 @@ export default class A6 extends Base {
         this.paintChart();
       }, 1000);
     }
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
   }
 
   paintChart() {
