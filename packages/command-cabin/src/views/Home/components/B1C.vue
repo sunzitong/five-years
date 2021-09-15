@@ -9,7 +9,6 @@ import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
-import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -52,13 +51,48 @@ export default class Example extends Base {
         emphasis: { scale: false }, //鼠标移入变大
         radius: [112 - i * 11, 101 - i * 11],
         center: ["25%", "50%"],
-        label: {
-          show: false,
-        },
         itemStyle: {
           label: { show: false },
           labelLine: { show: false },
           borderWidth: 13,
+        },
+        labelLine: {
+          normal: {
+            length: 10,
+            length2: 40,
+          },
+        },
+        label: {
+          normal: {
+            position: "outer",
+            formatter: () => {
+              return (
+                "{title|" +
+                this.pieData[i].name +
+                "} {value|" +
+                this.pieData[i].value +
+                "%}"
+              );
+            },
+            borderWidth: 200,
+            // borderRadius: 4,
+            padding: [0, 0],
+            rich: {
+              title: {
+                fontFamily: "PingFang SC",
+                color: "#90A4C3",
+                fontSize: 10,
+                // lineHeight: 42,
+              },
+              value: {
+                fontFamily: "DIN Alternate",
+                fontWeight: "bold",
+                fontSize: 10,
+                // lineHeight: 42,
+                color: "#DBF0FF",
+              },
+            },
+          },
         },
         data: [
           {
@@ -94,53 +128,9 @@ export default class Example extends Base {
     const myChart = echarts.init(this.charts);
     // myChart.showLoading();
     let option = {
-      legend: {
-        show: true,
-        icon: "none",
-        left: "42%",
-        top: "1%",
-        width: 190,
-        itemGap: 0,
-        formatter: (name: any) => {
-          let num = 0;
-          this.pieData1 ??
-            [].forEach((el: AnyObject) => {
-              if (el.name === name) {
-                num = el.value;
-              }
-            });
-          return "{title|" + name + "} {value|" + num + "%}";
-        },
-        textStyle: {
-          rich: {
-            title: {
-              fontFamily: "PingFang SC",
-              fontSize: 24,
-              lineHeight: 21,
-              width: 96,
-              marginRight: 50,
-              color: "#FFFFFF",
-            },
-            value: {
-              width: 80,
-              fontFamily: "DIN Alternate",
-              fontWeight: "bold",
-              fontSize: 30,
-              lineHeight: 25,
-              align: "right",
-              color: "#01F5F1",
-            },
-          },
-        },
-        itemStyle: {
-          color: ["transparant", "transparant", "transparant"],
-        },
-
-        data: this.names,
-      },
       grid: {
         top: "center",
-        left: "30%",
+        left: "0%",
         containlabel: false,
       },
       xAxis: { show: false },
@@ -148,12 +138,8 @@ export default class Example extends Base {
         {
           type: "category",
           asisTick: { show: true },
-          axisLabel: {
-            show: true,
-            intervel: 0,
-            color: "#FFFFFF",
-            fontSize: 24,
-          },
+          axisLabel: { show: true },
+          axisLine: { show: false },
           data: res.yAxis,
         },
       ],
