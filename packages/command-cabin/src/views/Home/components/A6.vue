@@ -137,8 +137,11 @@ export default class A6 extends Base {
   paintChart() {
     if (!this.myChart) {
       this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        this.myChart.resize();
+      });
     }
-    const myChart = this.myChart;
+    const { myChart } = this;
     // myChart.showLoading();
     let option: EChartsOption = {
       title: {
@@ -190,9 +193,6 @@ export default class A6 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>
