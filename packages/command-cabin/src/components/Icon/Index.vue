@@ -37,6 +37,7 @@ import Energy from "./components/Energy.vue";
 import Warning from "./components/Warning.vue";
 import Security from "./components/Security.vue";
 import Checked from "./components/Checked.vue";
+import ArrowBold from "./components/ArrorwBold.vue";
 
 const conponents = {
   asce: AsceAndDesc,
@@ -74,6 +75,10 @@ const conponents = {
   "turn-back": TurnBack,
   "data-source": DataSource,
   energy: Energy,
+  "arrow-bold-top": ArrowBold,
+  "arrow-bold-right": ArrowBold,
+  "arrow-bold-bottom": ArrowBold,
+  "arrow-bold-left": ArrowBold,
 };
 
 @Component({

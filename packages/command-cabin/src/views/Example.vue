@@ -113,6 +113,8 @@
             <Icon type="year-income" :size="200" />
             energy:
             <Icon type="energy" :size="200" />
+            arrow-bold-top:
+            <Icon type="arrow-bold-top" :size="100" />
           </p>
         </Card>
 

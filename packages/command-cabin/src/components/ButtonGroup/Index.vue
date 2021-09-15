@@ -8,9 +8,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Btn extends Vue {
-  radio = "1";
-}
+export default class ButtonGroup extends Vue {}
 </script>
 
 <style lang="scss" scoped>

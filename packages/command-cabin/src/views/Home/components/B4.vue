@@ -90,10 +90,6 @@ export default class B4 extends Base {
     // myChart.showLoading();
     let option = {
       grid: {
-        x: 0,
-        y: 0,
-        x2: 0,
-        y2: -20,
         top: "0%",
         bottom: "0%",
         left: "0%",
@@ -123,9 +119,9 @@ export default class B4 extends Base {
           barCategoryGap: "30%",
           itemStyle: {
             color: new echarts.graphic.LinearGradient(
-              0,
-              0,
               1,
+              0,
+              0,
               0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
                 { offset: 0, color: "#5180E4" },

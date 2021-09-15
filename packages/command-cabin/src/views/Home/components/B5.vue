@@ -2,20 +2,10 @@
   <div class="page__maintenance_report__map">
     <div class="whole_pannel">
       <div
-        class="app-echarts"
+        class="chart"
         ref="wrapper"
-        style="width: 690px; height: 280px"
+        style="width: 900px; height: 300px"
       ></div>
-      <!-- <div class="pannel_values">
-        <div class="values_left">
-          <div v-for="(value, index) in values" :key="index">
-            {{ value }}
-          </div>
-        </div>
-        <div class="values_right">
-          <div v-for="(ratio, index) in ratios" :key="index">{{ ratio }}%</div>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
@@ -49,7 +39,7 @@ export default class B5 extends Base {
   resData: Partial<RepairStatReturn> = {};
   year = dayjs().year();
 
-  names = ["电器类", "硬装类", "水暖类", "渗漏类", "设备类", "其他"]; // name标签
+  names = ["水电类", "装修类", "设备类", "其他"]; // name标签
 
   data: AnyObject[] = []; // 饼图对象数组
 
@@ -92,40 +82,36 @@ export default class B5 extends Base {
       legend: {
         orient: "vertical",
         left: "45%",
-        top: "0%",
+        top: "3%",
+        bottom: "3%",
         icon: "rec",
-        itemWidth: 20,
-        itemHeight: 20,
-        itemGap: 18,
+        itemWidth: 12,
+        itemHeight: 12,
+        itemGap: 25,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${iwant.calc(
+          return `{a|${params}}{b|  ${this.objData1[params]}}{b| ${iwant.calc(
             this.objData2[params],
             1,
             true
           )}%}`;
         },
         textStyle: {
-          color: "#FFFFFF",
-          fontSize: 28,
           rich: {
             a: {
-              color: "#FFFFFF",
-              fontSize: 28,
-              width: 90,
+              color: "#90A4C3",
+              fontSize: 40,
+              lineHeight: 36,
+              width: 110,
+              padding: [0, 0, 2, 18],
             },
             b: {
-              color: "#01F5F1",
-              fontSize: 30,
-              width: 100,
-              align: "right",
-              marginLeft: 10,
-            },
-            c: {
-              color: "#01F5F1",
-              fontSize: 30,
-              width: 100,
-              marginLeft: 39,
+              fontFamily: "DIN Alternate",
+              color: "#DBF0FF",
+              fontWeight: "bold",
+              fontSize: 48,
+              lineHeight: 50,
+              width: 120,
               align: "right",
             },
           },
@@ -135,16 +121,12 @@ export default class B5 extends Base {
         {
           type: "pie",
           avoidLabelOverlap: false,
-          radius: ["40%", 91.5],
-          center: ["25%", "45%"],
-          color: [
-            "#FE513A",
-            "#FFEF69",
-            "#57A6FB",
-            "#A957FB",
-            "#55D5F3",
-            "#56EDA3",
-          ],
+          radius: [81, 72],
+          center: ["25%", "50%"],
+          itemStyle: {
+            borderRadius: 88,
+          },
+          color: ["#F7D14A", "#5180E4", "#22CB98", "#AE95F6"],
           label: {
             show: false,
           },
@@ -188,5 +170,13 @@ export default class B5 extends Base {
       margin-left: 39px;
     }
   }
+}
+
+.chart {
+  width: 300px;
+  height: 300px;
+  @extend %bg-img-circle-1;
+  background-size: 26%;
+  background-position: 109px 16px;
 }
 </style>
