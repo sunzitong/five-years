@@ -1,13 +1,13 @@
 <template>
   <div class="pannel_left">
     <div class="pannel_text">
-      累计已开业间数：
+      <span>累计已开业间数：</span>
       <span>{{ sepNumber(openingNum) }}</span>
     </div>
     <div
       class="app-echarts"
       ref="wrapper"
-      style="width: 687px; height: 380px"
+      style="width: 100%; height: 425px"
     ></div>
   </div>
 </template>
@@ -91,27 +91,14 @@ export default class B1A extends Base {
   paintChart() {
     const myChart = echarts.init(this.wrapper);
     let option = {
-      legend: {
-        data: this.legendName,
-        bottom: 0,
-        left: 213,
-        icon: "rec",
-        itemWidth: 20,
-        itemHeight: 20,
-        itemGap: 29,
-        textStyle: {
-          color: "#FFFFFF",
-          fontSize: 28,
-          lineHeight: 39,
-        },
-      },
       xAxis: {
         type: "category",
         axisLabel: {
           fontFamily: "PingFang SC",
-          fontSize: 30,
-          lineHeight: 30,
-          color: "#FFFFFF",
+          fontSize: 36,
+          lineHeight: 36,
+          padding: [22, 0, 0, 0],
+          color: "#90A4C3",
         },
         data: this.years,
         axisLine: { show: false },
@@ -120,7 +107,7 @@ export default class B1A extends Base {
       yAxis: [
         {
           min: 0,
-          //   name: "value",
+          //   name: "total",
           splitLine: { show: false },
           axisLabel: {
             show: false,
@@ -128,7 +115,15 @@ export default class B1A extends Base {
         },
         {
           min: 0,
-          //   name: "total",
+          //   name: "value_left",
+          splitLine: { show: false },
+          axisLabel: {
+            show: false,
+          },
+        },
+        {
+          min: 0,
+          //   name: "total_right",
           splitLine: { show: false },
           axisLabel: {
             show: false,
@@ -136,32 +131,28 @@ export default class B1A extends Base {
         },
       ],
       grid: {
-        x: 49,
-        y: 0,
-        x2: 0,
-        y2: 0,
-        top: "8%",
-        right: "8%",
-        bottom: "30%",
+        top: "6%",
+        right: "10%",
+        bottom: "20%",
+        containLabel: true,
       },
       series: [
         {
           // 总和label，该bar隐藏
           name: "总计",
           type: "bar",
-          yAxisIndex: 1,
-          stack: "two", // 不参与堆叠
-          barGap: "-100%",
-          position: "insideBottom",
-          barWidth: 30,
-          distance: 10,
+          yAxisIndex: 0,
+          stack: "all", // 不参与堆叠
+          barGap: "-50%",
+          // position: "insideBottom",
+          barWidth: 1,
           label: {
             show: true,
-            distance: 10,
             position: "top",
-            color: "#FFF",
-            fontSize: 22,
-            lineHeight: 22,
+            color: "#DBF0FF",
+            fontSize: 36,
+            lineHeight: 42,
+            padding: [0, -30, 20, 0],
           },
           itemStyle: {
             color: "rgba(128,128,128,0)",
@@ -171,13 +162,12 @@ export default class B1A extends Base {
         {
           name: "重资产",
           type: "bar",
-          stack: "one", // 堆叠栈
-          yAxisIndex: 0,
-          color: "#FFEF69",
-          barWidth: 30,
-          z: 3,
+          stack: "left", // 堆叠栈
+          yAxisIndex: 1,
+          color: "#5180E4",
+          barWidth: 15,
           label: {
-            show: true,
+            show: false,
             position: "insideTopLeft",
             offset: [-13, -10], // label定位
             align: "right",
@@ -206,13 +196,12 @@ export default class B1A extends Base {
         {
           name: "中资产",
           type: "bar",
-          stack: "one",
-          yAxisIndex: 0,
-          color: "#57A6FB",
-          barWidth: 30,
-          z: 2,
+          stack: "left",
+          yAxisIndex: 1,
+          color: "#F7D14A",
+          barWidth: 15,
           label: {
-            show: true,
+            show: false,
             position: "insideTopLeft",
             offset: [-13, -10],
             align: "right",
@@ -241,14 +230,13 @@ export default class B1A extends Base {
         {
           name: "轻资产",
           type: "bar",
-          stack: "one",
-          yAxisIndex: 0,
-          color: "#A957FB",
-          barWidth: 30,
+          stack: "left",
+          yAxisIndex: 1,
+          color: "#B491FD",
+          barWidth: 15,
           distance: 4,
-          z: 1,
           label: {
-            show: true,
+            show: false,
             position: "insideTopLeft",
             offset: [-13, -10],
             align: "right",
@@ -273,6 +261,40 @@ export default class B1A extends Base {
           },
           data: this.data3,
         },
+        {
+          name: "重资产",
+          type: "bar",
+          stack: "right", // 堆叠栈
+          yAxisIndex: 2,
+          barGap: 0,
+          color: "#4776DB",
+          barWidth: 15,
+          label: { show: false },
+          data: this.data1,
+        },
+        {
+          name: "中资产",
+          type: "bar",
+          stack: "right",
+          yAxisIndex: 2,
+          barGap: 0,
+          color: "#E6C345",
+          barWidth: 15,
+          label: { show: false },
+          data: this.data2,
+        },
+        {
+          name: "轻资产",
+          type: "bar",
+          stack: "right",
+          yAxisIndex: 2,
+          barGap: 0,
+          color: "#996DF3",
+          barWidth: 15,
+          distance: 4,
+          label: { show: false },
+          data: this.data3,
+        },
       ],
     };
     option && myChart.setOption(option);
@@ -286,22 +308,25 @@ export default class B1A extends Base {
 <style lang="scss" scoped>
 .pannel_left {
   width: 676px;
-  border-right: 2px dashed #1b4985;
 
   .pannel_text {
-    margin: 30px 0 54px 30px;
+    padding: 40px 0 0 50px;
     font-family: "PingFang SC";
-    font-size: 30px;
-    line-height: 30px;
-    color: #ffffff;
+    font-size: 40px;
+    line-height: 40px;
+    color: #90a4c3;
 
-    span {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    span:nth-child(2) {
+      padding: 18px 0 45px 0;
       font-family: "DIN Alternate";
       font-weight: bold;
-      font-size: 40px;
-      line-height: 36px;
-      text-align: right;
-      color: #01f5f1;
+      font-size: 66px;
+      line-height: 60px;
+      color: #dbf0ff;
     }
   }
 }
