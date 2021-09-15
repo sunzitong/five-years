@@ -43,13 +43,13 @@
           y2="15.7798"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0131516" stop-color="#01E7E7" stop-opacity="0" />
+          <stop offset="0.0131516" stop-color="#0C265E" stop-opacity="0" />
           <stop
             offset="0.499477"
-            stop-color="#00F5FF"
+            stop-color="#5180E4"
             stop-opacity="0.593858"
           />
-          <stop offset="1" stop-color="#01E7E7" stop-opacity="0" />
+          <stop offset="1" stop-color="#0C265E" stop-opacity="0" />
         </linearGradient>
         <linearGradient
           :id="`${uuid}_paint2_linear`"
@@ -59,14 +59,14 @@
           y2="112.729"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#01F5F1" stop-opacity="0" />
+          <stop stop-color="#5180E4" stop-opacity="0" />
           <stop
             offset="0.265077"
-            stop-color="#01F5F1"
+            stop-color="#5180E4"
             stop-opacity="0.494147"
           />
-          <stop offset="0.660232" stop-color="#01F5F1" />
-          <stop offset="0.852647" stop-color="#01F5F1" stop-opacity="0" />
+          <stop offset="0.660232" stop-color="#5180E4" />
+          <stop offset="0.852647" stop-color="#5180E4" stop-opacity="0" />
         </linearGradient>
         <linearGradient
           :id="`${uuid}_paint3_linear`"
@@ -76,14 +76,14 @@
           y2="273.856"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#01F5F1" stop-opacity="0" />
+          <stop stop-color="#5180E4" stop-opacity="0" />
           <stop
             offset="0.265077"
-            stop-color="#01F5F1"
+            stop-color="#5180E4"
             stop-opacity="0.494147"
           />
-          <stop offset="0.660232" stop-color="#01F5F1" />
-          <stop offset="0.852647" stop-color="#01F5F1" stop-opacity="0" />
+          <stop offset="0.660232" stop-color="#5180E4" />
+          <stop offset="0.852647" stop-color="#5180E4" stop-opacity="0" />
         </linearGradient>
       </defs>
     </svg>

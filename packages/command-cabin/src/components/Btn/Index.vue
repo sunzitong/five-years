@@ -17,7 +17,7 @@
       />
       <path
         d="M10.1929 0.665039H0.192871V10.665L10.1929 0.665039Z"
-        fill="#01F4F0"
+        :fill="fill"
       />
       <path
         :d="`
@@ -26,7 +26,7 @@
           V${rect.height - 10}
           L${rect.width - 10} ${rect.height}
           Z`"
-        fill="#01F4F0"
+        :fill="fill"
       />
       <rect
         v-if="animate"
@@ -45,7 +45,7 @@
         :y1="rect.height - 70 + 58.9993"
         x2="9.97374"
         :y2="rect.height - 70 + 63.9993"
-        stroke="#01F5F1"
+        :stroke="fill"
         stroke-width="2"
       />
       <line
@@ -53,7 +53,7 @@
         :y1="rect.height - 70 + 50.9781"
         x2="18.5661"
         :y2="rect.height - 70 + 63.9781"
-        stroke="#01F5F1"
+        :stroke="fill"
         stroke-width="2"
       />
       <line
@@ -61,7 +61,7 @@
         y1="12.0974"
         :x2="rect.width - 250 + 236.606"
         y2="7.07734"
-        stroke="#01F5F1"
+        :stroke="fill"
         stroke-width="2"
       />
       <line
@@ -71,7 +71,7 @@
         :transform="`matrix(-0.712453 -0.70172 -0.70172 0.712453 ${
           rect.width - 10
         } 20.8535)`"
-        stroke="#01F5F1"
+        :stroke="fill"
         stroke-width="2"
       />
       <defs>
@@ -95,9 +95,9 @@
           y2="0"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#01F5F1" stop-opacity="0.1" />
-          <stop offset="0.510417" stop-color="#01F5F1" stop-opacity="0.99" />
-          <stop offset="1" stop-color="#01F5F1" stop-opacity="0"></stop>
+          <stop :stop-color="fill" stop-opacity="0.1" />
+          <stop offset="0.510417" :stop-color="fill" stop-opacity="0.99" />
+          <stop offset="1" :stop-color="fill" stop-opacity="0"></stop>
         </linearGradient>
         <linearGradient
           :id="`${uuid}_paint1_linear`"
@@ -107,9 +107,9 @@
           y2="0.665028"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#01F5F1" stop-opacity="0.1" />
-          <stop offset="0.510417" stop-color="#01F5F1" stop-opacity="0.99" />
-          <stop offset="1" stop-color="#01F5F1" stop-opacity="0"></stop>
+          <stop :stop-color="fill" stop-opacity="0.1" />
+          <stop offset="0.510417" :stop-color="fill" stop-opacity="0.99" />
+          <stop offset="1" :stop-color="fill" stop-opacity="0"></stop>
         </linearGradient>
       </defs>
     </svg>
@@ -126,6 +126,11 @@ import { uuid } from "@guanyu/shared";
 @Component
 export default class Btn extends Vue {
   @Prop({ default: "medium" }) size!: number | "medium" | "small" | "large";
+
+  /**
+   * 填充颜色
+   */
+  @Prop({ default: "#5180E4" }) fill!: string;
 
   /**
    * 执行动画
