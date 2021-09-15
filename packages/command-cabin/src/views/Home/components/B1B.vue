@@ -52,18 +52,18 @@
 
     <van-row>
       <van-col :span="12">
-        <div
-          class="left_echarts"
-          ref="leftCharts"
-          style="width: 450px; height: 300px"
-        ></div>
+        <B1C
+          :pieData="pieData1"
+          :sum="sum1"
+          style="width: 100%; height: 230px; margin-top: 60px"
+        />
       </van-col>
       <van-col :span="12">
-        <div
-          class="right_echarts"
-          ref="rightCharts"
-          style="width: 450px; height: 300px"
-        ></div>
+        <B1C
+          :pieData="pieData2"
+          :sum="sum2"
+          style="width: 100%; height: 230px; margin-top: 60px"
+        />
       </van-col>
     </van-row>
   </div>
@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
+// import echarts from "@/plugins/echarts";
 import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import {
   fetchProjectOpen,
@@ -80,11 +80,12 @@ import {
 import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
-import mitter, { EventName } from "@/utils/mitter";
-// import { iwant, Nullable } from "@guanyu/shared";
+import B1C from "./B1C.vue";
 
 @Component({
-  components: {},
+  components: {
+    B1C,
+  },
 })
 export default class B1B extends Base {
   /**
@@ -119,6 +120,23 @@ export default class B1B extends Base {
 
   objData1: AnyObject = {}; // 左侧饼图name-value键值对对象
   objData2: AnyObject = {}; // 右侧饼图name-value键值对对象
+  color = ["#5180E4", "#F7D14A", "#B491FD"];
+
+  getArrayValue = (array: AnyObject[], key: string) => {
+    key = key || "value";
+    let res: number[] = [];
+    if (array) {
+      array.forEach(function (t) {
+        res.push(t[key]);
+      });
+    }
+    return res;
+  };
+
+  values1: number[] = []; // value数组
+  values2: number[] = []; // value数组
+  sum1 = 0; // 重中轻之和
+  sum2 = 0; // 重中轻之和
 
   async mounted() {
     const response = await useStore(fetchProjectOpen, {
@@ -165,120 +183,17 @@ export default class B1B extends Base {
         value: "value",
       });
 
-      this.paintChart();
+      this.values1 = this.getArrayValue(this.pieData1, "value"); // value数组
+      this.sum1 = this.values1.reduce(
+        (pre: number, cur: number) => iwant.number(pre) + iwant.number(cur),
+        0
+      ); // 所有成本之和
+      this.values2 = this.getArrayValue(this.pieData2, "value"); // value数组
+      this.sum2 = this.values2.reduce(
+        (pre: number, cur: number) => iwant.number(pre) + iwant.number(cur),
+        0
+      ); // 所有成本之和
     }
-  }
-
-  paintChart() {
-    const myLeftChart = echarts.init(this.leftCharts);
-    // myChart.showLoading();
-    let option1 = {
-      legend: {
-        orient: "vertical",
-        right: "3%",
-        top: "18%",
-        icon: "rec",
-        itemWidth: 20,
-        itemHeight: 20,
-        itemGap: 35,
-        data: this.pieData1,
-        formatter: (params: any) => {
-          return `{a|${params}}{b|  ${iwant.calc(
-            this.objData1[params],
-            1,
-            true
-          )}%}`;
-        },
-        textStyle: {
-          rich: {
-            a: {
-              color: "#FFFFFF",
-              fontSize: 28,
-              lineHeight: 39,
-              width: 84,
-            },
-            b: {
-              color: "#01F5F1",
-              fontSize: 34,
-              lineHeight: 36,
-              align: "right",
-            },
-          },
-        },
-      },
-      series: [
-        {
-          type: "pie",
-          avoidLabelOverlap: false,
-          radius: ["25%", 70],
-          center: ["20%", "48%"],
-          color: ["#F7D14A", "#57A6FB", "#A957FB"],
-          label: {
-            show: false,
-          },
-          data: this.pieData1,
-        },
-      ],
-    };
-    option1 && myLeftChart.setOption(option1);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myLeftChart.resize();
-    });
-
-    const myRightChart = echarts.init(this.rightCharts);
-    // myChart.showLoading();
-    let option2 = {
-      legend: {
-        orient: "vertical",
-        right: "3%",
-        top: "18%",
-        icon: "rec",
-        itemWidth: 20,
-        itemHeight: 20,
-        itemGap: 35,
-        data: this.pieData2,
-        formatter: (params: any) => {
-          return `{a|${params}}{b|  ${iwant.calc(
-            this.objData1[params],
-            1,
-            true
-          )}%}`;
-        },
-        textStyle: {
-          rich: {
-            a: {
-              color: "#FFFFFF",
-              fontSize: 28,
-              lineHeight: 39,
-              width: 84,
-            },
-            b: {
-              color: "#01F5F1",
-              fontSize: 34,
-              lineHeight: 36,
-              align: "right",
-            },
-          },
-        },
-      },
-      series: [
-        {
-          type: "pie",
-          avoidLabelOverlap: false,
-          radius: ["25%", 70],
-          center: ["20%", "48%"],
-          color: ["#F7D14A", "#57A6FB", "#A957FB"],
-          label: {
-            show: false,
-          },
-          data: this.pieData2,
-        },
-      ],
-    };
-    option2 && myRightChart.setOption(option2);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myRightChart.resize();
-    });
   }
 }
 </script>
