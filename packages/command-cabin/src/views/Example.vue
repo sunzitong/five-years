@@ -170,7 +170,7 @@
           <div
             style="display: flex; flex-flow: row wrap; justify-content: center"
           >
-            <ProgressCircle
+            <!-- <ProgressCircle
               :styleType="1"
               :rate="45"
               :size="400"
@@ -248,7 +248,7 @@
                   <div class="desc">总分</div>
                 </div>
               </template>
-            </ProgressCircle>
+            </ProgressCircle> -->
           </div>
         </Card>
 
@@ -257,7 +257,7 @@
           :showFooter="true"
           :showRectBackground="false"
         >
-          <ButtonGroup>
+          <!-- <ButtonGroup>
             <van-radio-group v-model="radio" direction="horizontal">
               <van-radio :name="1">单选框 1</van-radio>
               <van-radio :name="12">单选框 1</van-radio>
@@ -281,7 +281,7 @@
             <van-radio-group v-model="radio" direction="horizontal">
               <van-radio :name="1">单选框 1</van-radio>
             </van-radio-group>
-          </ButtonGroup>
+          </ButtonGroup> -->
         </Card>
         <Card title="StepNumber" :showFooter="true" :showRectBackground="false">
           <van-row>
@@ -323,12 +323,12 @@ import Card from "@/components/Card/Index.vue";
 import CardA from "@/components/CardA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
-import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
+// import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import ProgressCircle1 from "@/components/Progress/ProgressCircle1.vue";
 import Animationend from "@/components/Animationend/Index.vue";
 import Btn from "@/components/Btn/Index.vue";
 import BlurBox from "@/components/BlurBox/Index.vue";
-import ButtonGroup from "@/components/ButtonGroup/Index.vue";
+// import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Webrtc from "@/components/Webrtc/Index.vue";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import Spin from "@/components/Spin/Index.vue";
@@ -342,12 +342,12 @@ import SubWrapperA from "@/components/SubWrapperA/Index.vue";
     Card,
     Icon,
     ProgressBar,
-    ProgressCircle,
+    // ProgressCircle,
     ProgressCircle1,
     Animationend,
     Btn,
     BlurBox,
-    ButtonGroup,
+    // ButtonGroup,
     Webrtc,
     StepNumber,
     Spin,
@@ -372,7 +372,7 @@ export default class Example extends Vue {
 
   created() {
     this.stepNum = Math.random() * 10000;
-    setInterval(() => {
+    this.timer = setInterval(() => {
       // this.stepNum = Math.random() * 100000;
       this.stepNum += 10;
     }, 3000);
@@ -381,6 +381,9 @@ export default class Example extends Vue {
     setTimeout(() => {
       console.log(this.progress);
     }, 3000);
+  }
+  beforeDestroy() {
+    clearTimeout(this.timer);
   }
 }
 </script>

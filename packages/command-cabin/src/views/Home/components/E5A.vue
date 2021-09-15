@@ -75,7 +75,7 @@ export default class E5A extends Base {
   /**
    * 组件卸载
    */
-  unmounted() {
+  beforeDestroy() {
     if (this.barTimer) clearTimeout(this.barTimer);
     this.barTimer = null;
   }

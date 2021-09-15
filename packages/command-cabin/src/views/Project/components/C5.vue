@@ -131,7 +131,7 @@ export default class C5 extends Base {
     this.showMonthData();
   }
 
-  unmounted() {
+  beforeDestroy() {
     if (this.timer) {
       clearTimeout(this.timer);
       this.timer = null;

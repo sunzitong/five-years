@@ -242,6 +242,7 @@ export default class SubWrapperA extends Vue {
    * 更新背景区域宽、高度
    */
   divSizeChangeHandle() {
+    if (!this.header) return;
     /**
      * 设置标题
      */
