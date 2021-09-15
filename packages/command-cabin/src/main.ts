@@ -16,6 +16,8 @@ import "./filters";
 import "./assets/css/style.scss";
 // 动画样式
 import "animate.css";
+// 桌面端适配
+import "@vant/touch-emulator";
 // console
 Vue.config.productionTip = false;
 // 实例
