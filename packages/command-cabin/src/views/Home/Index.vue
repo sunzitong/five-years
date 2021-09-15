@@ -174,7 +174,7 @@
               title="舆情风险"
               style="width: 828px; height: 920px"
             >
-              <CardA title="舆情风险" style="width: 776px; height: 777px">
+              <CardA title="风险状态" style="width: 776px; height: 777px">
                 <E5 />
               </CardA>
             </SubWrapperA>
