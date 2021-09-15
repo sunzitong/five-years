@@ -2,14 +2,14 @@
   <div class="page__b3__map">
     <van-row class="abstract_text">
       <van-col :span="12">成本风险预警项目</van-col>
-      <van-col class="span_style1">
+      <van-col :span="12">总体成本差异率</van-col>
+    </van-row>
+    <van-row class="abstract_text">
+      <van-col class="span_style1" :span="12">
         {{ projecttNum }}
         <span>个</span>
       </van-col>
-    </van-row>
-    <van-row class="abstract_text">
-      <van-col :span="12">总体成本差异率</van-col>
-      <van-col class="span_style2">{{ differRatio }}%</van-col>
+      <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
     </van-row>
     <div class="whole_chart">
       <div class="item_name">
@@ -24,7 +24,7 @@
       <div
         class="app-echarts"
         ref="wrapper"
-        style="width: 270px; height: 217px"
+        style="width: 400px; height: 284px"
       ></div>
       <div class="item_value">
         <div
@@ -74,12 +74,10 @@ export default class B3 extends Base {
     // myChart.showLoading();
     let option = {
       grid: {
-        x: 0,
-        y: 0,
-        x2: 0,
-        y2: -20,
+        top: "0%",
+        bottom: "0%",
         left: "0%",
-        right: "0%",
+        right: "4%",
         containLabel: true,
       },
       xAxis: { show: false, max: 100 },
@@ -96,14 +94,23 @@ export default class B3 extends Base {
         {
           type: "bar",
           stack: "total",
-          barWidth: 37,
-          barCateGoryGap: 23,
+          barWidth: 14,
+          barCateGoryGap: "40%",
           showBackground: true,
           backgroundStyle: {
-            color: "#143F79",
+            color: "#172C47",
           },
           itemStyle: {
-            color: "#57A6FB",
+            color: new echarts.graphic.LinearGradient(
+              1,
+              0,
+              0,
+              0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+              [
+                { offset: 0, color: "#5180E4" },
+                { offset: 1, color: "rgba(81, 128, 228, 0)" },
+              ]
+            ),
             width: 338,
           },
           label: { show: false },
@@ -121,34 +128,34 @@ export default class B3 extends Base {
 
 <style lang="scss" scoped>
 .page__b3__map {
-  margin-top: 40px;
+  padding: 40px 0px 0 0px;
 }
 .abstract_text {
   font-family: "PingFang SC";
-  font-size: 30px;
-  line-height: 30px;
-  color: #ffffff;
-  margin: 18px 0 18px 18px;
+  font-size: 40px;
+  line-height: 40px;
+  color: #90a4c3;
+  padding: 18px 50px 0px 90px;
 }
 .span_style1 {
   font-family: "DIN Alternate";
   font-weight: bold;
-  font-size: 40px;
-  line-height: 36px;
-  color: #01f5f1;
+  font-size: 66px;
+  line-height: 60px;
+  color: #dbf0ff;
 
   span {
     margin-left: 6px;
-    font-size: 26px;
-    line-height: 26px;
+    font-size: 36px;
+    line-height: 48px;
     font-weight: normal;
   }
 }
 .span_style2 {
   font-family: "DIN Alternate";
   font-weight: bold;
-  font-size: 40px;
-  line-height: 36px;
+  font-size: 66px;
+  line-height: 60px;
   color: #ff2a76;
 }
 
@@ -158,32 +165,33 @@ export default class B3 extends Base {
   flex-flow: row;
   flex-wrap: nowrap;
   justify-content: space-around;
-  margin-top: 76px;
+  padding: 66px 50px 49px 80px;
 
   .item_name {
-    color: #fff;
+    color: #90a4c3;
 
     .item_name_item {
-      margin: 20px 0;
+      margin: 23px 0;
       font-family: "PingFang SC";
-      font-size: 28px;
-      line-height: 32px;
+      font-size: 40px;
+      line-height: 40px;
       width: 200px;
     }
   }
 
   .item_value {
-    color: #01f5f1;
+    color: #dbf0ff;
     display: inline-block;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
+    height: 270px;
 
     .item_value_item {
       margin: 0 24px 0 0px;
       @extend %value__letter;
-      font-size: 34px;
-      line-height: 36px;
+      font-size: 50px;
+      line-height: 66px;
       text-align: right;
     }
   }

@@ -15,12 +15,12 @@
               </CardA>
               <WhiteSpace />
               <CardA title="商机转化" style="width: 866px; height: 574px">
-                <A3 />
+                <!-- <A3 /> -->
               </CardA>
             </van-col>
             <van-col>
               <CardA title="战略合作" style="width: 870px; height: 452px">
-                <A4 />
+                <!-- <A4 /> -->
               </CardA>
               <WhiteSpace />
               <van-row gutter="20">
@@ -164,7 +164,7 @@
           <van-col>
             <SubWrapperA title="异常预警" style="width: 1845px; height: 920px">
               <CardA>
-                <E5 />
+                <!-- <E5 /> -->
               </CardA>
             </SubWrapperA>
           </van-col>
