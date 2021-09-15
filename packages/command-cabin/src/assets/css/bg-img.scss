@@ -24,6 +24,7 @@ $img-map: (
   "btn-active": "btn-active.png",
   "btn-normal-center": "btn-normal-center.png",
   "btn-active-center": "btn-active-center.png",
+  "logo": "logo.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {

@@ -275,6 +275,9 @@ export default class Home extends Base {
     return null;
   }
 
+  /**
+   * 总盘面 冠寓大事记
+   */
   centerChartType: string[] = [];
 
   /**
