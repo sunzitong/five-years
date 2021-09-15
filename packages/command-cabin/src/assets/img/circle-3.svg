@@ -18,7 +18,6 @@
     cx="120"
     cy="120"
     r="62.5"
-    transform="rotate(90 120 120)"
     stroke="#11294A"
     stroke-width="10"
     stroke-dasharray="24 4"
