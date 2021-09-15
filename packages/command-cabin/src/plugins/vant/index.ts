@@ -13,6 +13,8 @@ import {
   RadioGroup,
   Checkbox,
   CheckboxGroup,
+  Swipe,
+  SwipeItem,
 } from "vant";
 import Vue from "vue";
 
@@ -32,3 +34,5 @@ Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
