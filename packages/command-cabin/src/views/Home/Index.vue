@@ -100,32 +100,69 @@
         </SubWrapperA>
         <div class="global-button global-button--2">
           <ButtonGroupA revert>
-            <van-checkbox-group :value="['nav']" direction="horizontal">
-              <van-checkbox name="nav">
+            <van-radio-group value="nav" direction="horizontal">
+              <van-radio
+                :name="showNavPanel ? 'nav' : null"
+                @click="
+                  () => {
+                    showNavPanel = !showNavPanel;
+                    showScopePanel = false;
+                  }
+                "
+              >
                 快捷导航
                 <Icon
                   type="arrow-bold-bottom"
                   class="button-icon--right"
                   color="#01F5F1"
+                  v-if="showNavPanel"
                 />
-              </van-checkbox>
-            </van-checkbox-group>
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  color="#5180e4"
+                  v-else
+                />
+              </van-radio>
+            </van-radio-group>
           </ButtonGroupA>
           <ButtonGroupA>
-            <van-checkbox-group :value="scopeValue" direction="horizontal">
+            <van-checkbox-group
+              :value="['scope', 'orgTree']"
+              direction="horizontal"
+            >
               <van-checkbox
-                :name="DateScopes.YEARLY"
-                @click="scopeChange(DateScopes.YEARLY)"
+                :name="showScopePanel ? 'scope' : null"
+                @click="
+                  () => {
+                    showScopePanel = !showScopePanel;
+                    showOrgPanel = false;
+                  }
+                "
               >
-                年累计
+                {{ scopeValue }}
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  color="#01F5F1"
+                  v-if="showScopePanel"
+                />
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  color="#5180e4"
+                  v-else
+                />
               </van-checkbox>
               <van-checkbox
-                :name="DateScopes.MONTHLY"
-                @click="scopeChange(DateScopes.MONTHLY)"
+                :name="showOrgPanel ? 'orgTree' : null"
+                @click="
+                  () => {
+                    showOrgPanel = !showOrgPanel;
+                    showScopePanel = false;
+                  }
+                "
               >
-                月累计
-              </van-checkbox>
-              <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
                 {{ store.global.orgTree.orgName }}
                 <Icon
                   type="arrow-bold-bottom"
@@ -146,7 +183,13 @@
           <OrgPanel
             type="orgTree"
             :show="showOrgPanel"
-            @update:show="scopeChange('orgTree')"
+            @update:show="showOrgPanel = false"
+          />
+          <!-- 时间维度选择 -->
+          <OrgPanel
+            type="dateScope"
+            :show="showScopePanel"
+            @update:show="showScopePanel = false"
           />
         </div>
       </div>
@@ -266,6 +309,10 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
 })
 export default class Home extends Base {
   /**
+   * 时间维度枚举
+   */
+  DateScopes = DateScopes;
+  /**
    * 数据周期
    */
   get dataCycle() {
@@ -274,41 +321,39 @@ export default class Home extends Base {
     }
     return null;
   }
-
   /**
-   * 总盘面 冠寓大事记
+   * 总盘面、冠寓大事记
    */
-  centerChartType: string[] = [];
-
+  centerChartType = "main";
   /**
-   * 时间范围枚举
+   * 显示快捷导航
    */
-  DateScopes = DateScopes;
+  showNavPanel = false;
   /**
-   * 显示隐藏区域选择
+   * 显示区域选择
    */
   showOrgPanel = false;
   /**
-   * 范围选择
+   * 显示年累月累选择
    */
-  scopeValue: string[] = [];
-  scopeChange(value: any) {
-    if ([DateScopes.YEARLY, DateScopes.MONTHLY].includes(value)) {
-      this.store.global.dateScope = value;
-      this.showOrgPanel = false;
-      this.scopeValue = [value];
-    } else {
-      if (this.showOrgPanel) {
-        this.scopeValue = this.scopeValue.filter((a) => a !== value);
-      } else {
-        this.scopeValue.push(value);
-      }
-      this.showOrgPanel = !this.showOrgPanel;
+  showScopePanel = false;
+  /**
+   * 时间维度按钮文案
+   */
+  get scopeValue() {
+    if (this.store.global.dateScope === DateScopes.YEARLY) {
+      return "年累计";
     }
+    if (this.store.global.dateScope === DateScopes.MONTHLY) {
+      return "月累计";
+    }
+    return "--";
   }
-
+  /**
+   * 生命周期函数
+   */
   created() {
-    this.scopeValue = [this.store.global.dateScope];
+    /** */
   }
 }
 </script>
@@ -358,5 +403,8 @@ export default class Home extends Base {
 .org-panel {
   bottom: 120%;
   right: 0px;
+  &--scope {
+    right: 400px;
+  }
 }
 </style>
