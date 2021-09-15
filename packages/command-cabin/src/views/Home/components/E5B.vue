@@ -106,7 +106,7 @@ export default class E5B extends Base {
         {
           type: "pie",
           avoidLabelOverlap: false,
-          radius: ["35%", 130],
+          radius: ["35%", 150],
           center: ["25%", "52%"],
           color: [
             "#FF2A76",
@@ -158,7 +158,7 @@ $light: #01f5f1;
   }
   .chart {
     width: 100%;
-    height: 400px;
+    height: 600px;
   }
 }
 </style>
