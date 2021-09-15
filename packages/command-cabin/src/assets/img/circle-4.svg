@@ -1,214 +1,181 @@
-<svg
-  width="333"
-  height="331"
-  viewBox="0 0 333 331"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g opacity="0.7" filter="url(#circle_4_filter0_d)">
-    <ellipse
-      cx="166.63"
-      cy="162.723"
-      rx="141.807"
-      ry="120.378"
-      fill="#1B2C48"
-    />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg fill="none" viewBox="0 0 333 331" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#circle_4f)" opacity=".7">
+    <ellipse cx="166.63" cy="162.72" rx="141.81" ry="120.38" fill="#1B2C48" />
   </g>
   <circle
     cx="166"
     cy="181"
     r="149.4"
     fill="#192E49"
-    stroke="url(#circle_4_paint1_linear)"
+    stroke="url(#circle_4d)"
     stroke-width="1.2"
   />
-  <circle opacity="0.8" cx="166" cy="181" r="94.5378" fill="#091C3A" />
-
-  <g filter="url(#circle_4_filter1_i)">
+  <circle cx="166" cy="181" r="94.538" fill="#091C3A" opacity=".8" />
+  <g filter="url(#circle_4e)">
     <ellipse
       cx="166"
       cy="181"
-      rx="75.6303"
-      ry="75.6302"
+      rx="75.63"
+      ry="75.63"
       fill="#091C3A"
-      fill-opacity="0.6"
+      fill-opacity=".6"
     />
   </g>
   <path
-    d="M240.931 181C240.931 222.383 207.383 255.93 166 255.93C124.618 255.93 91.0701 222.383 91.0701 181C91.0701 139.617 124.618 106.07 166 106.07C207.383 106.07 240.931 139.617 240.931 181Z"
-    stroke="url(#circle_4_paint2_linear)"
+    d="m240.93 181c0 41.383-33.548 74.93-74.931 74.93-41.382 0-74.93-33.547-74.93-74.93s33.548-74.93 74.93-74.93c41.383 0 74.931 33.547 74.931 74.93z"
+    stroke="url(#circle_4c)"
     stroke-width="1.4"
   />
-  <!-- 外圈线 -->
   <path
-    d="M258.95 274.694C207.615 326.232 124.386 326.232 73.0508 274.694C21.7122 223.154 21.7122 139.587 73.0508 88.0466C124.386 36.5092 207.615 36.5092 258.95 88.0466C310.288 139.587 310.288 223.154 258.95 274.694Z"
-    stroke="url(#circle_4_paint3_linear)"
-    stroke-width="3"
+    d="m258.95 274.69c-51.335 51.538-134.56 51.538-185.9 0-51.339-51.54-51.339-135.11 0-186.65 51.335-51.537 134.56-51.537 185.9 0 51.338 51.54 51.338 135.11 0 186.65z"
+    stroke="url(#circle_4b)"
     stroke-linejoin="round"
+    stroke-width="3"
   >
     <animateTransform
       attributeName="transform"
+      dur="5s"
       from="0 166 181"
+      repeatCount="indefinite"
       to="360 166 181"
       type="rotate"
-      dur="5s"
-      repeatCount="indefinite"
     />
   </path>
-  <!-- 内圈线 -->
   <path
-    d="M106.949 283.279C50.4625 250.666 31.1087 178.436 63.7214 121.949C96.3342 65.4625 168.564 46.1087 225.051 78.7214C281.538 111.334 300.891 183.564 268.279 240.051C235.666 296.538 163.436 315.891 106.949 283.279Z"
-    stroke="url(#circle_4_paint4_linear)"
-    stroke-width="3"
+    d="m106.95 283.28c-56.486-32.613-75.84-104.84-43.228-161.33 32.613-56.486 104.84-75.84 161.33-43.228 56.487 32.613 75.84 104.84 43.228 161.33-32.613 56.487-104.84 75.84-161.33 43.228z"
+    stroke="url(#circle_4a)"
     stroke-linejoin="round"
+    stroke-width="3"
   >
     <animateTransform
       attributeName="transform"
+      dur="2s"
       from="360 166 181"
+      repeatCount="indefinite"
       to="0 166 181"
       type="rotate"
-      dur="2s"
-      repeatCount="indefinite"
     />
   </path>
-  <!-- 内圈 -->
   <circle
-    opacity=".8"
     cx="166"
     cy="181"
     r="85"
+    opacity=".8"
     stroke="#1E82B166"
-    stroke-width="10"
     stroke-dasharray="2 4"
+    stroke-width="10"
   >
     <animateTransform
       attributeName="transform"
+      dur="120s"
       from="0 166 181"
+      repeatCount="indefinite"
       to="360 166 181"
       type="rotate"
-      dur="120s"
-      repeatCount="indefinite"
     />
   </circle>
   <defs>
     <filter
-      id="circle_4_filter0_d"
-      x="0.823242"
-      y="0.344727"
-      width="331.613"
-      height="288.756"
-      filterUnits="userSpaceOnUse"
+      id="circle_4f"
+      x=".82324"
+      y=".34473"
+      width="331.61"
+      height="288.76"
       color-interpolation-filters="sRGB"
+      filterUnits="userSpaceOnUse"
     >
       <feFlood flood-opacity="0" result="BackgroundImageFix" />
       <feColorMatrix
         in="SourceAlpha"
-        type="matrix"
-        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
         result="hardAlpha"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
       />
       <feOffset dy="-18" />
       <feGaussianBlur stdDeviation="12" />
       <feComposite in2="hardAlpha" operator="out" />
       <feColorMatrix
-        type="matrix"
         values="0 0 0 0 0.127344 0 0 0 0 0.403255 0 0 0 0 0.679167 0 0 0 0.72 0"
       />
-      <feBlend
-        mode="normal"
-        in2="BackgroundImageFix"
-        result="effect1_dropShadow"
-      />
-      <feBlend
-        mode="normal"
-        in="SourceGraphic"
-        in2="effect1_dropShadow"
-        result="shape"
-      />
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
     </filter>
     <filter
-      id="circle_4_filter1_i"
-      x="90.3701"
+      id="circle_4e"
+      x="90.37"
       y="105.37"
-      width="151.261"
+      width="151.26"
       height="159.26"
-      filterUnits="userSpaceOnUse"
       color-interpolation-filters="sRGB"
+      filterUnits="userSpaceOnUse"
     >
       <feFlood flood-opacity="0" result="BackgroundImageFix" />
-      <feBlend
-        mode="normal"
-        in="SourceGraphic"
-        in2="BackgroundImageFix"
-        result="shape"
-      />
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
       <feColorMatrix
         in="SourceAlpha"
-        type="matrix"
-        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
         result="hardAlpha"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
       />
       <feOffset dy="8" />
       <feGaussianBlur stdDeviation="6" />
-      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic" />
       <feColorMatrix
-        type="matrix"
         values="0 0 0 0 0.716667 0 0 0 0 0.932 0 0 0 0 1 0 0 0 0.08 0"
       />
-      <feBlend mode="normal" in2="shape" result="effect1_innerShadow" />
+      <feBlend in2="shape" result="effect1_innerShadow" />
     </filter>
     <linearGradient
-      id="circle_4_paint1_linear"
-      x1="119.363"
+      id="circle_4d"
+      x1="119.36"
+      x2="119.36"
       y1="31"
-      x2="119.363"
       y2="331"
       gradientUnits="userSpaceOnUse"
     >
-      <stop stop-color="#5180E4" />
-      <stop offset="0.505208" stop-color="#1D365B" stop-opacity="0.5" />
-      <stop offset="1" stop-color="#193497" />
+      <stop stop-color="#5180E4" offset="0" />
+      <stop stop-color="#1D365B" stop-opacity=".5" offset=".50521" />
+      <stop stop-color="#193497" offset="1" />
     </linearGradient>
     <linearGradient
-      id="circle_4_paint2_linear"
+      id="circle_4c"
       x1="166"
-      y1="105.37"
       x2="166"
+      y1="105.37"
       y2="256.63"
       gradientUnits="userSpaceOnUse"
     >
-      <stop stop-color="#3C89DA" />
-      <stop offset="0.207224" stop-color="#0F3E84" stop-opacity="0.36" />
-      <stop offset="0.802083" stop-color="#0F3E84" stop-opacity="0.36" />
-      <stop offset="1" stop-color="#3C89DA" />
+      <stop stop-color="#3C89DA" offset="0" />
+      <stop stop-color="#0F3E84" stop-opacity=".36" offset=".20722" />
+      <stop stop-color="#0F3E84" stop-opacity=".36" offset=".80208" />
+      <stop stop-color="#3C89DA" offset="1" />
     </linearGradient>
     <linearGradient
-      id="circle_4_paint3_linear"
-      x1="259.063"
-      y1="276.706"
-      x2="70.2994"
+      id="circle_4b"
+      x1="259.06"
+      x2="70.299"
+      y1="276.71"
       y2="88.683"
       gradientUnits="userSpaceOnUse"
     >
-      <stop stop-color="#49C3FD" />
-      <stop offset="0.242216" stop-color="#49C3FD" stop-opacity="0" />
-      <stop offset="0.595904" stop-color="#49C3FD" stop-opacity="0" />
-      <stop offset="0.844796" stop-color="#49C3FD" stop-opacity="0" />
-      <stop offset="1" stop-color="#49C3FD" />
+      <stop stop-color="#49C3FD" offset="0" />
+      <stop stop-color="#49C3FD" stop-opacity="0" offset=".24222" />
+      <stop stop-color="#49C3FD" stop-opacity="0" offset=".5959" />
+      <stop stop-color="#49C3FD" stop-opacity="0" offset=".8448" />
+      <stop stop-color="#49C3FD" offset="1" />
     </linearGradient>
     <linearGradient
-      id="circle_4_paint4_linear"
-      x1="105.153"
-      y1="283.974"
-      x2="224.754"
-      y2="76.8183"
+      id="circle_4a"
+      x1="105.15"
+      x2="224.75"
+      y1="283.97"
+      y2="76.818"
       gradientUnits="userSpaceOnUse"
     >
-      <stop stop-color="#49C3FD" />
-      <stop offset="0.242216" stop-color="#49C3FD" stop-opacity="0" />
-      <stop offset="0.595904" stop-color="#49C3FD" stop-opacity="0" />
-      <stop offset="0.844796" stop-color="#49C3FD" stop-opacity="0" />
-      <stop offset="1" stop-color="#49C3FD" />
+      <stop stop-color="#49C3FD" offset="0" />
+      <stop stop-color="#49C3FD" stop-opacity="0" offset=".24222" />
+      <stop stop-color="#49C3FD" stop-opacity="0" offset=".5959" />
+      <stop stop-color="#49C3FD" stop-opacity="0" offset=".8448" />
+      <stop stop-color="#49C3FD" offset="1" />
     </linearGradient>
   </defs>
 </svg>
