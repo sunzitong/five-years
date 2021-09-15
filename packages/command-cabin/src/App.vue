@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="logo"></div>
     <AppHeader />
     <router-view :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
@@ -104,13 +105,22 @@ export default class App extends Mixins(MixStore) {
 </script>
 <style lang="scss">
 #app {
+  background-color: #09080c;
   width: 7680px;
   height: 3240px;
   transform-origin: 0 0;
   overflow: hidden;
-  background: #09080c;
   font-family: "PingFang SC";
   position: relative;
+}
+.logo {
+  width: 336px;
+  height: 70px;
+  position: absolute;
+  left: 60px;
+  top: 62px;
+  z-index: 20;
+  @extend %bg-img-logo;
 }
 /* 数字字体文件 */
 .value__letter {
@@ -124,7 +134,6 @@ export default class App extends Mixins(MixStore) {
   z-index: 999;
   transform-origin: 0 0;
   color: #fff;
-  background: #09080c;
   box-shadow: #fff -2px 2px 10px 0px;
   font-size: 16px;
 }

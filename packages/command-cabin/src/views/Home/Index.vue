@@ -74,58 +74,80 @@
         </SubWrapperA>
       </div>
       <div class="main-center">
-        <div style="height: 2050px">
+        <div style="height: 1876px">
           <C1 />
           <C2 />
         </div>
-        <SubWrapperA style="width: 2113px; height: 680px" title="现场风险监控">
+        <div class="global-button global-button--1">
+          <ButtonGroupA>
+            <van-radio-group v-model="centerChartType" direction="horizontal">
+              <van-radio name="main">
+                <Icon type="map" :size="36" class="button-icon--left" />
+                总盘面
+              </van-radio>
+              <van-radio name="guanyu">
+                <Icon type="flag" :size="36" class="button-icon--left" />
+                冠寓大事记
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroupA>
+        </div>
+        <SubWrapperA
+          style="width: 2113px; height: 680px; margin: 0 0 44px"
+          title="现场风险监控"
+        >
           现场风险监控
         </SubWrapperA>
-        <div class="footer">
-          <div class="global-button">
-            <div class="center">
-              <ButtonGroup>
-                <van-radio-group value="main" direction="horizontal">
-                  <van-radio name="main">
-                    <Icon type="map" :size="36" class="button-icon--left" />
-                    总盘面
-                  </van-radio>
-                  <van-radio name="guanyu">
-                    <Icon type="flag" :size="36" class="button-icon--left" />
-                    冠寓大事记
-                  </van-radio>
-                </van-radio-group>
-              </ButtonGroup>
-              <ButtonGroup>
-                <van-checkbox-group :value="scopeValue" direction="horizontal">
-                  <van-checkbox
-                    :name="DateScopes.YEARLY"
-                    @click="scopeChange(DateScopes.YEARLY)"
-                  >
-                    年累计
-                  </van-checkbox>
-                  <van-checkbox
-                    :name="DateScopes.MONTHLY"
-                    @click="scopeChange(DateScopes.MONTHLY)"
-                  >
-                    月累计
-                  </van-checkbox>
-                  <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
-                    {{ store.global.orgTree.orgName }}
-                    <van-icon
-                      :name="showOrgPanel ? 'arrow-down' : 'arrow-up'"
-                    />
-                  </van-checkbox>
-                </van-checkbox-group>
-              </ButtonGroup>
-              <!-- 区域选择 -->
-              <OrgPanel
-                type="orgTree"
-                :show="showOrgPanel"
-                @update:show="scopeChange('orgTree')"
-              />
-            </div>
-          </div>
+        <div class="global-button global-button--2">
+          <ButtonGroupA revert>
+            <van-checkbox-group :value="['nav']" direction="horizontal">
+              <van-checkbox name="nav">
+                快捷导航
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  color="#01F5F1"
+                />
+              </van-checkbox>
+            </van-checkbox-group>
+          </ButtonGroupA>
+          <ButtonGroupA>
+            <van-checkbox-group :value="scopeValue" direction="horizontal">
+              <van-checkbox
+                :name="DateScopes.YEARLY"
+                @click="scopeChange(DateScopes.YEARLY)"
+              >
+                年累计
+              </van-checkbox>
+              <van-checkbox
+                :name="DateScopes.MONTHLY"
+                @click="scopeChange(DateScopes.MONTHLY)"
+              >
+                月累计
+              </van-checkbox>
+              <van-checkbox name="orgTree" @click="scopeChange('orgTree')">
+                {{ store.global.orgTree.orgName }}
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  color="#01F5F1"
+                  v-if="showOrgPanel"
+                />
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  color="#5180e4"
+                  v-else
+                />
+              </van-checkbox>
+            </van-checkbox-group>
+          </ButtonGroupA>
+          <!-- 区域选择 -->
+          <OrgPanel
+            type="orgTree"
+            :show="showOrgPanel"
+            @update:show="scopeChange('orgTree')"
+          />
         </div>
       </div>
       <div class="main-right">
@@ -192,7 +214,7 @@ import CardA from "@/components/CardA/Index.vue";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
-import ButtonGroup from "@/components/ButtonGroup/Index.vue";
+import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 
@@ -237,7 +259,7 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
     E2,
     E4,
     E5,
-    ButtonGroup,
+    ButtonGroupA,
     Icon,
     OrgPanel,
   },
@@ -252,6 +274,11 @@ export default class Home extends Base {
     }
     return null;
   }
+
+  /**
+   * 总盘面 冠寓大事记
+   */
+  centerChartType: string[] = [];
 
   /**
    * 时间范围枚举
@@ -297,6 +324,8 @@ export default class Home extends Base {
   }
 
   .main-center {
+    display: flex;
+    flex-flow: column;
     padding: 0 30px;
     flex: 1;
   }
@@ -306,42 +335,28 @@ export default class Home extends Base {
     display: flex;
     justify-content: space-between;
   }
-  .footer {
-    position: relative;
-    height: 253px;
-  }
 }
 .global-button {
-  height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 140px;
+  padding: 0 5px;
   .button-icon--right {
     margin-left: 12px;
   }
   .button-icon--left {
     margin-right: 12px;
   }
-  .left,
-  .center,
-  .right {
-    display: flex;
-    position: relative;
-  }
-  .left {
-    justify-content: flex-start;
-  }
-  .center {
-    justify-content: space-between;
-    margin: -20px 0 auto;
-  }
-  .right {
+  &--1 {
     justify-content: flex-end;
+    margin: 50px 0 62px;
+  }
+  &--2 {
+    position: relative;
+    justify-content: space-between;
+    margin: 0 0 108px;
   }
 }
 .org-panel {
   bottom: 120%;
-  right: 20px;
+  right: 0px;
 }
 </style>
