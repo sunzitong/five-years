@@ -22,6 +22,9 @@
           :opacity="0.6"
         />
         <CardA title="营造盘面" />
+        <CardB title="营造盘面">
+          
+        </CardB>
         <SubWrapperA title="拓展盘面" />
       </van-col>
       <van-col :span="8">
@@ -333,6 +336,7 @@ import Subtitle from "@/components/Subtitle/Index.vue";
 import Lattices from "@/components/Lattices/Index.vue";
 import Card from "@/components/Card/Index.vue";
 import CardA from "@/components/CardA/Index.vue";
+import CardB from "@/components/CardB/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import ProgressBar from "@/components/Progress/ProgressBar.vue";
 // import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
@@ -364,6 +368,7 @@ import SubWrapperA from "@/components/SubWrapperA/Index.vue";
     StepNumber,
     Spin,
     CardA,
+    CardB,
     SubWrapperA,
   },
 })
