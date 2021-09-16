@@ -531,7 +531,7 @@
         </defs>
       </svg>
     </div>
-    <div class="spin-content" v-show="!loading && !empty">
+    <div class="spin-content" :style="{ opacity: loading || empty ? 0 : null }">
       <slot></slot>
     </div>
   </div>
