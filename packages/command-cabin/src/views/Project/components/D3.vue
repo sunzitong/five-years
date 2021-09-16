@@ -1,31 +1,33 @@
 <template>
-  <div class="box">
-    <van-row justify="space-around">
-      <van-col :span="8" v-for="(item, index) in response" :key="index">
-        <div class="item">
-          <van-circle
-            v-model="item.currentRate"
-            :rate="item.rate * 100"
-            :speed="50"
-            layer-color="#14437F"
-            :color="item.color"
-            :size="140"
-            :stroke-width="60"
-            stroke-linecap="butt"
-            class="chart"
-          />
-          <div class="chart__text">{{ formatValue(item.currentRate) }}%</div>
-          <div
-            class="icon animate__animated animate__infinite animate__pulse"
-            :style="{ 'animation-delay': index * 0.3 + 's' }"
-          >
-            <Icon :type="item.icon" :size="22" />
+  <Spin :loading="loading" :empty="empty" :height="200">
+    <div class="box">
+      <van-row justify="space-around">
+        <van-col :span="8" v-for="(item, index) in response" :key="index">
+          <div class="item">
+            <van-circle
+              v-model="item.currentRate"
+              :rate="item.rate * 100"
+              :speed="50"
+              layer-color="#14437F"
+              :color="item.color"
+              :size="140"
+              :stroke-width="60"
+              stroke-linecap="butt"
+              class="chart"
+            />
+            <div class="chart__text">{{ formatValue(item.currentRate) }}%</div>
+            <div
+              class="icon animate__animated animate__infinite animate__pulse"
+              :style="{ 'animation-delay': index * 0.3 + 's' }"
+            >
+              <Icon :type="item.icon" :size="22" />
+            </div>
+            <div class="name">{{ item.name }}</div>
           </div>
-          <div class="name">{{ item.name }}</div>
-        </div>
-      </van-col>
-    </van-row>
-  </div>
+        </van-col>
+      </van-row>
+    </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -89,7 +91,7 @@ export default class D3 extends Base {
 
 <style lang="scss" scoped>
 .box {
-  margin-top: 10px;
+  height: 220px;
 }
 .item {
   position: relative;

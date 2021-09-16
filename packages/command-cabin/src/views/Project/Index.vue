@@ -69,6 +69,7 @@
                     title="24小时设备离线率"
                     style="width: 900px; height: 310px"
                   >
+                    <D3 />
                     <template #data-cycle>{{ dataCycle }}</template>
                   </CardA>
                 </van-col>

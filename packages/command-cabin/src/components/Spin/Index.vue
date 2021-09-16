@@ -1,5 +1,5 @@
 <template>
-  <div class="app-spin">
+  <div class="app-spin" :style="formatStyle">
     <div class="loading" v-if="loading">
       <svg
         width="268"
@@ -554,6 +554,21 @@ export default class Spin extends Vue {
    * 是否数据为空
    */
   @Prop({ default: false, type: Boolean }) empty!: boolean;
+
+  /**
+   * 高度
+   */
+  @Prop() height!: number | string;
+
+  get formatStyle() {
+    if (this.height !== undefined) {
+      if (Number.isNaN(+this.height)) {
+        return { height: this.height };
+      }
+      return { height: this.height + "px" };
+    }
+    return null;
+  }
 
   get uuid() {
     return `${uuid()}`;
