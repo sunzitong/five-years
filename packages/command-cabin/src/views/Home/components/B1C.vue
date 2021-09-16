@@ -65,10 +65,8 @@ export default class B1C extends Base {
           borderWidth: 13,
         },
         labelLine: {
-          normal: {
-            length: 10,
-            length2: 40,
-          },
+          length: 10,
+          length2: 40,
         },
         label: {
           show: false,
