@@ -1,6 +1,5 @@
 <template>
   <div class="app-loading">
-    <slot></slot>
     <div class="loading" v-if="loading">
       <svg
         width="268"
@@ -220,6 +219,7 @@
       </svg>
     </div>
     <div class="empty" v-else-if="empty">empty</div>
+    <slot v-else></slot>
   </div>
 </template>
 
@@ -246,28 +246,13 @@ export default class Spin extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  opacity: 0.5;
+  @extend %flex-center;
+  width: 100%;
+  height: 100%;
+}
 .app-spin {
   position: relative;
-}
-
-.flex {
-  stroke-dasharray: 2915;
-  stroke-dashoffset: -2915;
-  animation: flex-draw 2s ease-in-out infinite;
-}
-
-@keyframes flex-draw {
-  from {
-    stroke-dashoffset: -2915;
-  }
-  to {
-    stroke-dashoffset: 2915;
-  }
-}
-
-svg:hover {
-  path: {
-    d: "M10 0";
-  }
 }
 </style>
