@@ -1,6 +1,6 @@
 <template>
   <div class="page__maintenance_report__map">
-    <div ref="charts" style="width: 100%; height: 100%"></div>
+    <div ref="charts" class="chart"></div>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import { AnyObject } from "@guanyu/shared";
 @Component({
   components: {},
 })
-export default class Example extends Base {
+export default class B1C extends Base {
   /**
    * 饼图
    */
@@ -29,6 +29,14 @@ export default class Example extends Base {
 
   names = ["重资产", "中资产", "轻资产"];
   color = ["#5180E4", "#F7D14A", "#B491FD"];
+  bgColor = ["#172C47", "#4C452D", "#2A223B"];
+
+  get sortPieData() {
+    const names = ["重", "中", "轻"];
+    return this.pieData.sort((a, b) =>
+      names.indexOf(a.name[0]) > names.indexOf(b.name[0]) ? 1 : -1
+    );
+  }
 
   mounted() {
     this.paintChart();
@@ -43,13 +51,13 @@ export default class Example extends Base {
       yAxis: [],
     };
 
-    for (let i = 0; i < this.pieData.length; i++) {
+    for (let i = 0; i < this.sortPieData.length; i++) {
       res.series.push({
         // 展示数据
         type: "pie",
         clockwise: true, //顺时加载
         emphasis: { scale: false }, //鼠标移入变大
-        radius: [112 - i * 11, 101 - i * 11],
+        radius: [101 - i * 11, 90 - i * 11],
         center: ["25%", "50%"],
         itemStyle: {
           label: { show: false },
@@ -63,41 +71,42 @@ export default class Example extends Base {
           },
         },
         label: {
-          normal: {
-            position: "outer",
-            formatter: () => {
-              return (
-                "{title|" +
-                this.pieData[i].name +
-                "} {value|" +
-                this.pieData[i].value +
-                "%}"
-              );
-            },
-            borderWidth: 200,
-            // borderRadius: 4,
-            padding: [0, 0],
-            rich: {
-              title: {
-                fontFamily: "PingFang SC",
-                color: "#90A4C3",
-                fontSize: 10,
-                // lineHeight: 42,
-              },
-              value: {
-                fontFamily: "DIN Alternate",
-                fontWeight: "bold",
-                fontSize: 10,
-                // lineHeight: 42,
-                color: "#DBF0FF",
-              },
-            },
-          },
+          show: false,
+          //   normal: {
+          //     position: "outer",
+          //     formatter: () => {
+          //       return (
+          //         "{title|" +
+          //         this.sortPieData[i].name +
+          //         "} {value|" +
+          //         this.sortPieData[i].value +
+          //         "%}"
+          //       );
+          //     },
+          //     borderWidth: 200,
+          //     // borderRadius: 4,
+          //     padding: [0, 0],
+          //     rich: {
+          //       title: {
+          //         fontFamily: "PingFang SC",
+          //         color: "#90A4C3",
+          //         fontSize: 36,
+          //         // lineHeight: 42,
+          //       },
+          //       value: {
+          //         fontFamily: "DIN Alternate",
+          //         fontWeight: "bold",
+          //         fontSize: 10,
+          //         // lineHeight: 42,
+          //         color: "#DBF0FF",
+          //       },
+          //     },
+          //   },
         },
         data: [
           {
-            name: this.pieData[i].name,
-            value: this.pieData[i].value,
+            name: this.sortPieData[i].name,
+            value: this.sortPieData[i].value,
             itemStyle: {
               color: this.color[i],
             },
@@ -105,9 +114,9 @@ export default class Example extends Base {
           {
             // 阴影
             name: "",
-            value: this.sum - this.pieData[i].value,
+            value: this.sum - this.sortPieData[i].value,
             itemStyle: {
-              color: "rgba(0,0,0,0)",
+              color: this.bgColor[i],
               borderWidth: 0,
             },
             tooltip: { show: false },
@@ -115,19 +124,58 @@ export default class Example extends Base {
           },
         ],
       });
-      res.yAxis.push(this.pieData[i].value);
+      res.yAxis.push(this.sortPieData[i].value);
     }
 
     return res;
   }
 
-  @Watch("pieData", { deep: true })
+  @Watch("sortPieData", { deep: true })
   paintChart() {
     const res = this.buildConfiguration();
 
     const myChart = echarts.init(this.charts);
     // myChart.showLoading();
     let option = {
+      legend: {
+        show: true,
+        orient: "vertical",
+        left: "53%",
+        top: "center",
+        icon: "rec",
+        formatter: (name: any) => {
+          let num = 0;
+          this.sortPieData.forEach((el) => {
+            if (el.name === name) {
+              num = el.value;
+            }
+          });
+          return "{title|" + name.slice(0, 1) + "} {value|" + num + "%}";
+        },
+        textStyle: {
+          rich: {
+            title: {
+              fontFamily: "PingFang SC",
+              color: "#90A4C3",
+              fontSize: 36,
+              lineHeight: 36,
+              padding: [0, 10, 0, 12],
+            },
+            value: {
+              fontFamily: "DIN Alternate",
+              fontWeight: "bold",
+              fontSize: 42,
+              lineHeight: 42,
+              color: "#DBF0FF",
+            },
+          },
+        },
+        itemWidth: 12,
+        itemHeight: 12,
+        itemGap: 40,
+        // padding: [0, 18, 0, 0],
+        data: this.sortPieData,
+      },
       grid: {
         top: "center",
         left: "0%",
@@ -153,4 +201,12 @@ export default class Example extends Base {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.chart {
+  width: 100%;
+  height: 100%;
+  @extend %bg-img-circle-3;
+  background-position: 17px 14px;
+  background-size: 201px;
+}
+</style>
