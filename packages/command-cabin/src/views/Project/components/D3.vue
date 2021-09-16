@@ -1,31 +1,31 @@
 <template>
   <Spin :loading="loading" :empty="empty" :height="200">
     <div class="box">
-      <van-row justify="space-around">
-        <van-col :span="8" v-for="(item, index) in response" :key="index">
-          <div class="item">
-            <van-circle
-              v-model="item.currentRate"
-              :rate="item.rate * 100"
-              :speed="50"
-              layer-color="#14437F"
-              :color="item.color"
-              :size="140"
-              :stroke-width="60"
-              stroke-linecap="butt"
-              class="chart"
-            />
-            <div class="chart__text">{{ formatValue(item.currentRate) }}%</div>
-            <div
-              class="icon animate__animated animate__infinite animate__pulse"
-              :style="{ 'animation-delay': index * 0.3 + 's' }"
-            >
-              <Icon :type="item.icon" :size="22" />
-            </div>
+      <ul class="list">
+        <li class="item" v-for="(item, index) in response" :key="index">
+          <van-circle
+            v-model="item.currentRate"
+            :rate="item.rate * 100"
+            :speed="100"
+            layer-color="#14437F"
+            :color="item.color"
+            :size="200"
+            :stroke-width="60"
+            stroke-linecap="butt"
+            class="chart"
+          />
+          <div class="chart__text">
             <div class="name">{{ item.name }}</div>
+            <div class="value">{{ formatValue(item.currentRate) }}%</div>
           </div>
-        </van-col>
-      </van-row>
+          <div
+            class="icon animate__animated animate__infinite animate__pulse"
+            :style="{ 'animation-delay': index * 0.3 + 's' }"
+          >
+            <Icon :type="item.icon" :size="25" />
+          </div>
+        </li>
+      </ul>
     </div>
   </Spin>
 </template>
@@ -65,25 +65,26 @@ export default class D3 extends Base {
       this.response.push({
         name: "水",
         icon: "water-drop",
-        color: "#57A6FB",
+        color: "#5180E4",
         rate: data.waterDeviceOfflineRatio,
         currentRate: 0,
       });
       this.response.push({
         name: "电",
         icon: "lightning",
-        color: "#A957FB",
+        color: "#AE95F6",
         rate: data.elecDeviceOfflineRatio,
         currentRate: 0,
       });
       this.response.push({
-        name: "门禁",
+        name: "门锁",
         icon: "door",
-        color: "#FBEE7E",
+        color: "#F7D14A",
         rate: data.doorDeviceOfflineRatio,
         currentRate: 0,
       });
       this.setCardDataSource({ from: data.dataSource, time: data.updateTime });
+      this.loading = false;
     }
   }
 }
@@ -92,12 +93,18 @@ export default class D3 extends Base {
 <style lang="scss" scoped>
 .box {
   height: 220px;
+  padding: 10px 0;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80px;
 }
 .item {
   position: relative;
-  width: 140px;
-  height: 140px;
-  margin: auto;
+  width: 200px;
+  height: 200px;
+  @extend %bg-img-circle-2;
   .icon {
     @extend %flex-center;
     position: absolute;
@@ -106,7 +113,7 @@ export default class D3 extends Base {
     background: #14437f;
     border-radius: 50%;
     top: 0;
-    right: 0;
+    right: 10px;
   }
   .chart {
     transform: rotate(45deg);
@@ -119,17 +126,20 @@ export default class D3 extends Base {
     height: 100%;
     top: 0;
     left: 0;
-    @extend %value__letter;
-    font-weight: bold;
-    font-size: 40px;
-    color: #01f5f1;
-  }
-  .name {
-    margin-top: 24px;
-    text-align: center;
-    font-family: PingFang SC;
-    font-size: 30px;
-    color: #fff;
+    flex-flow: column nowrap;
+    .name {
+      text-align: center;
+      font-family: PingFang SC;
+      font-size: 36px;
+      color: #90a4c3;
+    }
+    .value {
+      @extend %value__letter;
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 36px;
+      color: #dbf0ff;
+    }
   }
 }
 </style>

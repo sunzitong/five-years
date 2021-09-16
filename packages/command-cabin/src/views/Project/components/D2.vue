@@ -16,7 +16,7 @@
             color="#5180E4"
             :size="242"
             :strokeWidth="60"
-            :speed="150"
+            :speed="100"
           >
             <div class="rate-text">
               <div class="desc">总分</div>
