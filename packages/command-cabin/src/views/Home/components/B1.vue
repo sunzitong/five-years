@@ -4,20 +4,22 @@
       <B1A class="on_left" />
       <B1B class="on_right" />
     </div>
-    <van-row class="legend-group">
-      <van-col :span="8">
-        <span class="legend"></span>
-        <span>重资产</span>
-      </van-col>
-      <van-col :span="8">
-        <div class="legend"></div>
-        <span>中资产</span>
-      </van-col>
-      <van-col :span="8">
-        <div class="legend"></div>
-        <span>轻资产</span>
-      </van-col>
-    </van-row>
+    <div class="position">
+      <van-row class="legend-group">
+        <van-col :span="8">
+          <span class="legend"></span>
+          <span>重资产</span>
+        </van-col>
+        <van-col :span="8">
+          <div class="legend"></div>
+          <span>中资产</span>
+        </van-col>
+        <van-col :span="8">
+          <div class="legend"></div>
+          <span>轻资产</span>
+        </van-col>
+      </van-row>
+    </div>
   </div>
 </template>
 
@@ -47,7 +49,7 @@ export default class B1 extends Base {}
 
   .on_left {
     width: 787px;
-    height: 664px;
+    height: 800px;
   }
 
   .on_right {
@@ -76,6 +78,12 @@ export default class B1 extends Base {}
     height: 12px;
     margin-left: 20px;
   }
+}
+
+.position {
+  position: absolute;
+  top: -66px;
+  right: 20px;
 }
 
 .van-col:nth-child(1) .legend {
