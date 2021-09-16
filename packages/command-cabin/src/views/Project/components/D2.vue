@@ -1,50 +1,55 @@
 <template>
-  <Spin class="box" :loading="loading" :empty="empty">
-    <Icon
-      v-if="monthData.warn"
-      type="warning"
-      class="icon-warn animate__animated animate__infinite animate__flash animate__slower"
-      :size="54"
-    />
-    <div class="content">
-      <div class="chart">
-        <van-circle
-          v-model="currentRate"
-          :rate="monthData.totalScore"
-          layer-color="#14437F"
-          color="#5180E4"
-          :size="242"
-          :strokeWidth="60"
-          :speed="150"
-        >
-          <div class="rate-text">
-            <div class="desc">总分</div>
-            <div class="value">{{ currentRate }}</div>
-          </div>
-        </van-circle>
-      </div>
-      <div class="right">
-        <div class="tag-year">{{ monthData.dataDateDesc }}</div>
-        <ul class="list">
-          <li class="item">
-            <div class="name">信用指数</div>
-            <div class="value">
-              <StepNumber :duration="100" :to="monthData.creditScore" />
+  <Spin :loading="loading" :empty="empty">
+    <div class="box">
+      <Icon
+        v-if="monthData.warn"
+        type="warning"
+        class="icon-warn animate__animated animate__infinite animate__flash animate__slower"
+        :size="54"
+      />
+      <div class="content">
+        <div class="chart">
+          <van-circle
+            v-model="currentRate"
+            :rate="monthData.totalScore"
+            layer-color="#14437F"
+            color="#5180E4"
+            :size="242"
+            :strokeWidth="60"
+            :speed="150"
+          >
+            <div class="rate-text">
+              <div class="desc">总分</div>
+              <div class="value">{{ currentRate }}</div>
             </div>
-          </li>
-          <li class="item">
-            <div class="name">渠道效能值</div>
-            <div class="value">
-              <StepNumber :duration="100" :to="monthData.channelEffectScore" />
-            </div>
-          </li>
-          <li class="item">
-            <div class="name">运营健康度</div>
-            <div class="value">
-              <StepNumber :duration="100" :to="monthData.healthyScore" />
-            </div>
-          </li>
-        </ul>
+          </van-circle>
+        </div>
+        <div class="right">
+          <div class="tag-year">{{ monthData.dataDateDesc }}</div>
+          <ul class="list">
+            <li class="item">
+              <div class="name">信用指数</div>
+              <div class="value">
+                <StepNumber :duration="100" :to="monthData.creditScore" />
+              </div>
+            </li>
+            <li class="item">
+              <div class="name">渠道效能值</div>
+              <div class="value">
+                <StepNumber
+                  :duration="100"
+                  :to="monthData.channelEffectScore"
+                />
+              </div>
+            </li>
+            <li class="item">
+              <div class="name">运营健康度</div>
+              <div class="value">
+                <StepNumber :duration="100" :to="monthData.healthyScore" />
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </Spin>
