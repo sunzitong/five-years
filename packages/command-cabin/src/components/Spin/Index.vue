@@ -531,7 +531,9 @@
         </defs>
       </svg>
     </div>
-    <slot v-show="!loading && !empty"></slot>
+    <div class="spin-content" v-else>
+      <slot></slot>
+    </div>
   </div>
 </template>
 

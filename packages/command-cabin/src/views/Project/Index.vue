@@ -147,6 +147,7 @@ import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
 import D2 from "./components/D2.vue";
+import D3 from "./components/D3.vue";
 import F1 from "./components/F1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
@@ -161,6 +162,7 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
     A1,
     A2,
     D2,
+    D3,
     F1,
     ButtonGroup,
     Icon,
