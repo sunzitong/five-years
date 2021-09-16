@@ -108,7 +108,9 @@
               title="舆情风险"
               style="width: 828px; height: 920px"
             >
-              <CardA style="width: 776px; height: 777px"></CardA>
+              <CardA style="width: 776px; height: 777px">
+                <F1 />
+              </CardA>
             </SubWrapperA>
           </van-col>
         </van-row>
@@ -152,11 +154,7 @@ import A3 from "./components/A3.vue";
 import A4 from "./components/A4.vue";
 import A5 from "./components/A5.vue";
 import A6 from "./components/A6.vue";
-import D6 from "./components/D6.vue";
-import C5 from "./components/C5.vue";
-import D5 from "./components/D5.vue";
-import D7 from "./components/D7.vue";
-import D8 from "./components/D8.vue";
+import F1 from "./components/F1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
@@ -173,11 +171,7 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
     A4,
     A5,
     A6,
-    D6,
-    C5,
-    D5,
-    D7,
-    D8,
+    F1,
     ButtonGroup,
     Icon,
     OrgPanel,
