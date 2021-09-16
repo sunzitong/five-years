@@ -20,7 +20,7 @@ import {
   ProjectOpenReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
 import dayjs from "dayjs";
-import { iwant, Nullable } from "@guanyu/shared";
+import { AnyObject, iwant, Nullable } from "@guanyu/shared";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
@@ -92,6 +92,59 @@ export default class B1A extends Base {
   paintChart() {
     const myChart = echarts.init(this.wrapper);
     let option = {
+      tooltip: {
+        trigger: "item",
+        axisPointer: {
+          type: "none", // 默认为直线，可选为：'line' | 'shadow'
+        },
+        renderMode: "html",
+        backgroundColor: "transparent",
+        borderColor: "transparent",
+        // // backdropFilter: "blur(30px)",
+        // borderColor: new echarts.graphic.LinearGradient(
+        //   1,
+        //   0,
+        //   0,
+        //   0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+        //   [
+        //     { offset: 0.8, color: "#00D1FF" },
+        //     { offset: 0.4, color: "#50F5FF" },
+        //   ]
+        // ),
+        borderWidth: 2,
+        padding: [8, 30],
+        // className: "tooltip",
+        formatter(params: AnyObject) {
+          if (params.seriesName === "总计") {
+            return "";
+          }
+          return `<div class="tooltip"><span>${params.seriesName.slice(
+            0,
+            1
+          )}</span>  <span>${params.value}</span></div>`;
+        },
+        //   textStyle: {
+        //     fontSize: 36,
+        //     lineHeight: 36,
+        //     color: "#90A4C3",
+        //     padding: [0, 10, 0, 0],
+        //     rich: {
+        //       a: {
+        //         fontSize: 36,
+        //         lineHeight: 36,
+        //         color: "#90A4C3",
+        //         padding: [0, 10, 0, 0],
+        //       },
+        //       b: {
+        //         fontFamily: "DIN Alternate",
+        //         fontSize: 36,
+        //         lineHeight: 42,
+        //         color: "#DBF0FF",
+        //         fontWeight: "bold",
+        //       },
+        //     },
+        //   },
+      },
       xAxis: {
         type: "category",
         axisLabel: {
@@ -134,7 +187,7 @@ export default class B1A extends Base {
       grid: {
         top: "6%",
         right: "10%",
-        bottom: "20%",
+        bottom: "8%",
         containLabel: true,
       },
       series: [
@@ -329,6 +382,33 @@ export default class B1A extends Base {
       font-size: 66px;
       line-height: 60px;
       color: #dbf0ff;
+    }
+  }
+}
+
+::v-deep {
+  .tooltip {
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #00d1ff 40%, #50f5ff 80%) 1 1
+      stretch;
+    border-radius: 4px;
+    padding: 8px 40px;
+    box-shadow: inset 0px 0px 20px rgba(5, 203, 253, 0.2);
+
+    span:nth-child(1) {
+      font-size: 36px;
+      line-height: 36px;
+      color: #90a4c3;
+      margin-right: 10px;
+    }
+    span:nth-child(2) {
+      font-family: "DIN Alternate";
+      font-size: 36px;
+      line-height: 42px;
+      color: #dbf0ff;
+      font-weight: bold;
     }
   }
 }
