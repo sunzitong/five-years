@@ -159,6 +159,18 @@
             <p>BlurBox</p>
             <p>BlurBox</p>
           </BlurBox>
+          <BlurBox
+            :trangleSize="10"
+            stroke="#22a5d2"
+            fill="rgba(196, 196, 196, 0.8)"
+          >
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+            <p>BlurBox</p>
+          </BlurBox>
         </Card>
       </van-col>
       <van-col :span="8">

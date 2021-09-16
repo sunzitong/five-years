@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 import Base from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";
@@ -62,6 +62,7 @@ export default class F1 extends Base {
   /**
    * 请求数据
    */
+  @Watch("store.global", { deep: true })
   async fetch() {
     const response = await useStore(fetchSentiment, {
       key: StoreKey.ProjectSentiment,
