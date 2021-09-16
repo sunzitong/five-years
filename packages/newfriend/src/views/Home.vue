@@ -25,7 +25,7 @@
     />
     <img
       class="invite-btn"
-      click="rightGet"
+      @click="rightGet"
       src="https://goyoo-assets.longfor.com/prod/app/FHdN7jBBaq5qkWOKzhoGPA.png"
       alt=""
     />
