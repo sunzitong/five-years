@@ -22,8 +22,14 @@
           :opacity="0.6"
         />
         <CardA title="营造盘面" />
-        <CardB title="营造盘面">
-          
+        <CardB>
+          <p>aaaaaaa</p>
+          <p>aaaaaaa</p>
+          <p>aaaaaaa</p>
+          <p>aaaaaaa</p>
+          <p>aaaaaaa</p>
+          <p>aaaaaaa</p>
+          <p>aaaaaaa</p>
         </CardB>
         <SubWrapperA title="拓展盘面" />
       </van-col>
