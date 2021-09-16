@@ -9,6 +9,7 @@ import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import Base from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
+import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
@@ -124,8 +125,13 @@ export default class Example extends Base {
   @Watch("pieData", { deep: true })
   paintChart() {
     const res = this.buildConfiguration();
-
-    const myChart = echarts.init(this.charts);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.charts);
+      mitter.on(EventName.ResizeEcharts, () => {
+        this.myChart.resize();
+      });
+    }
+    const { myChart } = this;
     // myChart.showLoading();
     let option = {
       grid: {
@@ -146,9 +152,6 @@ export default class Example extends Base {
       series: res.series,
     };
     option && myChart.setOption(option);
-    window.addEventListener("resize", () => {
-      myChart.resize();
-    });
   }
 }
 </script>
