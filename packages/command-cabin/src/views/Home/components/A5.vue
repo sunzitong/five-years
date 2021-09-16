@@ -1,5 +1,5 @@
 <template>
-  <div class="page__central_award_supplement__map">
+  <Spin class="page__a5__map" :loading="loading" :empty="empty">
     <div class="text_pannel">
       <!-- 饼图 -->
       <div class="chart" ref="wrapper"></div>
@@ -9,7 +9,7 @@
         万
       </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -45,6 +45,7 @@ export default class A5 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
+      this.loading = false;
 
       this.pieData = [
         // 饼图对象数组
@@ -58,6 +59,8 @@ export default class A5 extends Base {
         },
       ];
       this.paintChart();
+    } else {
+      this.empty = true;
     }
   }
 
@@ -127,6 +130,9 @@ export default class A5 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.page__a5__map {
+  height: 470px;
+}
 .top_text {
   font-family: "PingFang SC";
   font-size: 36px;

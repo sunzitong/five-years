@@ -1,7 +1,7 @@
 <template>
-  <div class="page__a1__map">
+  <Spin class="page__a1__map" :loading="loading" :empty="empty">
     <div class="chart" ref="wrapper"></div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -127,6 +127,9 @@ export default class A2 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.page__a1__map {
+  height: 340px;
+}
 .chart {
   width: 766px;
   height: 334px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="page__a1__map">
+  <Spin class="page__a1__map" :loading="loading" :empty="empty">
     <!-- 上半部分 -->
     <div class="top_text">
       <div class="left_text">
@@ -52,7 +52,7 @@
       <!-- 饼图 -->
       <div class="right_bottom_text chart" ref="wrapper"></div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -187,6 +187,7 @@ export default class A1 extends Base {
 
 <style lang="scss" scoped>
 .page__a1__map {
+  height: 950px;
   display: flex;
   flex-flow: column nowrap;
 
