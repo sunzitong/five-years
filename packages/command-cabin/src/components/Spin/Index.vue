@@ -531,7 +531,7 @@
         </defs>
       </svg>
     </div>
-    <slot v-else></slot>
+    <slot v-show="!loading && !empty"></slot>
   </div>
 </template>
 
