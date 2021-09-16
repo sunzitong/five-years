@@ -10,6 +10,7 @@
         <span class="value__letter">{{ response.yellowNum }}</span>
       </div>
     </div>
+    <div class="chart-bg" v-if="showBarShadow"></div>
     <div class="chart" ref="pieChart"></div>
   </div>
 </template>
@@ -63,6 +64,13 @@ export default class F1B extends Base {
     this.echarts.setOption({
       series: [{ data }],
     });
+  }
+
+  /**
+   * 是否显示阴影
+   */
+  get showBarShadow() {
+    return (this.response?.numsByType ?? []).length !== 0;
   }
 
   /**
@@ -175,6 +183,14 @@ $light: #01f5f1;
   .chart {
     width: 100%;
     height: 600px;
+  }
+  .chart-bg {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    width: 300px;
+    height: 150px;
+    @extend %bg-img-bar-shadow;
   }
 }
 </style>
