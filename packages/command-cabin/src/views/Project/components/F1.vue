@@ -1,6 +1,7 @@
 <template>
   <Spin class="page__F1A__F1B">
-    <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
+    <F1B :response="response" />
+    <!-- <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
       <van-swipe-item>
         <F1A :response="response" />
       </van-swipe-item>
@@ -20,7 +21,7 @@
           </div>
         </div>
       </template>
-    </van-swipe>
+    </van-swipe> -->
   </Spin>
 </template>
 
