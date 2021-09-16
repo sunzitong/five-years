@@ -89,7 +89,7 @@ $padding-x: 100px;
         flex: 3;
       }
       .desc {
-        flex: 2;
+        flex: 5;
       }
     }
   }
