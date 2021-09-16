@@ -297,9 +297,55 @@
     right: 15px;
     bottom: 75px;
     z-index: 999;
-  }
-  
-  .advisory-icon {
+}
+
+.advisory-icon {
     height: 65px;
     // width: 104px;
-  }
+}
+
+.five-years-container {
+    width: 100%;
+
+    .bg {
+        width: 100%;
+        display: block;
+    }
+
+    .btn {
+        position: absolute;
+        top: 797px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+        width: 157px;
+        height: 52px;
+    }
+
+    .activity-btn {
+        display: flex;
+        position: absolute;
+        top: 852px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .show_share {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 333;
+        background: rgba(0, 0, 0, 0.7);
+
+        .guide_user {
+            width: 209px;
+            height: 107px;
+            position: absolute;
+            top: 0px;
+            right: 7px;
+        }
+    }
+}
