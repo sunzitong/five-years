@@ -5,7 +5,7 @@
       <div class="main-left">
         <SubWrapperA title="基本信息" style="width: 1961px; height: 2972px">
           <!-- 资产类型 -->
-          <CardA title="资产类型：重资产" style="width: 1909px; height: 1379px">
+          <CardA style="width: 1909px; height: 1379px">
             <A1 />
           </CardA>
           <WhiteSpace />
