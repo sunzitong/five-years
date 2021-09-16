@@ -10,7 +10,7 @@
               </CardA>
             </van-col>
             <van-col>
-              <CardA title="商机储备" style="width: 866px; height: 425px">
+              <CardA title="商机储备" style="width: 866px; height: 452px">
                 <A2 />
               </CardA>
               <WhiteSpace />
