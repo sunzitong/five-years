@@ -1,5 +1,5 @@
 <template>
-  <div class="page__F1A__F1B">
+  <Spin class="page__F1A__F1B">
     <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
       <van-swipe-item>
         <F1A :response="response" />
@@ -21,7 +21,7 @@
         </div>
       </template>
     </van-swipe>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -29,13 +29,15 @@ import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";
-import { fetchSentiment } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
+import Spin from "@/components/Spin/Index.vue";
+import { fetchSentiment } from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
 import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
     F1A,
     F1B,
+    Spin,
   },
 })
 export default class F1 extends Base {
@@ -62,11 +64,10 @@ export default class F1 extends Base {
    */
   async fetch() {
     const response = await useStore(fetchSentiment, {
-      key: StoreKey.HomeSentiment,
+      key: StoreKey.ProjectSentiment,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
+        projectId: this.store.global.project.projectId,
       },
     });
 
@@ -78,6 +79,10 @@ export default class F1 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.page__F1A__F1B {
+  width: 100%;
+  height: 800px;
+}
 .custom-indicator {
   display: flex;
   justify-content: center;
