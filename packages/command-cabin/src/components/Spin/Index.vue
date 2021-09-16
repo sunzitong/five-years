@@ -539,17 +539,19 @@
 import { uuid } from "@guanyu/shared";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component
+@Component({
+  name: "Spin",
+})
 export default class Spin extends Vue {
   /**
    * 加载
    */
-  @Prop({ default: false }) loading!: boolean;
+  @Prop({ default: false, type: Boolean }) loading!: boolean;
 
   /**
    * 是否数据为空
    */
-  @Prop({ default: false }) empty!: boolean;
+  @Prop({ default: false, type: Boolean }) empty!: boolean;
 
   get uuid() {
     return `${uuid()}`;
