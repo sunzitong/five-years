@@ -11,12 +11,6 @@
           <WhiteSpace />
           <CardA style="width: 1909px; height: 429px">
             <A2 />
-            <template #footer>
-              <a>
-                投资任务书
-                <Icon type="arrow-right" color="#fff" />
-              </a>
-            </template>
           </CardA>
           <WhiteSpace />
           <CardA title="项目区位" style="width: 1909px; height: 956px"></CardA>
@@ -67,12 +61,15 @@
                   <CardA
                     title="综合经营指数"
                     style="width: 900px; height: 420px"
-                  ></CardA>
+                  >
+                    <D2 />
+                  </CardA>
                   <WhiteSpace />
                   <CardA
                     title="24小时设备离线率"
                     style="width: 900px; height: 310px"
                   >
+                    <D3 />
                     <template #data-cycle>{{ dataCycle }}</template>
                   </CardA>
                 </van-col>
@@ -150,6 +147,8 @@ import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import D2 from "./components/D2.vue";
+import D3 from "./components/D3.vue";
 import F1 from "./components/F1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
@@ -163,6 +162,8 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
     WhiteSpace,
     A1,
     A2,
+    D2,
+    D3,
     F1,
     ButtonGroup,
     Icon,

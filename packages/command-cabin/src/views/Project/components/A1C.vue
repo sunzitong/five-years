@@ -36,6 +36,12 @@
         <div class="desc">{{ response.licensePropertyRight }}</div>
       </li>
     </ul>
+    <a class="footer">
+      <div class="text">
+        投资任务书
+        <van-icon name="down" />
+      </div>
+    </a>
   </div>
 </template>
 
@@ -72,26 +78,67 @@ $padding-x: 100px;
   font-size: 40px;
   line-height: 1;
   color: #90a4c3;
-  .list {
-    box-sizing: border-box;
-    height: 516px;
+  height: 534px;
+}
+.list {
+  box-sizing: border-box;
+  height: 516px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  background: linear-gradient(
+    90deg,
+    rgba(65, 105, 158, 0.1) 55%,
+    rgba(65, 105, 158, 0) 60%
+  );
+  padding: 14px 0 14px $padding-x;
+  .item {
     display: flex;
-    flex-flow: column nowrap;
     justify-content: space-between;
-    background: rgba(65, 105, 158, 0.1);
-    padding: 14px 0 14px $padding-x;
-    .item {
-      display: flex;
-      justify-content: space-between;
-      line-height: 56px;
-      box-sizing: border-box;
-      .name {
-        flex: 3;
-      }
-      .desc {
-        flex: 5;
-      }
+    line-height: 56px;
+    box-sizing: border-box;
+    .name {
+      flex: 3;
     }
+    .desc {
+      flex: 5;
+    }
+  }
+}
+.footer {
+  position: absolute;
+  width: 320px;
+  height: 80px;
+  color: #fff;
+  font-size: 36px;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: blur(30px);
+  border: 2px solid rgba(81, 128, 228, 0.8);
+  border-radius: 10px;
+  .text {
+    height: 100%;
+    @extend %flex-center;
+    position: relative;
+    z-index: 1;
+  }
+  .van-icon {
+    transform: rotate(-90deg);
+    margin-left: 16px;
+  }
+  &::before {
+    background: linear-gradient(
+      180deg,
+      rgba(81, 128, 228, 0.2) 6%,
+      #0e1430 92%
+    );
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    border-radius: 10px;
   }
 }
 </style>
