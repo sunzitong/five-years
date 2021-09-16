@@ -4,8 +4,22 @@ import { formatValue, sepNumber } from "@/utils/tools";
 
 @Component({})
 export default class Base extends Mixins(MixStore) {
+  /**
+   * 空值渲染--
+   */
   formatValue = formatValue;
+  /**
+   * 千分位分隔
+   */
   sepNumber = sepNumber;
+  /**
+   * 加载状态
+   */
+  loading = true;
+  /**
+   * 数据为空
+   */
+  empty = false;
   /**
    * 设置数据来源
    * @param payload 数据来源

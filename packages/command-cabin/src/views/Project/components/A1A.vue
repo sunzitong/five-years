@@ -42,15 +42,18 @@
           <span class="unit">个</span>
         </div>
       </li>
-      <!-- 重资产 -->
-      <li class="item" v-show="false">
+      <li class="item" v-if="response.transactionModelType === 'HeavyAsset'">
         <div class="label">获取时间</div>
         <div class="value">
           {{ formatValue(response.acquireTime) }}
         </div>
       </li>
-      <!-- 中轻资产 -->
-      <li class="item" v-show="true">
+      <li
+        class="item"
+        v-if="
+          ['MiddleAsset', 'LightAsset'].includes(response.transactionModelType)
+        "
+      >
         <div class="label">年限</div>
         <div class="value">
           {{ formatValue(sepNumber(response.term)) }}
