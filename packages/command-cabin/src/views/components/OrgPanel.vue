@@ -371,7 +371,7 @@ export default class OrgPanel extends Base {
   --animate-duration: 200ms;
 }
 .org-panel--scope {
-  width: 370px;
+  width: 400px;
   .col {
     width: 100%;
   }

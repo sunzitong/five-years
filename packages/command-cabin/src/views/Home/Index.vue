@@ -404,7 +404,7 @@ export default class Home extends Base {
   bottom: 120%;
   right: 0px;
   &--scope {
-    right: 400px;
+    right: 397px;
   }
 }
 </style>
