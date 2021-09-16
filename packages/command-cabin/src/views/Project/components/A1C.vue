@@ -88,8 +88,8 @@ $padding-x: 100px;
   justify-content: space-between;
   background: linear-gradient(
     90deg,
-    rgba(65, 105, 158, 0.1) 55%,
-    rgba(65, 105, 158, 0) 60%
+    rgba(65, 105, 158, 0.1) 10%,
+    rgba(65, 105, 158, 0) 80%
   );
   padding: 14px 0 14px $padding-x;
   .item {
