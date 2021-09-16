@@ -113,7 +113,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { ResizeObserver } from "resize-observer";
-import { sample } from "lodash";
+// import { sample } from "lodash";
 import { uuid } from "@guanyu/shared";
 
 @Component
