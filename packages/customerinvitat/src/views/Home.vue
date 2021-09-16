@@ -206,7 +206,7 @@ export default {
           data: {
             title: '跟着老友住冠寓，得神秘大礼包！',
             imageUrl:
-              'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/201DD99E3kqI6TpHXgAQoQ.png',
+              'https://goyoo-assets.longfor.com/prod/app/6cbAvPnvfDyA_C_LG7ec8g.png',
             path: `${window.location.origin}/fe/newfriend/?encodeuserId=${this.getQueryVariable(
               'sessionId'
             )}`,
