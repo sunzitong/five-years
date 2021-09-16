@@ -113,7 +113,7 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         // target: "http://docs.gyapt.cn/mock/382",
-        target: "http://10.231.133.109:18099",
+        target: "http://m.test109.iguanyu.com",
         // target: "http://m.test109.iguanyu.com",
         // target: "http://localhost:8081",
         secure: false,

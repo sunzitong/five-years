@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <img v-for="item in data" :src="item.imageUrl" :key="item.id" alt="" :class="`class${item.id}`"/>
     <img
       class="bg"
       src="https://goyoo-assets.longfor.com/prod/app/55cC0WCB5wQTFc_JA5p0EQ.png"
       alt=""
     />
-    <img
+    <!-- <img
       class="zhuli"
       src="https://goyoo-assets.longfor.com/prod/app/DjLnomrQVYdqfz4jzJD4lA.png"
       alt=""
@@ -29,14 +30,14 @@
       class="longzhu"
       src="https://goyoo-assets.longfor.com/prod/app/tTcXWatt8H9ueQQfp-P9Vg.png"
       alt=""
-    />
+    /> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Inject, Watch } from "vue-property-decorator";
 import Base from "./Base";
-import { Demo, getDemo, getWxSign } from "@/service";
+import { Demo, getDemo, getWxSign, fetchCustomEntry } from "@/service";
 import { getToken, toLogin } from "@/utils/guanyu";
 
 @Component
@@ -53,82 +54,26 @@ export default class Index extends Base {
    */
   @Inject() share!: () => void;
   $dialog: any;
+  data = [];
 
   mounted() {
     // location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
     document.title = "冠寓";
-    this.getWxSign();
+    this.fetchCustomEntry();
     console.log("this.visitSource", this.visitSource);
     if (this.visitSource === "小程序") {
       this.share();
     }
   }
 
-  show = false;
-
-  @Watch("finished")
-  watchFinished(val: boolean) {
-    if (val) {
-      this.$toast("监听到加载完了");
-    }
-  }
-  /**
-   * 计算属性
-   */
-  get finished() {
-    return this.pageNum > 5;
-  }
-  set finished(_val) {
-    this.pageNum = 100;
-  }
-  loading = false;
-  pageNum = 1;
-  list: Demo[] = [];
-  /**
-   * 获取数据
-   */
-  async getDemo() {
-    const res = await getDemo();
-    if (res?.status === "ok") {
-      this.list.push(...res.data);
-      this.pageNum++;
-    } else {
-      this.$dialog.alert({
-        message: `
-        接口出错了，请使用本地mock
-        <code>cd ./mock/</code>
-        <code>npm i</code>
-        <code>cd ..</code>
-        <code>npm run dev</code>
-        `,
-        theme: "round-button",
-        allowHtml: true,
-      });
-      this.finished = true;
-    }
-    // 加载状态结束
-    this.loading = false;
-  }
-
-  /**
-   * 获取数据
-   */
-  async getWxSign() {
-    const res = await getWxSign({
-      url: location.href.split("#")[0],
+  async fetchCustomEntry() {
+    const res = await fetchCustomEntry({
+      activityNumber: "202109137856",
     });
-    if ((res as any)?.code == "1000") {
-      window.wx.config({
-        debug: false, // 是否开启调试模式
-        appId: (res as any)?.data?.appId,
-        timestamp: (res as any)?.data?.timestamp,
-        nonceStr: (res as any)?.data?.nonceStr,
-        signature: (res as any)?.data?.signature,
-        jsApiList: ["chooseImage", "previewImage"],
-        openTagList: [
-          "wx-open-launch-weapp", //跳转小程序
-        ],
-      });
+    if (!res) return;
+    const { status, data } = res;
+    if (status === "ok") {
+      this.data = data;
     }
   }
   /**
@@ -165,31 +110,31 @@ export default class Index extends Base {
     width: 100%;
     display: block;
   }
-  .zhuli {
+  .class5 {
     position: absolute;
     top: 163px;
     width: 102px;
     left: 79px;
   }
-  .yaoqing {
+  .class6 {
     position: absolute;
     top: 358px;
     width: 102px;
     left: -8px;
   }
-  .xingyun {
+  .class7 {
     position: absolute;
     top: 447px;
     width: 102px;
     left: 136px;
   }
-  .haoyou {
+  .class8 {
     position: absolute;
     top: 368px;
     width: 102px;
     right: 4px;
   }
-  .longzhu {
+  .class9 {
     position: absolute;
     top: 241px;
     width: 102px;
