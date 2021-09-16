@@ -5,18 +5,18 @@
       <div class="main-left">
         <SubWrapperA title="基本信息" style="width: 1961px; height: 2972px">
           <!-- 资产类型 -->
-          <CardA title="资产类型：重资产" style="width: 1909px; height: 1379px">
+          <CardA style="width: 1909px; height: 1379px">
             <A1 />
           </CardA>
           <WhiteSpace />
           <CardA style="width: 1909px; height: 429px">
+            <A2 />
             <template #footer>
               <a>
                 投资任务书
                 <Icon type="arrow-right" color="#fff" />
               </a>
             </template>
-            <A2 />
           </CardA>
           <WhiteSpace />
           <CardA title="项目区位" style="width: 1909px; height: 956px"></CardA>
@@ -150,10 +150,6 @@ import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
-import A3 from "./components/A3.vue";
-import A4 from "./components/A4.vue";
-import A5 from "./components/A5.vue";
-import A6 from "./components/A6.vue";
 import F1 from "./components/F1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
@@ -167,10 +163,6 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
     WhiteSpace,
     A1,
     A2,
-    A3,
-    A4,
-    A5,
-    A6,
     F1,
     ButtonGroup,
     Icon,
