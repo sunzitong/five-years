@@ -5,7 +5,7 @@
       :src="
         userImg
           ? userImg
-          : 'http://prod-longzhubao-dahuiyuan.oss-cn-beijing.aliyuncs.com/longfor/member-head/21d24/r8_kWMpkqb8.jpg?Expires=1782832309&OSSAccessKeyId=LTAI5tBRjY8pEFAoxCXFTWEa&Signature=mlYq2KpYiOnyBy6f55IP1z6u7%2B4%3D'
+          : 'https://goyoo-assets.longfor.com/prod/app/pW6D1wT3LHnQxADuXgEwxw.png'
       "
       alt
     />
