@@ -120,6 +120,7 @@ export default class App extends Mixins(MixStore) {
   overflow: hidden;
   font-family: "PingFang SC";
   position: relative;
+  @extend %bg-img-bg-earth;
 }
 .logo {
   width: 336px;
