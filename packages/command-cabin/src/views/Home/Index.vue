@@ -96,7 +96,7 @@
           style="width: 2113px; height: 680px; margin: 0 0 44px"
           title="现场风险监控"
         >
-          现场风险监控
+          <CardA style="width: 2061px; height: 524px"></CardA>
         </SubWrapperA>
         <div class="global-button global-button--2">
           <ButtonGroupA revert>
