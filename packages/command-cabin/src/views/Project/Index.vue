@@ -10,6 +10,7 @@
           </CardA>
           <WhiteSpace />
           <CardA style="width: 1909px; height: 429px">
+            <A2 />
             <template #footer>
               <a>
                 投资任务书
@@ -148,9 +149,7 @@ import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
-import A3 from "./components/A3.vue";
-import A4 from "./components/A4.vue";
-import A5 from "./components/A5.vue";
+import A2 from "./components/A2.vue";
 import F1 from "./components/F1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
@@ -163,9 +162,7 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
     CardA,
     WhiteSpace,
     A1,
-    A3,
-    A4,
-    A5,
+    A2,
     F1,
     ButtonGroup,
     Icon,

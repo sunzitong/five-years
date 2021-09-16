@@ -15,6 +15,8 @@ import {
   CheckboxGroup,
   Swipe,
   SwipeItem,
+  Tab,
+  Tabs,
 } from "vant";
 import Vue from "vue";
 
@@ -36,3 +38,5 @@ Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(Swipe);
 Vue.use(SwipeItem);
+Vue.use(Tab);
+Vue.use(Tabs);
