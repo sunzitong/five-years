@@ -4,7 +4,7 @@
  *
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:40:34
+ * @updateAt 2021/9/16 上午11:25:23
  * @method GET
  */
 
@@ -123,17 +123,17 @@ exports.response = {
         {
           transactionModel: "重资产",
           roomNum: 320, //房间数
-          ratio: 35.1232, //房间数占比
+          ratio: 50.1232, //房间数占比
         },
         {
           transactionModel: "轻资产",
           roomNum: 265,
-          ratio: 24.0987,
+          ratio: 10.0,
         },
         {
           transactionModel: "中资产",
           roomNum: 1054,
-          ratio: 60.2341,
+          ratio: 40.2341,
         },
       ],
     },
@@ -145,17 +145,17 @@ exports.response = {
         {
           transactionModel: "重资产",
           roomNum: 320, //房间数
-          ratio: 35.1232, //房间数占比
+          ratio: 1.0, //房间数占比
         },
         {
           transactionModel: "轻资产",
           roomNum: 265,
-          ratio: 24.0987,
+          ratio: 4.0987,
         },
         {
           transactionModel: "中资产",
           roomNum: 1054,
-          ratio: 60.2341,
+          ratio: 100.0,
         },
       ],
     },

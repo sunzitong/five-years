@@ -66,7 +66,7 @@ type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 @Component({
   components: { Icon, ProgressCircle, StepNumber },
 })
-export default class C5 extends Base {
+export default class D2 extends Base {
   /**
    * 返回数据
    */

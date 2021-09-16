@@ -18,7 +18,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class ForwardBar extends Vue {
+export default class AnimationForward extends Vue {
   @Prop({ default: 10, type: Number }) size!: number;
 }
 </script>
