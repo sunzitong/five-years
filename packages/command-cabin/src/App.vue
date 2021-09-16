@@ -9,7 +9,7 @@
     <FixedNav position="right" />
     <!-- 控制缩放 -->
     <div
-      v-if="env.NODE_ENV === 'development'"
+      v-if="true || env.NODE_ENV === 'development'"
       :style="{ transform: 'scale(' + 1 / scale + ')' }"
       class="screen-resize"
     >
@@ -146,7 +146,7 @@ export default class App extends Mixins(MixStore) {
   box-shadow: #fff -2px 2px 10px 0px;
   font-size: 16px;
 }
-.show-shadow .app-card__content > * {
+.show-shadow .app-card-a__content > * {
   box-shadow: 0 0 10px #fff;
 }
 </style>
