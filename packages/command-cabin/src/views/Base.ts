@@ -14,7 +14,7 @@ export default class Base extends Mixins(MixStore) {
     let ins = this.$parent;
     let card = null;
     while (ins) {
-      if (ins.$options.name === "Card") {
+      if (ins.$options.name === "CardA") {
         card = ins;
       }
       ins = ins.$parent;
