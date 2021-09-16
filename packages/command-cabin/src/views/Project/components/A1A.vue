@@ -94,7 +94,7 @@ export default class A1A extends Base {
 
 <style lang="scss" scoped>
 $light: #dbf0ff;
-$padding-x: 82px;
+$padding-x: 125px;
 .box {
   display: flex;
   flex-flow: column nowrap;
@@ -103,6 +103,8 @@ $padding-x: 82px;
   .list {
     display: flex;
     flex-wrap: wrap;
+    height: 376px;
+    background: rgba(65, 105, 158, 0.1);
   }
   .item {
     min-width: 25%;

@@ -50,7 +50,7 @@ import { iwant } from "@guanyu/shared";
 import { Component } from "vue-property-decorator";
 
 @Component
-export default class A2 extends Base {
+export default class A1C extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
   async created() {
     const response = await useStore(fetchProjectBaseInfo, {
@@ -65,25 +65,32 @@ export default class A2 extends Base {
 </script>
 
 <style lang="scss" scoped>
-$light: #01f5f1;
-$padding-x: 85px;
+$padding-x: 100px;
 .box {
-  width: 1098px;
-  box-sizing: border-box;
-  padding: 10px $padding-x;
+  padding: 0 26px;
   font-family: PingFang SC;
-  font-size: 34px;
+  font-size: 40px;
   line-height: 1;
-  color: #fff;
+  color: #90a4c3;
   .list {
+    box-sizing: border-box;
+    height: 516px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background: rgba(65, 105, 158, 0.1);
+    padding: 14px 0 14px $padding-x;
     .item {
       display: flex;
       justify-content: space-between;
       line-height: 56px;
       box-sizing: border-box;
-    }
-    .name {
-      color: $light;
+      .name {
+        flex: 3;
+      }
+      .desc {
+        flex: 2;
+      }
     }
   }
 }
