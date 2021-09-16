@@ -39,7 +39,7 @@ import { StoreKey, useStore } from "@/store";
 @Component({
   components: { Icon },
 })
-export default class D5 extends Base {
+export default class D3 extends Base {
   /**
    * 返回数据(格式化后)
    */
