@@ -96,7 +96,7 @@
           style="width: 2113px; height: 680px; margin: 0 0 44px"
           title="现场风险监控"
         >
-          现场风险监控
+          <CardA style="width: 2061px; height: 524px"></CardA>
         </SubWrapperA>
         <div class="global-button global-button--2">
           <ButtonGroupA revert>
@@ -228,7 +228,7 @@
         <van-row gutter="20">
           <van-col>
             <SubWrapperA title="异常预警" style="width: 1845px; height: 920px">
-              <CardA>
+              <CardA style="width: 1794px; height: 775px">
                 <!-- <E5 /> -->
               </CardA>
             </SubWrapperA>

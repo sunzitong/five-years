@@ -175,11 +175,11 @@ export default class E5A extends Base {
               [
                 {
                   offset: 0,
-                  color: "#1A91FF", // 0% 处的颜色
+                  color: "#5180E4", // 0% 处的颜色
                 },
                 {
                   offset: 1,
-                  color: "#60E0FD", // 100% 处的颜色
+                  color: "rgba(12, 90, 171, 0)", // 100% 处的颜色
                 },
               ],
               false
@@ -187,7 +187,8 @@ export default class E5A extends Base {
           },
           label: {
             show: true,
-            color: "#fff",
+            color: "#DBF0FF",
+            align: "center",
             fontSize: 18,
           },
         },
@@ -197,12 +198,13 @@ export default class E5A extends Base {
           data: this.bar.redNums,
           barWidth: 20,
           itemStyle: {
-            color: "#EEBC4A",
+            color: "#F7D14A",
           },
           label: {
             show: true,
             align: "center",
-            color: "#fff",
+            position: "top",
+            color: "#F7D14A",
             fontSize: 18,
           },
         },
