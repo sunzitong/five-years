@@ -86,13 +86,13 @@ export default class F1B extends Base {
         textStyle: {
           rich: {
             a: {
-              color: "#BFC0C1",
+              color: "#90A4C3",
               fontFamily: "DIN Alternate",
               fontSize: 26,
               width: 84,
             },
             b: {
-              color: "#01F5F1",
+              color: "#DBF0FF",
               fontFamily: "DIN Alternate",
               fontSize: 34,
               align: "right",
@@ -109,8 +109,13 @@ export default class F1B extends Base {
           radius: ["35%", 150],
           center: ["25%", "52%"],
           color: [
-            "#FF2A76",
-            "#F4BD44",
+            "#F7D14A",
+            "#ED8BA3",
+            "#55D5F3",
+            "#AE95F6",
+            "#22CB98",
+            "#D05FC5",
+            "#3A6FFF",
             "#E49981",
             "#4988FD",
             "#67E1FB",
@@ -136,24 +141,35 @@ export default class F1B extends Base {
 <style lang="scss" scoped>
 $light: #01f5f1;
 .pie-chart {
+  position: relative;
   margin-top: 50px;
   .header {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
-    margin: 0 50% -40px 0;
+    margin: 0 50% 0 0;
     .red,
     .orange {
+      min-width: 130px;
+      text-align: center;
       font-size: 30px;
+      color: #90a4c3;
       span {
+        display: block;
         font-size: 40;
-        color: $light;
+        padding: 0 20px;
       }
     }
     .red {
-      margin: 0 42px 0 auto;
+      span {
+        color: #ff3980;
+      }
     }
-
     .orange {
-      margin: 0 auto 0 42px;
+      span {
+        color: #dbf0ff;
+      }
     }
   }
   .chart {
