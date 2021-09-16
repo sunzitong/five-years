@@ -1,57 +1,58 @@
 <template>
-  <div class="box" v-if="monthData">
-    <div class="tag-year">{{ monthData.dataDateDesc }}</div>
+  <Spin class="box" :loading="loading" :empty="empty">
     <Icon
       v-if="monthData.warn"
-      type="trangle"
+      type="warning"
       class="icon-warn animate__animated animate__infinite animate__flash animate__slower"
-      :size="70"
+      :size="54"
     />
     <div class="content">
       <div class="chart">
-        <ProgressCircle
-          :styleType="2"
+        <van-circle
+          v-model="currentRate"
           :rate="monthData.totalScore"
-          :size="400"
-          :strokeWidth="210"
-          :strokeSize="280"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="242"
+          :strokeWidth="60"
+          :speed="150"
         >
-          <template v-slot="{ value }">
-            <div class="rate-text">
-              <div class="value">{{ value }}</div>
-              <div class="desc">总分</div>
-            </div>
-          </template>
-        </ProgressCircle>
+          <div class="rate-text">
+            <div class="desc">总分</div>
+            <div class="value">{{ currentRate }}</div>
+          </div>
+        </van-circle>
       </div>
-      <ul class="list">
-        <li class="item">
-          <div class="name">信用指数</div>
-          <div class="value">
-            <StepNumber :duration="100" :to="monthData.creditScore" />
-          </div>
-        </li>
-        <li class="item">
-          <div class="name">渠道效能值</div>
-          <div class="value">
-            <StepNumber :duration="100" :to="monthData.channelEffectScore" />
-          </div>
-        </li>
-        <li class="item">
-          <div class="name">运营健康度</div>
-          <div class="value">
-            <StepNumber :duration="100" :to="monthData.healthyScore" />
-          </div>
-        </li>
-      </ul>
+      <div class="right">
+        <div class="tag-year">{{ monthData.dataDateDesc }}</div>
+        <ul class="list">
+          <li class="item">
+            <div class="name">信用指数</div>
+            <div class="value">
+              <StepNumber :duration="100" :to="monthData.creditScore" />
+            </div>
+          </li>
+          <li class="item">
+            <div class="name">渠道效能值</div>
+            <div class="value">
+              <StepNumber :duration="100" :to="monthData.channelEffectScore" />
+            </div>
+          </li>
+          <li class="item">
+            <div class="name">运营健康度</div>
+            <div class="value">
+              <StepNumber :duration="100" :to="monthData.healthyScore" />
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
-import ProgressCircle from "@/components/Progress/ProgressCircle.vue";
 import dayjs from "dayjs";
 import {
   BusinessScoreReturn,
@@ -64,14 +65,17 @@ import { StoreKey, useStore } from "@/store";
 type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 
 @Component({
-  components: { Icon, ProgressCircle, StepNumber },
+  components: { Icon, StepNumber },
 })
 export default class D2 extends Base {
   /**
    * 返回数据
    */
   response: null | BusinessScoreReturn = null;
-
+  /**
+   * v-model进度
+   */
+  currentRate = 0;
   /**
    * 定时器
    */
@@ -111,6 +115,7 @@ export default class D2 extends Base {
     });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
+      this.loading = false;
     }
   }
 
@@ -122,6 +127,7 @@ export default class D2 extends Base {
     const time = 10 * 1000;
     const next = () => {
       this.showCurrentMonth = !this.showCurrentMonth;
+      this.currentRate = 0;
       this.timer = setTimeout(next, time);
     };
     this.timer = setTimeout(next, time);
@@ -141,44 +147,23 @@ export default class D2 extends Base {
 </script>
 
 <style lang="scss" scoped>
-$light: #01f5f1;
+$light: #dbf0ff;
 .box {
-  width: 1050px;
-  height: 550px;
-  font-family: PingFang SC;
-  font-size: 30px;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  margin-top: -60px;
-}
-.tag-year {
-  @extend %flex-center;
-  position: absolute;
-  top: 34px;
-  left: 24px;
-  font-size: 24px;
-  width: 135px;
-  height: 42px;
-  background: #24386d;
-  border-radius: 6px;
-}
-.icon-warn {
-  position: absolute;
-  top: 28px;
-  right: 50px;
+  height: 330px;
+  font-size: 36px;
+  color: #90a4c3;
 }
 .content {
   display: flex;
-  align-items: center;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   .chart {
     position: relative;
     @extend %flex-center;
-    width: 424px;
-    height: 424px;
-    margin: 0 90px 0 160px;
+    width: 350px;
+    height: 100%;
+    margin: 0 60px 0 50px;
     .rate-text {
       @extend %flex-center;
       flex-flow: column nowrap;
@@ -187,28 +172,58 @@ $light: #01f5f1;
       .value {
         @extend %value__letter;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 48px;
+        color: #dbf0ff;
+        margin-top: 8px;
       }
       .desc {
-        font-size: 30px;
+        font-size: 24px;
+        line-height: 24px;
+        color: #8090aa;
       }
     }
+    @extend %bg-img-circle-1;
+    background-position-y: -34px;
+  }
+  .right {
+    height: 100%;
   }
   .list {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
     line-height: 1;
+    height: 178px;
     .item {
-      margin: 40px 0;
+      display: flex;
+      align-items: center;
       .name {
-        font-size: 30px;
+        width: 232px;
+        font-size: 36px;
       }
       .value {
         @extend %value__letter;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 48px;
         color: $light;
       }
     }
   }
+}
+.tag-year {
+  @extend %flex-center;
+  width: 144px;
+  height: 50px;
+  background: #182966;
+  border-radius: 4px;
+  font-size: 36px;
+  color: #90a4c3;
+  margin: 37px 0 28px 0;
+}
+.icon-warn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
 }
 .fade-enter-active {
   animation: fadeIn 1s;
