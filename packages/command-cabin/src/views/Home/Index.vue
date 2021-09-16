@@ -228,7 +228,7 @@
         <van-row gutter="20">
           <van-col>
             <SubWrapperA title="异常预警" style="width: 1845px; height: 920px">
-              <CardA>
+              <CardA style="width: 1794px; height: 775px">
                 <!-- <E5 /> -->
               </CardA>
             </SubWrapperA>
