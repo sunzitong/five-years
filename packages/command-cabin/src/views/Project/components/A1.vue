@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <Spin :loading="loading">
     <A1A />
     <A1B />
     <A1C />
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">

@@ -5,15 +5,15 @@
       <div class="main-left">
         <SubWrapperA title="基本信息" style="width: 1961px; height: 2972px">
           <!-- 资产类型 -->
-          <CardA style="width: 1909px; height: 1379px">
+          <CardA style="width: 1909px; height: 1380px">
             <A1 />
           </CardA>
           <WhiteSpace />
-          <CardA style="width: 1909px; height: 429px">
+          <CardA style="width: 1909px; height: 486px">
             <A2 />
           </CardA>
           <WhiteSpace />
-          <CardA title="项目区位" style="width: 1909px; height: 976px"></CardA>
+          <CardA title="项目区位" style="width: 1909px; height: 914px"></CardA>
         </SubWrapperA>
       </div>
       <div class="main-center">
@@ -48,6 +48,103 @@
             </van-col>
           </van-row>
         </SubWrapperA>
+
+        <div class="global-button">
+          <ButtonGroupA revert>
+            <van-radio-group value="nav" direction="horizontal">
+              <van-radio
+                :name="showNavPanel ? 'nav' : null"
+                @click="
+                  () => {
+                    showNavPanel = !showNavPanel;
+                    showScopePanel = false;
+                  }
+                "
+              >
+                快捷导航
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  color="#01F5F1"
+                  v-if="showNavPanel"
+                />
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  color="#5180e4"
+                  v-else
+                />
+              </van-radio>
+            </van-radio-group>
+          </ButtonGroupA>
+
+          <ButtonGroupA>
+            <van-checkbox-group
+              :value="['scope', 'orgTree']"
+              direction="horizontal"
+            >
+              <van-checkbox
+                :name="showScopePanel ? 'scope' : null"
+                @click="
+                  () => {
+                    showScopePanel = !showScopePanel;
+                    showOrgPanel = false;
+                  }
+                "
+              >
+                {{ scopeValue }}
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  color="#01F5F1"
+                  v-if="showScopePanel"
+                />
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  color="#5180e4"
+                  v-else
+                />
+              </van-checkbox>
+              <van-checkbox
+                :name="showOrgPanel ? 'orgTree' : null"
+                @click="
+                  () => {
+                    showOrgPanel = !showOrgPanel;
+                    showScopePanel = false;
+                  }
+                "
+              >
+                门店选择
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  color="#01F5F1"
+                  v-if="showOrgPanel"
+                />
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  color="#5180e4"
+                  v-else
+                />
+              </van-checkbox>
+            </van-checkbox-group>
+          </ButtonGroupA>
+
+          <!-- 区域选择 -->
+          <OrgPanel
+            type="project"
+            :show="showOrgPanel"
+            @update:show="showOrgPanel = false"
+          />
+          <!-- 时间维度选择 -->
+          <OrgPanel
+            type="dateScope"
+            :show="showScopePanel"
+            @update:show="showScopePanel = false"
+          />
+        </div>
       </div>
       <div class="main-right">
         <SubWrapperA title="经营现状" style="width: 2693px; height: 2027px">
@@ -114,29 +211,8 @@
         </van-row>
       </div>
     </div>
-    <div class="footer">
-      <div class="global-button">
-        <ButtonGroup>
-          <van-checkbox-group :value="centerType" direction="horizontal">
-            <van-checkbox name="meeting" @click="centerChange('meeting')">
-              会议中心
-            </van-checkbox>
-            <van-checkbox name="command" @click="centerChange('command')">
-              实时指挥中心
-            </van-checkbox>
-            <van-checkbox name="project" @click="centerChange('project')">
-              门店选择
-              <van-icon :name="showOrgPanel ? 'arrow-down' : 'arrow-up'" />
-            </van-checkbox>
-          </van-checkbox-group>
-        </ButtonGroup>
-      </div>
-      <OrgPanel
-        :show="showOrgPanel"
-        @update:show="centerChange('project')"
-        type="project"
-      />
-    </div>
+
+    <div class="project-name">{{ store.global.project.projectName }}</div>
   </div>
 </template>
 
@@ -155,6 +231,7 @@ import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
+import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 
 @Component({
   components: {
@@ -169,6 +246,7 @@ import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
     ButtonGroup,
     Icon,
     OrgPanel,
+    ButtonGroupA,
   },
 })
 export default class Index extends Base {
@@ -181,25 +259,29 @@ export default class Index extends Base {
     }
     return null;
   }
+  /**
+   * 显示快捷导航
+   */
+  showNavPanel = false;
+  /**
+   * 显示区域选择
+   */
   showOrgPanel = false;
   /**
-   * 会议中心 实时指挥中心
+   * 显示年累月累选择
    */
-  centerType = ["meeting"];
+  showScopePanel = false;
   /**
-   * 切换
+   * 时间维度按钮文案
    */
-  centerChange(type: string) {
-    if (["meeting", "command"].includes(type)) {
-      this.centerType = [type];
-    } else {
-      if (!this.showOrgPanel) {
-        this.centerType.push(type);
-      } else {
-        this.centerType = this.centerType.filter((a) => a !== type);
-      }
-      this.showOrgPanel = !this.showOrgPanel;
+  get scopeValue() {
+    if (this.store.global.dateScope === DateScopes.YEARLY) {
+      return "年累计";
     }
+    if (this.store.global.dateScope === DateScopes.MONTHLY) {
+      return "月累计";
+    }
+    return this.formatValue(null);
   }
 }
 </script>
@@ -217,24 +299,29 @@ export default class Index extends Base {
     margin: 0 20px;
   }
 }
-.footer {
+.global-button {
   position: relative;
-  width: 100%;
-  height: 0;
-  margin: auto;
-  .global-button {
-    position: absolute;
-    width: 34.6%;
-    display: flex;
-    justify-content: flex-end;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 192px;
+  margin-top: 40px;
+  padding: 0 14px 0 8px;
+  .org-panel {
+    bottom: 220px;
+    &--scope {
+      right: 397px;
+    }
   }
 }
-.org-panel {
-  right: 2525px;
-  bottom: 160px;
+.project-name {
+  position: absolute;
+  top: 70px;
+  right: 130px;
+  font-weight: bold;
+  font-size: 66px;
+  color: #fff;
 }
 </style>

@@ -11,9 +11,14 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ExpansionAwardInfoParams {
   /**
-   * 年份
+   * 地区类型
    */
-  year?: number;
+  regionType: string;
+
+  /**
+   * 地区id
+   */
+  regionId: number;
 }
 
 /**
@@ -31,10 +36,10 @@ export interface ExpansionAwardInfoReturn {
 /**
  * 中央奖补、投后攻坚模块
  * @createBy zhangyao03
- * @updateAt 2021/9/10 下午3:08:10
+ * @updateAt 2021/9/17 下午2:00:54
  * @method GET
  */
-export const fetchExpansionAwardInfo = (params?: ExpansionAwardInfoParams) => {
+export const fetchExpansionAwardInfo = (params: ExpansionAwardInfoParams) => {
   return http.get<ExpansionAwardInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo`,
     {

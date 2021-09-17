@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <Spin class="box" :loading="loading">
     <van-tabs v-model="active">
       <van-tab
         v-for="(group, name) in response"
@@ -20,9 +20,9 @@
           </van-row>
           <div class="list">
             <Animationend
-              :height="180"
+              :height="270"
               :dataSource="group.list"
-              :scrollMinCount="2"
+              :scrollMinCount="3"
             >
               <template v-slot="{ list }">
                 <van-row
@@ -63,7 +63,7 @@
         </div>
       </van-tab>
     </van-tabs>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -103,8 +103,8 @@ export default class A2 extends Base {
           text: "姓名",
         },
         {
-          value: "specialty",
-          text: "专业",
+          value: "company",
+          text: "角色",
         },
       ],
     },
@@ -128,7 +128,7 @@ export default class A2 extends Base {
       ],
     },
     constructGroups: {
-      title: "设计团队",
+      title: "施工团队",
       list: [] as Item[],
       span: 8,
       cols: [
@@ -232,7 +232,7 @@ export default class A2 extends Base {
   line-height: 74px;
 }
 .list {
-  height: 180px;
+  height: 270px;
   overflow: auto;
 }
 .th,

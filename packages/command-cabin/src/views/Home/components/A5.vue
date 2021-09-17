@@ -1,5 +1,5 @@
 <template>
-  <Spin class="loading" :loading="loading" :empty="empty">
+  <Spin :height="470" :loading="loading" :empty="empty">
     <div class="page__a5__map">
       <div class="text_pannel">
         <!-- 饼图 -->
@@ -44,6 +44,10 @@ export default class A5 extends Base {
   async fetch() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;
@@ -134,9 +138,6 @@ export default class A5 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  height: 470px;
-}
 .top_text {
   font-family: "PingFang SC";
   font-size: 36px;
