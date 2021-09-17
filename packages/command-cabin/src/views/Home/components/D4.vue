@@ -43,7 +43,7 @@ import { StoreKey, useStore } from "@/store";
     Icon,
   },
 })
-export default class E4 extends Base {
+export default class D4 extends Base {
   data: {
     name: string;
     value: number;
