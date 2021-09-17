@@ -347,7 +347,7 @@ export default class Home extends Base {
     if (this.store.global.dateScope === DateScopes.MONTHLY) {
       return "月累计";
     }
-    return "--";
+    return this.formatValue(null);
   }
   /**
    * 生命周期函数
