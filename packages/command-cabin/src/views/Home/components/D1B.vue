@@ -62,7 +62,7 @@ import Icon from "@/components/Icon/Index.vue";
     Icon,
   },
 })
-export default class E1B extends Base {
+export default class D1B extends Base {
   mounted() {
     /** */
   }
