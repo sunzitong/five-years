@@ -220,6 +220,7 @@
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 933px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <D5 />
               </CardA>
             </van-col>
           </van-row>
@@ -274,6 +275,7 @@ import B5 from "./components/B5.vue";
 import D4 from "./components/D4.vue";
 import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
+import D5 from "./components/D5.vue";
 import O2 from "./components/O2.vue";
 import E2 from "./components/E2.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
@@ -299,6 +301,7 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
     C2,
     E2,
     D4,
+    D5,
     O2,
     ButtonGroupA,
     Icon,
