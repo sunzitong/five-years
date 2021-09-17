@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";

@@ -63,7 +63,9 @@ import Icon from "@/components/Icon/Index.vue";
   },
 })
 export default class D1B extends Base {
-  mounted() {}
+  mounted() {
+    /**/
+  }
 }
 </script>
 
