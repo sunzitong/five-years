@@ -45,20 +45,23 @@ export default class Base extends Mixins(MixStore) {
       "store.global",
       async () => {
         if (typeof this.fetch === "function") {
+          // TODO 递归更新loading
+          const updateLoading = (val: boolean) => {
+            this.loading = val;
+            let ins = this.$parent;
+            while (ins) {
+              if (typeof ins.$data.loading === "boolean") {
+                ins.$data.loading = val;
+              }
+              ins = ins.$parent;
+            }
+          };
           // 设置loading状态
-          const hasParentLoading =
-            typeof this.$parent.$data.loading === "boolean";
-          this.loading = true;
-          if (hasParentLoading) {
-            this.$parent.loading = true;
-          }
+          updateLoading(true);
           // 触发请求
           const response: ResponseData<any> = await this.fetch();
           // 设置loading状态
-          this.loading = false;
-          if (hasParentLoading) {
-            this.$parent.loading = false;
-          }
+          updateLoading(false);
           // 设置数据来源
           if (response?.data?.dataSource && response?.data?.updateTime) {
             this.setCardDataSource({
