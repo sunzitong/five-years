@@ -113,7 +113,7 @@ export default class D2 extends Base {
   /**
    * 组件创建
    */
-  async created() {
+  async fetch() {
     const response = await useStore(fetchBusinessScore, {
       key: StoreKey.ProjectBusinessScore,
       params: { phId: this.store.global.project.phId },
@@ -122,6 +122,7 @@ export default class D2 extends Base {
       this.response = response.data ?? {};
       this.loading = false;
     }
+    return response;
   }
 
   /**

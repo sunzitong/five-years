@@ -63,7 +63,6 @@ export default class F1 extends Base {
   /**
    * 请求数据
    */
-  @Watch("store.global", { deep: true })
   async fetch() {
     const response = await useStore(fetchSentiment, {
       key: StoreKey.ProjectSentiment,
@@ -76,6 +75,7 @@ export default class F1 extends Base {
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }
+    return response;
   }
 }
 </script>

@@ -41,7 +41,7 @@ export default class D7 extends Base {
     numsByType: [],
   };
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchSentiment, {
       key: StoreKey.ProjectSentiment,
       params: {
@@ -53,6 +53,7 @@ export default class D7 extends Base {
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }
+    return response;
   }
 
   /**

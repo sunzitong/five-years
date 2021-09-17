@@ -58,7 +58,7 @@ import { Component } from "vue-property-decorator";
 @Component
 export default class A1C extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
-  async created() {
+  async fetch() {
     const response = await useStore(fetchProjectBaseInfo, {
       key: StoreKey.ProjectBaseInfo,
       params: { phId: this.store.global.project.phId },
@@ -66,6 +66,7 @@ export default class A1C extends Base {
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
     }
+    return response;
   }
 }
 </script>
