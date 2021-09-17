@@ -1,5 +1,24 @@
 # 项目内约定规则
 
+## 接口请求调用
+
+1. 组件需要继承自@/views/Base.ts
+
+2. Base会自动添加watch,有以下效果
+
+   1. 自动声明loading empty等$data和formatValue() sepNumber()等常用的method
+   2. 在this添加store全局数据
+   3. 在全局参数(this.store.global)变化的时候响应,重新发送请求
+   4. 更新管理组件和父级组件的$data.loading
+   5. 根据接口字段自动设置数据来源展示
+
+3. 组件需要做如下约定
+
+   1. 请求接口的函数统一使用名称: `fetch`
+   2. 使用useStore调用,传入service函数和参数(useStore是为了避免不同组件重复请求相同的接口)
+   3. fetch函数需要 `return response;`
+
+   
 
 # Vue2.x typescript 模板
 
