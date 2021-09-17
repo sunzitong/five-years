@@ -1,5 +1,5 @@
 <template>
-  <Spin class="loading" :loading="loading" :empty="empty">
+  <Spin :height="470" :loading="loading" :empty="empty">
     <div class="page__a6__map">
       <div class="text_pannel">
         <!-- 饼图 -->
@@ -207,9 +207,6 @@ export default class A6 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  height: 480px;
-}
 .text_pannel {
   text-align: center;
 }

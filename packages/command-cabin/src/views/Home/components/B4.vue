@@ -1,31 +1,33 @@
 <template>
-  <div class="page__product_quality__map">
-    <div class="whole_pannel">
-      <div class="item_name">
-        <div
-          class="item_name_item"
-          v-for="(itemName, index) in labels"
-          :key="index"
-        >
-          {{ itemName }}
+  <Spin :loading="loading" :empty="empty">
+    <div class="page__product_quality__map">
+      <div class="whole_pannel">
+        <div class="item_name">
+          <div
+            class="item_name_item"
+            v-for="(itemName, index) in labels"
+            :key="index"
+          >
+            {{ itemName }}
+          </div>
         </div>
-      </div>
-      <div
-        class="app-echarts"
-        style="width: 350px; height: 340px"
-        ref="wrapper"
-      ></div>
-      <div class="item_value">
         <div
-          class="item_value_item"
-          v-for="(itemValue, index) in values"
-          :key="index"
-        >
-          {{ index === 1 ? itemValue : itemValue + "%" }}
+          class="app-echarts"
+          style="width: 350px; height: 340px"
+          ref="wrapper"
+        ></div>
+        <div class="item_value">
+          <div
+            class="item_value_item"
+            v-for="(itemValue, index) in values"
+            :key="index"
+          >
+            {{ index === 1 ? itemValue : itemValue + "%" }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">

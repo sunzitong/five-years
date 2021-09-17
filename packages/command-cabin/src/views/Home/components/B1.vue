@@ -1,5 +1,5 @@
 <template>
-  <Spin class="loading" :loading="loading" :empty="empty">
+  <Spin :height="700" :loading="loading" :empty="empty">
     <div class="page__project_opening__map">
       <div class="whole_pannel">
         <B1A class="on_left" />
@@ -45,9 +45,6 @@ export default class B1 extends Base {}
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  height: 700px;
-}
 .whole_pannel {
   display: flex;
   flex-flow: row nowrap;

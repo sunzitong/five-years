@@ -12,7 +12,9 @@ import Base from "@/views/Base";
   components: {},
 })
 export default class Example extends Base {
-  mounted() {}
+  mounted() {
+    /** */
+  }
 }
 </script>
 

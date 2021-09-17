@@ -1,33 +1,39 @@
 <template>
-  <div class="page__maintenance_report__map">
-    <div class="chart">
-      <div v-for="(item, index) in data" v-bind:key="index" class="chart-item">
+  <Spin :loading="loading" :empty="empty">
+    <div class="page__maintenance_report__map">
+      <div class="chart">
         <div
-          class="chart-icon animate__animated animate__infinite animate__pulse"
-          :style="{ 'animation-delay': index * 0.3 + 's' }"
+          v-for="(item, index) in data"
+          v-bind:key="index"
+          class="chart-item"
         >
-          <Icon :type="item.icon" size="22" />
-        </div>
-        <van-circle
-          v-model="item.currentRate"
-          :rate="item.value"
-          :speed="50"
-          :color="item.color"
-          layer-color="#14437F"
-          :stroke-width="56"
-          :size="200"
-          stroke-linecap="round"
-          :clockwise="true"
-          class="chart-circle"
-        >
-          <div class="rate-text">
-            <div class="desc">{{ item.name }}</div>
-            <div class="value">{{ item.currentRate }}%</div>
+          <div
+            class="chart-icon animate__animated animate__infinite animate__pulse"
+            :style="{ 'animation-delay': index * 0.3 + 's' }"
+          >
+            <Icon :type="item.icon" size="22" />
           </div>
-        </van-circle>
+          <van-circle
+            v-model="item.currentRate"
+            :rate="item.value"
+            :speed="50"
+            :color="item.color"
+            layer-color="#14437F"
+            :stroke-width="56"
+            :size="200"
+            stroke-linecap="round"
+            :clockwise="true"
+            class="chart-circle"
+          >
+            <div class="rate-text">
+              <div class="desc">{{ item.name }}</div>
+              <div class="value">{{ item.currentRate }}%</div>
+            </div>
+          </van-circle>
+        </div>
       </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">

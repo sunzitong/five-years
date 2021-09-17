@@ -1,5 +1,5 @@
 <template>
-  <Spin class="loading" :loading="loading">
+  <Spin :height="560" :loading="loading">
     <div class="page__b3__map">
       <van-row class="abstract_text">
         <van-col :span="12">成本风险预警项目</van-col>
@@ -130,10 +130,6 @@ export default class B3 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  height: 560px;
-}
-
 .page__b3__map {
   padding: 40px 0px 0 0px;
 }
