@@ -59,7 +59,7 @@ export default {
       myBonus: '0',
       shareTitle: '跟着老友住冠寓，得神秘大礼包！',
       shareText: '住好房，拿好礼。加入够友圈，神秘大礼包送不停！',
-      shareImg: 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/201DD99E3kqI6TpHXgAQoQ.png',
+      shareImg: 'https://goyoo-assets.longfor.com/prod/app/c8w58qz9q_qc1PTKGwz8OQ.png',
       isNoTenant: false,
       active: {
         endTime: true,
