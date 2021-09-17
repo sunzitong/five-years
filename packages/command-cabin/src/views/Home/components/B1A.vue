@@ -411,5 +411,15 @@ export default class B1A extends Base {
       font-weight: bold;
     }
   }
+  // .tooltip::before {
+  //   content: "";
+  //   position: absolute;
+  //   left: -22px;
+  //   top: 20px;
+  //   width: 0;
+  //   height: 0;
+  //   border: 10px solid;
+  //   border-color: transparent #00d1ff transparent transparent;
+  // }
 }
 </style>
