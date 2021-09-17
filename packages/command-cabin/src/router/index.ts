@@ -22,6 +22,11 @@ const subRouter = [
     meta: "project",
   },
   {
+    path: "build-the-plate",
+    component: () => import("@/views/BuildThePlate/Index.vue"),
+    meta: "build-the-plate",
+  },
+  {
     path: "example",
     component: () => import("@/views/Example.vue"),
     meta: "example",
