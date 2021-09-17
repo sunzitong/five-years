@@ -1,12 +1,14 @@
 <template>
-  <Spin class="page__a5__map" :loading="loading" :empty="empty">
-    <div class="text_pannel">
-      <!-- 饼图 -->
-      <div class="chart" ref="wrapper"></div>
-      <div class="top_text">全年已到账</div>
-      <div class="bottom_text">
-        <span>{{ sepNumber(resData.yearSubsidiesCollected) }}</span>
-        万
+  <Spin class="loading" :loading="loading" :empty="empty">
+    <div class="page__a5__map">
+      <div class="text_pannel">
+        <!-- 饼图 -->
+        <div class="chart" ref="wrapper"></div>
+        <div class="top_text">全年已到账</div>
+        <div class="bottom_text">
+          <span>{{ sepNumber(resData.yearSubsidiesCollected) }}</span>
+          万
+        </div>
       </div>
     </div>
   </Spin>
@@ -130,7 +132,7 @@ export default class A5 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.page__a5__map {
+.loading {
   height: 470px;
 }
 .top_text {

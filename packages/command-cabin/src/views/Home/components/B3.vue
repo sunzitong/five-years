@@ -1,42 +1,44 @@
 <template>
-  <div class="page__b3__map">
-    <van-row class="abstract_text">
-      <van-col :span="12">成本风险预警项目</van-col>
-      <van-col :span="12">总体成本差异率</van-col>
-    </van-row>
-    <van-row class="abstract_text">
-      <van-col class="span_style1" :span="12">
-        {{ projecttNum }}
-        <span>个</span>
-      </van-col>
-      <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
-    </van-row>
-    <div class="whole_chart">
-      <div class="item_name">
-        <div
-          class="item_name_item van-ellipsis"
-          v-for="(itemName, index) in labels"
-          :key="index"
-        >
-          {{ itemName }}
+  <Spin class="loading" :loading="loading">
+    <div class="page__b3__map">
+      <van-row class="abstract_text">
+        <van-col :span="12">成本风险预警项目</van-col>
+        <van-col :span="12">总体成本差异率</van-col>
+      </van-row>
+      <van-row class="abstract_text">
+        <van-col class="span_style1" :span="12">
+          {{ projecttNum }}
+          <span>个</span>
+        </van-col>
+        <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
+      </van-row>
+      <div class="whole_chart">
+        <div class="item_name">
+          <div
+            class="item_name_item van-ellipsis"
+            v-for="(itemName, index) in labels"
+            :key="index"
+          >
+            {{ itemName }}
+          </div>
         </div>
-      </div>
-      <div
-        class="app-echarts"
-        ref="wrapper"
-        style="width: 400px; height: 284px"
-      ></div>
-      <div class="item_value">
         <div
-          class="item_value_item"
-          v-for="(itemValue, index) in values"
-          :key="index"
-        >
-          {{ itemValue }}%
+          class="app-echarts"
+          ref="wrapper"
+          style="width: 400px; height: 284px"
+        ></div>
+        <div class="item_value">
+          <div
+            class="item_value_item"
+            v-for="(itemValue, index) in values"
+            :key="index"
+          >
+            {{ itemValue }}%
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -128,6 +130,10 @@ export default class B3 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  height: 560px; 
+}
+
 .page__b3__map {
   padding: 40px 0px 0 0px;
 }

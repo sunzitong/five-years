@@ -148,6 +148,7 @@ export default class B1B extends Base {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
+      this.$parent.empty = false;
 
       this.targetNum = this.resData.openTargetNum ?? "--";
 
@@ -193,6 +194,8 @@ export default class B1B extends Base {
         (pre: number, cur: number) => iwant.number(pre) + iwant.number(cur),
         0
       ); // 所有成本之和
+    } else {
+      this.$parent.empty = true;
     }
   }
 }

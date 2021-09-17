@@ -1,26 +1,28 @@
 <template>
-  <div class="page__project_opening__map">
-    <div class="whole_pannel">
-      <B1A class="on_left" />
-      <B1B class="on_right" />
+  <Spin class="loading" :loading="loading" :empty="empty">
+    <div class="page__project_opening__map">
+      <div class="whole_pannel">
+        <B1A class="on_left" />
+        <B1B class="on_right" />
+      </div>
+      <div class="position">
+        <van-row class="legend-group">
+          <van-col :span="8">
+            <span class="legend"></span>
+            <span>重资产</span>
+          </van-col>
+          <van-col :span="8">
+            <div class="legend"></div>
+            <span>中资产</span>
+          </van-col>
+          <van-col :span="8">
+            <div class="legend"></div>
+            <span>轻资产</span>
+          </van-col>
+        </van-row>
+      </div>
     </div>
-    <div class="position">
-      <van-row class="legend-group">
-        <van-col :span="8">
-          <span class="legend"></span>
-          <span>重资产</span>
-        </van-col>
-        <van-col :span="8">
-          <div class="legend"></div>
-          <span>中资产</span>
-        </van-col>
-        <van-col :span="8">
-          <div class="legend"></div>
-          <span>轻资产</span>
-        </van-col>
-      </van-row>
-    </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -43,6 +45,9 @@ export default class B1 extends Base {}
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  height: 700px;
+}
 .whole_pannel {
   display: flex;
   flex-flow: row nowrap;
