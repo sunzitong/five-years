@@ -1,6 +1,7 @@
 import { Component, Mixins } from "vue-property-decorator";
 import MixStore from "@/store/MixStore";
 import { formatValue, sepNumber } from "@/utils/tools";
+import { ResponseData } from "@guanyu/shared";
 
 @Component({})
 export default class Base extends Mixins(MixStore) {
@@ -34,5 +35,39 @@ export default class Base extends Mixins(MixStore) {
       ins = ins.$parent;
     }
     card?.setCardDataSource?.(payload);
+  }
+  /**
+   * 自动请求
+   * 固定命名:fetch
+   */
+  mounted() {
+    this.$watch(
+      "store.global",
+      async () => {
+        if (typeof this.fetch === "function") {
+          // 设置loading状态
+          const hasParentLoading = typeof this.$parent.loading === "boolean";
+          this.loading = true;
+          if (hasParentLoading) {
+            this.$parent.loading = true;
+          }
+          // 触发请求
+          const response: ResponseData<any> = await this.fetch();
+          // 设置loading状态
+          this.loading = false;
+          if (hasParentLoading) {
+            this.$parent.loading = false;
+          }
+          // 设置数据来源
+          if (response?.data?.dataSource && response?.data?.updateTime) {
+            this.setCardDataSource({
+              from: response.data.dataSource,
+              time: response.data.updateTime,
+            });
+          }
+        }
+      },
+      { deep: true, immediate: true }
+    );
   }
 }

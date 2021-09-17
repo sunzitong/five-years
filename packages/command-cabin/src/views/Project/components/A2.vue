@@ -148,7 +148,7 @@ export default class A2 extends Base {
     },
   };
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchGroupInfo, {
       key: StoreKey.ProjectGroupInfo,
       params: { phId: this.store.global.project.phId },
@@ -161,6 +161,7 @@ export default class A2 extends Base {
         this.response[key].list = list;
       }
     }
+    return response;
   }
 
   telId = "";

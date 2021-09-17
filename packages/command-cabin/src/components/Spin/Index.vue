@@ -578,10 +578,15 @@ export default class Spin extends Vue {
 
 <style lang="scss" scoped>
 .app-spin {
+  position: relative;
   .empty,
   .loading {
-    position: relative;
+    position: absolute;
     @extend %flex-center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     opacity: 0.5;

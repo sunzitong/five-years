@@ -83,7 +83,7 @@ import { StoreKey, useStore } from "@/store";
 @Component
 export default class A1A extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
-  async created() {
+  async fetch() {
     const response = await useStore(fetchProjectBaseInfo, {
       key: StoreKey.ProjectBaseInfo,
       params: { phId: this.store.global.project.phId },
@@ -91,6 +91,7 @@ export default class A1A extends Base {
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
     }
+    return response;
   }
 }
 </script>
