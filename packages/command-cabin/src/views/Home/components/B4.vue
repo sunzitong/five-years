@@ -66,7 +66,7 @@ export default class B4 extends Base {
   // 数值标签
   values: NumberLike[] = [0, 0, 0];
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchProductQuality, {
       key: StoreKey.HomeProductQuality,
       params: {
@@ -84,10 +84,17 @@ export default class B4 extends Base {
 
       this.paintChart();
     }
+    return response;
   }
 
   paintChart() {
-    const myChart = echarts.init(this.wrapper);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+    const { myChart } = this;
     // myChart.showLoading();
     let option = {
       grid: {
@@ -138,9 +145,6 @@ export default class B4 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

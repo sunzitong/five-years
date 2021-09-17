@@ -131,7 +131,7 @@ export default class B3 extends Base {
 
 <style lang="scss" scoped>
 .loading {
-  height: 560px; 
+  height: 560px;
 }
 
 .page__b3__map {

@@ -138,7 +138,7 @@ export default class B1B extends Base {
   sum1 = 0; // 重中轻之和
   sum2 = 0; // 重中轻之和
 
-  async mounted() {
+  async fetch() {
     const response = await useStore(fetchProjectOpen, {
       key: StoreKey.HomeProjectOpen,
       params: {
@@ -197,6 +197,7 @@ export default class B1B extends Base {
     } else {
       this.$parent.empty = true;
     }
+    return response;
   }
 }
 </script>

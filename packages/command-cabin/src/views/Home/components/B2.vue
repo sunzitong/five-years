@@ -89,7 +89,7 @@ export default class B2 extends Base {
 
   storeNum: number | "--" = "--"; // 风险房间数
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchProjectDelayInfo, {
       key: StoreKey.HomeProjectDelayInfo,
       params: {
@@ -115,6 +115,7 @@ export default class B2 extends Base {
         };
       });
     }
+    return response;
   }
 }
 </script>

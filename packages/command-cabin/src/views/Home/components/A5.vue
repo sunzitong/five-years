@@ -41,14 +41,12 @@ export default class A5 extends Base {
   resData: Partial<ExpansionAwardInfoReturn> = {};
   pieData: AnyObject[] = [];
 
-  async mounted() {
+  async fetch() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
     });
     if (response?.status === "ok") {
       this.resData = response.data;
-      this.loading = false;
-
       this.pieData = [
         // 饼图对象数组
         {
@@ -64,10 +62,17 @@ export default class A5 extends Base {
     } else {
       this.empty = true;
     }
+    return response;
   }
 
   paintChart() {
-    const myChart = echarts.init(this.wrapper);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+    const { myChart } = this;
     // myChart.showLoading();
     let option: EChartsOption = {
       title: {
@@ -124,9 +129,6 @@ export default class A5 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

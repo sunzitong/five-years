@@ -64,7 +64,7 @@ import Icon from "@/components/Icon/Index.vue";
 })
 export default class E1B extends Base {
   mounted() {
-    this.$parent.setCardDataSource({ from: " oms", time: "08-02: 17:00" });
+    /** */
   }
 }
 </script>

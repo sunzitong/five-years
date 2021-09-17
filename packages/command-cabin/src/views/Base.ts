@@ -46,7 +46,8 @@ export default class Base extends Mixins(MixStore) {
       async () => {
         if (typeof this.fetch === "function") {
           // 设置loading状态
-          const hasParentLoading = typeof this.$parent.loading === "boolean";
+          const hasParentLoading =
+            typeof this.$parent.$data.loading === "boolean";
           this.loading = true;
           if (hasParentLoading) {
             this.$parent.loading = true;

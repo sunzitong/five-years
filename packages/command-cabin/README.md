@@ -1,3 +1,6 @@
+# 项目内约定规则
+
+
 # Vue2.x typescript 模板
 
 *基于 vue-cli 4 生成*
