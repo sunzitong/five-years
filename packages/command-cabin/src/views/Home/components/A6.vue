@@ -83,6 +83,10 @@ export default class A6 extends Base {
   async fetch() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.resData = response.data;
