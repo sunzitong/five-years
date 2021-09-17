@@ -23,7 +23,7 @@ import Base from "@/views/Base";
 import { SentimentReturn } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 
 @Component
-export default class E2B extends Base {
+export default class F1B extends Base {
   @Ref() pieChart!: HTMLDivElement;
 
   /**
@@ -88,8 +88,11 @@ export default class E2B extends Base {
         itemHeight: 20,
         itemGap: 16,
         formatter: (params: any) => {
-          console.log(params);
-          return `{a|${params}}{b|  ${this.responseMap[params]}%}`;
+          return `{a|${params}}{b| ${iwant.calc(
+            this.responseMap[params] * 100,
+            1,
+            true
+          )}%}`;
         },
         textStyle: {
           rich: {
