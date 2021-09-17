@@ -16,7 +16,7 @@ const pkg = require("./package.json");
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
-  outputDir: "dist",
+  outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
   // indexPath,
@@ -49,8 +49,9 @@ module.exports = {
       postcss: {
         plugins: (function () {
           // 生产环境转rem
-          if (process.env.NODE_ENV === "production") {
+          if (1==1 || process.env.NODE_ENV === "production") {
             return [
+              /*
               require("postcss-plugin-px2rem")({
                 rootValue: 100, // html font-size
                 unitPrecision: 5,
@@ -64,8 +65,8 @@ module.exports = {
                 mediaQuery: false, //（布尔值）允许在媒体查询中转换px。
                 minPixelValue: 3, //设置要替换的最小像素值(3px会被转rem)。 默认 0
               }),
+              */
               // #region vw转换
-              /*
               require("postcss-px-to-viewport")({
                 unitToConvert: "px",
                 viewportWidth: 375,
@@ -82,7 +83,6 @@ module.exports = {
                 landscapeUnit: "vw",
                 landscapeWidth: 375,
               }),
-              */
               // #endregion
             ];
           }
@@ -112,9 +112,9 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        // target: "http://docs.gyapt.cn/mock/382",
-        // target: "http://oms.test109.gyapt.cn",
-        target: "http://localhost:3000",
+        // target: "http://docs.gyapt.cn/mock/23",
+        // target: "http://localhost:3000",
+        target: "http://m.test109.iguanyu.com",
         secure: false,
         changeOrigin: true,
         pathRewrite: {

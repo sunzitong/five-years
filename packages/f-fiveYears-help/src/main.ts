@@ -14,8 +14,13 @@ import "./directives";
 import "./filters";
 // 样式表
 import "./assets/css/style.scss";
+import { CountDown } from "vant";
+import { Overlay } from "vant";
+Vue.use(Overlay);
+Vue.use(CountDown);
 // console
 Vue.config.productionTip = false;
+
 // 真机本地调试
 if (process.env.NODE_ENV === "development") {
   import("vconsole").then((VConsole) => {

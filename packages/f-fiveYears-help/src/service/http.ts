@@ -25,7 +25,7 @@ const mergeOptions = (partial?: Partial<ServiceOptions>): ServiceOptions => {
   return { showLoading: true, ...partial };
 };
 
-const after = (partial?: Partial<ServiceOptions>) => {
+const before = (partial?: Partial<ServiceOptions>) => {
   const options = mergeOptions(partial);
   if (!options.showLoading) return;
   if (loading.count <= 0 && !loading.toast) {
@@ -34,7 +34,7 @@ const after = (partial?: Partial<ServiceOptions>) => {
   loading.count++;
 };
 
-const before = (partial?: Partial<ServiceOptions>) => {
+const after = (partial?: Partial<ServiceOptions>) => {
   const options = mergeOptions(partial);
   if (!options.showLoading) return;
   loading.count--;
@@ -50,12 +50,12 @@ const http = {
     params?: P,
     options?: Partial<ServiceOptions>
   ) {
-    after(options);
+    before(options);
     const res = await service.get<unknown, ResponseData<T> | undefined>(
       unify(url, params),
       { params }
     );
-    before(options);
+    after(options);
     return res;
   },
 
@@ -64,12 +64,12 @@ const http = {
     data?: P,
     options?: Partial<ServiceOptions>
   ) {
-    after(options);
+    before(options);
     const res = await service.post<unknown, ResponseData<T> | undefined>(
       unify(url, data),
       data
     );
-    before(options);
+    after(options);
     return res;
   },
 };

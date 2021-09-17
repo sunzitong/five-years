@@ -17,6 +17,16 @@ const subRouter = [
     meta: "index",
   },
   {
+    path: "myInvitation",
+    component: () => import("@/views/myInvitation.vue"),
+    meta: "index",
+  },
+  {
+    path: "friendsHelp",
+    component: () => import("@/views/friendsHelp.vue"),
+    meta: "index",
+  },
+  {
     path: "*",
     component: () => import("@/views/404.vue"),
   },
