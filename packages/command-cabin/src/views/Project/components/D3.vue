@@ -84,8 +84,6 @@ export default class D3 extends Base {
         rate: data.doorDeviceOfflineRatio,
         currentRate: 0,
       });
-      this.setCardDataSource({ from: data.dataSource, time: data.updateTime });
-      this.loading = false;
     }
     return response;
   }
