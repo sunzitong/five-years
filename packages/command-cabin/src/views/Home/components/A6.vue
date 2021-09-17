@@ -121,6 +121,7 @@ export default class A6 extends Base {
       /**
        * 全周期与全年取值循环切换
        */
+      clearInterval(this.timer);
       this.timer = setInterval(() => {
         if (this.yearFlag) {
           this.pieData[1].value =
@@ -139,7 +140,7 @@ export default class A6 extends Base {
   }
 
   beforeDestroy() {
-    clearTimeout(this.timer);
+    clearInterval(this.timer);
   }
 
   paintChart() {

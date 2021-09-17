@@ -30,11 +30,6 @@ export default class E2A extends Base {
   @Prop({ required: true }) response!: SentimentReturn;
 
   /**
-   * 定时器
-   */
-  barTimer: null | number = null;
-
-  /**
    * 数据
    */
   bar: BarData = {
@@ -76,8 +71,7 @@ export default class E2A extends Base {
    * 组件卸载
    */
   beforeDestroy() {
-    if (this.barTimer) clearTimeout(this.barTimer);
-    this.barTimer = null;
+    clearTimeout(this.barTimer);
   }
 
   mounted() {
@@ -240,10 +234,8 @@ export default class E2A extends Base {
      */
     this.echarts.on("datazoom", (e: any) => {
       index = Math.floor(e.batch[0].start);
-      if (this.barTimer) {
-        clearTimeout(this.barTimer);
-        this.barTimer = setTimeout(nextLoop, 5000);
-      }
+      clearTimeout(this.barTimer);
+      this.barTimer = setTimeout(nextLoop, 5000);
     });
   }
 }

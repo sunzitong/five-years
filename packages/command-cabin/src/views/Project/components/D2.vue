@@ -82,11 +82,6 @@ export default class D2 extends Base {
    */
   currentRate = 0;
   /**
-   * 定时器
-   */
-  timer: number | null = null;
-
-  /**
    * 显示当月数据
    */
   showCurrentMonth = true;
@@ -144,10 +139,7 @@ export default class D2 extends Base {
   }
 
   beforeDestroy() {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
+    clearTimeout(this.timer);
   }
 }
 </script>
