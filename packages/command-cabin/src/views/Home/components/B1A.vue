@@ -81,11 +81,14 @@ export default class B1A extends Base {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
+      this.$parent.empty = false;
 
       this.openingNum = this.resData.totalOpenNum;
 
       this.getSubData();
       this.paintChart();
+    } else {
+      this.$parent.empty = true;
     }
   }
 

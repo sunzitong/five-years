@@ -1,56 +1,58 @@
 <template>
-  <Spin class="page__a1__map" :loading="loading" :empty="empty">
-    <!-- 上半部分 -->
-    <div class="top_text">
-      <div class="left_text">
-        已签约间数
-        <div class="num">
-          <span>{{ sepNumber(signRoom) }}</span>
-          万
-        </div>
-      </div>
-      <div class="right_top_text">
-        <div class="row_content">
-          重资产
-          <span class="value">{{ sepNumber(heavyNum) }}</span>
-        </div>
-        <div class="row_content">
-          中资产
-          <span class="value">{{ sepNumber(middleNum) }}</span>
-        </div>
-        <div class="row_content">
-          轻资产
-          <span class="value">{{ sepNumber(lightNum) }}</span>
-        </div>
-      </div>
-    </div>
-    <!-- 下半部分 -->
-    <div class="bottom_content">
-      <div class="left_bottom_text">
-        <div class="left_text">
-          获取目标
-          <div class="num">
-            <span>{{ sepNumber(gainTarget) }}</span>
-            万
-          </div>
-        </div>
-        <div class="left_text">
-          目标差额
-          <div class="num spcial">
-            <span>{{ sepNumber(targetDiffer) }}</span>
-            万
-          </div>
-        </div>
+  <Spin class="loading" :loading="loading" :empty="empty">
+    <div class="page__a1__map">
+      <!-- 上半部分 -->
+      <div class="top_text">
         <div class="left_text">
           已签约间数
           <div class="num">
-            <span>{{ sepNumber(signedRoom) }}</span>
+            <span>{{ sepNumber(signRoom) }}</span>
             万
           </div>
         </div>
+        <div class="right_top_text">
+          <div class="row_content">
+            重资产
+            <span class="value">{{ sepNumber(heavyNum) }}</span>
+          </div>
+          <div class="row_content">
+            中资产
+            <span class="value">{{ sepNumber(middleNum) }}</span>
+          </div>
+          <div class="row_content">
+            轻资产
+            <span class="value">{{ sepNumber(lightNum) }}</span>
+          </div>
+        </div>
       </div>
-      <!-- 饼图 -->
-      <div class="right_bottom_text chart" ref="wrapper"></div>
+      <!-- 下半部分 -->
+      <div class="bottom_content">
+        <div class="left_bottom_text">
+          <div class="left_text">
+            获取目标
+            <div class="num">
+              <span>{{ sepNumber(gainTarget) }}</span>
+              万
+            </div>
+          </div>
+          <div class="left_text">
+            目标差额
+            <div class="num spcial">
+              <span>{{ sepNumber(targetDiffer) }}</span>
+              万
+            </div>
+          </div>
+          <div class="left_text">
+            已签约间数
+            <div class="num">
+              <span>{{ sepNumber(signedRoom) }}</span>
+              万
+            </div>
+          </div>
+        </div>
+        <!-- 饼图 -->
+        <div class="right_bottom_text chart" ref="wrapper"></div>
+      </div>
     </div>
   </Spin>
 </template>
@@ -186,8 +188,10 @@ export default class A1 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.page__a1__map {
+.loading {
   height: 950px;
+}
+.page__a1__map {
   display: flex;
   flex-flow: column nowrap;
 
