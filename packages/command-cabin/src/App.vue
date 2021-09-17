@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <div class="logo"></div>
-    <AppHeader />
+    <template v-if="$route.meta.name !== 'login'">
+      <div class="logo"></div>
+      <AppHeader />
+      <FixedNav />
+      <FixedNav position="right" />
+    </template>
     <router-view :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="false" />
-    <FixedNav />
-    <FixedNav position="right" />
     <!-- 控制缩放 -->
     <div
       v-if="true || env.NODE_ENV === 'development'"
