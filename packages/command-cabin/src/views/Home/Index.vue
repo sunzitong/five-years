@@ -5,7 +5,7 @@
         <SubWrapperA style="width: 2694px; height: 1203px" title="拓展盘面">
           <van-row gutter="20">
             <van-col>
-              <CardA title="项目获取" style="width: 866px; height: 1046px">
+              <CardA title="项目获取" style="width: 866px; height: 1053px">
                 <A1 />
               </CardA>
             </van-col>
@@ -14,7 +14,7 @@
                 <A2 />
               </CardA>
               <WhiteSpace />
-              <CardA title="商机转化" style="width: 866px; height: 574px">
+              <CardA title="商机转化" style="width: 866px; height: 581px">
                 <!-- <A3 /> -->
               </CardA>
             </van-col>
@@ -25,7 +25,7 @@
               <WhiteSpace />
               <van-row gutter="20">
                 <van-col>
-                  <CardA title="中央奖补" style="width: 425px; height: 574px">
+                  <CardA title="中央奖补" style="width: 425px; height: 582px">
                     <A5 />
                   </CardA>
                 </van-col>
@@ -33,7 +33,7 @@
                   <CardA
                     title="投后攻坚"
                     size="small"
-                    style="width: 425px; height: 574px"
+                    style="width: 425px; height: 582px"
                   >
                     <A6 />
                   </CardA>
@@ -53,7 +53,7 @@
                 <B1 />
               </CardA>
               <WhiteSpace />
-              <CardA title="开业延期" style="width: 1720px; height: 750px">
+              <CardA title="开业延期" style="width: 1720px; height: 758px">
                 <B2 />
               </CardA>
             </van-col>
@@ -66,7 +66,7 @@
                 <B4 />
               </CardA>
               <WhiteSpace />
-              <CardA title="维保报事" style="width: 902px; height: 394px">
+              <CardA title="维保报事" style="width: 902px; height: 401px">
                 <B5 />
               </CardA>
             </van-col>
@@ -96,7 +96,7 @@
           style="width: 2113px; height: 680px; margin: 0 0 44px"
           title="现场风险监控"
         >
-          <CardA style="width: 2061px; height: 524px"></CardA>
+          <CardA style="height: 530px"></CardA>
         </SubWrapperA>
         <div class="global-button global-button--2">
           <ButtonGroupA revert>
@@ -207,7 +207,7 @@
               <WhiteSpace />
               <CardA
                 title="24小时设备离线率"
-                style="width: 1820px; height: 310px"
+                style="width: 1820px; height: 317px"
               >
                 <template #data-cycle>{{ dataCycle }}</template>
                 <E4 />
@@ -218,7 +218,7 @@
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
               <WhiteSpace />
-              <CardA title="逾期金额" style="width: 801px; height: 924px">
+              <CardA title="逾期金额" style="width: 801px; height: 933px">
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
             </van-col>
@@ -228,7 +228,7 @@
         <van-row gutter="20">
           <van-col>
             <SubWrapperA title="异常预警" style="width: 1845px; height: 920px">
-              <CardA style="width: 1794px; height: 775px">
+              <CardA style="width: 1794px; height: 770px">
                 <!-- <E5 /> -->
               </CardA>
             </SubWrapperA>
@@ -239,7 +239,7 @@
               title="舆情风险"
               style="width: 828px; height: 920px"
             >
-              <CardA title="风险状态" style="width: 776px; height: 777px">
+              <CardA title="风险状态" style="width: 776px; height: 770px">
                 <E5 />
               </CardA>
             </SubWrapperA>
