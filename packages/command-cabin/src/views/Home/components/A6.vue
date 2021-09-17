@@ -1,32 +1,34 @@
 <template>
-  <div class="page__attack_after_throwing__map">
-    <div class="text_pannel">
-      <!-- 饼图 -->
-      <div class="chart" ref="wrapper"></div>
-      <div class="content_box">
-        <div class="top_text">净利润贡献值</div>
-        <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div>
-      </div>
-      <div class="container">
-        <div class="text_row">
-          <van-row>
-            <van-col :span="10" class="left_text">当年</van-col>
-            <van-col :span="11" class="right_text">
-              <span>{{ sepNumber(currentYear) }}</span>
-              万
-            </van-col>
-          </van-row>
-          <van-row>
-            <van-col :span="10" class="left_text">全周期</van-col>
-            <van-col :span="11" class="right_text">
-              <span>{{ sepNumber(wholeCycle) }}</span>
-              万
-            </van-col>
-          </van-row>
+  <Spin class="loading" :loading="loading" :empty="empty">
+    <div class="page__a6__map">
+      <div class="text_pannel">
+        <!-- 饼图 -->
+        <div class="chart" ref="wrapper"></div>
+        <div class="content_box">
+          <div class="top_text">净利润贡献值</div>
+          <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div>
+        </div>
+        <div class="container">
+          <div class="text_row">
+            <van-row>
+              <van-col :span="10" class="left_text">当年</van-col>
+              <van-col :span="11" class="right_text">
+                <span>{{ sepNumber(currentYear) }}</span>
+                万
+              </van-col>
+            </van-row>
+            <van-row>
+              <van-col :span="10" class="left_text">全周期</van-col>
+              <van-col :span="11" class="right_text">
+                <span>{{ sepNumber(wholeCycle) }}</span>
+                万
+              </van-col>
+            </van-row>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -84,6 +86,7 @@ export default class A6 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
+      this.loading = false;
 
       this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
         ? "--"
@@ -127,6 +130,8 @@ export default class A6 extends Base {
         this.yearFlag = !this.yearFlag;
         this.paintChart();
       }, 1000);
+    } else {
+      this.empty = true;
     }
   }
 
@@ -198,6 +203,9 @@ export default class A6 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  height: 480px;
+}
 .text_pannel {
   text-align: center;
 }
