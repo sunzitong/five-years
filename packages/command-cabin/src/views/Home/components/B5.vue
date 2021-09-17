@@ -59,7 +59,7 @@ export default class B5 extends Base {
     });
   }
 
-  async mounted() {
+  async fetch() {
     const response = await useStore(fetchRepairStat, {
       key: StoreKey.HomeRepairStat,
       params: {
@@ -69,15 +69,20 @@ export default class B5 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
-
       this.buildData(this.resData);
-
       this.paintChart();
     }
+    return response;
   }
 
   paintChart() {
-    const myChart = echarts.init(this.wrapper);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+    const { myChart } = this;
     // myChart.showLoading();
     let option = {
       legend: {
@@ -136,9 +141,6 @@ export default class B5 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

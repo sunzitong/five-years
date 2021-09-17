@@ -71,7 +71,7 @@ export default class B1A extends Base {
     }
   }
 
-  async mounted() {
+  async fetch() {
     const response = await useStore(fetchProjectOpen, {
       key: StoreKey.HomeProjectOpen,
       params: {
@@ -90,10 +90,17 @@ export default class B1A extends Base {
     } else {
       this.$parent.empty = true;
     }
+    return response;
   }
 
   paintChart() {
-    const myChart = echarts.init(this.wrapper);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+    const { myChart } = this;
     let option = {
       tooltip: {
         trigger: "item",
@@ -356,9 +363,6 @@ export default class B1A extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

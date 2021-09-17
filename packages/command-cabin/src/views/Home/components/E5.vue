@@ -46,10 +46,6 @@ export default class E5 extends Base {
 
   current = 0;
 
-  created() {
-    this.fetch();
-  }
-
   /**
    * 幻灯片改变
    */
@@ -69,10 +65,10 @@ export default class E5 extends Base {
         dateScope: this.store.global.dateScope,
       },
     });
-
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }
+    return response;
   }
 }
 </script>

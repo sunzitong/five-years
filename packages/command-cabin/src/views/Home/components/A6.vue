@@ -80,14 +80,12 @@ export default class A6 extends Base {
 
   value = 0; //中心数值
 
-  async mounted() {
+  async fetch() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
     });
     if (response?.status === "ok") {
       this.resData = response.data;
-      this.loading = false;
-
       this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
         ? "--"
         : iwant.calc(this.resData.yearNetIncomeCollected as number, 1, true);
@@ -133,6 +131,7 @@ export default class A6 extends Base {
     } else {
       this.empty = true;
     }
+    return response;
   }
 
   beforeDestroy() {

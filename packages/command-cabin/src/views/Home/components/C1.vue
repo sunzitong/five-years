@@ -54,13 +54,14 @@ export default class C1 extends Base {
    */
   response: Partial<NumYearlyReturn> = {};
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchNumYearly, {
       key: StoreKey.HomeNumYearly,
     });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }
+    return response;
   }
 }
 </script>

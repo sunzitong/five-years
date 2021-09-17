@@ -67,13 +67,14 @@ export default class C2 extends Base {
     tenantNum: 0,
   };
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchNumYearly, {
       key: StoreKey.HomeNumYearly,
     });
     if (response?.status === "ok") {
       this.response = response.data ?? {};
     }
+    return response;
   }
 }
 </script>

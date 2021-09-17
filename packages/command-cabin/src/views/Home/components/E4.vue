@@ -52,7 +52,7 @@ export default class E4 extends Base {
     icon: string;
   }[] = [];
 
-  async created() {
+  async fetch() {
     const response = await useStore(fetchDeviceOffline, {
       key: StoreKey.HomeDeviceOffline,
       params: {
@@ -85,9 +85,8 @@ export default class E4 extends Base {
           icon: "door",
         },
       ];
-
-      this.setCardDataSource({ from: data.dataSource, time: data.updateTime });
     }
+    return response;
   }
 }
 </script>
