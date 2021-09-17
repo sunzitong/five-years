@@ -3,10 +3,10 @@
     <div class="page__e5a__e5b">
       <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
         <van-swipe-item>
-          <E2A :response="response" />
+          <F1A :response="response" />
         </van-swipe-item>
         <van-swipe-item>
-          <E2B :response="response" />
+          <F1B :response="response" />
         </van-swipe-item>
         <template #indicator>
           <div class="custom-indicator">
@@ -29,18 +29,18 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
-import E2A from "./E2A.vue";
-import E2B from "./E2B.vue";
+import F1A from "./F1A.vue";
+import F1B from "./F1B.vue";
 import { fetchSentiment } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
-    E2A,
-    E2B,
+    F1A,
+    F1B,
   },
 })
-export default class E2 extends Base {
+export default class F1 extends Base {
   /**
    * 返回数据
    */
