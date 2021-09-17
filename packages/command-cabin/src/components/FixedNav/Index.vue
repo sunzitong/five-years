@@ -4,53 +4,51 @@
       <div class="app-fixed-nav__filter"></div>
       <svg
         class="app-fixed-nav__background__svg"
-        width="558"
-        height="1260"
-        viewBox="0 0 558 1260"
+        width="717"
+        height="1256"
+        viewBox="0 0 717 1256"
         fill="none"
-        transform="scale(1, -1)"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g>
-          <ellipse
-            cx="-75.0718"
-            cy="629.902"
-            rx="632.282"
-            ry="629.599"
-            fill="#0B1F51"
-            fill-opacity="0.6"
-          />
-          <path
-            d="M555.21 629.902C555.21 976.507 273.031 1257.5 -75.0718 1257.5C-423.175 1257.5 -705.354 976.507 -705.354 629.902C-705.354 283.296 -423.175 2.30273 -75.0718 2.30273C273.031 2.30273 555.21 283.296 555.21 629.902Z"
-            :stroke="`url(#${uuid}_paint0_linear)`"
-            stroke-width="4"
-          />
-        </g>
         <path
-          d="M534.998 637.272L544.443 625.111V651.495L534.998 637.272Z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0 1250.37V5.6311C27.8012 1.91749 56.1752 0 85 0C434.044 0 717 281.165 717 628C717 974.835 434.044 1256 85 1256C56.1752 1256 27.8012 1254.08 0 1250.37Z"
+          fill="#0B1F51"
+          fill-opacity="0.6"
+        />
+        <path
+          d="M85 1254C56.8635 1254 29.1588 1252.17 2 1248.62V7.38414C29.1588 3.83265 56.8635 2 85 2C432.951 2 715 282.282 715 628C715 973.718 432.951 1254 85 1254Z"
+          :stroke="`url(#${uuid}_a)`"
+          stroke-width="4"
+        />
+        <path
+          d="M703.787 627.614L713.232 615.453V641.837L703.787 627.614Z"
           fill="#5180E4"
         />
         <path
-          d="M524.211 637.272L544.442 607.658V623.345L542.097 619.24L529.489 637.272L542.097 656.331L544.442 653.105V667.179L524.211 637.272Z"
+          d="M693 627.614L713.231 598V613.687L710.886 609.582L698.278 627.614L710.886 646.672L713.231 643.447V657.521L693 627.614Z"
           fill="white"
         />
         <defs>
           <linearGradient
-            :id="`${uuid}_paint0_linear`"
-            x1="557"
-            y1="574"
-            x2="9.99998"
-            y2="574"
+            :id="`${uuid}_a`"
+            x1="717"
+            y1="628"
+            x2="-1.35121e-06"
+            y2="628"
             gradientUnits="userSpaceOnUse"
           >
             <stop stop-color="#5180E4" />
-            <stop offset="1" stop-opacity="0" />
+            <stop offset="1" />
           </linearGradient>
         </defs>
       </svg>
+
       <div @click="toggleNav" class="app-fixed-nav__close"></div>
       <div class="app-fixed-nav__content">
         <Btn
+          :size="item.children ? 'medium' : 'large'"
           @click="toPage(item)"
           class="app_fixed-nav__links"
           v-for="item in menus"
@@ -86,7 +84,7 @@ import { uuid } from "@guanyu/shared";
 import FixedNavBtn from "./components/FixedNavBtn.vue";
 import Btn from "@/components/Btn/Index.vue";
 
-export type MenuItem = { title: string; href: string };
+export type MenuItemProps = { title: string; href: string; children?: boolean };
 
 @Component({
   components: {
@@ -108,14 +106,15 @@ export default class FixedNav extends Vue {
   /**
    * 菜单
    */
-  menus: MenuItem[] = [
-    { title: "首页", href: "/home" },
-    { title: "拓展盘面", href: "/" },
-    { title: "营造盘面", href: "/" },
-    { title: "经营现状", href: "/" },
-    { title: "门店", href: "/project" },
-    { title: "日常巡检", href: "/" },
-    { title: "开业巡检", href: "/" },
+  menus: MenuItemProps[] = [
+    { title: "冠寓指挥中心", href: "/home" },
+    { title: "拓展盘面详情", href: "/", children: true },
+    { title: "营造盘面详情", href: "/", children: true },
+    { title: "经营现状详情", href: "/", children: true },
+    { title: "冠寓门店指挥中心", href: "/project" },
+    { title: "门店日常巡检", href: "/", children: true },
+    { title: "门店开业检", href: "/", children: true },
+    { title: "返回登录页面", href: "/" },
   ];
 
   /**
@@ -183,7 +182,7 @@ export default class FixedNav extends Vue {
   /**
    * 跳转到页面
    */
-  toPage(item: MenuItem) {
+  toPage(item: MenuItemProps) {
     this.$router.push(item.href);
     this.toggleNav();
   }
@@ -205,7 +204,7 @@ export default class FixedNav extends Vue {
 <style lang="scss" scoped>
 .app-fixed-nav {
   position: fixed;
-  height: 1260px;
+  height: 1256px;
   z-index: 1000;
   bottom: 0;
 
@@ -224,7 +223,7 @@ export default class FixedNav extends Vue {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 1260px;
+    width: 1256px;
     border-radius: 100%;
     backdrop-filter: blur(20px);
   }
@@ -233,7 +232,7 @@ export default class FixedNav extends Vue {
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-flow: column;
     top: 0;
     bottom: 0;
@@ -253,7 +252,7 @@ export default class FixedNav extends Vue {
   }
 
   &__left {
-    left: -555px;
+    left: -713px;
     .app-fixed-nav__close {
       right: 0;
     }
@@ -265,7 +264,8 @@ export default class FixedNav extends Vue {
     }
     .app-fixed-nav__content {
       left: 0;
-      right: 70px;
+      right: 210px;
+      align-items: flex-end;
     }
     .app-fixed-nav__background__svg {
       transform: scaleX(1);
@@ -277,7 +277,7 @@ export default class FixedNav extends Vue {
   }
 
   &__right {
-    right: -555px;
+    right: -713px;
     .app-fixed-nav__close {
       left: 0;
     }
@@ -288,8 +288,9 @@ export default class FixedNav extends Vue {
       right: 100%;
     }
     .app-fixed-nav__content {
-      left: 70px;
+      left: 210px;
       right: 0;
+      align-items: flex-start;
     }
     .app-fixed-nav__background__svg {
       transform: scaleX(-1);
