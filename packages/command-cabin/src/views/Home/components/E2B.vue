@@ -1,256 +1,196 @@
 <template>
-  <div class="page__e2b__map">
-    <div
-      class="app-echarts"
-      ref="wrapper"
-      style="width: 574px; height: 350px"
-    ></div>
+  <div class="pie-chart">
+    <div class="header">
+      <div class="red">
+        红
+        <span class="value__letter">{{ response.redNum }}</span>
+      </div>
+      <div class="orange">
+        橙
+        <span class="value__letter">{{ response.yellowNum }}</span>
+      </div>
+    </div>
+    <div class="chart-bg" v-if="showBarShadow"></div>
+    <div class="chart" ref="pieChart"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
+import { Component, Prop, Ref, Watch } from "vue-property-decorator";
+import * as echarts from "echarts";
+import { arrayToObject, iwant } from "@guanyu/shared";
 import Base from "@/views/Base";
-import { AnyObject } from "@guanyu/shared";
-import mitter, { EventName } from "@/utils/mitter";
+import { SentimentReturn } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 
-@Component({
-  components: {},
-})
+@Component
 export default class E2B extends Base {
-  /**
-   * 接口返回值
-   *
-   */
-  @Ref() wrapper!: HTMLDivElement;
+  @Ref() pieChart!: HTMLDivElement;
 
   /**
-   * 格式化数据
+   * 父组件传进来的数据
    */
-  resData = [
-    {
-      name: "三费",
-      value: 90,
-    },
-    {
-      name: "营销费用",
-      value: 76,
-    },
-    {
-      name: "运营成本",
-      value: 85,
-    },
-    {
-      name: "管理成本",
-      value: 45,
-    },
-    {
-      name: "租金成本",
-      value: 59.2,
-    },
-  ];
-
-  getArrayValue = (array: AnyObject[], key: string) => {
-    key = key || "value";
-    let res: number[] = [];
-    if (array) {
-      array.forEach(function (t) {
-        res.push(t[key]);
-      });
-    }
-    return res;
-  };
-
-  names = ["三费", "营销费用", "运营成本", "管理成本", "租金成本"]; // name标签
-  values = this.getArrayValue(this.resData, "value"); // value数组
-  sum = this.values.reduce((pre, cur) => pre + cur, 0); // 所有成本之和
-  color = ["#55D5F3", "#A957FB", "#57A6FB", "#FFEF69", "#FE513A"];
+  @Prop({ required: true }) response!: SentimentReturn;
 
   /**
-   * 遍历生成图形配置所需的配置项
+   * 按照数据类型为索引赋值
    */
-  buildConfiguration() {
-    let res: AnyObject = {
-      series: [],
-      yAxis: [],
-    };
+  responseMap = {};
 
-    for (let i = 0; i < this.resData.length; i++) {
-      res.series.push({
-        // 展示数据
-        type: "pie",
-        clockwise: false, //顺时加载
-        emphasis: { scale: false }, //鼠标移入变大
-        radius: [165 - i * 33, 150 - i * 33],
-        center: ["45%", "50%"],
-        label: {
-          show: false,
-        },
-        itemStyle: {
-          borderRadius: 88,
-          label: { show: false },
-          labelLine: { show: false },
-          borderWidth: 13,
-        },
-        data: [
-          {
-            name: this.resData[i].name,
-            value: this.resData[i].value,
-            itemStyle: {
-              color: this.color[i],
-            },
-          },
-          {
-            // 阴影
-            name: "",
-            value: this.sum - this.resData[i].value,
-            itemStyle: {
-              borderRadius: 88,
-              color: "rgba(0,0,0,0)",
-              borderWidth: 0,
-            },
-            tooltip: { show: false },
-            emphasis: { scale: false },
-          },
-        ],
-      });
-      res.series.push({
-        // 背景阴影，根据z层级覆盖
-        name: "",
-        type: "pie",
-        silent: true,
-        clockwise: false, //顺时加载
-        z: 1, // 控制叠加层级
-        emphasis: { scale: false }, //鼠标移入变大
-        radius: [165 - i * 33, 150 - i * 33], //数组的第一项是内半径，第二项是外半径
-        borderRadius: 88,
-        center: ["45%", "50%"],
-        label: { show: false },
-        itemStyle: {
-          label: { show: false },
-          labelLine: { show: false },
-          borderWidth: 13,
-        },
-        data: [
-          {
-            value: 7.5, // 阴影75%
-            itemStyle: {
-              borderRadius: 88,
-              color: "#14437F",
-            },
-            tooltip: { show: false },
-          },
-          {
-            // 阴影最后25%透明
-            name: "",
-            value: 2.5,
-            itemStyle: {
-              borderRadius: 88,
-              color: "rgba(0,0,0,0)",
-              borderWidth: 0,
-            },
-            tooltip: { show: false },
-          },
-        ],
-      });
-      res.yAxis.push(this.resData[i].value);
-    }
+  /**
+   * 数据更新重绘Echart
+   */
+  @Watch("response", { deep: true })
+  onResponse(response: SentimentReturn) {
+    /**
+     * 转换数据类型
+     */
+    const data = iwant.array(response.numsByType).map((item) => {
+      return {
+        name: item.typeNum,
+        value: item.num,
+      };
+    });
+    /**
+     * 存储数据
+     */
+    this.responseMap = arrayToObject(response.numsByType, {
+      key: "typeNum",
+      value: "num",
+    });
 
-    return res;
+    /**
+     * 重绘图表
+     */
+    this.echarts.setOption({
+      series: [{ data }],
+    });
   }
 
   /**
-   * 加入坐标轴
+   * 是否显示阴影
    */
-  mounted() {
-    const res = this.buildConfiguration();
+  get showBarShadow() {
+    return (this.response?.numsByType ?? []).length !== 0;
+  }
 
-    const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
-    let option = {
+  /**
+   * 渲染bar
+   */
+  renderPieChart() {
+    this.echarts = echarts.init(this.pieChart);
+    const option = {
       legend: {
-        show: true,
-        icon: "none",
-        left: "42%",
-        top: "1%",
-        width: 190,
-        itemGap: 0,
-        formatter: (name: any) => {
-          let num = 0;
-          this.resData.forEach((el) => {
-            if (el.name === name) {
-              num = el.value;
-            }
-          });
-          return "{title|" + name + "} {value|" + num + "%}";
+        orient: "vertical",
+        right: "10%",
+        top: "center",
+        icon: "rec",
+        itemWidth: 20,
+        itemHeight: 20,
+        itemGap: 16,
+        formatter: (params: any) => {
+          console.log(params);
+          return `{a|${params}}{b|  ${this.responseMap[params]}%}`;
         },
         textStyle: {
           rich: {
-            title: {
-              fontFamily: "PingFang SC",
-              fontSize: 24,
-              lineHeight: 21,
-              width: 96,
-              marginRight: 50,
-              color: "#FFFFFF",
-            },
-            value: {
-              width: 80,
+            a: {
+              color: "#90A4C3",
               fontFamily: "DIN Alternate",
-              fontWeight: "bold",
-              fontSize: 30,
-              lineHeight: 25,
+              fontSize: 26,
+              width: 84,
+            },
+            b: {
+              color: "#DBF0FF",
+              fontFamily: "DIN Alternate",
+              fontSize: 34,
               align: "right",
-              color: "#01F5F1",
+              width: 120,
+              marginLeft: 84,
             },
           },
         },
-        itemStyle: {
-          color: [
-            "transparant",
-            "transparant",
-            "transparant",
-            "transparant",
-            "transparant",
-          ],
-        },
-
-        data: this.names,
       },
-      grid: {
-        top: "13%",
-        left: "48%",
-        width: "40%",
-        height: "20%",
-        containlabel: false,
-      },
-      xAxis: { show: false },
-      yAxis: [
+      series: [
         {
-          type: "category",
-          asisTick: { show: true },
-          axisLabel: {
-            show: true,
-            intervel: 0,
-            color: "#FFFFFF",
-            fontSize: 24,
+          type: "pie",
+          avoidLabelOverlap: false,
+          radius: ["35%", 150],
+          center: ["25%", "52%"],
+          color: [
+            "#F7D14A",
+            "#ED8BA3",
+            "#55D5F3",
+            "#AE95F6",
+            "#22CB98",
+            "#D05FC5",
+            "#3A6FFF",
+            "#E49981",
+            "#4988FD",
+            "#67E1FB",
+            "#55E49E",
+            "#F9D399",
+          ],
+          label: {
+            show: false,
           },
-          data: res.yAxis,
+          data: [],
         },
       ],
-      series: res.series,
     };
-    option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
+    option && this.echarts.setOption(option);
+  }
+
+  mounted() {
+    this.renderPieChart();
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.app-echarts {
-  margin: 24px 0 20px 0;
+$light: #01f5f1;
+.pie-chart {
+  position: relative;
+  margin-top: 50px;
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    margin: 0 50% 0 0;
+    .red,
+    .orange {
+      min-width: 130px;
+      text-align: center;
+      font-size: 30px;
+      color: #90a4c3;
+      span {
+        display: block;
+        font-size: 40;
+        padding: 0 20px;
+      }
+    }
+    .red {
+      span {
+        color: #ff3980;
+      }
+    }
+    .orange {
+      span {
+        color: #dbf0ff;
+      }
+    }
+  }
+  .chart {
+    width: 100%;
+    height: 600px;
+  }
+  .chart-bg {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    width: 300px;
+    height: 150px;
+    @extend %bg-img-bar-shadow;
+  }
 }
 </style>
