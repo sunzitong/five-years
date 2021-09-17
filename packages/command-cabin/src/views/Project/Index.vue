@@ -5,15 +5,15 @@
       <div class="main-left">
         <SubWrapperA title="基本信息" style="width: 1961px; height: 2972px">
           <!-- 资产类型 -->
-          <CardA style="width: 1909px; height: 1379px">
+          <CardA style="width: 1909px; height: 1380px">
             <A1 />
           </CardA>
           <WhiteSpace />
-          <CardA style="width: 1909px; height: 429px">
+          <CardA style="width: 1909px; height: 486px">
             <A2 />
           </CardA>
           <WhiteSpace />
-          <CardA title="项目区位" style="width: 1909px; height: 976px"></CardA>
+          <CardA title="项目区位" style="width: 1909px; height: 914px"></CardA>
         </SubWrapperA>
       </div>
       <div class="main-center">
