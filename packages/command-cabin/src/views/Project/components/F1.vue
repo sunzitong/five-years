@@ -83,7 +83,7 @@ export default class F1 extends Base {
 <style lang="scss" scoped>
 .page__F1A__F1B {
   width: 100%;
-  height: 800px;
+  height: 600px;
 }
 .custom-indicator {
   display: flex;

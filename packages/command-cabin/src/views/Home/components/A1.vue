@@ -1,5 +1,5 @@
 <template>
-  <Spin class="loading" :loading="loading" :empty="empty">
+  <Spin :loading="loading" :empty="empty">
     <div class="page__a1__map">
       <!-- 上半部分 -->
       <div class="top_text">
@@ -188,9 +188,6 @@ export default class A1 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  height: 950px;
-}
 .page__a1__map {
   display: flex;
   flex-flow: column nowrap;

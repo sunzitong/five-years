@@ -1,13 +1,15 @@
 <template>
-  <div class="page__maintenance_report__map">
-    <div class="whole_pannel">
-      <div
-        class="chart"
-        ref="wrapper"
-        style="width: 900px; height: 300px"
-      ></div>
+  <Spin :loading="loading" :empty="empty">
+    <div class="page__maintenance_report__map">
+      <div class="whole_pannel">
+        <div
+          class="chart"
+          ref="wrapper"
+          style="width: 900px; height: 300px"
+        ></div>
+      </div>
     </div>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">

@@ -1,27 +1,29 @@
 <template>
-  <div class="page__e5a__e5b">
-    <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
-      <van-swipe-item>
-        <E2A :response="response" />
-      </van-swipe-item>
-      <van-swipe-item>
-        <E2B :response="response" />
-      </van-swipe-item>
-      <template #indicator>
-        <div class="custom-indicator">
-          <div
-            class="item"
-            :class="{ current: current === index }"
-            v-for="(item, index) of 2"
-            :key="item"
-          >
-            <div></div>
-            <div></div>
+  <Spin :loading="loading" :empty="empty">
+    <div class="page__e5a__e5b">
+      <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
+        <van-swipe-item>
+          <E2A :response="response" />
+        </van-swipe-item>
+        <van-swipe-item>
+          <E2B :response="response" />
+        </van-swipe-item>
+        <template #indicator>
+          <div class="custom-indicator">
+            <div
+              class="item"
+              :class="{ current: current === index }"
+              v-for="(item, index) of 2"
+              :key="item"
+            >
+              <div></div>
+              <div></div>
+            </div>
           </div>
-        </div>
-      </template>
-    </van-swipe>
-  </div>
+        </template>
+      </van-swipe>
+    </div>
+  </Spin>
 </template>
 
 <script lang="ts">
@@ -38,7 +40,7 @@ import { StoreKey, useStore } from "@/store";
     E2B,
   },
 })
-export default class E5 extends Base {
+export default class E2 extends Base {
   /**
    * 返回数据
    */

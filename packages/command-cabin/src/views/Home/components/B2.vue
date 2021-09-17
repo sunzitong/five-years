@@ -1,5 +1,5 @@
 <template>
-  <Spin class="loading" :loading="loading" style="height: 660px">
+  <Spin :loading="loading" style="height: 660px">
     <div class="page__opening_extension__map">
       <div class="abstract_text">
         当前开业风险项目
