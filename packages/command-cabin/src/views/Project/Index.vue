@@ -13,7 +13,7 @@
             <A2 />
           </CardA>
           <WhiteSpace />
-          <CardA title="项目区位" style="width: 1909px; height: 956px"></CardA>
+          <CardA title="项目区位" style="width: 1909px; height: 976px"></CardA>
         </SubWrapperA>
       </div>
       <div class="main-center">
@@ -43,7 +43,7 @@
                 size="small"
                 style="width: 1193px; height: 736px"
               >
-                <CardA style="width: 1168px; height: 591px"></CardA>
+                <CardA style="width: 1148px; height: 584px"></CardA>
               </SubWrapperA>
             </van-col>
           </van-row>
@@ -56,6 +56,7 @@
               <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
+              <WhiteSpace />
               <van-row gutter="20">
                 <van-col>
                   <CardA
@@ -96,7 +97,7 @@
         <van-row gutter="20">
           <van-col>
             <SubWrapperA title="风险预警" style="width: 1846px; height: 920px">
-              <CardA style="width: 1794px; height: 764px"></CardA>
+              <CardA style="width: 1794px; height: 770px"></CardA>
             </SubWrapperA>
           </van-col>
           <van-col>
@@ -105,7 +106,7 @@
               title="舆情风险"
               style="width: 828px; height: 920px"
             >
-              <CardA title="舆情风险" style="width: 776px; height: 777px">
+              <CardA title="舆情风险" style="width: 776px; height: 770px">
                 <F1 />
               </CardA>
             </SubWrapperA>
