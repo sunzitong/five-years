@@ -63,6 +63,7 @@ export default class D3 extends Base {
     });
     if (response?.status === "ok") {
       const data = iwant.object(response.data);
+      this.response = [];
       this.response.push({
         name: "水",
         icon: "water-drop",
