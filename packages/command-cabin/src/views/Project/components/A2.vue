@@ -20,9 +20,9 @@
           </van-row>
           <div class="list">
             <Animationend
-              :height="180"
+              :height="270"
               :dataSource="group.list"
-              :scrollMinCount="2"
+              :scrollMinCount="3"
             >
               <template v-slot="{ list }">
                 <van-row
@@ -232,7 +232,7 @@ export default class A2 extends Base {
   line-height: 74px;
 }
 .list {
-  height: 180px;
+  height: 270px;
   overflow: auto;
 }
 .th,
