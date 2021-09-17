@@ -1,5 +1,5 @@
 import http from "./http";
-import { demoTest, getJsapiSigna } from "./urls";
+import { demoTest, getJsapiSigna, getCustomEntry } from "./urls";
 import { env } from "@/store";
 import { IdField } from "@guanyu/shared";
 
@@ -10,6 +10,13 @@ export type Demo = {
   name: string;
   id: IdField;
   value: number;
+};
+
+/**
+ * 
+ */
+export type CustomEntry = {
+  activityNumber: string;
 };
 
 /**
@@ -28,7 +35,17 @@ export function getWxSign(params: any) {
   });
 }
 
+export function fetchCustomEntry(params: CustomEntry) {
+  console.log('params', params);
+  return http.get(getCustomEntry, {
+    ...params,
+  });
+}
+
+
 
 export default {
   getDemo,
+  getWxSign,
+  fetchCustomEntry,
 };
