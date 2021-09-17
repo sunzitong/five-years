@@ -210,7 +210,7 @@
                 style="width: 1820px; height: 317px"
               >
                 <template #data-cycle>{{ dataCycle }}</template>
-                <E4 />
+                <D4 />
               </CardA>
             </van-col>
             <van-col>
@@ -228,9 +228,7 @@
         <van-row gutter="20">
           <van-col>
             <SubWrapperA title="异常预警" style="width: 1845px; height: 920px">
-              <CardA style="width: 1794px; height: 770px">
-                <!-- <E5 /> -->
-              </CardA>
+              <CardA style="width: 1794px; height: 770px"></CardA>
             </SubWrapperA>
           </van-col>
           <van-col>
@@ -240,7 +238,7 @@
               style="width: 828px; height: 920px"
             >
               <CardA title="风险状态" style="width: 776px; height: 770px">
-                <E5 />
+                <E2 />
               </CardA>
             </SubWrapperA>
           </van-col>
@@ -273,11 +271,11 @@ import B2 from "./components/B2.vue";
 import B3 from "./components/B3.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
-import E4 from "./components/E4.vue";
+import D4 from "./components/D4.vue";
 import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
+import O2 from "./components/O2.vue";
 import E2 from "./components/E2.vue";
-import E5 from "./components/E5.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
 
 @Component({
@@ -300,8 +298,8 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
     C1,
     C2,
     E2,
-    E4,
-    E5,
+    D4,
+    O2,
     ButtonGroupA,
     Icon,
     OrgPanel,

@@ -21,7 +21,7 @@ type BarData = {
 };
 
 @Component
-export default class E5A extends Base {
+export default class E2A extends Base {
   @Ref() barChart!: HTMLDivElement;
 
   /**
