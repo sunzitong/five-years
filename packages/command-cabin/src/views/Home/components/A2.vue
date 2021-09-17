@@ -1,6 +1,8 @@
 <template>
-  <Spin class="page__a1__map" :loading="loading" :empty="empty">
-    <div class="chart" ref="wrapper"></div>
+  <Spin class="loading" :loading="loading" :empty="empty">
+    <div class="page__a1__map">
+      <div class="chart" ref="wrapper"></div>
+    </div>
   </Spin>
 </template>
 
@@ -127,8 +129,8 @@ export default class A2 extends Base {
 </script>
 
 <style lang="scss" scoped>
-.page__a1__map {
-  height: 340px;
+.loading {
+  height: 300px;
 }
 .chart {
   width: 766px;
