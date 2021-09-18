@@ -17,7 +17,7 @@ import "./assets/css/style.scss";
 // 动画样式
 import "animate.css";
 // 桌面端适配
-import "@vant/touch-emulator";
+// import "@vant/touch-emulator";
 // 全局组件
 import Spin from "@/components/Spin";
 Vue.use(Spin);

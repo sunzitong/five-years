@@ -1,7 +1,7 @@
 <template>
   <Spin :loading="loading" :empty="empty">
     <div class="page__e5a__e5b">
-      <van-swipe autoplay="5000" @change="onSwipeChangeHandle">
+      <van-swipe ref="swipe" autoplay="10000" @change="onSwipeChangeHandle">
         <van-swipe-item>
           <F1A :response="response" />
         </van-swipe-item>
@@ -14,6 +14,7 @@
               class="item"
               :class="{ current: current === index }"
               v-for="(item, index) of 2"
+              @click="handleClick(index)"
               :key="item"
             >
               <div></div>
@@ -27,12 +28,13 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Ref } from "vue-property-decorator";
 import Base from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";
 import { fetchSentiment } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 import { StoreKey, useStore } from "@/store";
+import { Swipe } from "vant";
 
 @Component({
   components: {
@@ -41,6 +43,7 @@ import { StoreKey, useStore } from "@/store";
   },
 })
 export default class F1 extends Base {
+  @Ref() swipe!: Swipe;
   /**
    * 返回数据
    */
@@ -53,6 +56,13 @@ export default class F1 extends Base {
    */
   onSwipeChangeHandle(index: number) {
     this.current = index;
+  }
+
+  /**
+   * 点击事件
+   */
+  handleClick(index: number) {
+    this.swipe.swipeTo(index);
   }
 
   /**

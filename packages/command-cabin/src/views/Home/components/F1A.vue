@@ -161,27 +161,11 @@ export default class F1A extends Base {
           stack: "a",
           barWidth: 20,
           itemStyle: {
-            color: new echarts.graphic.LinearGradient(
-              0,
-              0,
-              0,
-              1,
-              [
-                {
-                  offset: 0,
-                  color: "#5180E4", // 0% 处的颜色
-                },
-                {
-                  offset: 1,
-                  color: "rgba(12, 90, 171, 0)", // 100% 处的颜色
-                },
-              ],
-              false
-            ),
+            color: "#E48F51",
           },
           label: {
             show: true,
-            color: "#DBF0FF",
+            color: "#fff",
             align: "center",
             fontSize: 18,
           },
@@ -192,13 +176,13 @@ export default class F1A extends Base {
           data: this.bar.redNums,
           barWidth: 20,
           itemStyle: {
-            color: "#F7D14A",
+            color: "#FF3980",
           },
           label: {
             show: true,
             align: "center",
             position: "top",
-            color: "#F7D14A",
+            color: "#FF3980",
             fontSize: 18,
           },
         },
