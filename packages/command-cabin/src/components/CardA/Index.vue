@@ -199,15 +199,15 @@ $title-color: #5180e4;
 
   &__datacycle {
     position: absolute;
-    right: 15px;
-    bottom: 15px;
+    right: 0;
+    bottom: 0;
     .mark {
       display: inline-block;
       padding: 0 5px;
       background: #10265b;
-      border-radius: 10px;
+      border-radius: 4px;
       font-size: 20px;
-      color: #777777;
+      color: #90a4c3;
     }
   }
 

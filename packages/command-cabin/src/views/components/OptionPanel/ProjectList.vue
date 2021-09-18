@@ -42,6 +42,10 @@
       <div class="row">
         <div class="col left active">
           <div class="inner">{{ store.global.orgTree.orgName }}</div>
+          <div class="arrow">
+            <van-icon name="arrow" />
+            <van-icon name="arrow" />
+          </div>
         </div>
       </div>
       <div class="project-list">
@@ -63,6 +67,7 @@
           </div>
         </div>
       </div>
+      <AnimationForward :size="12" />
     </div>
   </div>
 </template>
@@ -304,5 +309,10 @@ export default class ProjectList extends Base {
   .right.active {
     color: #01f5f1;
   }
+}
+.forward-bar {
+  position: absolute;
+  left: 10px;
+  bottom: 50%;
 }
 </style>

@@ -1,0 +1,144 @@
+<template>
+  <Spin :loading="loading" :empty="empty">
+    <div class="operatingIndex">
+      <van-row gutter="10" type="flex" align="center">
+        <van-col>
+          <Icon
+            v-if="monthData.warn"
+            type="warning"
+            class="animate__animated animate__infinite animate__flash animate__slower"
+            :size="54"
+          />
+        </van-col>
+        <van-col>
+          <div class="tag-year">
+            综合经营指数（{{ monthData.dataDateDesc }}）
+          </div>
+        </van-col>
+      </van-row>
+      <van-row gutter="10" type="flex" align="center">
+        <van-col>
+          <Icon type="warning" color="transparent|transparent" :size="54" />
+        </van-col>
+        <van-col>
+          <span class="score">
+            <StepNumber :duration="100" :to="monthData.totalScore" />
+          </span>
+          <span class="tag-year">总分</span>
+        </van-col>
+      </van-row>
+    </div>
+  </Spin>
+</template>
+
+<script lang="ts">
+import { Component } from "vue-property-decorator";
+import Icon from "@/components/Icon/Index.vue";
+import dayjs from "dayjs";
+import {
+  BusinessScoreReturn,
+  fetchBusinessScore,
+} from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
+import Base from "@/views/Base";
+import StepNumber from "@/components/StepNumber/Index.vue";
+import { StoreKey, useStore } from "@/store";
+
+type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
+
+@Component({
+  components: { Icon, StepNumber },
+})
+export default class OperatingIndex extends Base {
+  /**
+   * 返回数据
+   */
+  response: null | BusinessScoreReturn = null;
+  /**
+   * v-model进度
+   */
+  currentRate = 0;
+  /**
+   * 显示当月数据
+   */
+  showCurrentMonth = true;
+
+  /**
+   * 当前展示数据
+   */
+  get monthData() {
+    const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
+    const response: MonthData = this.response?.[key] ?? {};
+    // 转换日期为月
+    const month = dayjs(response.dataDate).format("M");
+    // 如果当前月去掉试算
+    const dataDateDesc = `${month}${this.showCurrentMonth ? "月" : "月试算"}`;
+    // 综合经营指数报警
+    const warn = response.totalScore && response.totalScore < 90;
+    return {
+      ...response,
+      dataDateDesc,
+      warn,
+    };
+  }
+
+  /**
+   * 组件创建
+   * 自动触发 重复调用
+   * @returns response
+   */
+  async fetch() {
+    const response = await useStore(fetchBusinessScore, {
+      key: StoreKey.ProjectBusinessScore,
+      params: { phId: this.store.global.project.phId },
+    });
+    if (response?.status === "ok") {
+      this.response = response.data ?? {};
+      this.loading = false;
+    }
+    return response;
+  }
+
+  /**
+   * 显示月数据
+   */
+  showMonthData() {
+    // 10秒钟刷新一次数据
+    const time = 10 * 1000;
+    const next = () => {
+      this.showCurrentMonth = !this.showCurrentMonth;
+      this.currentRate = 0;
+      this.timer = setTimeout(next, time);
+    };
+    this.timer = setTimeout(next, time);
+  }
+
+  mounted() {
+    this.showMonthData();
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.operatingIndex {
+  width: 500px;
+  .tag-year {
+    font-size: 36px;
+    color: #90a4c3;
+  }
+  .score {
+    font-size: 66px;
+    color: #dbf0ff;
+  }
+}
+
+.fade-enter-active {
+  animation: fadeIn 1s;
+}
+.fade-leave-active {
+  animation: fadeOut 1s;
+}
+</style>

@@ -139,38 +139,25 @@
         </div>
       </div>
       <div class="main-right">
-        <SubWrapperA title="经营现状" style="width: 2693px; height: 2027px">
+        <SubWrapperA title="经营现状" style="height: 2027px">
           <van-row gutter="20">
             <van-col>
-              <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
+              <CardA title="收入量价情况" style="width: 1820px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <D1B />
               </CardA>
               <WhiteSpace />
-              <van-row gutter="20">
-                <van-col>
-                  <CardA
-                    title="综合经营指数"
-                    style="width: 900px; height: 420px"
-                  >
-                    <D2 />
-                  </CardA>
-                  <WhiteSpace />
-                  <CardA
-                    title="24小时设备离线率"
-                    style="width: 900px; height: 310px"
-                  >
-                    <D3 />
-                    <template #data-cycle>{{ dataCycle }}</template>
-                  </CardA>
-                </van-col>
-                <van-col>
-                  <CardA
-                    title="客户洞察"
-                    style="width: 900px; height: 750px"
-                  ></CardA>
-                </van-col>
-              </van-row>
+              <CardA title="客户洞察" style="width: 1820px; height: 452px">
+                <D2 />
+              </CardA>
+              <WhiteSpace />
+              <CardA
+                title="24小时设备离线率"
+                style="width: 1820px; height: 452px"
+              >
+                <D3 />
+                <template #data-cycle>{{ dataCycle }}</template>
+              </CardA>
             </van-col>
             <van-col>
               <CardA title="经营性支出" style="width: 801px; height: 924px">
@@ -208,6 +195,10 @@
     </div>
 
     <div class="project-name">{{ store.global.project.projectName }}</div>
+
+    <div class="header-right-extra">
+      <OperatingIndex />
+    </div>
   </div>
 </template>
 
@@ -225,6 +216,7 @@ import D3 from "./components/D3.vue";
 import D5 from "./components/D5.vue";
 import D6 from "./components/D6.vue";
 import F1 from "./components/F1.vue";
+import OperatingIndex from "./components/OperatingIndex.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
@@ -249,6 +241,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     Icon,
     OrgPanel,
     ButtonGroupA,
+    OperatingIndex,
     OptionPanel,
   },
 })
@@ -321,10 +314,18 @@ export default class Index extends Base {
 }
 .project-name {
   position: absolute;
-  top: 70px;
-  right: 130px;
+  top: 65px;
+  left: 708px;
   font-weight: bold;
   font-size: 66px;
   color: #fff;
+}
+.header-right-extra {
+  position: absolute;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 65px;
 }
 </style>

@@ -26,8 +26,7 @@ export default class AnimationForward extends Vue {
 <style lang="scss" scoped>
 .forward-bar {
   display: flex;
-  letter-spacing: -22px;
-  opacity: 0.8;
+  letter-spacing: -20px;
 }
 .animate__animated {
   animation-duration: 4s;
