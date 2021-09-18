@@ -54,6 +54,10 @@ export default class C1 extends Base {
    */
   response: Partial<NumYearlyReturn> = {};
 
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
   async fetch() {
     const response = await useStore(fetchNumYearly, {
       key: StoreKey.HomeNumYearly,

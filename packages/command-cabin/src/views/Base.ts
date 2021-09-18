@@ -62,6 +62,7 @@ export default class Base extends Mixins(MixStore) {
           const response: ResponseData<any> = await this.fetch();
           // 设置loading状态
           updateLoading(false);
+          console.log("已更新loading", this.$options.name);
           // 设置数据来源
           if (response?.data?.dataSource && response?.data?.updateTime) {
             this.setCardDataSource({

@@ -103,7 +103,7 @@ export default class A2 extends Base {
           text: "姓名",
         },
         {
-          value: "company",
+          value: "specialty",
           text: "角色",
         },
       ],
@@ -123,7 +123,7 @@ export default class A2 extends Base {
         },
         {
           value: "company",
-          text: "角色",
+          text: "单位",
         },
       ],
     },
@@ -142,12 +142,16 @@ export default class A2 extends Base {
         },
         {
           value: "company",
-          text: "角色",
+          text: "单位",
         },
       ],
     },
   };
 
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
   async fetch() {
     const response = await useStore(fetchGroupInfo, {
       key: StoreKey.ProjectGroupInfo,

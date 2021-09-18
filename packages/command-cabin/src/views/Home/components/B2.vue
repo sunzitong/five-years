@@ -89,6 +89,10 @@ export default class B2 extends Base {
 
   storeNum: number | "--" = "--"; // 风险房间数
 
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
   async fetch() {
     const response = await useStore(fetchProjectDelayInfo, {
       key: StoreKey.HomeProjectDelayInfo,

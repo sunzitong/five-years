@@ -58,6 +58,10 @@ export default class D4 extends Base {
     icon: string;
   }[] = [];
 
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
   async fetch() {
     const response = await useStore(fetchDeviceOffline, {
       key: StoreKey.HomeDeviceOffline,

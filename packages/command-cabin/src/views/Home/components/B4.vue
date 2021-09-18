@@ -68,6 +68,10 @@ export default class B4 extends Base {
   // 数值标签
   values: NumberLike[] = [0, 0, 0];
 
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
   async fetch() {
     const response = await useStore(fetchProductQuality, {
       key: StoreKey.HomeProductQuality,
