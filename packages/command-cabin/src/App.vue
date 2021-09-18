@@ -131,6 +131,8 @@ export default class App extends Mixins(MixStore) {
     const resOrgTree = await promiseOrgTree;
     const resProjectList = await promiseProjectList;
     if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
+      this.store.global.orgTree = resOrgTree.data[0];
+      this.store.global.project = resProjectList.data[0];
       this.appLoading = false;
     }
   }
