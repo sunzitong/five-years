@@ -103,7 +103,7 @@ export default class A2 extends Base {
           text: "姓名",
         },
         {
-          value: "company",
+          value: "specialty",
           text: "角色",
         },
       ],
@@ -123,7 +123,7 @@ export default class A2 extends Base {
         },
         {
           value: "company",
-          text: "角色",
+          text: "单位",
         },
       ],
     },
@@ -142,7 +142,7 @@ export default class A2 extends Base {
         },
         {
           value: "company",
-          text: "角色",
+          text: "单位",
         },
       ],
     },
