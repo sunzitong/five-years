@@ -1,6 +1,6 @@
 <template>
   <!-- <Spin :height="830" :loading="loading" :empty="empty"> -->
-  <div class="page__d2__map">
+  <div class="page__d5__map">
     <div class="top_abstract">三费总和</div>
     <div class="top_value_box">
       <span class="top_value">{{ sepNumber(201485) }}</span>
@@ -64,7 +64,7 @@ import Base from "@/views/Base";
 @Component({
   components: {},
 })
-export default class D2 extends Base {}
+export default class D5 extends Base {}
 </script>
 
 <style lang="scss" scoped>
@@ -137,7 +137,7 @@ export default class D2 extends Base {}
 }
 
 .bottom_text_group {
-  margin: 0 0 87px 84px;
+  margin: 0 0 75px 84px;
   font-family: "PingFang SC";
   color: #8090aa;
 
