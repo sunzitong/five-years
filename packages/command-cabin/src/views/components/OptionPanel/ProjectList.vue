@@ -1,30 +1,13 @@
 <template>
   <div class="org-panel animate__animated animate__fadeIn" v-show="show">
-    <div v-for="group in resOrgTree" :key="group.orgId">
-      <div class="row">
-        <div
-          class="col left"
-          :class="{
-            active:
-              store.global.dataLevel === DataLevels.GROUP &&
-              orgIds[0] === group.orgId,
-          }"
-          @click="setOrgTree(DataLevels.GROUP, group)"
-        >
-          <div class="inner">{{ group.orgName }}</div>
-        </div>
-      </div>
+    <div
+      v-for="group in resOrgTree"
+      :key="group.orgId"
+      class="animate__animated animate__fadeInLeft"
+    >
       <template v-for="area in group.childList">
         <div class="row" :key="area.orgId" v-if="area.childList">
-          <div
-            class="col left"
-            :class="{
-              active:
-                store.global.dataLevel === DataLevels.AREA &&
-                orgIds[0] === area.orgId,
-            }"
-            @click="setOrgTree(DataLevels.AREA, area)"
-          >
+          <div class="col left readonly">
             <div class="inner">{{ area.orgName }}</div>
             <div class="arrow">
               <van-icon name="arrow" />
@@ -34,18 +17,16 @@
           <div
             class="col right"
             :class="{
-              active:
-                store.global.dataLevel === DataLevels.CITY &&
-                orgIds[0] === area.orgId,
+              active: areaId === area.orgId,
             }"
           >
             <div class="inner">
               <div
                 class="city"
-                :class="{ active: orgIds[1] === city.orgId }"
+                :class="{ active: cityId === city.orgId }"
                 v-for="city in area.childList"
                 :key="city.orgId"
-                @click="setOrgTree(DataLevels.CITY, area, city)"
+                @click="setOrgTree(area, city)"
               >
                 {{ city.orgName }}
               </div>
@@ -53,6 +34,35 @@
           </div>
         </div>
       </template>
+    </div>
+    <div
+      class="project-wrap animate__animated animate__fadeInRight"
+      v-if="cityId"
+    >
+      <div class="row">
+        <div class="col left active">
+          <div class="inner">{{ store.global.orgTree.orgName }}</div>
+        </div>
+      </div>
+      <div class="project-list">
+        <div
+          class="row"
+          v-for="project in projectList"
+          :key="project.projectId"
+        >
+          <div class="col left"></div>
+          <div
+            class="col right"
+            :class="{
+              active: project.projectId === store.global.project.projectId,
+            }"
+          >
+            <div class="inner active" @click="setProject(project)">
+              {{ project.projectName }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -70,35 +80,43 @@ import {
   OrgTreeItemReturn,
 } from "@/service/analysis/commandCabin/orgTree";
 import { StoreKey, useStore } from "@/store";
+import AnimationForward from "@/components/AnimationForward/Index.vue";
+import {
+  fetchProjectList,
+  ProjectListItemReturn,
+} from "@/service/analysis/commandCabin/projectList";
 
-@Component
-export default class OrgTree extends Base {
+@Component({
+  components: { AnimationForward },
+})
+export default class ProjectList extends Base {
   DateScopes = DateScopes;
   DataLevels = DataLevels;
   /**
    * 区域数据
    */
   resOrgTree: OrgTreeItemReturn[] | null = null;
+  /**
+   * 门店数据
+   */
+  resProjectList: ProjectListItemReturn[] | null = null;
   @Prop({ default: false, type: Boolean }) show!: false;
 
   /**
-   * 区域或全国ID,城市ID
+   * 区域或全国ID
    */
-  orgIds: [number?, number?] = [];
+  areaId: number | null = null;
+  /**
+   * 城市ID
+   */
+  cityId: number | null = null;
 
   created() {
     // 城市
     if (this.store.global.orgTree.orgLevel === 3) {
-      this.orgIds = [
-        // this.store.global.orgTree.parentOrgId, // 地区ID不是大区ID
-        undefined,
-        this.store.global.orgTree.orgId,
-      ];
-    } else {
-      this.orgIds = [this.store.global.orgTree.orgId, undefined];
+      this.cityId = this.store.global.orgTree.orgId;
     }
   }
-
   mounted() {
     this.fetchOrgData();
   }
@@ -111,23 +129,37 @@ export default class OrgTree extends Base {
     if (resOrgTree?.status === "ok") {
       this.resOrgTree = iwant.array(resOrgTree.data);
     }
+    // 获取门店数据
+    const resProjectList = await useStore(fetchProjectList, {
+      key: StoreKey.ProjectList,
+    });
+    if (resProjectList?.status === "ok") {
+      this.resProjectList = iwant.array(resProjectList.data);
+    }
   }
   /**
    * 设置区域范围和ID
    */
-  setOrgTree(
-    level: DataLevels,
-    region: OrgTreeItemReturn,
-    city?: OrgTreeItemReturn
-  ) {
-    this.orgIds = [region.orgId, city?.orgId];
-    this.store.global.dataLevel = level;
-    if (level === DataLevels.GROUP || level === DataLevels.AREA) {
-      this.store.global.orgTree = region;
-    }
-    if (level === DataLevels.CITY && city) {
-      this.store.global.orgTree = city;
-    }
+  setOrgTree(area: OrgTreeItemReturn, city: OrgTreeItemReturn) {
+    this.areaId = area.orgId;
+    this.cityId = city.orgId;
+    this.store.global.dataLevel = DataLevels.CITY;
+    this.store.global.orgTree = city;
+  }
+
+  /**
+   * 当前城市门店列表
+   */
+  get projectList() {
+    const all = iwant.array(this.resProjectList);
+    return all.filter((item) => item.cityOrgId === this.cityId);
+  }
+
+  /**
+   * 设置门店
+   */
+  setProject(project: ProjectListItemReturn) {
+    this.store.global.project = project;
     this.$emit("update:show", false);
   }
 }
@@ -236,5 +268,41 @@ export default class OrgTree extends Base {
 }
 .org-panel {
   --animate-duration: 200ms;
+}
+/* 门店选择相关 */
+.readonly {
+  pointer-events: none;
+}
+.org-panel {
+  display: flex;
+}
+.project-wrap {
+  margin-left: 46px;
+  position: relative;
+  margin-top: 26px;
+  .row {
+    width: 890px;
+    &:nth-child(1) {
+      margin-top: 2px;
+    }
+  }
+  .project-list {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    .left {
+      opacity: 0;
+    }
+    .right {
+      height: 100%;
+      .inner {
+        padding: 0 26px;
+      }
+    }
+  }
+  .right.active {
+    color: #01f5f1;
+  }
 }
 </style>

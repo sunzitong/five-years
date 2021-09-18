@@ -132,18 +132,10 @@
             </van-checkbox-group>
           </ButtonGroupA>
 
-          <!-- 区域选择 -->
-          <OrgPanel
-            type="project"
-            :show="showOrgPanel"
-            @update:show="showOrgPanel = false"
-          />
           <!-- 时间维度选择 -->
-          <OrgPanel
-            type="dateScope"
-            :show="showScopePanel"
-            @update:show="showScopePanel = false"
-          />
+          <OrgPanel type="dateScope" :show.sync="showScopePanel" />
+          <!-- 门店选择 -->
+          <OptionPanel type="ProjectList" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">
@@ -238,6 +230,7 @@ import Icon from "@/components/Icon/Index.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
+import OptionPanel from "@/views/components/OptionPanel/Index.vue";
 
 @Component({
   components: {
@@ -256,6 +249,7 @@ import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
     Icon,
     OrgPanel,
     ButtonGroupA,
+    OptionPanel,
   },
 })
 export default class Index extends Base {
