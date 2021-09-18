@@ -61,7 +61,6 @@
 import { Component, Prop } from "vue-property-decorator";
 import Base from "@/views/Base";
 import { iwant } from "@guanyu/shared";
-import Icon from "@/components/Icon/Index.vue";
 import {
   DataLevels,
   DateScopes,
@@ -72,9 +71,7 @@ import {
 } from "@/service/analysis/commandCabin/orgTree";
 import { StoreKey, useStore } from "@/store";
 
-@Component({
-  components: { Icon },
-})
+@Component
 export default class OrgTree extends Base {
   DateScopes = DateScopes;
   DataLevels = DataLevels;
@@ -97,6 +94,8 @@ export default class OrgTree extends Base {
         undefined,
         this.store.global.orgTree.orgId,
       ];
+    } else {
+      this.orgIds = [this.store.global.orgTree.orgId, undefined];
     }
   }
 

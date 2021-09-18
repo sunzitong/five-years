@@ -5,8 +5,9 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import OrgTree from "./OrgTree.vue";
+import ProjectList from "./ProjectList.vue";
 
-const components = { OrgTree };
+const components = { OrgTree, ProjectList };
 
 @Component({
   components,
