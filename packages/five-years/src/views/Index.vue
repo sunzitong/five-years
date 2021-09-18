@@ -54,7 +54,7 @@ export default class Index extends Base {
    */
   @Inject() share!: () => void;
   $dialog: any;
-  data = [];
+  data: any = [];
 
   mounted() {
     // location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
