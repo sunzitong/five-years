@@ -179,18 +179,10 @@
               </van-checkbox>
             </van-checkbox-group>
           </ButtonGroupA>
-          <!-- 区域选择 -->
-          <OrgPanel
-            type="orgTree"
-            :show="showOrgPanel"
-            @update:show="showOrgPanel = false"
-          />
           <!-- 时间维度选择 -->
-          <OrgPanel
-            type="dateScope"
-            :show="showScopePanel"
-            @update:show="showScopePanel = false"
-          />
+          <OrgPanel type="dateScope" :show.sync="showScopePanel" />
+          <!-- 区域选择 -->
+          <OptionPanel type="OrgTree" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">
@@ -281,6 +273,7 @@ import D5 from "./components/D5.vue";
 import F1 from "./components/F1.vue";
 import O2 from "./components/O2.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
+import OptionPanel from "@/views/components/OptionPanel/Index.vue";
 
 @Component({
   components: {
@@ -309,6 +302,7 @@ import OrgPanel from "@/views/components/OrgPanel.vue";
     ButtonGroupA,
     Icon,
     OrgPanel,
+    OptionPanel,
   },
 })
 export default class Home extends Base {
