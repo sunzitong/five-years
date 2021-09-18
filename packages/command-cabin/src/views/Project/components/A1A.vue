@@ -83,6 +83,9 @@ import { StoreKey, useStore } from "@/store";
 @Component
 export default class A1A extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchProjectBaseInfo, {
       key: StoreKey.ProjectBaseInfo,

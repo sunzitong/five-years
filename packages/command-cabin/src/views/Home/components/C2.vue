@@ -67,6 +67,9 @@ export default class C2 extends Base {
     tenantNum: 0,
   };
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchNumYearly, {
       key: StoreKey.HomeNumYearly,

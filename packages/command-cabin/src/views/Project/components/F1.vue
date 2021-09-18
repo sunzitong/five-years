@@ -49,10 +49,6 @@ export default class F1 extends Base {
 
   current = 0;
 
-  created() {
-    this.fetch();
-  }
-
   /**
    * 幻灯片改变
    */
@@ -62,6 +58,9 @@ export default class F1 extends Base {
 
   /**
    * 请求数据
+   */
+  /**
+   * 自动触发 重复调用
    */
   async fetch() {
     const response = await useStore(fetchSentiment, {

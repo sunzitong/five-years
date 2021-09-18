@@ -53,6 +53,9 @@ export default class D3 extends Base {
     currentRate: number;
   }[] = [];
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchDeviceOffline, {
       key: StoreKey.ProjectDeviceOffline,
