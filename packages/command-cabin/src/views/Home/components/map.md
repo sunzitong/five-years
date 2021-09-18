@@ -2,9 +2,11 @@
 
 ```js
 <template>
-  <div class="page__maintenance_report__map">
-    <div class="app-echarts" ref="wrapper"></div>
-  </div>
+  <Spin :height="833" :loading="loading" :empty="empty">
+    <div class="page__maintenance_report__map">
+      <div class="app-echarts" ref="wrapper"></div>
+    </div>
+  </Spin>
 </template>
 
 <script lang="ts">

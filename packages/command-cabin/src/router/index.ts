@@ -14,22 +14,44 @@ const subRouter = [
   {
     path: "home",
     component: () => import("@/views/Home/Index.vue"),
-    meta: "home",
+    meta: {
+      name: "home",
+    },
   },
   {
     path: "project",
     component: () => import("@/views/Project/Index.vue"),
-    meta: "project",
+    meta: {
+      name: "project",
+    },
+  },
+  {
+    path: "build-the-plate",
+    component: () => import("@/views/BuildThePlate/Index.vue"),
+    meta: {
+      name: "build-the-plate",
+    },
+  },
+  {
+    path: "login",
+    component: () => import("@/views/Login/Index.vue"),
+    meta: {
+      name: "login",
+    },
   },
   {
     path: "example",
     component: () => import("@/views/Example.vue"),
-    meta: "example",
+    meta: {
+      name: "example",
+    },
   },
   {
     path: "example-map",
     component: () => import("@/views/ExampleMap.vue"),
-    meta: "example-map",
+    meta: {
+      name: "example-map",
+    },
   },
   {
     path: "*",

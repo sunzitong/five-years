@@ -139,8 +139,8 @@ export default class Btn extends Vue {
 
   get rect() {
     const map = {
-      large: { width: 249, height: 70 },
-      medium: { width: 249, height: 70 },
+      large: { width: 400, height: 70 },
+      medium: { width: 290, height: 70 },
       small: { width: 249, height: 70 },
     };
 
