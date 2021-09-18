@@ -66,24 +66,25 @@ export default class A1B extends Base {
 <style lang="scss" scoped>
 .timeline {
   position: relative;
+  margin: 40px 40px -40px 40px;
   &::before {
     content: "";
     position: absolute;
-    height: 10px;
+    height: 24px;
     width: 100%;
     top: 150px;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 10;
-    background-image: linear-gradient(
-      to right,
-      #4d609d 0%,
-      #4d609d 20%,
-      transparent 50%
+    background: linear-gradient(
+      180deg,
+      rgba(1, 245, 241, 0.58) 0%,
+      rgba(1, 190, 245, 0.38) 10.68%,
+      rgba(1, 190, 245, 0.410089) 91.93%,
+      rgba(1, 245, 241, 0.44) 100%
     );
-    background-size: 10px 10px;
-    background-repeat: repeat-x;
+    border-radius: 2px;
   }
 
   .col {
@@ -98,9 +99,14 @@ export default class A1B extends Base {
       position: absolute;
       bottom: 0;
       left: 50%;
-      width: 2px;
-      height: 20px;
-      background: #f50;
+      width: 3px;
+      margin-left: -3px;
+      height: 40px;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(1, 245, 241, 0) 0%,
+        rgba(1, 245, 241, 1) 100%
+      );
     }
   }
 
