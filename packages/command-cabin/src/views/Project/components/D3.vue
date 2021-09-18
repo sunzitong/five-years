@@ -55,6 +55,7 @@ export default class D3 extends Base {
 
   /**
    * 自动触发 重复调用
+   * @returns response
    */
   async fetch() {
     const response = await useStore(fetchDeviceOffline, {
