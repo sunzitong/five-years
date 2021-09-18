@@ -63,6 +63,9 @@ export default class B5 extends Base {
     });
   }
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchRepairStat, {
       key: StoreKey.HomeRepairStat,

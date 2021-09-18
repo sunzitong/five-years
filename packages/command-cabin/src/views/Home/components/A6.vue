@@ -80,6 +80,9 @@ export default class A6 extends Base {
 
   value = 0; //中心数值
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,

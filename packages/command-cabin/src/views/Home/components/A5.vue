@@ -41,6 +41,9 @@ export default class A5 extends Base {
   resData: Partial<ExpansionAwardInfoReturn> = {};
   pieData: AnyObject[] = [];
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,

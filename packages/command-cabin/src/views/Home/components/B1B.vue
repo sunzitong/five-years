@@ -138,6 +138,9 @@ export default class B1B extends Base {
   sum1 = 0; // 重中轻之和
   sum2 = 0; // 重中轻之和
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchProjectOpen, {
       key: StoreKey.HomeProjectOpen,

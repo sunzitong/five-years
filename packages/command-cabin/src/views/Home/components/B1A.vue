@@ -79,6 +79,9 @@ export default class B1A extends Base {
     }
   }
 
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchProjectOpen, {
       key: StoreKey.HomeProjectOpen,

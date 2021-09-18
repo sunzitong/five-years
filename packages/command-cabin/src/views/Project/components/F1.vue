@@ -59,6 +59,9 @@ export default class F1 extends Base {
   /**
    * 请求数据
    */
+  /**
+   * 自动触发 重复调用
+   */
   async fetch() {
     const response = await useStore(fetchSentiment, {
       key: StoreKey.ProjectSentiment,
