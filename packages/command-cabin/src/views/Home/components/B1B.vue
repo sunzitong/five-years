@@ -156,8 +156,7 @@ export default class B1B extends Base {
       this.targetNum = this.resData.openTargetNum ?? "--";
 
       this.hasOpen = this.resData.openInfo?.total ?? "--";
-      this.hasOpenRatio =
-        iwant.calc(this.resData.openInfo?.ratio ?? NaN, 1, true) ?? "--";
+      this.hasOpenRatio = this.formatValue(this.resData.openInfo?.ratio);
 
       this.toGet = this.resData.notOpenNotGetNum ?? "--";
       this.toGetRatio = this.resData.notOpenNotGetRatio ?? "--";
@@ -168,13 +167,15 @@ export default class B1B extends Base {
       this.pieData1 = iwant.array(this.resData.openInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          value: iwant.calc(el.ratio, 1, true),
+          // value: iwant.calc(el.ratio, 1, true),
+          value: el.ratio,
         };
       });
       this.pieData2 = iwant.array(this.resData.notOpenInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          value: iwant.calc(el.ratio, 1, true),
+          // value: iwant.calc(el.ratio, 1, true),
+          value: el.ratio,
         };
       });
 
