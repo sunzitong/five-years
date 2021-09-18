@@ -13,7 +13,7 @@
         </div>
         <div
           class="app-echarts"
-          style="width: 350px; height: 340px"
+          style="width: 330px; height: 340px"
           ref="wrapper"
         ></div>
         <div class="item_value">
@@ -87,6 +87,11 @@ export default class B4 extends Base {
       for (let key in this.resData) {
         this.values.push(iwant.calc(this.resData[key], 1, true));
       }
+      this.values = [
+        iwant.calc(iwant.number(this.resData.ipdRatio), 1, true),
+        iwant.calc(iwant.number(this.resData.checkScore), 1, true),
+        iwant.calc(iwant.number(this.resData.qualityScore), 1, true),
+      ];
 
       this.paintChart();
     }
@@ -184,7 +189,7 @@ export default class B4 extends Base {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
-    height: 330px;
+    height: 320px;
 
     .item_value_item {
       margin: 0 24px 0 0px;

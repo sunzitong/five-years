@@ -29,8 +29,10 @@ export default class B1C extends Base {
   @Prop({ default: () => 0 }) readonly sum!: number;
 
   names = ["重资产", "中资产", "轻资产"];
-  color = ["#5180E4", "#F7D14A", "#B491FD"];
-  bgColor = ["#172C47", "#4C452D", "#2A223B"];
+  color = { 重资产: "#5180E4", 中资产: "#F7D14A", 轻资产: "#B491FD" };
+  bgColor = { 重资产: "#172C47", 中资产: "#4C452D", 轻资产: "#2A223B" };
+  // color = ["#5180E4", "#F7D14A", "#B491FD"];
+  // bgColor = ["#172C47", "#4C452D", "#2A223B"];
 
   get sortPieData() {
     const names = ["重", "中", "轻"];
@@ -107,7 +109,7 @@ export default class B1C extends Base {
             name: this.sortPieData[i].name,
             value: this.sortPieData[i].value,
             itemStyle: {
-              color: this.color[i],
+              color: this.color[this.sortPieData[i].name],
             },
           },
           {
@@ -115,7 +117,7 @@ export default class B1C extends Base {
             name: "",
             value: this.sum - this.sortPieData[i].value,
             itemStyle: {
-              color: this.bgColor[i],
+              color: this.bgColor[this.sortPieData[i].name],
               borderWidth: 0,
             },
             tooltip: { show: false },
@@ -197,7 +199,7 @@ export default class B1C extends Base {
       ],
       series: res.series,
     };
-    option && myChart.setOption(option);
+    option && myChart.setOption(option, true);
   }
 }
 </script>
