@@ -26,6 +26,10 @@
             @click="setOrgTree(DataLevels.AREA, area)"
           >
             <div class="inner">{{ area.orgName }}</div>
+            <div class="arrow">
+              <van-icon name="arrow" />
+              <van-icon name="arrow" />
+            </div>
           </div>
           <div
             class="col right"
@@ -153,10 +157,21 @@ export default class OrgTree extends Base {
     background: rgba(17, 48, 105, 0.8);
     height: 72px;
     font-size: 36px;
+    margin-right: 44px;
+    position: relative;
     .inner {
       width: 100%;
       text-align: center;
       border-radius: 2px;
+    }
+    .arrow {
+      position: absolute;
+      font-size: 20px;
+      height: 100%;
+      top: 0;
+      right: -23px;
+      letter-spacing: -14px;
+      @extend %flex-center;
     }
 
     &.active,
@@ -170,6 +185,9 @@ export default class OrgTree extends Base {
           rgba(1, 245, 241, 0) 10.4%,
           rgba(1, 245, 241, 0.48) 117.09%
         );
+      }
+      .arrow {
+        color: #01f5f1;
       }
     }
   }
@@ -203,7 +221,6 @@ export default class OrgTree extends Base {
 }
 .col {
   display: flex;
-  margin: 0 10px;
   line-height: 60px;
   padding: 6px;
   box-sizing: border-box;
