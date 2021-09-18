@@ -1,5 +1,5 @@
 <template>
-  <div class="org-panel animate__animated animate__fadeIn" v-show="show">
+  <div class="panel animate__animated animate__fadeIn" v-show="show">
     <div
       v-for="group in resOrgTree"
       :key="group.orgId"
@@ -94,7 +94,7 @@ import {
 @Component({
   components: { AnimationForward },
 })
-export default class ProjectList extends Base {
+export default class TheProjectList extends Base {
   DateScopes = DateScopes;
   DataLevels = DataLevels;
   /**
@@ -171,11 +171,10 @@ export default class ProjectList extends Base {
 </script>
 
 <style lang="scss" scoped>
-.org-panel {
+.panel {
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 20;
   box-sizing: border-box;
   padding: 32px 60px;
   overflow: hidden;
@@ -271,14 +270,14 @@ export default class ProjectList extends Base {
 .fade-leave-active {
   animation: 200ms fadeOut;
 }
-.org-panel {
+.panel {
   --animate-duration: 200ms;
 }
 /* 门店选择相关 */
 .readonly {
   pointer-events: none;
 }
-.org-panel {
+.panel {
   display: flex;
 }
 .project-wrap {
@@ -310,6 +309,7 @@ export default class ProjectList extends Base {
     color: #01f5f1;
   }
 }
+/* 动画 */
 .forward-bar {
   position: absolute;
   left: 10px;

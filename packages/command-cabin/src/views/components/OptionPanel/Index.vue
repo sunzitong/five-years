@@ -1,13 +1,14 @@
 <template>
-  <component v-bind:is="currentComponent" :show.sync="pipeShow" />
+  <component v-bind:is="currentComponent" :show.sync="pipeShow" :class="type" />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import OrgTree from "./OrgTree.vue";
-import ProjectList from "./ProjectList.vue";
+import TheOrgTree from "./TheOrgTree.vue";
+import TheProjectList from "./TheProjectList.vue";
+import TheDateScopes from "./TheDateScopes.vue";
 
-const components = { OrgTree, ProjectList };
+const components = { TheOrgTree, TheProjectList, TheDateScopes };
 
 @Component({
   components,
@@ -36,3 +37,8 @@ export default class OptionPanel extends Vue {
   }
 }
 </script>
+<style lang="scss" scoped>
+.panel {
+  z-index: 20;
+}
+</style>
