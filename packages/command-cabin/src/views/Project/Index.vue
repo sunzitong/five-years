@@ -314,8 +314,8 @@ export default class Index extends Base {
 }
 .project-name {
   position: absolute;
-  top: 70px;
-  right: 130px;
+  top: 65px;
+  left: 708px;
   font-weight: bold;
   font-size: 66px;
   color: #fff;
