@@ -19,7 +19,6 @@ import {
   fetchProjectOpen,
   ProjectOpenReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
-import dayjs from "dayjs";
 import { AnyObject, iwant, Nullable } from "@guanyu/shared";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
@@ -39,8 +38,6 @@ export default class B1A extends Base {
    */
   resData: Partial<ProjectOpenReturn> = {};
 
-  year = dayjs().year();
-
   openingNum: Nullable<number> = null; // 累计已开业间数
 
   legendName = ["重资产", "中资产", "轻资产"];
@@ -50,6 +47,17 @@ export default class B1A extends Base {
   data2: number[] = []; // 中资产数据
   data3: number[] = []; // 轻资产数据
   totals: number[] = []; // 三种资产类型之和
+
+  /**
+   * 重置数据
+   */
+  reset() {
+    this.years = [];
+    this.data1 = [];
+    this.data2 = [];
+    this.data3 = [];
+    this.totals = [];
+  }
 
   /**
    * 处理接口返回值，构建三种资产数组
@@ -79,6 +87,7 @@ export default class B1A extends Base {
         regionId: this.store.global.orgTree.orgId,
       },
     });
+    this.reset();
     if (response?.status === "ok") {
       this.resData = response.data;
       this.$parent.empty = false;

@@ -49,10 +49,6 @@ export default class F1 extends Base {
 
   current = 0;
 
-  created() {
-    this.fetch();
-  }
-
   /**
    * 幻灯片改变
    */

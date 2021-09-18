@@ -20,16 +20,13 @@ import {
   fetchRepairStat,
   RepairStatReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/repairStat";
-import dayjs from "dayjs";
 import Base from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 
 console.log(echarts);
 
-@Component({
-  components: {},
-})
+@Component
 export default class B5 extends Base {
   /**
    * 饼图
@@ -40,7 +37,6 @@ export default class B5 extends Base {
    * /bigScreen/mainBoard/construct/repairStat
    */
   resData: Partial<RepairStatReturn> = {};
-  year = dayjs().year();
 
   names = ["水电类", "装修类", "设备类", "其他"]; // name标签
 
@@ -48,6 +44,12 @@ export default class B5 extends Base {
 
   objData1: AnyObject = {}; // name-count键值对对象
   objData2: AnyObject = {}; // name-ratio键值对对象
+
+  reset() {
+    this.data = [];
+    this.objData1 = {};
+    this.objData2 = {};
+  }
 
   buildData(resData: AnyObject) {
     // 构建配置数据
@@ -69,6 +71,7 @@ export default class B5 extends Base {
         orgId: this.store.global.orgTree.orgId,
       },
     });
+    this.reset();
     if (response?.status === "ok") {
       this.resData = response.data;
       this.buildData(this.resData);
