@@ -138,7 +138,6 @@ export default class TheOrgTree extends Base {
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 20;
   box-sizing: border-box;
   padding: 32px 60px;
   overflow: hidden;

@@ -180,7 +180,7 @@
             </van-checkbox-group>
           </ButtonGroupA>
           <!-- 时间维度选择 -->
-          <OrgPanel type="dateScope" :show.sync="showScopePanel" />
+          <OptionPanel type="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 区域选择 -->
           <OptionPanel type="TheOrgTree" :show.sync="showOrgPanel" />
         </div>
@@ -272,7 +272,6 @@ import D4 from "./components/D4.vue";
 import D5 from "./components/D5.vue";
 import F1 from "./components/F1.vue";
 import O2 from "./components/O2.vue";
-import OrgPanel from "@/views/components/OrgPanel.vue";
 import OptionPanel from "@/views/components/OptionPanel/Index.vue";
 
 @Component({
@@ -301,7 +300,6 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     O2,
     ButtonGroupA,
     Icon,
-    OrgPanel,
     OptionPanel,
   },
 })
@@ -398,10 +396,10 @@ export default class Home extends Base {
     margin: 0 0 108px;
   }
 }
-.org-panel {
+.panel {
   bottom: 120%;
   right: 0px;
-  &--scope {
+  &.TheDateScopes {
     right: 397px;
   }
 }

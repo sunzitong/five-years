@@ -1,15 +1,36 @@
 <template>
-  <div class="panel animate__animated animate__fadeInUp" v-show="show"></div>
+  <div class="panel animate__animated animate__fadeInUp" v-show="show">
+    <ul class="list" v-for="item in options" :key="item.value">
+      <li
+        class="item"
+        :class="{ active: store.global.dateScope === item.value }"
+        @click="setValue(item.value)"
+      >
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import Base from "@/views/Base";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 
 @Component
 export default class TheDateScopes extends Base {
   DateScopes = DateScopes;
+  @Prop({ default: true, type: Boolean }) show!: false;
+
+  options = [
+    { name: "年累计", value: DateScopes.YEARLY },
+    { name: "月累计", value: DateScopes.MONTHLY },
+  ];
+
+  setValue(value: DateScopes) {
+    this.store.global.dateScope = value;
+    this.$emit("update:show", false);
+  }
 }
 </script>
 
@@ -18,15 +39,24 @@ export default class TheDateScopes extends Base {
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 20;
-  box-sizing: border-box;
-  padding: 32px 60px;
-  overflow: hidden;
   color: #90a4c3;
   background: rgba(14, 23, 60, 0.9);
   backdrop-filter: blur(20px);
+  font-size: 40px;
 }
 .panel {
   --animate-duration: 200ms;
+}
+.list {
+  width: 400px;
+  .item {
+    @extend %flex-center;
+    width: 100%;
+    height: 100px;
+    cursor: pointer;
+    &.active {
+      color: #01f5f1;
+    }
+  }
 }
 </style>

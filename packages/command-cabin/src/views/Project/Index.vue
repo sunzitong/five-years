@@ -133,7 +133,7 @@
           </ButtonGroupA>
 
           <!-- 时间维度选择 -->
-          <OrgPanel type="dateScope" :show.sync="showScopePanel" />
+          <OptionPanel type="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 门店选择 -->
           <OptionPanel type="TheProjectList" :show.sync="showOrgPanel" />
         </div>
@@ -219,7 +219,6 @@ import F1 from "./components/F1.vue";
 import OperatingIndex from "./components/OperatingIndex.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
-import OrgPanel from "@/views/components/OrgPanel.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import OptionPanel from "@/views/components/OptionPanel/Index.vue";
@@ -239,7 +238,6 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     F1,
     ButtonGroup,
     Icon,
-    OrgPanel,
     ButtonGroupA,
     OperatingIndex,
     OptionPanel,
@@ -305,12 +303,6 @@ export default class Index extends Base {
   height: 192px;
   margin-top: 40px;
   padding: 0 14px 0 8px;
-  .org-panel {
-    bottom: 220px;
-    &--scope {
-      right: 397px;
-    }
-  }
 }
 .project-name {
   position: absolute;
@@ -327,5 +319,11 @@ export default class Index extends Base {
   align-items: center;
   top: 0;
   right: 65px;
+}
+.panel {
+  bottom: 220px;
+  &.TheDateScopes {
+    right: 397px;
+  }
 }
 </style>
