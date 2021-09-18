@@ -33,23 +33,13 @@
       <span class="bottom_text">万</span>
       <span class="bottom_value">{{ 12 }}%</span>
     </div>
-    <div class="flex_box_group">
-      <div class="flex_box">
-        <div>入房比</div>
-        <div class="flex_value">{{ "1:30" }}</div>
-      </div>
-      <div class="flex_box">
-        <div>元均收入</div>
-        <div>
-          <span class="flex_value">{{ 7252 }}</span>
-          <span>元</span>
-        </div>
-      </div>
-      <div class="flex_box">
-        <div>能源费用（收支差）</div>
+    <div class="flex_box">
+      <Icon type="energy" :size="200" />
+      <div class="felx_details">
+        <div class="flex_text">能源费用（收支差）</div>
         <div>
           <span class="flex_value">{{ 23 }}</span>
-          <span>万</span>
+          <span class="flex_unit">万</span>
         </div>
       </div>
     </div>
@@ -60,9 +50,10 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Base from "@/views/Base";
+import Icon from "@/components/Icon/Index.vue";
 
 @Component({
-  components: {},
+  components: { Icon },
 })
 export default class D5 extends Base {}
 </script>
@@ -137,7 +128,7 @@ export default class D5 extends Base {}
 }
 
 .bottom_text_group {
-  margin: 0 0 75px 84px;
+  margin: 0 0 0 84px;
   font-family: "PingFang SC";
   color: #8090aa;
 
@@ -157,48 +148,38 @@ export default class D5 extends Base {}
   }
 }
 
-.flex_box_group {
+.flex_box {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: flex-start;
+
+  height: 110px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-size: 40px;
+  line-height: 40px;
+  color: #8090aa;
+  padding-left: 50px;
+}
+.felx_details {
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: space-between;
-
-  .flex_box {
-    position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-
-    height: 110px;
-    font-family: "PingFang SC";
-    font-style: normal;
-    font-size: 36px;
-    line-height: 36px;
-    color: #8090aa;
-    padding-left: 50px;
+  .flex_text {
+    padding: 55px 0 12px 0;
   }
 }
 
 .flex_value {
   font-family: "DIN Alternate";
   font-weight: bold;
-  font-size: 48px;
-  line-height: 56px;
+  font-size: 66px;
+  line-height: 77px;
   color: #dbf0ff;
-  margin: 0 6px 0 0;
+  margin: 0 2px 0 0;
 }
-.flex_box:nth-child(2):before,
-.flex_box:nth-child(3):before {
-  display: flex;
-  content: "";
-  width: 2px;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  background: linear-gradient(
-    0deg,
-    transparent 0%,
-    #013e7e 50%,
-    transparent 100%
-  );
+.flex_unit {
+  font-size: 36px;
+  line-height: 36px;
 }
 </style>
