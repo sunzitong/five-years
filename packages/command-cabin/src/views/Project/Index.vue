@@ -187,6 +187,7 @@
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <D6 />
               </CardA>
             </van-col>
           </van-row>
@@ -228,6 +229,7 @@ import A2 from "./components/A2.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
 import D5 from "./components/D5.vue";
+import D6 from "./components/D6.vue";
 import F1 from "./components/F1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
@@ -245,6 +247,7 @@ import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
     D2,
     D3,
     D5,
+    D6,
     F1,
     ButtonGroup,
     Icon,
