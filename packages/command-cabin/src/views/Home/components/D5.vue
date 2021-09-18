@@ -61,7 +61,7 @@ import Base from "@/views/Base";
 @Component({
   components: {},
 })
-export default class Example extends Base {}
+export default class D5 extends Base {}
 </script>
 
 <style lang="scss" scoped>
@@ -168,6 +168,7 @@ export default class Example extends Base {}
 
         font-size: 36px;
         line-height: 36px;
+        color: #90a4c3;
         &::before {
           content: "";
           width: 2px;
