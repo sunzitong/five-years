@@ -203,6 +203,10 @@
     </div>
 
     <div class="project-name">{{ store.global.project.projectName }}</div>
+
+    <div class="header-right-extra">
+      <OperatingIndex />
+    </div>
   </div>
 </template>
 
@@ -220,6 +224,7 @@ import D3 from "./components/D3.vue";
 import D5 from "./components/D5.vue";
 import D6 from "./components/D6.vue";
 import F1 from "./components/F1.vue";
+import OperatingIndex from "./components/OperatingIndex.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import OrgPanel from "@/views/components/OrgPanel.vue";
@@ -243,6 +248,7 @@ import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
     Icon,
     OrgPanel,
     ButtonGroupA,
+    OperatingIndex,
   },
 })
 export default class Index extends Base {
@@ -319,5 +325,13 @@ export default class Index extends Base {
   font-weight: bold;
   font-size: 66px;
   color: #fff;
+}
+.header-right-extra {
+  position: absolute;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 65px;
 }
 </style>
