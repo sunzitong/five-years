@@ -6,9 +6,9 @@
       <FixedNav />
       <FixedNav position="right" />
     </template>
-    <router-view :class="{ 'show-shadow': showShadow }" />
+    <router-view v-if="!appLoading" :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="false" />
+    <AppLoading v-if="appLoading" />
     <!-- 控制缩放 -->
     <div
       v-if="true || env.NODE_ENV === 'development'"
@@ -30,6 +30,9 @@ import MixStore from "@/store/MixStore";
 import FixedNav from "@/components/FixedNav/Index.vue";
 import AppHeader from "@/components/Header/Index.vue";
 import mitter, { EventName } from "./utils/mitter";
+import { StoreKey, useStore } from "./store";
+import { fetchOrgTree } from "./service/analysis/commandCabin/orgTree";
+import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 
 @Component({
   name: "app",
@@ -43,6 +46,8 @@ export default class App extends Mixins(MixStore) {
   resize = !!sessionStorage.getItem("resize");
 
   showShadow = false;
+
+  appLoading = true;
 
   scale = 1;
 
@@ -101,6 +106,7 @@ export default class App extends Mixins(MixStore) {
     if (process.env.NODE_ENV !== "development") {
       document.addEventListener("contextmenu", this.contentMenuHandle);
     }
+    this.fetchOrgData();
   }
   mounted() {
     this.resizeHandle();
@@ -109,6 +115,23 @@ export default class App extends Mixins(MixStore) {
     window.removeEventListener("resize", this.resizeHandle);
     if (process.env.NODE_ENV !== "development") {
       document.removeEventListener("contextmenu", this.contentMenuHandle);
+    }
+  }
+
+  /**
+   * 请求区域门店数据
+   */
+  async fetchOrgData() {
+    // 获取区域数据
+    const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
+    // 获取门店数据
+    const promiseProjectList = useStore(fetchProjectList, {
+      key: StoreKey.ProjectList,
+    });
+    const resOrgTree = await promiseOrgTree;
+    const resProjectList = await promiseProjectList;
+    if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
+      this.appLoading = false;
     }
   }
 }
