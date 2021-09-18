@@ -108,6 +108,7 @@ export default class D2 extends Base {
   /**
    * 组件创建
    * 自动触发 重复调用
+   * @returns response
    */
   async fetch() {
     const response = await useStore(fetchBusinessScore, {

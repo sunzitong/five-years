@@ -60,6 +60,7 @@ export default class A1C extends Base {
   response: Partial<ProjectBaseInfoReturn> = {};
   /**
    * 自动触发 重复调用
+   * @returns response
    */
   async fetch() {
     const response = await useStore(fetchProjectBaseInfo, {
