@@ -55,7 +55,7 @@ export default class F1B extends Base {
      */
     this.responseMap = arrayToObject(response.numsByType, {
       key: "typeNum",
-      value: "num",
+      value: "ratio",
     });
 
     /**
@@ -89,7 +89,7 @@ export default class F1B extends Base {
         itemGap: 16,
         formatter: (params: any) => {
           return `{a|${params}}{b| ${iwant.calc(
-            this.responseMap[params] * 100,
+            this.responseMap[params],
             1,
             true
           )}%}`;

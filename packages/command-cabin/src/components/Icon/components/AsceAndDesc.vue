@@ -15,6 +15,7 @@
 </template>
 
 <script lang="ts">
+import { formatColors } from "@/utils/tools";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -40,11 +41,7 @@ export default class AsceAndDesc extends Vue {
    * 填充颜色
    */
   get fill() {
-    const colors = {
-      asce: "#D1356E",
-      desc: "#01F5F1",
-    };
-    return colors[this.type] ?? this.color;
+    return formatColors(this.color, 1);
   }
 
   /**

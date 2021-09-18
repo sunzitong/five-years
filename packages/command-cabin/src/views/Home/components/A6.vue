@@ -11,15 +11,15 @@
         <div class="container">
           <div class="text_row">
             <van-row>
-              <van-col :span="10" class="left_text">当年</van-col>
-              <van-col :span="11" class="right_text">
+              <van-col :span="8" class="left_text">当年</van-col>
+              <van-col :span="15" class="right_text">
                 <span>{{ sepNumber(currentYear) }}</span>
                 万
               </van-col>
             </van-row>
             <van-row>
-              <van-col :span="10" class="left_text">全周期</van-col>
-              <van-col :span="11" class="right_text">
+              <van-col :span="8" class="left_text">全周期</van-col>
+              <van-col :span="15" class="right_text">
                 <span>{{ sepNumber(wholeCycle) }}</span>
                 万
               </van-col>

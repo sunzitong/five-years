@@ -152,6 +152,7 @@
             <van-col>
               <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <D1B />
               </CardA>
               <WhiteSpace />
               <van-row gutter="20">
@@ -226,6 +227,7 @@ import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import D1B from "./components/D1B.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
 import D5 from "./components/D5.vue";
@@ -244,6 +246,7 @@ import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
     WhiteSpace,
     A1,
     A2,
+    D1B,
     D2,
     D3,
     D5,
