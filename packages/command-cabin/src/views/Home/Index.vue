@@ -182,7 +182,7 @@
           <!-- 时间维度选择 -->
           <OrgPanel type="dateScope" :show.sync="showScopePanel" />
           <!-- 区域选择 -->
-          <OptionPanel type="OrgTree" :show.sync="showOrgPanel" />
+          <OptionPanel type="TheOrgTree" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">

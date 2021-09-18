@@ -1,5 +1,5 @@
 <template>
-  <div class="org-panel animate__animated animate__fadeIn" v-show="show">
+  <div class="panel animate__animated animate__fadeIn" v-show="show">
     <div v-for="group in resOrgTree" :key="group.orgId">
       <div class="row">
         <div
@@ -72,7 +72,7 @@ import {
 import { StoreKey, useStore } from "@/store";
 
 @Component
-export default class OrgTree extends Base {
+export default class TheOrgTree extends Base {
   DateScopes = DateScopes;
   DataLevels = DataLevels;
   /**
@@ -134,7 +134,7 @@ export default class OrgTree extends Base {
 </script>
 
 <style lang="scss" scoped>
-.org-panel {
+.panel {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -234,7 +234,7 @@ export default class OrgTree extends Base {
 .fade-leave-active {
   animation: 200ms fadeOut;
 }
-.org-panel {
+.panel {
   --animate-duration: 200ms;
 }
 </style>

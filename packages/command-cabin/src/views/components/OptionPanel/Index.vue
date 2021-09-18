@@ -4,10 +4,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import OrgTree from "./OrgTree.vue";
-import ProjectList from "./ProjectList.vue";
+import TheOrgTree from "./TheOrgTree.vue";
+import TheProjectList from "./TheProjectList.vue";
 
-const components = { OrgTree, ProjectList };
+const components = { TheOrgTree, TheProjectList };
 
 @Component({
   components,

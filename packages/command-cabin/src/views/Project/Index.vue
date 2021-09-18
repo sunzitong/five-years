@@ -135,7 +135,7 @@
           <!-- 时间维度选择 -->
           <OrgPanel type="dateScope" :show.sync="showScopePanel" />
           <!-- 门店选择 -->
-          <OptionPanel type="ProjectList" :show.sync="showOrgPanel" />
+          <OptionPanel type="TheProjectList" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">
