@@ -120,6 +120,7 @@ export default class App extends Mixins(MixStore) {
 
   /**
    * 请求区域门店数据
+   * 赋值全局数据
    */
   async fetchOrgData() {
     // 获取区域数据
