@@ -180,9 +180,9 @@
             </van-checkbox-group>
           </ButtonGroupA>
           <!-- 时间维度选择 -->
-          <OptionPanel type="TheDateScopes" :show.sync="showScopePanel" />
+          <OptionPanel name="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 区域选择 -->
-          <OptionPanel type="TheOrgTree" :show.sync="showOrgPanel" />
+          <OptionPanel name="TheOrgTree" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">

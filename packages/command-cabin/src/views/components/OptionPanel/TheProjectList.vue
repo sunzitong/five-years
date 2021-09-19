@@ -172,9 +172,6 @@ export default class TheProjectList extends Base {
 
 <style lang="scss" scoped>
 .panel {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   box-sizing: border-box;
   padding: 32px 60px;
   overflow: hidden;

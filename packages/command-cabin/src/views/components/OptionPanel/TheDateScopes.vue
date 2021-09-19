@@ -36,9 +36,6 @@ export default class TheDateScopes extends Base {
 
 <style lang="scss" scoped>
 .panel {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   color: #90a4c3;
   background: rgba(14, 23, 60, 0.9);
   backdrop-filter: blur(20px);

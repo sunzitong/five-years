@@ -1,5 +1,5 @@
 <template>
-  <component v-bind:is="currentComponent" :show.sync="pipeShow" :class="type" />
+  <component v-bind:is="currentComponent" :show.sync="pipeShow" :class="name" />
 </template>
 
 <script lang="ts">
@@ -17,7 +17,7 @@ export default class OptionPanel extends Vue {
   /**
    * 类型
    */
-  @Prop({ required: true, type: String }) type!: keyof typeof components;
+  @Prop({ required: true, type: String }) name!: keyof typeof components;
 
   @Prop({ default: false, type: Boolean }) show!: false;
 
@@ -33,12 +33,15 @@ export default class OptionPanel extends Vue {
    * 获取动态组件
    */
   get currentComponent() {
-    return components[this.type] ?? null;
+    return components[this.name] ?? null;
   }
 }
 </script>
 <style lang="scss" scoped>
 .panel {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   z-index: 20;
 }
 </style>

@@ -133,9 +133,9 @@
           </ButtonGroupA>
 
           <!-- 时间维度选择 -->
-          <OptionPanel type="TheDateScopes" :show.sync="showScopePanel" />
+          <OptionPanel name="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 门店选择 -->
-          <OptionPanel type="TheProjectList" :show.sync="showOrgPanel" />
+          <OptionPanel name="TheProjectList" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">
