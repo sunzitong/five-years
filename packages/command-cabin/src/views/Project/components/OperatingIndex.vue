@@ -39,7 +39,7 @@ import {
   BusinessScoreReturn,
   fetchBusinessScore,
 } from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { StoreKey, useStore } from "@/store";
 
@@ -48,7 +48,7 @@ type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 @Component({
   components: { Icon, StepNumber },
 })
-export default class OperatingIndex extends Base {
+export default class OperatingIndex extends Base implements IFetch {
   /**
    * 返回数据
    */

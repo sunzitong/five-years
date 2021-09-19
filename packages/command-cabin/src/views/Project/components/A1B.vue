@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import {
   fetchProjectBaseInfo,
   ProjectBaseInfoReturn,
@@ -28,7 +28,7 @@ import { useStore, StoreKey } from "@/store";
 import { iwant } from "@guanyu/shared";
 
 @Component
-export default class A1B extends Base {
+export default class A1B extends Base implements IFetch {
   timeLineData = [
     { label: "通过投委会", date: "2017-02-01", note: "IPD产品" },
     {

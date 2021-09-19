@@ -51,12 +51,12 @@ import {
   fetchProjectBaseInfo,
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo";
 import { StoreKey, useStore } from "@/store";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import { Component } from "vue-property-decorator";
 
 @Component
-export default class A1C extends Base {
+export default class A1C extends Base implements IFetch {
   response: Partial<ProjectBaseInfoReturn> = {};
   /**
    * 自动触发 重复调用

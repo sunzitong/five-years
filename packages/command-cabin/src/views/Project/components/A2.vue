@@ -70,7 +70,7 @@
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Animationend from "@/components/Animationend/Index.vue";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { iwant, uuid } from "@guanyu/shared";
 import {
   fetchGroupInfo,
@@ -84,7 +84,7 @@ type Item = Group & { id: string };
 @Component({
   components: { Icon, Animationend, BlurBox },
 })
-export default class A2 extends Base {
+export default class A2 extends Base implements IFetch {
   /**
    * 经营团队
    * 设计团队

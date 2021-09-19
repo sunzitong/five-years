@@ -78,12 +78,12 @@ export class Base extends Mixins(MixStore) {
 }
 
 /**
- * 实现接口请求
+ * abstract实现接口请求
  */
-export abstract class IFetch {
+export interface IFetch {
   /**
    * 自动监听触发 重复调用
    * @returns response
    */
-  abstract fetch(): Promise<ResponseData<unknown> | void>;
+  fetch(): Promise<ResponseData<unknown> | void>;
 }

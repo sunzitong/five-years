@@ -38,7 +38,7 @@ import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { AnyObject, iwant } from "@guanyu/shared";
 import _ from "lodash";
 import { StoreKey, useStore } from "@/store";
@@ -49,7 +49,7 @@ import mitter, { EventName } from "@/utils/mitter";
 @Component({
   components: { ProgressCircle },
 })
-export default class A6 extends Base {
+export default class A6 extends Base implements IFetch {
   /**
    * 接口返回值
    * /analysis/bigScreen/mainBoard/expandDisk

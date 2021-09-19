@@ -20,14 +20,14 @@ import {
   fetchRepairStat,
   RepairStatReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/repairStat";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 
 console.log(echarts);
 
 @Component
-export default class B5 extends Base {
+export default class B5 extends Base implements IFetch {
   /**
    * 饼图
    */

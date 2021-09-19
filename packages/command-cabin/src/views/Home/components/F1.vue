@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";
 import { fetchSentiment } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
@@ -42,7 +42,7 @@ import { Swipe } from "vant";
     F1B,
   },
 })
-export default class F1 extends Base {
+export default class F1 extends Base implements IFetch {
   @Ref() swipe!: Swipe;
   /**
    * 返回数据

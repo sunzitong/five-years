@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import {
   ProjectBaseInfoReturn,
   fetchProjectBaseInfo,
@@ -81,7 +81,7 @@ import { iwant } from "@guanyu/shared";
 import { StoreKey, useStore } from "@/store";
 
 @Component
-export default class A1A extends Base {
+export default class A1A extends Base implements IFetch {
   response: Partial<ProjectBaseInfoReturn> = {};
   /**
    * 自动触发 重复调用
