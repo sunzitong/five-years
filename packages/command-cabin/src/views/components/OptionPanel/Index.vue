@@ -38,7 +38,7 @@ export default class OptionPanel extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.panel {
+.option-panel {
   position: absolute;
   bottom: 0;
   right: 0;

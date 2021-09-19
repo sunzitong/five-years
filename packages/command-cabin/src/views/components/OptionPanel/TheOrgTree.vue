@@ -1,5 +1,5 @@
 <template>
-  <div class="panel animate__animated animate__fadeIn" v-show="show">
+  <div class="option-panel animate__animated animate__fadeIn" v-show="show">
     <div v-for="group in resOrgTree" :key="group.orgId">
       <div class="row">
         <div
@@ -134,7 +134,7 @@ export default class TheOrgTree extends Base {
 </script>
 
 <style lang="scss" scoped>
-.panel {
+.option-panel {
   box-sizing: border-box;
   padding: 32px 60px;
   overflow: hidden;
@@ -230,7 +230,7 @@ export default class TheOrgTree extends Base {
 .fade-leave-active {
   animation: 200ms fadeOut;
 }
-.panel {
+.option-panel {
   --animate-duration: 200ms;
 }
 </style>

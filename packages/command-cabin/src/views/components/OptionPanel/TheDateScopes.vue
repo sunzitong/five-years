@@ -1,5 +1,5 @@
 <template>
-  <div class="panel animate__animated animate__fadeInUp" v-show="show">
+  <div class="option-panel animate__animated animate__fadeInUp" v-show="show">
     <ul class="list" v-for="item in options" :key="item.value">
       <li
         class="item"
@@ -35,13 +35,13 @@ export default class TheDateScopes extends Base {
 </script>
 
 <style lang="scss" scoped>
-.panel {
+.option-panel {
   color: #90a4c3;
   background: rgba(14, 23, 60, 0.9);
   backdrop-filter: blur(20px);
   font-size: 40px;
 }
-.panel {
+.option-panel {
   --animate-duration: 200ms;
 }
 .list {
