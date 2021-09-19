@@ -19,7 +19,7 @@
 import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import * as echarts from "echarts";
 import { arrayToObject, iwant } from "@guanyu/shared";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { SentimentReturn } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 
 @Component

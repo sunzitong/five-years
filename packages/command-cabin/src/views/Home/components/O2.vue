@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import E2B from "./O2B.vue";
 
 @Component({

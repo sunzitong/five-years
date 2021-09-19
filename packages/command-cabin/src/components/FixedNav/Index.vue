@@ -183,7 +183,9 @@ export default class FixedNav extends Vue {
    * 跳转到页面
    */
   toPage(item: MenuItemProps) {
-    this.$router.push(item.href);
+    if (this.$route.fullPath !== item.href) {
+      this.$router.push(item.href);
+    }
     this.toggleNav();
   }
 

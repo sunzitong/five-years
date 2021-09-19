@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import A1A from "./A1A.vue";
 import A1B from "./A1B.vue";
 import A1C from "./A1C.vue";

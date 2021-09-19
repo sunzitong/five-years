@@ -44,7 +44,7 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
 
 @Component({

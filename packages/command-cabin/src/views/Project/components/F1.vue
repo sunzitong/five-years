@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";
 import Spin from "@/components/Spin/Index.vue";
@@ -41,7 +41,7 @@ import { StoreKey, useStore } from "@/store";
     Spin,
   },
 })
-export default class F1 extends Base {
+export default class F1 extends Base implements IFetch {
   /**
    * 返回数据
    */

@@ -8,8 +8,5 @@ import Component from "vue-class-component";
  * 代替Vue.mixins()
  */
 export default class MixStore extends Vue {
-  // 参数等
-  env = store.env;
-
   store = store;
 }

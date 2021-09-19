@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import BackHome from "@/components/BackHome.vue";
-import Base from "./Base";
+import { Base } from "./Base";
 
 @Component({
   components: {
@@ -18,10 +18,10 @@ import Base from "./Base";
 })
 export default class NotFound extends Base {
   created() {
-    this.env.err = "404";
+    this.store.env.err = "404";
   }
   beforeDestroy() {
-    this.env.err = "";
+    this.store.env.err = "";
   }
 }
 </script>

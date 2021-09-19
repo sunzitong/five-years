@@ -11,7 +11,7 @@
     <AppLoading v-if="appLoading" />
     <!-- 控制缩放 -->
     <div
-      v-if="true || env.NODE_ENV === 'development'"
+      v-if="true || store.env.NODE_ENV === 'development'"
       :style="{ transform: 'scale(' + 1 / scale + ')' }"
       class="screen-resize"
     >

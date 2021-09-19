@@ -23,13 +23,13 @@ import {
   NumsByType,
   SentimentReturn,
 } from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
 })
-export default class D7 extends Base {
+export default class D7 extends Base implements IFetch {
   @Ref() chart!: HTMLDivElement;
 
   /**

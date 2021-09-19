@@ -180,9 +180,9 @@
             </van-checkbox-group>
           </ButtonGroupA>
           <!-- 时间维度选择 -->
-          <OptionPanel type="TheDateScopes" :show.sync="showScopePanel" />
+          <OptionPanel name="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 区域选择 -->
-          <OptionPanel type="TheOrgTree" :show.sync="showOrgPanel" />
+          <OptionPanel name="TheOrgTree" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">
@@ -244,7 +244,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import CardA from "@/components/CardA/Index.vue";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
@@ -396,7 +396,7 @@ export default class Home extends Base {
     margin: 0 0 108px;
   }
 }
-.panel {
+.option-panel {
   bottom: 120%;
   right: 0px;
   &.TheDateScopes {

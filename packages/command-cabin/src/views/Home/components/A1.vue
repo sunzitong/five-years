@@ -60,7 +60,7 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
 import { EChartsOption } from "echarts/types/dist/shared";
 import mitter, { EventName } from "@/utils/mitter";

@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { fetchDeviceOffline } from "@/service/analysis/bigScreen/mainBoard/managementSituation/deviceOffline";
 import { iwant } from "@guanyu/shared";
 import { StoreKey, useStore } from "@/store";
@@ -49,7 +49,7 @@ import { StoreKey, useStore } from "@/store";
     Icon,
   },
 })
-export default class D4 extends Base {
+export default class D4 extends Base implements IFetch {
   data: {
     name: string;
     value: number;

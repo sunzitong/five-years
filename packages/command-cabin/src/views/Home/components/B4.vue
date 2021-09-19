@@ -38,7 +38,7 @@ import {
   ProductQualityReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/productQuality";
 import dayjs from "dayjs";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { iwant, NumberLike } from "@guanyu/shared";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
@@ -46,7 +46,7 @@ import mitter, { EventName } from "@/utils/mitter";
 @Component({
   components: {},
 })
-export default class B4 extends Base {
+export default class B4 extends Base implements IFetch {
   /**
    * 条形图
    */

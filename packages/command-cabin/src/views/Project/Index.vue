@@ -133,9 +133,9 @@
           </ButtonGroupA>
 
           <!-- 时间维度选择 -->
-          <OptionPanel type="TheDateScopes" :show.sync="showScopePanel" />
+          <OptionPanel name="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 门店选择 -->
-          <OptionPanel type="TheProjectList" :show.sync="showOrgPanel" />
+          <OptionPanel name="TheProjectList" :show.sync="showOrgPanel" />
         </div>
       </div>
       <div class="main-right">
@@ -204,7 +204,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
@@ -320,7 +320,7 @@ export default class Index extends Base {
   top: 0;
   right: 65px;
 }
-.panel {
+.option-panel {
   bottom: 220px;
   &.TheDateScopes {
     right: 397px;

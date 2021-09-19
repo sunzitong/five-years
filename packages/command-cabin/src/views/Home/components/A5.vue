@@ -21,7 +21,7 @@ import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import echarts from "@/plugins/echarts";
 import { EChartsOption } from "echarts";
@@ -31,7 +31,7 @@ import mitter, { EventName } from "@/utils/mitter";
 @Component({
   components: { ProgressCircle },
 })
-export default class A5 extends Base {
+export default class A5 extends Base implements IFetch {
   /**
    * 接口返回值
    * /analysis/bigScreen/mainBoard/expandDisk

@@ -78,7 +78,7 @@ import {
   ProjectOpenReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
 import dayjs from "dayjs";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import B1C from "./B1C.vue";
 
@@ -87,7 +87,7 @@ import B1C from "./B1C.vue";
     B1C,
   },
 })
-export default class B1B extends Base {
+export default class B1B extends Base implements IFetch {
   /**
    * 左侧饼图
    */

@@ -65,7 +65,7 @@ import {
   ProjectDelayInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectDelayInfo";
 import { AnyObject, iwant } from "@guanyu/shared";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 
 @Component({
@@ -73,7 +73,7 @@ import { StoreKey, useStore } from "@/store";
     Animationend,
   },
 })
-export default class B2 extends Base {
+export default class B2 extends Base implements IFetch {
   /**
    * 接口返回值
    * /bigScreen/mainBoard/construct/projectDelayInfo

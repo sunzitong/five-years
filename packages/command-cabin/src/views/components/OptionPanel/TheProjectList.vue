@@ -1,9 +1,9 @@
 <template>
-  <div class="panel animate__animated animate__fadeIn" v-show="show">
+  <div class="option-panel animate__animated animate__fadeIn" v-show="show">
     <div
       v-for="group in resOrgTree"
       :key="group.orgId"
-      class="animate__animated animate__fadeInLeft"
+      class="org-wrap animate__animated animate__fadeInLeft"
     >
       <template v-for="area in group.childList">
         <div class="row" :key="area.orgId" v-if="area.childList">
@@ -74,7 +74,7 @@
 
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import {
   DataLevels,
@@ -171,10 +171,7 @@ export default class TheProjectList extends Base {
 </script>
 
 <style lang="scss" scoped>
-.panel {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.option-panel {
   box-sizing: border-box;
   padding: 32px 60px;
   overflow: hidden;
@@ -270,14 +267,14 @@ export default class TheProjectList extends Base {
 .fade-leave-active {
   animation: 200ms fadeOut;
 }
-.panel {
+.option-panel {
   --animate-duration: 200ms;
 }
 /* 门店选择相关 */
 .readonly {
   pointer-events: none;
 }
-.panel {
+.option-panel {
   display: flex;
 }
 .project-wrap {

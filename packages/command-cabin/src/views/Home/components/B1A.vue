@@ -20,14 +20,14 @@ import {
   ProjectOpenReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
 import { AnyObject, iwant, Nullable } from "@guanyu/shared";
-import Base from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 
 @Component({
   components: {},
 })
-export default class B1A extends Base {
+export default class B1A extends Base implements IFetch {
   /**
    * 堆叠柱状图
    */
