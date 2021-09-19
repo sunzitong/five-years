@@ -320,7 +320,7 @@ export default class Index extends Base {
   top: 0;
   right: 65px;
 }
-.panel {
+.option-panel {
   bottom: 220px;
   &.TheDateScopes {
     right: 397px;

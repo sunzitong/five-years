@@ -396,7 +396,7 @@ export default class Home extends Base {
     margin: 0 0 108px;
   }
 }
-.panel {
+.option-panel {
   bottom: 120%;
   right: 0px;
   &.TheDateScopes {
