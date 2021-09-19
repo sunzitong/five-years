@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import F1A from "./F1A.vue";
 import F1B from "./F1B.vue";
 import Spin from "@/components/Spin/Index.vue";

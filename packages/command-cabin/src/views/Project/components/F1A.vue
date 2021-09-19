@@ -10,7 +10,7 @@
 import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import * as echarts from "echarts";
 import { ECOption } from "@/plugins/echarts";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { SentimentReturn } from "@/service/analysis/bigScreen/mainBoard/managementSituation/sentiment";
 import { iwant } from "@guanyu/shared";
 

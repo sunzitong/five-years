@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 
 @Component({
   components: {},

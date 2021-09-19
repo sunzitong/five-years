@@ -63,7 +63,7 @@ import {
   BusinessScoreReturn,
   fetchBusinessScore,
 } from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { StoreKey, useStore } from "@/store";
 

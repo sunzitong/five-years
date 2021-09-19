@@ -204,7 +204,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";

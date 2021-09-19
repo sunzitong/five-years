@@ -20,7 +20,7 @@ import {
   ProjectOpenReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
 import { AnyObject, iwant, Nullable } from "@guanyu/shared";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 

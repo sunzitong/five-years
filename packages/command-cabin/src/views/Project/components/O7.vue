@@ -23,7 +23,7 @@ import {
   NumsByType,
   SentimentReturn,
 } from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 
 @Component({

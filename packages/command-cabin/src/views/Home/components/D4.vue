@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { fetchDeviceOffline } from "@/service/analysis/bigScreen/mainBoard/managementSituation/deviceOffline";
 import { iwant } from "@guanyu/shared";
 import { StoreKey, useStore } from "@/store";

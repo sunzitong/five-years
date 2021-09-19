@@ -38,7 +38,7 @@ import {
   fetchNumYearly,
   NumYearlyReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/numYearly";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { StoreKey, useStore } from "@/store";
 

@@ -74,7 +74,7 @@
 
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import {
   DataLevels,

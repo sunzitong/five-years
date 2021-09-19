@@ -70,7 +70,7 @@
 import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import Animationend from "@/components/Animationend/Index.vue";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { iwant, uuid } from "@guanyu/shared";
 import {
   fetchGroupInfo,

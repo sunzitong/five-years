@@ -21,7 +21,7 @@ import {
   fetchExpansionAwardInfo,
   ExpansionAwardInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import echarts from "@/plugins/echarts";
 import { EChartsOption } from "echarts";

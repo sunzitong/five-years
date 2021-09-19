@@ -20,7 +20,7 @@ import {
   fetchRepairStat,
   RepairStatReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/repairStat";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 

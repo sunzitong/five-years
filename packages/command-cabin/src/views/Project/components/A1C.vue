@@ -51,7 +51,7 @@ import {
   fetchProjectBaseInfo,
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo";
 import { StoreKey, useStore } from "@/store";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import { Component } from "vue-property-decorator";
 

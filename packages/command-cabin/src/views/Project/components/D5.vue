@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
+import { Base } from "@/views/Base";
 import Icon from "@/components/Icon/Index.vue";
 
 @Component({
