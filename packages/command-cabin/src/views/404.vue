@@ -18,10 +18,10 @@ import { Base } from "./Base";
 })
 export default class NotFound extends Base {
   created() {
-    this.env.err = "404";
+    this.store.env.err = "404";
   }
   beforeDestroy() {
-    this.env.err = "";
+    this.store.env.err = "";
   }
 }
 </script>
