@@ -86,7 +86,7 @@ $asce: #ff2a76;
   padding: 0 43px;
   .line {
     height: 2px;
-    margin: 41px 0 34px;
+    margin: 0 0 30px 0;
     background-image: linear-gradient(
       to right,
       #4d609d 0%,
