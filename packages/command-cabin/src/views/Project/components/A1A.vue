@@ -90,7 +90,7 @@ export default class A1A extends Base implements IFetch {
   async fetch() {
     const response = await useStore(fetchProjectBaseInfo, {
       key: StoreKey.ProjectBaseInfo,
-      params: { phId: this.store.global.project.phId },
+      params: { orgId: this.store.global.project.orgId },
     });
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);

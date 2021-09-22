@@ -4,7 +4,7 @@
  *
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/10 下午3:10:58
+ * @updateAt 2021/9/18 上午11:39:14
  * @method GET
  */
 
@@ -21,7 +21,7 @@ exports.response = {
     transactionModel: "重资产", //资产类型描述
     transactionModelType: "HeavyAsset", //资产类型
     openRoomNum: 111, //开业间数
-    businessArea: 111, //底商面积
+    businessArea: 111.2, //底商面积
     workstationNum: 111, //工位数
     parkingSpaceNum: 111, //车位个数
     valueAddedPoint: 111, //增值点位
@@ -36,5 +36,6 @@ exports.response = {
     landProperty: "直委", //土地性质
     buildingProperty: "直委", //楼体性质
     licensePropertyRight: "直委", //证照产权
+    investmentLink: "", //投资任务书链接 https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN1101000020180402242470&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D
   },
 };

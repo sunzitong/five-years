@@ -4,7 +4,7 @@
  *
  * 营造盘面-产品品质
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:40:44
+ * @updateAt 2021/9/18 下午3:24:27
  * @method GET
  */
 
@@ -18,9 +18,9 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    ipdRatio: 80,
-    checkScore: 80,
-    qualityScore: 80,
+    ipdRatio: 100,
+    checkScore: 20,
+    qualityScore: 10,
   },
   timestamp: 1630893610239,
 };

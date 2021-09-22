@@ -4,7 +4,7 @@
  *
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:40:27
+ * @updateAt 2021/9/22 上午9:14:33
  * @method GET
  */
 
@@ -13,42 +13,40 @@ exports.path = "/analysis/bigScreen/mainBoard/construct/list";
 exports.method = "GET";
 
 exports.response = {
-  traceId: null,
-  requestId: null,
   status: "ok",
   msg: "ok",
   data: {
-    total: 8,
-    pages: 1,
-    pageSize: 10,
-    pageNum: 1,
+    total: 8, //总数量
+    pages: 1, //总页数
+    pageSize: 10, //每页数量
+    pageNum: 1, //第几页
     list: [
       {
-        projectNo: "L-CD00-CDSDT00.08",
-        name: "龙湖冠寓成都时代店",
-        cityDepartmentName: "成都",
-        year: 2021,
-        stage: "已开业",
-        transactionModel: "重资产",
-        roomNum: 320,
-        planEnterDate: "2019/07/30",
-        actualEnterDate: "2019/07/30",
-        structureFinishDate: "2019/07/30",
-        mainFinishDate: "2019/07/30",
-        transferImprovementDate: "2019/07/30",
-        improvementStartDate: "2019/07/30",
-        isIpd: "是",
-        transferServiceDate: "2019/07/30",
-        workDays: 20,
-        planOpenDate: "2019/07/30",
-        actualOpenDate: "2019/07/30",
-        startCheckScore: 20,
-        midCheckScore: 10,
-        qualityScore: 10,
-        riskType: "延期风险",
-        riskReportDate: "2021/08/07",
-        chokePoint: "无",
-        fireControlType: "证照合规",
+        projectNo: "L-CD00-CDSDT00.08", //分期ID
+        name: "龙湖冠寓成都时代店", //名称
+        cityDepartmentName: "成都", //城市
+        year: 2021, //开业年份
+        stage: "已开业", //项目阶段 已开业/未开业
+        transactionModel: "重资产", //资产类型 重/中/轻资产
+        roomNum: 320, //房间间数
+        planEnterDate: "2019/07/30", //计划进场时间
+        actualEnterDate: "2019/07/30", //实际进场时间
+        structureFinishDate: "2019/07/30", //结构封顶时间
+        mainFinishDate: "2019/07/30", //主题竣工时间
+        transferImprovementDate: "2019/07/30", //移交精装修时间
+        improvementStartDate: "2019/07/30", //精装修开始时间
+        isIpd: "是", //是否IPD 是/否
+        transferServiceDate: "2019/07/30", //移交运营时间
+        workDays: 20, //工期（天）
+        planOpenDate: "2019/07/30", //计划开业时间
+        actualOpenDate: "2019/07/30", //实际开业时间
+        startCheckScore: 20, //开业检分数
+        midCheckScore: 10, //中期停止点检查得分
+        qualityScore: 10, //移交质量评估合格率
+        riskType: "延期风险", //风险类别
+        riskReportDate: "2021/08/07", //风险提报时间
+        chokePoint: "无", //项目卡点
+        fireControlType: "证照合规", //消防证照合规性
         buildingDesignPerson: "无",
         buildingDesignTel: "无",
         buildingDesignCompany: "无",
@@ -392,5 +390,4 @@ exports.response = {
     firstNumber: 1,
     lastNumber: 8,
   },
-  timestamp: 1630640590072,
 };
