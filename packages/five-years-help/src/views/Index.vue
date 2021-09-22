@@ -2,7 +2,7 @@
   <div class="page__index">
     <div class="ruleBtn" @click="handleRule">活动规则</div>
     <div class="page_main">
-      <div class="btnLogin" v-on:click="handleLogin"></div>
+      <div class="btnLogin" @click="handleGoHelp"></div>
       <div class="over-time">2021年9月17日-2021年10月18日</div>
       <div class="tips" @click="handleGoHelp">登录后才可以发起助力呦！</div>
     </div>
@@ -81,13 +81,13 @@ export default class Index extends Base {
 }
 .over-time {
   position: absolute;
-  bottom: 218px;
+  top: 432px;
   color: #fff;
   text-shadow: 0px 0px 8px #fd08fe;
 }
 .tips {
   position: absolute;
-  bottom: 62px;
+  top: 586px;
   color: #fff;
   opacity: 0.7;
 }
@@ -104,7 +104,7 @@ export default class Index extends Base {
 }
 .btnLogin {
   position: absolute;
-  bottom: 89px;
+  top: 533px;
   background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/6fj9IxRgs7xBWT5UxUXHkw.png) 0 0 no-repeat;
   background-size: cover;
   width: 242px;
