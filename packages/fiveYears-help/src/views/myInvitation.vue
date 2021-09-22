@@ -323,7 +323,7 @@ export default class Index extends Base {
   invitationId: any = "";
   activeTab = 1;
   loading = false;
-  token = getToken(); //todo
+  token = getToken() || "c4bc14cc248443e0a6d4a4a1a122dd28"; //todo
   async mounted() {
     document.title = "冠寓五周年助力活动";
     await this.getNum();

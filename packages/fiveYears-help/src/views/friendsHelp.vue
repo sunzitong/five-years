@@ -2,7 +2,6 @@
   <div class="page__index">
     <div class="ruleBtn" @click="handleRule">活动规则</div>
     <!-- banner区域 -->
-    <div class="ruleBtn">活动规则</div>
     <div class="banner-box">
       <div class="banner"></div>
       <div class="invitationInfo">
@@ -331,7 +330,7 @@ export default class Index extends Base {
   activeTab = 1;
   loading = false;
   id: any = "";
-  token = getToken() || "MjAyMTA5MDIwMDAxLDY4"; //todo
+  token = getToken() || "c4bc14cc248443e0a6d4a4a1a122dd28"; //todo
   async mounted() {
     document.title = "冠寓五周年助力活动";
     await this.getNum();
@@ -339,7 +338,6 @@ export default class Index extends Base {
     await this.getRankings();
     await this.getMyHelpers();
     this.id=this.$route.query.id;
-    console.log(this.id,'this.id123');
   }
   async getNum() {
     const res = await getNumber({
@@ -379,23 +377,22 @@ export default class Index extends Base {
   async helpJoin() {
     const res = await helpJoin({
       s: this.$route.query.id,
-      t: "69977ab6364545e98349b1616c5d8b70",
+      t: this.token,
     });
     if ((res as any)?.code === 0) {
       this.popParm.descript = "恭喜你助力成功！";
       this.popParm.buttonContext = "我也要发起助力";
       this.popParm.popType = 3;
       this.popParm.isShow = true;
-    } else if((res as any)?.code  === 100) {
+    } else if ((res as any)?.code === 100) {
       this.popParm.descript = "每人仅能为他人助力一次";
       this.popParm.buttonContext = "我也要发起助力";
       this.popParm.popType = 3;
       this.popParm.isShow = true;
-    }else{
+    } else {
        alert(111);
     }
   }
-
   async handleConfirm() {
     this.$router.push({
       path: "/myInvitation",
@@ -423,7 +420,7 @@ export default class Index extends Base {
     this.popParm.isShow = false;
   }
   handleRule(): void {
-    this.popParm.popType = 2;
+    this.popParm.popType = 1;
     this.popParm.isShow = true;
   }
   handleSelectTab($event: any): void {
