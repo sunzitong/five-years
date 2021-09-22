@@ -74,6 +74,10 @@ export enum StoreKey {
    * 营造盘面详情
    */
   ConstructList = "ConstructList",
+  /**
+   * 
+   */
+  HomeCostAnalysis = "HomeCostAnalysis",
 }
 /**
  * 方法重载
