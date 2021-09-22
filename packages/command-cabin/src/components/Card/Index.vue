@@ -24,7 +24,7 @@
         </slot>
       </div>
     </div>
-    <div class="app-card__debug" v-if="debug">
+    <div class="app-card__debug" v-if="$root.env.DEBUG">
       <!-- <p>{{ W }} x {{ H }}</p> -->
       <p>{{ W }} x {{ H - 23 }} | {{ H }}</p>
       <p v-if="$children[1]" style="font-size: 3em">
@@ -110,8 +110,6 @@ export default class Card extends Vue {
   W = 0;
   H = 0;
 
-  debug = process.env.NODE_ENV === "development";
-
   /**
    * 子组件传过来的数据来源
    */
@@ -160,7 +158,7 @@ export default class Card extends Vue {
   }
 
   mounted() {
-    if (this.debug) {
+    if (this.$root.env.DEBUG) {
       const { width, height } = getComputedStyle(this.card);
       this.W = parseFloat(width);
       this.H = parseFloat(height);

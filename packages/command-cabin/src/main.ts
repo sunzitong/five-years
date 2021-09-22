@@ -25,7 +25,7 @@ Vue.use(Spin);
 Vue.config.productionTip = false;
 // 实例
 const VIEW = new Vue({
-  data: store,
+  data: { ...store, DEBUG: false },
   router,
   render: (h) => h(App),
   methods: {},
