@@ -75,7 +75,7 @@ export enum StoreKey {
    */
   ConstructList = "ConstructList",
   /**
-   * 
+   *
    */
   HomeCostAnalysis = "HomeCostAnalysis",
 }

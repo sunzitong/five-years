@@ -22,17 +22,13 @@
       </tbody>
     </table>
     <div class="footer">
-      <select>
-        <option>ssss</option>
-        <option>ssss</option>
-        <option>ssss</option>
-      </select>
+      <Select name="TheOrgTree" title="地区选择"></Select>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import {
   fetchList,
@@ -40,9 +36,12 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/construct/list";
 import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
+import Select from "@/views/components/Select/Index.vue";
 
 /**营造台账宽表 */
-@Component
+@Component({
+  components: { Select },
+})
 export default class TheConstructList extends Base implements IFetch {
   options: { name: keyof List; text: string }[] = [
     { name: "projectNo", text: "分期ID" },
@@ -69,11 +68,13 @@ export default class TheConstructList extends Base implements IFetch {
     { name: "startCheckScore", text: "开业检分数" },
     { name: "midCheckScore", text: "中期停止点\n检查得分" },
     { name: "qualityScore", text: "移交质量评估\n合格率" },
-    { name: "riskType", text: "风险类别" },
+    { name: "riskTypeDesc", text: "风险类别" },
     { name: "riskReportDate", text: "风险提报时间" },
     { name: "chokePoint", text: "项目卡点" },
     { name: "fireControlType", text: "消防证照合规性" },
   ];
+
+  @Prop() title!: any;
 
   response: List[] = [];
 
@@ -127,10 +128,10 @@ export default class TheConstructList extends Base implements IFetch {
     text-align: center;
   }
   thead {
-    max-height: 2200px;
     color: #fff;
   }
   tbody {
+    max-height: 2200px;
     tr:nth-child(odd) {
       background: #0e173c;
     }
@@ -144,6 +145,15 @@ export default class TheConstructList extends Base implements IFetch {
   .line {
     height: 2px;
     background: #5180e4;
+  }
+  .footer {
+    height: 268px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
   }
 }
 </style>
