@@ -16,7 +16,7 @@
         <div class="help-title">当前已助力{{ userInfo.ic }}人</div>
         <div class="help-rate">
           <div class="unit unit1">
-            <span
+            <p
               :class="[
                 userInfo.ic >= 5
                   ? 'scale-active scale5-active'
@@ -24,8 +24,8 @@
               ]"
             >
               5人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 15
                   ? 'scale-active scale15-active'
@@ -33,8 +33,8 @@
               ]"
             >
               15人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 25
                   ? 'scale-active scale25-active'
@@ -42,8 +42,8 @@
               ]"
             >
               25人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 55
                   ? 'scale-active scale55-active'
@@ -51,8 +51,8 @@
               ]"
             >
               55人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 85
                   ? 'scale-active scale85-active'
@@ -60,7 +60,7 @@
               ]"
             >
               85人
-            </span>
+            </p>
           </div>
           <div class="barLayout">
             <div class="Bar">
@@ -81,7 +81,7 @@
                   :style="{
                     right:
                       userInfo.ic >= helpHeadCountList.slice(-1)
-                        ? `-2vw`
+                        ? `-1vw`
                         : `-6vw`,
                   }"
                 ></i>
@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="unit unit2">
-            <span
+            <p
               :class="[
                 userInfo.ic >= 5
                   ? 'scaleLong-active scaleLong5-active'
@@ -97,8 +97,8 @@
               ]"
             >
               100珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 15
                   ? 'scaleLong-active scaleLong15-active'
@@ -106,8 +106,8 @@
               ]"
             >
               315珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 25
                   ? 'scaleLong-active scaleLong25-active'
@@ -115,8 +115,8 @@
               ]"
             >
               555珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 55
                   ? 'scaleLong-active scaleLong55-active'
@@ -124,8 +124,8 @@
               ]"
             >
               1355珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 userInfo.ic >= 85
                   ? 'scaleLong-active scaleLong85-active'
@@ -133,7 +133,7 @@
               ]"
             >
               2355珑珠
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -150,7 +150,10 @@
                 用户{{ item.nn }}已达成{{ item.pn }}珑珠
               </li>
             </ul>
-            <div class="emptyTemplate" v-else></div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂无内容</div>
+            </div>
           </div>
         </div>
         <div class="history-right">
@@ -224,7 +227,10 @@
                 </ul>
               </div>
             </div>
-            <div class="emptyTemplate" v-else></div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂时还没有小伙伴助力</div>
+            </div>
           </div>
           <div v-else-if="activeTab == 2" class="tab-content tab-topTen">
             <div v-if="rankingsInfo && rankingsInfo.rl.length > 0">
@@ -252,7 +258,10 @@
                 </ul>
               </div>
             </div>
-            <div class="emptyTemplate" v-else></div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂无内容</div>
+            </div>
           </div>
         </div>
       </div>
@@ -263,11 +272,7 @@
     </div>
 
     <!-- 弹窗模态框 -->
-    <van-overlay
-      :show="this.popParm.isShow"
-      @click="handleClosed"
-      @touchmove.prevent
-    >
+    <van-overlay :show="this.popParm.isShow" @click="handleClosed" :lock-scroll="false">
       <modelBox
         :buttonContext="this.popParm.buttonContext"
         :descript="this.popParm.descript"
@@ -364,7 +369,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      // this.userInfo.ic = 15; //todo
+      this.userInfo.ic = 6; //todo
     }
   }
   async getMyHelpers(){
@@ -449,10 +454,16 @@ export default class Index extends Base {
 /* less也支持 */
 <style lang="scss" scoped>
 /* 当前蒙层显示时生效 */
-.van-overlay {
-  overflow-y: hidden;
-  z-index: 99999;
-}
+.mask {
+  position:absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  background:black;
+  opacity:0.4;
+ }
 .footer {
   display: flex;
   flex-direction: column;
@@ -522,9 +533,9 @@ export default class Index extends Base {
   align-items: center;
   text-align: center;
   right: 0;
-  top: 252px;
+  top: 267px;
   width: 23px;
-  height: 87px;
+  height: 71px;
   font-weight: 500;
   color: #00FFFF;
   text-shadow: 0px 0px 12px #00fbfd, 0px 2px 4px rgb(0 0 0 / 89%);
@@ -532,6 +543,8 @@ export default class Index extends Base {
   border-right: 0;
   border-radius: 12px 0 0 12px;
   z-index: 98;
+  font-size: 12px;
+  line-height: 15px;
 }
 .banner-box {
   .banner {
@@ -556,6 +569,8 @@ export default class Index extends Base {
       bottom: 158px;
       color: #fff;
       text-shadow: 0px 0px 8px #fd08fe;
+      width: 100%;
+      text-align: center;
     }
   }
   .banner-operationPlatform {
@@ -600,75 +615,84 @@ export default class Index extends Base {
     // 5珑珠刻度
     .scale5 {
       justify-content: end;
-      width: 52px;
+      width: 46px;
+      opacity: 0.5;
     }
     .scale5-active {
       justify-content: end;
-      width: 52px;
+      width: 46px;
     }
     .scaleLong5 {
       justify-content: end;
-      width: 52px;
+      width: 48px;
+      opacity: 0.5;
     }
     .scaleLong5-active {
       justify-content: end;
-      width: 52px;
+      width: 48px;
     }
     // 15珑珠刻度
     .scale15 {
       justify-content: end;
-      width: 52px;
+      width: 40px;
+      opacity: 0.5;
     }
     .scale15-active {
       justify-content: center;
-      width: 52px;
+      width: 40px;
     }
     .scaleLong15 {
       justify-content: center;
-      width: 52px;
+      width: 50px;
+      opacity: 0.5;
     }
     .scaleLong15-active {
       justify-content: center;
-      width: 52px;
+      width: 50px;
     }
     // 25珑珠刻度
     .scale25 {
       justify-content: center;
-      width: 68px;
+      width: 46px;
+      opacity: 0.5;
     }
     .scale25-active {
       justify-content: center;
-      width: 68px;
+      width: 46px;
     }
     .scaleLong25 {
       justify-content: center;
-      width: 68px;
+      width: 53px;
+      opacity: 0.5;
     }
     .scaleLong25-active {
       justify-content: center;
-      width: 68px;
+      width: 53px;
     }
     // 55珑珠刻度
     .scale55 {
       justify-content: center;
-      width: 68px;
+      width: 96px;
+      opacity: 0.5;
     }
     .scale55-active {
       justify-content: center;
-      width: 68px;
+      width: 96px;
     }
     .scaleLong55 {
       justify-content: center;
-      width: 68px;
+      width: 87px;
+      opacity: 0.5;
     }
     .scaleLong55-active {
       justify-content: center;
-      width: 68px;
+      width: 87px;
     }
     // 85珑珠刻度
     .scale85 {
       justify-content: center;
       width: 68px;
+      opacity: 0.5;
     }
     .scale85-active {
       justify-content: center;
@@ -677,6 +701,7 @@ export default class Index extends Base {
     .scaleLong85 {
       justify-content: center;
       width: 68px;
+      opacity: 0.5;
     }
     .scaleLong85-active {
       justify-content: center;
@@ -694,9 +719,9 @@ export default class Index extends Base {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      span {
+      p {
         display: flex;
-        align-items: center;
+        justify-content: flex-end;
         font-weight: 400;
       }
     }
@@ -704,12 +729,12 @@ export default class Index extends Base {
       position: absolute;
       top: 50px;
       text-align: center;
-      margin-left: 27px;
+      left: 27px;
     }
     .unit2 {
       position: absolute;
       bottom: 38px;
-      margin-left: 27px;
+      left: 27px;
       text-align: center;
     }
   }
@@ -723,7 +748,13 @@ export default class Index extends Base {
       background-size: contain;
       background-position: center;
       height: 47px;
-      margin-top: 70px;
+      margin-top: 50px;
+    }
+    .emptyDescript {
+      text-align: center;
+      color: #fff;
+      opacity: 0.7;
+      margin-top: 12px;
     }
     .history-left {
       display: flex;
@@ -738,12 +769,12 @@ export default class Index extends Base {
       border-radius: 8px;
       .history-left-ly {
         width: 149px;
-        height: 193px;
+        height: 170px;
         overflow-y: auto;
       }
       .complete-user {
-        // animation: myMove 5s linear infinite;
-        // animation-fill-mode: forwards;
+        animation: myMove 5s linear infinite;
+        animation-fill-mode: forwards;
       }
       @keyframes myMove {
         0% {
@@ -764,7 +795,7 @@ export default class Index extends Base {
         font-size: 12px;
         color: #ffffff;
         letter-spacing: 0;
-        width: 99px;
+        width: 102px;
         line-height: 20px;
       }
     }
@@ -910,7 +941,14 @@ export default class Index extends Base {
           background-size: contain;
           background-position: center;
           height: 100px;
-          margin-top: 84px;
+          margin-top: 70px;
+        }
+        .emptyDescript {
+          width: 100%;
+          text-align: center;
+          color: #fff;
+          opacity: 0.7;
+          margin-top: 12px;
         }
       }
       .tab-topTen {

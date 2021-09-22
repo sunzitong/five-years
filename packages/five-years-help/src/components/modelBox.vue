@@ -1,5 +1,5 @@
 <template>
-  <div class="popMainLayOut" @touchmove.prevent>
+  <div class="popMainLayOut">
     <div class="popMain" v-if="popType === 1">
       <div class="popRuleLayOut">
         <div class="popRule">
@@ -88,7 +88,7 @@ export default class MixinMask extends Vue {
   background-size: contain;
   background-position: center;
   height: 335px;
-  margin-top: 40%;
+  margin-top: 30%;
   color: #fff;
 }
 .tipsImage {
@@ -102,11 +102,12 @@ export default class MixinMask extends Vue {
 .popRuleLayOut {
   width: 278px;
   height: 280px;
-  overflow-y: auto;
 }
 .popRule {
   display: flex;
   flex-direction: column;
+  height: 280px;
+  overflow-y: auto;
   padding: 0 4px;
   .title {
     text-align: center;

@@ -29,7 +29,7 @@
         <div class="help-title">当前已助力{{ startUserInfo.ic }}人</div>
         <div class="help-rate">
           <div class="unit unit1">
-            <span
+            <p
               :class="[
                 startUserInfo.ic >= 5
                   ? 'scale-active scale5-active'
@@ -37,8 +37,8 @@
               ]"
             >
               5人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 15
                   ? 'scale-active scale15-active'
@@ -46,8 +46,8 @@
               ]"
             >
               15人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 25
                   ? 'scale-active scale25-active'
@@ -55,8 +55,8 @@
               ]"
             >
               25人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 55
                   ? 'scale-active scale55-active'
@@ -64,8 +64,8 @@
               ]"
             >
               55人
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 85
                   ? 'scale-active scale85-active'
@@ -73,7 +73,7 @@
               ]"
             >
               85人
-            </span>
+            </p>
           </div>
           <div class="barLayout">
             <div class="Bar">
@@ -102,7 +102,7 @@
             </div>
           </div>
           <div class="unit unit2">
-            <span
+            <p
               :class="[
                 startUserInfo.ic >= 5
                   ? 'scaleLong-active scaleLong5-active'
@@ -110,8 +110,8 @@
               ]"
             >
               100珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 15
                   ? 'scaleLong-active scaleLong15-active'
@@ -119,8 +119,8 @@
               ]"
             >
               315珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 25
                   ? 'scaleLong-active scaleLong25-active'
@@ -128,8 +128,8 @@
               ]"
             >
               555珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 55
                   ? 'scaleLong-active scaleLong55-active'
@@ -137,8 +137,8 @@
               ]"
             >
               1355珑珠
-            </span>
-            <span
+            </p>
+            <p
               :class="[
                 startUserInfo.ic >= 85
                   ? 'scaleLong-active scaleLong85-active'
@@ -146,7 +146,7 @@
               ]"
             >
               2355珑珠
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -615,6 +615,8 @@ export default class Index extends Base {
       bottom: 158px;
       color: #fff;
       text-shadow: 0px 0px 8px #fd08fe;
+      width: 100%;
+      text-align: center;
     }
   }
   .banner-operationPlatform {

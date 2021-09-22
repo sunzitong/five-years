@@ -4,10 +4,14 @@
     <div class="page_main">
       <div class="btnLogin" @click="login"></div>
       <div class="over-time">2021年9月17日-2021年10月18日</div>
-      <div class="tips" @click="handleGoHelp">登录后才可以发起助力呦！</div>
+      <div class="tips">登录后才可以发起助力呦！</div>
     </div>
     <!-- 弹窗模态框 -->
-    <van-overlay :show="isShow" @click="handleClosed">
+    <van-overlay
+      :show="isShow"
+      @click="handleClosed"
+      v-lockScrollBack="[isShow]"
+    >
       <modelBox :popType="1" @closed="handleClosed"></modelBox>
     </van-overlay>
   </div>
@@ -24,6 +28,7 @@ import modelBox from "@/components/modelBox.vue";
     modelBox,
   },
 })
+ 
 export default class Index extends Base {
   /**
    * 运行环境
@@ -77,7 +82,7 @@ export default class Index extends Base {
 <style lang="scss" scoped>
 .page__index {
   overflow: hidden;
-  height: calc(100vh);
+  height: calc(103vh);
 }
 .over-time {
   position: absolute;
