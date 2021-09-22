@@ -142,24 +142,14 @@ export default class Index extends Base {
             }
           )}`,
         });
+      } else if (this.visitSource === "APP") {
+        window.location.href = "weixin://dl/business/?t=aWHg2IZDmBp";
       }
       return;
     }
     // 若是H5活动, 直接跳转
     window.location.href = item.activityUrl;
     console.log("item", item);
-  }
-  handleGoPage() {
-    console.log(this.visitSource, "this.visitSource ");
-    if (this.visitSource === "小程序") {
-      window.wx.miniProgram.navigateTo({
-        url: "/pages/index/demo",
-      });
-    } else {
-      // location.href = "weixin://dl/business/?t=UWD6sWSZ2Ro";
-      // location.href = "weixin://dl/business/?t=l2yNlq5JVed";
-      location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
-    }
   }
 }
 </script>
