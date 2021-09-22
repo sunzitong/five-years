@@ -52,7 +52,7 @@ export default function (router: VueRouter) {
     // 获取token
     const token = getToken();
     // 没有token, 强制跳转到登录页
-    //if (!token) return next("/index");
+    if (!token) return next("/index");
     next();
   });
   router.afterEach(async function () {
