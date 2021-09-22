@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=survey",
-    "build": "lerna run build --scope=survey --stream",
+    "postinstall": "lerna bootstrap --scope={didigoyoo,doubleEleven-part-three,doubleEleven-part-two,newfriend,serviceTreaty,survey,threeyears,xiaoguanapp-h5,xyac}",
+    "build": "lerna run build --scope={didigoyoo,doubleEleven-part-three,doubleEleven-part-two,newfriend,serviceTreaty,survey,threeyears,xiaoguanapp-h5,xyac} --stream",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
