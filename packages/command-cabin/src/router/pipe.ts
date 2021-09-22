@@ -8,7 +8,7 @@ import mitter, { EventName } from "@/utils/mitter";
  */
 // eslint-disable-next-line
 function toError(router: VueRouter, to: Route) {
-  store.env.err = "404";
+  store.env.ERROR = "404";
   router
     .replace({
       path: "./error",

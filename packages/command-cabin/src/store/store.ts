@@ -11,7 +11,7 @@ const store = {
    */
   env: {
     ...process.env,
-    err: "",
+    ERROR: "",
   } as Env,
   /**
    * 全局参数
