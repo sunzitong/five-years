@@ -1,7 +1,7 @@
 <template>
   <div class="page__plate">
     <SubWrapperA title="营造盘面详情" style="height: 2750px">
-      营造盘面详情
+      <TheConstructList />
     </SubWrapperA>
   </div>
 </template>
@@ -10,11 +10,13 @@
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
+import TheConstructList from "./components/TheConstructList.vue";
 
 /**营造盘面详情 */
 @Component({
   components: {
     SubWrapperA,
+    TheConstructList,
   },
 })
 export default class BuildThePlate extends Base {}

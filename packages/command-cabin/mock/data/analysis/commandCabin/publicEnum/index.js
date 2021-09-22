@@ -4,7 +4,7 @@
  *
  * OMS-公用枚举
  * @createBy wuyao
- * @updateAt 2021/9/1 下午8:11:33
+ * @updateAt 2021/9/22 下午2:34:27
  * @method GET
  */
 
@@ -40,5 +40,10 @@ exports.response = {
       { name: "MONTHLY", desc: "月范围" },
       { name: "DAILY", desc: "日范围" },
     ], //时间范围
+    riskTypes: [
+      { name: "Delay", desc: "延期风险" },
+      { name: "CrossYear", desc: "跨年风险" },
+      { name: "NoRisk", desc: "无风险" },
+    ],
   },
 };
