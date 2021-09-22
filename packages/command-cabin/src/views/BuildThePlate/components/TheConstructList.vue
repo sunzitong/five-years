@@ -1,0 +1,149 @@
+<template>
+  <div class="table-wrap">
+    <table class="table" cellspacing="0">
+      <thead>
+        <tr>
+          <th v-for="opt in options" :key="opt.name">{{ opt.text }}</th>
+        </tr>
+        <tr class="line">
+          <th :colspan="options.length" class="line"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in response"
+          :key="item.projectNo"
+          :class="{ warn: item.riskType !== 'NoRisk' }"
+        >
+          <td v-for="opt in options" :key="opt.name">
+            {{ formatValue(item[opt.name]) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      <select>
+        <option>ssss</option>
+        <option>ssss</option>
+        <option>ssss</option>
+      </select>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component } from "vue-property-decorator";
+import { Base, IFetch } from "@/views/Base";
+import {
+  fetchList,
+  List,
+} from "@/service/analysis/bigScreen/mainBoard/construct/list";
+import { StoreKey, useStore } from "@/store";
+import { iwant } from "@guanyu/shared";
+
+/**营造台账宽表 */
+@Component
+export default class TheConstructList extends Base implements IFetch {
+  options: { name: keyof List; text: string }[] = [
+    { name: "projectNo", text: "分期ID" },
+    { name: "name", text: "项目名称" },
+    { name: "cityDepartmentName", text: "城市" },
+    { name: "year", text: "开业年份" },
+    { name: "stage", text: "项目阶段" },
+    { name: "transactionModel", text: "资产类型" },
+    { name: "roomNum", text: "房间间数" },
+    { name: "planEnterDate", text: "计划进场时间" },
+    { name: "actualEnterDate", text: "实际进场时间" },
+    { name: "structureFinishDate", text: "结构封顶时间\n（重）" },
+    { name: "mainFinishDate", text: "主体竣备时间\n（重）" },
+    {
+      name: "transferImprovementDate",
+      text: "室内清水作业面\n移交精装完成时间（重）",
+    },
+    { name: "improvementStartDate", text: "精装进场时间\n（中、轻）" },
+    { name: "isIpd", text: "是否IPD" },
+    { name: "transferServiceDate", text: "移交运营时间" },
+    { name: "workDays", text: "工期天数" },
+    { name: "planOpenDate", text: "计划开业时间" },
+    { name: "actualOpenDate", text: "实际开业时间" },
+    { name: "startCheckScore", text: "开业检分数" },
+    { name: "midCheckScore", text: "中期停止点\n检查得分" },
+    { name: "qualityScore", text: "移交质量评估\n合格率" },
+    { name: "riskType", text: "风险类别" },
+    { name: "riskReportDate", text: "风险提报时间" },
+    { name: "chokePoint", text: "项目卡点" },
+    { name: "fireControlType", text: "消防证照合规性" },
+  ];
+
+  response: List[] = [];
+
+  /**
+   * 自动触发 重复调用
+   */
+  async fetch() {
+    const response = await useStore(fetchList, {
+      key: StoreKey.ConstructList,
+      params: {
+        // 大区城市
+        orgType: this.store.global.dataLevel,
+        // 组织ID
+        orgId: this.store.global.orgTree.orgId,
+        // 开业开始时间
+        openYearStart: 2021,
+        // 开业结束时间
+        openYearEnd: 2021,
+        // 项目阶段
+        stage: "",
+        // 延期类型
+        riskType: "",
+      },
+    });
+    if (response?.status === "ok") {
+      this.response = iwant.array(response.data?.list);
+    }
+    return response;
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.table-wrap {
+  position: relative;
+  z-index: 1;
+  height: 2578px;
+  background: linear-gradient(
+    90deg,
+    rgba(1, 15, 65, 0.5) 0%,
+    rgba(8, 16, 44, 0.5) 6.86%,
+    rgba(4, 18, 68, 0.5) 13.58%
+  );
+  border: 1px solid #0c265e;
+  border-top: 2px solid #5180e4;
+  color: #90a4c3;
+  font-size: 40px;
+  .table {
+    width: 100%;
+    white-space: pre-line;
+    text-align: center;
+  }
+  thead {
+    max-height: 2200px;
+    color: #fff;
+  }
+  tbody {
+    tr:nth-child(odd) {
+      background: #0e173c;
+    }
+  }
+  tr {
+    height: 110px;
+  }
+  .warn {
+    color: #ff3980;
+  }
+  .line {
+    height: 2px;
+    background: #5180e4;
+  }
+}
+</style>

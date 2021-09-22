@@ -91,6 +91,7 @@ export interface List {
   startCheckScore: number | null;
   midCheckScore: number | null;
   qualityScore: number | null;
+  riskTypeDesc?: string;
   riskType: string;
   riskReportDate: string;
   chokePoint: null | string;
@@ -118,7 +119,7 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/22 上午9:14:33
+ * @updateAt 2021/9/22 下午2:31:51
  * @method GET
  */
 export const fetchList = (params?: ListParams) => {

@@ -14,6 +14,7 @@ export interface PublicEnumReturn {
   crisisLabels: CrisisLabel[];
   dataLevels: CrisisLabel[];
   dateScopes: CrisisLabel[];
+  riskTypes: CrisisLabel[];
 }
 
 export interface CrisisLabel {
@@ -24,7 +25,7 @@ export interface CrisisLabel {
 /**
  * OMS-公用枚举
  * @createBy wuyao
- * @updateAt 2021/9/1 下午8:11:33
+ * @updateAt 2021/9/22 下午2:34:27
  * @method GET
  */
 export const fetchPublicEnum = (params?: Record<string, unknown>) => {
@@ -134,4 +135,24 @@ export enum DateScopes {
    * 日范围
    */
   DAILY = "DAILY",
+}
+
+/**
+ * 枚举-RiskTypes
+ */
+export enum RiskTypes {
+  /**
+   * 延期风险
+   */
+  Delay = "Delay",
+
+  /**
+   * 跨年风险
+   */
+  CrossYear = "CrossYear",
+
+  /**
+   * 无风险
+   */
+  NoRisk = "NoRisk",
 }

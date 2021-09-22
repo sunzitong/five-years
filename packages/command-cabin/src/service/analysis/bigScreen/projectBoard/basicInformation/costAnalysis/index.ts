@@ -1,53 +1,44 @@
 /**
  * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
- * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114600
+ * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114606
  */
 
 import http from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 成本分析模块-参数
+ * 成本决算信息-参数
  */
 export interface CostAnalysisParams {
   /**
-   * 地区类型
+   * 项目分期id
    */
-  regionType: string;
-
-  /**
-   * 地区id
-   */
-  regionId: number;
+  phId: string;
 }
 
 /**
- * 成本分析模块-返回值
+ * 成本决算信息-返回值
  */
 export interface CostAnalysisReturn {
-  riskItemNum: number;
-  allItemDiff: number;
-  costAnalysisModelList: CostAnalysisModelList[];
-}
-
-export interface CostAnalysisModelList {
   id: number;
   phId: string;
   projectName: string;
-  dynamicCostNonTax: number;
+  approvedDate: Date;
   targetCostNonTax: number;
-  useRate: number;
+  dynamicCostNonTax: number;
+  costValLandSum: number;
+  budgetBalanceNoTax: number;
 }
 
 /**
- * 成本分析模块
+ * 成本决算信息
  * @createBy zhangyao03
- * @updateAt 2021/9/22 上午11:15:20
+ * @updateAt 2021/9/22 下午2:23:38
  * @method GET
  */
 export const fetchCostAnalysis = (params: CostAnalysisParams) => {
   return http.get<CostAnalysisReturn>(
-    `${BASE_URL}/analysis/bigScreen/mainBoard/construct/costAnalysis`,
+    `${BASE_URL}/analysis//bigScreen/projectBoard/basicInformation/costAnalysis`,
     {
       ...params,
     }
