@@ -1,6 +1,13 @@
 <template>
   <div class="container">
-    <img v-for="item in data" :src="item.imageUrl" :key="item.id" alt="" :class="`class${item.id}`"/>
+    <img
+      v-for="item in data"
+      :src="item.imageUrl"
+      :key="item.id"
+      alt=""
+      :class="`class${item.id}`"
+      @click="jumpToAct(item)"
+    />
     <img
       class="bg"
       src="https://goyoo-assets.longfor.com/prod/app/55cC0WCB5wQTFc_JA5p0EQ.png"
@@ -54,7 +61,7 @@ export default class Index extends Base {
    */
   @Inject() share!: () => void;
   $dialog: any;
-  data = [];
+  data: any = [];
 
   mounted() {
     // location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
@@ -65,7 +72,9 @@ export default class Index extends Base {
       this.share();
     }
   }
-
+  /**
+   * 获取活动入口
+   */
   async fetchCustomEntry() {
     const res = await fetchCustomEntry({
       activityNumber: "202109137856",
@@ -86,6 +95,30 @@ export default class Index extends Base {
       toLogin();
       return;
     }
+  }
+  /**
+   * 跳转到活动
+   */
+  jumpToAct(item) {
+    // 若该活动需要登录
+    if (item.isLogin) {
+      this.login();
+    }
+    // 若活动需要跳转到其他原生小程序页
+    if (item.appId) {
+      if (this.visitSource === "小程序") {
+        window.wx.miniProgram.navigateTo({
+          url: `/packageB/pages/miniProgramTransfer/miniProgramTransfer?params=${JSON.stringify({
+            appId: item.appId,
+            path: item.appId,
+          })}`,
+        });
+      }
+      return;
+    }
+    // 若是H5活动, 直接跳转
+    window.location.href = item.activityUrl;
+    console.log("item", item);
   }
   handleGoPage() {
     console.log(this.visitSource, "this.visitSource ");

@@ -1,3 +1,4 @@
+import { judgeDevice } from "@guanyu/h5-tools";
 import { getToken } from "@/utils/guanyu";
 import axios from "axios";
 import { Toast } from "vant";
@@ -14,8 +15,9 @@ service.interceptors.request.use(
     // 需要token就在这里设置
     const token = getToken();
     if (token) {
-      config.headers.common["Authorization"] = `Bearer ${token}`;
+      config.headers.common["token"] = token;
     }
+    config.headers.common["businessSource"] = judgeDevice() === 'APP' ? '03' : judgeDevice() === '小程序' ? '11' : '';
     return config;
   },
   () => {
