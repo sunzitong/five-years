@@ -29,3 +29,8 @@ export const getHelpJoinApi = `${BASE_URL}/coupon_api/api/help/join`;
  * 我的好友助力列表
  */
 export const getMyHelpersApi = `${BASE_URL}/coupon_api/api/help/my_helpers`;
+
+/**
+ * 我的好友助力列表
+ */
+export const getStartUserApi = `${BASE_URL}/coupon_api/api/help/start_user`;

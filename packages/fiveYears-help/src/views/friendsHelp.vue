@@ -7,7 +7,7 @@
       <div class="invitationInfo">
         <p class="invitationImage"></p>
         <div class="invitationContext">
-          <div class="invitation">蛋壳</div>
+          <div class="invitation">{{ startUserInfo.nn }}</div>
           <div class="invitationDesc">邀请你为Ta 助力领冠寓免租券</div>
         </div>
       </div>
@@ -20,12 +20,12 @@
     <!-- 助力区域 -->
     <div class="help-box">
       <div class="current-help">
-        <div class="help-title">当前已助力{{ userInfo.ic }}人</div>
+        <div class="help-title">当前已助力{{ startUserInfo.ic }}人</div>
         <div class="help-rate">
           <div class="unit unit1">
             <span
               :class="[
-                userInfo.ic >= 5
+                startUserInfo.ic >= 5
                   ? 'scale-active scale5-active'
                   : 'scale scale5',
               ]"
@@ -34,7 +34,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 15
+                startUserInfo.ic >= 15
                   ? 'scale-active scale15-active'
                   : 'scale scale15',
               ]"
@@ -43,7 +43,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 25
+                startUserInfo.ic >= 25
                   ? 'scale-active scale25-active'
                   : 'scale scale25',
               ]"
@@ -52,7 +52,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 55
+                startUserInfo.ic >= 55
                   ? 'scale-active scale55-active'
                   : 'scale scale55',
               ]"
@@ -61,7 +61,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 85
+                startUserInfo.ic >= 85
                   ? 'scale-active scale85-active'
                   : 'scale scale85',
               ]"
@@ -75,9 +75,9 @@
                 class="rateBg"
                 :style="{
                   width:
-                    userInfo.ic / helpHeadCountList.slice(-1) >= 1
+                    startUserInfo.ic / helpHeadCountList.slice(-1) >= 1
                       ? (1 / 3.75) * 287 + `vw`
-                      : (userInfo.ic / helpHeadCountList.slice(-1)) *
+                      : (startUserInfo.ic / helpHeadCountList.slice(-1)) *
                           (1 / 3.75) *
                           287 +
                         `vw`,
@@ -87,7 +87,7 @@
                   class="icon"
                   :style="{
                     right:
-                      userInfo.ic >= helpHeadCountList.slice(-1)
+                      startUserInfo.ic >= helpHeadCountList.slice(-1)
                         ? `-2vw`
                         : `-6vw`,
                   }"
@@ -98,7 +98,7 @@
           <div class="unit unit2">
             <span
               :class="[
-                userInfo.ic >= 5
+                startUserInfo.ic >= 5
                   ? 'scaleLong-active scaleLong5-active'
                   : 'scaleLong scaleLong5',
               ]"
@@ -107,7 +107,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 15
+                startUserInfo.ic >= 15
                   ? 'scaleLong-active scaleLong15-active'
                   : 'scaleLong scaleLong15',
               ]"
@@ -116,7 +116,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 25
+                startUserInfo.ic >= 25
                   ? 'scaleLong-active scaleLong25-active'
                   : 'scaleLong scaleLong25',
               ]"
@@ -125,7 +125,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 55
+                startUserInfo.ic >= 55
                   ? 'scaleLong-active scaleLong55-active'
                   : 'scaleLong scaleLong55',
               ]"
@@ -134,7 +134,7 @@
             </span>
             <span
               :class="[
-                userInfo.ic >= 85
+                startUserInfo.ic >= 85
                   ? 'scaleLong-active scaleLong85-active'
                   : 'scaleLong scaleLong85',
               ]"
@@ -168,7 +168,7 @@
           </div>
           <div class="divided-cumulative">当前累计获得</div>
           <div class="divided-totel">
-            <span>{{ getLongShuCount(userInfo.ic) }}</span>
+            <span>{{ getLongShuCount(startUserInfo.ic) }}</span>
             珑珠
           </div>
           <div
@@ -208,10 +208,15 @@
             </span>
           </div>
           <div v-if="activeTab == 1" class="tab-content">
-            <div class="helpUserList" v-if="helpsList.length > 0">
+            <div
+              class="helpUserList"
+              v-if="
+                startUserInfo && startUserInfo.hu && startUserInfo.hu.length > 0
+              "
+            >
               <div
                 class="helpUser"
-                v-for="(item, index) in helpsList"
+                v-for="(item, index) in startUserInfo.hu"
                 :key="index"
               >
                 <img v-if="item.img" class="headerImage" :src="item.img" />
@@ -291,6 +296,7 @@ import {
   getHelpMy,
   getMyHelpers,
   helpJoin,
+  getStartUser,
 } from "@/service";
 import { getToken } from "@/utils/guanyu";
 import { setMiniProgramShare, showAppShare } from "@/utils/guanyu";
@@ -323,6 +329,7 @@ export default class Index extends Base {
   helpLongZhuList: any = [100, 315, 555, 1355, 2355]; //获取奖励比例图-珑珠数量
   dayjs: any = dayjs;
   userInfo: any = {}; // 我的用户信息 ||  被助力人信息
+  startUserInfo: any = {}; //发起人信息
   numberInfo: any = {}; //获取活动编号信息
   rankingsInfo: any = {}; //排行榜
   helpsList: any = []; // 我的好友助力榜
@@ -330,14 +337,15 @@ export default class Index extends Base {
   activeTab = 1;
   loading = false;
   id: any = "";
-  token = getToken() || "c4bc14cc248443e0a6d4a4a1a122dd28"; //todo
+  token = getToken() || "69977ab6364545e98349b1616c5d8b70"; //todo
   async mounted() {
     document.title = "冠寓五周年助力活动";
+    this.id=this.$route.query.id;
     await this.getNum();
     await this.getHelpMy();
     await this.getRankings();
     await this.getMyHelpers();
-    this.id=this.$route.query.id;
+    await this.getStartUser();
   }
   async getNum() {
     const res = await getNumber({
@@ -365,7 +373,15 @@ export default class Index extends Base {
       this.userInfo.ic = 55; //todo
     }
   }
-  async getMyHelpers(){
+  async getStartUser() {
+    const res = await getStartUser({
+      s: this.id,
+    });
+    if ((res as any)?.code == "0") {
+      this.startUserInfo = res?.data;
+    }
+  }
+  async getMyHelpers(): Promise<void>{
     const res = await getMyHelpers({
       n: (this.numberInfo as any).an,
       t: this.token,
@@ -374,7 +390,7 @@ export default class Index extends Base {
       this.helpsList = res?.data;
     }
   }
-  async helpJoin() {
+  async helpJoin(): Promise<void> {
     const res = await helpJoin({
       s: this.$route.query.id,
       t: this.token,
@@ -938,7 +954,7 @@ export default class Index extends Base {
           background-size: contain;
           background-position: center;
           height: 100px;
-          margin-top: 70px;
+          margin-top: 84px;
         }
       }
       .tab-topTen {

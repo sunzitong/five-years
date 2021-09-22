@@ -901,7 +901,7 @@ export default class Index extends Base {
           background-size: contain;
           background-position: center;
           height: 100px;
-          margin-top: 70px;
+          margin-top: 84px;
         }
       }
       .tab-topTen {
