@@ -2,7 +2,7 @@
   <div class="page__index">
     <div class="ruleBtn" @click="handleRule">活动规则</div>
     <div class="page_main">
-      <div class="btnLogin" @click="handleGoHelp"></div>
+      <div class="btnLogin" @click="login"></div>
       <div class="over-time">2021年9月17日-2021年10月18日</div>
       <div class="tips" @click="handleGoHelp">登录后才可以发起助力呦！</div>
     </div>
