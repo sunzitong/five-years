@@ -119,7 +119,7 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/22 下午2:31:51
+ * @updateAt 2021/9/22 下午2:50:47
  * @method GET
  */
 export const fetchList = (params?: ListParams) => {
