@@ -138,7 +138,7 @@ export default class Index extends Base {
           url: `/packageB/pages/miniProgramTransfer/miniProgramTransfer?params=${JSON.stringify(
             {
               appId: item.appId,
-              path: item.appId,
+              path: item.activityUrl,
             }
           )}`,
         });
