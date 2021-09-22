@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProjectBaseInfoParams {
   /**
-   * 门店分期id
+   * 门店组织ID
    */
-  phId: string;
+  orgId: number;
 }
 
 /**
@@ -39,12 +39,13 @@ export interface ProjectBaseInfoReturn {
   landProperty: string;
   buildingProperty: string;
   licensePropertyRight: string;
+  investmentLink: string;
 }
 
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/10 下午3:10:58
+ * @updateAt 2021/9/18 上午11:39:14
  * @method GET
  */
 export const fetchProjectBaseInfo = (params: ProjectBaseInfoParams) => {

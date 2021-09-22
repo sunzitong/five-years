@@ -11,29 +11,44 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ListParams {
   /**
-   * GROUP:全国；AREA:大区；CITY:城市
+   * AREA:大区；CITY:城市；不传则默认全部
    */
-  regionType: string;
+  orgType?: string;
 
   /**
-   * 大区ID/城市ID，默认是空
+   * 大区组织ID/城市组织ID；
    */
-  regionId?: number;
+  orgId?: number;
 
   /**
-   * 统计哪一年的数据，默认是当前年份
+   * 开始时间, 格式 YYYY，默认当前时间
    */
-  dataTime?: number;
+  openYearStart?: number;
 
   /**
-   * 项目阶段  Open("已开业"), NotOpen("未开业");
+   * 结束时间,格式 YYYY，默认当前时间
+   */
+  openYearEnd?: number;
+
+  /**
+   * 项目阶段  Open("已开业"), NotOpen("未开业")，默认全部
    */
   stage?: string;
 
   /**
-   * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")
+   * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")，默认全部
    */
   riskType?: string;
+
+  /**
+   * 第几页，默认第1页
+   */
+  pageNum?: number;
+
+  /**
+   * 每页数量，默认10
+   */
+  pageSize?: number;
 }
 
 /**
@@ -103,10 +118,10 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/10 下午2:40:27
+ * @updateAt 2021/9/22 上午9:14:33
  * @method GET
  */
-export const fetchList = (params: ListParams) => {
+export const fetchList = (params?: ListParams) => {
   return http.get<ListReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/construct/list`,
     {
