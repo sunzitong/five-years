@@ -13,6 +13,23 @@
       src="https://goyoo-assets.longfor.com/prod/app/55cC0WCB5wQTFc_JA5p0EQ.png"
       alt=""
     />
+    <img
+      class="share-btn"
+      src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/_FE2SpPV8jrhx7gKYyeXPQ.png"
+      alt=""
+      @click="shareBtnClick"
+    />
+    <van-overlay
+      :show="showMiniShareGuideImg"
+      @click="showMiniShareGuideImg = false"
+    >
+      <img
+        @click.stop
+        class="shareGuideImg"
+        src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/OO0AfvTKMewa5qeOrcx6rA.png"
+        alt=""
+      />
+    </van-overlay>
     <!-- <img
       class="zhuli"
       src="https://goyoo-assets.longfor.com/prod/app/DjLnomrQVYdqfz4jzJD4lA.png"
@@ -62,6 +79,7 @@ export default class Index extends Base {
   @Inject() share!: () => void;
   $dialog: any;
   data: any = [];
+  showMiniShareGuideImg = false;
 
   mounted() {
     // location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
@@ -97,6 +115,15 @@ export default class Index extends Base {
     }
   }
   /**
+   * 点击分享按钮
+   */
+  shareBtnClick() {
+    if (this.visitSource === "小程序") {
+      this.showMiniShareGuideImg = true;
+    }
+    this.share();
+  }
+  /**
    * 跳转到活动
    */
   jumpToAct(item) {
@@ -108,10 +135,12 @@ export default class Index extends Base {
     if (item.appId) {
       if (this.visitSource === "小程序") {
         window.wx.miniProgram.navigateTo({
-          url: `/packageB/pages/miniProgramTransfer/miniProgramTransfer?params=${JSON.stringify({
-            appId: item.appId,
-            path: item.appId,
-          })}`,
+          url: `/packageB/pages/miniProgramTransfer/miniProgramTransfer?params=${JSON.stringify(
+            {
+              appId: item.appId,
+              path: item.appId,
+            }
+          )}`,
         });
       }
       return;
@@ -139,9 +168,28 @@ export default class Index extends Base {
 <style lang="scss" scoped>
 .container {
   position: relative;
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .shareGuideImg {
+    height: 107px;
+    /* width: 261px; */
+    position: absolute;
+    top: 20px;
+    right: 53px;
+  }
   .bg {
     width: 100%;
     display: block;
+  }
+  .share-btn {
+    position: absolute;
+    top: 34px;
+    right: -1px;
+    width: 58px;
   }
   .class5 {
     position: absolute;

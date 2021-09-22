@@ -40,7 +40,7 @@ export default class App extends Mixins(MixStore) {
       return setMiniProgramShare({
         title,
         imageUrl: img,
-        path: location.href,
+        path: `${window.location.origin}/#/index`,
       });
     }
     if (this.visitSource === "APP") {
@@ -51,9 +51,9 @@ export default class App extends Mixins(MixStore) {
         {
           title,
           image: img,
-          url: location.href,
+          url: `${window.location.origin}/#/index`,
         },
-        location.href,
+        `${window.location.origin}/#/index`,
         2
       );
     }
