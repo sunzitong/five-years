@@ -44,43 +44,65 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
+import { StoreKey, useStore } from "@/store";
+import {
+  CostAnalysisReturn,
+  fetchCostAnalysis,
+} from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysis";
 
 @Component({
   components: {},
 })
-export default class B3 extends Base {
+export default class B3 extends Base implements IFetch {
+  resData: Partial<CostAnalysisReturn> = {};
   /**
    * 条形图
    */
   @Ref() wrapper!: HTMLDivElement;
+  projecttNum: number | "--" = "--"; // 成本风险预警项目
+  differRatio: number | "--" = "--"; // 总体成本差异率
+  labels: string[] = []; // name标签
+  values: number[] = []; // 数值标签
 
-  projecttNum = 4; // 成本风险预警项目
-  differRatio = -15; // 总体成本差异率
+  async fetch() {
+    const response = await useStore(fetchCostAnalysis, {
+      key: StoreKey.HomeCostAnalysis,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+      this.projecttNum = this.resData.riskItemNum
+        ? this.resData.riskItemNum
+        : "--";
+      this.differRatio = this.resData.allItemDiff
+        ? this.resData.allItemDiff
+        : "--";
 
-  // name标签
-  labels = [
-    "回龙观",
-    "大学城",
-    "南二环",
-    "望京北路",
-    // "麦旋风",
-    // "苹果派",
-  ];
+      this.resData.costAnalysisModelList?.forEach((el) => {
+        this.labels.push(el.projectName);
+        this.values.push(el.useRate);
+      });
+      this.paintChart();
+    } else {
+      this.empty = true;
+    }
+    return response;
+  }
 
-  // 数值标签
-  values = [7.2, 44.7, 100, 76];
-
-  mounted() {
+  paintChart() {
     const myChart = echarts.init(this.wrapper);
     // myChart.showLoading();
     let option = {
       grid: {
         top: "0%",
         bottom: "0%",
-        left: "0%",
-        right: "4%",
+        left: "8%",
+        right: "8%",
         containLabel: true,
       },
       xAxis: { show: false, max: 100 },
@@ -172,6 +194,10 @@ export default class B3 extends Base {
 
   .item_name {
     color: #90a4c3;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    height: 270px;
 
     .item_name_item {
       margin: 23px 0;
@@ -200,3 +226,12 @@ export default class B3 extends Base {
   }
 }
 </style>
+
+function CostAnalysisReturn(CostAnalysisReturn: any, arg1: { key: any; params: {
+regionType:
+import("../../../service/analysis/commandCabin/publicEnum").DataLevels;
+regionId: number; }; }) { throw new Error("Function not implemented."); }
+function CostAnalysisReturn(CostAnalysisReturn: any, arg1: { key: any; params: {
+regionType:
+import("../../../service/analysis/commandCabin/publicEnum").DataLevels;
+regionId: number; }; }) { throw new Error("Function not implemented."); }
