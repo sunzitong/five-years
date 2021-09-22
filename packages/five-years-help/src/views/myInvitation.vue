@@ -383,7 +383,7 @@ export default class Index extends Base {
     }
   }
   async handleConfirm() {
-    const url = `${window.location.host}/#/friendsHelp?id=${this.invitationId}`;
+    const url = `${window.location.host}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
     console.log(url,'sharUrl123');
     this.share(url);
     this.popParm.isShow = false;
