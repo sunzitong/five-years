@@ -6,6 +6,7 @@ import {
   getHelpStartApi,
   getHelpJoinApi,
   getMyHelpersApi,
+  getStartUserApi,
 } from "./urls";
 
 /**
@@ -62,6 +63,15 @@ export function getMyHelpers(params: any) {
   });
 }
 
+/**
+ * 发启人信息
+ */
+ export function getStartUser(params: any) {
+  return http.post(getStartUserApi, {
+    ...params,
+  });
+}
+
 export default {
   getNumber,
   getRankings,
@@ -69,4 +79,5 @@ export default {
   helpStart,
   helpJoin,
   getMyHelpers,
+  getStartUser,
 };
