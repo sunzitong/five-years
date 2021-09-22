@@ -132,10 +132,8 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Base from "@/views/Base";
-@Component({
-  components: {},
-})
+import { Base } from "@/views/Base";
+@Component
 export default class D1A extends Base {
   currentRate = 0;
   wholeIncomeValue = 23.1; // 全业态收入
