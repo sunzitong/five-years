@@ -30,7 +30,11 @@
             <li class="item">
               <div class="name">信用指数</div>
               <div class="value">
-                <StepNumber :duration="100" :to="monthData.creditScore" />
+                <StepNumber
+                  :duration="100"
+                  :precision="1"
+                  :to="monthData.creditScore"
+                />
               </div>
             </li>
             <li class="item">
@@ -38,6 +42,7 @@
               <div class="value">
                 <StepNumber
                   :duration="100"
+                  :precision="1"
                   :to="monthData.channelEffectScore"
                 />
               </div>
@@ -45,7 +50,11 @@
             <li class="item">
               <div class="name">运营健康度</div>
               <div class="value">
-                <StepNumber :duration="100" :to="monthData.healthyScore" />
+                <StepNumber
+                  :duration="100"
+                  :precision="1"
+                  :to="monthData.healthyScore"
+                />
               </div>
             </li>
           </ul>

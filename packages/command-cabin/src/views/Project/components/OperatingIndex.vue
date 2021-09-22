@@ -1,6 +1,6 @@
 <template>
   <Spin :loading="loading" :empty="empty">
-    <div class="operatingIndex">
+    <div class="operatingIndex" v-if="hasData">
       <van-row gutter="10" type="flex" align="center">
         <van-col>
           <Icon
@@ -22,7 +22,11 @@
         </van-col>
         <van-col>
           <span class="score">
-            <StepNumber :duration="100" :to="monthData.totalScore" />
+            <StepNumber
+              :duration="100"
+              :precision="1"
+              :to="monthData.totalScore"
+            />
           </span>
           <span class="tag-year">总分</span>
         </van-col>
@@ -42,6 +46,7 @@ import {
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { StoreKey, useStore } from "@/store";
+import _ from "lodash";
 
 type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 
@@ -68,10 +73,15 @@ export default class OperatingIndex extends Base implements IFetch {
   get monthData() {
     const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
     const response: MonthData = this.response?.[key] ?? {};
-    // 转换日期为月
-    const month = dayjs(response.dataDate).format("M");
+    // 转换日期为月 - 1
+    const month = dayjs(response.dataDate).month();
     // 如果当前月去掉试算
-    const dataDateDesc = `${month}${this.showCurrentMonth ? "月" : "月试算"}`;
+    let dataDateDesc = "";
+    if (this.showCurrentMonth) {
+      dataDateDesc = `${month + 1}月试算`;
+    } else {
+      dataDateDesc = `${month}月实际`;
+    }
     // 综合经营指数报警
     const warn = response.totalScore && response.totalScore < 90;
     return {
@@ -80,6 +90,8 @@ export default class OperatingIndex extends Base implements IFetch {
       warn,
     };
   }
+
+  hasData: boolean | "current" | "none" = false;
 
   /**
    * 组件创建
@@ -94,6 +106,18 @@ export default class OperatingIndex extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = response.data ?? {};
       this.loading = false;
+    }
+    // 无上月数据
+    if (_.isNil(_.get(response, "data.lastMonthScore.totalScore", null))) {
+      this.hasData = "current";
+      // 无数据
+      if (_.isNil(_.get(response, "data.currentMonthScore.totalScore", null))) {
+        this.hasData = false;
+      }
+      clearTimeout(this.timer);
+      this.showCurrentMonth = true;
+    } else {
+      this.hasData = true;
     }
     return response;
   }
