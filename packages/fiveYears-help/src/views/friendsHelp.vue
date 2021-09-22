@@ -1,5 +1,6 @@
 <template>
   <div class="page__index">
+    <div class="ruleBtn" @click="handleRule">活动规则</div>
     <!-- banner区域 -->
     <div class="ruleBtn">活动规则</div>
     <div class="banner-box">
@@ -12,56 +13,163 @@
         </div>
       </div>
       <div class="banner-photoFrame">
-        <p class="active-overTime">活动时间：2021年9月17日-2021年9月17日</p>
+        <p class="active-overTime">
+          活动时间：{{ numberInfo.startTimeStr }}-{{ numberInfo.endTimeStr }}
+        </p>
       </div>
     </div>
     <!-- 助力区域 -->
     <div class="help-box">
       <div class="current-help">
-        <div class="help-title">当前已助力28人</div>
+        <div class="help-title">当前已助力{{ userInfo.ic }}人</div>
         <div class="help-rate">
-          <div class="unit">
-            <span>5人</span>
-            <span>25人</span>
-            <span>35人</span>
-            <span>55人</span>
-            <span>85人</span>
+          <div class="unit unit1">
+            <span
+              :class="[
+                userInfo.ic >= 5
+                  ? 'scale-active scale5-active'
+                  : 'scale scale5',
+              ]"
+            >
+              5人
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 15
+                  ? 'scale-active scale15-active'
+                  : 'scale scale15',
+              ]"
+            >
+              15人
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 25
+                  ? 'scale-active scale25-active'
+                  : 'scale scale25',
+              ]"
+            >
+              25人
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 55
+                  ? 'scale-active scale55-active'
+                  : 'scale scale55',
+              ]"
+            >
+              55人
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 85
+                  ? 'scale-active scale85-active'
+                  : 'scale scale85',
+              ]"
+            >
+              85人
+            </span>
           </div>
-          <div class="Bar">
-            <div class="rateBg" style="width: 80%">
-              <!-- <span>80%</span> -->
-              <i class="icon"></i>
+          <div class="barLayout">
+            <div class="Bar">
+              <div
+                class="rateBg"
+                :style="{
+                  width:
+                    userInfo.ic / helpHeadCountList.slice(-1) >= 1
+                      ? (1 / 3.75) * 287 + `vw`
+                      : (userInfo.ic / helpHeadCountList.slice(-1)) *
+                          (1 / 3.75) *
+                          287 +
+                        `vw`,
+                }"
+              >
+                <i
+                  class="icon"
+                  :style="{
+                    right:
+                      userInfo.ic >= helpHeadCountList.slice(-1)
+                        ? `-2vw`
+                        : `-6vw`,
+                  }"
+                ></i>
+              </div>
             </div>
           </div>
-          <div class="unit">
-            <span>50珑珠</span>
-            <span>120珑珠</span>
-            <span>555珑珠</span>
-            <span>1355珑珠</span>
-            <span>2355珑珠</span>
+          <div class="unit unit2">
+            <span
+              :class="[
+                userInfo.ic >= 5
+                  ? 'scaleLong-active scaleLong5-active'
+                  : 'scaleLong scaleLong5',
+              ]"
+            >
+              100珑珠
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 15
+                  ? 'scaleLong-active scaleLong15-active'
+                  : 'scaleLong scaleLong15',
+              ]"
+            >
+              315珑珠
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 25
+                  ? 'scaleLong-active scaleLong25-active'
+                  : 'scaleLong scaleLong25',
+              ]"
+            >
+              555珑珠
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 55
+                  ? 'scaleLong-active scaleLong55-active'
+                  : 'scaleLong scaleLong55',
+              ]"
+            >
+              1355珑珠
+            </span>
+            <span
+              :class="[
+                userInfo.ic >= 85
+                  ? 'scaleLong-active scaleLong85-active'
+                  : 'scaleLong scaleLong85',
+              ]"
+            >
+              2355珑珠
+            </span>
           </div>
         </div>
       </div>
       <div class="history-help">
         <div class="history-left">
-          <ul class="complete-user">
-            <li>用户182****1235已达成1355珑珠</li>
-            <li>用户182****1235已达成1355珑珠</li>
-            <li>用户182****1235已达成1355珑珠</li>
-            <li>用户182****1235已达成1355珑珠</li>
-            <!-- <li>用户182****1235已达成1355珑珠</li>
-            <li>用户182****1235已达成1355珑珠</li> -->
-          </ul>
+          <div class="history-left-ly">
+            <ul
+              class="complete-user"
+              v-if="
+                rankingsInfo && rankingsInfo.ll && rankingsInfo.ll.length > 0
+              "
+            >
+              <li v-for="(item, index) in rankingsInfo.ll" :key="index">
+                用户{{ item.nn }}已达成{{ item.pn }}珑珠
+              </li>
+            </ul>
+            <div v-else class="emptyTemplate"></div>
+          </div>
         </div>
         <div class="history-right">
           <div class="divided-up">
             已瓜分
-            <span>5345</span>
+            <span>{{ numberInfo.longZhuCount }}</span>
             珑珠
           </div>
           <div class="divided-cumulative">当前累计获得</div>
           <div class="divided-totel">
-            <span>555</span>
+            <span>{{ getLongShuCount(userInfo.ic) }}</span>
             珑珠
           </div>
           <div
@@ -77,12 +185,16 @@
     <!-- 助力记录和TOP10榜单 -->
     <div class="record-box">
       <div class="active-countDown">
-        <van-count-down :time="time">
+        <van-count-down :time="userInfo.cd">
           <template #default="timeData">
-            <span class="block day">{{ timeData.days }}</span>
-            <span class="block hours">{{ timeData.hours }}</span>
-            <span class="block minutes">{{ timeData.minutes }}</span>
-            <span class="block seconds">{{ timeData.seconds }}</span>
+            <span class="block day">{{ formateNumber(timeData.days) }}</span>
+            <span class="block hours">{{ formateNumber(timeData.hours) }}</span>
+            <span class="block minutes">
+              {{ formateNumber(timeData.minutes) }}
+            </span>
+            <span class="block seconds">
+              {{ formateNumber(timeData.seconds) }}
+            </span>
           </template>
         </van-count-down>
       </div>
@@ -97,97 +209,58 @@
             </span>
           </div>
           <div v-if="activeTab == 1" class="tab-content">
-            <div class="helpUserList">
-              <div class="helpUser">
-                <div class="headerImage"></div>
+            <div class="helpUserList" v-if="helpsList.length > 0">
+              <div
+                class="helpUser"
+                v-for="(item, index) in helpsList"
+                :key="index"
+              >
+                <img v-if="item.img" class="headerImage" :src="item.img" />
+                <img
+                  v-else
+                  class="headerImage"
+                  src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
+                />
                 <ul>
-                  <li>蛋壳1</li>
-                  <li class="descript">10月23日前来助力</li>
-                </ul>
-              </div>
-              <div class="helpUser">
-                <div class="headerImage"></div>
-                <ul>
-                  <li>蛋壳2</li>
-                  <li class="descript">10月23日前来助力</li>
-                </ul>
-              </div>
-              <div class="helpUser">
-                <div class="headerImage"></div>
-                <ul>
-                  <li>蛋壳3</li>
-                  <li class="descript">10月23日前来助力</li>
-                </ul>
-              </div>
-              <div class="helpUser">
-                <div class="headerImage"></div>
-                <ul>
-                  <li>蛋壳4</li>
-                  <li class="descript">10月23日前来助力</li>
-                </ul>
-              </div>
-              <div class="helpUser">
-                <div class="headerImage"></div>
-                <ul>
-                  <li>蛋壳5</li>
-                  <li class="descript">10月23日前来助力</li>
+                  <li>{{ item.nn }}</li>
+                  <li class="descript">
+                    {{ dayjs(item.ht).month() + 1 }}月{{
+                      dayjs(item.ht).date()
+                    }}日前来助力
+                  </li>
+                  <!-- {dayjs(item.ht).month()+1}}月{{dayjs(item.ht).date() -->
                 </ul>
               </div>
             </div>
+            <div class="emptyTemplate" v-else></div>
           </div>
           <div v-else-if="activeTab == 2" class="tab-content tab-topTen">
-            <ul class="title">
-              <li class="firstCol">名次</li>
-              <li class="twoCol">手机号</li>
-              <li class="threeCol">助力值</li>
-            </ul>
-            <div class="tab-topContain">
-              <ul>
-                <li class="firstCol"><i class="icon number1" /></li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
+            <div v-if="rankingsInfo && rankingsInfo.rl.length > 0">
+              <ul class="title">
+                <li class="firstCol">名次</li>
+                <li class="twoCol">手机号</li>
+                <li class="threeCol">助力值</li>
               </ul>
-              <ul>
-                <li class="firstCol"><i class="icon number2" /></li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol"><i class="icon number3" /></li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol">4</li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol">5</li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol">6</li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol">7</li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol">8</li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
-              <ul>
-                <li class="firstCol">9</li>
-                <li class="twoCol">182****2563</li>
-                <li class="threeCol">85人</li>
-              </ul>
+              <div class="tab-topContain">
+                <ul v-for="(item, index) in rankingsInfo.rl" :key="index">
+                  <li class="firstCol">
+                    <i
+                      v-if="index <= 2"
+                      :class="[
+                        index == 0 ? 'number1' : '',
+                        index == 1 ? 'number2' : '',
+                        index == 2 ? 'number3' : '',
+                        'icon',
+                      ]"
+                    ></i>
+                    <span v-else>{{ index }}</span>
+                  </li>
+                  <li class="twoCol">{{ item.nn }}</li>
+                  <li class="threeCol">{{ item.ic }}人</li>
+                </ul>
+              </div>
             </div>
+            <div class="emptyTemplate" v-else></div>
           </div>
         </div>
       </div>
@@ -198,10 +271,11 @@
     </div>
 
     <!-- 弹窗模态框 -->
-    <van-overlay :show="this.popParm.isShow">
+    <van-overlay :show="this.popParm.isShow" @click="handleClosed">
       <modelBox
         :buttonContext="this.popParm.buttonContext"
         :descript="this.popParm.descript"
+        :popType="this.popParm.popType"
         @closed="handleClosed"
         @confirm="handleConfirm"
       ></modelBox>
@@ -212,9 +286,17 @@
 <script lang="ts">
 import { Component, Inject } from "vue-property-decorator";
 import Base from "./Base";
-import { getNumber, getRankings, getHelpMy ,helpJoin} from "@/service";
+import {
+  getNumber,
+  getRankings,
+  getHelpMy,
+  getMyHelpers,
+  helpJoin,
+} from "@/service";
 import { getToken } from "@/utils/guanyu";
+import { setMiniProgramShare, showAppShare } from "@/utils/guanyu";
 import modelBox from "@/components/modelBox.vue";
+import dayjs from "dayjs";
 @Component({
   components: {
     modelBox,
@@ -230,24 +312,34 @@ export default class Index extends Base {
    * 分享方法
    * 来源 App.vue中定义
    */
-  @Inject() share!: () => void;
+  @Inject() share!: (url: string) => void;
+
   popParm = {
     isShow: false,
     buttonContext: "发送",
+    popType: 3,
     descript: "发送至微信好友或群聊",
   };
-  numberInfo = {}; //获取活动编号信息
-  rankingsInfo = {}; //排行榜
-  time = 3129094655;
+  helpHeadCountList: any = [5, 15, 25, 55, 85]; //获取奖励比例图-助力人头数
+  helpLongZhuList: any = [100, 315, 555, 1355, 2355]; //获取奖励比例图-珑珠数量
+  dayjs: any = dayjs;
+  userInfo: any = {}; // 我的用户信息 ||  被助力人信息
+  numberInfo: any = {}; //获取活动编号信息
+  rankingsInfo: any = {}; //排行榜
+  helpsList: any = []; // 我的好友助力榜
+  invitationId: any = 0;
   activeTab = 1;
   loading = false;
-  token = getToken() || "31fea0e77cdd4663976f2041d2bab1cc"; //todo
+  id: any = "";
+  token = getToken() || "MjAyMTA5MDIwMDAxLDY4"; //todo
   async mounted() {
     document.title = "冠寓五周年助力活动";
     await this.getNum();
-    await this.getRankings();
     await this.getHelpMy();
-    console.log(this.token,'token123');
+    await this.getRankings();
+    await this.getMyHelpers();
+    this.id=this.$route.query.id;
+    console.log(this.id,'this.id123');
   }
   async getNum() {
     const res = await getNumber({
@@ -259,7 +351,7 @@ export default class Index extends Base {
   }
   async getRankings() {
     const res = await getRankings({
-      number: this.numberInfo.an,
+      number: (this.numberInfo as any).an,
     });
     if ((res as any)?.code == "0") {
       this.rankingsInfo = res?.data;
@@ -267,50 +359,96 @@ export default class Index extends Base {
   }
   async getHelpMy() {
     const res = await getHelpMy({
-      an: this.numberInfo.an,
+      an: (this.numberInfo as any).an,
       t: this.token,
     });
     if ((res as any)?.code == "0") {
-      console.log(this.rankingsInfo, "this.rankingsInfo");
+      this.userInfo = res?.data;
+      this.userInfo.ic = 55; //todo
+    }
+  }
+  async getMyHelpers(){
+    const res = await getMyHelpers({
+      n: (this.numberInfo as any).an,
+      t: this.token,
+    });
+    if ((res as any)?.code == "0") {
+      this.helpsList = res?.data;
     }
   }
   async helpJoin() {
-    console.log(this.$route.query,'this.$router.query');
     const res = await helpJoin({
       s: this.$route.query.id,
       t: "69977ab6364545e98349b1616c5d8b70",
     });
-    if ((res as any)?.code == "0") {
-      return true;
-    } else {
-      return false;
+    if ((res as any)?.code === 0) {
+      this.popParm.descript = "恭喜你助力成功！";
+      this.popParm.buttonContext = "我也要发起助力";
+      this.popParm.popType = 3;
+      this.popParm.isShow = true;
+    } else if((res as any)?.code  === 100) {
+      this.popParm.descript = "每人仅能为他人助力一次";
+      this.popParm.buttonContext = "我也要发起助力";
+      this.popParm.popType = 3;
+      this.popParm.isShow = true;
+    }else{
+       alert(111);
     }
   }
+
   async handleConfirm() {
     this.$router.push({
       path: "/myInvitation",
     });
   }
+
+  getLongShuCount(count: any) {
+    if (count < this.helpHeadCountList[0]) {
+      return 0;
+    } else {
+      const res = this.helpHeadCountList.filter(function (item: any) {
+        return item <= count;
+      });
+      const index = this.helpHeadCountList.indexOf(
+        res
+          .sort(function (a: any, b: any) {
+            return a - b;
+          })
+          .slice(-1)[0]
+      );
+      return this.helpLongZhuList[index];
+    }
+  }
   handleClosed(): void {
     this.popParm.isShow = false;
+  }
+  handleRule(): void {
+    this.popParm.popType = 2;
+    this.popParm.isShow = true;
   }
   handleSelectTab($event: any): void {
     let tabIndex = $event.target.getAttribute("tabIndex");
     this.activeTab = tabIndex;
   }
-  async handleInvitation(): Promise<void> {
-    const flag = await this.helpJoin();
-    if (flag) {
-      this.popParm.descript = "每人仅能为他人助力一次";
-      this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.isShow = true;
+  formateNumber(t: any) {
+    if (t < 10) {
+      return "0" + t;
     }
+    return t;
+  }
+  async handleInvitation(): Promise<void> {
+    await this.helpJoin();
   }
 }
 </script>
 
 /* less也支持 */
 <style lang="scss" scoped>
+/* 当前蒙层显示时生效 */
+.van-overlay {
+  overflow-y: hidden;
+  z-index: 99999;
+}
 .footer {
   display: flex;
   flex-direction: column;
@@ -325,6 +463,7 @@ export default class Index extends Base {
   display: flex;
   justify-content: center;
   width: 26px;
+  text-align: center;
 }
 .twoCol {
   width: 100px;
@@ -333,6 +472,11 @@ export default class Index extends Base {
   display: flex;
   justify-content: center;
   width: 39px;
+}
+.barLayout {
+  position: absolute;
+  width: 100%;
+  top: 82.3px;
 }
 .Bar {
   position: relative;
@@ -349,7 +493,7 @@ export default class Index extends Base {
   height: 27px;
   width: 27px;
   position: absolute;
-  right: -9px;
+  right: -22px;
   top: -5px;
 }
 .Bar div { 
@@ -384,7 +528,7 @@ export default class Index extends Base {
   border: 1px solid #00FFFF;
   border-right: 0;
   border-radius: 12px 0 0 12px;
-  z-index: 9999;
+  z-index: 98;
 }
 .banner-box {
   display: flex;
@@ -468,11 +612,107 @@ export default class Index extends Base {
 .help-box {
   margin-top: 32px;
   .current-help {
+    position: relative;
     background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Ue44dyjJRg2TRxyKRRK1Og.png") 0 0 no-repeat;
     background-size: contain;
     // height: 205px;
     height: 160px;
     color: #fff;
+    .scale,
+    .scaleLong {
+      color: #fff;
+      font-weight: 400;
+    }
+    .scale-active,
+    .scaleLong-active {
+      text-shadow: 0px 0px 8px #fd08fe;
+      font-weight: 500;
+    }
+    // 5珑珠刻度
+    .scale5 {
+      justify-content: end;
+      width: 52px;
+    }
+    .scale5-active {
+      justify-content: end;
+      width: 52px;
+    }
+    .scaleLong5 {
+      justify-content: end;
+      width: 52px;
+    }
+    .scaleLong5-active {
+      justify-content: end;
+      width: 52px;
+    }
+    // 15珑珠刻度
+    .scale15 {
+      justify-content: end;
+      width: 52px;
+    }
+    .scale15-active {
+      justify-content: center;
+      width: 52px;
+    }
+    .scaleLong15 {
+      justify-content: center;
+      width: 52px;
+    }
+    .scaleLong15-active {
+      justify-content: center;
+      width: 52px;
+    }
+    // 25珑珠刻度
+    .scale25 {
+      justify-content: center;
+      width: 68px;
+    }
+    .scale25-active {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong25 {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong25-active {
+      justify-content: center;
+      width: 68px;
+    }
+    // 55珑珠刻度
+    .scale55 {
+      justify-content: center;
+      width: 68px;
+    }
+    .scale55-active {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong55 {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong55-active {
+      justify-content: center;
+      width: 68px;
+    }
+    // 85珑珠刻度
+    .scale85 {
+      justify-content: center;
+      width: 68px;
+    }
+    .scale85-active {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong85 {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong85-active {
+      justify-content: center;
+      width: 68px;
+    }
     .help-rate {
       margin-top: 18px;
     }
@@ -485,7 +725,23 @@ export default class Index extends Base {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin: 10px 48px;
+      span {
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+      }
+    }
+    .unit1 {
+      position: absolute;
+      top: 50px;
+      text-align: center;
+      margin-left: 27px;
+    }
+    .unit2 {
+      position: absolute;
+      bottom: 38px;
+      margin-left: 27px;
+      text-align: center;
     }
   }
   .history-help {
@@ -493,7 +749,16 @@ export default class Index extends Base {
     flex-direction: row;
     justify-content: space-between;
     margin: 16px 14.5px;
+    .emptyTemplate {
+      background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/pMkkAKCV1UcZixBhZ4WYBw.png") 0 0 no-repeat;
+      background-size: contain;
+      background-position: center;
+      height: 47px;
+      margin-top: 70px;
+    }
     .history-left {
+      display: flex;
+      align-items: center;
       width: 149px;
       height: 199px;
       background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/PDO0sUdJUrDpMp3gzRXkrw.png")
@@ -502,14 +767,14 @@ export default class Index extends Base {
       background-size: cover;
       border-radius: 8px;
       border-radius: 8px;
-      overflow-y: auto;
+      .history-left-ly {
+        width: 149px;
+        height: 193px;
+        overflow-y: auto;
+      }
       .complete-user {
         // animation: myMove 5s linear infinite;
         // animation-fill-mode: forwards;
-        li {
-          margin-bottom: 6px;
-          line-height: 18px;
-        }
       }
       @keyframes myMove {
         0% {
@@ -530,7 +795,7 @@ export default class Index extends Base {
         font-size: 12px;
         color: #ffffff;
         letter-spacing: 0;
-        width: 96px;
+        width: 99px;
         line-height: 20px;
       }
     }
@@ -548,6 +813,7 @@ export default class Index extends Base {
       align-items: center;
       .divided-up {
         font-size: 14px;
+        font-weight: 500;
         color: #ffffff;
         letter-spacing: 0;
         text-align: center;
@@ -608,7 +874,7 @@ export default class Index extends Base {
     .hours {
       position: absolute;
       top: 35px;
-      right: 139px;
+      right: 138px;
     }
     .minutes {
       position: absolute;
@@ -641,6 +907,7 @@ export default class Index extends Base {
         span {
           display: inline-block;
           width: 160px;
+          outline: none;
           text-align: center;
         }
       }
@@ -661,7 +928,7 @@ export default class Index extends Base {
           .headerImage {
             width: 40px;
             height: 40px;
-            border: 1px solid red;
+            // border: 1px solid red;
             margin-right: 10px;
             border-radius: 50px;
           }
@@ -669,11 +936,18 @@ export default class Index extends Base {
             opacity: 0.7;
           }
         }
+        .emptyTemplate {
+          background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/NMwpl-lA6uDhLSWYwZEfPw.png") 0 0 no-repeat;
+          background-size: contain;
+          background-position: center;
+          height: 100px;
+          margin-top: 70px;
+        }
       }
       .tab-topTen {
         .title {
           color: #ffffff;
-          opacity: .7;
+          opacity: 0.7;
         }
         .tab-topContain {
           overflow-y: auto;

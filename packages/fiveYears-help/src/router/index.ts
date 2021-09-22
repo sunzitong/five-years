@@ -19,12 +19,12 @@ const subRouter = [
   {
     path: "myInvitation",
     component: () => import("@/views/myInvitation.vue"),
-    meta: "index",
+    meta: "myInvitation",
   },
   {
     path: "friendsHelp",
     component: () => import("@/views/friendsHelp.vue"),
-    meta: "index",
+    meta: "friendsHelp",
   },
   {
     path: "*",

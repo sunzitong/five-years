@@ -1,6 +1,7 @@
 import VueRouter, { Route } from "vue-router";
 import store from "@/store";
 import noop from "lodash/noop";
+import { getToken } from "@/utils/guanyu";
 
 /**
  * 跳转错误页
@@ -46,6 +47,12 @@ function setDocumentTitle(title: string) {
 
 export default function (router: VueRouter) {
   router.beforeEach(function (to, from, next) {
+    // 访问登录页，放行
+    if (to.path === "/index") return next();
+    // 获取token
+    const token = getToken();
+    // 没有token, 强制跳转到登录页
+    // if (!token) return next("/index");
     next();
   });
   router.afterEach(async function () {

@@ -49,7 +49,7 @@ module.exports = {
       postcss: {
         plugins: (function () {
           // 生产环境转rem
-          if (1==1 || process.env.NODE_ENV === "production") {
+          if (process.env.NODE_ENV === "production") {
             return [
               /*
               require("postcss-plugin-px2rem")({

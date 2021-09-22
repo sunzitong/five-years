@@ -32,15 +32,15 @@ export default class App extends Mixins(MixStore) {
    * 用Inject接收
    */
   @Provide()
-  share() {
-    const title = "冠寓";
+  share(url: string) {
+    const title = "冠寓五周年,快乐助我赚珑珠!";
     const img =
-      "https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/oNuSnxNLKKU.png";
+      "https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/H_CvGHPIaeZkvNegO0Glbw.png";
     if (this.visitSource === "小程序") {
       return setMiniProgramShare({
         title,
         imageUrl: img,
-        path: location.href,
+        path: url,
       });
     }
     if (this.visitSource === "APP") {
@@ -51,9 +51,9 @@ export default class App extends Mixins(MixStore) {
         {
           title,
           image: img,
-          url: location.href,
+          url: url,
         },
-        location.href,
+        url,
         2
       );
     }
