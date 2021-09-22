@@ -15,12 +15,13 @@
 3. 组件需要做如下约定
 
    **（建议直接class 你的Vue组件类 extends Base implements IFetch，ts会自动提示）**
-   
+
    1. 请求接口的函数统一使用名称: `fetch`
    2. 使用useStore调用,传入service函数和参数(useStore是为了避免不同组件重复请求相同的接口)
-   3. fetch函数需要 `return response;`
-   
-   
+   3. useStore一定要注意StoreKey!
+   4. fetch函数需要 `return response;`
+
+
 
 # Vue2.x typescript 模板
 
