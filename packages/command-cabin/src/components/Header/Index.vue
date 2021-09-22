@@ -165,23 +165,39 @@
         </defs>
       </svg>
     </div>
-    <h1>冠寓总指挥中心</h1>
+    <h1>{{ title }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
+import { Base } from "@/views/Base";
+import { DataLevels } from "@/service/analysis/commandCabin/publicEnum";
 
 @Component({
   components: {},
 })
-export default class Header extends Vue {
+export default class Header extends Base {
   /**
    * 唯一id
    */
   get uuid() {
     return `header-${uuid()}`;
+  }
+
+  get title() {
+    if (this.$route.meta.name === "project") {
+      return "冠寓门店指挥中心";
+    }
+    if (["home", "build-the-plate"].includes(this.$route.meta.name)) {
+      if (this.store.global.dataLevel === DataLevels.GROUP) {
+        return "冠寓总指挥中心";
+      } else {
+        return "冠寓区域指挥中心";
+      }
+    }
+    return null;
   }
 }
 </script>
