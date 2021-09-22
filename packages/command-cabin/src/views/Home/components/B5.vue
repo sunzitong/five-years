@@ -96,7 +96,7 @@ export default class B5 extends Base {
     let option = {
       legend: {
         orient: "vertical",
-        left: "45%",
+        left: "40%",
         top: "3%",
         bottom: "3%",
         icon: "rec",
@@ -105,7 +105,7 @@ export default class B5 extends Base {
         itemGap: 25,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}}{b| ${iwant.calc(
+          return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${iwant.calc(
             this.objData2[params],
             1,
             true
@@ -126,7 +126,16 @@ export default class B5 extends Base {
               fontWeight: "bold",
               fontSize: 48,
               lineHeight: 50,
-              width: 120,
+              width: 140,
+              align: "right",
+            },
+            c: {
+              fontFamily: "DIN Alternate",
+              color: "#DBF0FF",
+              fontWeight: "bold",
+              fontSize: 48,
+              lineHeight: 50,
+              width: 220,
               align: "right",
             },
           },
@@ -137,7 +146,7 @@ export default class B5 extends Base {
           type: "pie",
           avoidLabelOverlap: false,
           radius: [81, 72],
-          center: ["25%", "50%"],
+          center: ["20%", "50%"],
           itemStyle: {
             borderRadius: 88,
           },
@@ -189,6 +198,6 @@ export default class B5 extends Base {
   height: 300px;
   @extend %bg-img-circle-1;
   background-size: 26%;
-  background-position: 109px 16px;
+  background-position: 63px 18px;
 }
 </style>
