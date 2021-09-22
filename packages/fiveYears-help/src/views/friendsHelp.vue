@@ -5,7 +5,13 @@
     <div class="banner-box">
       <div class="banner"></div>
       <div class="invitationInfo">
-        <p class="invitationImage"></p>
+        <p class="invitationImage">
+          <img v-if="startUserInfo.src" :src="startUserInfo.src" />
+          <img
+            v-else
+            src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
+          />
+        </p>
         <div class="invitationContext">
           <div class="invitation">{{ startUserInfo.nn }}</div>
           <div class="invitationDesc">邀请你为Ta 助力领冠寓免租券</div>
@@ -172,19 +178,25 @@
             珑珠
           </div>
           <div
-            class="btnInvitation"
             data-type="invitation"
+            :class="[
+              'btnInvitation',
+              startUserInfo.cd <= 0 ? 'btnOverTime' : '',
+            ]"
             v-on:click="handleInvitation"
           >
             帮TA助力
           </div>
+          <span class="activeOverDesc" v-if="startUserInfo.cd == 0">
+            来晚来! 助力已结束
+          </span>
         </div>
       </div>
     </div>
     <!-- 助力记录和TOP10榜单 -->
     <div class="record-box">
       <div class="active-countDown">
-        <van-count-down :time="userInfo.cd">
+        <van-count-down :time="startUserInfo.cd">
           <template #default="timeData">
             <span class="block day">{{ formateNumber(timeData.days) }}</span>
             <span class="block hours">{{ formateNumber(timeData.hours) }}</span>
@@ -294,7 +306,6 @@ import {
   getNumber,
   getRankings,
   getHelpMy,
-  getMyHelpers,
   helpJoin,
   getStartUser,
 } from "@/service";
@@ -342,9 +353,7 @@ export default class Index extends Base {
     document.title = "冠寓五周年助力活动";
     this.id=this.$route.query.id;
     await this.getNum();
-    await this.getHelpMy();
     await this.getRankings();
-    await this.getMyHelpers();
     await this.getStartUser();
   }
   async getNum() {
@@ -370,7 +379,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      this.userInfo.ic = 55; //todo
+      // this.userInfo.ic = 5; //todo
     }
   }
   async getStartUser() {
@@ -381,32 +390,29 @@ export default class Index extends Base {
       this.startUserInfo = res?.data;
     }
   }
-  async getMyHelpers(): Promise<void>{
-    const res = await getMyHelpers({
-      n: (this.numberInfo as any).an,
-      t: this.token,
-    });
-    if ((res as any)?.code == "0") {
-      this.helpsList = res?.data;
-    }
-  }
   async helpJoin(): Promise<void> {
-    const res = await helpJoin({
-      s: this.$route.query.id,
-      t: this.token,
-    });
-    if ((res as any)?.code === 0) {
-      this.popParm.descript = "恭喜你助力成功！";
-      this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.popType = 3;
-      this.popParm.isShow = true;
-    } else if ((res as any)?.code === 100) {
-      this.popParm.descript = "每人仅能为他人助力一次";
-      this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.popType = 3;
-      this.popParm.isShow = true;
-    } else {
-       alert(111);
+    // 倒计时大于0可以助力,否则按钮变灰不可点击
+    if (this.startUserInfo.cd > 0) {
+      const res = await helpJoin({
+        s: this.$route.query.id,
+        t: this.token,
+      });
+      if ((res as any)?.code === 0) {
+        this.popParm.descript = "恭喜你助力成功！";
+        this.popParm.buttonContext = "我也要发起助力";
+        this.popParm.popType = 3;
+        this.popParm.isShow = true;
+      } else if ((res as any)?.code === 100) {
+        this.popParm.descript = "每人仅能为他人助力一次";
+        this.popParm.buttonContext = "我也要发起助力";
+        this.popParm.popType = 3;
+        this.popParm.isShow = true;
+      } else {
+        this.popParm.descript = (res as any)?.msg;
+        this.popParm.buttonContext = "我也要发起助力";
+        this.popParm.popType = 3;
+        this.popParm.isShow = true;
+      }
     }
   }
   async handleConfirm() {
@@ -531,14 +537,13 @@ export default class Index extends Base {
   align-items: center;
   text-align: center;
   right: 0;
-  top: 240px;
+  top: 252px;
   width: 23px;
   height: 87px;
   font-weight: 500;
-  font-weight: 500;
-  color: #00FFFF;
+  color: #00ffff;
   text-shadow: 0px 0px 12px #00fbfd, 0px 2px 4px rgb(0 0 0 / 89%);
-  border: 1px solid #00FFFF;
+  border: 1px solid #00ffff;
   border-right: 0;
   border-radius: 12px 0 0 12px;
   z-index: 98;
@@ -567,6 +572,14 @@ export default class Index extends Base {
       background-size: contain;
       height: 100px;
       width: 100px;
+      img {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        height: 75px;
+        width: 75px;
+        border-radius: 50%;
+      }
     }
     .invitationContext {
       color: #00FFFF;
@@ -662,6 +675,7 @@ export default class Index extends Base {
     .scale15 {
       justify-content: end;
       width: 52px;
+      opacity: 0.7;
     }
     .scale15-active {
       justify-content: center;
@@ -670,6 +684,7 @@ export default class Index extends Base {
     .scaleLong15 {
       justify-content: center;
       width: 52px;
+      opacity: 0.7;
     }
     .scaleLong15-active {
       justify-content: center;
@@ -679,6 +694,7 @@ export default class Index extends Base {
     .scale25 {
       justify-content: center;
       width: 68px;
+      opacity: 0.7;
     }
     .scale25-active {
       justify-content: center;
@@ -687,6 +703,7 @@ export default class Index extends Base {
     .scaleLong25 {
       justify-content: center;
       width: 68px;
+      opacity: 0.7;
     }
     .scaleLong25-active {
       justify-content: center;
@@ -696,6 +713,7 @@ export default class Index extends Base {
     .scale55 {
       justify-content: center;
       width: 68px;
+      opacity: 0.7;
     }
     .scale55-active {
       justify-content: center;
@@ -704,6 +722,7 @@ export default class Index extends Base {
     .scaleLong55 {
       justify-content: center;
       width: 68px;
+      opacity: 0.7;
     }
     .scaleLong55-active {
       justify-content: center;
@@ -712,19 +731,21 @@ export default class Index extends Base {
     // 85珑珠刻度
     .scale85 {
       justify-content: center;
-      width: 68px;
+      width: 90px;
+      opacity: 0.7;
     }
     .scale85-active {
       justify-content: center;
-      width: 68px;
+      width: 90px;
     }
     .scaleLong85 {
       justify-content: center;
-      width: 68px;
+      width: 88px;
+      opacity: 0.7;
     }
     .scaleLong85-active {
       justify-content: center;
-      width: 68px;
+      width: 88px;
     }
     .help-rate {
       margin-top: 18px;
@@ -853,16 +874,24 @@ export default class Index extends Base {
         }
       }
       .btnInvitation {
-        margin-top: 17.5px;
+        margin-top: 2.5px;
         width: 158.5px;
         height: 33.5px;
-        line-height: 33.5px;
+        line-height: 37.5px;
         text-align: center;
         vertical-align: middle;
         background: url("https://goyoo-assets.longfor.com//prod/app/JTEYpVYQyxBFGYaFGSzRVQ.png") 0 0 no-repeat;
         background-size: 154px;
         font-weight: 500;
         color: #0E0748;
+      }
+      .btnOverTime {
+        opacity: 0.6;
+      }
+      .activeOverDesc {
+        color: #fff;
+        margin-top: 5px;
+        font-weight: 300;
       }
     }
   }

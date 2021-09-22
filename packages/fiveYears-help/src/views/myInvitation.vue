@@ -331,12 +331,12 @@ export default class Index extends Base {
     await this.getRankings();
     await this.getMyHelpers();
     this.invitationId = await this.helpStart();
-    if (this.invitationId !== "") {
-      const url = `${window.location.host}/#/friendsHelp?id=${this.invitationId}`;
-      this.share(url);
-    } else {
-      this.$toast("获取分享ID失败");
-    }
+    // if (this.invitationId !== "") {
+    //   const url = `${window.location.host}/#/friendsHelp?id=${this.invitationId}`;
+    //   this.share(url);
+    // } else {
+    //   this.$toast("获取分享ID失败");
+    // }
   }
   async getNum() {
     const res = await getNumber({
@@ -361,7 +361,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      this.userInfo.ic = 55; //todo
+      this.userInfo.ic = 15; //todo
     }
   }
   async getMyHelpers(){
@@ -512,10 +512,9 @@ export default class Index extends Base {
   align-items: center;
   text-align: center;
   right: 0;
-  top: 240px;
+  top: 252px;
   width: 23px;
   height: 87px;
-  font-weight: 500;
   font-weight: 500;
   color: #00FFFF;
   text-shadow: 0px 0px 12px #00fbfd, 0px 2px 4px rgb(0 0 0 / 89%);
