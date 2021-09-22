@@ -330,7 +330,6 @@ export default class Index extends Base {
     await this.getHelpMy();
     await this.getRankings();
     await this.getMyHelpers();
-    this.invitationId = await this.helpStart();
     // if (this.invitationId !== "") {
     //   const url = `${window.location.host}/#/friendsHelp?id=${this.invitationId}`;
     //   this.share(url);
@@ -385,16 +384,18 @@ export default class Index extends Base {
   }
   async handleConfirm() {
     const url = `${window.location.host}/#/friendsHelp?id=${this.invitationId}`;
+    console.log(url,'sharUrl123');
     this.share(url);
     this.popParm.isShow = false;
   }
   async handleInvitation(): Promise<void> {
+    this.invitationId = await this.helpStart();
     if (this.visitSource === "小程序") {
       this.popParm.popType = 2;
       this.popParm.isShow = true;
     } else {
-      this.popParm.descript = "邀请好友助力";
-      this.popParm.buttonContext = "邀请";
+      this.popParm.descript = "发送至微信好友或群聊";
+      this.popParm.buttonContext = "发送";
       this.popParm.popType = 3;
       this.popParm.isShow = true;
     }
