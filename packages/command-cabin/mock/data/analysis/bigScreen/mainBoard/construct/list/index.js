@@ -4,7 +4,7 @@
  *
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/22 下午2:31:51
+ * @updateAt 2021/9/22 下午2:50:47
  * @method GET
  */
 
@@ -44,7 +44,7 @@ exports.response = {
         midCheckScore: 10, //中期停止点检查得分
         qualityScore: 10, //移交质量评估合格率
         riskTypeDesc: "延期风险", //风险类别描述
-        riskType: "Delay", //风险类别 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")
+        riskType: "NoRisk", //风险类别 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")
         riskReportDate: "2021/08/07", //风险提报时间
         chokePoint: "无", //项目卡点
         fireControlType: "证照合规", //消防证照合规性
@@ -89,7 +89,7 @@ exports.response = {
         startCheckScore: null,
         midCheckScore: 100,
         qualityScore: 100,
-        riskType: "延期风险",
+        riskType: "NoRisk",
         riskReportDate: "2021/08/19",
         chokePoint: "卡点",
         fireControlType: "证照合规",
@@ -359,7 +359,7 @@ exports.response = {
         startCheckScore: null,
         midCheckScore: 100,
         qualityScore: 100,
-        riskType: "延期风险",
+        riskType: "NoRisk",
         riskReportDate: "2021/08/20",
         chokePoint: "卡点",
         fireControlType: "证照合规",
