@@ -177,7 +177,7 @@
     <!-- 助力记录和TOP10榜单 -->
     <div class="record-box">
       <div class="active-countDown">
-        <van-count-down :time="userInfo.cd">
+        <van-count-down :time="userInfo.cd * 1000">
           <template #default="timeData">
             <span class="block day">{{ formateNumber(timeData.days) }}</span>
             <span class="block hours">{{ formateNumber(timeData.hours) }}</span>
@@ -263,7 +263,11 @@
     </div>
 
     <!-- 弹窗模态框 -->
-    <van-overlay :show="this.popParm.isShow" @click="handleClosed">
+    <van-overlay
+      :show="this.popParm.isShow"
+      @click="handleClosed"
+      @touchmove.prevent
+    >
       <modelBox
         :buttonContext="this.popParm.buttonContext"
         :descript="this.popParm.descript"
@@ -323,7 +327,7 @@ export default class Index extends Base {
   invitationId: any = "";
   activeTab = 1;
   loading = false;
-  token = getToken() || "c4bc14cc248443e0a6d4a4a1a122dd28"; //todo
+  token = getToken() || "7855919100c64bdf97f94aee2a45d949"; //todo
   async mounted() {
     document.title = "冠寓五周年助力活动";
     await this.getNum();
@@ -360,7 +364,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      this.userInfo.ic = 15; //todo
+      // this.userInfo.ic = 15; //todo
     }
   }
   async getMyHelpers(){
@@ -380,6 +384,10 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       return (res as any)?.data?.s;
+    } else {
+      this.popParm.descript = (res as any)?.msg;
+      this.popParm.popType = 3;
+      this.popParm.isShow = true;
     }
   }
   async handleConfirm() {
@@ -390,8 +398,10 @@ export default class Index extends Base {
   async handleInvitation(): Promise<void> {
     this.invitationId = await this.helpStart();
     if (this.visitSource === "小程序") {
+      const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
       this.popParm.popType = 2;
       this.popParm.isShow = true;
+      this.share(url);
     } else {
       this.popParm.descript = "发送至微信好友或群聊";
       this.popParm.buttonContext = "发送";

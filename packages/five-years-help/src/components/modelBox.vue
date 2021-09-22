@@ -1,5 +1,5 @@
 <template>
-  <div class="popMainLayOut">
+  <div class="popMainLayOut" @touchmove.prevent>
     <div class="popMain" v-if="popType === 1">
       <div class="popRuleLayOut">
         <div class="popRule">
@@ -35,7 +35,13 @@
     <div class="popMain" v-else>
       <img class="conectImage" :src="backgroundUrl" />
       <div class="descript">{{ descript }}</div>
-      <div class="btnConfirm" @click="handleConfirm">{{ buttonContext }}</div>
+      <div
+        class="btnConfirm"
+        v-if="buttonContext !== ''"
+        @click="handleConfirm"
+      >
+        {{ buttonContext }}
+      </div>
     </div>
     <div v-if="popType !== 2" class="close" @click="handleClose"></div>
   </div>
@@ -46,7 +52,7 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 @Component
 export default class MixinMask extends Vue {
   @Prop({ default: "发送至微信好友或群聊" }) descript!: string;
-  @Prop({ default: "发送" }) buttonContext!: string;
+  @Prop({ default: "" }) buttonContext!: string;
   @Prop({ default: 2 }) popType!: number;
   @Prop({
     default:

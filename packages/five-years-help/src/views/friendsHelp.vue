@@ -196,7 +196,7 @@
     <!-- 助力记录和TOP10榜单 -->
     <div class="record-box">
       <div class="active-countDown">
-        <van-count-down :time="startUserInfo.cd">
+        <van-count-down :time="startUserInfo.cd * 1000">
           <template #default="timeData">
             <span class="block day">{{ formateNumber(timeData.days) }}</span>
             <span class="block hours">{{ formateNumber(timeData.hours) }}</span>
@@ -287,7 +287,11 @@
     </div>
 
     <!-- 弹窗模态框 -->
-    <van-overlay :show="this.popParm.isShow" @click="handleClosed">
+    <van-overlay
+      :show="this.popParm.isShow"
+      @click="handleClosed"
+      @touchmove.prevent
+    >
       <modelBox
         :buttonContext="this.popParm.buttonContext"
         :descript="this.popParm.descript"
@@ -332,7 +336,7 @@ export default class Index extends Base {
 
   popParm = {
     isShow: false,
-    buttonContext: "发送",
+    buttonContext: "",
     popType: 3,
     descript: "发送至微信好友或群聊",
   };
@@ -348,7 +352,8 @@ export default class Index extends Base {
   activeTab = 1;
   loading = false;
   id: any = "";
-  token = getToken() || "69977ab6364545e98349b1616c5d8b70"; //todo
+  // token = getToken()| | "69977ab6364545e98349b1616c5d8b70"; //todo
+  token = getToken();
   async mounted() {
     document.title = "冠寓五周年助力活动";
     this.id=this.$route.query.id;
@@ -402,14 +407,11 @@ export default class Index extends Base {
         this.popParm.buttonContext = "我也要发起助力";
         this.popParm.popType = 3;
         this.popParm.isShow = true;
-      } else if ((res as any)?.code === 100) {
-        this.popParm.descript = "每人仅能为他人助力一次";
-        this.popParm.buttonContext = "我也要发起助力";
-        this.popParm.popType = 3;
-        this.popParm.isShow = true;
+        await this.getNum();
+        await this.getRankings();
+        await this.getStartUser();
       } else {
         this.popParm.descript = (res as any)?.msg;
-        this.popParm.buttonContext = "我也要发起助力";
         this.popParm.popType = 3;
         this.popParm.isShow = true;
       }
@@ -658,6 +660,7 @@ export default class Index extends Base {
     .scale5 {
       justify-content: end;
       width: 52px;
+      opacity: 0.7;
     }
     .scale5-active {
       justify-content: end;
@@ -666,6 +669,7 @@ export default class Index extends Base {
     .scaleLong5 {
       justify-content: end;
       width: 52px;
+      opacity: 0.7;
     }
     .scaleLong5-active {
       justify-content: end;
