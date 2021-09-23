@@ -22,8 +22,8 @@
       </tbody>
     </table>
     <div class="footer">
+      <Select name="YearRange" title="开业年份" v-model="yearRange"></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
-      <!-- <Select name="YearRange" title="开业年份"></Select> -->
     </div>
   </div>
 </template>
@@ -44,6 +44,8 @@ import Select from "@/views/components/Select/Index.vue";
   components: { Select },
 })
 export default class TheConstructList extends Base implements IFetch {
+  yearRange = [2021, 2021];
+
   options: { name: keyof List; text: string }[] = [
     { name: "projectNo", text: "分期ID" },
     { name: "name", text: "项目名称" },

@@ -3,7 +3,13 @@
     <span class="select__title">{{ title }}</span>
     <div class="select__control">
       <div class="select__value" @click="active = !active">
-        <input type="text" readonly :value="value" class="select__input" />
+        <input
+          type="text"
+          readonly
+          :value="value"
+          class="select__input"
+          placeholder="请选择"
+        />
         <div class="select__icon">
           <slot name="icon" :active="active">
             <van-icon name="play" class="select__icon--normal" />
