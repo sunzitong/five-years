@@ -459,7 +459,7 @@ export default class Index extends Base {
     } else {
       this.popParm.descript = (res as any)?.msg;
       this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.popType = 3;
+      this.popParm.popType = 4;
       this.popParm.isShow = true;
     }
   }
