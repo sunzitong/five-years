@@ -1,7 +1,7 @@
 <template>
   <Spin :loading="loading" :empty="empty">
     <div class="page__e5a__e5b">
-      <van-swipe ref="swipe" autoplay="10000" @change="onSwipeChangeHandle">
+      <van-swipe ref="swipe" autoplay="15000" @change="onSwipeChangeHandle">
         <van-swipe-item>
           <F1A :response="response" />
         </van-swipe-item>

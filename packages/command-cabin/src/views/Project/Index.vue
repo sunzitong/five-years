@@ -19,6 +19,7 @@
       <div class="main-center">
         <SubWrapperA
           title="财务相关指标及预估"
+          type="A"
           style="width: 2856px; height: 2740px"
         >
           <van-row gutter="20">

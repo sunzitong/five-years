@@ -49,7 +49,7 @@
           fill-rule="evenodd"
           clip-rule="evenodd"
           :d="customPathD"
-          :fill="`url(#${uuid}_paint158_linear)`"
+          :fill="`url(#${uuid}_${strokeId})`"
         />
         <defs>
           <linearGradient
@@ -85,8 +85,33 @@
             <stop stop-color="#5180E4" />
             <stop offset="0.936398" stop-color="#193497" stop-opacity="0" />
           </linearGradient>
+          <!-- 边框填充色 -->
           <linearGradient
-            :id="`${uuid}_paint158_linear`"
+            :id="`${uuid}_stroke_linear`"
+            x1="63.9813"
+            y1="34.7478"
+            x2="-21.9916"
+            y2="135.996"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#5180E4" />
+            <stop offset="1" stop-color="#4F7EE1" />
+          </linearGradient>
+          <!-- 边框填充渐变色 -->
+          <linearGradient
+            :id="`${uuid}_stroke_linear_opacity`"
+            x2="0"
+            y2="0"
+            x1="0"
+            :y1="height * 0.8"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#5180E4" stop-opacity="0" />
+            <stop offset="1" stop-color="#4F7EE1" />
+          </linearGradient>
+
+          <linearGradient
+            :id="`bbbb`"
             x1="63.9813"
             y1="34.7478"
             x2="-21.9916"
@@ -138,6 +163,13 @@ export default class SubWrapperA extends Vue {
   @Prop({ default: "medium" }) size!: "small" | "medium" | "large";
 
   /**
+   * 样式分为两种
+   * 1. 渐变
+   * 2. 半透明到实色
+   */
+  @Prop({ default: "default" }) type!: "default" | "A";
+
+  /**
    * 盒子宽度
    */
   width = 1760;
@@ -156,6 +188,16 @@ export default class SubWrapperA extends Vue {
    * 监听器
    */
   resizeObserver: ResizeObserver | null = null;
+
+  /**
+   * 填充id
+   */
+  get strokeId() {
+    if (this.type === "A") {
+      return `stroke_linear_opacity`;
+    }
+    return `stroke_linear`;
+  }
 
   get uuid() {
     return `${uuid()}`;
