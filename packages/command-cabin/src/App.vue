@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <template v-if="$route.meta.name !== 'login'">
+    <div v-show="$route.meta.name !== 'login'">
       <div class="logo"></div>
       <AppHeader />
       <FixedNav />
       <FixedNav position="right" />
-    </template>
+    </div>
     <router-view v-if="!appLoading" :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="appLoading" />
