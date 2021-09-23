@@ -47,7 +47,7 @@ export default class Index extends Base {
     const token = getToken();
     // 未登录
     if (!token) {
-      toLogin();
+      toLogin(window.location.origin);
       return;
     }
   }

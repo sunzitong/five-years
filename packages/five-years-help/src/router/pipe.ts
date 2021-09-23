@@ -51,7 +51,7 @@ export default function (router: VueRouter) {
     if (to.path === "/login") return next();
     const token = getToken();
     // 没有token, 强制跳转到登录页
-    if (!token) return next("/login");
+    if (!token) return next(`/login?id=${to.query.id}`);
     next();
   });
   router.afterEach(async function () {
