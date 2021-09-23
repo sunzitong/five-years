@@ -59,10 +59,6 @@ export default class OperatingIndex extends Base implements IFetch {
    */
   response: null | BusinessScoreReturn = null;
   /**
-   * v-model进度
-   */
-  currentRate = 0;
-  /**
    * 显示当月数据
    */
   showCurrentMonth = true;
@@ -92,7 +88,14 @@ export default class OperatingIndex extends Base implements IFetch {
     };
   }
 
-  hasData: boolean | "current" | "none" = false;
+  /**
+   * 判断是否有数据
+   * true:有
+   * false:无
+   * current:只有试算
+   * last:只有实际
+   */
+  hasData: boolean | "current" | "last" = false;
 
   /**
    * 组件创建
@@ -108,18 +111,22 @@ export default class OperatingIndex extends Base implements IFetch {
       this.response = response.data ?? {};
       this.loading = false;
     }
-    // 无上月数据
-    if (_.isNil(_.get(response, "data.lastMonthScore.totalScore", null))) {
+    const noCurrent = _.isNil(
+      _.get(response, "data.currentMonthScore.totalScore")
+    );
+    const noLast = _.isNil(_.get(response, "data.lastMonthScore.totalScore"));
+    if (noCurrent && noLast) {
+      this.hasData = false;
+    } else if (noCurrent) {
+      this.hasData = "last";
+    } else if (noLast) {
       this.hasData = "current";
-      // 无数据
-      if (_.isNil(_.get(response, "data.currentMonthScore.totalScore", null))) {
-        this.hasData = false;
-      }
-      clearTimeout(this.timer);
-      this.showCurrentMonth = true;
     } else {
       this.hasData = true;
     }
+    // 开始切换数据
+    clearTimeout(this.timer);
+    this.showMonthData();
     return response;
   }
 
@@ -129,16 +136,16 @@ export default class OperatingIndex extends Base implements IFetch {
   showMonthData() {
     // 10秒钟刷新一次数据
     const time = 10 * 1000;
-    const next = () => {
+    if (this.hasData === true) {
       this.showCurrentMonth = !this.showCurrentMonth;
-      this.currentRate = 0;
-      this.timer = setTimeout(next, time);
-    };
-    this.timer = setTimeout(next, time);
-  }
-
-  mounted() {
-    this.showMonthData();
+    }
+    if (this.hasData === "current") {
+      this.showCurrentMonth = true;
+    }
+    if (this.hasData === "last") {
+      this.showCurrentMonth = false;
+    }
+    this.timer = setTimeout(this.showMonthData, time);
   }
 
   beforeDestroy() {
