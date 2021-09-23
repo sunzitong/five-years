@@ -77,13 +77,7 @@ export default class A1B extends Base implements IFetch {
     right: 0;
     bottom: 0;
     z-index: 10;
-    background: linear-gradient(
-      180deg,
-      rgba(1, 245, 241, 0.58) 0%,
-      rgba(1, 190, 245, 0.38) 10.68%,
-      rgba(1, 190, 245, 0.410089) 91.93%,
-      rgba(1, 245, 241, 0.44) 100%
-    );
+    @extend %bg-img-step-bg;
     border-radius: 2px;
   }
 
