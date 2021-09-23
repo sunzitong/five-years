@@ -124,8 +124,6 @@
             <Icon type="energy" :size="200" />
             arrow-bold-top:
             <Icon type="arrow-bold-top" :size="100" />
-            back:
-            <Icon type="back" :size="100" />
           </p>
         </Card>
 
@@ -193,6 +191,47 @@
           <div
             style="display: flex; flex-flow: row wrap; justify-content: center"
           >
+            <svg width="300" height="300">
+              <defs>
+                <radialGradient
+                  id="radialGradientId1"
+                  r="50%"
+                  cx="50%"
+                  cy="50%"
+                  fx="100%"
+                  fy="50%"
+                >
+                  <stop offset="0%" stop-color="#f60" stop-opacity="1"></stop>
+                  <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
+                </radialGradient>
+                <mask id="maskIdTest">
+                  <circle r="50" cx="0" cy="0" fill="url(#radialGradientId1)">
+                    <animateMotion
+                      dur="3s"
+                      path="M0 0 L300 0  L300 300 L0 300 Z"
+                      rotate="auto"
+                      repeatCount="indefinite"
+                    ></animateMotion>
+                  </circle>
+                </mask>
+              </defs>
+              <path
+                id="pathWithMask"
+                d="M0 0 L300 0  L300 300 L0 300 Z"
+                fill="none"
+                stroke-width="10"
+                stroke="green"
+              />
+              <path
+                id="pathWithMask"
+                d="M0 0 L300 0  L300 300 L0 300 Z"
+                fill="none"
+                stroke-width="10"
+                stroke="#fff"
+                mask="url(#maskIdTest)"
+              />
+            </svg>
+
             <!-- <ProgressCircle
               :styleType="1"
               :rate="45"
@@ -413,4 +452,19 @@ export default class Example extends Vue {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.flex {
+  stroke-dasharray: 200;
+  stroke-dashoffset: -200;
+  animation: flex-draw 2s ease-in-out infinite;
+}
+
+@keyframes flex-draw {
+  from {
+    stroke-dashoffset: -200;
+  }
+  to {
+    stroke-dashoffset: 200;
+  }
+}
+</style>
