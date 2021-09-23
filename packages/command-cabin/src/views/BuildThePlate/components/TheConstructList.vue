@@ -36,6 +36,7 @@
         title="风险类型"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
+      <Page :total="20" />
     </div>
   </div>
 </template>
@@ -50,10 +51,11 @@ import {
 import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
+import Page from "./Page.vue";
 
 /**营造台账宽表 */
 @Component({
-  components: { Select },
+  components: { Select, Page },
 })
 export default class TheConstructList extends Base implements IFetch {
   yearRange = [2021, 2021];
@@ -190,6 +192,13 @@ export default class TheConstructList extends Base implements IFetch {
     bottom: 0;
     display: flex;
     align-items: center;
+    padding: 0 200px 0 186px;
+    .page {
+      margin: 0 0 0 auto;
+    }
   }
+}
+.select {
+  margin-right: 86px;
 }
 </style>

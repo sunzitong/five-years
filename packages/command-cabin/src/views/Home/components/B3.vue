@@ -21,7 +21,7 @@
           <template v-slot="{ list }">
             <div class="process_item" animated v-for="el in list" :key="el.id">
               <div class="item_name">
-                <div class="item_name_item van-ellipsis">
+                <div class="item_name_item van-multi-ellipsis--l2">
                   {{ el.projectName }}
                 </div>
               </div>
@@ -142,6 +142,7 @@ export default class B3 extends Base implements IFetch {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  margin: 0 0 22px 0;
 
   .item_name {
     color: #90a4c3;
@@ -158,7 +159,9 @@ export default class B3 extends Base implements IFetch {
   }
 
   .line_box {
-    width: 300px;
+    flex: 1;
+    // width: 300px;
+    margin: 0 30px;
     height: 14px;
     background: #172c47;
 
@@ -187,7 +190,7 @@ export default class B3 extends Base implements IFetch {
       font-size: 50px;
       line-height: 66px;
       text-align: right;
-      width: 120px;
+      width: 135px;
     }
   }
 }
