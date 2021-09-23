@@ -4,7 +4,7 @@
  *
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/22 下午2:50:47
+ * @updateAt 2021/9/23 下午5:07:36
  * @method GET
  */
 
@@ -17,7 +17,7 @@ exports.response = {
   msg: "ok",
   data: {
     total: 8, //总数量
-    pages: 1, //总页数
+    pages: 11, //总页数
     pageSize: 10, //每页数量
     pageNum: 1, //第几页
     list: [

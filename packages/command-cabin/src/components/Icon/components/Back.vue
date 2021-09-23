@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { formatColors } from "@/utils/tools";
+import { uuid } from "@guanyu/shared";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -63,8 +64,10 @@ export default class Back extends Vue {
     };
     return sizes[this.size] ?? this.size;
   }
+
+  get uuid() {
+    return uuid();
+  }
 }
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
