@@ -457,15 +457,15 @@ export default class Index extends Base {
       if (this.visitSource === "小程序") {
         this.popParm.popType = 2;
         this.popParm.isShow = true;
-        this.errorCount = this.errorCount+1;
       }
       this.share(url);
+      this.errorCount = 0;
     } else {
       this.popParm.descript = (res as any)?.msg;
       this.popParm.buttonContext = "我也要发起助力";
       this.popParm.popType = this.errorCount == 0 ? 3 : 4;
       this.popParm.isShow = true;
-      this.errorCount = 0;
+      this.errorCount = this.errorCount + 1;
     }
   }
   // 帮好友助力事件
