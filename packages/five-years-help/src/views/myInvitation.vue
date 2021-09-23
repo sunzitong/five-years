@@ -411,7 +411,7 @@ export default class Index extends Base {
       t: this.token, //todo
     });
     if ((res as any)?.code == "0") {
-      this.invitationId = res?.data?.s;
+      this.invitationId = (res as any)?.data?.s;
       if (this.visitSource === "小程序") {
         const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
         this.popParm.popType = 2;
