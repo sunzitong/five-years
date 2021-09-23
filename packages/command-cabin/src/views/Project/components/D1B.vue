@@ -2,58 +2,92 @@
   <div class="operation">
     <div class="line"></div>
     <van-row>
-      <van-col span="10">
+      <van-col span="12">
         <h4 class="label">平均出租率(开业三月以上)</h4>
         <div class="">
-          <strong>95.3%</strong>
-          环比
-          <strong class="desc">95.3%</strong>
+          <strong>{{ resData.avgRentRatio }}%</strong>
+          <span class="after">环比</span>
+          <strong
+            :class="{
+              desc: resData.rentRatioYoy < 0,
+              asce: resData.rentRatioYoy >= 0,
+            }"
+          >
+            {{ resData.rentRatioYoy }}%
+          </strong>
           <span class="icon">
-            <Icon type="desc" color="#22cb98" size="62" />
+            <Icon
+              :type="resData.rentRatioYoy < 0 ? 'desc' : 'asce'"
+              :color="resData.rentRatioYoy < 0 ? '#ff3980' : '#22cb98'"
+              size="62"
+            />
           </span>
+          <span class="pointOfTime">时点 {{ resData.pointRentRatio }}%</span>
         </div>
-        <div class="pointOfTime">时点 84.2%</div>
       </van-col>
-      <van-col span="14">
+      <van-col span="12">
         <h4 class="label">平均续租率</h4>
         <div class="">
-          <strong>95.3%</strong>
-          环比
+          <strong>{{ resData.avgRenewRatio }}%</strong>
+          <span class="after">环比</span>
+          <strong
+            :class="{
+              desc: resData.renewRatioYoy < 0,
+              asce: resData.renewRatioYoy >= 0,
+            }"
+          >
+            {{ resData.renewRatioYoy }}%
+          </strong>
           <span class="icon">
-            <Icon type="desc" color="#22cb98" size="62" />
+            <Icon
+              :type="resData.renewRatioYoy < 0 ? 'desc' : 'asce'"
+              :color="resData.renewRatioYoy < 0 ? '#ff3980' : '#22cb98'"
+              size="62"
+            />
           </span>
-          <strong>95.3%</strong>
         </div>
       </van-col>
     </van-row>
     <van-row>
-      <van-col span="10" style="padding-top: 30px">
-        <h4 class="label">同房间价格涨幅</h4>
-        <div class="">
-          <strong>95.3%</strong>
-          同比
-          <span class="icon">
-            <Icon type="desc" color="#22cb98" size="62" />
-          </span>
-        </div>
-      </van-col>
-      <van-col span="5" style="padding-top: 30px">
+      <van-col span="12" style="padding-top: 30px">
         <h4 class="label">在租房间平均成交价(元)</h4>
         <div class="">
-          <strong>95.3%</strong>
+          <strong>{{ resData.avgPrice }}</strong>
+          <span class="after">同比</span>
+          <strong
+            :class="{
+              desc: resData.avgPriceYoy < 0,
+              asce: resData.avgPriceYoy >= 0,
+            }"
+          >
+            {{ resData.avgPriceYoy }}%
+          </strong>
           <span class="icon">
-            <Icon type="asce" color="#FF3980" size="62" />
+            <Icon
+              :type="resData.avgPriceYoy < 0 ? 'desc' : 'asce'"
+              :color="resData.avgPriceYoy < 0 ? '#ff3980' : '#22cb98'"
+              size="62"
+            />
           </span>
         </div>
       </van-col>
-      <van-col span="5" style="padding-top: 30px">
+      <van-col span="6" style="padding-top: 30px">
+        <h4 class="label">同房间价格涨幅</h4>
+        <div class="">
+          <strong>--%</strong>
+          <span class="icon">
+            <Icon type="asce" color="#22cb98" size="62" />
+          </span>
+        </div>
+      </van-col>
+      <van-col span="6" style="padding-top: 30px">
         <div class="simple">
           <span class="label">新签上涨:</span>
-          <strong>100%</strong>
+          <strong>--%</strong>
         </div>
         <div class="simple">
-          <span class="label">续租下降:</span>
-          <strong>100%</strong>
+          <span class="label desc">续租下降:</span>
+          <strong class="desc">--%</strong>
         </div>
       </van-col>
     </van-row>
@@ -62,17 +96,37 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import Icon from "@/components/Icon/Index.vue";
+import {
+  fetchIncome,
+  IncomeReturn,
+} from "@/service/analysis/bigScreen/projectBoard/managementSituation/income";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {
     Icon,
   },
 })
-export default class D1B extends Base {
-  mounted() {
-    /**/
+export default class D1B extends Base implements IFetch {
+  resData: Partial<IncomeReturn> = {};
+  currentRate = 0;
+
+  async fetch() {
+    const response = await useStore(fetchIncome, {
+      key: StoreKey.ProjectIncome,
+      params: {
+        projectId: this.store.global.project.projectId,
+        dateScope: this.store.global.dateScope,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    } else {
+      this.empty = true;
+    }
+    return response;
   }
 }
 </script>
@@ -101,6 +155,13 @@ $asce: #ff2a76;
     font-size: 30px;
     font-weight: normal;
     color: rgba(144, 164, 195, 1);
+  }
+
+  .after {
+    color: #90a4c3;
+    font-size: 36px;
+    line-height: 48px;
+    margin: 0 44px 0 6px;
   }
 
   strong {
@@ -133,18 +194,22 @@ $asce: #ff2a76;
 
   .pointOfTime {
     display: inline-block;
-    padding: 0 10px;
-    background: #29374b;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 20px;
+    padding: 8px 26px;
+    background: #182966;
+    border-radius: 45px;
+    color: #90a4c3;
+    font-size: 30px;
+    line-height: 30px;
+    margin-left: 40px;
   }
 
   .desc {
     color: $desc;
+    margin-left: 18px;
   }
   .asce {
     color: $asce;
+    margin-left: 18px;
   }
 }
 </style>
