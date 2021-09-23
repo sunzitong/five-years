@@ -38,6 +38,7 @@ import Warning from "./components/Warning.vue";
 import Security from "./components/Security.vue";
 import Checked from "./components/Checked.vue";
 import ArrowBold from "./components/ArrorwBold.vue";
+import Back from "./components/Back.vue";
 
 const conponents = {
   asce: AsceAndDesc,
@@ -57,6 +58,7 @@ const conponents = {
   warning: Warning,
   checked: Checked,
   security: Security,
+  back: Back,
   "year-income": YearIncome,
   "number-of-opening-rooms": NumberOfOpeningRooms,
   "room-number": RoomNumber,
