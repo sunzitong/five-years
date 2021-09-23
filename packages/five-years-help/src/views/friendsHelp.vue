@@ -443,15 +443,19 @@ export default class Index extends Base {
   }
   // 确认按钮-我也要发起助力
   async handleConfirm() {
+    this.popParm.isShow = false; //确认关闭弹窗
     const res = await helpStart({
       an: (this.numberInfo as any).an,
       city: "全国",
-      t: getToken(), 
+      t: getToken()
     });
     if ((res as any)?.code == "0") {
       const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+      if (this.visitSource === "小程序") {
+        this.popParm.popType = 2;
+        this.popParm.isShow = true;
+      }
       this.share(url);
-      this.popParm.isShow = false;
     }
   }
   // 帮好友助力事件
