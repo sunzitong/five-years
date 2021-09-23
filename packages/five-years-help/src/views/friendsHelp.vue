@@ -328,6 +328,7 @@ import { getToken } from "@/utils/guanyu";
 import { setMiniProgramShare, showAppShare } from "@/utils/guanyu";
 import modelBox from "@/components/modelBox.vue";
 import dayjs from "dayjs";
+import { toLogin } from "../utils/guanyu";
 @Component({
   components: {
     modelBox,
@@ -363,7 +364,6 @@ export default class Index extends Base {
   activeTab = 1;
   loading = false;
   id: any = "";
-  // token = getToken()| | "69977ab6364545e98349b1616c5d8b70"; //todo
   token = getToken();
   async mounted() {
     document.title = "冠寓五周年助力活动";
@@ -391,7 +391,7 @@ export default class Index extends Base {
   async getHelpMy() {
     const res = await getHelpMy({
       an: (this.numberInfo as any).an,
-      t: this.token,
+      t: getToken(),
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
@@ -446,24 +446,29 @@ export default class Index extends Base {
     return t;
   }
   async handleInvitation(): Promise<void> {
-    // 倒计时大于0可以助力,否则按钮变灰不可点击
-    if (this.startUserInfo.cd > 0) {
-      const res = await helpJoin({
-        s: this.$route.query.id,
-        t: this.token,
-      });
-      if ((res as any)?.code === 0) {
-        this.popParm.descript = "恭喜你助力成功！";
-        this.popParm.buttonContext = "我也要发起助力";
-        this.popParm.popType = 3;
-        this.popParm.isShow = true;
-        await this.getNum();
-        await this.getRankings();
-        await this.getStartUser();
-      } else {
-        this.popParm.descript = (res as any)?.msg;
-        this.popParm.popType = 3;
-        this.popParm.isShow = true;
+     // 未登录
+    if (!getToken()) {
+      toLogin();
+    } else {
+      // 倒计时大于0可以助力,否则按钮变灰不可点击
+      if (this.startUserInfo.cd > 0) {
+        const res = await helpJoin({
+          s: this.$route.query.id,
+          t: getToken(),
+        });
+        if ((res as any)?.code === 0) {
+          this.popParm.descript = "恭喜你助力成功！";
+          this.popParm.buttonContext = "我也要发起助力";
+          this.popParm.popType = 3;
+          this.popParm.isShow = true;
+          await this.getNum();
+          await this.getRankings();
+          await this.getStartUser();
+        } else {
+          this.popParm.descript = (res as any)?.msg;
+          this.popParm.popType = 3;
+          this.popParm.isShow = true;
+        }
       }
     }
   }
