@@ -252,7 +252,7 @@
                         'icon',
                       ]"
                     ></i>
-                    <span v-else>{{ index }}</span>
+                    <span v-else>{{ index + 1 }}</span>
                   </li>
                   <li class="twoCol">{{ item.nn }}</li>
                   <li class="threeCol">{{ item.ic }}人</li>
