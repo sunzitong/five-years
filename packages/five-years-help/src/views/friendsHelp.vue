@@ -369,6 +369,9 @@ export default class Index extends Base {
   token = getToken();
   async mounted() {
     document.title = "冠寓五周年助力活动";
+    if (this.visitSource === "小程序") {
+      this.share(window.location.href.split("?")[0]);
+    }
     this.id = this.$route.query.id;
     await this.getNum();
     await this.getRankings();
@@ -449,7 +452,7 @@ export default class Index extends Base {
     const res = await helpStart({
       an: (this.numberInfo as any).an,
       city: "全国",
-      t: getToken()
+      t: getToken(),
     });
     if ((res as any)?.code == "0") {
       const url = `${window.location.origin}/fe/five-years-help/#/myInvitation`;
@@ -458,14 +461,11 @@ export default class Index extends Base {
         this.popParm.isShow = true;
       }
       this.share(url);
-      this.errorCount = 0;
     } else {
-      this.popParm.descript = (res as any)?.msg;
-      console.log( 'this.errorCount ',this.errorCount);
+      const msg = (res as any)?.msg;
+      this.popParm.descript = msg;
       this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.popType = this.errorCount == 0 ? 3 : 4;
-      this.popParm.isShow = true;
-      this.errorCount = this.errorCount + 1;
+      this.popParm.popType = 3;
     }
   }
   // 帮好友助力事件

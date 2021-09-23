@@ -342,7 +342,9 @@ export default class Index extends Base {
   token = getToken();
   async mounted() {
     document.title = "冠寓五周年助力活动";
-    this.share(window.location.href.split("?")[0]);
+    if (this.visitSource === "小程序") {
+      this.share(window.location.href.split("?")[0]);
+    }
     await this.getNum();
     await this.getHelpMy();
     await this.getRankings();
