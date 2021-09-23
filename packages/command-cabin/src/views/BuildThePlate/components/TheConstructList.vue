@@ -22,7 +22,21 @@
       </tbody>
     </table>
     <div class="footer">
+      <Select name="YearRange" title="开业年份" v-model="yearRange"></Select>
+      <Select
+        name="Options"
+        :options="stage"
+        v-model="stageValue"
+        title="项目阶段"
+      ></Select>
+      <Select
+        name="Options"
+        :options="riskType"
+        v-model="riskTypeValue"
+        title="风险类型"
+      ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
+      <Page :total="20" />
     </div>
   </div>
 </template>
@@ -37,12 +51,36 @@ import {
 import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
+import Page from "./Page.vue";
 
 /**营造台账宽表 */
 @Component({
-  components: { Select },
+  components: { Select, Page },
 })
 export default class TheConstructList extends Base implements IFetch {
+  yearRange = [2021, 2021];
+
+  /**
+   * 项目阶段  Open("已开业"), NotOpen("未开业")，默认全部
+   */
+  stage = {
+    Default: "全部",
+    Open: "已开业",
+    NotOpen: "已开业",
+  };
+  stageValue = "Default";
+
+  /**
+   * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")，默认全部
+   */
+  riskType = {
+    Default: "全部",
+    Delay: "延期风险",
+    CrossYear: "跨年风险",
+    NoRisk: "无风险",
+  };
+  riskTypeValue = "Default";
+
   options: { name: keyof List; text: string }[] = [
     { name: "projectNo", text: "分期ID" },
     { name: "name", text: "项目名称" },
@@ -154,6 +192,13 @@ export default class TheConstructList extends Base implements IFetch {
     bottom: 0;
     display: flex;
     align-items: center;
+    padding: 0 200px 0 186px;
+    .page {
+      margin: 0 0 0 auto;
+    }
   }
+}
+.select {
+  margin-right: 86px;
 }
 </style>

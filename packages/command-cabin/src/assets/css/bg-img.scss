@@ -5,8 +5,6 @@
     process.env.VUE_APP_BASE_IMG
 */
 $img-map: (
-  "404": "404.png",
-  "share": "share.png",
   "box-head-bg": "box-head-bg.png",
   "box-body-bg": "box-body-bg.png",
   "box-footer-bg": "box-footer-bg.png",
@@ -16,7 +14,6 @@ $img-map: (
   "circle-border": "circle-border.png",
   "btn-arrow": "btn-arrow.png",
   "btn-checked": "btn-checked.png",
-  // "btn-normal": "btn-normal.png",
   "circle-1": "circle-1.png",
   "circle-2": "circle-2.png",
   "circle-3": "circle-3.svg",
@@ -30,6 +27,7 @@ $img-map: (
   "btn-active-center": "btn-active-center.png",
   "bar-shadow": "bar-shadow.png",
   "logo": "logo.png",
+  "step-bg": "step-bg.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {

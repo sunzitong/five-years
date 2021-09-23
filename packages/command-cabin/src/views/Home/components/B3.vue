@@ -12,30 +12,28 @@
         </van-col>
         <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
       </van-row>
-      <div class="whole_chart">
-        <div class="item_name">
-          <div
-            class="item_name_item van-ellipsis"
-            v-for="(itemName, index) in labels"
-            :key="index"
-          >
-            {{ itemName }}
-          </div>
-        </div>
-        <div
-          class="app-echarts"
-          ref="wrapper"
-          style="width: 400px; height: 284px"
-        ></div>
-        <div class="item_value">
-          <div
-            class="item_value_item"
-            v-for="(itemValue, index) in values"
-            :key="index"
-          >
-            {{ itemValue }}%
-          </div>
-        </div>
+      <div class="process_container">
+        <Animationend
+          :scrollMinCount="4"
+          :height="300"
+          :dataSource="resData.costAnalysisModelList"
+        >
+          <template v-slot="{ list }">
+            <div class="process_item" animated v-for="el in list" :key="el.id">
+              <div class="item_name">
+                <div class="item_name_item van-ellipsis">
+                  {{ el.projectName }}
+                </div>
+              </div>
+              <div class="line_box">
+                <div class="content" :style="{ width: el.useRate + '%' }"></div>
+              </div>
+              <div class="item_value">
+                <div class="item_value_item">{{ el.useRate }}%</div>
+              </div>
+            </div>
+          </template>
+        </Animationend>
       </div>
     </div>
   </Spin>
@@ -43,17 +41,18 @@
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
 import { Base, IFetch } from "@/views/Base";
-import mitter, { EventName } from "@/utils/mitter";
 import { StoreKey, useStore } from "@/store";
+import Animationend from "@/components/Animationend/Index.vue";
 import {
   CostAnalysisReturn,
   fetchCostAnalysis,
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysis";
 
 @Component({
-  components: {},
+  components: {
+    Animationend,
+  },
 })
 export default class B3 extends Base implements IFetch {
   resData: Partial<CostAnalysisReturn> = {};
@@ -87,66 +86,11 @@ export default class B3 extends Base implements IFetch {
         this.labels.push(el.projectName);
         this.values.push(el.useRate);
       });
-      this.paintChart();
+      // this.paintChart();
     } else {
       this.empty = true;
     }
     return response;
-  }
-
-  paintChart() {
-    const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
-    let option = {
-      grid: {
-        top: "0%",
-        bottom: "0%",
-        left: "8%",
-        right: "8%",
-        containLabel: true,
-      },
-      xAxis: { show: false, max: 100 },
-      yAxis: {
-        type: "category",
-        inverse: true,
-        axisLine: { show: false },
-        splitLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: { show: false },
-        data: this.labels,
-      },
-      series: [
-        {
-          type: "bar",
-          stack: "total",
-          barWidth: 14,
-          barCateGoryGap: "40%",
-          showBackground: true,
-          backgroundStyle: {
-            color: "#172C47",
-          },
-          itemStyle: {
-            color: new echarts.graphic.LinearGradient(
-              1,
-              0,
-              0,
-              0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
-              [
-                { offset: 0, color: "#5180E4" },
-                { offset: 1, color: "rgba(81, 128, 228, 0)" },
-              ]
-            ),
-            width: 338,
-          },
-          label: { show: false },
-          data: this.values,
-        },
-      ],
-    };
-    option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>
@@ -184,27 +128,49 @@ export default class B3 extends Base implements IFetch {
   color: #ff2a76;
 }
 
-.whole_chart {
+.process_container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 284px;
+  margin: 66px 80px;
+}
+
+.process_item {
   display: inline-block;
   display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  padding: 66px 50px 49px 80px;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 
   .item_name {
     color: #90a4c3;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
-    height: 270px;
 
     .item_name_item {
-      margin: 23px 0;
       font-family: "PingFang SC";
       font-size: 40px;
       line-height: 40px;
       width: 200px;
+    }
+  }
+
+  .line_box {
+    width: 300px;
+    height: 14px;
+    background: #172c47;
+
+    .content {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(
+        -90deg,
+        #5180e4 0%,
+        rgba(81, 128, 228, 0) 100%
+      );
+      transition: 1s;
     }
   }
 
@@ -214,7 +180,6 @@ export default class B3 extends Base implements IFetch {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
-    height: 270px;
 
     .item_value_item {
       margin: 0 24px 0 0px;
@@ -222,16 +187,8 @@ export default class B3 extends Base implements IFetch {
       font-size: 50px;
       line-height: 66px;
       text-align: right;
+      width: 120px;
     }
   }
 }
 </style>
-
-function CostAnalysisReturn(CostAnalysisReturn: any, arg1: { key: any; params: {
-regionType:
-import("../../../service/analysis/commandCabin/publicEnum").DataLevels;
-regionId: number; }; }) { throw new Error("Function not implemented."); }
-function CostAnalysisReturn(CostAnalysisReturn: any, arg1: { key: any; params: {
-regionType:
-import("../../../service/analysis/commandCabin/publicEnum").DataLevels;
-regionId: number; }; }) { throw new Error("Function not implemented."); }

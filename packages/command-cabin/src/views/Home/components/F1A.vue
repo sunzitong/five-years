@@ -76,7 +76,7 @@ export default class F1A extends Base {
 
   mounted() {
     this.renderBarChart();
-    this.moveBarChart();
+    // this.moveBarChart();
   }
 
   renderBarChart() {

@@ -1,142 +1,167 @@
 <template>
-  <!-- <Spin :height="833" :loading="loading" :empty="empty"> -->
-  <div class="page__d1a__map">
-    <div class="circle1_group">
-      <van-circle
-        v-model="currentRate"
-        class="circle_setting1"
-        :rate="wholeIncomeValue"
-        layer-color="#14437F"
-        color="#5180E4"
-        :size="180"
-        :strokeWidth="50"
-        :speed="100"
-      >
-        <div class="rate-text">
-          <div class="value">{{ wholeIncomeValue }}%</div>
+  <Spin :height="478" :loading="loading" :empty="empty">
+    <div class="page__d1a__map">
+      <div class="circle1_group">
+        <van-circle
+          v-model="currentRate"
+          class="circle_setting1"
+          :rate="this.resData.totalFinishLimit"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="180"
+          :strokeWidth="50"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ resData.totalFinishLimit }}%</div>
+          </div>
+        </van-circle>
+        <div class="flex_text_box">
+          <div>全业态收入</div>
+          <div class="flex_value">
+            <span>{{ sepNumber(resData.totalIncome) }}</span>
+            <span>万</span>
+          </div>
         </div>
-      </van-circle>
-      <div class="flex_text_box">
-        <div>全业态收入</div>
-        <div class="flex_value">
-          <span>{{ 72678 }}</span>
-          <span>万</span>
+      </div>
+      <div class="circle2_group">
+        <van-circle
+          v-model="currentRate"
+          class="circle_setting2"
+          :rate="resData.guanyuFinishLimit"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="145"
+          :strokeWidth="45"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ resData.guanyuFinishLimit }}%</div>
+          </div>
+        </van-circle>
+        <div class="flex_text_box">
+          <div>长租</div>
+          <div class="flex_value">
+            <span>{{ sepNumber(resData.guanyuIncome) }}</span>
+            <span>万</span>
+          </div>
+        </div>
+      </div>
+      <div class="circle2_group">
+        <van-circle
+          v-model="currentRate"
+          class="circle_setting2"
+          :rate="resData.coCorkingFinishLimit"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="145"
+          :strokeWidth="45"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ resData.coCorkingFinishLimit }}%</div>
+          </div>
+        </van-circle>
+        <div class="flex_text_box">
+          <div>一展</div>
+          <div class="flex_value">
+            <span>{{ sepNumber(resData.coCorkingIncome) }}</span>
+            <span>万</span>
+          </div>
+        </div>
+      </div>
+      <div class="circle2_group">
+        <van-circle
+          v-model="currentRate"
+          class="circle_setting2"
+          :rate="resData.commerceFinishLimit"
+          layer-color="#75384E"
+          color="#FF3980"
+          :size="145"
+          :strokeWidth="45"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value special_color">
+              {{ resData.commerceFinishLimit }}%
+            </div>
+          </div>
+        </van-circle>
+        <div class="flex_text_box">
+          <div>底商</div>
+          <div class="flex_value">
+            <span class="special_color">
+              {{ sepNumber(resData.commerceIncome) }}
+            </span>
+            <span>万</span>
+          </div>
+        </div>
+      </div>
+      <div class="circle2_group">
+        <van-circle
+          v-model="currentRate"
+          class="circle_setting2"
+          :rate="resData.incrementAndParkFinishLimit"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="145"
+          :strokeWidth="45"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ resData.incrementAndParkFinishLimit }}%</div>
+          </div>
+        </van-circle>
+        <div class="flex_text_box">
+          <div>增值+车位</div>
+          <div class="flex_value">
+            <span>{{ sepNumber(resData.incrementAndParkIncome) }}</span>
+            <span>万</span>
+          </div>
+        </div>
+      </div>
+      <div class="circle3_group">
+        <div class="flex_text_box">
+          <div>违约金及</div>
+          <div>其他收入</div>
+          <div class="flex_value">
+            <span>{{ sepNumber(resData.contractSporadicIncome) }}</span>
+            <span>万</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="circle2_group">
-      <van-circle
-        v-model="currentRate"
-        class="circle_setting2"
-        :rate="wholeIncomeValue"
-        layer-color="#14437F"
-        color="#5180E4"
-        :size="145"
-        :strokeWidth="45"
-        :speed="100"
-      >
-        <div class="rate-text">
-          <div class="value">{{ wholeIncomeValue }}%</div>
-        </div>
-      </van-circle>
-      <div class="flex_text_box">
-        <div>长租</div>
-        <div class="flex_value">
-          <span>{{ 72678 }}</span>
-          <span>万</span>
-        </div>
-      </div>
-    </div>
-    <div class="circle2_group">
-      <van-circle
-        v-model="currentRate"
-        class="circle_setting2"
-        :rate="wholeIncomeValue"
-        layer-color="#14437F"
-        color="#5180E4"
-        :size="145"
-        :strokeWidth="45"
-        :speed="100"
-      >
-        <div class="rate-text">
-          <div class="value">{{ wholeIncomeValue }}%</div>
-        </div>
-      </van-circle>
-      <div class="flex_text_box">
-        <div>一展</div>
-        <div class="flex_value">
-          <span>{{ 72678 }}</span>
-          <span>万</span>
-        </div>
-      </div>
-    </div>
-    <div class="circle2_group">
-      <van-circle
-        v-model="currentRate"
-        class="circle_setting2"
-        :rate="wholeIncomeValue"
-        layer-color="#75384E"
-        color="#FF3980"
-        :size="145"
-        :strokeWidth="45"
-        :speed="100"
-      >
-        <div class="rate-text">
-          <div class="value special_color">{{ wholeIncomeValue }}%</div>
-        </div>
-      </van-circle>
-      <div class="flex_text_box">
-        <div>底商</div>
-        <div class="flex_value">
-          <span class="special_color">{{ 72678 }}</span>
-          <span>万</span>
-        </div>
-      </div>
-    </div>
-    <div class="circle2_group">
-      <van-circle
-        v-model="currentRate"
-        class="circle_setting2"
-        :rate="wholeIncomeValue"
-        layer-color="#14437F"
-        color="#5180E4"
-        :size="145"
-        :strokeWidth="45"
-        :speed="100"
-      >
-        <div class="rate-text">
-          <div class="value">{{ wholeIncomeValue }}%</div>
-        </div>
-      </van-circle>
-      <div class="flex_text_box">
-        <div>增值+车位</div>
-        <div class="flex_value">
-          <span>{{ 72678 }}</span>
-          <span>万</span>
-        </div>
-      </div>
-    </div>
-    <div class="circle3_group">
-      <div class="flex_text_box">
-        <div>违约金及</div>
-        <div>其他收入</div>
-        <div class="flex_value">
-          <span>{{ 72678 }}</span>
-          <span>万</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- </Spin> -->
+  </Spin>
 </template>
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
+import {
+  fetchIncome,
+  IncomeReturn,
+} from "@/service/analysis/bigScreen/projectBoard/managementSituation/income";
 @Component
-export default class D1A extends Base {
+export default class D1A extends Base implements IFetch {
+  resData: Partial<IncomeReturn> = {};
   currentRate = 0;
-  wholeIncomeValue = 23.1; // 全业态收入
+
+  async fetch() {
+    const response = await useStore(fetchIncome, {
+      key: StoreKey.ProjectIncome,
+      params: {
+        projectId: this.store.global.project.projectId,
+        dateScope: this.store.global.dateScope,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    } else {
+      this.empty = true;
+    }
+    return response;
+  }
 }
 </script>
 
@@ -167,7 +192,7 @@ export default class D1A extends Base {
     font-weight: bold;
     font-size: 48px;
     color: #dbf0ff;
-    margin-top: 73px;
+    margin-top: 68px;
   }
 
   .flex_value span:nth-child(1) {
@@ -240,7 +265,7 @@ export default class D1A extends Base {
   content: "";
   width: 2px;
   height: 270px;
-  margin-left: -80px;
+  margin-left: -35px;
   position: absolute;
   left: 0;
   background: linear-gradient(
@@ -261,7 +286,7 @@ export default class D1A extends Base {
   line-height: 40px;
   color: #90a4c3;
   text-align: center;
-  margin: 160px 0 0 0;
+  margin: 170px 0 0 0;
 
   .flex_value {
     margin: 18px 0 0 0;

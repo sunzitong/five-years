@@ -115,3 +115,5 @@ declare module "@guanyu/guanyu-h5-tools" {
   const ShowSharePanel: AnyFunction;
   const getCurrentCity: AnyFunction;
 }
+
+declare module "vuejs-paginate";

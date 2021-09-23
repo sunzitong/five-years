@@ -39,6 +39,10 @@ export enum StoreKey {
    */
   ProjectSentiment = "ProjectSentiment",
   /**
+   * 门店屏幕-经营现状-收入量价情况
+   */
+  ProjectIncome = "ProjectIncome",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
@@ -75,7 +79,7 @@ export enum StoreKey {
    */
   ConstructList = "ConstructList",
   /**
-   *
+   * 成本分析模块
    */
   HomeCostAnalysis = "HomeCostAnalysis",
 }

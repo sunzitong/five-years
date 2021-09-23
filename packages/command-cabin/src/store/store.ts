@@ -12,8 +12,7 @@ const store = {
   env: {
     ...process.env,
     ERROR: "",
-    // TODO debug
-    DEBUG: true || process.env.NODE_ENV === "development",
+    DEBUG: process.env.NODE_ENV === "development",
   } as Env,
   /**
    * 全局参数

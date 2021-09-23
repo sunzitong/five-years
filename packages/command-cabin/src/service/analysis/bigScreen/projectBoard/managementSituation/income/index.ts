@@ -49,7 +49,7 @@ export interface IncomeReturn {
 /**
  * 门店屏幕-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/9/17 下午6:52:08
+ * @updateAt 2021/9/22 下午5:31:20
  * @method GET
  */
 export const fetchIncome = (params: IncomeParams) => {

@@ -1,13 +1,1 @@
-<svg fill="none" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-  <ellipse transform="rotate(90 120 120)" cx="120" cy="120" rx="80" ry="80" fill="#071C36" />
-  <circle cx="120" cy="120" r="62.5" opacity=".7" stroke="#11294A" stroke-dasharray="24 4" stroke-width="10">
-    <animateTransform attributeName="transform" dur="40s" from="0 120 120" repeatCount="indefinite" to="360 120 120"
-      type="rotate" />
-  </circle>
-  <path
-    d="m68.188 59.108c14.566-12.335 33.07-19.041 52.157-18.9 19.086 0.1401 37.49 7.1166 51.873 19.664l-4.721 5.412c-13.089-11.418-29.836-17.767-47.205-17.894-17.369-0.1274-34.208 5.9747-47.462 17.199l-4.6414-5.4807z"
-    fill="#11294A" fill-opacity=".7" />
-  <path
-    d="m171.86 180.45c-14.458 12.461-32.903 19.328-51.99 19.354s-37.551-6.79-52.043-19.212l4.674-5.453c13.188 11.304 29.99 17.506 47.359 17.483 17.369-0.024 34.154-6.273 47.311-17.612l4.689 5.44z"
-    fill="#11294A" fill-opacity=".7" />
-</svg>
+<svg fill="none" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><circle transform="rotate(90 120 120)" cx="120" cy="120" fill="#071C36" r="80"/><circle cx="120" cy="120" r="62.5" opacity=".7" stroke="#11294A" stroke-dasharray="24 4" stroke-width="10"><animateTransform attributeName="transform" dur="40s" from="0 120 120" repeatCount="indefinite" to="360 120 120" type="rotate"/></circle><path d="M68.188 59.108a79.8 79.8 0 01104.03.764l-4.721 5.412a72.616 72.616 0 00-94.667-.695l-4.641-5.48zM171.86 180.45a79.801 79.801 0 01-104.033.142l4.674-5.453a72.622 72.622 0 0094.67-.129l4.689 5.44z" fill="#11294A" fill-opacity=".7"/></svg>

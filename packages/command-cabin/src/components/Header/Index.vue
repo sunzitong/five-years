@@ -186,6 +186,9 @@ export default class Header extends Base {
     return `header-${uuid()}`;
   }
 
+  /**
+   * 动态标题
+   */
   get title() {
     if (this.$route.meta.name === "project") {
       return "冠寓门店指挥中心";
