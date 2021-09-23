@@ -465,7 +465,7 @@ export default class Index extends Base {
       const msg = (res as any)?.msg;
       this.popParm.descript = msg;
       this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.popType = 3;
+      this.popParm.popType = 4;
     }
   }
   // 帮好友助力事件
@@ -490,7 +490,7 @@ export default class Index extends Base {
           await this.getStartUser();
         } else {
           this.popParm.descript = (res as any)?.msg;
-          this.popParm.popType = 4;
+          this.popParm.popType = 3;
           this.popParm.isShow = true;
         }
       }
