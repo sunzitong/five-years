@@ -127,9 +127,14 @@ export default class Index extends Base {
    * 跳转到活动
    */
   jumpToAct(item) {
+    const token = getToken();
     // 若该活动需要登录
     if (item.isLogin) {
-      this.login();
+      // 若没有登录
+      if (!token) {
+         this.login();
+         return;
+      }
     }
     // 若活动需要跳转到其他原生小程序页
     if (item.appId) {
