@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import {
   fetchList,
@@ -53,13 +53,20 @@ import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
 import Page from "./Page.vue";
+import dayjs from "dayjs";
 
 /**营造台账宽表 */
 @Component({
   components: { Select, Page },
 })
 export default class TheConstructList extends Base implements IFetch {
-  yearRange = [2021, 2021];
+  yearRange: number[] = [];
+
+  created() {
+    const year = dayjs().year();
+    this.yearRange = [year, year];
+    window.dayjs = dayjs;
+  }
 
   /**
    * 项目阶段  Open("已开业"), NotOpen("未开业")，默认全部
@@ -115,8 +122,6 @@ export default class TheConstructList extends Base implements IFetch {
 
   pageNum = 1;
 
-  @Prop() title!: any;
-
   response: Partial<ListReturn> = {};
 
   /**
@@ -131,13 +136,14 @@ export default class TheConstructList extends Base implements IFetch {
         // 组织ID
         orgId: this.store.global.orgTree.orgId,
         // 开业开始时间
-        openYearStart: 2021,
+        openYearStart: this.yearRange[0],
         // 开业结束时间
-        openYearEnd: 2021,
+        openYearEnd: this.yearRange[1],
         // 项目阶段
-        stage: this.stageValue,
+        stage: this.stageValue === "Default" ? undefined : this.stageValue,
         // 延期类型
-        riskType: this.riskTypeValue,
+        riskType:
+          this.riskTypeValue === "Default" ? undefined : this.riskTypeValue,
         // 页容量
         pageSize: 20,
         // 页码

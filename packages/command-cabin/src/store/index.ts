@@ -75,13 +75,17 @@ export enum StoreKey {
    */
   HomeSentiment = "HomeSentiment",
   /**
+   * 成本分析模块
+   */
+  HomeCostAnalysis = "HomeCostAnalysis",
+  /**
    * 营造盘面详情
    */
   ConstructList = "ConstructList",
   /**
-   * 成本分析模块
+   * 成本分析列表
    */
-  HomeCostAnalysis = "HomeCostAnalysis",
+  CostAnalysisList = "CostAnalysisList",
 }
 /**
  * 方法重载
