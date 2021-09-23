@@ -10,8 +10,9 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import TheOrgTree from "./TheOrgTree.vue";
 import YearRange from "./YearRange.vue";
+import Options from "./Options.vue";
 
-const components = { TheOrgTree, YearRange };
+const components = { TheOrgTree, YearRange, Options };
 
 @Component({
   components,

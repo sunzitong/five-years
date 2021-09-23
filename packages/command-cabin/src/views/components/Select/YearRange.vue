@@ -1,13 +1,14 @@
 <template>
   <SelectWrap :value="strValue" :title="$attrs.title">
     <template v-slot="{ vm }">
-      <div class="year-range">
+      <div class="year-range animate__animated animate__fadeInUp">
         <van-tabs
           v-model="tab"
           title-inactive-color="#90A4C3"
           background="rgba(14, 23, 60, 0.6)"
           title-active-color="#fff"
           :line-width="0"
+          animated
         >
           <van-tab title="开始年份">
             <van-grid :column-num="3" :border="false" clickable>
@@ -57,7 +58,7 @@ import SelectWrap from "./SelectWrap.vue";
   inheritAttrs: false,
 })
 export default class YearRange extends Base {
-  @Prop() value!: number[];
+  @Prop({ default: [] }) value!: number[];
 
   /**
    * select组件显示值
@@ -103,9 +104,7 @@ export default class YearRange extends Base {
     } else {
       this.$set(this.localValue, index, value);
       if (index === 0) {
-        setTimeout(() => {
-          this.tab = 1;
-        }, 400);
+        this.tab = 1;
       }
     }
   }
@@ -114,6 +113,7 @@ export default class YearRange extends Base {
 
 <style lang="scss" scoped>
 .year-range {
+  --animate-duration: 100ms;
   color: #90a4c3;
 
   &::v-deep {
