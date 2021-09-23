@@ -124,6 +124,8 @@
             <Icon type="energy" :size="200" />
             arrow-bold-top:
             <Icon type="arrow-bold-top" :size="100" />
+            back:
+            <Icon type="back" :size="100" />
           </p>
         </Card>
 
