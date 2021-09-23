@@ -86,8 +86,6 @@ export default class D5 extends Base implements IFetch {
     return response;
   }
 }
-{
-}
 </script>
 
 <style lang="scss" scoped>
