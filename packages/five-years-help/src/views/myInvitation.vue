@@ -303,6 +303,7 @@ import { getToken } from "@/utils/guanyu";
 import { setMiniProgramShare, showAppShare } from "@/utils/guanyu";
 import modelBox from "@/components/modelBox.vue";
 import dayjs from "dayjs";
+import { toLogin } from "../utils/guanyu";
 @Component({
   components: {
     modelBox,
@@ -405,30 +406,35 @@ export default class Index extends Base {
     this.popParm.isShow = false;
   }
   async handleInvitation(): Promise<void> {
-    // 倒计时>0
-    if (this.userInfo && this.userInfo?.cd > 0) {
-      const res = await helpStart({
-        an: (this.numberInfo as any).an,
-        city: "全国",
-        t: this.token, //todo
-      });
-      if ((res as any)?.code == "0") {
-        this.invitationId = (res as any)?.data?.s;
-        if (this.visitSource === "小程序") {
-          const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
-          this.popParm.popType = 2;
-          this.popParm.isShow = true;
-          this.share(url);
+    // 未登录
+    if (!getToken()) {
+      toLogin();
+    } else {
+      // 倒计时>0
+      if (this.userInfo && this.userInfo?.cd > 0) {
+        const res = await helpStart({
+          an: (this.numberInfo as any).an,
+          city: "全国",
+          t: this.token, //todo
+        });
+        if ((res as any)?.code == "0") {
+          this.invitationId = (res as any)?.data?.s;
+          if (this.visitSource === "小程序") {
+            const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+            this.popParm.popType = 2;
+            this.popParm.isShow = true;
+            this.share(url);
+          } else {
+            this.popParm.descript = "发送至微信好友或群聊";
+            this.popParm.buttonContext = "发送";
+            this.popParm.popType = 3;
+            this.popParm.isShow = true;
+          }
         } else {
-          this.popParm.descript = "发送至微信好友或群聊";
-          this.popParm.buttonContext = "发送";
+          this.popParm.descript = (res as any)?.msg;
           this.popParm.popType = 3;
           this.popParm.isShow = true;
         }
-      } else {
-        this.popParm.descript = (res as any)?.msg;
-        this.popParm.popType = 3;
-        this.popParm.isShow = true;
       }
     }
   }
