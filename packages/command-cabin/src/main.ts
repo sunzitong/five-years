@@ -25,13 +25,13 @@ Vue.use(Spin);
 Vue.config.productionTip = false;
 // 实例
 const VIEW = new Vue({
-  data: { ...store, DEBUG: false },
+  data: store,
   router,
   render: (h) => h(App),
   methods: {},
   provide: {},
 }).$mount("#app");
 
-if (process.env.NODE_ENV !== "production") {
+if (store.env.DEBUG) {
   window.VIEW = VIEW;
 }

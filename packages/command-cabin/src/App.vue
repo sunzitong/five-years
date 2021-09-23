@@ -11,7 +11,7 @@
     <AppLoading v-if="appLoading" />
     <!-- 控制缩放 -->
     <div
-      v-if="true || store.env.NODE_ENV === 'development'"
+      v-if="true || $root.env.DEBUG"
       :style="{ transform: 'scale(' + 1 / scale + ')' }"
       class="screen-resize"
     >
@@ -103,7 +103,7 @@ export default class App extends Mixins(MixStore) {
   created() {
     // 7680 x 3240
     window.addEventListener("resize", this.resizeHandle);
-    if (process.env.NODE_ENV !== "development") {
+    if (!this.$root.env.DEBUG) {
       document.addEventListener("contextmenu", this.contentMenuHandle);
     }
     this.fetchOrgData();
@@ -113,7 +113,7 @@ export default class App extends Mixins(MixStore) {
   }
   destroyed() {
     window.removeEventListener("resize", this.resizeHandle);
-    if (process.env.NODE_ENV !== "development") {
+    if (!this.$root.env.DEBUG) {
       document.removeEventListener("contextmenu", this.contentMenuHandle);
     }
   }
