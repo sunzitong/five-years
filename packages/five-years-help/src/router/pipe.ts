@@ -47,15 +47,15 @@ function setDocumentTitle(title: string) {
 
 export default function (router: VueRouter) {
   router.beforeEach(function (to, from, next) {
-    console.log('from', from);;
-    console.log('to', to);;
+    console.log("from", from);
+    console.log("to", to);
     // 访问登录页，放行
     if (to.path === "/login") return next();
     const token = getToken();
     // 没有token, 强制跳转到登录页
-    const toPath = window.location.origin + "/#" + to.fullPath;
+    const toPath = window.location.href.split("/#/")[0] + "/#" + to.fullPath;
     const backUrl: any = encodeURIComponent(toPath);
-    console.log(backUrl,'backUrl123');
+    console.log(backUrl, "backUrl123");
     if (!token) return next(`/login?backUrl=${backUrl}`);
     next();
   });
