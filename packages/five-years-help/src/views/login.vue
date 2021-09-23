@@ -7,11 +7,7 @@
       <div class="tips">登录后才可以发起助力呦！</div>
     </div>
     <!-- 弹窗模态框 -->
-    <van-overlay
-      :show="isShow"
-      @click="handleClosed"
-      v-lockScrollBack="[isShow]"
-    >
+    <van-overlay :show="isShow" @click="handleClosed" :lock-scroll="false">
       <modelBox :popType="1" @closed="handleClosed"></modelBox>
     </van-overlay>
   </div>
@@ -28,7 +24,6 @@ import modelBox from "@/components/modelBox.vue";
     modelBox,
   },
 })
- 
 export default class Index extends Base {
   /**
    * 运行环境
@@ -123,7 +118,7 @@ export default class Index extends Base {
   right: 0;
   top: 240px;
   width: 23px;
-  height: 87px;
+  height: 71px;
   font-weight: 500;
   font-weight: 500;
   color: #00FFFF;
@@ -132,5 +127,7 @@ export default class Index extends Base {
   border-right: 0;
   border-radius: 12px 0 0 12px;
   z-index: 98;
+  font-size: 12px;
+  line-height: 15px;
 }
 </style>

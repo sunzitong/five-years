@@ -272,7 +272,11 @@
     </div>
 
     <!-- 弹窗模态框 -->
-    <van-overlay :show="this.popParm.isShow" @click="handleClosed" :lock-scroll="false">
+    <van-overlay
+      :show="this.popParm.isShow"
+      @click="handleClosed"
+      :lock-scroll="false"
+    >
       <modelBox
         :buttonContext="this.popParm.buttonContext"
         :descript="this.popParm.descript"
@@ -332,7 +336,7 @@ export default class Index extends Base {
   invitationId: any = "";
   activeTab = 1;
   loading = false;
-  token = getToken() || "7855919100c64bdf97f94aee2a45d949"; //todo
+  token = getToken();
   async mounted() {
     document.title = "冠寓五周年助力活动";
     await this.getNum();
@@ -369,7 +373,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      this.userInfo.ic = 6; //todo
+      // this.userInfo.ic = 6; //todo
     }
   }
   async getMyHelpers(){
@@ -401,15 +405,25 @@ export default class Index extends Base {
     this.popParm.isShow = false;
   }
   async handleInvitation(): Promise<void> {
-    this.invitationId = await this.helpStart();
-    if (this.visitSource === "小程序") {
-      const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
-      this.popParm.popType = 2;
-      this.popParm.isShow = true;
-      this.share(url);
+    const res = await helpStart({
+      an: (this.numberInfo as any).an,
+      city: "全国",
+      t: this.token, //todo
+    });
+    if ((res as any)?.code == "0") {
+      if (this.visitSource === "小程序") {
+        const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+        this.popParm.popType = 2;
+        this.popParm.isShow = true;
+        this.share(url);
+      } else {
+        this.popParm.descript = "发送至微信好友或群聊";
+        this.popParm.buttonContext = "发送";
+        this.popParm.popType = 3;
+        this.popParm.isShow = true;
+      }
     } else {
-      this.popParm.descript = "发送至微信好友或群聊";
-      this.popParm.buttonContext = "发送";
+      this.popParm.descript = (res as any)?.msg;
       this.popParm.popType = 3;
       this.popParm.isShow = true;
     }

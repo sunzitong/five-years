@@ -94,7 +94,7 @@
                   :style="{
                     right:
                       startUserInfo.ic >= helpHeadCountList.slice(-1)
-                        ? `-2vw`
+                        ? `-1vw`
                         : `-6vw`,
                   }"
                 ></i>
@@ -163,7 +163,10 @@
                 用户{{ item.nn }}已达成{{ item.pn }}珑珠
               </li>
             </ul>
-            <div v-else class="emptyTemplate"></div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂无内容</div>
+            </div>
           </div>
         </div>
         <div class="history-right">
@@ -248,7 +251,10 @@
                 </ul>
               </div>
             </div>
-            <div class="emptyTemplate" v-else></div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂时还没有小伙伴助力</div>
+            </div>
           </div>
           <div v-else-if="activeTab == 2" class="tab-content tab-topTen">
             <div v-if="rankingsInfo && rankingsInfo.rl.length > 0">
@@ -276,7 +282,10 @@
                 </ul>
               </div>
             </div>
-            <div class="emptyTemplate" v-else></div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂无内容</div>
+            </div>
           </div>
         </div>
       </div>
@@ -290,7 +299,7 @@
     <van-overlay
       :show="this.popParm.isShow"
       @click="handleClosed"
-      @touchmove.prevent
+      :lock-scroll="false"
     >
       <modelBox
         :buttonContext="this.popParm.buttonContext"
@@ -395,28 +404,6 @@ export default class Index extends Base {
       this.startUserInfo = res?.data;
     }
   }
-  async helpJoin(): Promise<void> {
-    // 倒计时大于0可以助力,否则按钮变灰不可点击
-    if (this.startUserInfo.cd > 0) {
-      const res = await helpJoin({
-        s: this.$route.query.id,
-        t: this.token,
-      });
-      if ((res as any)?.code === 0) {
-        this.popParm.descript = "恭喜你助力成功！";
-        this.popParm.buttonContext = "我也要发起助力";
-        this.popParm.popType = 3;
-        this.popParm.isShow = true;
-        await this.getNum();
-        await this.getRankings();
-        await this.getStartUser();
-      } else {
-        this.popParm.descript = (res as any)?.msg;
-        this.popParm.popType = 3;
-        this.popParm.isShow = true;
-      }
-    }
-  }
   async handleConfirm() {
     this.$router.push({
       path: "/myInvitation",
@@ -458,7 +445,26 @@ export default class Index extends Base {
     return t;
   }
   async handleInvitation(): Promise<void> {
-    await this.helpJoin();
+    // 倒计时大于0可以助力,否则按钮变灰不可点击
+    if (this.startUserInfo.cd > 0) {
+      const res = await helpJoin({
+        s: this.$route.query.id,
+        t: this.token,
+      });
+      if ((res as any)?.code === 0) {
+        this.popParm.descript = "恭喜你助力成功！";
+        this.popParm.buttonContext = "我也要发起助力";
+        this.popParm.popType = 3;
+        this.popParm.isShow = true;
+        await this.getNum();
+        await this.getRankings();
+        await this.getStartUser();
+      } else {
+        this.popParm.descript = (res as any)?.msg;
+        this.popParm.popType = 3;
+        this.popParm.isShow = true;
+      }
+    }
   }
 }
 </script>
@@ -539,16 +545,18 @@ export default class Index extends Base {
   align-items: center;
   text-align: center;
   right: 0;
-  top: 252px;
+  top: 267px;
   width: 23px;
-  height: 87px;
+  height: 71px;
   font-weight: 500;
-  color: #00ffff;
+  color: #00FFFF;
   text-shadow: 0px 0px 12px #00fbfd, 0px 2px 4px rgb(0 0 0 / 89%);
-  border: 1px solid #00ffff;
+  border: 1px solid #00FFFF;
   border-right: 0;
   border-radius: 12px 0 0 12px;
   z-index: 98;
+  font-size: 12px;
+  line-height: 15px;
 }
 .banner-box {
   display: flex;
@@ -658,87 +666,100 @@ export default class Index extends Base {
       text-shadow: 0px 0px 8px #fd08fe;
       font-weight: 500;
     }
-    // 5珑珠刻度
+     // 5珑珠刻度
     .scale5 {
       justify-content: end;
-      width: 52px;
-      opacity: 0.7;
+      width: 46px;
+      opacity: 0.5;
     }
     .scale5-active {
       justify-content: end;
-      width: 52px;
+      width: 46px;
     }
     .scaleLong5 {
       justify-content: end;
-      width: 52px;
-      opacity: 0.7;
+      width: 48px;
+      opacity: 0.5;
     }
     .scaleLong5-active {
       justify-content: end;
-      width: 52px;
+      width: 48px;
     }
     // 15珑珠刻度
     .scale15 {
       justify-content: end;
-      width: 52px;
-      opacity: 0.7;
+      width: 40px;
+      opacity: 0.5;
     }
     .scale15-active {
       justify-content: center;
-      width: 52px;
+      width: 40px;
     }
     .scaleLong15 {
       justify-content: center;
-      width: 52px;
-      opacity: 0.7;
+      width: 50px;
+      opacity: 0.5;
     }
     .scaleLong15-active {
       justify-content: center;
-      width: 52px;
+      width: 50px;
     }
     // 25珑珠刻度
     .scale25 {
       justify-content: center;
-      width: 68px;
-      opacity: 0.7;
+      width: 46px;
+      opacity: 0.5;
     }
     .scale25-active {
       justify-content: center;
-      width: 68px;
+      width: 46px;
     }
     .scaleLong25 {
       justify-content: center;
-      width: 68px;
-      opacity: 0.7;
+      width: 53px;
+      opacity: 0.5;
     }
     .scaleLong25-active {
       justify-content: center;
-      width: 68px;
+      width: 53px;
     }
     // 55珑珠刻度
     .scale55 {
       justify-content: center;
-      width: 68px;
-      opacity: 0.7;
+      width: 96px;
+      opacity: 0.5;
     }
     .scale55-active {
       justify-content: center;
-      width: 68px;
+      width: 96px;
     }
     .scaleLong55 {
       justify-content: center;
-      width: 68px;
-      opacity: 0.7;
+      width: 87px;
+      opacity: 0.5;
     }
     .scaleLong55-active {
       justify-content: center;
-      width: 68px;
+      width: 87px;
     }
     // 85珑珠刻度
     .scale85 {
       justify-content: center;
-      width: 90px;
-      opacity: 0.7;
+      width: 68px;
+      opacity: 0.5;
+    }
+    .scale85-active {
+      justify-content: center;
+      width: 68px;
+    }
+    .scaleLong85 {
+      justify-content: center;
+      width: 68px;
+      opacity: 0.5;
+    }
+    .scaleLong85-active {
+      justify-content: center;
+      width: 68px;
     }
     .scale85-active {
       justify-content: center;
@@ -796,6 +817,12 @@ export default class Index extends Base {
       height: 47px;
       margin-top: 70px;
     }
+    .emptyDescript {
+      text-align: center;
+      color: #fff;
+      opacity: 0.7;
+      margin-top: 12px;
+    }
     .history-left {
       display: flex;
       align-items: center;
@@ -809,12 +836,12 @@ export default class Index extends Base {
       border-radius: 8px;
       .history-left-ly {
         width: 149px;
-        height: 193px;
+        height: 170px;
         overflow-y: auto;
       }
       .complete-user {
-        // animation: myMove 5s linear infinite;
-        // animation-fill-mode: forwards;
+        animation: myMove 5s linear infinite;
+        animation-fill-mode: forwards;
       }
       @keyframes myMove {
         0% {
@@ -990,6 +1017,13 @@ export default class Index extends Base {
           background-position: center;
           height: 100px;
           margin-top: 84px;
+        }
+        .emptyDescript {
+          width: 100%;
+          text-align: center;
+          color: #fff;
+          opacity: 0.7;
+          margin-top: 12px;
         }
       }
       .tab-topTen {
