@@ -13,12 +13,12 @@
       src="https://goyoo-assets.longfor.com/prod/app/55cC0WCB5wQTFc_JA5p0EQ.png"
       alt=""
     />
-    <img
+    <!-- <img
       class="share-btn"
       src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/_FE2SpPV8jrhx7gKYyeXPQ.png"
       alt=""
       @click="shareBtnClick"
-    />
+    /> -->
     <van-overlay
       :show="showMiniShareGuideImg"
       @click="showMiniShareGuideImg = false"
@@ -219,7 +219,8 @@ export default class Index extends Base {
     position: absolute;
     top: 241px;
     width: 102px;
-    right: -4px;
+    // right: -4px;
+    right: 0px;
   }
 }
 </style>
