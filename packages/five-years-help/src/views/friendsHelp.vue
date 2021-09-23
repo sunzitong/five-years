@@ -450,7 +450,7 @@ export default class Index extends Base {
       t: getToken()
     });
     if ((res as any)?.code == "0") {
-      const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+      const url = `${window.location.origin}/fe/five-years-help/#/myInvitation`;
       if (this.visitSource === "小程序") {
         this.popParm.popType = 2;
         this.popParm.isShow = true;
