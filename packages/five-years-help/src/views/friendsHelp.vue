@@ -14,7 +14,7 @@
         </p>
         <div class="invitationContext">
           <div class="invitation">{{ startUserInfo.nn }}</div>
-          <div class="invitationDesc">邀请你为Ta 助力领冠寓免租券</div>
+          <div class="invitationDesc">邀请你为Ta 助力领珑珠</div>
         </div>
       </div>
       <div class="banner-photoFrame">

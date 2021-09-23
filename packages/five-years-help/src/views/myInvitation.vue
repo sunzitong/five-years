@@ -369,7 +369,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      this.userInfo.ic = 2; //todo
+      // this.userInfo.ic = 2; //todo
     }
   }
   async getMyHelpers(){
