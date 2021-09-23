@@ -82,6 +82,10 @@ export enum StoreKey {
    * 成本分析模块
    */
   HomeCostAnalysis = "HomeCostAnalysis",
+  /**
+   * 经营现状-逾期金额
+   */
+  HomeOverdue = "HomeOverdue",
 }
 /**
  * 方法重载
