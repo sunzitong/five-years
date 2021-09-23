@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="item in response"
+          v-for="item in response.list"
           :key="item.projectNo"
           :class="{ warn: item.riskType !== 'NoRisk' }"
         >
@@ -36,7 +36,7 @@
         title="风险类型"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
-      <Page :total="20" />
+      <Page :total="response.pages" @change="change" :value="pageNum" />
     </div>
   </div>
 </template>
@@ -47,6 +47,7 @@ import { Base, IFetch } from "@/views/Base";
 import {
   fetchList,
   List,
+  ListReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/list";
 import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
@@ -112,9 +113,11 @@ export default class TheConstructList extends Base implements IFetch {
     { name: "fireControlType", text: "消防证照合规性" },
   ];
 
+  pageNum = 1;
+
   @Prop() title!: any;
 
-  response: List[] = [];
+  response: Partial<ListReturn> = {};
 
   /**
    * 自动触发 重复调用
@@ -132,15 +135,29 @@ export default class TheConstructList extends Base implements IFetch {
         // 开业结束时间
         openYearEnd: 2021,
         // 项目阶段
-        stage: "",
+        stage: this.stageValue,
         // 延期类型
-        riskType: "",
+        riskType: this.riskTypeValue,
+        // 页容量
+        pageSize: 20,
+        // 页码
+        pageNum: this.pageNum,
       },
     });
     if (response?.status === "ok") {
-      this.response = iwant.array(response.data?.list);
+      response.data = iwant.object(response.data);
+      response.data.list = iwant.array(response.data.list);
+      this.response = response.data;
     }
     return response;
+  }
+
+  /**
+   * 翻页
+   */
+  change(num: number) {
+    this.pageNum = num;
+    this.fetch();
   }
 }
 </script>
