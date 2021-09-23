@@ -17,6 +17,9 @@ import {
   SwipeItem,
   Tab,
   Tabs,
+  Grid,
+  GridItem,
+  Button,
 } from "vant";
 import Vue from "vue";
 
@@ -40,3 +43,6 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Tab);
 Vue.use(Tabs);
+Vue.use(Grid);
+Vue.use(GridItem);
+Vue.use(Button);

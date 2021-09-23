@@ -13,17 +13,17 @@ export interface OverdueParams {
   /**
    * OMS-公用枚举-dataLevels 组织级别
    */
-  dataLevel: string;
+  dataLevel?: string;
 
   /**
    * 国家组织ID/大区组织ID/城市组织ID
    */
-  levelId: number;
+  levelId?: number;
 
   /**
-   * 最新统计日，默认是当前时间，yyyy-mm-dd
+   * phId
    */
-  dateScope?: string;
+  phId?: string;
 }
 
 /**
@@ -45,10 +45,10 @@ export interface OverdueReturn {
 /**
  * 经营现状-逾期金额
  * @createBy huyanan
- * @updateAt 2021/9/22 上午11:03:33
+ * @updateAt 2021/9/22 下午7:26:18
  * @method GET
  */
-export const fetchOverdue = (params: OverdueParams) => {
+export const fetchOverdue = (params?: OverdueParams) => {
   return http.get<OverdueReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/managementSituation/overdue`,
     {

@@ -1,7 +1,7 @@
 <template>
   <SelectWrap :value="store.global.orgTree.orgName" :title="$attrs.title">
-    <template v-slot="{ active, toggle }">
-      <OriTheOrgTree :show="active" @update:show="toggle(false)" />
+    <template v-slot="{ active, vm }">
+      <OriTheOrgTree :show="active" @update:show="change(vm)" />
     </template>
   </SelectWrap>
 </template>
@@ -18,5 +18,9 @@ import SelectWrap from "./SelectWrap.vue";
 })
 export default class TheOrgTree extends Base {
   @Prop() value!: string;
+  change(vm: SelectWrap) {
+    vm.active = false;
+    this.$emit("input", this.store.global.orgTree);
+  }
 }
 </script>

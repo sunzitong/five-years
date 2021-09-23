@@ -69,7 +69,7 @@ export default class OperatingIndex extends Base implements IFetch {
   get monthData() {
     const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
     const response: MonthData = this.response?.[key] ?? {};
-    // 转换日期为月 - 1
+    // 转换日期为月
     const month = dayjs(response.dataDate).format("M");
 
     // 如果当前月去掉试算

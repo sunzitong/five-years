@@ -4,7 +4,7 @@
  *
  * 成本分析模块
  * @createBy zhangyao03
- * @updateAt 2021/9/22 下午3:41:46
+ * @updateAt 2021/9/22 下午5:06:23
  * @method GET
  */
 
@@ -29,6 +29,14 @@ exports.response = {
       },
       {
         id: 2, //id
+        phId: "L-CD00-CDSDT00.08", //项目分期id
+        projectName: "龙湖冠寓成都xxx时代店", //项目名字
+        dynamicCostNonTax: 123123.12, //动态总成本
+        targetCostNonTax: 123123.12, //总目标成本
+        useRate: 0.9862, //动态成本利用率
+      },
+      {
+        id: 3, //id
         phId: "L-CD00-CDSDT00.08", //项目分期id
         projectName: "龙湖冠寓成都xxx时代店", //项目名字
         dynamicCostNonTax: 123123.12, //动态总成本
