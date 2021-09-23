@@ -22,14 +22,21 @@
       </tbody>
     </table>
     <div class="footer">
-      <Select name="YearRange" title="开业年份" v-model="yearRange"></Select>
       <Select
+        @input="fetch"
+        name="YearRange"
+        title="开业年份"
+        v-model="yearRange"
+      ></Select>
+      <Select
+        @input="fetch"
         name="Options"
         :options="stage"
         v-model="stageValue"
         title="项目阶段"
       ></Select>
       <Select
+        @input="fetch"
         name="Options"
         :options="riskType"
         v-model="riskTypeValue"
