@@ -16,6 +16,14 @@
         stroke-width="2"
       />
       <path
+        v-if="animate"
+        :id="`${uuid}_curve`"
+        :d="buttonPathD"
+        stroke-width="2"
+        stroke="#fff"
+        :mask="`url(#${uuid}_maskIdTest)`"
+      />
+      <path
         d="M10.1929 0.665039H0.192871V10.665L10.1929 0.665039Z"
         :fill="fill"
       />
@@ -28,18 +36,6 @@
           Z`"
         :fill="fill"
       />
-      <rect
-        v-if="animate"
-        x="0"
-        y="-1"
-        height="2"
-        width="30"
-        :fill="`url(#${uuid}_paint1_linear2)`"
-      >
-        <animateMotion dur="4s" rotate="auto" repeatCount="indefinite">
-          <mpath :xlink:href="`#${uuid}_curve`" />
-        </animateMotion>
-      </rect>
       <line
         x1="5.97374"
         :y1="rect.height - 70 + 58.9993"
@@ -111,6 +107,33 @@
           <stop offset="0.510417" :stop-color="fill" stop-opacity="0.99" />
           <stop offset="1" :stop-color="fill" stop-opacity="0"></stop>
         </linearGradient>
+
+        <radialGradient
+          :id="`${uuid}_radialGradientId1`"
+          r="50%"
+          cx="50%"
+          cy="50%"
+          fx="100%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#fff" stop-opacity="1"></stop>
+          <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
+        </radialGradient>
+        <mask :id="`${uuid}_maskIdTest`">
+          <circle
+            r="50"
+            cx="0"
+            cy="0"
+            :fill="`url(#${uuid}_radialGradientId1)`"
+          >
+            <animateMotion
+              :path="buttonPathD"
+              dur="3s"
+              rotate="auto"
+              repeatCount="indefinite"
+            ></animateMotion>
+          </circle>
+        </mask>
       </defs>
     </svg>
     <div class="app-btn__txt">
