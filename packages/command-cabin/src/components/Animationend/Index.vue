@@ -27,7 +27,7 @@ export default class Animationed extends Vue {
   /**
    * 数据来源
    */
-  @Prop({ default: [] }) dataSource!: any[];
+  @Prop({ default: () => [] }) dataSource!: any[];
 
   /**
    * 动画时间

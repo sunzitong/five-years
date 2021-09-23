@@ -13,23 +13,27 @@
         <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
       </van-row>
       <div class="process_container">
-        <div
-          class="process_item"
-          v-for="(el, index) in resData.costAnalysisModelList"
-          :key="index"
+        <Animationend
+          :scrollMinCount="4"
+          :height="300"
+          :dataSource="resData.costAnalysisModelList"
         >
-          <div class="item_name">
-            <div class="item_name_item van-ellipsis">
-              {{ el.projectName }}
+          <template v-slot="{ list }">
+            <div class="process_item" animated v-for="el in list" :key="el.id">
+              <div class="item_name">
+                <div class="item_name_item van-ellipsis">
+                  {{ el.projectName }}
+                </div>
+              </div>
+              <div class="line_box">
+                <div class="content" :style="{ width: el.useRate + '%' }"></div>
+              </div>
+              <div class="item_value">
+                <div class="item_value_item">{{ el.useRate }}%</div>
+              </div>
             </div>
-          </div>
-          <div class="line_box">
-            <div class="content" :style="{ width: el.useRate + '%' }"></div>
-          </div>
-          <div class="item_value">
-            <div class="item_value_item">{{ el.useRate }}%</div>
-          </div>
-        </div>
+          </template>
+        </Animationend>
       </div>
     </div>
   </Spin>
@@ -39,13 +43,16 @@
 import { Component, Ref } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import Animationend from "@/components/Animationend/Index.vue";
 import {
   CostAnalysisReturn,
   fetchCostAnalysis,
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysis";
 
 @Component({
-  components: {},
+  components: {
+    Animationend,
+  },
 })
 export default class B3 extends Base implements IFetch {
   resData: Partial<CostAnalysisReturn> = {};
