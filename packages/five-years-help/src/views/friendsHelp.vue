@@ -349,7 +349,7 @@ export default class Index extends Base {
     isShow: false,
     buttonContext: "",
     popType: 3,
-    descript: "发送至微信好友或群聊",
+    descript: "",
   };
   helpHeadCountList: any = [5, 15, 25, 55, 85]; //获取奖励比例图-助力人头数
   helpLongZhuList: any = [100, 315, 555, 1355, 2355]; //获取奖励比例图-珑珠数量
@@ -367,7 +367,7 @@ export default class Index extends Base {
   token = getToken();
   async mounted() {
     document.title = "冠寓五周年助力活动";
-    this.id=this.$route.query.id;
+    this.id = this.$route.query.id;
     await this.getNum();
     await this.getRankings();
     await this.getStartUser();
@@ -395,7 +395,6 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      // this.userInfo.ic = 5; //todo
     }
   }
   async getStartUser() {
@@ -404,6 +403,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.startUserInfo = res?.data;
+      // this.startUserInfo.ic = 0; //todo
     }
   }
   async handleConfirm() {
@@ -769,11 +769,12 @@ export default class Index extends Base {
     .scale85-active {
       justify-content: center;
       width: 90px;
+      opacity: 0.5;
     }
     .scaleLong85 {
       justify-content: center;
       width: 88px;
-      opacity: 0.7;
+      opacity: 0.5;
     }
     .scaleLong85-active {
       justify-content: center;
@@ -793,7 +794,7 @@ export default class Index extends Base {
       justify-content: space-between;
       p {
         display: flex;
-        align-items: center;
+        justify-content: flex-end;
         font-weight: 400;
       }
     }

@@ -322,9 +322,9 @@ export default class Index extends Base {
 
   popParm = {
     isShow: false,
-    buttonContext: "发送",
+    buttonContext: "",
     popType: 3,
-    descript: "发送至微信好友或群聊",
+    descript: "",
   };
   helpHeadCountList: any = [5, 15, 25, 55, 85]; //获取奖励比例图-助力人头数
   helpLongZhuList: any = [100, 315, 555, 1355, 2355]; //获取奖励比例图-珑珠数量
@@ -373,7 +373,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      // this.userInfo.ic = 6; //todo
+      // this.userInfo.ic = 88; //todo
     }
   }
   async getMyHelpers(){
