@@ -452,7 +452,6 @@ export default class Index extends Base {
       t: getToken()
     });
     if ((res as any)?.code == "0") {
-      this.errorCount = 0;
       const url = `${window.location.origin}/fe/five-years-help/#/myInvitation`;
       if (this.visitSource === "小程序") {
         this.popParm.popType = 2;
@@ -462,6 +461,7 @@ export default class Index extends Base {
       this.errorCount = 0;
     } else {
       this.popParm.descript = (res as any)?.msg;
+      console.log( 'this.errorCount ',this.errorCount);
       this.popParm.buttonContext = "我也要发起助力";
       this.popParm.popType = this.errorCount == 0 ? 3 : 4;
       this.popParm.isShow = true;
