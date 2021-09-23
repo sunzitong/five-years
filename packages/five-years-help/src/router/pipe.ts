@@ -53,8 +53,8 @@ export default function (router: VueRouter) {
     if (to.path === "/login") return next();
     const token = getToken();
     // 没有token, 强制跳转到登录页
-    const toPath = window.location.origin + "#" + to.fullPath;
-    const backUrl: any = encodeURI(toPath);
+    const toPath = window.location.origin + "/#" + to.fullPath;
+    const backUrl: any = encodeURIComponent(toPath);
     console.log(backUrl,'backUrl123');
     if (!token) return next(`/login?backUrl=${backUrl}`);
     next();

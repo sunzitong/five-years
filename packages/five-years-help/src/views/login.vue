@@ -48,7 +48,7 @@ export default class Index extends Base {
     // 未登录
     if (!token) {
       const backUrl: any = this.$route.query.backUrl;
-      toLogin(decodeURI(backUrl));
+      toLogin(decodeURIComponent(backUrl));
       return;
     }
   }
