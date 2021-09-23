@@ -456,6 +456,11 @@ export default class Index extends Base {
         this.popParm.isShow = true;
       }
       this.share(url);
+    } else {
+      this.popParm.descript = (res as any)?.msg;
+      this.popParm.buttonContext = "我也要发起助力";
+      this.popParm.popType = 3;
+      this.popParm.isShow = true;
     }
   }
   // 帮好友助力事件
