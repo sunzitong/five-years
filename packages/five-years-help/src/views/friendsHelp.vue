@@ -499,7 +499,6 @@ export default class Index extends Base {
   }
 }
 </script>
-
 /* less也支持 */
 <style lang="scss" scoped>
 /* 当前蒙层显示时生效 */
