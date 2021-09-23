@@ -53,7 +53,8 @@ export default class Options extends Base {
     line-height: 100px;
     padding: 0 54px;
     cursor: pointer;
-    &.active {
+    &.active,
+    &:hover {
       background: #102b60;
       color: #01f5f1;
     }

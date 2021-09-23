@@ -5,6 +5,7 @@ type Env = {
   VUE_APP_BASE_API: string;
   VUE_APP_BASE_IMG: string;
   NODE_ENV: string;
+  DEBUG: boolean;
   [key: string]: any;
 };
 

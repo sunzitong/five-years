@@ -1,5 +1,5 @@
 <template>
-  <div class="select" :class="{ 'select--active': active }">
+  <div class="select" :class="{ 'select--active': active }" @click.stop>
     <span class="select__title">{{ title }}</span>
     <div class="select__control">
       <div class="select__value" @click="active = !active">
@@ -24,13 +24,26 @@
 </template>
 
 <script lang="ts">
+import mitter, { EventName } from "@/utils/mitter";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class SelectWrap extends Vue {
   @Prop() title!: string;
   @Prop() value!: string;
+
   active = false;
+
+  close() {
+    this.active = false;
+  }
+
+  created() {
+    mitter.on(EventName.DocumentClick, this.close);
+  }
+  beforeDestroy() {
+    mitter.off(EventName.DocumentClick, this.close);
+  }
 }
 </script>
 <style lang="scss" scoped>
