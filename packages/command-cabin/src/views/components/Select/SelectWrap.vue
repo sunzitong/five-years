@@ -2,20 +2,16 @@
   <div class="select" :class="{ 'select--active': active }">
     <span class="select__title">{{ title }}</span>
     <div class="select__control">
-      <input
-        type="text"
-        readonly
-        :value="value"
-        class="select__value"
-        @click="active = !active"
-      />
-      <div class="select__content" v-if="active">
-        <slot :active="active" :toggle="toggle" :onChange="onChange"></slot>
+      <div class="select__value" @click="active = !active">
+        <input type="text" readonly :value="value" class="select__input" />
+        <div class="select__icon">
+          <slot name="icon" :active="active">
+            <van-icon name="play" class="select__icon--normal" />
+          </slot>
+        </div>
       </div>
-      <div class="select__icon">
-        <slot name="icon">
-          <van-icon name="play" class="select__icon--normal" />
-        </slot>
+      <div class="select__content" v-if="active">
+        <slot :active="active" :vm="this"></slot>
       </div>
     </div>
   </div>
@@ -28,15 +24,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class SelectWrap extends Vue {
   @Prop() title!: string;
   @Prop() value!: string;
-
-  onChange(value: string) {
-    this.$emit("input", value);
-  }
-
-  toggle(value: boolean) {
-    this.active = value;
-  }
-
   active = false;
 }
 </script>
@@ -78,15 +65,21 @@ export default class SelectWrap extends Vue {
   }
 
   &__value {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     background: transparent;
     border: 2px solid rgba(144, 164, 195, 0.8);
     box-sizing: border-box;
     border-radius: 10px;
-    width: 100%;
-    height: 100%;
     font-size: 40px;
     padding: 0 84px 0 50px;
-    cursor: pointer;
     &::selection {
       background: transparent;
     }
