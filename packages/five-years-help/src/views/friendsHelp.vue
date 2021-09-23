@@ -364,6 +364,7 @@ export default class Index extends Base {
   invitationId: any = 0;
   activeTab = 1;
   loading = false;
+  errorCount = 0;
   id: any = "";
   token = getToken();
   async mounted() {
@@ -441,6 +442,7 @@ export default class Index extends Base {
     }
     return t;
   }
+
   // 确认按钮-我也要发起助力
   async handleConfirm() {
     this.popParm.isShow = false; //确认关闭弹窗
@@ -450,17 +452,20 @@ export default class Index extends Base {
       t: getToken()
     });
     if ((res as any)?.code == "0") {
+      this.errorCount = 0;
       const url = `${window.location.origin}/fe/five-years-help/#/myInvitation`;
       if (this.visitSource === "小程序") {
         this.popParm.popType = 2;
         this.popParm.isShow = true;
+        this.errorCount = this.errorCount+1;
       }
       this.share(url);
     } else {
       this.popParm.descript = (res as any)?.msg;
       this.popParm.buttonContext = "我也要发起助力";
-      this.popParm.popType = 4;
+      this.popParm.popType = this.errorCount == 0 ? 3 : 4;
       this.popParm.isShow = true;
+      this.errorCount = 0;
     }
   }
   // 帮好友助力事件
