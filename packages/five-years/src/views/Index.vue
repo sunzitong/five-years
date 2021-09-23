@@ -82,10 +82,7 @@ export default class Index extends Base {
   showMiniShareGuideImg = false;
 
   mounted() {
-    // location.href = "weixin://dl/business/?t=KxfMsOWV3Yv";
-    document.title = "冠寓";
     this.fetchCustomEntry();
-    console.log("this.visitSource", this.visitSource);
     if (this.visitSource === "小程序") {
       this.share();
     }
