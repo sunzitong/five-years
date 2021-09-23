@@ -609,10 +609,11 @@ export default class Index extends Base {
       width: 100px;
       img {
         position: absolute;
-        top: 12px;
-        left: 12px;
-        height: 75px;
-        width: 75px;
+        top: 12.6px;
+        left: 13.1px;
+        height: 72px;
+        width: 72px;
+        border: 1px solid #00ffff;
         border-radius: 50%;
       }
     }
@@ -624,6 +625,7 @@ export default class Index extends Base {
       .invitation {
         font-weight: 500;
         font-size: 20px;
+        margin-top: 3px;
       }
       .invitationDesc {
         font-weight: 400;
@@ -640,7 +642,7 @@ export default class Index extends Base {
     width: 375px;
     position: absolute;
     // z-index: 999;
-    top: 76px;
+    top: 36px;
     display: flex;
     justify-content: center;
     .active-overTime {
@@ -673,7 +675,7 @@ export default class Index extends Base {
   font-size: 12px;
 }
 .help-box {
-  margin-top: 32px;
+  margin-top: -7px;
   .current-help {
     position: relative;
     background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Ue44dyjJRg2TRxyKRRK1Og.png") 0 0 no-repeat;
@@ -916,7 +918,7 @@ export default class Index extends Base {
         }
       }
       .divided-cumulative {
-        margin-top: 22.5px;
+        margin-top: 17.5px;
         opacity: 0.6;
         color: #ffffff;
       }
@@ -930,6 +932,7 @@ export default class Index extends Base {
           font-size: 40px;
           color: #fded65;
           margin-right: 7.5px;
+          line-height: 44px;
         }
       }
       .btnInvitation {

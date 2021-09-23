@@ -174,6 +174,7 @@
           >
             邀请好友来助力
           </div>
+          <!-- <span class="activeOverDesc">来晚来! 助力已结束</span> -->
         </div>
       </div>
     </div>
@@ -839,7 +840,7 @@ export default class Index extends Base {
         }
       }
       .divided-cumulative {
-        margin-top: 22.5px;
+        margin-top: 19.5px;
         opacity: 0.6;
         color: #ffffff;
       }
@@ -856,16 +857,26 @@ export default class Index extends Base {
         }
       }
       .btnInvitation {
-        margin-top: 17.5px;
+        margin-top: 7.5px;
         width: 158.5px;
         height: 33.5px;
-        line-height: 33.5px;
+        line-height: 37.5px;
         text-align: center;
         vertical-align: middle;
         background: url("https://goyoo-assets.longfor.com//prod/app/JTEYpVYQyxBFGYaFGSzRVQ.png") 0 0 no-repeat;
-        background-size: 154px;
+        background-size: cover;
         font-weight: 500;
+        font-size: 14px;
         color: #0E0748;
+      }
+      .btnOverTime {
+        opacity: 0.6;
+      }
+      .activeOverDesc {
+        color: #fff;
+        margin-top: 5.5px;
+        font-weight: 300;
+        font-size: 10px;
       }
     }
   }
