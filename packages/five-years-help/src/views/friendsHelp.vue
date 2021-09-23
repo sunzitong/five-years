@@ -409,6 +409,7 @@ export default class Index extends Base {
   async handleConfirm() {
     this.$router.push({
       path: "/myInvitation",
+      query: { sessionId: this.$route.query.sessionId },
     });
   }
   getLongShuCount(count: any) {
@@ -446,7 +447,7 @@ export default class Index extends Base {
     return t;
   }
   async handleInvitation(): Promise<void> {
-     // 未登录
+    // 未登录
     if (!getToken()) {
       toLogin();
     } else {

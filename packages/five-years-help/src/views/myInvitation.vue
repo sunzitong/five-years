@@ -268,7 +268,9 @@
     </div>
     <div class="footer">
       <p>*珑珠积分(简称珑珠)是</p>
-      <p class="context">广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分</p>
+      <p class="context">
+        广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分
+      </p>
     </div>
 
     <!-- 弹窗模态框 -->
@@ -285,7 +287,6 @@
         @confirm="handleConfirm"
       ></modelBox>
     </van-overlay>
-
   </div>
 </template>
 
@@ -344,12 +345,6 @@ export default class Index extends Base {
     await this.getHelpMy();
     await this.getRankings();
     await this.getMyHelpers();
-    // if (this.invitationId !== "") {
-    //   const url = `${window.location.host}/#/friendsHelp?id=${this.invitationId}`;
-    //   this.share(url);
-    // } else {
-    //   this.$toast("获取分享ID失败");
-    // }
   }
   async getNum() {
     const res = await getNumber({
@@ -374,7 +369,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      // this.userInfo.ic = 88; //todo
+      this.userInfo.ic = 2; //todo
     }
   }
   async getMyHelpers(){
