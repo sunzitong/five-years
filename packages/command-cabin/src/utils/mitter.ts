@@ -12,6 +12,10 @@ export enum EventName {
    * resize时重绘echarts
    */
   ResizeEcharts = "resize-echarts",
+  /**
+   * 点击网页时触发
+   */
+  DocumentClick = "doc-click",
 }
 
 /*

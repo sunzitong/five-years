@@ -142,7 +142,8 @@ export default class YearRange extends Base {
         color: #90a4c3;
       }
       /* 选中的颜色 */
-      &.active {
+      &.active,
+      &:hover {
         .van-grid-item__text {
           color: #01f5f1;
         }
@@ -151,6 +152,7 @@ export default class YearRange extends Base {
         .van-grid-item__text {
           color: #353e4c;
         }
+        pointer-events: none;
       }
     }
 

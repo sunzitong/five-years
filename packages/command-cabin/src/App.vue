@@ -100,9 +100,15 @@ export default class App extends Mixins(MixStore) {
     return false;
   }
 
+  documentClick(event: MouseEvent) {
+    mitter.emit(EventName.DocumentClick, event);
+  }
+
   created() {
     // 7680 x 3240
     window.addEventListener("resize", this.resizeHandle);
+    // 点击网页触发
+    window.addEventListener("click", this.documentClick);
     if (!this.$root.env.DEBUG) {
       document.addEventListener("contextmenu", this.contentMenuHandle);
     }
@@ -113,6 +119,7 @@ export default class App extends Mixins(MixStore) {
   }
   destroyed() {
     window.removeEventListener("resize", this.resizeHandle);
+    window.removeEventListener("click", this.documentClick);
     if (!this.$root.env.DEBUG) {
       document.removeEventListener("contextmenu", this.contentMenuHandle);
     }

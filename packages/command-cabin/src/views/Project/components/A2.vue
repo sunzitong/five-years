@@ -78,6 +78,7 @@ import {
 } from "@/service/analysis/bigScreen/projectBoard/basicInformation/groupInfo";
 import BlurBox from "@/components/BlurBox/Index.vue";
 import { StoreKey, useStore } from "@/store";
+import mitter, { EventName } from "@/utils/mitter";
 
 type Item = Group & { id: string };
 
@@ -171,11 +172,11 @@ export default class A2 extends Base implements IFetch {
   telId = "";
 
   mounted() {
-    this.$root.$el.addEventListener("click", this.telClear);
+    mitter.on(EventName.DocumentClick, this.telClear);
   }
 
   beforeDestroy() {
-    this.$root.$el.removeEventListener("click", this.telClear);
+    mitter.off(EventName.DocumentClick, this.telClear);
   }
 
   telClick(item: Item) {
