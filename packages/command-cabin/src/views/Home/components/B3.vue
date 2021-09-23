@@ -22,11 +22,16 @@
             {{ itemName }}
           </div>
         </div>
-        <div
+        <!-- <div
           class="app-echarts"
           ref="wrapper"
           style="width: 400px; height: 284px"
-        ></div>
+        ></div> -->
+        <div class="process_container">
+          <div class="line_box" v-for="(el, index) in values" :key="index">
+            <div class="content" :style="{ width: el + '%' }"></div>
+          </div>
+        </div>
         <div class="item_value">
           <div
             class="item_value_item"
@@ -43,9 +48,9 @@
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
+// import echarts from "@/plugins/echarts";
 import { Base, IFetch } from "@/views/Base";
-import mitter, { EventName } from "@/utils/mitter";
+// import mitter, { EventName } from "@/utils/mitter";
 import { StoreKey, useStore } from "@/store";
 import {
   CostAnalysisReturn,
@@ -87,67 +92,67 @@ export default class B3 extends Base implements IFetch {
         this.labels.push(el.projectName);
         this.values.push(el.useRate);
       });
-      this.paintChart();
+      // this.paintChart();
     } else {
       this.empty = true;
     }
     return response;
   }
 
-  paintChart() {
-    const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
-    let option = {
-      grid: {
-        top: "0%",
-        bottom: "0%",
-        left: "8%",
-        right: "8%",
-        containLabel: true,
-      },
-      xAxis: { show: false, max: 100 },
-      yAxis: {
-        type: "category",
-        inverse: true,
-        axisLine: { show: false },
-        splitLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: { show: false },
-        data: this.labels,
-      },
-      series: [
-        {
-          type: "bar",
-          stack: "total",
-          barWidth: 14,
-          barCateGoryGap: "40%",
-          showBackground: true,
-          backgroundStyle: {
-            color: "#172C47",
-          },
-          itemStyle: {
-            color: new echarts.graphic.LinearGradient(
-              1,
-              0,
-              0,
-              0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
-              [
-                { offset: 0, color: "#5180E4" },
-                { offset: 1, color: "rgba(81, 128, 228, 0)" },
-              ]
-            ),
-            width: 338,
-          },
-          label: { show: false },
-          data: this.values,
-        },
-      ],
-    };
-    option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
-  }
+  //   paintChart() {
+  //     const myChart = echarts.init(this.wrapper);
+  //     // myChart.showLoading();
+  //     let option = {
+  //       grid: {
+  //         top: "0%",
+  //         bottom: "0%",
+  //         left: "8%",
+  //         right: "8%",
+  //         containLabel: true,
+  //       },
+  //       xAxis: { show: false, max: 100 },
+  //       yAxis: {
+  //         type: "category",
+  //         inverse: true,
+  //         axisLine: { show: false },
+  //         splitLine: { show: false },
+  //         axisTick: { show: false },
+  //         axisLabel: { show: false },
+  //         data: this.labels,
+  //       },
+  //       series: [
+  //         {
+  //           type: "bar",
+  //           stack: "total",
+  //           barWidth: 14,
+  //           barCateGoryGap: "40%",
+  //           showBackground: true,
+  //           backgroundStyle: {
+  //             color: "#172C47",
+  //           },
+  //           itemStyle: {
+  //             color: new echarts.graphic.LinearGradient(
+  //               1,
+  //               0,
+  //               0,
+  //               0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+  //               [
+  //                 { offset: 0, color: "#5180E4" },
+  //                 { offset: 1, color: "rgba(81, 128, 228, 0)" },
+  //               ]
+  //             ),
+  //             width: 338,
+  //           },
+  //           label: { show: false },
+  //           data: this.values,
+  //         },
+  //       ],
+  //     };
+  //     option && myChart.setOption(option);
+  //     mitter.on(EventName.ResizeEcharts, () => {
+  //       myChart.resize();
+  //     });
+  //   }
 }
 </script>
 
@@ -208,6 +213,32 @@ export default class B3 extends Base implements IFetch {
     }
   }
 
+  .process_container {
+    width: 320px;
+    height: 284px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    padding: 0 50px 49px 80px;
+    .line_box {
+      height: 14px;
+      background: #172c47;
+
+      .content {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(
+          -90deg,
+          #5180e4 0%,
+          rgba(81, 128, 228, 0) 100%
+        );
+        transition: 1s;
+      }
+    }
+  }
+
   .item_value {
     color: #dbf0ff;
     display: inline-block;
@@ -226,12 +257,3 @@ export default class B3 extends Base implements IFetch {
   }
 }
 </style>
-
-function CostAnalysisReturn(CostAnalysisReturn: any, arg1: { key: any; params: {
-regionType:
-import("../../../service/analysis/commandCabin/publicEnum").DataLevels;
-regionId: number; }; }) { throw new Error("Function not implemented."); }
-function CostAnalysisReturn(CostAnalysisReturn: any, arg1: { key: any; params: {
-regionType:
-import("../../../service/analysis/commandCabin/publicEnum").DataLevels;
-regionId: number; }; }) { throw new Error("Function not implemented."); }
