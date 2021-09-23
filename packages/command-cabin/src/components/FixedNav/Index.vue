@@ -114,7 +114,7 @@ export default class FixedNav extends Vue {
     { title: "冠寓门店指挥中心", href: "/project" },
     { title: "门店日常巡检", href: "/", children: true },
     { title: "门店开业检", href: "/", children: true },
-    { title: "返回登录页面", href: "/" },
+    { title: "返回登录页面", href: "/login" },
   ];
 
   /**
