@@ -45,6 +45,7 @@ export function toLogin(webviewUrl = "") {
   const visitSource = judgeDevice();
   if (visitSource === "小程序") {
     webviewUrl = webviewUrl || window.location.href;
+    console.log('webviewUrl', webviewUrl);
     return window.wx.miniProgram.navigateTo({
       url: `/packageA/pages/login/login?webviewUrl=${encodeURIComponent(
         webviewUrl

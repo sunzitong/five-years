@@ -8,13 +8,13 @@ const subRouter = [
   {
     path: "",
     redirect: {
-      path: "index",
+      path: "myInvitation",
     },
   },
   {
-    path: "index",
-    component: () => import("@/views/Index.vue"),
-    meta: "index",
+    path: "login",
+    component: () => import("@/views/login.vue"),
+    meta: "login",
   },
   {
     path: "myInvitation",

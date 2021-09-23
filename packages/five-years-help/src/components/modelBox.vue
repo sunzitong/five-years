@@ -35,7 +35,13 @@
     <div class="popMain" v-else>
       <img class="conectImage" :src="backgroundUrl" />
       <div class="descript">{{ descript }}</div>
-      <div class="btnConfirm" @click="handleConfirm">{{ buttonContext }}</div>
+      <div
+        class="btnConfirm"
+        v-if="buttonContext !== ''"
+        @click="handleConfirm"
+      >
+        {{ buttonContext }}
+      </div>
     </div>
     <div v-if="popType !== 2" class="close" @click="handleClose"></div>
   </div>
@@ -46,7 +52,7 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 @Component
 export default class MixinMask extends Vue {
   @Prop({ default: "发送至微信好友或群聊" }) descript!: string;
-  @Prop({ default: "发送" }) buttonContext!: string;
+  @Prop({ default: "" }) buttonContext!: string;
   @Prop({ default: 2 }) popType!: number;
   @Prop({
     default:
@@ -82,7 +88,7 @@ export default class MixinMask extends Vue {
   background-size: contain;
   background-position: center;
   height: 335px;
-  margin-top: 40%;
+  margin-top: 30%;
   color: #fff;
 }
 .tipsImage {
@@ -96,12 +102,14 @@ export default class MixinMask extends Vue {
 .popRuleLayOut {
   width: 278px;
   height: 280px;
-  overflow-y: auto;
 }
 .popRule {
   display: flex;
   flex-direction: column;
+  height: 280px;
+  overflow-y: auto;
   padding: 0 4px;
+  letter-spacing: 1px;
   .title {
     text-align: center;
     margin: 10px 0;
@@ -117,6 +125,7 @@ export default class MixinMask extends Vue {
     font-size: 14px;
     font-weight: 400;
     margin-top: 3px;
+    line-height: 22px;
     text-align: justify;
   }
 }

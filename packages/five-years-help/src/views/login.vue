@@ -2,12 +2,12 @@
   <div class="page__index">
     <div class="ruleBtn" @click="handleRule">活动规则</div>
     <div class="page_main">
-      <div class="btnLogin" v-on:click="handleLogin"></div>
-      <div class="over-time">2021年9月17日-2021年10月18日</div>
-      <div class="tips" @click="handleGoHelp">登录后才可以发起助力呦！</div>
+      <div class="btnLogin" @click="login"></div>
+      <div class="over-time">{{ numberInfo.startTimeStr }}-{{ numberInfo.endTimeStr }}</div>
+      <div class="tips">登录后才可以发起助力呦！</div>
     </div>
     <!-- 弹窗模态框 -->
-    <van-overlay :show="isShow" @click="handleClosed">
+    <van-overlay :show="isShow" @click="handleClosed" :lock-scroll="false">
       <modelBox :popType="1" @closed="handleClosed"></modelBox>
     </van-overlay>
   </div>
@@ -36,6 +36,7 @@ export default class Index extends Base {
   isShow = false;
   mounted() {
     document.title = "冠寓五周年助力活动";
+    this.getNumber();
   }
   handleLogin() {
     this.login();
@@ -47,14 +48,10 @@ export default class Index extends Base {
     const token = getToken();
     // 未登录
     if (!token) {
-      toLogin();
+      const backUrl: any = this.$route.query.backUrl;
+      toLogin(decodeURIComponent(backUrl));
       return;
     }
-  }
-  handleGoHelp(): void {
-    this.$router.push({
-      path: "/myInvitation",
-    });
   }
   handleRule(): void {
     this.isShow = true;
@@ -62,7 +59,7 @@ export default class Index extends Base {
   handleClosed(): void {
     this.isShow = false;
   }
-  async getNum() {
+  async getNumber() {
     const res = await getNumber({
       type: 1,
     });
@@ -77,17 +74,17 @@ export default class Index extends Base {
 <style lang="scss" scoped>
 .page__index {
   overflow: hidden;
-  height: calc(100vh);
+  height: calc(103vh);
 }
 .over-time {
   position: absolute;
-  bottom: 218px;
+  top: 432px;
   color: #fff;
   text-shadow: 0px 0px 8px #fd08fe;
 }
 .tips {
   position: absolute;
-  bottom: 62px;
+  top: 586px;
   color: #fff;
   opacity: 0.7;
 }
@@ -104,7 +101,7 @@ export default class Index extends Base {
 }
 .btnLogin {
   position: absolute;
-  bottom: 89px;
+  top: 533px;
   background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/6fj9IxRgs7xBWT5UxUXHkw.png) 0 0 no-repeat;
   background-size: cover;
   width: 242px;
@@ -113,12 +110,13 @@ export default class Index extends Base {
 .ruleBtn {
   position: fixed;
   display: flex;
-  align-items: center;
   text-align: center;
-  right: 0;
+  vertical-align: middle;
+  align-items: center;
+  right: -2px;
   top: 240px;
   width: 23px;
-  height: 87px;
+  height: 71px;
   font-weight: 500;
   font-weight: 500;
   color: #00FFFF;
@@ -127,5 +125,7 @@ export default class Index extends Base {
   border-right: 0;
   border-radius: 12px 0 0 12px;
   z-index: 98;
+  font-size: 12px;
+  line-height: 15px;
 }
 </style>
