@@ -47,7 +47,7 @@ export default class Index extends Base {
     const token = getToken();
     // 未登录
     if (!token) {
-      let backUrl=this.$route.query.backUrl;
+      const backUrl: any = this.$route.query.backUrl;
       toLogin(decodeURI(backUrl));
       return;
     }
