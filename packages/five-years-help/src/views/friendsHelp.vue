@@ -160,7 +160,7 @@
               "
             >
               <li v-for="(item, index) in rankingsInfo.ll" :key="index">
-                用户{{ item.nn }}已达成{{ item.pn }}珑珠
+                用户{{ item.nn }}已达成{{ item.pn }}
               </li>
             </ul>
             <div class="emptyTemplateLy" v-else>
@@ -190,8 +190,8 @@
           >
             帮TA助力
           </div>
-          <span class="activeOverDesc" v-if="startUserInfo.cd == 0">
-            来晚来! 助力已结束
+          <span class="activeOverDesc" v-if="startUserInfo.cd <= 0">
+            来晚了! 助力已结束
           </span>
         </div>
       </div>
@@ -523,7 +523,7 @@ export default class Index extends Base {
 .firstCol {
   display: flex;
   justify-content: center;
-  width: 26px;
+  width: 30px;
   text-align: center;
 }
 .twoCol {
@@ -532,7 +532,7 @@ export default class Index extends Base {
 .threeCol {
   display: flex;
   justify-content: center;
-  width: 39px;
+  width: 50px;
 }
 .barLayout {
   position: absolute;
@@ -682,7 +682,7 @@ export default class Index extends Base {
 .block {
   color: #fff;
   text-shadow: 0 0 8px #fd08fe;
-  font-size: 12px;
+  font-size: 18px;
 }
 .help-box {
   margin-top: -7px;
@@ -703,15 +703,15 @@ export default class Index extends Base {
       text-shadow: 0px 0px 8px #fd08fe;
       font-weight: 500;
     }
-     // 5珑珠刻度
+    // 5珑珠刻度
     .scale5 {
       justify-content: end;
-      width: 46px;
+      width: 47px;
       opacity: 0.5;
     }
     .scale5-active {
       justify-content: end;
-      width: 46px;
+      width: 47px;
     }
     .scaleLong5 {
       justify-content: end;
@@ -725,12 +725,12 @@ export default class Index extends Base {
     // 15珑珠刻度
     .scale15 {
       justify-content: end;
-      width: 40px;
+      width: 46px;
       opacity: 0.5;
     }
     .scale15-active {
       justify-content: center;
-      width: 40px;
+      width: 46px;
     }
     .scaleLong15 {
       justify-content: center;
@@ -744,12 +744,12 @@ export default class Index extends Base {
     // 25珑珠刻度
     .scale25 {
       justify-content: center;
-      width: 46px;
+      width: 37px;
       opacity: 0.5;
     }
     .scale25-active {
       justify-content: center;
-      width: 46px;
+      width: 37px;
     }
     .scaleLong25 {
       justify-content: center;
@@ -758,36 +758,36 @@ export default class Index extends Base {
     }
     .scaleLong25-active {
       justify-content: center;
-      width: 53px;
+      width: 48px;
     }
     // 55珑珠刻度
     .scale55 {
       justify-content: center;
-      width: 96px;
+      width: 102px;
       opacity: 0.5;
     }
     .scale55-active {
       justify-content: center;
-      width: 96px;
+      width: 102px;
     }
     .scaleLong55 {
       justify-content: center;
-      width: 87px;
+      width: 97px;
       opacity: 0.5;
     }
     .scaleLong55-active {
       justify-content: center;
-      width: 87px;
+      width: 97px;
     }
     // 85珑珠刻度
     .scale85 {
       justify-content: center;
-      width: 68px;
+      width: 78px;
       opacity: 0.5;
     }
     .scale85-active {
       justify-content: center;
-      width: 68px;
+      width: 78px;
     }
     .scaleLong85 {
       justify-content: center;
@@ -797,20 +797,6 @@ export default class Index extends Base {
     .scaleLong85-active {
       justify-content: center;
       width: 68px;
-    }
-    .scale85-active {
-      justify-content: center;
-      width: 90px;
-      opacity: 0.5;
-    }
-    .scaleLong85 {
-      justify-content: center;
-      width: 88px;
-      opacity: 0.5;
-    }
-    .scaleLong85-active {
-      justify-content: center;
-      width: 88px;
     }
     .help-rate {
       margin-top: 18px;
@@ -819,8 +805,10 @@ export default class Index extends Base {
       display: flex;
       justify-content: center;
       padding-top: 20px;
+      font-weight: bolder;
+      color: #fefffe;
     }
-    .unit {
+     .unit {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -832,14 +820,14 @@ export default class Index extends Base {
     }
     .unit1 {
       position: absolute;
-      top: 50px;
+      top: 53px;
       text-align: center;
-      margin-left: 27px;
+      left: 27px;
     }
     .unit2 {
       position: absolute;
-      bottom: 38px;
-      margin-left: 27px;
+      bottom: 40px;
+      left: 27px;
       text-align: center;
     }
   }
@@ -901,10 +889,13 @@ export default class Index extends Base {
         color: #ffffff;
         letter-spacing: 0;
         width: 102px;
-        line-height: 20px;
+        // line-height: 20px;
+      }
+      li:not(:first-child) {
+        margin-top: 11px;
       }
     }
-    .history-right {
+     .history-right {
       width: 187px;
       height: 199px;
       background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Veb0G3xGqprsdYLanJ3Q2A.png")
@@ -928,7 +919,7 @@ export default class Index extends Base {
         }
       }
       .divided-cumulative {
-        margin-top: 17.5px;
+        margin-top: 19.5px;
         opacity: 0.6;
         color: #ffffff;
       }
@@ -942,19 +933,19 @@ export default class Index extends Base {
           font-size: 40px;
           color: #fded65;
           margin-right: 7.5px;
-          line-height: 44px;
         }
       }
       .btnInvitation {
-        margin-top: 2.5px;
+        margin-top: 7.5px;
         width: 158.5px;
         height: 33.5px;
         line-height: 37.5px;
         text-align: center;
         vertical-align: middle;
         background: url("https://goyoo-assets.longfor.com//prod/app/JTEYpVYQyxBFGYaFGSzRVQ.png") 0 0 no-repeat;
-        background-size: 154px;
+        background-size: cover;
         font-weight: 500;
+        font-size: 14px;
         color: #0E0748;
       }
       .btnOverTime {
@@ -962,8 +953,9 @@ export default class Index extends Base {
       }
       .activeOverDesc {
         color: #fff;
-        margin-top: 5px;
+        margin-top: 5.5px;
         font-weight: 300;
+        font-size: 10px;
       }
     }
   }
@@ -983,22 +975,22 @@ export default class Index extends Base {
     .day {
       position: absolute;
       top: 35px;
-      right: 187px;
+      right: 184px;
     }
     .hours {
       position: absolute;
       top: 35px;
-      right: 138px;
+      right: 135px;
     }
     .minutes {
       position: absolute;
       top: 35px;
-      right: 89px;
+      right: 85px;
     }
     .seconds {
       position: absolute;
       top: 35px;
-      right: 40px;
+      right: 36px;
     }
   }
   .record-list {
@@ -1027,6 +1019,7 @@ export default class Index extends Base {
       }
       .active {
         text-shadow: 0px 0px 8px #fd08fe;
+        font-weight: bold;
       }
       .tab-content {
         margin: 30px 23px 0 23px;
@@ -1055,7 +1048,7 @@ export default class Index extends Base {
           background-size: contain;
           background-position: center;
           height: 100px;
-          margin-top: 84px;
+          margin-top: 70px;
         }
         .emptyDescript {
           width: 100%;

@@ -48,7 +48,7 @@
         class="conectImage"
         src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/tXakW3Qq5rr_zrPQpy26_Q.png"
       />
-      <div class="descript">{{ descript }}</div>
+      <div class="descript errorText">{{ descript }}</div>
     </div>
     <div v-if="popType !== 2" class="close" @click="handleClose"></div>
   </div>
@@ -116,7 +116,7 @@ export default class MixinMask extends Vue {
   height: 280px;
   overflow-y: auto;
   padding: 0 4px;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   .title {
     text-align: center;
     margin: 10px 0;
@@ -134,6 +134,7 @@ export default class MixinMask extends Vue {
     margin-top: 3px;
     line-height: 22px;
     text-align: justify;
+    letter-spacing: 0.8px;
   }
 }
 .conectImage {
@@ -154,6 +155,9 @@ export default class MixinMask extends Vue {
 }
 .descript {
   font-size: 15px;
+}
+.errorText {
+  margin-top: 32px;
 }
 .btnConfirm {
   background: url(https://goyoo-assets.longfor.com//prod/app/JTEYpVYQyxBFGYaFGSzRVQ.png)
