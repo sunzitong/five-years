@@ -14,7 +14,7 @@ class MessageDetail extends React.Component {
   };
 
   componentDidMount() {
-    document.title = '消息详情sztszt';
+    document.title = '消息详情';
     this.getMessageDetail();
   }
 
