@@ -33,7 +33,7 @@ export default class App extends Mixins(MixStore) {
    */
   @Provide()
   share() {
-    const title = "冠寓五周年";
+    const title = "房东替我省钱？还不来冠寓五周年！";
     const img =
       "https://goyoo-assets.longfor.com/prod/app/11n975l2xafm2My4auT0HA.png";
     if (this.visitSource === "小程序") {
