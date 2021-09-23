@@ -16,11 +16,7 @@
             {{ resData.rentRatioYoy }}%
           </strong>
           <span class="icon">
-            <Icon
-              :type="resData.rentRatioYoy < 0 ? 'desc' : 'asce'"
-              :color="resData.rentRatioYoy < 0 ? '#ff3980' : '#22cb98'"
-              size="62"
-            />
+            <Icon v-bind="getIconConfig(resData.rentRatioYoy)" size="62" />
           </span>
           <span class="pointOfTime">时点 {{ resData.pointRentRatio }}%</span>
         </div>
@@ -39,11 +35,7 @@
             {{ resData.renewRatioYoy }}%
           </strong>
           <span class="icon">
-            <Icon
-              :type="resData.renewRatioYoy < 0 ? 'desc' : 'asce'"
-              :color="resData.renewRatioYoy < 0 ? '#ff3980' : '#22cb98'"
-              size="62"
-            />
+            <Icon v-bind="getIconConfig(resData.renewRatioYoy)" size="62" />
           </span>
         </div>
       </van-col>
@@ -63,15 +55,11 @@
             {{ resData.avgPriceYoy }}%
           </strong>
           <span class="icon">
-            <Icon
-              :type="resData.avgPriceYoy < 0 ? 'desc' : 'asce'"
-              :color="resData.avgPriceYoy < 0 ? '#ff3980' : '#22cb98'"
-              size="62"
-            />
+            <Icon v-bind="getIconConfig(resData.avgPriceYoy)" size="62" />
           </span>
         </div>
       </van-col>
-      <van-col span="6" style="padding-top: 30px">
+      <van-col hidden span="6" style="padding-top: 30px">
         <h4 class="label">同房间价格涨幅</h4>
         <div class="">
           <strong>--%</strong>
@@ -80,7 +68,7 @@
           </span>
         </div>
       </van-col>
-      <van-col span="6" style="padding-top: 30px">
+      <van-col hidden span="6" style="padding-top: 30px">
         <div class="simple">
           <span class="label">新签上涨:</span>
           <strong>--%</strong>
@@ -112,6 +100,16 @@ import { StoreKey, useStore } from "@/store";
 export default class D1B extends Base implements IFetch {
   resData: Partial<IncomeReturn> = {};
   currentRate = 0;
+
+  /**
+   * 获取icon配置
+   */
+  getIconConfig(num: number) {
+    return {
+      type: num >= 0 ? "asce" : "desc",
+      color: num >= 0 ? "#ff3980" : "#22cb98",
+    };
+  }
 
   async fetch() {
     const response = await useStore(fetchIncome, {
