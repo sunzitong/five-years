@@ -321,6 +321,7 @@ import {
   getNumber,
   getRankings,
   getHelpMy,
+  helpStart,
   helpJoin,
   getStartUser,
 } from "@/service";
@@ -406,12 +407,6 @@ export default class Index extends Base {
       // this.startUserInfo.ic = 0; //todo
     }
   }
-  async handleConfirm() {
-    this.$router.push({
-      path: "/myInvitation",
-      query: { sessionId: this.$route.query.sessionId },
-    });
-  }
   getLongShuCount(count: any) {
     if (count < this.helpHeadCountList[0]) {
       return 0;
@@ -446,6 +441,20 @@ export default class Index extends Base {
     }
     return t;
   }
+  // 确认按钮-我也要发起助力
+  async handleConfirm() {
+    const res = await helpStart({
+      an: (this.numberInfo as any).an,
+      city: "全国",
+      t: getToken(), 
+    });
+    if ((res as any)?.code == "0") {
+      const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+      this.share(url);
+      this.popParm.isShow = false;
+    }
+  }
+  // 帮好友助力事件
   async handleInvitation(): Promise<void> {
     // 未登录
     if (!getToken()) {
@@ -467,6 +476,7 @@ export default class Index extends Base {
           await this.getStartUser();
         } else {
           this.popParm.descript = (res as any)?.msg;
+          this.popParm.buttonContext = "我也要发起助力";
           this.popParm.popType = 3;
           this.popParm.isShow = true;
         }
@@ -1075,3 +1085,7 @@ export default class Index extends Base {
   }
 }
 </style>
+
+function helpStart(arg0: { an: any; city: string; t: any; }) {
+  throw new Error("Function not implemented.");
+}

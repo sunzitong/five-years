@@ -147,7 +147,7 @@
               "
             >
               <li v-for="(item, index) in rankingsInfo.ll" :key="index">
-                用户{{ item.nn }}已达成{{ item.pn }}珑珠
+                用户{{ item.nn }}已达成{{ item.pn }}
               </li>
             </ul>
             <div class="emptyTemplateLy" v-else>
@@ -369,7 +369,7 @@ export default class Index extends Base {
     });
     if ((res as any)?.code == "0") {
       this.userInfo = res?.data;
-      // this.userInfo.ic = 2; //todo
+      // this.userInfo.ic = 55; //todo
     }
   }
   async getMyHelpers(){
@@ -416,18 +416,18 @@ export default class Index extends Base {
           this.invitationId = (res as any)?.data?.s;
           if (this.visitSource === "小程序") {
             const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
-            this.popParm.popType = 2;
+            this.popParm.popType = 2; //微信内引导层
             this.popParm.isShow = true;
             this.share(url);
           } else {
             this.popParm.descript = "发送至微信好友或群聊";
             this.popParm.buttonContext = "发送";
-            this.popParm.popType = 3;
+            this.popParm.popType = 3; //分享成功
             this.popParm.isShow = true;
           }
         } else {
           this.popParm.descript = (res as any)?.msg;
-          this.popParm.popType = 3;
+          this.popParm.popType = 4; //错误信息
           this.popParm.isShow = true;
         }
       }
