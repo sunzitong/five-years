@@ -168,8 +168,8 @@
             珑珠
           </div>
           <div
-            class="btnInvitation"
             data-type="invitation"
+            :class="['btnInvitation', userInfo.cd <= 0 ? 'btnOverTime' : '']"
             v-on:click="handleInvitation"
           >
             邀请好友来助力
@@ -268,7 +268,7 @@
     </div>
     <div class="footer">
       <p>*珑珠积分(简称珑珠)是</p>
-      <p>广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分</p>
+      <p class="context">广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分</p>
     </div>
 
     <!-- 弹窗模态框 -->
@@ -405,28 +405,31 @@ export default class Index extends Base {
     this.popParm.isShow = false;
   }
   async handleInvitation(): Promise<void> {
-    const res = await helpStart({
-      an: (this.numberInfo as any).an,
-      city: "全国",
-      t: this.token, //todo
-    });
-    if ((res as any)?.code == "0") {
-      this.invitationId = (res as any)?.data?.s;
-      if (this.visitSource === "小程序") {
-        const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
-        this.popParm.popType = 2;
-        this.popParm.isShow = true;
-        this.share(url);
+    // 倒计时>0
+    if (this.userInfo && this.userInfo?.cd > 0) {
+      const res = await helpStart({
+        an: (this.numberInfo as any).an,
+        city: "全国",
+        t: this.token, //todo
+      });
+      if ((res as any)?.code == "0") {
+        this.invitationId = (res as any)?.data?.s;
+        if (this.visitSource === "小程序") {
+          const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+          this.popParm.popType = 2;
+          this.popParm.isShow = true;
+          this.share(url);
+        } else {
+          this.popParm.descript = "发送至微信好友或群聊";
+          this.popParm.buttonContext = "发送";
+          this.popParm.popType = 3;
+          this.popParm.isShow = true;
+        }
       } else {
-        this.popParm.descript = "发送至微信好友或群聊";
-        this.popParm.buttonContext = "发送";
+        this.popParm.descript = (res as any)?.msg;
         this.popParm.popType = 3;
         this.popParm.isShow = true;
       }
-    } else {
-      this.popParm.descript = (res as any)?.msg;
-      this.popParm.popType = 3;
-      this.popParm.isShow = true;
     }
   }
   getLongShuCount(count: any) {
@@ -468,17 +471,9 @@ export default class Index extends Base {
 
 /* less也支持 */
 <style lang="scss" scoped>
-/* 当前蒙层显示时生效 */
-.mask {
-  position:absolute;
-  left: 0;
-  top: 0;
-  z-index: 100;
-  height: 100%;
-  width: 100%;
-  background:black;
-  opacity:0.4;
- }
+.btnOverTime {
+  opacity: 0.6;
+}
 .footer {
   display: flex;
   flex-direction: column;
@@ -488,6 +483,9 @@ export default class Index extends Base {
   font-size: 10px;
   font-weight: 300;
   padding: 20px 12px 25px 25px;
+  .context {
+    margin-top: 3px;
+  }
 }
 .firstCol {
   display: flex;
@@ -545,9 +543,11 @@ export default class Index extends Base {
 .ruleBtn {
   position: fixed;
   display: flex;
-  align-items: center;
   text-align: center;
-  right: 0;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  right: -2px;
   top: 267px;
   width: 23px;
   height: 71px;

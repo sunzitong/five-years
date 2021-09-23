@@ -3,7 +3,7 @@
     <div class="ruleBtn" @click="handleRule">活动规则</div>
     <div class="page_main">
       <div class="btnLogin" @click="login"></div>
-      <div class="over-time">2021年9月17日-2021年10月18日</div>
+      <div class="over-time">{{ numberInfo.startTimeStr }}-{{ numberInfo.endTimeStr }}</div>
       <div class="tips">登录后才可以发起助力呦！</div>
     </div>
     <!-- 弹窗模态框 -->
@@ -36,6 +36,7 @@ export default class Index extends Base {
   isShow = false;
   mounted() {
     document.title = "冠寓五周年助力活动";
+    this.getNumber();
   }
   handleLogin() {
     this.login();
@@ -52,18 +53,13 @@ export default class Index extends Base {
       return;
     }
   }
-  handleGoHelp(): void {
-    this.$router.push({
-      path: "/myInvitation",
-    });
-  }
   handleRule(): void {
     this.isShow = true;
   }
   handleClosed(): void {
     this.isShow = false;
   }
-  async getNum() {
+  async getNumber() {
     const res = await getNumber({
       type: 1,
     });
@@ -114,9 +110,10 @@ export default class Index extends Base {
 .ruleBtn {
   position: fixed;
   display: flex;
-  align-items: center;
   text-align: center;
-  right: 0;
+  vertical-align: middle;
+  align-items: center;
+  right: -2px;
   top: 240px;
   width: 23px;
   height: 71px;

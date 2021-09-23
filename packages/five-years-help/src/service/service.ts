@@ -19,7 +19,7 @@ service.interceptors.request.use(
     return config;
   },
   () => {
-    Toast.fail("出错了");
+    Toast.fail("网络出错了!");
     return;
   }
 );
@@ -31,7 +31,7 @@ service.interceptors.response.use(
   },
   (error) => {
     if (!error) {
-      Toast.fail("出错了");
+      Toast.fail("网络出错了!");
       return;
     }
     if (error.message.includes("timeout")) {

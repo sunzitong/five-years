@@ -109,6 +109,7 @@ export default class MixinMask extends Vue {
   height: 280px;
   overflow-y: auto;
   padding: 0 4px;
+  letter-spacing: 1px;
   .title {
     text-align: center;
     margin: 10px 0;
@@ -124,6 +125,7 @@ export default class MixinMask extends Vue {
     font-size: 14px;
     font-weight: 400;
     margin-top: 3px;
+    line-height: 22px;
     text-align: justify;
   }
 }

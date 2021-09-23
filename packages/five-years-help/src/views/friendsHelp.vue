@@ -290,9 +290,11 @@
         </div>
       </div>
     </div>
-    <div class="footer">
+ <div class="footer">
       <p>*珑珠积分(简称珑珠)是</p>
-      <p>广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分</p>
+      <p class="context">
+        广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分
+      </p>
     </div>
 
     <!-- 弹窗模态框 -->
@@ -409,7 +411,6 @@ export default class Index extends Base {
       path: "/myInvitation",
     });
   }
-
   getLongShuCount(count: any) {
     if (count < this.helpHeadCountList[0]) {
       return 0;
@@ -485,6 +486,9 @@ export default class Index extends Base {
   font-size: 10px;
   font-weight: 300;
   padding: 20px 12px 25px 25px;
+  .context {
+    margin-top: 3px;
+  }
 }
 .firstCol {
   display: flex;
@@ -542,9 +546,10 @@ export default class Index extends Base {
 .ruleBtn {
   position: fixed;
   display: flex;
-  align-items: center;
   text-align: center;
-  right: 0;
+  vertical-align: middle;
+  align-items: center;
+  right: -2px;
   top: 267px;
   width: 23px;
   height: 71px;
@@ -786,7 +791,7 @@ export default class Index extends Base {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      span {
+      p {
         display: flex;
         align-items: center;
         font-weight: 400;
@@ -862,7 +867,7 @@ export default class Index extends Base {
         font-size: 12px;
         color: #ffffff;
         letter-spacing: 0;
-        width: 99px;
+        width: 102px;
         line-height: 20px;
       }
     }
