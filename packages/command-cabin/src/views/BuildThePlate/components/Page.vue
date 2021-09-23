@@ -6,6 +6,8 @@
       页
     </div>
     <Paginate
+      :initial-page="value - 1"
+      :force-page="value - 1"
       :page-count="total"
       container-class="page__paginate"
       :margin-pages="1"
@@ -37,7 +39,7 @@ import Paginate from "vuejs-paginate";
 export default class Page extends Vue {
   @Prop({ default: 0 }) total!: number;
 
-  @Prop() value!: number;
+  @Prop({ default: 1 }) value!: number;
 
   clickCallback(value: number) {
     this.$emit("change", value);
