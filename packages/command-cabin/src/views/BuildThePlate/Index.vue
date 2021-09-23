@@ -5,6 +5,9 @@
       <TheCostAnalysisList v-if="tab === 1" />
     </SubWrapperA>
     <div class="footer">
+      <div class="back" @click="back">
+        <Icon type="back" :size="30" />
+      </div>
       <van-tabs
         v-model="tab"
         background="transparent"
@@ -27,6 +30,7 @@ import { Base } from "@/views/Base";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import TheConstructList from "./components/TheConstructList.vue";
 import TheCostAnalysisList from "./components/TheCostAnalysisList.vue";
+import Icon from "@/components/Icon/Index.vue";
 
 /**营造盘面详情 */
 @Component({
@@ -34,10 +38,14 @@ import TheCostAnalysisList from "./components/TheCostAnalysisList.vue";
     SubWrapperA,
     TheConstructList,
     TheCostAnalysisList,
+    Icon,
   },
 })
 export default class BuildThePlate extends Base {
   tab = 0;
+  back() {
+    this.$router.back();
+  }
 }
 </script>
 
@@ -56,6 +64,10 @@ export default class BuildThePlate extends Base {
     rgba(14, 23, 60, 0.7) 50.02%,
     rgba(50, 107, 152, 0.14) 99.96%
   );
+  .back {
+    margin-right: 80px;
+    cursor: pointer;
+  }
   &::v-deep {
     .van-tabs {
       width: 560px;
