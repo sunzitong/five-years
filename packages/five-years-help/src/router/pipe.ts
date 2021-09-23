@@ -56,7 +56,7 @@ export default function (router: VueRouter) {
     const toPath = window.location.href.split("/#/")[0] + "/#" + to.fullPath;
     const backUrl: any = encodeURIComponent(toPath);
     console.log(backUrl, "backUrl123");
-    // if (!token) return next(`/login?backUrl=${backUrl}`);
+    if (!token) return next(`/login?backUrl=${backUrl}`);
     next();
   });
   router.afterEach(async function () {
