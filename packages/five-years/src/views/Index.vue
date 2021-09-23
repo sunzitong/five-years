@@ -129,8 +129,8 @@ export default class Index extends Base {
     if (item.isLogin) {
       // 若没有登录
       if (!token) {
-         this.login();
-         return;
+        this.login();
+        return;
       }
     }
     // 若活动需要跳转到其他原生小程序页
@@ -149,8 +149,16 @@ export default class Index extends Base {
       }
       return;
     }
-    // 若是H5活动, 直接跳转
-    window.location.href = item.activityUrl;
+    if (this.visitSource === "小程序") {
+      // 若是H5活动, 直接跳转
+      window.wx.miniProgram.navigateTo({
+        url: `/packageA/pages/bearWeb/bearWeb?item=${encodeURIComponent(
+          item.activityUrl
+        )}`,
+      });
+    } else {
+      window.location.href = item.activityUrl;
+    }
     console.log("item", item);
   }
 }
