@@ -32,7 +32,7 @@
     <div v-else-if="popType === 2">
       <div class="tipsImage"></div>
     </div>
-    <div class="popMain" v-else>
+    <div class="popMain"  v-else-if="popType === 3">
       <img class="conectImage" :src="backgroundUrl" />
       <div class="descript">{{ descript }}</div>
       <div
@@ -42,6 +42,13 @@
       >
         {{ buttonContext }}
       </div>
+    </div>
+    <div class="popMain" v-else-if="popType === 4">
+      <img
+        class="conectImage"
+        src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/tXakW3Qq5rr_zrPQpy26_Q.png"
+      />
+      <div class="descript">{{ descript }}</div>
     </div>
     <div v-if="popType !== 2" class="close" @click="handleClose"></div>
   </div>
@@ -53,7 +60,7 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 export default class MixinMask extends Vue {
   @Prop({ default: "发送至微信好友或群聊" }) descript!: string;
   @Prop({ default: "" }) buttonContext!: string;
-  @Prop({ default: 2 }) popType!: number;
+  @Prop({ default: 2 }) popType!: number; //1:规则弹窗, 2.微信分享提示图 3.'confirm提示框' 4.‘错误提示框’
   @Prop({
     default:
       "https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/leM0J9cHa0nFYMKh8U2DLQ.png",
