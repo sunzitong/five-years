@@ -16,8 +16,9 @@ import "./filters";
 import "./assets/css/style.scss";
 import { CountDown } from "vant";
 import { Overlay } from "vant";
-import zhugeio from "@guanyu/zhugeio"; 
+
 import { judgeDevice } from "@guanyu/h5-tools";
+import zhugeio from "@guanyu/zhugeio"; 
 
 import Popup from "@/components/popup/index";
 
