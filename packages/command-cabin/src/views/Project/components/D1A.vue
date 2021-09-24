@@ -51,7 +51,7 @@
         <van-circle
           v-model="currentRate"
           class="circle_setting2"
-          :rate="resData.coCorkingFinishLimit"
+          :rate="resData.coWorkingFinishLimit"
           layer-color="#14437F"
           color="#5180E4"
           :size="145"
@@ -59,13 +59,13 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ resData.coCorkingFinishLimit }}%</div>
+            <div class="value">{{ resData.coWorkingFinishLimit }}%</div>
           </div>
         </van-circle>
         <div class="flex_text_box">
           <div>一展</div>
           <div class="flex_value">
-            <span>{{ sepNumber(resData.coCorkingIncome) }}</span>
+            <span>{{ sepNumber(resData.coWorkingIncome) }}</span>
             <span>万</span>
           </div>
         </div>

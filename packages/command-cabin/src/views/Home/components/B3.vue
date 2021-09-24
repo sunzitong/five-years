@@ -14,7 +14,7 @@
       </van-row>
       <div class="process_container">
         <Animationend
-          :scrollMinCount="4"
+          :scrollMinCount="3"
           :height="300"
           :dataSource="resData.costAnalysisModelList"
         >
@@ -26,10 +26,15 @@
                 </div>
               </div>
               <div class="line_box">
-                <div class="content" :style="{ width: el.useRate + '%' }"></div>
+                <div
+                  class="content"
+                  :style="{ width: (el.useRate || 0) + '%' }"
+                ></div>
               </div>
               <div class="item_value">
-                <div class="item_value_item">{{ el.useRate }}%</div>
+                <div class="item_value_item">
+                  {{ formatValue(el.useRate) }}%
+                </div>
               </div>
             </div>
           </template>
@@ -141,7 +146,7 @@ export default class B3 extends Base implements IFetch {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 22px 0;
+  padding: 0 0 22px 0;
 
   .item_name {
     color: #90a4c3;

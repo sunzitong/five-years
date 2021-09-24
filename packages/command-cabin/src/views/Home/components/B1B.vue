@@ -54,14 +54,12 @@
       <van-col :span="12">
         <B1C
           :pieData="pieData1"
-          :sum="sum1"
           style="width: 100%; height: 230px; margin-top: 60px"
         />
       </van-col>
       <van-col :span="12">
         <B1C
           :pieData="pieData2"
-          :sum="sum2"
           style="width: 100%; height: 230px; margin-top: 60px"
         />
       </van-col>
@@ -135,8 +133,6 @@ export default class B1B extends Base implements IFetch {
 
   values1: number[] = []; // value数组
   values2: number[] = []; // value数组
-  sum1 = 0; // 重中轻之和
-  sum2 = 0; // 重中轻之和
 
   /**
    * 自动触发 重复调用
@@ -168,14 +164,14 @@ export default class B1B extends Base implements IFetch {
       this.pieData1 = iwant.array(this.resData.openInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          // value: iwant.calc(el.ratio, 1, true),
+
           value: el.ratio,
         };
       });
       this.pieData2 = iwant.array(this.resData.notOpenInfo?.list).map((el) => {
         return {
           name: el.transactionModel,
-          // value: iwant.calc(el.ratio, 1, true),
+
           value: el.ratio,
         };
       });
@@ -190,15 +186,7 @@ export default class B1B extends Base implements IFetch {
       });
 
       this.values1 = this.getArrayValue(this.pieData1, "value"); // value数组
-      this.sum1 = this.values1.reduce(
-        (pre: number, cur: number) => iwant.number(pre) + iwant.number(cur),
-        0
-      ); // 所有成本之和
       this.values2 = this.getArrayValue(this.pieData2, "value"); // value数组
-      this.sum2 = this.values2.reduce(
-        (pre: number, cur: number) => iwant.number(pre) + iwant.number(cur),
-        0
-      ); // 所有成本之和
     } else {
       this.$parent.empty = true;
     }

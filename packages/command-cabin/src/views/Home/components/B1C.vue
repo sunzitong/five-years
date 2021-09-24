@@ -23,10 +23,6 @@ export default class B1C extends Base {
    * 饼图name-value键值对对象
    */
   @Prop({ default: () => [] }) readonly pieData!: AnyObject[];
-  /**
-   * 重中轻之和
-   */
-  @Prop({ default: () => 0 }) readonly sum!: number;
 
   names = ["重资产", "中资产", "轻资产"];
   color = { 重资产: "#5180E4", 中资产: "#F7D14A", 轻资产: "#B491FD" };
@@ -85,7 +81,7 @@ export default class B1C extends Base {
           {
             // 阴影
             name: "",
-            value: this.sum - this.sortPieData[i].value,
+            value: 100 - this.sortPieData[i].value,
             itemStyle: {
               color: this.bgColor[this.sortPieData[i].name],
               borderWidth: 0,

@@ -80,17 +80,14 @@ export default class A5 extends Base implements IFetch {
         myChart.resize();
       });
     }
+
+    console.log("print----", this.pieData);
     const { myChart } = this;
     // myChart.showLoading();
     let option: EChartsOption = {
       title: {
         //中心数值
-        text:
-          iwant.calc(
-            iwant.number(this.resData.yearSubsidiesCompletionRate) * 100,
-            1,
-            true
-          ) + "%",
+        text: `${this.resData.yearSubsidiesCompletionRate}%`,
         left: "center",
         top: "53%",
         z: 100,
@@ -131,7 +128,7 @@ export default class A5 extends Base implements IFetch {
           itemStyle: {
             borderRadius: 88,
           },
-          color: ["#F7D14A", "#57A6FB"],
+          color: ["#57A6FB", "#F7D14A"],
           data: this.pieData,
         },
       ],

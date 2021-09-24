@@ -4,7 +4,7 @@
  *
  * 门店屏幕-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/9/22 下午5:31:20
+ * @updateAt 2021/9/24 下午2:36:38
  * @method GET
  */
 
@@ -21,8 +21,8 @@ exports.response = {
     totalFinishLimit: 93.4, //全业态收入完成度
     guanyuIncome: 233.3, //冠寓收入
     guanyuFinishLimit: 92.4, //冠寓收入完成度
-    coCorkingIncome: 323.3, //一展收入
-    coCorkingFinishLimit: 95.4, //一展收入完成度
+    coWorkingIncome: 323.3, //一展收入
+    coWorkingFinishLimit: 95.4, //一展收入完成度
     commerceIncome: 233.3, //底商收入
     commerceFinishLimit: 94.4, //底商收入完成度
     incrementAndParkIncome: 23233.3, //增值级停车收入

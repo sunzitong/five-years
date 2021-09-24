@@ -85,12 +85,12 @@ export default class B4 extends Base implements IFetch {
 
       this.values = [];
       for (let key in this.resData) {
-        this.values.push(iwant.calc(this.resData[key], 1, true));
+        this.values.push(this.resData[key]);
       }
       this.values = [
-        iwant.calc(iwant.number(this.resData.ipdRatio), 1, true),
-        iwant.calc(iwant.number(this.resData.checkScore), 1, true),
-        iwant.calc(iwant.number(this.resData.qualityScore), 1, true),
+        iwant.number(this.resData.ipdRatio),
+        iwant.number(this.resData.checkScore),
+        iwant.number(this.resData.qualityScore),
       ];
 
       this.paintChart();

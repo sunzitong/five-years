@@ -96,10 +96,10 @@ export default class A6 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
         ? "--"
-        : iwant.calc(this.resData.yearNetIncomeCollected as number, 1, true);
+        : this.resData.yearNetIncomeCollected;
       this.wholeCycle = _.isNil(this.resData.allNetIncomeCollected)
         ? "--"
-        : iwant.calc(this.resData.allNetIncomeCollected as number, 1, true);
+        : this.resData.allNetIncomeCollected;
 
       this.cycleRate = _.isNil(this.resData.allNetIncomeCompletionRate)
         ? "--"
@@ -112,12 +112,11 @@ export default class A6 extends Base implements IFetch {
         // 饼图对象数组
         {
           name: "all",
-          value:
-            100 - iwant.number(this.resData.yearNetIncomeCompletionRate) * 100,
+          value: 100 - iwant.number(this.resData.yearNetIncomeCompletionRate),
         },
         {
           name: "reach",
-          value: iwant.number(this.resData.yearNetIncomeCompletionRate) * 100,
+          value: iwant.number(this.resData.yearNetIncomeCompletionRate),
         },
       ];
       this.paintChart();
@@ -128,15 +127,21 @@ export default class A6 extends Base implements IFetch {
       clearInterval(this.timer);
       this.timer = setInterval(() => {
         if (this.yearFlag) {
-          this.pieData[1].value =
-            iwant.number(this.resData.allNetIncomeCompletionRate) * 100;
+          this.pieData[0].value =
+            100 - iwant.number(this.resData.allNetIncomeCompletionRate);
+          this.pieData[1].value = iwant.number(
+            this.resData.allNetIncomeCompletionRate
+          );
         } else {
-          this.pieData[1].value =
-            iwant.number(this.resData.yearNetIncomeCompletionRate) * 100;
+          this.pieData[0].value =
+            100 - iwant.number(this.resData.yearNetIncomeCompletionRate);
+          this.pieData[1].value = iwant.number(
+            this.resData.yearNetIncomeCompletionRate
+          );
         }
         this.yearFlag = !this.yearFlag;
         this.paintChart();
-      }, 1000);
+      }, 2000);
     } else {
       this.empty = true;
     }
@@ -159,7 +164,7 @@ export default class A6 extends Base implements IFetch {
     let option: EChartsOption = {
       title: {
         //中心数值
-        text: iwant.calc(this.pieData[1].value, 1, true) + "%",
+        text: `${this.pieData[1].value}%`,
         left: "center",
         top: "53%",
         z: 100,

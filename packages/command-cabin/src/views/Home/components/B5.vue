@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { AnyObject, iwant } from "@guanyu/shared";
+import { AnyObject } from "@guanyu/shared";
 import {
   fetchRepairStat,
   RepairStatReturn,
@@ -105,11 +105,7 @@ export default class B5 extends Base implements IFetch {
         itemGap: 25,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${iwant.calc(
-            this.objData2[params],
-            1,
-            true
-          )}%}`;
+          return `{a|${params}}{b|  ${this.objData1[params]}}{c| ${this.objData2[params]}%}`;
         },
         textStyle: {
           rich: {
