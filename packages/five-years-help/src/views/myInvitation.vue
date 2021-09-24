@@ -338,7 +338,7 @@ export default class Index extends Base {
   invitationId: any = "";
   activeTab = 1;
   loading = false;
-  token = getToken() || '13e1aea54376479793187d9e704372c3';
+  token = getToken();
   async mounted() {
     document.title = "新星集好运，租房更省力";
     if (this.visitSource === "小程序") {
