@@ -189,7 +189,7 @@ export default class D1A extends Base implements IFetch {
   }
   .value {
     font-family: "DIN Alternate";
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     color: #dbf0ff;
@@ -221,7 +221,7 @@ export default class D1A extends Base implements IFetch {
 
   .value {
     font-family: "DIN Alternate";
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 42px;
     color: #dbf0ff;
