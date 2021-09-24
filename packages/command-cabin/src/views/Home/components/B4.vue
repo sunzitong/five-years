@@ -81,7 +81,7 @@ export default class B4 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
 
       this.values = [];
       for (let key in this.resData) {
