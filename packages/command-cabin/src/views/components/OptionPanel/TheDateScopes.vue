@@ -1,8 +1,10 @@
 <template>
   <div class="option-panel animate__animated animate__fadeInUp" v-show="show">
-    <ul class="list" v-for="item in options" :key="item.value">
+    <ul class="list">
       <li
         class="item"
+        v-for="item in options"
+        :key="item.value"
         :class="{ active: store.global.dateScope === item.value }"
         @click="setValue(item.value)"
       >
@@ -42,7 +44,7 @@ export default class TheDateScopes extends Base {
   font-size: 40px;
 }
 .option-panel {
-  --animate-duration: 200ms;
+  --animate-duration: 100ms;
 }
 .list {
   width: 400px;

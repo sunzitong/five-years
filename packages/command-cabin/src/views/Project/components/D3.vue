@@ -5,7 +5,7 @@
         <li class="item" v-for="(item, index) in response" :key="index">
           <van-circle
             v-model="item.currentRate"
-            :rate="item.rate * 100"
+            :rate="item.rate"
             :speed="100"
             layer-color="#14437F"
             :color="item.color"

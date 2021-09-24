@@ -93,7 +93,7 @@ export default class A6 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
         ? "--"
         : iwant.calc(this.resData.yearNetIncomeCollected as number, 1, true);

@@ -7,8 +7,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import TheOrgTree from "./TheOrgTree.vue";
 import TheProjectList from "./TheProjectList.vue";
 import TheDateScopes from "./TheDateScopes.vue";
+import TheNavMenu from "./TheNavMenu.vue";
 
-const components = { TheOrgTree, TheProjectList, TheDateScopes };
+const components = { TheOrgTree, TheProjectList, TheDateScopes, TheNavMenu };
 
 @Component({
   components,
