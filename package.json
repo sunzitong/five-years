@@ -7,6 +7,8 @@
   "scripts": {
     "postinstall": "lerna bootstrap --scope=command-cabin",
     "build": "lerna run build --scope=command-cabin --stream",
+    "build:uat": "cross-env BUILD=uat npm-run-all build",
+    "build:sit": "cross-env BUILD=sit npm-run-all build",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
@@ -26,5 +28,8 @@
     "lerna": "^4.0.0",
     "npm-check-updates": "^11.8.3",
     "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
