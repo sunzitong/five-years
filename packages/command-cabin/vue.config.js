@@ -14,8 +14,18 @@ $VUE_APP_BASE_IMG: "~${process.env.VUE_APP_BASE_IMG}";
 
 const pkg = require("./package.json");
 
+const getPublicPath = () => {
+  if (process.env.NODE_ENV === "production") {
+    if (["sit", "uat", "staging"].includes(process.env.BUILD)) {
+      return `https://s.longfor.com/toch5-${process.env.BUILD}/${pkg.name}`;
+    }
+    return `/fe/${pkg.name}`;
+  }
+  return "";
+};
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
+  publicPath: getPublicPath(),
   outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
