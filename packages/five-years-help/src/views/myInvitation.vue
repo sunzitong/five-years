@@ -431,7 +431,7 @@ export default class Index extends Base {
             this.popParm.popType = 3; //分享成功
             this.popParm.isShow = true;
           }
-        } else {
+        } else if ((res as any)?.code >= 100) {
           this.popParm.descript = (res as any)?.msg;
           this.popParm.popType = 4; //错误信息
           this.popParm.isShow = true;
