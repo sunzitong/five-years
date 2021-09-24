@@ -33,7 +33,6 @@ import B1A from "./B1A.vue";
 import B1B from "./B1B.vue";
 import { Base } from "@/views/Base";
 
-console.log(echarts);
 
 @Component({
   components: {

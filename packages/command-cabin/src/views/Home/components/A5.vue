@@ -81,7 +81,6 @@ export default class A5 extends Base implements IFetch {
       });
     }
 
-    console.log("print----", this.pieData);
     const { myChart } = this;
     // myChart.showLoading();
     let option: EChartsOption = {
