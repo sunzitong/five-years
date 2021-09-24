@@ -292,7 +292,6 @@
     </van-overlay>
   </div>
 </template>
-
 <script lang="ts">
 import { Component, Inject } from "vue-property-decorator";
 import Base from "./Base";
