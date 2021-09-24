@@ -54,7 +54,7 @@ export default class App extends Mixins(MixStore) {
           url: url,
         },
         url,
-        2
+        0,
       );
     }
   }
