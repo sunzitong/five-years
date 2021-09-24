@@ -4,7 +4,7 @@
  *
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/23 下午5:07:36
+ * @updateAt 2021/9/24 上午10:09:58
  * @method GET
  */
 
@@ -22,6 +22,7 @@ exports.response = {
     pageNum: 1, //第几页
     list: [
       {
+        id: "3", //唯一主键ID
         projectNo: "L-CD00-CDSDT00.08", //分期ID
         name: "龙湖冠寓成都时代店", //名称
         cityDepartmentName: "成都", //城市
@@ -68,6 +69,7 @@ exports.response = {
         landscapeConstructionCompany: "无",
       },
       {
+        id: "2", //唯一主键ID
         projectNo: "L-XM00-XMHLG00.01",
         name: "龙湖冠寓厦门高新园店",
         cityDepartmentName: "厦门",

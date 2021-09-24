@@ -12,7 +12,7 @@
       <tbody>
         <tr
           v-for="item in response.list"
-          :key="item.projectNo"
+          :key="item.id"
           :class="{ warn: item.riskType !== 'NoRisk' }"
         >
           <td v-for="opt in options" :key="opt.name">
@@ -129,6 +129,8 @@ export default class TheConstructList extends Base implements IFetch {
 
   pageNum = 1;
 
+  pageSize = 20;
+
   response: Partial<ListReturn> = {};
 
   /**
@@ -152,7 +154,7 @@ export default class TheConstructList extends Base implements IFetch {
         riskType:
           this.riskTypeValue === "Default" ? undefined : this.riskTypeValue,
         // 页容量
-        pageSize: 20,
+        pageSize: this.pageSize,
         // 页码
         pageNum: this.pageNum,
       },
