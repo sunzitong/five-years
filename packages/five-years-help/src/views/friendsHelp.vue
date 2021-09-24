@@ -9,7 +9,7 @@
           <img v-if="startUserInfo.src" :src="startUserInfo.src" />
           <img
             v-else
-            src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
+            src="https://goyoo-assets.longfor.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
           />
         </p>
         <div class="invitationContext">
@@ -76,7 +76,7 @@
             </p>
           </div>
           <div class="barLayout">
-            <div class="Bar">
+           <div class="Bar">
               <div
                 class="rateBg"
                 :style="{
@@ -90,13 +90,11 @@
                 }"
               >
                 <i
-                  class="icon"
-                  :style="{
-                    right:
-                      startUserInfo.ic >= helpHeadCountList.slice(-1)
-                        ? `-1vw`
-                        : `-6vw`,
-                  }"
+                  :class="[
+                    'icon',
+                    { minIcon: startUserInfo.ic == 0 },
+                    { minIcon: startUserInfo.ic >= helpHeadCountList.slice(-1) },
+                  ]"
                 ></i>
               </div>
             </div>
@@ -238,10 +236,10 @@
                 <img
                   v-else
                   class="headerImage"
-                  src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
+                  src="https://goyoo-assets.longfor.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
                 />
-                <ul>
-                  <li>{{ item.nn }}</li>
+                <ul class="descriptList">
+                  <li class="nn">{{ item.nn }}</li>
                   <li class="descript">
                     {{ dayjs(item.ht).month() + 1 }}月{{
                       dayjs(item.ht).date()
@@ -530,16 +528,19 @@ export default class Index extends Base {
 .firstCol {
   display: flex;
   justify-content: center;
-  width: 30px;
+  width: 32px;
   text-align: center;
+  font-size: 15px;
 }
 .twoCol {
   width: 100px;
+  font-size: 15px;
 }
 .threeCol {
   display: flex;
   justify-content: center;
-  width: 50px;
+  width: 52px;
+  font-size: 15px;
 }
 .barLayout {
   position: absolute;
@@ -550,19 +551,37 @@ export default class Index extends Base {
   position: relative;
   margin: 0px 46px;
   .rateBg {
-    background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/GMIvYIhkavkt20V9v0h8tg.png)
+    background: url(https://goyoo-assets.longfor.com/prod/app/GMIvYIhkavkt20V9v0h8tg.png)
       0 0 no-repeat;
     background-size: cover;
   }
 }
 .Bar .icon {
-  background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Pt0RE6MSbMbSTe7nCC4u-w.png) 0 0 no-repeat;
+  background: url(https://goyoo-assets.longfor.com/prod/app/Pt0RE6MSbMbSTe7nCC4u-w.png) 0 0 no-repeat;
   background-size: contain;
   height: 27px;
   width: 27px;
   position: absolute;
   right: -22px;
   top: -5px;
+}
+.Bar .minIcon {
+  background: url(https://goyoo-assets.longfor.com/prod/app/62lROyQgTvluMRTvAasw1A.png) 0 0 no-repeat;
+  background-size: contain;
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  right: -22px;
+  top: -13px;
+}
+.Bar .maxIcon {
+  background: url(https://goyoo-assets.longfor.com/prod/app/62lROyQgTvluMRTvAasw1A.png) 0 0 no-repeat;
+  background-size: contain;
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  right: -8px;
+  top: -13px;
 }
 .Bar div { 
   display: block;
@@ -604,13 +623,13 @@ export default class Index extends Base {
   display: flex;
   justify-content: center;
   .banner {
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/X8FdfNOlx0UEG0q_KiXq0g.png") 0 0 no-repeat;
+    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Kca_JX3fUZwC0z6XqOZLAQ.png") 0 0 no-repeat;
     background-size: contain;
     height: 299px;
     width: 375px;
   }
   .invitationInfo {
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/2WxLPqsubwBENOIop4AV4A.png") 0 0 no-repeat;
+    background: url("https://goyoo-assets.longfor.com/prod/app/2WxLPqsubwBENOIop4AV4A.png") 0 0 no-repeat;
     background-size: contain;
     height: 118px;
     width: 306px;
@@ -620,7 +639,7 @@ export default class Index extends Base {
       position: absolute;
       top: -24px;
       left: -30px;
-      background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Kr0rhl-F7QoYKwBk2R37uw.png") 0 0 no-repeat;
+      background: url("https://goyoo-assets.longfor.com/prod/app/Kr0rhl-F7QoYKwBk2R37uw.png") 0 0 no-repeat;
       background-size: contain;
       height: 100px;
       width: 100px;
@@ -653,7 +672,7 @@ export default class Index extends Base {
   }
   .banner-photoFrame {
     position: relative;
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/idNHTU4-wUhMrQeMKmycrw.png") 0 0 no-repeat;
+    background: url("https://goyoo-assets.longfor.com/prod/app/idNHTU4-wUhMrQeMKmycrw.png") 0 0 no-repeat;
     background-size: contain;
     height: 320px;
     width: 375px;
@@ -672,7 +691,7 @@ export default class Index extends Base {
     }
   }
   .banner-operationPlatform {
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/BcLqiWI1B8Z8Mjbhk2hDmA.png") 0 0 no-repeat;
+    background: url("https://goyoo-assets.longfor.com/prod/app/BcLqiWI1B8Z8Mjbhk2hDmA.png") 0 0 no-repeat;
     background-size: cover;
     height: 105px;
     width: 375px;
@@ -695,7 +714,7 @@ export default class Index extends Base {
   margin-top: -7px;
   .current-help {
     position: relative;
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Ue44dyjJRg2TRxyKRRK1Og.png") 0 0 no-repeat;
+    background: url("https://goyoo-assets.longfor.com/prod/app/Ue44dyjJRg2TRxyKRRK1Og.png") 0 0 no-repeat;
     background-size: contain;
     // height: 205px;
     height: 160px;
@@ -708,7 +727,7 @@ export default class Index extends Base {
     .scale-active,
     .scaleLong-active {
       text-shadow: 0px 0px 8px #fd08fe;
-      font-weight: 500;
+      // font-weight: bold;
     }
     // 5珑珠刻度
     .scale5 {
@@ -732,12 +751,12 @@ export default class Index extends Base {
     // 15珑珠刻度
     .scale15 {
       justify-content: end;
-      width: 46px;
+      width: 39px;
       opacity: 0.5;
     }
     .scale15-active {
       justify-content: center;
-      width: 46px;
+      width: 39px;
     }
     .scaleLong15 {
       justify-content: center;
@@ -751,59 +770,59 @@ export default class Index extends Base {
     // 25珑珠刻度
     .scale25 {
       justify-content: center;
-      width: 37px;
+      width: 43px;
       opacity: 0.5;
     }
     .scale25-active {
       justify-content: center;
-      width: 37px;
+      width: 43px;
     }
     .scaleLong25 {
       justify-content: center;
-      width: 53px;
+      width: 52px;
       opacity: 0.5;
     }
     .scaleLong25-active {
       justify-content: center;
-      width: 48px;
+      width: 52px;
     }
     // 55珑珠刻度
     .scale55 {
       justify-content: center;
-      width: 102px;
+      width: 92px;
       opacity: 0.5;
     }
     .scale55-active {
       justify-content: center;
-      width: 102px;
+      width: 92px;
     }
     .scaleLong55 {
       justify-content: center;
-      width: 97px;
+      width: 83px;
       opacity: 0.5;
     }
     .scaleLong55-active {
       justify-content: center;
-      width: 97px;
+      width: 83px;
     }
     // 85珑珠刻度
     .scale85 {
       justify-content: center;
-      width: 78px;
+      width: 93px;
       opacity: 0.5;
     }
     .scale85-active {
       justify-content: center;
-      width: 78px;
+      width: 93px;
     }
     .scaleLong85 {
       justify-content: center;
-      width: 68px;
+      width: 83px;
       opacity: 0.5;
     }
     .scaleLong85-active {
       justify-content: center;
-      width: 68px;
+      width: 83px;
     }
     .help-rate {
       margin-top: 18px;
@@ -815,14 +834,14 @@ export default class Index extends Base {
       font-weight: bolder;
       color: #fefffe;
     }
-     .unit {
+    .unit {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       p {
         display: flex;
         justify-content: flex-end;
-        font-weight: 400;
+        // font-weight: 400;
       }
     }
     .unit1 {
@@ -844,7 +863,7 @@ export default class Index extends Base {
     justify-content: space-between;
     margin: 16px 14.5px;
     .emptyTemplate {
-      background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/pMkkAKCV1UcZixBhZ4WYBw.png") 0 0 no-repeat;
+      background: url("https://goyoo-assets.longfor.com/prod/app/pMkkAKCV1UcZixBhZ4WYBw.png") 0 0 no-repeat;
       background-size: contain;
       background-position: center;
       height: 47px;
@@ -861,7 +880,7 @@ export default class Index extends Base {
       align-items: center;
       width: 149px;
       height: 199px;
-      background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/PDO0sUdJUrDpMp3gzRXkrw.png")
+      background: url("https://goyoo-assets.longfor.com/prod/app/PDO0sUdJUrDpMp3gzRXkrw.png")
           no-repeat,
         linear-gradient(270deg, #000c38 0%, #250476 0%, #012f5b 100%);
       background-size: cover;
@@ -903,9 +922,10 @@ export default class Index extends Base {
       }
     }
      .history-right {
+      position: relative;
       width: 187px;
       height: 199px;
-      background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Veb0G3xGqprsdYLanJ3Q2A.png")
+      background: url("https://goyoo-assets.longfor.com/prod/app/Veb0G3xGqprsdYLanJ3Q2A.png")
           no-repeat,
         linear-gradient(270deg, #000c38 0%, #250476 0%, #012f5b 100%);
       background-size: cover;
@@ -943,7 +963,9 @@ export default class Index extends Base {
         }
       }
       .btnInvitation {
-        margin-top: 7.5px;
+        position: absolute;
+        bottom: 24px;
+        // margin-top: 7.5px;
         width: 158.5px;
         height: 33.5px;
         line-height: 37.5px;
@@ -959,6 +981,8 @@ export default class Index extends Base {
         opacity: 0.6;
       }
       .activeOverDesc {
+        position: absolute;
+        bottom: 5px;
         color: #fff;
         margin-top: 5.5px;
         font-weight: 300;
@@ -971,7 +995,7 @@ export default class Index extends Base {
 .record-box {
   .active-countDown {
     position: relative;
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/anwWTrFUV6RqWAFWMBaypg.png") 0 0 no-repeat;
+    background: url("https://goyoo-assets.longfor.com/prod/app/anwWTrFUV6RqWAFWMBaypg.png") 0 0 no-repeat;
     background-size: contain;
     height: 84px;
     display: flex;
@@ -1001,7 +1025,7 @@ export default class Index extends Base {
     }
   }
   .record-list {
-    background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/CJrWh_APU7OtTwiaK6UNuw.png") 0 0 no-repeat;
+    background: url("https://goyoo-assets.longfor.com/prod/app/CJrWh_APU7OtTwiaK6UNuw.png") 0 0 no-repeat;
     background-size: contain;
     background-position: center;
     height: 369px;
@@ -1022,17 +1046,22 @@ export default class Index extends Base {
           width: 160px;
           outline: none;
           text-align: center;
+          opacity: 0.7;
         }
       }
       .active {
         text-shadow: 0px 0px 8px #fd08fe;
         font-weight: bold;
+        opacity: 1 !important;
       }
       .tab-content {
         margin: 30px 23px 0 23px;
         .helpUserList {
           overflow-y: auto;
           height: 240px;
+        }
+        .title {
+          font-size: 15px;
         }
         .helpUser {
           display: flex;
@@ -1046,12 +1075,22 @@ export default class Index extends Base {
             margin-right: 10px;
             border-radius: 50px;
           }
+          .descriptList{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .nn{
+            font-size: 15px;
+          }
+
           .descript {
             opacity: 0.7;
+            font-size: 13px;
           }
         }
         .emptyTemplate {
-          background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/NMwpl-lA6uDhLSWYwZEfPw.png") 0 0 no-repeat;
+          background: url("https://goyoo-assets.longfor.com/prod/app/NMwpl-lA6uDhLSWYwZEfPw.png") 0 0 no-repeat;
           background-size: contain;
           background-position: center;
           height: 100px;
@@ -1079,15 +1118,15 @@ export default class Index extends Base {
           width: 21px;
         }
         .number1 {
-          background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/7rkQrycsgJY-noaJ9NqxFA.png") 0 0 no-repeat;
+          background: url("https://goyoo-assets.longfor.com/prod/app/7rkQrycsgJY-noaJ9NqxFA.png") 0 0 no-repeat;
           background-size: contain;
         }
         .number2 {
-          background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Dz7Jy73FMbhMxpFvAd7RzQ.png") 0 0 no-repeat;
+          background: url("https://goyoo-assets.longfor.com/prod/app/Dz7Jy73FMbhMxpFvAd7RzQ.png") 0 0 no-repeat;
           background-size: contain;
         }
         .number3 {
-          background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/hL680IJlvnSEy8pEjYKszw.png") 0 0 no-repeat;
+          background: url("https://goyoo-assets.longfor.com/prod/app/hL680IJlvnSEy8pEjYKszw.png") 0 0 no-repeat;
           background-size: contain;
         }
         ul {
