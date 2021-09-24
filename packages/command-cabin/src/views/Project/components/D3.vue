@@ -104,6 +104,7 @@ export default class D3 extends Base implements IFetch {
   display: flex;
   justify-content: space-between;
   padding: 0 80px;
+  margin: 60px 350px;
 }
 .item {
   position: relative;

@@ -83,6 +83,10 @@ export enum StoreKey {
    */
   HomeOverdue = "HomeOverdue",
   /**
+   * 指挥中心-经营现状-收入量价情况
+   */
+  HomeIncome = "HomeIncome",
+  /**
    * 营造盘面详情
    */
   ConstructList = "ConstructList",

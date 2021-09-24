@@ -73,7 +73,7 @@ export default class AsceAndDesc extends Vue {
   &--asce {
     transform: matrix(1, 0, 0, 1, 0, 0);
   }
-  &__desc {
+  &--desc {
     transform: matrix(-1, 0, 0, -1, 0, 0);
   }
 }
