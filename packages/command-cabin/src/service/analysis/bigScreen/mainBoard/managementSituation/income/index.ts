@@ -35,8 +35,8 @@ export interface IncomeReturn {
   totalFinishLimit: number;
   guanyuIncome: number;
   guanyuFinishLimit: number;
-  coCorkingIncome: number;
-  coCorkingFinishLimit: number;
+  coWorkingIncome: number;
+  coWorkingFinishLimit: number;
   commerceIncome: number;
   commerceFinishLimit: number;
   incrementAndParkIncome: number;
@@ -54,7 +54,7 @@ export interface IncomeReturn {
 /**
  * 指挥中心-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/9/17 下午6:48:08
+ * @updateAt 2021/9/24 下午2:37:04
  * @method GET
  */
 export const fetchIncome = (params: IncomeParams) => {

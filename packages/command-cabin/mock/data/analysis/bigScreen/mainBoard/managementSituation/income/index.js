@@ -4,7 +4,7 @@
  *
  * 指挥中心-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/9/17 下午6:48:08
+ * @updateAt 2021/9/24 下午2:37:04
  * @method GET
  */
 
@@ -21,8 +21,8 @@ exports.response = {
     totalFinishLimit: 93.4, //全业态收入完成度
     guanyuIncome: 2323.3, //冠寓收入
     guanyuFinishLimit: 93.4, //冠寓收入完成度
-    coCorkingIncome: 2323.3, //一展收入
-    coCorkingFinishLimit: 93.4, //一展收入完成度
+    coWorkingIncome: 2323.3, //一展收入
+    coWorkingFinishLimit: 93.4, //一展收入完成度
     commerceIncome: 2323.3, //底商收入
     commerceFinishLimit: 93.4, //底商收入完成度
     incrementAndParkIncome: 2323.3, //增值级停车收入
