@@ -55,12 +55,7 @@
             <van-radio-group value="nav" direction="horizontal">
               <van-radio
                 :name="showNavPanel ? 'nav' : null"
-                @click="
-                  () => {
-                    showNavPanel = !showNavPanel;
-                    showScopePanel = false;
-                  }
-                "
+                @click="showNavPanel = !showNavPanel"
               >
                 快捷导航
                 <Icon
@@ -137,6 +132,8 @@
           <OptionPanel name="TheDateScopes" :show.sync="showScopePanel" />
           <!-- 门店选择 -->
           <OptionPanel name="TheProjectList" :show.sync="showOrgPanel" />
+          <!-- 快捷导航 -->
+          <OptionPanel name="TheNavMenu" :show.sync="showNavPanel" />
         </div>
       </div>
       <div class="main-right">
@@ -325,6 +322,10 @@ export default class Index extends Base {
   bottom: 220px;
   &.TheDateScopes {
     right: 397px;
+  }
+  &.TheNavMenu {
+    left: 0;
+    right: auto;
   }
 }
 </style>

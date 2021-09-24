@@ -3,6 +3,7 @@
     <ul class="list">
       <template v-for="(item, index) in options">
         <li
+          v-if="item.value"
           :key="index"
           class="item"
           :class="{ active: $route.path === item.value }"
