@@ -35,7 +35,7 @@ export default class Index extends Base {
   loading = false;
   isShow = false;
   mounted() {
-    document.title = "冠寓五周年助力活动";
+    document.title = "新星集好运，租房更省力";
     this.getNumber();
   }
   handleLogin() {
