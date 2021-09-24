@@ -189,30 +189,30 @@
         <SubWrapperA style="width: 2693px; height: 2027px" title="经营现状">
           <van-row gutter="20">
             <van-col>
-              <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
+              <CardA title="收入量价情况" style="width: 1820px; height: 930px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <D1 />
               </CardA>
               <WhiteSpace />
-              <CardA title="客户洞察" style="width: 1820px; height: 420px">
+              <CardA title="客户洞察" style="width: 1820px; height: 452px">
                 <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
               <WhiteSpace />
               <CardA
                 title="24小时设备离线率"
-                style="width: 1820px; height: 317px"
+                style="width: 1820px; height: 452px"
               >
                 <template #data-cycle>{{ dataCycle }}</template>
                 <D4 />
               </CardA>
             </van-col>
             <van-col>
-              <CardA title="经营性支出" style="width: 801px; height: 924px">
+              <CardA title="经营性支出" style="width: 801px; height: 930px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <D2 />
               </CardA>
               <WhiteSpace />
-              <CardA title="逾期金额" style="width: 801px; height: 933px">
+              <CardA title="逾期金额" style="width: 801px; height: 924px">
                 <template #data-cycle>{{ dataCycle }}</template>
                 <D5 />
               </CardA>
