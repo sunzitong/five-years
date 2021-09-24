@@ -164,7 +164,7 @@ export default class A6 extends Base implements IFetch {
         top: "53%",
         z: 100,
         textStyle: {
-          fontFamily: "DIN Alternate",
+          fontFamily: this.store.env.VALUE_FONT,
           fontWeight: "bold",
           fontSize: 40,
           lineHeight: 48,
@@ -180,7 +180,7 @@ export default class A6 extends Base implements IFetch {
         style: {
           text: "完成率",
           textAlign: "center",
-          fontFamily: "PingFang SC",
+          fontFamily: this.store.env.TEXT_FONT,
           fontSize: 24,
           lineHeight: 24,
           fill: "#8090AA",
@@ -263,7 +263,7 @@ export default class A6 extends Base implements IFetch {
   text-align: right;
 
   span {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 36px;
     line-height: 42px;
@@ -279,7 +279,7 @@ export default class A6 extends Base implements IFetch {
   margin-top: 10px;
 
   span {
-    @extend %value__letter;
+    @extend %value-font;
     font-size: 40px;
     line-height: 36px;
   }

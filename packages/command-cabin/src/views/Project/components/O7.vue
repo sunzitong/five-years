@@ -3,11 +3,11 @@
     <div class="header">
       <div class="red">
         红
-        <span class="value__letter">{{ response.redNum }}</span>
+        <span class="value-font">{{ response.redNum }}</span>
       </div>
       <div class="orange">
         橙
-        <span class="value__letter">{{ response.yellowNum }}</span>
+        <span class="value-font">{{ response.yellowNum }}</span>
       </div>
     </div>
     <div class="chart" ref="chart"></div>
@@ -100,13 +100,13 @@ export default class D7 extends Base implements IFetch {
           rich: {
             a: {
               color: "#BFC0C1",
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontSize: 26,
               width: 84,
             },
             b: {
               color: "#01F5F1",
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontSize: 34,
               align: "right",
               width: 120,

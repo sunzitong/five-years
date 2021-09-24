@@ -106,7 +106,7 @@ export default class B3 extends Base implements IFetch {
   padding: 18px 50px 0px 90px;
 }
 .span_style1 {
-  @extend %value__letter;
+  @extend %value-font;
   font-weight: bold;
   font-size: 66px;
   line-height: 60px;
@@ -120,7 +120,7 @@ export default class B3 extends Base implements IFetch {
   }
 }
 .span_style2 {
-  @extend %value__letter;
+  @extend %value-font;
   font-weight: bold;
   font-size: 66px;
   line-height: 60px;
@@ -184,7 +184,7 @@ export default class B3 extends Base implements IFetch {
 
     .item_value_item {
       margin: 0 24px 0 0px;
-      @extend %value__letter;
+      @extend %value-font;
       font-size: 50px;
       line-height: 66px;
       text-align: right;

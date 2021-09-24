@@ -131,7 +131,7 @@ export default class D4 extends Base implements IFetch {
       height: 100%;
       line-height: 1;
       .value {
-        @extend %value__letter;
+        @extend %value-font;
         font-weight: bold;
         font-size: 32px;
       }

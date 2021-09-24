@@ -82,7 +82,7 @@ export default class A2 extends Base {
               width: 140,
             },
             b: {
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               color: "#DBF0FF",
               fontWeight: "bold",
               fontSize: 48,
@@ -92,7 +92,7 @@ export default class A2 extends Base {
               padding: [0, 0, 0, 40],
             },
             c: {
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               color: "#90A4C3",
               fontSize: 36,
               // lineHeight: 36,

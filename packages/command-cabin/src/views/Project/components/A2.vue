@@ -44,7 +44,7 @@
                       <div class="icon" @click.stop="telClick(item)">
                         <Icon type="call" color="#7BE7A1" :size="54" />
                         <BlurBox
-                          class="tel-tips value__letter"
+                          class="tel-tips value-font"
                           :height="70"
                           v-if="item.id == telId"
                         >

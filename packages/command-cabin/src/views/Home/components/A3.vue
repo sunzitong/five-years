@@ -44,7 +44,7 @@ export default class A3 extends Base {
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
-          fontFamily: "PingFang SC",
+          fontFamily: this.store.env.TEXT_FONT,
           fontSize: 28,
           lineHeight: 30,
           align: "center",
@@ -81,7 +81,7 @@ export default class A3 extends Base {
   width: 120px;
 
   div:nth-child(1) {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 40px;
     line-height: 36px;

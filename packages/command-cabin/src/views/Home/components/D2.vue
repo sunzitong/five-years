@@ -80,7 +80,7 @@ export default class D2 extends Base {}
   margin: 0 0 53px 50px;
 
   .top_value {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 66px;
     line-height: 77px;
@@ -124,7 +124,7 @@ export default class D2 extends Base {}
     span {
       margin: 0 6px 0 80px;
       width: 150px;
-      @extend %value__letter;
+      @extend %value-font;
       font-weight: bold;
       font-size: 48px;
       line-height: 56px;
@@ -146,7 +146,7 @@ export default class D2 extends Base {}
   }
 
   .bottom_value {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
@@ -177,7 +177,7 @@ export default class D2 extends Base {}
 }
 
 .flex_value {
-  @extend %value__letter;
+  @extend %value-font;
   font-weight: bold;
   font-size: 48px;
   line-height: 56px;

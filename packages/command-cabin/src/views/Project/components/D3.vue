@@ -138,7 +138,7 @@ export default class D3 extends Base implements IFetch {
       color: #90a4c3;
     }
     .value {
-      @extend %value__letter;
+      @extend %value-font;
       font-weight: bold;
       font-size: 48px;
       line-height: 36px;

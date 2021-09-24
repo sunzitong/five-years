@@ -187,8 +187,8 @@ export default class D1A extends Base implements IFetch {
     height: 300px;
   }
   .value {
-    @extend %value__letter;
-    @extend %value__letter;
+    @extend %value-font;
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     color: #dbf0ff;
@@ -196,7 +196,7 @@ export default class D1A extends Base implements IFetch {
   }
 
   .flex_value span:nth-child(1) {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 66px;
     line-height: 60px;
@@ -219,8 +219,8 @@ export default class D1A extends Base implements IFetch {
   }
 
   .value {
-    @extend %value__letter;
-    @extend %value__letter;
+    @extend %value-font;
+    @extend %value-font;
     font-weight: bold;
     font-size: 42px;
     color: #dbf0ff;
@@ -233,7 +233,7 @@ export default class D1A extends Base implements IFetch {
     margin: 90px 0 0 0;
   }
   .flex_value span:nth-child(1) {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
@@ -252,7 +252,7 @@ export default class D1A extends Base implements IFetch {
     margin: 230px 0 0 0;
   }
   .flex_value span:nth-child(1) {
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;

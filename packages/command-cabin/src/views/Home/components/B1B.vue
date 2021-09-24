@@ -228,7 +228,7 @@ export default class B1B extends Base implements IFetch {
     span:nth-child(2) {
       padding: 18px 0 45px 0;
       display: inline-block;
-      @extend %value__letter;
+      @extend %value-font;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;
@@ -277,7 +277,7 @@ export default class B1B extends Base implements IFetch {
     justify-content: space-between;
 
     .value_details {
-      @extend %value__letter;
+      @extend %value-font;
       font-weight: bold;
       font-size: 36px;
       line-height: 42px;

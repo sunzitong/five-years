@@ -106,7 +106,7 @@ export default class D5 extends Base implements IFetch {
       margin-top: 6px;
 
       span:nth-child(1) {
-        @extend %value__letter;
+        @extend %value-font;
         font-weight: bold;
         font-size: 66px;
         line-height: 77px;
@@ -115,7 +115,7 @@ export default class D5 extends Base implements IFetch {
         margin: 12px 2px 30px 0;
       }
       span:nth-child(2) {
-        @extend %value__letter;
+        @extend %value-font;
         font-weight: bold;
         font-size: 66px;
         line-height: 77px;
@@ -164,7 +164,7 @@ export default class D5 extends Base implements IFetch {
         margin-bottom: 60px;
 
         span {
-          @extend %value__letter;
+          @extend %value-font;
           font-weight: bold;
           font-size: 48px;
           line-height: 36px;
@@ -202,7 +202,7 @@ export default class D5 extends Base implements IFetch {
         span {
           margin: 0 6px 0 80px;
           width: 150px;
-          @extend %value__letter;
+          @extend %value-font;
           font-weight: bold;
           font-size: 36px;
           line-height: 42px;

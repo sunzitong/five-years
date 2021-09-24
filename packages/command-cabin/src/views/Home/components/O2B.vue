@@ -188,7 +188,7 @@ export default class E2B extends Base {
         textStyle: {
           rich: {
             title: {
-              fontFamily: "PingFang SC",
+              fontFamily: this.store.env.TEXT_FONT,
               fontSize: 24,
               lineHeight: 21,
               width: 96,
@@ -197,7 +197,7 @@ export default class E2B extends Base {
             },
             value: {
               width: 80,
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontWeight: "bold",
               fontSize: 30,
               lineHeight: 25,

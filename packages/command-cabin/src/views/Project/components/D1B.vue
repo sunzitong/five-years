@@ -166,7 +166,7 @@ $asce: #ff2a76;
     font-style: normal;
     font-size: 66px;
     color: $light;
-    @extend %value__letter;
+    @extend %value-font;
   }
 
   .simple {

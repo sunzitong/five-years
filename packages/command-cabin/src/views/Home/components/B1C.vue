@@ -131,13 +131,13 @@ export default class B1C extends Base {
         textStyle: {
           rich: {
             title: {
-              fontFamily: "PingFang SC",
+              fontFamily: this.store.env.TEXT_FONT,
               color: "#90A4C3",
               fontSize: 36,
               padding: [0, 10, 0, 12],
             },
             value: {
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontWeight: "bold",
               fontSize: 42,
               lineHeight: 36,

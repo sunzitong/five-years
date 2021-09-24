@@ -121,7 +121,7 @@ export default class B5 extends Base implements IFetch {
               padding: [0, 0, 2, 18],
             },
             b: {
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               color: "#DBF0FF",
               fontWeight: "bold",
               fontSize: 48,
@@ -130,7 +130,7 @@ export default class B5 extends Base implements IFetch {
               align: "right",
             },
             c: {
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               color: "#DBF0FF",
               fontWeight: "bold",
               fontSize: 48,
@@ -176,7 +176,7 @@ export default class B5 extends Base implements IFetch {
     flex-flow: row nowrap;
     justify-content: space-around;
     color: #01f5f1;
-    @extend %value__letter;
+    @extend %value-font;
     font-weight: bold;
     font-size: 34px;
 

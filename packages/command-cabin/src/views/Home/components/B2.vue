@@ -135,7 +135,7 @@ export default class B2 extends Base implements IFetch {
   letter-spacing: 2.5px;
 
   span {
-    @extend %value__letter;
+    @extend %value-font;
     color: #ff3980;
     font-size: 48px;
     line-height: 36px;

@@ -139,7 +139,7 @@ export default class B1A extends Base implements IFetch {
       xAxis: {
         type: "category",
         axisLabel: {
-          fontFamily: "PingFang SC",
+          fontFamily: this.store.env.TEXT_FONT,
           fontSize: 36,
           lineHeight: 36,
           padding: [22, 0, 0, 0],
@@ -364,7 +364,7 @@ export default class B1A extends Base implements IFetch {
 
     span:nth-child(2) {
       padding: 18px 0 45px 0;
-      @extend %value__letter;
+      @extend %value-font;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;
@@ -391,7 +391,7 @@ export default class B1A extends Base implements IFetch {
       margin-right: 10px;
     }
     span:nth-child(2) {
-      @extend %value__letter;
+      @extend %value-font;
       font-size: 36px;
       line-height: 42px;
       color: #dbf0ff;

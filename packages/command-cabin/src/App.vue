@@ -167,8 +167,8 @@ export default class App extends Mixins(MixStore) {
   @extend %bg-img-logo;
 }
 /* 数字字体文件 */
-.value__letter {
-  @extend %value__letter;
+.value-font {
+  @extend %value-font;
 }
 .screen-resize {
   @extend %flex-center;

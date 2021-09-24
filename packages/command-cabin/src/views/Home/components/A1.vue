@@ -121,7 +121,7 @@ export default class A1 extends Base {
         top: "35%",
         z: 100,
         textStyle: {
-          fontFamily: "DIN Alternate",
+          fontFamily: this.store.env.VALUE_FONT,
           fontWeight: "bold",
           fontSize: 48,
           lineHeight: 48,
@@ -137,7 +137,7 @@ export default class A1 extends Base {
         style: {
           text: "拓展完成率",
           textAlign: "center",
-          fontFamily: "PingFang SC",
+          fontFamily: this.store.env.TEXT_FONT,
           fontSize: 24,
           lineHeight: 24,
           fill: "#8090AA",
@@ -153,7 +153,7 @@ export default class A1 extends Base {
         itemWidth: 12,
         textStyle: {
           padding: [0, 0, 0, 18],
-          fontFamily: "PingFang SC",
+          fontFamily: this.store.env.TEXT_FONT,
           fontSize: 36,
           lineHeight: 36,
           color: "#90A4C3",
@@ -228,7 +228,7 @@ export default class A1 extends Base {
       }
       .value {
         margin-left: 36px;
-        @extend %value__letter;
+        @extend %value-font;
         font-weight: bold;
         font-size: 36px;
         line-height: 42px;
@@ -270,7 +270,7 @@ export default class A1 extends Base {
 
     span {
       margin-left: 6px;
-      @extend %value__letter;
+      @extend %value-font;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;
