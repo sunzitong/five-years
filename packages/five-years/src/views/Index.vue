@@ -62,10 +62,10 @@ export default class Index extends Base {
       this.share();
     }
     if (this.visitSource === "browser") {
-      window.location.href = 'weixin://dl/business/?t=nJrHlqp85fm'
+      window.location.href = "weixin://dl/business/?t=nJrHlqp85fm";
       // window.location.href = 'weixin://dl/business/?t=GuezlitC4uf'
     }
-    window.zhuge.track('好友邀请页');
+    window.zhuge.track("好友邀请页");
   }
   /**
    * 获取活动入口
@@ -174,34 +174,43 @@ export default class Index extends Base {
   }
   .class5 {
     position: absolute;
-    top: 163px;
+    // top: 163px;
+    top: 43vw;
     width: 102px;
-    left: 79px;
+    // left: 79px;
+    left: 21vw;
   }
   .class6 {
     position: absolute;
-    top: 358px;
+    // top: 358px;
+    top: 95vw;
     width: 102px;
-    left: -8px;
+    // left: -8px;
+    left: -2vw;
   }
   .class7 {
     position: absolute;
-    top: 447px;
+    // top: 447px;
+    top: 118vw;
     width: 102px;
-    left: 136px;
+    // left: 136px;
+    left: 36vw;
   }
   .class8 {
     position: absolute;
-    top: 368px;
+    // top: 368px;
+    top: 99vw;
     width: 102px;
-    right: 4px;
+    // right: 4px;
+    right: 1vw;
   }
   .class9 {
     position: absolute;
-    top: 241px;
+    // top: 241px;
+    top: 65vw;
     width: 102px;
     // right: -4px;
-    right: 0px;
+    right: 0vw;
   }
 }
 </style>
