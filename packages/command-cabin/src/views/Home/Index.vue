@@ -191,6 +191,7 @@
             <van-col>
               <CardA title="收入量价情况" style="width: 1820px; height: 1100px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <D1 />
               </CardA>
               <WhiteSpace />
               <CardA title="客户洞察" style="width: 1820px; height: 420px">
@@ -267,6 +268,7 @@ import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
+import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D4 from "./components/D4.vue";
 import D5 from "./components/D5.vue";
@@ -293,6 +295,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     B5,
     C1,
     C2,
+    D1,
     D2,
     D4,
     D5,
