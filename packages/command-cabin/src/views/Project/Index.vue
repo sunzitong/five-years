@@ -76,9 +76,21 @@
 
           <ButtonGroupA>
             <van-checkbox-group
-              :value="['scope', 'orgTree']"
+              :value="['meeting', 'command', 'scope', 'orgTree']"
               direction="horizontal"
             >
+              <van-checkbox
+                :name="centerType === 'meeting' ? 'meeting' : null"
+                @click="centerType = 'meeting'"
+              >
+                会议中心
+              </van-checkbox>
+              <van-checkbox
+                :name="centerType === 'command' ? 'command' : null"
+                @click="centerType = 'command'"
+              >
+                实时指挥中心
+              </van-checkbox>
               <van-checkbox
                 :name="showScopePanel ? 'scope' : null"
                 @click="
@@ -263,6 +275,11 @@ export default class Index extends Base {
    * 显示年累月累选择
    */
   showScopePanel = false;
+  /**
+   * 会议中心
+   * 实时指挥中心
+   */
+  centerType = "meeting";
   /**
    * 时间维度按钮文案
    */
