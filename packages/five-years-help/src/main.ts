@@ -58,7 +58,7 @@ Vue.prototype.$popup = function (data: any) {
 Vue.config.productionTip = false;
 
 // 真机本地调试
-if (1 == 1 || process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   import("vconsole").then((VConsole) => {
     new VConsole.default();
   });
