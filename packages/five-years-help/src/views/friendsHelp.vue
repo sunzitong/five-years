@@ -368,9 +368,14 @@ export default class Index extends Base {
   id: any = "";
   token = getToken();
   async mounted() {
+    window.zhuge.track('冠寓5周年助力活动_好友助力pv');
     document.title = "新星集好运，租房更省力";
     if (this.visitSource === "小程序") {
-      this.share(window.location.href.split("?")[0]);
+      this.share(
+        window.location.href
+          .split("?")[0]
+          .replace("friendsHelp", "myInvitation")
+      );
     }
     this.id = this.$route.query.id;
     await this.getNum();
@@ -472,6 +477,7 @@ export default class Index extends Base {
   }
   // 帮好友助力事件
   async handleInvitation(): Promise<void> {
+    window.zhuge.track('[帮TA助力]点击量');
     // 未登录
     if (!getToken()) {
       toLogin();

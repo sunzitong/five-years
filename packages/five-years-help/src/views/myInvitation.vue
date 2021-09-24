@@ -346,6 +346,7 @@ export default class Index extends Base {
     if (this.visitSource === "小程序") {
       this.share(window.location.href.split("?")[0]);
     }
+    window.zhuge.track('冠寓5周年助力活动pv');
     await this.getNum();
     await this.getHelpMy();
     await this.getRankings();
@@ -407,6 +408,7 @@ export default class Index extends Base {
     this.popParm.isShow = false;
   }
   async handleInvitation(): Promise<void> {
+    window.zhuge.track('[邀请更多好友助力]点击量');
     // 未登录
     if (!getToken()) {
       toLogin();
