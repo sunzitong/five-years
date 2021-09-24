@@ -13,12 +13,12 @@
       src="https://goyoo-assets.longfor.com/prod/app/55cC0WCB5wQTFc_JA5p0EQ.png"
       alt=""
     />
-    <!-- <img
+    <img
       class="share-btn"
       src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/_FE2SpPV8jrhx7gKYyeXPQ.png"
       alt=""
       @click="shareBtnClick"
-    /> -->
+    />
     <van-overlay
       :show="showMiniShareGuideImg"
       @click="showMiniShareGuideImg = false"
@@ -30,31 +30,6 @@
         alt=""
       />
     </van-overlay>
-    <!-- <img
-      class="zhuli"
-      src="https://goyoo-assets.longfor.com/prod/app/DjLnomrQVYdqfz4jzJD4lA.png"
-      alt=""
-    />
-    <img
-      class="yaoqing"
-      src="https://goyoo-assets.longfor.com/prod/app/oLLtG5L-v-fWR2Q2NiBzrg.png"
-      alt=""
-    />
-    <img
-      class="xingyun"
-      src="https://goyoo-assets.longfor.com/prod/app/4oS4vwv3eMGsBoZlg2U0fQ.png"
-      alt=""
-    />
-    <img
-      class="haoyou"
-      src="https://goyoo-assets.longfor.com/prod/app/h6QGFTyRchWrhQkqqK1wcw.png"
-      alt=""
-    />
-    <img
-      class="longzhu"
-      src="https://goyoo-assets.longfor.com/prod/app/tTcXWatt8H9ueQQfp-P9Vg.png"
-      alt=""
-    /> -->
   </div>
 </template>
 
@@ -86,6 +61,10 @@ export default class Index extends Base {
     if (this.visitSource === "小程序") {
       this.share();
     }
+    if (this.visitSource === "browser") {
+      window.location.href = 'weixin://dl/business/?t=GuezlitC4uf'
+    }
+    window.zhuge.track('好友邀请页');
   }
   /**
    * 获取活动入口
@@ -124,6 +103,7 @@ export default class Index extends Base {
    * 跳转到活动
    */
   jumpToAct(item) {
+    window.zhuge.track(`冠寓5周年活动首页活动-${item.activityName}-click`);
     const token = getToken();
     // 若该活动需要登录
     if (item.isLogin) {
@@ -188,7 +168,7 @@ export default class Index extends Base {
   .share-btn {
     position: absolute;
     top: 34px;
-    right: -1px;
+    right: 0px;
     width: 58px;
   }
   .class5 {
