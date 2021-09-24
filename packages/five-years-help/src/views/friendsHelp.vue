@@ -462,7 +462,7 @@ export default class Index extends Base {
         this.popParm.isShow = true;
       }
       this.share(url);
-    } else {
+    } else if ((res as any)?.code >= 100) {
       const msg = (res as any)?.msg;
       this.popParm.descript = msg;
       this.popParm.buttonContext = "我也要发起助力";
@@ -490,7 +490,7 @@ export default class Index extends Base {
           await this.getNum();
           await this.getRankings();
           await this.getStartUser();
-        } else {
+        } else if ((res as any)?.code >= 100) {
           this.popParm.descript = (res as any)?.msg;
           this.popParm.buttonContext = "我也要发起助力";
           this.popParm.popType = 3;
