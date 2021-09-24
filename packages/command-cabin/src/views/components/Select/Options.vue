@@ -56,6 +56,8 @@ export default class Options extends Base {
     &.active,
     &:hover {
       background: #102b60;
+    }
+    &.active {
       color: #01f5f1;
     }
   }
