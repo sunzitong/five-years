@@ -130,9 +130,7 @@ export default class FixedNav extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `app-fixed-nav${uuid()}`;
-  }
+  uuid = `app-fixed-nav${uuid()}`;
 
   /**
    * 添加类名

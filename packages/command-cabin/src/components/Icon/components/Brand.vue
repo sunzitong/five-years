@@ -72,8 +72,6 @@ export default class Brand extends Vue {
   /**
    * 获取uuid
    */
-  get uuid() {
-    return `icon-${uuid()}`;
-  }
+  uuid = `icon-${uuid()}`;
 }
 </script>

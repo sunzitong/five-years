@@ -225,8 +225,6 @@ import { Component, Vue } from "vue-property-decorator";
   name: "NoData",
 })
 export default class NoData extends Vue {
-  get uuid() {
-    return `spin-${uuid()}`;
-  }
+  uuid = `spin-${uuid()}`;
 }
 </script>

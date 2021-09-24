@@ -253,7 +253,7 @@ export default class CardDecorate extends Vue {
     return `
       M${R} ${LW}
       L${W} ${LW}
-      
+
       ${W + SR} ${LW}
       L${W + A} ${E}
 
@@ -329,9 +329,7 @@ export default class CardDecorate extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return uuid();
-  }
+  uuid = uuid();
 
   /**
    * 更新背景区域宽、高度

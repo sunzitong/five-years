@@ -182,9 +182,7 @@ export default class Header extends Base {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `header-${uuid()}`;
-  }
+  uuid = `header-${uuid()}`;
 
   /**
    * 动态标题

@@ -117,9 +117,7 @@ export default class FixedNavBtn extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `app-fixed-nav-btn-${uuid()}`;
-  }
+  uuid = `app-fixed-nav-btn-${uuid()}`;
 
   /**
    * 添加类名

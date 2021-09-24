@@ -101,9 +101,7 @@ export default class CardABackground extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return uuid();
-  }
+  uuid = uuid();
 
   /**
    * 更新背景区域宽、高度

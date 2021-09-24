@@ -199,9 +199,7 @@ export default class SubWrapperA extends Vue {
     return `stroke_linear`;
   }
 
-  get uuid() {
-    return `${uuid()}`;
-  }
+  uuid = `${uuid()}`;
   /**
    * 标题尺寸
    */

@@ -75,9 +75,7 @@ export default class BlurBox extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `blur-box-${uuid()}`;
-  }
+  uuid = `blur-box-${uuid()}`;
 
   get customerTrangel() {
     const t = this.trangleSize;

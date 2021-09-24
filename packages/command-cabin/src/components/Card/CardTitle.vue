@@ -83,9 +83,7 @@ export default class CardTitle extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return uuid();
-  }
+  uuid = uuid();
 
   /**
    * 标题图片缩放

@@ -235,9 +235,7 @@ export default class HeaderA extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `header-${uuid()}`;
-  }
+  uuid = `header-${uuid()}`;
 }
 </script>
 
