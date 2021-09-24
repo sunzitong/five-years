@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'app--bg': !appLoading }">
     <div v-show="$route.meta.name !== 'login'">
       <div class="logo"></div>
       <AppHeader />
