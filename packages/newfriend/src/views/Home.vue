@@ -1,69 +1,34 @@
 <template>
-  <div class="main-cont skin2">
-    <div class="form-box">
-      <div class="inter-user-name">
-        <div class="head-img">
-          <img
-            class="user-avatar"
-            :src="
-              userImg
-                ? userImg
-                : 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/CMS/e0NRKFirS3Q.png?x-oss-process=image/resize,s_230/interlace,1/format,jpg'
-            "
-            alt
-          />
-        </div>
-        <div class="head-info-box">
-          <h2>{{ userName }}</h2>
-          <p>邀请您入住龙湖冠寓</p>
-        </div>
-      </div>
-      <!-- <div class="inter-form">
-            <div class="input-box">
-            <input
-                type="number"
-                maxlength="11"
-                v-model="phone"
-                placeholder="请输入手机号"
-                class="InputCommon phonenumber"
-                pattern="[0-9]*"
-            />
-            </div>
-            <div class="input-box">
-            <input
-                type="number"
-                v-model="PhoneCode"
-                maxlength="6"
-                placeholder="请输入验证码"
-                class
-                pattern="[0-9]*"
-            />
-            <span class="SendCode" v-if="sendCode" @click="UserSendcode">发送验证码</span>
-            <span class="SendCode" v-else>{{countDown}}s</span>
-            </div>
-            
-        </div> -->
-      <!-- 接受邀请按钮 -->
-      <div class="ReceivePrize" @click="rightGet"></div>
+  <div class="five-years-container">
+    <img
+      class="user-avatar"
+      :src="
+        userImg
+          ? userImg
+          : 'https://goyoo-assets.longfor.com/prod/app/pW6D1wT3LHnQxADuXgEwxw.png'
+      "
+      alt
+    />
+    <img
+      class="bg"
+      src="https://goyoo-assets.longfor.com/prod/app/9rNgoa1vuMcypa7c5TYeqA.png"
+      alt=""
+    />
+    <div class="name">
+      {{ userName }}
+      <!-- 185****0903 -->
     </div>
-    <div class="rules-box">
-      <div class="rules-cont">
-        <h3 class="active-rules-title">活动规则</h3>
-        <div class="rules-text">
-          <p>
-            1.您的好友正在邀请您参与龙湖冠寓“友邻”计划，通过上方邀请功能使用您的手机并完成验证即可与您的好友完成好友绑定关系；
-          </p>
-          <p>
-            2.绑定成功后您在活动有效期内成功在冠寓门店完成签约入住，您的好友将获得相应珑珠。
-          </p>
-          <br />
-          <p>注：</p>
-          <p>1.活动期间内您只能与一名好友进行绑定;</p>
-          <p>2.部分指定冠寓门店不参与上述活动，请您在办理签约手续前咨询对应运营官所在门店是否参与该活动;</p>
-          <p>3.请确保您用于签约的手机号与参与绑定的手机号一致，若签约手机号与参与绑定的手机号不一致，您的好友则无法成功获取。</p>
-        </div>
-      </div>
-    </div>
+    <img
+      class="invite-text"
+      src="https://goyoo-assets.longfor.com/prod/app/prsNzdZFf3vFdYZ943yS7g.png"
+      alt=""
+    />
+    <img
+      class="invite-btn"
+      @click="rightGet"
+      src="https://goyoo-assets.longfor.com/prod/app/FHdN7jBBaq5qkWOKzhoGPA.png"
+      alt=""
+    />
     <div class="fixed" v-if="drawSucess"></div>
     <div class="getSuccess" v-if="drawSucess">
       <div class="SuccessTitle">恭喜您</div>

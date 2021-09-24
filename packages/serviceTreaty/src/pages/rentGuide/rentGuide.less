@@ -1,0 +1,74 @@
+body {
+  background-color: #F2F2F2;
+}
+
+.guide {
+  padding: 0 24px;
+}
+
+.rules-list {
+  padding-top: 17px;
+
+  .rules-title {
+    font-size: 34px;
+    color: #333333;
+    line-height: 48px;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    li {
+      width: 50%;
+      border-radius: 16px;
+      margin-top: 22px;
+      padding-right: 10px;
+      box-sizing: border-box;
+    }
+
+    .guide-box {
+      display: block;
+      background: #ffffff;
+      padding: 24px 36px 26px 30px;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      .guide-title {
+        font-size: 30px;
+        color: #666666;
+        width: 120px;
+        white-space: nowrap;
+        position: absolute;
+        left: 30px;
+        top: 36px;
+      }
+      img {
+        float: right;
+        width: 144px;
+        height: 144px;
+      }
+    }
+  }
+
+  &.special-list {
+    .content {
+      li {
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+        .guide-box {
+          padding: 0 76px;
+        }
+        img {
+          width: 100%;
+          height: auto;
+          float: none;
+        }
+      }
+    }
+  }
+}
