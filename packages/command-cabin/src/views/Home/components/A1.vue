@@ -191,8 +191,6 @@ export default class A1 extends Base {
 .page__a1__map {
   display: flex;
   flex-flow: column nowrap;
-
-  font-family: "PingFang SC";
   color: #90a4c3;
 
   .top_text {
@@ -230,7 +228,7 @@ export default class A1 extends Base {
       }
       .value {
         margin-left: 36px;
-        font-family: "DIN Alternate";
+        @extend %value__letter;
         font-weight: bold;
         font-size: 36px;
         line-height: 42px;
@@ -272,7 +270,7 @@ export default class A1 extends Base {
 
     span {
       margin-left: 6px;
-      font-family: "DIN Alternate";
+      @extend %value__letter;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;

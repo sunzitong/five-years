@@ -134,7 +134,6 @@ export default class D3 extends Base implements IFetch {
     flex-flow: column nowrap;
     .name {
       text-align: center;
-      font-family: PingFang SC;
       font-size: 36px;
       color: #90a4c3;
     }

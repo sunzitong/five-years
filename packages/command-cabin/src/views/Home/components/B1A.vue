@@ -123,17 +123,6 @@ export default class B1A extends Base implements IFetch {
         renderMode: "html",
         backgroundColor: "transparent",
         borderColor: "transparent",
-        // // backdropFilter: "blur(30px)",
-        // borderColor: new echarts.graphic.LinearGradient(
-        //   1,
-        //   0,
-        //   0,
-        //   0, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
-        //   [
-        //     { offset: 0.8, color: "#00D1FF" },
-        //     { offset: 0.4, color: "#50F5FF" },
-        //   ]
-        // ),
         borderWidth: 2,
         padding: [8, 30],
         // className: "tooltip",
@@ -146,27 +135,6 @@ export default class B1A extends Base implements IFetch {
             1
           )}</span>  <span>${params.value}</span></div>`;
         },
-        //   textStyle: {
-        //     fontSize: 36,
-        //     lineHeight: 36,
-        //     color: "#90A4C3",
-        //     padding: [0, 10, 0, 0],
-        //     rich: {
-        //       a: {
-        //         fontSize: 36,
-        //         lineHeight: 36,
-        //         color: "#90A4C3",
-        //         padding: [0, 10, 0, 0],
-        //       },
-        //       b: {
-        //         fontFamily: "DIN Alternate",
-        //         fontSize: 36,
-        //         lineHeight: 42,
-        //         color: "#DBF0FF",
-        //         fontWeight: "bold",
-        //       },
-        //     },
-        //   },
       },
       xAxis: {
         type: "category",
@@ -386,7 +354,6 @@ export default class B1A extends Base implements IFetch {
 
   .pannel_text {
     padding: 40px 0 0 50px;
-    font-family: "PingFang SC";
     font-size: 40px;
     line-height: 40px;
     color: #90a4c3;
@@ -397,7 +364,7 @@ export default class B1A extends Base implements IFetch {
 
     span:nth-child(2) {
       padding: 18px 0 45px 0;
-      font-family: "DIN Alternate";
+      @extend %value__letter;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;
@@ -424,22 +391,12 @@ export default class B1A extends Base implements IFetch {
       margin-right: 10px;
     }
     span:nth-child(2) {
-      font-family: "DIN Alternate";
+      @extend %value__letter;
       font-size: 36px;
       line-height: 42px;
       color: #dbf0ff;
       font-weight: bold;
     }
   }
-  // .tooltip::before {
-  //   content: "";
-  //   position: absolute;
-  //   left: -22px;
-  //   top: 20px;
-  //   width: 0;
-  //   height: 0;
-  //   border: 10px solid;
-  //   border-color: transparent #00d1ff transparent transparent;
-  // }
 }
 </style>

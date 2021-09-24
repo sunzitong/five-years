@@ -73,36 +73,6 @@ export default class B1C extends Base {
         },
         label: {
           show: false,
-          //   normal: {
-          //     position: "outer",
-          //     formatter: () => {
-          //       return (
-          //         "{title|" +
-          //         this.sortPieData[i].name +
-          //         "} {value|" +
-          //         this.sortPieData[i].value +
-          //         "%}"
-          //       );
-          //     },
-          //     borderWidth: 200,
-          //     // borderRadius: 4,
-          //     padding: [0, 0],
-          //     rich: {
-          //       title: {
-          //         fontFamily: "PingFang SC",
-          //         color: "#90A4C3",
-          //         fontSize: 36,
-          //         // lineHeight: 42,
-          //       },
-          //       value: {
-          //         fontFamily: "DIN Alternate",
-          //         fontWeight: "bold",
-          //         fontSize: 10,
-          //         // lineHeight: 42,
-          //         color: "#DBF0FF",
-          //       },
-          //     },
-          //   },
         },
         data: [
           {

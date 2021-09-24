@@ -217,7 +217,6 @@ export default class B1B extends Base implements IFetch {
 
   .pannel_text {
     padding: 40px 0 0 0px;
-    font-family: "PingFang SC";
     font-size: 40px;
     line-height: 40px;
     color: #90a4c3;
@@ -229,7 +228,7 @@ export default class B1B extends Base implements IFetch {
     span:nth-child(2) {
       padding: 18px 0 45px 0;
       display: inline-block;
-      font-family: "DIN Alternate";
+      @extend %value__letter;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;
@@ -238,7 +237,6 @@ export default class B1B extends Base implements IFetch {
   }
 
   .text_abstract {
-    font-family: "PingFang SC";
     font-size: 28px;
     line-height: 30px;
     color: #ffffff;
@@ -270,7 +268,6 @@ export default class B1B extends Base implements IFetch {
   }
 
   .pannel_sub_text {
-    font-family: "PingFang SC";
     font-size: 36px;
     line-height: 36px;
     color: #90a4c3;
@@ -280,7 +277,7 @@ export default class B1B extends Base implements IFetch {
     justify-content: space-between;
 
     .value_details {
-      font-family: "DIN Alternate";
+      @extend %value__letter;
       font-weight: bold;
       font-size: 36px;
       line-height: 42px;

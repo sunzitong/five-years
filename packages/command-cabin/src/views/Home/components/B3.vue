@@ -100,14 +100,13 @@ export default class B3 extends Base implements IFetch {
   padding: 40px 0px 0 0px;
 }
 .abstract_text {
-  font-family: "PingFang SC";
   font-size: 40px;
   line-height: 40px;
   color: #90a4c3;
   padding: 18px 50px 0px 90px;
 }
 .span_style1 {
-  font-family: "DIN Alternate";
+  @extend %value__letter;
   font-weight: bold;
   font-size: 66px;
   line-height: 60px;
@@ -121,7 +120,7 @@ export default class B3 extends Base implements IFetch {
   }
 }
 .span_style2 {
-  font-family: "DIN Alternate";
+  @extend %value__letter;
   font-weight: bold;
   font-size: 66px;
   line-height: 60px;
@@ -151,7 +150,6 @@ export default class B3 extends Base implements IFetch {
     justify-content: space-around;
 
     .item_name_item {
-      font-family: "PingFang SC";
       font-size: 40px;
       line-height: 40px;
       width: 200px;

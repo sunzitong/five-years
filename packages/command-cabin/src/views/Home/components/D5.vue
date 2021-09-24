@@ -93,8 +93,6 @@ export default class D5 extends Base implements IFetch {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-
-  font-family: "PingFang SC";
   color: #90a4c3;
   padding: 66px 52px 104px 52px;
 
@@ -108,7 +106,7 @@ export default class D5 extends Base implements IFetch {
       margin-top: 6px;
 
       span:nth-child(1) {
-        font-family: "DIN Alternate";
+        @extend %value__letter;
         font-weight: bold;
         font-size: 66px;
         line-height: 77px;
@@ -117,7 +115,7 @@ export default class D5 extends Base implements IFetch {
         margin: 12px 2px 30px 0;
       }
       span:nth-child(2) {
-        font-family: "DIN Alternate";
+        @extend %value__letter;
         font-weight: bold;
         font-size: 66px;
         line-height: 77px;
@@ -166,7 +164,7 @@ export default class D5 extends Base implements IFetch {
         margin-bottom: 60px;
 
         span {
-          font-family: "DIN Alternate";
+          @extend %value__letter;
           font-weight: bold;
           font-size: 48px;
           line-height: 36px;
@@ -204,7 +202,7 @@ export default class D5 extends Base implements IFetch {
         span {
           margin: 0 6px 0 80px;
           width: 150px;
-          font-family: "DIN Alternate";
+          @extend %value__letter;
           font-weight: bold;
           font-size: 36px;
           line-height: 42px;

@@ -31,8 +31,6 @@ export default class E2 extends Base {
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 45px;
-
-  font-family: "PingFang SC";
   font-size: 30px;
   line-height: 34px;
 

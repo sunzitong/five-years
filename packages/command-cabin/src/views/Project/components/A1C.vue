@@ -79,7 +79,6 @@ export default class A1C extends Base implements IFetch {
 $padding-x: 100px;
 .box {
   padding: 0 26px;
-  font-family: PingFang SC;
   font-size: 40px;
   line-height: 1;
   color: #90a4c3;
