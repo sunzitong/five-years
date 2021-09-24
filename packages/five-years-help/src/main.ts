@@ -18,6 +18,19 @@ import { CountDown } from "vant";
 import { Overlay } from "vant";
 Vue.use(Overlay);
 Vue.use(CountDown);
+
+import Popup from "@/components/popup/index";
+const PopupBox = Vue.extend(Popup);
+Vue.prototype.$popup = function (data: any) {
+  const instance = new PopupBox({
+    data,
+  }).$mount();
+  document.body.appendChild(instance.$el);
+  Vue.nextTick(() => {
+    instance.isShow = true;
+  });
+};
+
 // console
 Vue.config.productionTip = false;
 

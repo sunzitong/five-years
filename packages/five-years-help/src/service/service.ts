@@ -1,6 +1,7 @@
 import { getToken } from "@/utils/guanyu";
 import axios from "axios";
 import { Toast } from "vant";
+import Vue from "vue";
 
 const service = axios.create({
   withCredentials: true, // 是否携带cookie信息
@@ -19,7 +20,10 @@ service.interceptors.request.use(
     return config;
   },
   () => {
-    Toast.fail("网络出错了!");
+    // Toast.fail("网络出错了!");
+    Vue.prototype.$popup({
+      content: "网络出错了", // 弹窗内容
+    });
     return;
   }
 );
@@ -31,11 +35,17 @@ service.interceptors.response.use(
   },
   (error) => {
     if (!error) {
-      Toast.fail("网络出错了!");
+      // Toast.fail("网络出错了!");
+      Vue.prototype.popup({
+        content: "网络出错了", // 弹窗内容
+      });
       return;
     }
     if (error.message.includes("timeout")) {
-      Toast.fail("请求超时，请稍后再试");
+      // Toast.fail("请求超时，请稍后再试");
+      Vue.prototype.$popup({
+        content: "请求超时，请稍后再试", // 弹窗内容
+      });
       return;
     }
     if (error.response) {
@@ -76,7 +86,10 @@ service.interceptors.response.use(
         default:
           error.message = "请求失败，请稍后再试";
       }
-      Toast.fail(error.message);
+      Vue.prototype.$popup({
+        content: error.message, // 弹窗内容
+      });
+      // Toast.fail(error.message);
       return;
     }
     Toast.fail("出错了");
