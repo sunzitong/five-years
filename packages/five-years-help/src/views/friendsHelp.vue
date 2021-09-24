@@ -368,7 +368,7 @@ export default class Index extends Base {
   id: any = "";
   token = getToken();
   async mounted() {
-    document.title = "冠寓五周年助力活动";
+    document.title = "新星集好运，租房更省力";
     if (this.visitSource === "小程序") {
       this.share(window.location.href.split("?")[0]);
     }
