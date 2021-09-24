@@ -93,7 +93,7 @@ export default class Index extends Base {
   display: flex;
   justify-content: center;
   bottom: 90px;
-  background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/gtLfSv5iUOqV8UPbr5SqZQ.png)
+  background: url(https://goyoo-assets.longfor.com/prod/app/gtLfSv5iUOqV8UPbr5SqZQ.png)
     no-repeat;
   width: 375px;
   height: 890px;
@@ -102,7 +102,7 @@ export default class Index extends Base {
 .btnLogin {
   position: absolute;
   top: 533px;
-  background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/6fj9IxRgs7xBWT5UxUXHkw.png) 0 0 no-repeat;
+  background: url(https://goyoo-assets.longfor.com/prod/app/6fj9IxRgs7xBWT5UxUXHkw.png) 0 0 no-repeat;
   background-size: cover;
   width: 242px;
   height: 44px;

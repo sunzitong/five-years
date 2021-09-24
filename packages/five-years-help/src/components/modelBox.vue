@@ -46,7 +46,7 @@
     <div class="popMain" v-else-if="popType === 4">
       <img
         class="conectImage"
-        src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/tXakW3Qq5rr_zrPQpy26_Q.png"
+        src="https://goyoo-assets.longfor.com/prod/app/tXakW3Qq5rr_zrPQpy26_Q.png"
       />
       <div class="descript errorText">{{ descript }}</div>
     </div>
@@ -63,7 +63,7 @@ export default class MixinMask extends Vue {
   @Prop({ default: 2 }) popType!: number; //1:规则弹窗, 2.微信分享提示图 3.'confirm提示框' 4.‘错误提示框’
   @Prop({
     default:
-      "https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/leM0J9cHa0nFYMKh8U2DLQ.png",
+      "https://goyoo-assets.longfor.com/prod/app/leM0J9cHa0nFYMKh8U2DLQ.png",
   })
   backgroundUrl!: string;
   created() {
@@ -91,7 +91,7 @@ export default class MixinMask extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/w4pZhQSB-KIriqB2NLPtag.png") 0 0 no-repeat;
+  background: url("https://goyoo-assets.longfor.com/prod/app/w4pZhQSB-KIriqB2NLPtag.png") 0 0 no-repeat;
   background-size: contain;
   background-position: center;
   height: 335px;
@@ -99,7 +99,7 @@ export default class MixinMask extends Vue {
   color: #fff;
 }
 .tipsImage {
-  background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Ci2Pz6NOvtZpfQ9KiacGwQ.png) 0 0 no-repeat;
+  background: url(https://goyoo-assets.longfor.com/prod/app/Ci2Pz6NOvtZpfQ9KiacGwQ.png) 0 0 no-repeat;
   background-size: contain;
   background-position: right;
   margin-right: 53px;
@@ -143,7 +143,7 @@ export default class MixinMask extends Vue {
 }
 .close {
   // position: absolute;
-  background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/xr6Ep_zxVUCyFf_z1gr76g.png") 0 0 no-repeat;
+  background: url("https://goyoo-assets.longfor.com/prod/app/xr6Ep_zxVUCyFf_z1gr76g.png") 0 0 no-repeat;
   background-size: contain;
   background-position: center;
   height: 35px;

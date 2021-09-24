@@ -35,7 +35,7 @@ export default class App extends Mixins(MixStore) {
   share(url: string) {
     const title = "冠寓五周年,快来助我赚珑珠!";
     const img =
-      "https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/H_CvGHPIaeZkvNegO0Glbw.png";
+      "https://goyoo-assets.longfor.com/prod/app/H_CvGHPIaeZkvNegO0Glbw.png";
     if (this.visitSource === "小程序") {
       return setMiniProgramShare({
         title,

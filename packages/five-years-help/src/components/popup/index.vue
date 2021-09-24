@@ -5,7 +5,7 @@
         <div class="popMain">
           <img
             class="conectImage"
-            src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/tXakW3Qq5rr_zrPQpy26_Q.png"
+            src="https://goyoo-assets.longfor.com/prod/app/tXakW3Qq5rr_zrPQpy26_Q.png"
           />
           <div class="descript errorText">{{ content }}</div>
         </div>
@@ -53,7 +53,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url("https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/w4pZhQSB-KIriqB2NLPtag.png") 0 0 no-repeat;
+  background: url("https://goyoo-assets.longfor.com/prod/app/w4pZhQSB-KIriqB2NLPtag.png") 0 0 no-repeat;
   background-size: contain;
   background-position: center;
   height: 335px;
@@ -68,7 +68,7 @@ export default {
   height: 171px;
 }
 .tipsImage {
-  background: url(https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/Ci2Pz6NOvtZpfQ9KiacGwQ.png) 0 0 no-repeat;
+  background: url(https://goyoo-assets.longfor.com/prod/app/Ci2Pz6NOvtZpfQ9KiacGwQ.png) 0 0 no-repeat;
   background-size: contain;
   background-position: right;
   margin-right: 53px;
