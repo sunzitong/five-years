@@ -7,8 +7,9 @@
   "scripts": {
     "postinstall": "lerna bootstrap --scope=command-cabin",
     "build": "lerna run build --scope=command-cabin --stream",
-    "build:uat": "cross-env BUILD=uat npm-run-all build",
     "build:sit": "cross-env BUILD=sit npm-run-all build",
+    "build:uat": "cross-env BUILD=uat npm-run-all build",
+    "build:staging": "cross-env BUILD=staging npm-run-all build",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
