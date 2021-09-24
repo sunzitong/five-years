@@ -92,7 +92,10 @@ service.interceptors.response.use(
       // Toast.fail(error.message);
       return;
     }
-    Toast.fail("出错了");
+    Vue.prototype.$popup({
+      content: "出错了", // 弹窗内容
+    });
+    // Toast.fail("出错了");
     return;
   }
 );
