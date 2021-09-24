@@ -466,6 +466,7 @@ export default class Index extends Base {
       this.popParm.descript = msg;
       this.popParm.buttonContext = "我也要发起助力";
       this.popParm.popType = 4;
+      this.popParm.isShow = true;
     }
   }
   // 帮好友助力事件
@@ -581,7 +582,7 @@ export default class Index extends Base {
   right: -2px;
   top: 267px;
   width: 23px;
-  height: 71px;
+  height: 74px;
   font-weight: 500;
   color: #00FFFF;
   text-shadow: 0px 0px 12px #00fbfd, 0px 2px 4px rgb(0 0 0 / 89%);
