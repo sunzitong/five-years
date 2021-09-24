@@ -45,7 +45,7 @@ export default class App extends Mixins(MixStore) {
     }
     if (this.visitSource === "APP") {
       /**
-       * 调用app的分享 分享目标到小程序 miniProgramUrl1
+       * 调用app的分享 分享目标到小程序 miniProgramUrl
        */
       return showAppShare(
         {
