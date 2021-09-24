@@ -62,7 +62,8 @@ export default class Index extends Base {
       this.share();
     }
     if (this.visitSource === "browser") {
-      window.location.href = 'weixin://dl/business/?t=GuezlitC4uf'
+      window.location.href = 'weixin://dl/business/?t=nJrHlqp85fm'
+      // window.location.href = 'weixin://dl/business/?t=GuezlitC4uf'
     }
     window.zhuge.track('好友邀请页');
   }
