@@ -510,3 +510,134 @@
         }
     }
 }
+
+// http://prod-longzhubao-dahuiyuan.oss-cn-beijing.aliyuncs.com/longfor/member-head/21d24/r8_kWMpkqb8.jpg?Expires=1782832309&OSSAccessKeyId=LTAI5tBRjY8pEFAoxCXFTWEa&Signature=mlYq2KpYiOnyBy6f55IP1z6u7%2B4%3D
+
+.five-years-container {
+    width: 100%;
+
+    .bg {
+        width: 100%;
+        display: block;
+    }
+
+    .user-avatar {
+        position: absolute;
+        top: 377px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+        width: 69px;
+        border-radius: 50%;
+    }
+
+    .name {
+        color: #ffffff;
+        font-size: 14px;
+        position: absolute;
+        display: flex;
+        top: 457px;
+        transform: translate(-50%, 0px);
+        left: 50%;
+    }
+
+    .invite-text {
+        position: absolute;
+        transform: translate(-50%, 0px);
+        left: 50%;
+        top: 480px;
+        width: 136px;
+        height: 27px;
+    }
+
+    .invite-btn {
+        position: absolute;
+        transform: translate(-50%, 0px);
+        top: 517px;
+        width: 157px;
+        height: 52px;
+        left: 50%;
+    }
+
+    .fixed {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: #000;
+        opacity: .6;
+        z-index: 300;
+    }
+
+    .getSuccess {
+        width: 295px;
+        height: 192px;
+        border-radius: 8px;
+        background: #ffffff;
+        text-align: center;
+        font-family: "PingFangSC-Medium";
+        position: fixed;
+        z-index: 500;
+        top: 160px;
+        left: 50%;
+        margin-left: -147px;
+
+        .SuccessTitle {
+            height: 25px;
+            line-height: 25px;
+            font-size: 18px;
+            color: #333333;
+            margin: 20px 0px 15px 0px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .SucceContent {
+            font-size: 15px;
+            color: #666666;
+            line-height: 21px;
+            text-align: center;
+        }
+
+        .DownApp {
+            width: 255px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #f18d00;
+            color: #ffffff;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 20px auto 20px;
+            display: block;
+        }
+
+        img {
+            width: 65px;
+            height: 65px;
+            position: absolute;
+            left: 50%;
+            margin-left: -32px;
+            bottom: -85px;
+        }
+    }
+
+    .ShowToast {
+        width: 225px;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 34;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.85);
+        text-align: center;
+        padding: 15px 20px;
+        font-size: 15px;
+        color: #FFF;
+        font-weight: 400;
+        font-family: PingFangSC-Regular;
+        letter-spacing: 1px;
+    }
+}
