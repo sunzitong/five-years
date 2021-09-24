@@ -100,7 +100,7 @@ export default class YearRange extends Base {
 
   setValue(index: number, value: number) {
     if (this.localValue[index] === value) {
-      this.$set(this.localValue, index, null);
+      // this.$set(this.localValue, index, null);
     } else {
       this.$set(this.localValue, index, value);
       if (index === 0) {
