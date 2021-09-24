@@ -188,7 +188,6 @@ export default class D1A extends Base implements IFetch {
     height: 300px;
   }
   .value {
-    font-family: "DIN Alternate";
     @extend %value-font;
     font-weight: bold;
     font-size: 48px;
@@ -197,7 +196,7 @@ export default class D1A extends Base implements IFetch {
   }
 
   .flex_value span:nth-child(1) {
-    font-family: "DIN Alternate";
+    @extend %value-font;
     font-weight: bold;
     font-size: 66px;
     line-height: 60px;
@@ -220,7 +219,6 @@ export default class D1A extends Base implements IFetch {
   }
 
   .value {
-    font-family: "DIN Alternate";
     @extend %value-font;
     font-weight: bold;
     font-size: 42px;
@@ -234,7 +232,7 @@ export default class D1A extends Base implements IFetch {
     margin: 90px 0 0 0;
   }
   .flex_value span:nth-child(1) {
-    font-family: "DIN Alternate";
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
@@ -253,7 +251,7 @@ export default class D1A extends Base implements IFetch {
     margin: 230px 0 0 0;
   }
   .flex_value span:nth-child(1) {
-    font-family: "DIN Alternate";
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
@@ -282,7 +280,6 @@ export default class D1A extends Base implements IFetch {
   flex-flow: column nowrap;
   justify-content: center;
 
-  font-family: "PingFang SC";
   font-size: 40px;
   line-height: 40px;
   color: #90a4c3;
