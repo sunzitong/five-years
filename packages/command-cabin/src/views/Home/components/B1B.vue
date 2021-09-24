@@ -79,6 +79,7 @@ import dayjs from "dayjs";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import B1C from "./B1C.vue";
+import { formatValue } from "@/utils/tools";
 
 @Component({
   components: {
@@ -102,16 +103,16 @@ export default class B1B extends Base implements IFetch {
 
   year = dayjs().year();
 
-  targetNum: number | "--" = "--"; // 年开业目标间数
+  targetNum: number | string = formatValue(); // 年开业目标间数
 
-  hasOpen: number | "--" = "--"; // 已开业间数
-  hasOpenRatio = "--"; // 已开业间数百分比
+  hasOpen: number | string = formatValue(); // 已开业间数
+  hasOpenRatio = formatValue(); // 已开业间数百分比
 
-  toGet: number | "--" = "--"; // 待获取
-  toGetRatio: number | "--" = "--"; // 待获取百分比
+  toGet: number | string = formatValue(); // 待获取
+  toGetRatio: number | string = formatValue(); // 待获取百分比
 
-  hasGet: number | "--" = "--"; // 已获取
-  hasGetRatio: number | "--" = "--"; // 已获取百分比
+  hasGet: number | string = formatValue(); // 已获取
+  hasGetRatio: number | string = formatValue(); // 已获取百分比
 
   pieData1: AnyObject[] = []; // 左侧饼图对象数组
   pieData2: AnyObject[] = []; // 右侧饼图对象数组
@@ -150,16 +151,16 @@ export default class B1B extends Base implements IFetch {
       this.resData = response.data;
       this.$parent.empty = false;
 
-      this.targetNum = this.resData.openTargetNum ?? "--";
+      this.targetNum = formatValue(this.resData.openTargetNum);
 
-      this.hasOpen = this.resData.openInfo?.total ?? "--";
-      this.hasOpenRatio = this.formatValue(this.resData.openInfo?.ratio);
+      this.hasOpen = formatValue(this.resData.openInfo?.total);
+      this.hasOpenRatio = formatValue(this.resData.openInfo?.ratio);
 
-      this.toGet = this.resData.notOpenNotGetNum ?? "--";
-      this.toGetRatio = this.resData.notOpenNotGetRatio ?? "--";
+      this.toGet = formatValue(this.resData.notOpenNotGetNum);
+      this.toGetRatio = formatValue(this.resData.notOpenNotGetRatio);
 
-      this.hasGet = this.resData.notOpenInfo?.total ?? "--";
-      this.hasGetRatio = this.resData.notOpenInfo?.ratio ?? "--";
+      this.hasGet = formatValue(this.resData.notOpenInfo?.total);
+      this.hasGetRatio = formatValue(this.resData.notOpenInfo?.ratio);
 
       this.pieData1 = iwant.array(this.resData.openInfo?.list).map((el) => {
         return {

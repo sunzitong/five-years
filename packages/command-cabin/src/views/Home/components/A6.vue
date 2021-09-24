@@ -40,11 +40,11 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo";
 import { Base, IFetch } from "@/views/Base";
 import { AnyObject, iwant } from "@guanyu/shared";
-import _ from "lodash";
 import { StoreKey, useStore } from "@/store";
 import echarts from "@/plugins/echarts";
 import { EChartsOption } from "echarts";
 import mitter, { EventName } from "@/utils/mitter";
+import { formatValue } from "@/utils/tools";
 
 @Component({
   components: { ProgressCircle },
@@ -64,19 +64,19 @@ export default class A6 extends Base implements IFetch {
   /**
    * 全周期预算达成率
    */
-  cycleRate: number | "--" = "--";
+  cycleRate: number | string = formatValue();
   /**
    * 全年预算达成率
    */
-  yearRate: number | "--" = "--";
+  yearRate: number | string = formatValue();
   /**
    * 全年利润攻坚贡献值
    */
-  currentYear: number | string = "--";
+  currentYear: number | string = formatValue();
   /**
    * 全周期利润攻坚贡献值
    */
-  wholeCycle: number | string = "--";
+  wholeCycle: number | string = formatValue();
 
   value = 0; //中心数值
 
@@ -94,19 +94,10 @@ export default class A6 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
-      this.currentYear = _.isNil(this.resData.yearNetIncomeCollected)
-        ? "--"
-        : this.resData.yearNetIncomeCollected;
-      this.wholeCycle = _.isNil(this.resData.allNetIncomeCollected)
-        ? "--"
-        : this.resData.allNetIncomeCollected;
-
-      this.cycleRate = _.isNil(this.resData.allNetIncomeCompletionRate)
-        ? "--"
-        : this.resData.allNetIncomeCompletionRate;
-      this.yearRate = _.isNil(this.resData.yearNetIncomeCompletionRate)
-        ? "--"
-        : this.resData.yearNetIncomeCompletionRate;
+      this.currentYear = formatValue(this.resData.yearNetIncomeCollected);
+      this.wholeCycle = formatValue(this.resData.allNetIncomeCollected);
+      this.cycleRate = formatValue(this.resData.allNetIncomeCompletionRate);
+      this.yearRate = formatValue(this.resData.yearNetIncomeCompletionRate);
 
       this.pieData = [
         // 饼图对象数组
@@ -164,7 +155,7 @@ export default class A6 extends Base implements IFetch {
     let option: EChartsOption = {
       title: {
         //中心数值
-        text: `${this.pieData[1].value}%`,
+        text: `${formatValue(this.pieData[1].value)}%`,
         left: "center",
         top: "53%",
         z: 100,
