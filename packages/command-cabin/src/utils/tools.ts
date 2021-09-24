@@ -114,7 +114,7 @@ export const d2a = (n: number): number => (n * Math.PI) / 180;
  * @param defaultValue 默认值
  * @returns value | '--'
  */
-export const formatValue = (value: unknown, defaultValue: any = "--") => {
+export const formatValue = (value?: unknown, defaultValue: any = "--") => {
   return _.isNil(value) || value === "" || _.isNaN(value)
     ? defaultValue
     : value;

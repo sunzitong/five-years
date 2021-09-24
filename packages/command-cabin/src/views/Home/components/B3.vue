@@ -53,6 +53,8 @@ import {
   CostAnalysisReturn,
   fetchCostAnalysis,
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysis";
+import { formatValue } from "@/utils/tools";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -65,8 +67,8 @@ export default class B3 extends Base implements IFetch {
    * 条形图
    */
   @Ref() wrapper!: HTMLDivElement;
-  projecttNum: number | "--" = "--"; // 成本风险预警项目
-  differRatio: number | "--" = "--"; // 总体成本差异率
+  projecttNum: number | string = formatValue(); // 成本风险预警项目
+  differRatio: number | string = formatValue(); // 总体成本差异率
   labels: string[] = []; // name标签
   values: number[] = []; // 数值标签
 
@@ -79,13 +81,9 @@ export default class B3 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
-      this.projecttNum = this.resData.riskItemNum
-        ? this.resData.riskItemNum
-        : "--";
-      this.differRatio = this.resData.allItemDiff
-        ? this.resData.allItemDiff
-        : "--";
+      this.resData = iwant.object(response.data);
+      this.projecttNum = formatValue(this.resData.riskItemNum);
+      this.differRatio = formatValue(this.resData.allItemDiff);
 
       this.resData.costAnalysisModelList?.forEach((el) => {
         this.labels.push(el.projectName);

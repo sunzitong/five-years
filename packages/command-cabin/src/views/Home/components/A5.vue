@@ -54,7 +54,7 @@ export default class A5 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.pieData = [
         // 饼图对象数组
         {
@@ -87,7 +87,7 @@ export default class A5 extends Base implements IFetch {
     let option: EChartsOption = {
       title: {
         //中心数值
-        text: `${this.resData.yearSubsidiesCompletionRate}%`,
+        text: `${this.formatValue(this.resData.yearSubsidiesCompletionRate)}%`,
         left: "center",
         top: "53%",
         z: 100,

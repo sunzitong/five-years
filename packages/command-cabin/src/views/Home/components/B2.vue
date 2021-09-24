@@ -67,6 +67,7 @@ import {
 import { AnyObject, iwant } from "@guanyu/shared";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import { formatValue } from "@/utils/tools";
 
 @Component({
   components: {
@@ -85,9 +86,9 @@ export default class B2 extends Base implements IFetch {
    */
   col: AnyObject[] = [];
 
-  riskProject: number | "--" = "--"; // 当前开业风险项目
+  riskProject: number | string = formatValue(); // 当前开业风险项目
 
-  storeNum: number | "--" = "--"; // 风险房间数
+  storeNum: number | string = formatValue(); // 风险房间数
 
   /**
    * 自动触发 重复调用
@@ -104,18 +105,18 @@ export default class B2 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.resData = response.data;
 
-      this.riskProject = this.resData.delayProjectNum ?? "--";
-      this.storeNum = this.resData.delayRoomNum ?? "--";
+      this.riskProject = formatValue(this.resData.delayProjectNum);
+      this.storeNum = formatValue(this.resData.delayRoomNum);
 
       this.col = iwant.array(this.resData.delayModelList).map((el) => {
         return {
-          planOpenDate: el.planOpenDate ? el.planOpenDate : "--",
-          cityName: el.cityName ? el.cityName : "--",
-          projectName: el.projectName ? el.projectName : "--",
-          transactionModel: el.transactionModel ? el.transactionModel : "--",
-          roomNum: el.roomNum ? el.roomNum : "--",
-          riskType: el.riskType ? el.riskType : "--",
-          chokePoint: el.chokePoint ? el.chokePoint : "--",
+          planOpenDate: formatValue(el?.planOpenDate),
+          cityName: formatValue(el?.cityName),
+          projectName: formatValue(el?.projectName),
+          transactionModel: formatValue(el?.transactionModel),
+          roomNum: formatValue(el?.roomNum),
+          riskType: formatValue(el?.riskType),
+          chokePoint: formatValue(el?.chokePoint),
         };
       });
     }
