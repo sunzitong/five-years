@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ 'app--bg': !appLoading }">
+  <div id="app">
     <div v-show="$route.meta.name !== 'login'">
       <div class="logo"></div>
       <AppHeader />
@@ -155,8 +155,6 @@ export default class App extends Mixins(MixStore) {
   overflow: hidden;
   font-family: "PingFang SC";
   position: relative;
-}
-.app--bg {
   @extend %bg-img-bg-earth;
 }
 .logo {
