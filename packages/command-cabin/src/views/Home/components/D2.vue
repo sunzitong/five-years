@@ -69,7 +69,6 @@ export default class D2 extends Base {}
 
 <style lang="scss" scoped>
 .top_abstract {
-  font-family: "PingFang SC";
   font-size: 40px;
   line-height: 40px;
   color: #90a4c3;
@@ -78,11 +77,10 @@ export default class D2 extends Base {}
 }
 
 .top_value_box {
-  font-family: "PingFang SC";
   margin: 0 0 53px 50px;
 
   .top_value {
-    font-family: "DIN Alternate";
+    @extend %value-font;
     font-weight: bold;
     font-size: 66px;
     line-height: 77px;
@@ -126,7 +124,7 @@ export default class D2 extends Base {}
     span {
       margin: 0 6px 0 80px;
       width: 150px;
-      font-family: "DIN Alternate";
+      @extend %value-font;
       font-weight: bold;
       font-size: 48px;
       line-height: 56px;
@@ -138,7 +136,7 @@ export default class D2 extends Base {}
 
 .bottom_text_group {
   margin: 0 0 87px 84px;
-  font-family: "PingFang SC";
+
   color: #8090aa;
 
   .bottom_text {
@@ -148,7 +146,7 @@ export default class D2 extends Base {}
   }
 
   .bottom_value {
-    font-family: "DIN Alternate";
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
@@ -169,7 +167,7 @@ export default class D2 extends Base {}
     justify-content: space-between;
 
     height: 110px;
-    font-family: "PingFang SC";
+
     font-style: normal;
     font-size: 36px;
     line-height: 36px;
@@ -179,7 +177,7 @@ export default class D2 extends Base {}
 }
 
 .flex_value {
-  font-family: "DIN Alternate";
+  @extend %value-font;
   font-weight: bold;
   font-size: 48px;
   line-height: 56px;

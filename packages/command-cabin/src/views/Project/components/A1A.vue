@@ -167,7 +167,7 @@ $padding-x: 125px;
   font-size: 40px;
 }
 .value {
-  @extend %value__letter;
+  @extend %value-font;
   font-size: 60px;
   color: $light;
   margin-top: 6px;

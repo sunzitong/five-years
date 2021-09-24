@@ -13,6 +13,14 @@ const store = {
     ...process.env,
     ERROR: "",
     DEBUG: process.env.NODE_ENV === "development",
+    /**
+     * 数字字体
+     */
+    VALUE_FONT: "DIN Alternate",
+    /**
+     * 默认字体
+     */
+    TEXT_FONT: "PingFang SC",
   } as Env,
   /**
    * 全局参数

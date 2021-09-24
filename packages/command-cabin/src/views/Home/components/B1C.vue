@@ -73,36 +73,6 @@ export default class B1C extends Base {
         },
         label: {
           show: false,
-          //   normal: {
-          //     position: "outer",
-          //     formatter: () => {
-          //       return (
-          //         "{title|" +
-          //         this.sortPieData[i].name +
-          //         "} {value|" +
-          //         this.sortPieData[i].value +
-          //         "%}"
-          //       );
-          //     },
-          //     borderWidth: 200,
-          //     // borderRadius: 4,
-          //     padding: [0, 0],
-          //     rich: {
-          //       title: {
-          //         fontFamily: "PingFang SC",
-          //         color: "#90A4C3",
-          //         fontSize: 36,
-          //         // lineHeight: 42,
-          //       },
-          //       value: {
-          //         fontFamily: "DIN Alternate",
-          //         fontWeight: "bold",
-          //         fontSize: 10,
-          //         // lineHeight: 42,
-          //         color: "#DBF0FF",
-          //       },
-          //     },
-          //   },
         },
         data: [
           {
@@ -161,25 +131,24 @@ export default class B1C extends Base {
         textStyle: {
           rich: {
             title: {
-              fontFamily: "PingFang SC",
+              fontFamily: this.store.env.TEXT_FONT,
               color: "#90A4C3",
               fontSize: 36,
-              lineHeight: 36,
               padding: [0, 10, 0, 12],
             },
             value: {
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontWeight: "bold",
               fontSize: 42,
-              lineHeight: 42,
+              lineHeight: 36,
               color: "#DBF0FF",
+              verticalAlign: "top",
             },
           },
         },
         itemWidth: 12,
         itemHeight: 12,
         itemGap: 40,
-        // padding: [0, 18, 0, 0],
         data: this.sortPieData,
       },
       grid: {

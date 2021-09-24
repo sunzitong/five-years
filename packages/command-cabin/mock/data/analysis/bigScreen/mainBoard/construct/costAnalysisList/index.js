@@ -4,7 +4,7 @@
  *
  * 成本分析详情列表
  * @createBy zhangyao03
- * @updateAt 2021/9/22 上午11:39:16
+ * @updateAt 2021/9/24 上午10:37:14
  * @method GET
  */
 
@@ -25,7 +25,7 @@ exports.response = {
       approvedDate: "2020-09-16 00:00:00", //目标成本上线时间
       dynamicCostNonTax: 123123.12, //动态总成本
       targetCostNonTax: 123123.12, //总目标成本
-      diff: 0.9862, //目标成本差异率
+      diff: 98.6, //目标成本差异率
     },
   ],
 };

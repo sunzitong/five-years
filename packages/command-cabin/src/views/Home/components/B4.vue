@@ -177,7 +177,6 @@ export default class B4 extends Base implements IFetch {
 
     .item_name_item {
       margin: 20px 31px;
-      font-family: "PingFang SC";
       font-size: 36px;
       line-height: 40px;
     }
@@ -193,7 +192,7 @@ export default class B4 extends Base implements IFetch {
 
     .item_value_item {
       margin: 0 24px 0 0px;
-      @extend %value__letter;
+      @extend %value-font;
       font-size: 50px;
       line-height: 66px;
     }

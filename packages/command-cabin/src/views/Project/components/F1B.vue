@@ -3,11 +3,11 @@
     <div class="header">
       <div class="red">
         红
-        <span class="value__letter">{{ response.redNum }}</span>
+        <span class="value-font">{{ response.redNum }}</span>
       </div>
       <div class="orange">
         橙
-        <span class="value__letter">{{ response.yellowNum }}</span>
+        <span class="value-font">{{ response.yellowNum }}</span>
       </div>
     </div>
     <div class="chart-bg" v-if="showBarShadow"></div>
@@ -98,13 +98,13 @@ export default class F1B extends Base {
           rich: {
             a: {
               color: "#90A4C3",
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontSize: 26,
               width: 84,
             },
             b: {
               color: "#DBF0FF",
-              fontFamily: "DIN Alternate",
+              fontFamily: this.store.env.VALUE_FONT,
               fontSize: 34,
               align: "right",
               width: 120,

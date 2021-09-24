@@ -4,7 +4,7 @@
       <Icon type="room-number" :size="120" />
       <div class="info">
         <div class="title">累计获取房间数(间)</div>
-        <div class="num value__letter">
+        <div class="num value-font">
           <StepNumber :to="response.getRoomNum" />
         </div>
       </div>
@@ -13,7 +13,7 @@
       <Icon type="number-of-opening-rooms" :size="120" />
       <div class="info">
         <div class="title">累计开业房间数(间)</div>
-        <div class="num value__letter">
+        <div class="num value-font">
           <StepNumber :to="response.openRoomNum" />
         </div>
       </div>
@@ -22,7 +22,7 @@
       <Icon type="year-income" :size="120" />
       <div class="info">
         <div class="title">年累总收入(收入总额含税)</div>
-        <span class="num value__letter">
+        <span class="num value-font">
           <StepNumber :to="response.incomeNum" />
         </span>
         万元

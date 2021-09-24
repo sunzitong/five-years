@@ -4,7 +4,7 @@
  *
  * 成本分析模块
  * @createBy zhangyao03
- * @updateAt 2021/9/22 下午5:06:23
+ * @updateAt 2021/9/24 上午10:38:00
  * @method GET
  */
 
@@ -17,7 +17,7 @@ exports.response = {
   msg: "ok",
   data: {
     riskItemNum: 10, //成本风险预警项目个数
-    allItemDiff: 0.1231, //总体成本差异率
+    allItemDiff: 98.6, //总体成本差异率
     costAnalysisModelList: [
       {
         id: 1, //id
@@ -25,7 +25,7 @@ exports.response = {
         projectName: "龙湖冠寓成都时代店", //项目名字
         dynamicCostNonTax: 123123.12, //动态总成本
         targetCostNonTax: 123123.12, //总目标成本
-        useRate: 0.9862, //动态成本利用率
+        useRate: 98.6, //动态成本利用率
       },
       {
         id: 2, //id
@@ -33,7 +33,7 @@ exports.response = {
         projectName: "龙湖冠寓成都xxx时代店", //项目名字
         dynamicCostNonTax: 123123.12, //动态总成本
         targetCostNonTax: 123123.12, //总目标成本
-        useRate: 0.9862, //动态成本利用率
+        useRate: 98.6, //动态成本利用率
       },
       {
         id: 3, //id
@@ -41,7 +41,7 @@ exports.response = {
         projectName: "龙湖冠寓成都xxx时代店", //项目名字
         dynamicCostNonTax: 123123.12, //动态总成本
         targetCostNonTax: 123123.12, //总目标成本
-        useRate: 0.9862, //动态成本利用率
+        useRate: 98.6, //动态成本利用率
       },
     ],
   },

@@ -130,13 +130,12 @@ export default class B2 extends Base implements IFetch {
 }
 .abstract_text {
   margin: 50px;
-  font-family: "PingFang SC";
   font-size: 40px;
   line-height: 40px;
   letter-spacing: 2.5px;
 
   span {
-    @extend %value__letter;
+    @extend %value-font;
     color: #ff3980;
     font-size: 48px;
     line-height: 36px;
@@ -145,7 +144,6 @@ export default class B2 extends Base implements IFetch {
 
 .scroll_table {
   text-align: center;
-  font-family: "PingFang SC";
   font-size: 36px;
   line-height: 40px;
   margin: 0 10px;

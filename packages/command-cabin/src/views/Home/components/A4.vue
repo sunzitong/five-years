@@ -62,7 +62,6 @@ export default class A4 extends Base {
 <style lang="scss" scoped>
 .cooperation_table {
   text-align: center;
-  font-family: "PingFang SC";
   font-size: 30px;
   line-height: 50px;
   color: #ffffff;
@@ -77,7 +76,6 @@ export default class A4 extends Base {
 
   .table_body .table_col:nth-child(2),
   .table_body .table_col:nth-child(3) {
-    font-family: "PingFang SC";
     font-size: 28px;
     line-height: 50px;
     color: #01f5f1;

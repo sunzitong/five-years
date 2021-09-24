@@ -275,7 +275,6 @@ export default class Btn extends Vue {
     right: 0;
     bottom: 0;
     font-size: 30px;
-    font-family: PingFang SC;
     color: #ffffff;
     > a {
       color: #ffffff;

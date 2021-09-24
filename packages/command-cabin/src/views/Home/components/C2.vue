@@ -4,7 +4,7 @@
       <Icon type="brand" :size="40" />
       <div class="info">
         <div class="title">品牌指数</div>
-        <div class="num value__letter">
+        <div class="num value-font">
           NO.
           {{ formatValue(response.brandPointNum) }}
         </div>
@@ -14,7 +14,7 @@
       <Icon type="users" :size="40" />
       <div class="info">
         <div class="title">累计服务用户数</div>
-        <div class="num value__letter">
+        <div class="num value-font">
           <StepNumber :to="response.servedPersonNum" />
         </div>
       </div>
@@ -23,7 +23,7 @@
       <Icon type="income" :size="40" />
       <div class="info">
         <div class="title">累计租户</div>
-        <div class="num value__letter">
+        <div class="num value-font">
           <StepNumber :to="response.tenantNum" />
         </div>
       </div>

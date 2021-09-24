@@ -95,7 +95,7 @@ export default class A5 extends Base implements IFetch {
         top: "53%",
         z: 100,
         textStyle: {
-          fontFamily: "DIN Alternate",
+          fontFamily: this.store.env.VALUE_FONT,
           fontWeight: "bold",
           fontSize: 40,
           lineHeight: 48,
@@ -111,7 +111,7 @@ export default class A5 extends Base implements IFetch {
         style: {
           text: "完成率",
           textAlign: "center",
-          fontFamily: "PingFang SC",
+          fontFamily: this.store.env.TEXT_FONT,
           fontSize: 24,
           lineHeight: 24,
           fill: "#8090AA",
@@ -143,7 +143,6 @@ export default class A5 extends Base implements IFetch {
 
 <style lang="scss" scoped>
 .top_text {
-  font-family: "PingFang SC";
   font-size: 36px;
   line-height: 36px;
   color: #90a4c3;
@@ -164,7 +163,7 @@ export default class A5 extends Base implements IFetch {
   color: #90a4c3;
 
   span {
-    font-family: "DIN Alternate";
+    @extend %value-font;
     font-size: 48px;
     line-height: 48px;
     color: #dbf0ff;
