@@ -603,15 +603,16 @@ export default class Index extends Base {
   position: fixed;
   display: flex;
   text-align: center;
+  justify-content: center;
   vertical-align: middle;
   align-items: center;
   right: -2px;
   top: 267px;
-  width: 23px;
+  width: 22px;
   height: 74px;
   font-weight: 500;
   color: #00FFFF;
-  text-shadow: 0px 0px 12px #00fbfd, 0px 2px 4px rgb(0 0 0 / 89%);
+  text-shadow: 0px 0px 12px #000000, 0px 2px 4px #00ffff;
   border: 1px solid #00FFFF;
   border-right: 0;
   border-radius: 12px 0 0 12px;
