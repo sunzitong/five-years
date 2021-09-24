@@ -88,11 +88,7 @@ export default class F1B extends Base {
         itemHeight: 20,
         itemGap: 16,
         formatter: (params: any) => {
-          return `{a|${params}}{b| ${iwant.calc(
-            this.responseMap[params],
-            1,
-            true
-          )}%}`;
+          return `{a|${params}}{b| ${this.responseMap[params]}%}`;
         },
         textStyle: {
           rich: {

@@ -85,12 +85,7 @@ export default class A5 extends Base implements IFetch {
     let option: EChartsOption = {
       title: {
         //中心数值
-        text:
-          iwant.calc(
-            iwant.number(this.resData.yearSubsidiesCompletionRate) * 100,
-            1,
-            true
-          ) + "%",
+        text: `${this.resData.yearSubsidiesCompletionRate}%`,
         left: "center",
         top: "53%",
         z: 100,
