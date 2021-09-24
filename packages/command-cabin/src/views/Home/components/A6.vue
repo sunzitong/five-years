@@ -127,17 +127,21 @@ export default class A6 extends Base implements IFetch {
       clearInterval(this.timer);
       this.timer = setInterval(() => {
         if (this.yearFlag) {
+          this.pieData[0].value =
+            100 - iwant.number(this.resData.allNetIncomeCompletionRate);
           this.pieData[1].value = iwant.number(
             this.resData.allNetIncomeCompletionRate
           );
         } else {
+          this.pieData[0].value =
+            100 - iwant.number(this.resData.yearNetIncomeCompletionRate);
           this.pieData[1].value = iwant.number(
             this.resData.yearNetIncomeCompletionRate
           );
         }
         this.yearFlag = !this.yearFlag;
         this.paintChart();
-      }, 1000);
+      }, 2000);
     } else {
       this.empty = true;
     }

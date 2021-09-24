@@ -80,6 +80,8 @@ export default class A5 extends Base implements IFetch {
         myChart.resize();
       });
     }
+
+    console.log("print----", this.pieData);
     const { myChart } = this;
     // myChart.showLoading();
     let option: EChartsOption = {
@@ -126,7 +128,7 @@ export default class A5 extends Base implements IFetch {
           itemStyle: {
             borderRadius: 88,
           },
-          color: ["#F7D14A", "#57A6FB"],
+          color: ["#57A6FB", "#F7D14A"],
           data: this.pieData,
         },
       ],
