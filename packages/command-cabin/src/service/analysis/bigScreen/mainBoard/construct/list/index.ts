@@ -70,6 +70,7 @@ export interface ListReturn {
 }
 
 export interface List {
+  id?: string;
   projectNo: string;
   name: string;
   cityDepartmentName: string;
@@ -119,7 +120,7 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/23 下午5:07:36
+ * @updateAt 2021/9/24 上午10:09:58
  * @method GET
  */
 export const fetchList = (params?: ListParams) => {

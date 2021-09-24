@@ -12,7 +12,7 @@
       <tbody>
         <tr
           v-for="item in list"
-          :key="item.projectNo"
+          :key="item.id"
           :class="{
             warn: item.dynamicCostNonTax >= item.targetCostNonTax * 0.97,
           }"
