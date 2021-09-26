@@ -128,12 +128,7 @@
             >
               <van-checkbox
                 :name="showScopePanel ? 'scope' : null"
-                @click="
-                  () => {
-                    showScopePanel = !showScopePanel;
-                    showOrgPanel = false;
-                  }
-                "
+                @click="showScopePanel = !showScopePanel"
               >
                 {{ scopeValue }}
                 <Icon
@@ -151,12 +146,7 @@
               </van-checkbox>
               <van-checkbox
                 :name="showOrgPanel ? 'orgTree' : null"
-                @click="
-                  () => {
-                    showOrgPanel = !showOrgPanel;
-                    showScopePanel = false;
-                  }
-                "
+                @click="showOrgPanel = !showOrgPanel"
               >
                 {{ store.global.orgTree.orgName }}
                 <Icon

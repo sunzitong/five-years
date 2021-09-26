@@ -6,20 +6,35 @@
           v-model="currentRate"
           class="circle_setting1"
           :rate="this.resData.totalFinishLimit"
-          layer-color="#14437F"
-          color="#5180E4"
+          :layer-color="resData.totalFinishLimit >= 0 ? '#14437F' : '#75384E'"
+          :color="resData.totalFinishLimit >= 0 ? '#5180E4' : '#FF3980'"
           :size="180"
           :strokeWidth="50"
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ resData.totalFinishLimit }}%</div>
+            <div
+              class="value"
+              :class="{
+                desc: resData.totalFinishLimit < 0,
+                asce: resData.totalFinishLimit >= 0,
+              }"
+            >
+              {{ resData.totalFinishLimit }}%
+            </div>
           </div>
         </van-circle>
         <div class="flex_text_box">
           <div>全业态收入</div>
           <div class="flex_value">
-            <span>{{ sepNumber(resData.totalIncome) }}</span>
+            <span
+              :class="{
+                desc: resData.totalFinishLimit < 0,
+                asce: resData.totalFinishLimit >= 0,
+              }"
+            >
+              {{ sepNumber(resData.totalIncome) }}
+            </span>
             <span>万</span>
           </div>
         </div>
@@ -29,20 +44,35 @@
           v-model="currentRate"
           class="circle_setting2"
           :rate="resData.guanyuFinishLimit"
-          layer-color="#14437F"
-          color="#5180E4"
+          :layer-color="resData.guanyuFinishLimit >= 0 ? '#14437F' : '#75384E'"
+          :color="resData.guanyuFinishLimit >= 0 ? '#5180E4' : '#FF3980'"
           :size="145"
           :strokeWidth="45"
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ resData.guanyuFinishLimit }}%</div>
+            <div
+              class="value"
+              :class="{
+                desc: resData.guanyuFinishLimit < 0,
+                asce: resData.guanyuFinishLimit >= 0,
+              }"
+            >
+              {{ resData.guanyuFinishLimit }}%
+            </div>
           </div>
         </van-circle>
         <div class="flex_text_box">
           <div>长租</div>
           <div class="flex_value">
-            <span>{{ sepNumber(resData.guanyuIncome) }}</span>
+            <span
+              :class="{
+                desc: resData.guanyuFinishLimit < 0,
+                asce: resData.guanyuFinishLimit >= 0,
+              }"
+            >
+              {{ sepNumber(resData.guanyuIncome) }}
+            </span>
             <span>万</span>
           </div>
         </div>
@@ -52,20 +82,37 @@
           v-model="currentRate"
           class="circle_setting2"
           :rate="resData.coWorkingFinishLimit"
-          layer-color="#14437F"
-          color="#5180E4"
+          :layer-color="
+            resData.coWorkingFinishLimit >= 0 ? '#14437F' : '#75384E'
+          "
+          :color="resData.coWorkingFinishLimit >= 0 ? '#5180E4' : '#FF3980'"
           :size="145"
           :strokeWidth="45"
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ resData.coWorkingFinishLimit }}%</div>
+            <div
+              class="value"
+              :class="{
+                desc: resData.coWorkingFinishLimit < 0,
+                asce: resData.coWorkingFinishLimit >= 0,
+              }"
+            >
+              {{ resData.coWorkingFinishLimit }}%
+            </div>
           </div>
         </van-circle>
         <div class="flex_text_box">
           <div>一展</div>
           <div class="flex_value">
-            <span>{{ sepNumber(resData.coWorkingIncome) }}</span>
+            <span
+              :class="{
+                desc: resData.coWorkingFinishLimit < 0,
+                asce: resData.coWorkingFinishLimit >= 0,
+              }"
+            >
+              {{ sepNumber(resData.coWorkingIncome) }}
+            </span>
             <span>万</span>
           </div>
         </div>
@@ -75,14 +122,22 @@
           v-model="currentRate"
           class="circle_setting2"
           :rate="resData.commerceFinishLimit"
-          layer-color="#75384E"
-          color="#FF3980"
+          :layer-color="
+            resData.commerceFinishLimit >= 0 ? '#14437F' : '#75384E'
+          "
+          :color="resData.commerceFinishLimit >= 0 ? '#5180E4' : '#FF3980'"
           :size="145"
           :strokeWidth="45"
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value special_color">
+            <div
+              class="value"
+              :class="{
+                desc: resData.commerceFinishLimit < 0,
+                asce: resData.commerceFinishLimit >= 0,
+              }"
+            >
               {{ resData.commerceFinishLimit }}%
             </div>
           </div>
@@ -90,7 +145,12 @@
         <div class="flex_text_box">
           <div>底商</div>
           <div class="flex_value">
-            <span class="special_color">
+            <span
+              :class="{
+                desc: resData.commerceFinishLimit < 0,
+                asce: resData.commerceFinishLimit >= 0,
+              }"
+            >
               {{ sepNumber(resData.commerceIncome) }}
             </span>
             <span>万</span>
@@ -102,20 +162,39 @@
           v-model="currentRate"
           class="circle_setting2"
           :rate="resData.incrementAndParkFinishLimit"
-          layer-color="#14437F"
-          color="#5180E4"
+          :layer-color="
+            resData.incrementAndParkFinishLimit >= 0 ? '#14437F' : '#75384E'
+          "
+          :color="
+            resData.incrementAndParkFinishLimit >= 0 ? '#5180E4' : '#FF3980'
+          "
           :size="145"
           :strokeWidth="45"
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ resData.incrementAndParkFinishLimit }}%</div>
+            <div
+              class="value"
+              :class="{
+                desc: resData.incrementAndParkFinishLimit < 0,
+                asce: resData.incrementAndParkFinishLimit >= 0,
+              }"
+            >
+              {{ resData.incrementAndParkFinishLimit }}%
+            </div>
           </div>
         </van-circle>
         <div class="flex_text_box">
           <div>增值+车位</div>
           <div class="flex_value">
-            <span>{{ sepNumber(resData.incrementAndParkIncome) }}</span>
+            <span
+              :class="{
+                desc: resData.incrementAndParkFinishLimit < 0,
+                asce: resData.incrementAndParkFinishLimit >= 0,
+              }"
+            >
+              {{ sepNumber(resData.incrementAndParkIncome) }}
+            </span>
             <span>万</span>
           </div>
         </div>
@@ -166,6 +245,9 @@ export default class D1A extends Base implements IFetch {
 </script>
 
 <style lang="scss" scoped>
+$desc: #22cb98;
+$asce: #ff2a76;
+
 .page__d1a__map {
   display: flex;
   flex-flow: row nowrap;
@@ -225,9 +307,6 @@ export default class D1A extends Base implements IFetch {
     font-size: 42px;
     color: #dbf0ff;
     margin-top: 45px;
-  }
-  .special_color {
-    color: #ff3980 !important;
   }
   .flex_text_box {
     margin: 90px 0 0 0;

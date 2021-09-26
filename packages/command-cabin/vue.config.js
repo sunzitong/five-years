@@ -14,8 +14,27 @@ $VUE_APP_BASE_IMG: "~${process.env.VUE_APP_BASE_IMG}";
 
 const pkg = require("./package.json");
 
+const getPublicPath = () => {
+  if (process.env.NODE_ENV === "production") {
+    if (["sit", "uat", "staging"].includes(process.env.BUILD)) {
+      return `https://s.longfor.com/toch5-${process.env.BUILD}/${pkg.name}`;
+    }
+    return `/fe/${pkg.name}`;
+  }
+  return "";
+};
+
+const mockProxy = {
+  yapi: "http://docs.gyapt.cn/mock/712",
+  mock: "http://localhost:3000",
+  test108: "http://oms.test108.gyapt.cn",
+  test109: "http://oms.test109.gyapt.cn",
+  staging: "http://oms.staging.gyapt.cn",
+  prod: "http://oms.gyapt.cn",
+};
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
+  publicPath: getPublicPath(),
   outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
@@ -25,8 +44,8 @@ module.exports = {
   // 删除 HTML 相关的 webpack 插件
   chainWebpack: (config) => {
     // config.plugins.delete('html')
-    config.plugins.delete("preload");
-    config.plugins.delete("prefetch");
+    // config.plugins.delete("preload");
+    // config.plugins.delete("prefetch");
   },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === "production") {
@@ -96,9 +115,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        // target: "http://docs.gyapt.cn/mock/712",
-        target: "http://oms.test109.gyapt.cn",
-        // target: "http://localhost:3000",
+        target: mockProxy[process.env.MOCK || "yapi"],
         secure: false,
         changeOrigin: true,
         pathRewrite: {

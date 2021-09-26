@@ -50,9 +50,7 @@ import { uuid } from "@guanyu/shared";
   components: {},
 })
 export default class FooterBackground extends Vue {
-  get uuid() {
-    return `footer-background-${uuid()}`;
-  }
+  uuid = `footer-background-${uuid()}`;
 }
 </script>
 

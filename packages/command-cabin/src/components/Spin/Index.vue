@@ -49,9 +49,7 @@ export default class Spin extends Vue {
     return null;
   }
 
-  get uuid() {
-    return `spin-${uuid()}`;
-  }
+  uuid = `spin-${uuid()}`;
 }
 </script>
 

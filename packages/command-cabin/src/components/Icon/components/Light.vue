@@ -68,8 +68,6 @@ export default class Light extends Vue {
   /**
    * id不能一致
    */
-  get uuid() {
-    return `___APP-ICON-LIGHT-__${this.color}`;
-  }
+  uuid = `___APP-ICON-LIGHT-__${this.color}`;
 }
 </script>

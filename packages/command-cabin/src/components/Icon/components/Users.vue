@@ -79,8 +79,6 @@ export default class Users extends Vue {
   /**
    * 获取uuid
    */
-  get uuid() {
-    return `icon-${uuid()}`;
-  }
+  uuid = `icon-${uuid()}`;
 }
 </script>

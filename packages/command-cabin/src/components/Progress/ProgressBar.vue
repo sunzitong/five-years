@@ -70,9 +70,7 @@ export default class ProgressBar extends Vue {
   /**
    * svg 必须使用唯一id
    */
-  get uuid() {
-    return `__APP-PROGRESS-BAR__${uuid()}`;
-  }
+  uuid = `__APP-PROGRESS-BAR__${uuid()}`;
 
   /**
    * 计算百分比

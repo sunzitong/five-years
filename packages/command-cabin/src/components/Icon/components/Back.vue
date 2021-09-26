@@ -65,9 +65,7 @@ export default class Back extends Vue {
     return sizes[this.size] ?? this.size;
   }
 
-  get uuid() {
-    return uuid();
-  }
+  uuid = uuid();
 }
 </script>
 <style lang="scss" scoped></style>

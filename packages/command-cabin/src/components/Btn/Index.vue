@@ -184,9 +184,7 @@ export default class Btn extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `btn-${uuid()}`;
-  }
+  uuid = `btn-${uuid()}`;
 
   /**
    * 按钮路径

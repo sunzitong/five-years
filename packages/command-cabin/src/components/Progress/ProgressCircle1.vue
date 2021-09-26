@@ -223,9 +223,7 @@ export default class ProgressCircle extends Vue {
   /**
    * svg 必须使用唯一id
    */
-  get uuid() {
-    return `__APP-PROGRESS-CIRCEL__${uuid()}`;
-  }
+  uuid = `__APP-PROGRESS-CIRCEL__${uuid()}`;
 }
 </script>
 <style lang="scss" scoped></style>

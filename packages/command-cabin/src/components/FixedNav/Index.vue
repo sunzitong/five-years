@@ -67,11 +67,7 @@
     <div @click="toggleNav" class="app-fixed-nav__btn">
       <FixedNavBtn :position="position" text="快捷导航" />
     </div>
-    <div
-      v-if="!['home', 'index'].includes($route.meta)"
-      @click="$router.go(-1)"
-      class="app-fixed-nav__back"
-    >
+    <div @click="back" class="app-fixed-nav__back">
       <FixedNavBtn :position="position" text="返回" />
     </div>
   </div>
@@ -130,9 +126,7 @@ export default class FixedNav extends Vue {
   /**
    * 唯一id
    */
-  get uuid() {
-    return `app-fixed-nav${uuid()}`;
-  }
+  uuid = `app-fixed-nav${uuid()}`;
 
   /**
    * 添加类名
@@ -199,6 +193,16 @@ export default class FixedNav extends Vue {
     } else {
       this.animate.reverse();
     }
+  }
+
+  /**
+   * 后退
+   */
+  back() {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.$router.go(-1);
+    }, 500);
   }
 }
 </script>
