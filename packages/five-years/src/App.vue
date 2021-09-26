@@ -54,7 +54,7 @@ export default class App extends Mixins(MixStore) {
           url: window.location.href.split('?')[0],
         },
         window.location.href.split('?')[0],
-        2
+        0,
       );
     }
   }
