@@ -1,7 +1,7 @@
 <template>
   <!-- <Spin :height="830" :loading="loading" :empty="empty"> -->
   <div class="page__d5__map">
-   <van-row>
+    <van-row>
       <van-col :span="12"><div class="top_abstract">三费总和</div></van-col>
       <van-col :span="12"><div class="top_abstract">费效比</div></van-col>
     </van-row>
