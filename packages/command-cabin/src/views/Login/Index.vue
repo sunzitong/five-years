@@ -6,7 +6,7 @@
         :src="`${store.env.BASE_URL}video/loginbg.mov`"
         autoplay
         loop
-        :poster="`${store.env.BASE_URL}video/poster.png`"
+        :poster="`${store.env.BASE_URL}video/poster.jpg`"
       ></video>
     </div>
     <div class="content">
