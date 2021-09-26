@@ -3,10 +3,10 @@
     <div class="background">
       <video
         style="width: 100%; height: 100%; object-fit: cover"
-        :src="`${store.env.BASE_URL}/video/loginbg.mov`"
+        :src="`${store.env.BASE_URL}video/loginbg.mov`"
         autoplay
         loop
-        :poster="`${store.env.BASE_URL}/video/poster.png`"
+        :poster="`${store.env.BASE_URL}video/poster.png`"
       ></video>
     </div>
     <div class="content">
