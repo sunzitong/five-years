@@ -86,11 +86,11 @@
 import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import Icon from "@/components/Icon/Index.vue";
+import { StoreKey, useStore } from "@/store";
 import {
   fetchIncome,
   IncomeReturn,
-} from "@/service/analysis/bigScreen/projectBoard/managementSituation/income";
-import { StoreKey, useStore } from "@/store";
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/income";
 
 @Component({
   components: {
@@ -113,9 +113,10 @@ export default class D1B extends Base implements IFetch {
 
   async fetch() {
     const response = await useStore(fetchIncome, {
-      key: StoreKey.ProjectIncome,
+      key: StoreKey.HomeIncome,
       params: {
-        projectId: this.store.global.project.projectId,
+        dataLevel: this.store.global.dataLevel,
+        levelId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
       },
     });
