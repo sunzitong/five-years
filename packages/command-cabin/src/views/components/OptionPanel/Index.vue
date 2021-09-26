@@ -1,5 +1,10 @@
 <template>
-  <component v-bind:is="currentComponent" :show.sync="pipeShow" :class="name" />
+  <component
+    v-bind:is="currentComponent"
+    :show.sync="pipeShow"
+    :class="name"
+    @click.native.stop
+  />
 </template>
 
 <script lang="ts">
@@ -8,6 +13,7 @@ import TheOrgTree from "./TheOrgTree.vue";
 import TheProjectList from "./TheProjectList.vue";
 import TheDateScopes from "./TheDateScopes.vue";
 import TheNavMenu from "./TheNavMenu.vue";
+import mitter, { EventName } from "@/utils/mitter";
 
 const components = { TheOrgTree, TheProjectList, TheDateScopes, TheNavMenu };
 
@@ -35,6 +41,17 @@ export default class OptionPanel extends Vue {
    */
   get currentComponent() {
     return components[this.name] ?? null;
+  }
+
+  close() {
+    this.pipeShow = false;
+  }
+
+  created() {
+    mitter.on(EventName.DocumentClick, this.close);
+  }
+  beforeDestroy() {
+    mitter.off(EventName.DocumentClick, this.close);
   }
 }
 </script>
