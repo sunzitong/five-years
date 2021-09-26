@@ -10,6 +10,7 @@
     "build:SIT": "cross-env BUILD=SIT npm-run-all build",
     "build:UAT": "cross-env BUILD=UAT npm-run-all build",
     "build:STAGING": "cross-env BUILD=STAGING npm-run-all build",
+    "build:PROD": "npm run build",
     "bootstrap": "lerna bootstrap",
     "list": "lerna list",
     "clean": "lerna clean",
