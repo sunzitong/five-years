@@ -1,32 +1,57 @@
 <template>
   <!-- <Spin :height="830" :loading="loading" :empty="empty"> -->
   <div class="page__d5__map">
-    <div class="top_abstract">三费总和</div>
-    <div class="top_value_box">
-      <span class="top_value">{{ sepNumber(201485) }}</span>
-      <span class="top_text">万</span>
-      <span class="top_value">{{ 85 }}%</span>
-    </div>
-    <div class="border_box_group">
-      <div class="border_box">
-        营销费用
-        <span>{{ sepNumber(2000) }}</span>
-        万
-        <span>{{ 35 }}%</span>
-      </div>
-      <div class="border_box">
-        运营成本
-        <span>{{ sepNumber(1553.8) }}</span>
-        万
-        <span>{{ 66.3 }}%</span>
-      </div>
-      <div class="border_box">
-        管理成本
-        <span>{{ sepNumber(2000) }}</span>
-        万
-        <span>{{ 3 }}%</span>
-      </div>
-    </div>
+    <van-row>
+      <van-col :span="12"><div class="top_abstract">三费总和</div></van-col>
+      <van-col :span="12"><div class="top_abstract">费效比</div></van-col>
+    </van-row>
+    <van-row>
+      <van-col :span="12">
+        <div class="top_value_box">
+          <span class="top_value">{{ sepNumber(201485) }}</span>
+          <span class="top_text">万</span>
+        </div>
+      </van-col>
+      <van-col :span="12">
+        <div class="top_value_box">
+          <span class="top_value">{{ 85 }}%</span>
+        </div>
+      </van-col>
+    </van-row>
+    <van-row class="border_groups">
+      <van-col :span="16">
+        <div class="border_box_group">
+          <div class="border_box">
+            营销费用
+            <span class="gap">{{ sepNumber(2000) }}</span>
+            万
+          </div>
+          <div class="border_box">
+            运营成本
+            <span class="gap">{{ sepNumber(1553.8) }}</span>
+            万
+          </div>
+          <div class="border_box">
+            管理成本
+            <span class="gap">{{ sepNumber(2000) }}</span>
+            万
+          </div>
+        </div>
+      </van-col>
+      <van-col :span="8">
+        <div class="border_box_group">
+          <div class="border_box">
+            <span>{{ 35 }}%</span>
+          </div>
+          <div class="border_box">
+            <span>{{ 66.3 }}%</span>
+          </div>
+          <div class="border_box">
+            <span>{{ 3 }}%</span>
+          </div>
+        </div>
+      </van-col>
+    </van-row>
     <div class="bottom_text_group">
       <span class="bottom_text">租金成本</span>
       <span class="bottom_value">{{ 1553.8 }}</span>
@@ -85,9 +110,12 @@ export default class D5 extends Base {}
     margin: 0 35px 0 2px;
   }
 }
+.border_groups {
+  padding: 0 50px;
+}
 
 .border_box_group {
-  margin: 0 3px 40px 50px;
+  margin: 0 3px 40px 0;
 
   .border_box {
     display: flex;
@@ -113,14 +141,16 @@ export default class D5 extends Base {}
       margin-right: 30px;
     }
     span {
-      margin: 0 6px 0 80px;
-      width: 150px;
+      margin: 0 6px 0 0;
       @extend %value-font;
       font-weight: bold;
       font-size: 48px;
       line-height: 56px;
       color: #dbf0ff;
-      text-align: right;
+      text-align: left;
+    }
+    .gap {
+      margin: 0 0 0 23px;
     }
   }
 }
@@ -141,7 +171,7 @@ export default class D5 extends Base {}
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
-    color: #ff3980;
+    color: #ffffff;
     margin-left: 23px;
   }
 }
