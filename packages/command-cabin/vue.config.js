@@ -20,10 +20,7 @@ const getPublicPath = () => {
     if (process.env.BUILD && ["sit", "uat", "staging"].includes(build)) {
       return `https://s-${build}.longfor.com/toch5-${build}/${pkg.name}`;
     }
-    if ("prod" === build) {
-      return `https://s.longfor.com/toch5/${pkg.name}`;
-    }
-    return `/fe/${pkg.name}`;
+    return `https://s.longfor.com/toch5/${pkg.name}`;
   }
   return "";
 };
