@@ -42,7 +42,7 @@ export default class Animationed extends Vue {
   /**
    * 倒计时
    */
-  @Prop({ default: 20000 }) countDown!: number;
+  @Prop({ default: 60000 }) countDown!: number;
 
   /**
    * 是否开启动画
