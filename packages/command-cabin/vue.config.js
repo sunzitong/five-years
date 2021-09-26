@@ -16,8 +16,13 @@ const pkg = require("./package.json");
 
 const getPublicPath = () => {
   if (process.env.NODE_ENV === "production") {
-    if (["sit", "uat", "staging"].includes(process.env.BUILD?.toLocaleLowerCase())) {
-      return `https://s.longfor.com/toch5-${process.env.BUILD.toLocaleLowerCase()}/${pkg.name}`;
+    if (
+      process.env.BUILD &&
+      ["sit", "uat", "staging"].includes(process.env.BUILD.toLocaleLowerCase())
+    ) {
+      return `https://s.longfor.com/toch5-${process.env.BUILD.toLocaleLowerCase()}/${
+        pkg.name
+      }`;
     }
     return `/fe/${pkg.name}`;
   }
