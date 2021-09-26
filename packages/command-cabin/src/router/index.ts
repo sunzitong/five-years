@@ -14,6 +14,9 @@ const subRouter = [
   {
     path: "index",
     component: () => import("@/views/Index.vue"),
+    meta: {
+      name: "index",
+    },
   },
   {
     path: "home",
