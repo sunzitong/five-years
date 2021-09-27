@@ -1,5 +1,5 @@
 <template>
-  <!-- <Spin :loading="loading" :empty="empty"> -->
+  <!-- <Spin :height="955" :loading="loading" :empty="empty"> -->
   <div class="page__a1__map">
     <!-- 上半部分 -->
     <div class="top_text">
@@ -40,8 +40,7 @@
           <div
             class="num"
             :class="{
-              desc: targetDiffer < 0,
-              asce: targetDiffer >= 0,
+              danger: targetDiffer < 0,
             }"
           >
             <span>{{ sepNumber(targetDiffer) }}</span>
@@ -86,6 +85,7 @@ export default class A1 extends Base {
   lightNum = 6000; // 轻资产间数
 
   gainTarget = 54544; // 获取目标
+
   targetDiffer = 54544; // 目标差额
   signedRoom = 23900; // 已签约间数
 
@@ -194,8 +194,7 @@ export default class A1 extends Base {
 </script>
 
 <style lang="scss" scoped>
-$desc: #22cb98;
-$asce: #ff2a76;
+$danger: #ff2a76;
 
 .page__a1__map {
   display: flex;
