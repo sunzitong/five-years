@@ -1,19 +1,23 @@
 <template>
+  <!-- <Spin :height="483" :loading="loading" :empty="empty"> -->
   <div class="page__a3__map">
     <div class="groop1">
+      <div>转化率</div>
       <div>{{ conversionRate1 }}%</div>
-      <div>(转化率)</div>
+      <AnimationForward class="arrow" />
     </div>
     <div class="groop2">
+      <div>转化率</div>
       <div>{{ conversionRate2 }}%</div>
-      <div>(转化率)</div>
+      <AnimationForward class="arrow" />
     </div>
     <div
       class="app-echarts"
       ref="wrapper"
-      style="width: 100%; height: 300px"
+      style="width: 700px; height: 400px; margin: 0 80px"
     ></div>
   </div>
+  <!-- </Spin> -->
 </template>
 
 <script lang="ts">
@@ -21,23 +25,31 @@ import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { Base } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
+import AnimationForward from "@/components/AnimationForward/Index.vue";
+import { AnyObject } from "@guanyu/shared";
 
 @Component({
-  components: {},
+  components: { AnimationForward },
 })
 export default class A3 extends Base {
   @Ref() wrapper!: HTMLDivElement;
 
-  conversionRate1 = 78.1; // 转化率1
+  conversionRate1 = 100.0; // 转化率1
   conversionRate2 = 23.0; // 转化率2
+  resData = [
+    { name: "年累立项", value: 120 },
+    { name: "年累过会", value: 80 },
+    { name: "年累签约", value: 60 },
+  ];
 
   mounted() {
     const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
     let option = {
       grid: {
-        left: "3%",
-        right: "3%",
+        left: "-10%",
+        right: "-8%",
+        bottom: "0%",
+        containLabel: true,
       },
       xAxis: {
         type: "category",
@@ -45,21 +57,67 @@ export default class A3 extends Base {
         axisTick: { show: false },
         axisLabel: {
           fontFamily: this.store.env.TEXT_FONT,
-          fontSize: 28,
-          lineHeight: 30,
+          lineHeight: 40,
           align: "center",
           color: "#FFFFFF",
+          formatter: (value: number) => {
+            let name = "";
+            this.resData.forEach((el: AnyObject) => {
+              console.log(value);
+              if (value == el.value) {
+                name = el.name;
+              }
+            });
+            console.log(111, name, value);
+            return "{title1|" + name + "} {val|\n" + value + "} {title2|个}";
+          },
+          rich: {
+            title1: {
+              fontFamily: this.store.env.TEXT_FONT,
+              color: "#90A4C3",
+              fontSize: 40,
+              lineHeight: 36,
+              padding: [36, 0, 18, 0],
+            },
+            val: {
+              fontFamily: this.store.env.VALUE_FONT,
+              fontWeight: "bold",
+              fontSize: 48,
+              lineHeight: 36,
+              color: "#DBF0FF",
+              padding: [36, 0, 0, 0],
+            },
+            title2: {
+              fontFamily: this.store.env.TEXT_FONT,
+              color: "#90A4C3",
+              fontSize: 36,
+              lineHeight: 36,
+              padding: [36, 0, 0, 0],
+            },
+          },
         },
-        data: ["年累立项", "年累过会", "年累签约"],
+        data: this.resData,
       },
       yAxis: { show: false },
       series: [
         {
-          data: [120, 80, 60],
+          data: this.resData,
           type: "bar",
           color: "#57A6FB",
-          barWidth: 37,
+          barWidth: 24,
           barCateGoryGap: 204,
+          itemStyle: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+              [
+                { offset: 0, color: "#5180E4" },
+                { offset: 1, color: "rgba(81, 128, 228, 0)" },
+              ]
+            ),
+          },
         },
       ],
     };
@@ -72,40 +130,41 @@ export default class A3 extends Base {
 </script>
 
 <style lang="scss" scoped>
+.page__a3__map {
+  position: relative;
+}
 .groop1,
 .groop2 {
+  z-index: 1;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  text-align: center;
-  width: 120px;
+  justify-content: space-around;
+  width: 200px;
 
   div:nth-child(1) {
-    @extend %value-font;
-    font-weight: bold;
-    font-size: 40px;
+    font-size: 36px;
     line-height: 36px;
-    color: #01f5f1;
-    margin-bottom: 4px;
+    color: #90a4c3;
+    margin-bottom: 18px;
   }
-
   div:nth-child(2) {
-    font-size: 26px;
-    line-height: 26px;
-    letter-spacing: 2.5px;
-    color: #b4b4b4;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 48px;
+    color: #dbf0ff;
+    margin-bottom: 30px;
   }
 }
 
 .groop1 {
   position: absolute;
-  top: 70px;
-  left: 193px;
+  top: 80px;
+  left: 239px;
 }
 
 .groop2 {
   position: absolute;
-  top: 70px;
-  left: 430px;
+  top: 80px;
+  left: 518px;
 }
 </style>

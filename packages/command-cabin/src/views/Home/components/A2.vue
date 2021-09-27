@@ -1,5 +1,5 @@
 <template>
-  <!-- <Spin :loading="loading" :empty="empty"> -->
+  <!-- <Spin :height="361" :loading="loading" :empty="empty"> -->
   <div class="page__a1__map">
     <div class="chart" ref="wrapper"></div>
   </div>
