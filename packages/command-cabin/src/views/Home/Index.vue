@@ -15,7 +15,7 @@
               </CardA>
               <WhiteSpace />
               <CardA title="商机转化" style="width: 866px; height: 581px">
-                <!-- <A3 /> -->
+                <A3 />
               </CardA>
             </van-col>
             <van-col>
