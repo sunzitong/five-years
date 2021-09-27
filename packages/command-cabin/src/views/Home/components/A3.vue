@@ -148,6 +148,7 @@ export default class A3 extends Base {
     margin-bottom: 18px;
   }
   div:nth-child(2) {
+    @extend %value-font;
     font-weight: bold;
     font-size: 48px;
     line-height: 48px;
