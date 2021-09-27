@@ -17,16 +17,16 @@
           <div
             class="col right"
             :class="{
-              active: areaId === area.orgId,
+              active: area.areaOrgId === currentArea.orgId,
             }"
           >
             <div class="inner">
               <div
                 class="city"
-                :class="{ active: cityId === city.orgId }"
+                :class="{ active: city.orgId === currentCity.orgId }"
                 v-for="city in area.childList"
                 :key="city.orgId"
-                @click="setOrgTree(area, city)"
+                @click="setCurrentOrg(area, city)"
               >
                 {{ city.orgName }}
               </div>
@@ -35,13 +35,10 @@
         </div>
       </template>
     </div>
-    <div
-      class="project-wrap animate__animated animate__fadeInRight"
-      v-if="cityId"
-    >
+    <div class="project-wrap animate__animated animate__fadeInRight">
       <div class="row">
         <div class="col left active">
-          <div class="inner">{{ store.global.orgTree.orgName }}</div>
+          <div class="inner">{{ currentCity.orgName }}</div>
           <div class="arrow">
             <van-icon name="arrow" />
             <van-icon name="arrow" />
@@ -108,19 +105,30 @@ export default class TheProjectList extends Base {
   @Prop({ default: false, type: Boolean }) show!: false;
 
   /**
-   * 区域或全国ID
+   * 区域
    */
-  areaId: number | null = null;
+  currentArea: { orgId?: number; orgName?: string } = {};
   /**
-   * 城市ID
+   * 城市
    */
-  cityId: number | null = null;
+  currentCity: { orgId?: number; orgName?: string } = {};
 
   created() {
     // 城市
-    if (this.store.global.orgTree.orgLevel === 3) {
-      this.cityId = this.store.global.orgTree.orgId;
-    }
+    const {
+      cityOrgId,
+      cityName,
+      areaOrgId,
+      areaName,
+    } = this.store.global.project;
+    this.currentCity = {
+      orgId: cityOrgId,
+      orgName: cityName,
+    };
+    this.currentArea = {
+      orgId: areaOrgId,
+      orgName: areaName,
+    };
   }
   mounted() {
     this.fetchOrgData();
@@ -145,11 +153,15 @@ export default class TheProjectList extends Base {
   /**
    * 设置区域范围和ID
    */
-  setOrgTree(area: OrgTreeItemReturn, city: OrgTreeItemReturn) {
-    this.areaId = area.orgId;
-    this.cityId = city.orgId;
-    this.store.global.dataLevel = DataLevels.CITY;
-    this.store.global.orgTree = city;
+  setCurrentOrg(area: OrgTreeItemReturn, city: OrgTreeItemReturn) {
+    this.currentArea = {
+      orgId: area.orgId,
+      orgName: area.orgName,
+    };
+    this.currentCity = {
+      orgId: city.orgId,
+      orgName: city.orgName,
+    };
   }
 
   /**
@@ -157,7 +169,7 @@ export default class TheProjectList extends Base {
    */
   get projectList() {
     const all = iwant.array(this.resProjectList);
-    return all.filter((item) => item.cityOrgId === this.cityId);
+    return all.filter((item) => item.cityOrgId === this.currentCity.orgId);
   }
 
   /**
