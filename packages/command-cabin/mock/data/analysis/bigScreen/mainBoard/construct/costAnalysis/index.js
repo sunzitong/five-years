@@ -4,7 +4,7 @@
  *
  * 成本分析模块
  * @createBy zhangyao03
- * @updateAt 2021/9/24 上午11:50:02
+ * @updateAt 2021/9/27 下午3:39:40
  * @method GET
  */
 
@@ -16,6 +16,8 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
+    updateTime: "2021-09-26 10:21:40", //总体成本差异率
+    dataSource: "*取自成本系统", //数据来源
     riskItemNum: 10, //成本风险预警项目个数
     allItemDiff: 98.6, //总体成本差异率
     costAnalysisModelList: [

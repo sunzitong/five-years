@@ -4,7 +4,7 @@
  *
  * 门店屏幕-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/9/24 下午2:36:38
+ * @updateAt 2021/9/27 下午5:27:56
  * @method GET
  */
 
@@ -16,18 +16,19 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    updateAt: "2021-09-14 12:23:24", //更新时间
-    totalIncome: 2323.3, //全业态收入
+    dataSource: "取自OMS", //数据来源
+    updateTime: "2021-09-14 12:23:24", //更新时间
+    totalIncome: 233333.3, //全业态收入
     totalFinishLimit: 93.4, //全业态收入完成度
-    guanyuIncome: 233.3, //冠寓收入
+    guanyuIncome: 233333.3, //冠寓收入
     guanyuFinishLimit: 92.4, //冠寓收入完成度
-    coWorkingIncome: 323.3, //一展收入
+    coWorkingIncome: 233333.3, //一展收入
     coWorkingFinishLimit: 95.4, //一展收入完成度
-    commerceIncome: 233.3, //底商收入
+    commerceIncome: 233333.3, //底商收入
     commerceFinishLimit: 94.4, //底商收入完成度
-    incrementAndParkIncome: 23233.3, //增值级停车收入
+    incrementAndParkIncome: 233333.3, //增值级停车收入
     incrementAndParkFinishLimit: 96.4, //增值级停车收入完成度
-    contractSporadicIncome: 223.3, //违约金及其他收入
+    contractSporadicIncome: 233333.3, //违约金及其他收入
     avgRentRatio: 91.4, //平均出租率
     pointRentRatio: 93.4, //时点出租率
     rentRatioYoy: 3.4, //出租率同比

@@ -25,6 +25,8 @@ export interface CostAnalysisParams {
  * 成本分析模块-返回值
  */
 export interface CostAnalysisReturn {
+  updateTime: Date;
+  dataSource: string;
   riskItemNum: number;
   allItemDiff: number;
   costAnalysisModelList: CostAnalysisModelList[];
@@ -42,7 +44,7 @@ export interface CostAnalysisModelList {
 /**
  * 成本分析模块
  * @createBy zhangyao03
- * @updateAt 2021/9/24 上午11:50:02
+ * @updateAt 2021/9/27 下午3:39:40
  * @method GET
  */
 export const fetchCostAnalysis = (params: CostAnalysisParams) => {
