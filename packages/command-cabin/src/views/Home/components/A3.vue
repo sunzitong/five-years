@@ -56,19 +56,13 @@ export default class A3 extends Base {
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
-          fontFamily: this.store.env.TEXT_FONT,
-          lineHeight: 40,
-          align: "center",
-          color: "#FFFFFF",
           formatter: (value: number) => {
             let name = "";
             this.resData.forEach((el: AnyObject) => {
-              console.log(value);
               if (value == el.value) {
                 name = el.name;
               }
             });
-            console.log(111, name, value);
             return "{title1|" + name + "} {val|\n" + value + "} {title2|个}";
           },
           rich: {
