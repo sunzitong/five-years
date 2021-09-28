@@ -3,7 +3,7 @@
     <div class="page__d1a__map">
       <div class="circle1_group">
         <van-circle
-          v-model="currentRate"
+          v-model="currentRate1"
           class="circle_setting1"
           :rate="resData.totalFinishLimit"
           :layer-color="resData.totalFinishLimit >= 0 ? '#14437F' : '#75384E'"
@@ -41,7 +41,7 @@
       </div>
       <div class="circle2_group">
         <van-circle
-          v-model="currentRate"
+          v-model="currentRate2"
           class="circle_setting2"
           :rate="resData.guanyuFinishLimit"
           :layer-color="resData.guanyuFinishLimit >= 0 ? '#14437F' : '#75384E'"
@@ -79,7 +79,7 @@
       </div>
       <div class="circle2_group">
         <van-circle
-          v-model="currentRate"
+          v-model="currentRate3"
           class="circle_setting2"
           :rate="resData.coWorkingFinishLimit"
           :layer-color="
@@ -119,7 +119,7 @@
       </div>
       <div class="circle2_group">
         <van-circle
-          v-model="currentRate"
+          v-model="currentRate4"
           class="circle_setting2"
           :rate="resData.commerceFinishLimit"
           :layer-color="
@@ -159,7 +159,7 @@
       </div>
       <div class="circle2_group">
         <van-circle
-          v-model="currentRate"
+          v-model="currentRate5"
           class="circle_setting2"
           :rate="resData.incrementAndParkFinishLimit"
           :layer-color="
@@ -225,7 +225,11 @@ import { iwant } from "@guanyu/shared";
 @Component
 export default class D1A extends Base implements IFetch {
   resData: Partial<IncomeReturn> = {};
-  currentRate = 0;
+  currentRate1 = 0;
+  currentRate2 = 0;
+  currentRate3 = 0;
+  currentRate4 = 0;
+  currentRate5 = 0;
 
   calcNumber(n: number) {
     return this.sepNumber(iwant.calc(n, 0));
