@@ -162,6 +162,7 @@ export default class B3 extends Base implements IFetch {
   justify-content: space-between;
   height: 284px;
   margin: 66px 80px;
+  overflow: hidden;
 }
 
 .process_item {
