@@ -159,7 +159,7 @@ export default class D2 extends Base {}
       text-align: left;
     }
     .gap {
-      margin: 0 0 0 23px;
+      margin: 0 6px 0 23px;
     }
   }
 }
