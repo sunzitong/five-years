@@ -14,7 +14,7 @@ export const isEnumApi = (api: Api) => {
     api.path.toLowerCase().includes("enum") &&
     api.res_body_type === "json" &&
     !api.res_body_is_json_schema &&
-    api.res_body.trim()
+    api.res_body?.trim()
   );
 };
 
