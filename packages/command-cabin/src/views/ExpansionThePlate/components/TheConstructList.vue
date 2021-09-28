@@ -13,7 +13,7 @@
         <tr
           v-for="item in response.list"
           :key="item.id"
-          :class="{ warn: item.riskType !== 'NoRisk' }"
+          :class="{ warn: item.overdueWarning === '是' }"
         >
           <td v-for="opt in options" :key="opt.name">
             {{ formatValue(item[opt.name]) }}
@@ -43,8 +43,6 @@
         :options="overdue"
         v-model="overdueValue"
         title="过会超期预警"
-        multiple
-        placeholder="全部"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination :total="response.pages" @change="change" :value="pageNum" />
@@ -91,34 +89,11 @@ export default class TheConstructList extends Base implements IFetch {
   gradeValue: string[] = [];
 
   overdue = {
-    Y: "是",
-    N: "否",
-  };
-  overdueValue: string[] = [];
-
-  // multiple
-  // required
-
-  /**
-   * 项目阶段  Open("已开业"), NotOpen("未开业")，默认全部
-   */
-  stage = {
     Default: "全部",
-    Open: "已开业",
-    NotOpen: "已开业",
+    是: "是",
+    否: "否",
   };
-  stageValue = "Default";
-
-  /**
-   * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")，默认全部
-   */
-  riskType = {
-    Default: "全部",
-    Delay: "延期风险",
-    CrossYear: "跨年风险",
-    NoRisk: "无风险",
-  };
-  riskTypeValue = "Default";
+  overdueValue = "Default";
 
   options: { name: keyof List; text: string }[] = [
     { name: "projectCode", text: "项目编码" },
@@ -163,7 +138,8 @@ export default class TheConstructList extends Base implements IFetch {
         firstInvestStartTime: this.yearRange[0],
         firstInvestEndTime: this.yearRange[1],
         gradeList: this.gradeValue,
-        overdueWarning: this.overdueValue,
+        overdueWarning:
+          this.overdueValue === "Default" ? undefined : this.overdueValue,
         // 页容量
         pageSize: this.pageSize,
         // 页码
