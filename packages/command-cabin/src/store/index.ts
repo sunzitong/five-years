@@ -43,6 +43,10 @@ export enum StoreKey {
    */
   ProjectIncome = "ProjectIncome",
   /**
+   * 经营现状-逾期金额
+   */
+  ProjectOverdue = "ProjectOverdue",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
