@@ -97,7 +97,7 @@ export default class TheConstructList extends Base implements IFetch {
   riskTypeValue = "Default";
 
   options: { name: keyof List; text: string }[] = [
-    { name: "projectNo", text: "分期ID" },
+    // { name: "projectNo", text: "分期ID" },
     { name: "name", text: "项目名称" },
     { name: "cityDepartmentName", text: "城市" },
     { name: "year", text: "开业年份" },
@@ -106,13 +106,13 @@ export default class TheConstructList extends Base implements IFetch {
     { name: "roomNum", text: "房间间数" },
     { name: "planEnterDate", text: "计划进场时间" },
     { name: "actualEnterDate", text: "实际进场时间" },
-    { name: "structureFinishDate", text: "结构封顶时间\n（重）" },
-    { name: "mainFinishDate", text: "主体竣备时间\n（重）" },
-    {
-      name: "transferImprovementDate",
-      text: "室内清水作业面\n移交精装完成时间（重）",
-    },
-    { name: "improvementStartDate", text: "精装进场时间\n（中、轻）" },
+    // { name: "structureFinishDate", text: "结构封顶时间\n（重）" },
+    // { name: "mainFinishDate", text: "主体竣备时间\n（重）" },
+    // {
+    //   name: "transferImprovementDate",
+    //   text: "室内清水作业面\n移交精装完成时间（重）",
+    // },
+    // { name: "improvementStartDate", text: "精装进场时间\n（中、轻）" },
     { name: "isIpd", text: "是否IPD" },
     { name: "transferServiceDate", text: "移交运营时间" },
     { name: "workDays", text: "工期天数" },
