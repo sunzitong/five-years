@@ -10,21 +10,22 @@
           {{ projecttNum }}
           <span>个</span>
         </van-col>
-        <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
+        <van-col
+          class="span_style2"
+          :class="{
+            danger: differRatio < 0,
+          }"
+          :span="12"
+        >
+          {{ differRatio }}%
+        </van-col>
       </van-row>
       <div class="process_container">
-        <Animationend
-          :scrollMinCount="3"
-          :height="300"
-          :dataSource="resData.costAnalysisModelList"
-        >
+        <Animationend :scrollMinCount="3" :height="322" :dataSource="newList">
           <template v-slot="{ list }">
             <div class="process_item" animated v-for="el in list" :key="el.id">
               <div class="item_name">
-                <div
-                  class="item_name_item van-multi-ellipsis--l2"
-                  :title="el.projectName"
-                >
+                <div class="item_name_item">
                   {{ el.projectName }}
                 </div>
               </div>
@@ -71,6 +72,33 @@ export default class B3 extends Base implements IFetch {
   projecttNum: number | string = formatValue(); // 成本风险预警项目
   differRatio: number | string = formatValue(); // 总体成本差异率
 
+  get newList() {
+    if (this.resData?.costAnalysisModelList) {
+      this.resData.costAnalysisModelList.map((el) => {
+        if (el.projectName.length > 9) {
+          el.projectName = this.getFormatString(el.projectName, 10);
+        }
+      });
+      return this.resData.costAnalysisModelList;
+    }
+    return null;
+  }
+
+  /**
+   * strVal: 需要格式化的字符串
+   * len(纯数字)：格式化后字符串的长度
+   *
+   * 超过指定长度，只保留最后len-1个字符，向前隐藏
+   */
+  getFormatString(strVal: string, len: number) {
+    const strLen = strVal.length;
+    if (strLen > len) {
+      return `...${strVal.substring(strVal.length - len + 1)}`;
+    } else {
+      return strVal;
+    }
+  }
+
   async fetch() {
     const response = await useStore(fetchCostAnalysis, {
       key: StoreKey.HomeCostAnalysis,
@@ -113,6 +141,7 @@ export default class B3 extends Base implements IFetch {
     font-size: 36px;
     line-height: 48px;
     font-weight: normal;
+    color: #90a4c3;
   }
 }
 .span_style2 {
@@ -120,7 +149,11 @@ export default class B3 extends Base implements IFetch {
   font-weight: bold;
   font-size: 66px;
   line-height: 60px;
-  color: #ff2a76;
+  color: #dbf0ff;
+
+  &.danger {
+    color: #ff2a76;
+  }
 }
 
 .process_container {
@@ -129,6 +162,7 @@ export default class B3 extends Base implements IFetch {
   justify-content: space-between;
   height: 284px;
   margin: 66px 80px;
+  overflow: hidden;
 }
 
 .process_item {

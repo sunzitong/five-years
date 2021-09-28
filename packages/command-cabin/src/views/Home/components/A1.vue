@@ -86,7 +86,7 @@ export default class A1 extends Base {
 
   gainTarget = 54544; // 获取目标
 
-  targetDiffer = 54544; // 目标差额
+  targetDiffer = -54544; // 目标差额
   signedRoom = 23900; // 已签约间数
 
   pieData: AnyObject[] = [
@@ -194,8 +194,6 @@ export default class A1 extends Base {
 </script>
 
 <style lang="scss" scoped>
-$danger: #ff2a76;
-
 .page__a1__map {
   display: flex;
   flex-flow: column nowrap;
@@ -276,13 +274,17 @@ $danger: #ff2a76;
     font-size: 36px;
     line-height: 48px;
 
+    &.danger span {
+      color: #ff2a76;
+    }
+
     span {
+      color: #dbf0ff;
       margin-left: 6px;
       @extend %value-font;
       font-weight: bold;
       font-size: 66px;
       line-height: 60px;
-      color: #dbf0ff;
     }
   }
 }
