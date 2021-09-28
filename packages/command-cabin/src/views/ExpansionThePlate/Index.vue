@@ -1,7 +1,8 @@
 <template>
   <div class="page__plate">
     <SubWrapperA title="营造盘面详情" style="height: 2750px">
-      <TheConstructList v-if="tab === 0" />
+      <TheExpandWideDetail v-if="tab === 0" />
+      <TheYearTargetDetail v-if="tab === 1" />
     </SubWrapperA>
     <div class="footer">
       <div class="back" @click="back">
@@ -28,14 +29,16 @@
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
-import TheConstructList from "./components/TheConstructList.vue";
+import TheExpandWideDetail from "./components/TheExpandWideDetail.vue";
+import TheYearTargetDetail from "./components/TheYearTargetDetail.vue";
 import Icon from "@/components/Icon/Index.vue";
 
 /**营造盘面详情 */
 @Component({
   components: {
     SubWrapperA,
-    TheConstructList,
+    TheExpandWideDetail,
+    TheYearTargetDetail,
     Icon,
   },
 })

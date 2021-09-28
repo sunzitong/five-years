@@ -102,6 +102,14 @@ export enum StoreKey {
    * 拓展盘面详情-拓宽台账宽表
    */
   ExpansionAwardInfo = "ExpansionAwardInfo",
+  /**
+   * 拓展盘面详情-年度目标表
+   */
+  YearTargetDetail = "YearTargetDetail",
+  /**
+   * 拓展盘面详情-战略合作表
+   */
+  StrategyCoopDetail = "StrategyCoopDetail",
 }
 /**
  * 方法重载

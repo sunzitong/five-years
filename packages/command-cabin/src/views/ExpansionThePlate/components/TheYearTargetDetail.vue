@@ -25,24 +25,8 @@
       <Select
         @input="fetch"
         name="YearRange"
-        title="首次投委会时间"
+        title="年份"
         v-model="yearRange"
-      ></Select>
-      <Select
-        @input="fetch"
-        name="Options"
-        :options="grade"
-        v-model="gradeValue"
-        title="等级"
-        multiple
-        placeholder="全部"
-      ></Select>
-      <Select
-        @input="fetch"
-        name="Options"
-        :options="overdue"
-        v-model="overdueValue"
-        title="过会超期预警"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination :total="response.pages" @change="change" :value="pageNum" />
@@ -58,18 +42,17 @@ import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
-
 import {
-  ExpandWideDetailReturn,
-  fetchExpandWideDetail,
+  fetchYearTargetDetail,
+  YearTargetDetailReturn,
   List,
-} from "@/service/analysis/bigScreen/mainBoard/expandDisk/expandWideDetail";
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/yearTargetDetail";
 
 /**营造台账宽表 */
 @Component({
   components: { Select, Pagination },
 })
-export default class TheConstructList extends Base implements IFetch {
+export default class TheYearTargetDetail extends Base implements IFetch {
   yearRange: number[] = [];
 
   created() {
@@ -78,68 +61,31 @@ export default class TheConstructList extends Base implements IFetch {
     window.dayjs = dayjs;
   }
 
-  grade = {
-    A: "A",
-    B: "B",
-    C: "C",
-    D: "D",
-    E: "E",
-    F: "F",
-  };
-  gradeValue: string[] = [];
-
-  overdue = {
-    Default: "全部",
-    是: "是",
-    否: "否",
-  };
-  overdueValue = "Default";
-
   options: { name: keyof List; text: string }[] = [
-    { name: "projectCode", text: "项目编码" },
-    { name: "create_time", text: "立项时间" },
-    { name: "grade", text: "等级" },
-    { name: "gradeDesc", text: "等级对应的名称" },
-    { name: "existingStatus", text: "现有状态" },
-    { name: "cityCode", text: "城市编码" },
+    { name: "year", text: "年份" },
     { name: "city", text: "城市" },
-    { name: "projectName", text: "项目名称" },
-    { name: "assetType", text: "资产类型" },
-    { name: "cooperationMode", text: "合作模式" },
-    { name: "expanderLoginName", text: "拓展人" },
-    { name: "numberOfRooms", text: "房间数" },
-    { name: "firstInvestmentTime", text: "首次投委会时间" },
-    { name: "signingTime", text: "签约时间" },
-    { name: "oaRegionalDevelopmentDirector", text: "地区拓展负责人" },
-    { name: "thisWeekLatestProgress", text: "本周最新进展" },
-    { name: "projectReasonAction", text: "项目卡点原因及\n突破动作" },
-    { name: "suspendDrain", text: "暂缓/流失原因" },
-    { name: "overdueWarning", text: "过会超期预警" },
-    { name: "overdueDays", text: "超期天数" },
+    { name: "targetNumber", text: "年度拓展目标" },
+    { name: "annualOpeningTarget", text: "年度开业目标" },
   ];
 
   pageNum = 1;
 
   pageSize = 20;
 
-  response: Partial<ExpandWideDetailReturn> = {};
+  response: Partial<YearTargetDetailReturn> = {};
 
   /**
    * 自动触发 重复调用
    */
   async fetch() {
-    const response = await useStore(fetchExpandWideDetail, {
-      key: StoreKey.ExpansionAwardInfo,
+    const response = await useStore(fetchYearTargetDetail, {
+      key: StoreKey.YearTargetDetail,
       params: {
         // 大区城市
         orgType: this.store.global.dataLevel,
         // 组织ID
         orgId: this.store.global.orgTree.orgId,
-        firstInvestStartTime: this.yearRange[0],
-        firstInvestEndTime: this.yearRange[1],
-        gradeList: this.gradeValue,
-        overdueWarning:
-          this.overdueValue === "Default" ? undefined : this.overdueValue,
+        year: 2021,
         // 页容量
         pageSize: this.pageSize,
         // 页码
