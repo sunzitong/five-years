@@ -94,14 +94,12 @@ export default class B1A extends Base implements IFetch {
     this.reset();
     if (response?.status === "ok") {
       this.resData = response.data;
-      this.$parent.empty = false;
-
+      this.empty = false;
       this.openingNum = this.resData.totalOpenNum;
-
       this.getSubData();
       this.paintChart();
     } else {
-      this.$parent.empty = true;
+      this.empty = true;
     }
     return response;
   }

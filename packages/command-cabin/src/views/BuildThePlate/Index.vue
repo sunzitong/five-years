@@ -65,7 +65,10 @@ export default class BuildThePlate extends Base {
     rgba(50, 107, 152, 0.14) 99.96%
   );
   .back {
-    margin-right: 80px;
+    width: 100px;
+    line-height: 110px;
+    margin-right: 10px;
+    text-align: center;
     cursor: pointer;
   }
   &::v-deep {

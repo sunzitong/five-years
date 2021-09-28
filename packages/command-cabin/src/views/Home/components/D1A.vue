@@ -33,7 +33,7 @@
                 asce: resData.totalFinishLimit >= 0,
               }"
             >
-              {{ sepNumber(resData.totalIncome) }}
+              {{ calcNumber(resData.totalIncome) }}
             </span>
             <span>万</span>
           </div>
@@ -71,7 +71,7 @@
                 asce: resData.guanyuFinishLimit >= 0,
               }"
             >
-              {{ sepNumber(resData.guanyuIncome) }}
+              {{ calcNumber(resData.guanyuIncome) }}
             </span>
             <span>万</span>
           </div>
@@ -111,7 +111,7 @@
                 asce: resData.coWorkingFinishLimit >= 0,
               }"
             >
-              {{ sepNumber(resData.coWorkingIncome) }}
+              {{ calcNumber(resData.coWorkingIncome) }}
             </span>
             <span>万</span>
           </div>
@@ -151,7 +151,7 @@
                 asce: resData.commerceFinishLimit >= 0,
               }"
             >
-              {{ sepNumber(resData.commerceIncome) }}
+              {{ calcNumber(resData.commerceIncome) }}
             </span>
             <span>万</span>
           </div>
@@ -193,7 +193,7 @@
                 asce: resData.incrementAndParkFinishLimit >= 0,
               }"
             >
-              {{ sepNumber(resData.incrementAndParkIncome) }}
+              {{ calcNumber(resData.incrementAndParkIncome) }}
             </span>
             <span>万</span>
           </div>
@@ -204,7 +204,7 @@
           <div>违约金及</div>
           <div>其他收入</div>
           <div class="flex_value">
-            <span>{{ sepNumber(resData.contractSporadicIncome) }}</span>
+            <span>{{ calcNumber(resData.contractSporadicIncome) }}</span>
             <span>万</span>
           </div>
         </div>
@@ -221,10 +221,15 @@ import {
   fetchIncome,
   IncomeReturn,
 } from "@/service/analysis/bigScreen/mainBoard/managementSituation/income";
+import { iwant } from "@guanyu/shared";
 @Component
 export default class D1A extends Base implements IFetch {
   resData: Partial<IncomeReturn> = {};
   currentRate = 0;
+
+  calcNumber(n: number) {
+    return this.sepNumber(iwant.calc(n, 0));
+  }
 
   async fetch() {
     const response = await useStore(fetchIncome, {

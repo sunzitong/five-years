@@ -280,7 +280,7 @@ $asce: #ff2a76;
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 66px;
+    font-size: 58px;
     line-height: 60px;
     color: #dbf0ff;
     margin-right: 6px;
@@ -314,7 +314,7 @@ $asce: #ff2a76;
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 41px;
     line-height: 56px;
     color: #dbf0ff;
     margin-right: 6px;
@@ -333,7 +333,7 @@ $asce: #ff2a76;
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 41px;
     line-height: 56px;
     color: #dbf0ff;
     margin-right: 6px;

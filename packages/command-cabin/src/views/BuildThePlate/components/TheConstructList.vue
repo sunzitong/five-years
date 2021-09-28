@@ -43,7 +43,7 @@
         title="风险类型"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
-      <Page :total="response.pages" @change="change" :value="pageNum" />
+      <Pagination :total="response.pages" @change="change" :value="pageNum" />
     </div>
   </div>
 </template>
@@ -59,12 +59,12 @@ import {
 import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
-import Page from "./Page.vue";
+import Pagination from "./Pagination.vue";
 import dayjs from "dayjs";
 
 /**营造台账宽表 */
 @Component({
-  components: { Select, Page },
+  components: { Select, Pagination },
 })
 export default class TheConstructList extends Base implements IFetch {
   yearRange: number[] = [];

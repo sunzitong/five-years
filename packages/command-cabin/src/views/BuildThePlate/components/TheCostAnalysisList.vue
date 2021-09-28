@@ -38,7 +38,7 @@
         @input="fetch"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
-      <Page
+      <Pagination
         :total="Math.ceil(response.length / pageSize)"
         @change="change"
         :value="pageNum"
@@ -52,7 +52,7 @@ import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import Select from "@/views/components/Select/Index.vue";
-import Page from "./Page.vue";
+import Pagination from "./Pagination.vue";
 import dayjs from "dayjs";
 import {
   CostAnalysisListItemReturn,
@@ -62,7 +62,7 @@ import { iwant } from "@guanyu/shared";
 
 /**拓展台账宽表 */
 @Component({
-  components: { Select, Page },
+  components: { Select, Pagination },
 })
 export default class TheCostAnalysisList extends Base implements IFetch {
   yearRange: number[] = [];
