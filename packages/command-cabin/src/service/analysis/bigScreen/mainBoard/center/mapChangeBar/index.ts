@@ -39,7 +39,7 @@ export interface MapChangeBarReturn {
 /**
  * 指挥中心-地图数据切换条
  * @createBy wuyao
- * @updateAt 2021/9/27 下午6:02:21
+ * @updateAt 2021-9-27 6:02:21 ├F10: PM┤
  * @method GET
  */
 export const fetchMapChangeBar = (params: MapChangeBarParams) => {

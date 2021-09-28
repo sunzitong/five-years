@@ -4,7 +4,7 @@
  *
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午6:25:00
+ * @updateAt 2021-9-28 6:25:00 ├F10: PM┤
  * @method GET
  */
 
