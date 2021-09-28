@@ -183,6 +183,7 @@
               <WhiteSpace />
               <CardA title="客户洞察" style="width: 1820px; height: 452px">
                 <template #data-cycle>{{ dataCycle }}</template>
+                <D3 />
               </CardA>
               <WhiteSpace />
               <CardA
@@ -257,10 +258,10 @@ import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
+import D3 from "./components/D3.vue";
 import D4 from "./components/D4.vue";
 import D5 from "./components/D5.vue";
 import F1 from "./components/F1.vue";
-import O2 from "./components/O2.vue";
 import OptionPanel from "@/views/components/OptionPanel/Index.vue";
 
 @Component({
@@ -284,10 +285,10 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     C2,
     D1,
     D2,
+    D3,
     D4,
     D5,
     F1,
-    O2,
     ButtonGroupA,
     Icon,
     OptionPanel,
