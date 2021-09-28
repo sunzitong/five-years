@@ -98,7 +98,7 @@ import { Base } from "@/views/Base";
 @Component({
   components: {},
 })
-export default class D2 extends Base {
+export default class D3 extends Base {
   currentRate1 = 0;
   currentRate2 = 0;
   currentRate3 = 0;

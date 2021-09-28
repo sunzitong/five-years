@@ -2,10 +2,10 @@
   <div class="operation">
     <div class="line"></div>
     <van-row>
-      <van-col span="12">
+      <van-col :span="14">
         <h4 class="label">平均出租率(开业三月以上)</h4>
-        <div class="">
-          <strong>{{ resData.avgRentRatio }}%</strong>
+        <div class="row_style">
+          <strong class="strong_value">{{ resData.avgRentRatio }}%</strong>
           <span class="after">环比</span>
           <strong
             :class="{
@@ -21,10 +21,10 @@
           <span class="pointOfTime">时点 {{ resData.pointRentRatio }}%</span>
         </div>
       </van-col>
-      <van-col span="12">
+      <van-col :span="10">
         <h4 class="label">平均续租率</h4>
-        <div class="">
-          <strong>{{ resData.avgRenewRatio }}%</strong>
+        <div class="row_style">
+          <strong class="strong_value">{{ resData.avgRenewRatio }}%</strong>
           <span class="after">环比</span>
           <strong
             :class="{
@@ -41,10 +41,10 @@
       </van-col>
     </van-row>
     <van-row>
-      <van-col span="12" style="padding-top: 30px">
+      <van-col :span="14" style="padding-top: 30px">
         <h4 class="label">在租房间平均成交价(元)</h4>
-        <div class="">
-          <strong>{{ resData.avgPrice }}</strong>
+        <div class="row_style">
+          <strong class="strong_value">{{ resData.avgPrice }}</strong>
           <span class="after">同比</span>
           <strong
             :class="{
@@ -59,16 +59,16 @@
           </span>
         </div>
       </van-col>
-      <van-col hidden span="6" style="padding-top: 30px">
+      <van-col hidden :span="5" style="padding-top: 30px">
         <h4 class="label">同房间价格涨幅</h4>
-        <div class="">
+        <div class="row_style">
           <strong>--%</strong>
           <span class="icon">
             <Icon type="asce" color="#22cb98" size="62" />
           </span>
         </div>
       </van-col>
-      <van-col hidden span="6" style="padding-top: 30px">
+      <van-col hidden :span="5" style="padding-top: 30px">
         <div class="simple">
           <span class="label">新签上涨:</span>
           <strong>--%</strong>
@@ -135,6 +135,11 @@ $light: rgba(219, 240, 255, 1);
 $desc: #22cb98;
 $asce: #ff2a76;
 
+.row_style {
+  display: flex;
+  align-items: center;
+}
+
 .operation {
   padding: 0 43px;
   .line {
@@ -156,11 +161,15 @@ $asce: #ff2a76;
     color: rgba(144, 164, 195, 1);
   }
 
+  .strong_value {
+    width: 200px;
+  }
+
   .after {
     color: #90a4c3;
     font-size: 36px;
     line-height: 48px;
-    margin: 0 44px 0 6px;
+    margin: 0 10px 0 100px;
   }
 
   strong {
