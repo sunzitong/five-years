@@ -17,7 +17,7 @@
             <div class="value">{{ 75.3 }}%</div>
           </div>
         </van-circle>
-        <div class="bottom_text">投诉率</div>
+        <div class="bottom_text special_position">投诉率</div>
       </div>
       <div class="right_text">
         <div>
@@ -111,29 +111,29 @@ export default class D3 extends Base {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 36px 134px 66px 123px;
+  padding: 36px 50px 66px 50px;
 
   .left_circle {
     width: 588px;
-    margin-right: 175px;
+    margin-right: 100px;
 
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
 
     .left_pic {
-      width: 240px;
+      flex: 1;
+      width: 200px;
       height: 240px;
       @extend %bg-img-circle-1;
       background-position: 0 -11px;
       background-size: 240px 240px;
-
-      .circle_setting {
-        position: relative;
-        top: 42px;
-        left: 40px;
-      }
     }
+  }
+  .circle_setting {
+    position: relative;
+    top: 42px;
+    left: 40px;
   }
   .value {
     @extend %value-font;
@@ -145,10 +145,15 @@ export default class D3 extends Base {
   }
 
   .bottom_text {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 40px;
     color: #90a4c3;
-    margin: 73px 0 0 50px;
+    margin: 73px 0 0 0;
+    text-align: center;
+  }
+  .special_position {
+    position: relative;
+    left: -33px;
   }
 
   .right_text {
@@ -170,9 +175,19 @@ export default class D3 extends Base {
   }
 
   .right_flex_box {
+    flex: 1;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    .cirle_wrap {
+      width: 240px;
+      height: 240px;
+      @extend %bg-img-circle-1;
+      background-position: 0 -11px;
+      background-size: 240px 240px;
+      margin: 0 50px;
+    }
   }
 
   .cirle_wrap {
