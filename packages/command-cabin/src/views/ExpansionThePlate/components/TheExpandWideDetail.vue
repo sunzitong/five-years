@@ -75,7 +75,6 @@ export default class TheExpandWideDetail extends Base implements IFetch {
   created() {
     const year = dayjs().year();
     this.yearRange = [year, year];
-    window.dayjs = dayjs;
   }
 
   grade = {

@@ -24,9 +24,21 @@
     <div class="footer">
       <Select
         @input="fetch"
-        name="YearRange"
-        title="年份"
-        v-model="yearRange"
+        name="Options"
+        :options="type"
+        v-model="typeValue"
+        title="类型"
+        multiple
+        placeholder="全部"
+      ></Select>
+      <Select
+        @input="fetch"
+        name="Options"
+        :options="enterpriseState"
+        v-model="enterpriseStateValue"
+        title="企业状态"
+        multiple
+        placeholder="全部"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination :total="response.pages" @change="change" :value="pageNum" />
@@ -43,48 +55,67 @@ import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
 import {
-  fetchYearTargetDetail,
-  YearTargetDetailReturn,
+  fetchStrategyCoopDetail,
+  StrategyCoopDetailReturn,
   List,
-} from "@/service/analysis/bigScreen/mainBoard/expandDisk/yearTargetDetail";
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/strategyCoopDetail";
 
 /**营造台账宽表 */
 @Component({
   components: { Select, Pagination },
 })
-export default class TheYearTargetDetail extends Base implements IFetch {
-  yearRange: number[] = [];
+export default class TheStrategyCoopDetail extends Base implements IFetch {
+  /**
+   * 类型
+   */
+  type = {
+    1: "国企平台",
+    2: "总对总",
+    3: "资金方",
+  };
+  typeValue: string[] = [];
 
-  created() {
-    const year = dayjs().year();
-    this.yearRange = [year, year];
-  }
+  /**
+   * 企业状态
+   */
+  enterpriseState = {
+    1: "已合作",
+    2: "洽谈中",
+    3: "暂缓",
+    4: "流失",
+  };
+  enterpriseStateValue: string[] = [];
 
   options: { name: keyof List; text: string }[] = [
-    { name: "year", text: "年份" },
     { name: "city", text: "城市" },
-    { name: "targetNumber", text: "年度拓展目标" },
-    { name: "annualOpeningTarget", text: "年度开业目标" },
+    { name: "partnerName", text: "合作方名称" },
+    { name: "enterpriseState", text: "企业状态" },
+    { name: "enterpriseStateDesc", text: "企业状态描述" },
+    { name: "type", text: "类型" },
+    { name: "typeDesc", text: "类型描述" },
   ];
 
   pageNum = 1;
 
   pageSize = 20;
 
-  response: Partial<YearTargetDetailReturn> = {};
+  response: Partial<StrategyCoopDetailReturn> = {};
 
   /**
    * 自动触发 重复调用
    */
   async fetch() {
-    const response = await useStore(fetchYearTargetDetail, {
-      key: StoreKey.YearTargetDetail,
+    const response = await useStore(fetchStrategyCoopDetail, {
+      key: StoreKey.ExpansionAwardInfo,
       params: {
         // 大区城市
         orgType: this.store.global.dataLevel,
         // 组织ID
         orgId: this.store.global.orgTree.orgId,
-        year: 2021,
+        type: this.typeValue.length ? this.typeValue.join(",") : undefined,
+        enterpriseState: this.enterpriseStateValue.length
+          ? this.enterpriseStateValue.join(",")
+          : undefined,
         // 页容量
         pageSize: this.pageSize,
         // 页码

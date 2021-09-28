@@ -3,6 +3,7 @@
     <SubWrapperA title="营造盘面详情" style="height: 2750px">
       <TheExpandWideDetail v-if="tab === 0" />
       <TheYearTargetDetail v-if="tab === 1" />
+      <TheStrategyCoopDetail v-if="tab === 2" />
     </SubWrapperA>
     <div class="footer">
       <div class="back" @click="back">
@@ -31,6 +32,7 @@ import { Base } from "@/views/Base";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
 import TheExpandWideDetail from "./components/TheExpandWideDetail.vue";
 import TheYearTargetDetail from "./components/TheYearTargetDetail.vue";
+import TheStrategyCoopDetail from "./components/TheStrategyCoopDetail.vue";
 import Icon from "@/components/Icon/Index.vue";
 
 /**营造盘面详情 */
@@ -39,6 +41,7 @@ import Icon from "@/components/Icon/Index.vue";
     SubWrapperA,
     TheExpandWideDetail,
     TheYearTargetDetail,
+    TheStrategyCoopDetail,
     Icon,
   },
 })
