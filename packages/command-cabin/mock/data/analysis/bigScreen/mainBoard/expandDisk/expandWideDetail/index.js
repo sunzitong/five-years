@@ -4,7 +4,7 @@
  *
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午5:44:48
+ * @updateAt 2021/9/28 下午6:25:00
  * @method GET
  */
 
@@ -30,19 +30,19 @@ exports.response = {
         existingStatus: "", //现有状态
         cityCode: "", //城市编码
         city: "", //城市
-        project_name: "", //项目名称
-        asset_type: "", //资产类型
+        projectName: "", //项目名称
+        assetType: "", //资产类型
         cooperationMode: "", //合作模式
-        expander_login_name: "", //拓展人
-        number_of_rooms: 100, //房间数量
-        first_investment_time: "", //首次投委时间
-        signing_time: "", //签约时间
-        oa_regional_development_director: "", //地区拓展负责人
-        this_week_latest_progress: "", //本周最新进展
-        project_reason_action: "", //项目卡点
-        suspend_drain: "", //暂缓/流失原因
-        overdue_warning: "", //超会超期预警
-        overdue_days: 30, //超期天数
+        expanderLoginName: "", //拓展人
+        numberOfRooms: 100, //房间数量
+        firstInvestmentTime: "", //首次投委时间
+        signingTime: "", //签约时间
+        oaRegionalDevelopmentDirector: "", //地区拓展负责人
+        thisWeekLatestProgress: "", //本周最新进展
+        projectReasonAction: "", //项目卡点
+        suspendDrain: "", //暂缓/流失原因
+        overdueWarning: "是", //超会超期预警，是/否
+        overdueDays: 30, //超期天数
       },
     ],
     orders: [],

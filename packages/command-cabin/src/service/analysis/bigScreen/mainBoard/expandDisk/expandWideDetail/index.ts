@@ -36,7 +36,7 @@ export interface ExpandWideDetailParams {
   gradeList?: unknown;
 
   /**
-   * 过会超期预警，是-Y/否-N，默认全部
+   * 过会超期预警，是/否，默认全部
    */
   overdueWarning?: unknown;
 
@@ -78,25 +78,25 @@ export interface List {
   existingStatus: string;
   cityCode: string;
   city: string;
-  project_name: string;
-  asset_type: string;
+  projectName: string;
+  assetType: string;
   cooperationMode: string;
-  expander_login_name: string;
-  number_of_rooms: number;
-  first_investment_time: string;
-  signing_time: string;
-  oa_regional_development_director: string;
-  this_week_latest_progress: string;
-  project_reason_action: string;
-  suspend_drain: string;
-  overdue_warning: string;
-  overdue_days: number;
+  expanderLoginName: string;
+  numberOfRooms: number;
+  firstInvestmentTime: string;
+  signingTime: string;
+  oaRegionalDevelopmentDirector: string;
+  thisWeekLatestProgress: string;
+  projectReasonAction: string;
+  suspendDrain: string;
+  overdueWarning: string;
+  overdueDays: number;
 }
 
 /**
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午5:44:48
+ * @updateAt 2021/9/28 下午6:25:00
  * @method GET
  */
 export const fetchExpandWideDetail = (params?: ExpandWideDetailParams) => {

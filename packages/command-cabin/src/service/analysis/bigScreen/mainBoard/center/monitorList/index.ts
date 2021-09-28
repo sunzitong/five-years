@@ -34,12 +34,13 @@ export interface MonitorListItemReturn {
   projectName: string;
   pictureUrl: string;
   problem: string;
+  optStatusDesc: string;
 }
 
 /**
  * 指挥中心-现场监控列表
  * @createBy wuyao
- * @updateAt 2021/9/28 下午5:26:11
+ * @updateAt 2021/9/28 下午6:25:42
  * @method GET
  */
 export const fetchMonitorList = (params: MonitorListParams) => {
