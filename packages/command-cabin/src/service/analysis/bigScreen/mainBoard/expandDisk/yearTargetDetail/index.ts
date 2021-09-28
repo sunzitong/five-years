@@ -70,7 +70,7 @@ export interface List {
 /**
  * 拓展盘面详情-年度目标表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午7:17:12
+ * @updateAt 2021/9/28 PM 7:17:12
  * @method GET
  */
 export const fetchYearTargetDetail = (params?: YearTargetDetailParams) => {

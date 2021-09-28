@@ -40,7 +40,7 @@ export interface DeviceOfflineReturn {
 /**
  * 经营现状-设备离线率
  * @createBy baishiqiang
- * @updateAt 2021/9/10 下午2:39:55
+ * @updateAt 2021/9/10 PM 2:39:55
  * @method GET
  */
 export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
