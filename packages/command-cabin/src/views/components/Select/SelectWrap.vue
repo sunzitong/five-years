@@ -8,7 +8,7 @@
           readonly
           :value="value"
           class="select__input"
-          placeholder="请选择"
+          :placeholder="placeholder || '请选择'"
         />
         <div class="select__icon">
           <slot name="icon" :active="active">
@@ -25,14 +25,22 @@
 
 <script lang="ts">
 import mitter, { EventName } from "@/utils/mitter";
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class SelectWrap extends Vue {
   @Prop() title!: string;
   @Prop() value!: string;
+  @Prop() placeholder!: string;
 
   active = false;
+
+  @Watch("active")
+  activeChanged(val: boolean) {
+    if (!val) {
+      this.$emit("close", false);
+    }
+  }
 
   close() {
     this.active = false;
@@ -41,6 +49,7 @@ export default class SelectWrap extends Vue {
   created() {
     mitter.on(EventName.DocumentClick, this.close);
   }
+
   beforeDestroy() {
     mitter.off(EventName.DocumentClick, this.close);
   }
