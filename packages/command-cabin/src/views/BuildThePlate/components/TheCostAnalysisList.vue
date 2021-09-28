@@ -52,7 +52,7 @@ import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import Select from "@/views/components/Select/Index.vue";
-import Pagination from "./Pagination.vue";
+import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
 import {
   CostAnalysisListItemReturn,

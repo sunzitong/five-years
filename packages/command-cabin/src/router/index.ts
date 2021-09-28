@@ -40,6 +40,13 @@ const subRouter = [
     },
   },
   {
+    path: "expansion-the-plate",
+    component: () => import("@/views/ExpansionThePlate/Index.vue"),
+    meta: {
+      name: "build-the-plate",
+    },
+  },
+  {
     path: "login",
     component: () => import("@/views/Login/Index.vue"),
     meta: {
