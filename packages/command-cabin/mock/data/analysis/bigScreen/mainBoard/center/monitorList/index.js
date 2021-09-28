@@ -4,7 +4,7 @@
  *
  * 指挥中心-现场监控列表
  * @createBy wuyao
- * @updateAt 2021/9/28 下午5:26:11
+ * @updateAt 2021/9/28 下午6:25:42
  * @method GET
  */
 
@@ -22,6 +22,7 @@ exports.response = {
       pictureUrl:
         "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg", //图片地址
       problem: "人员离岗", //问题描述
+      optStatusDesc: "待处理", //状态
     },
     {
       projectId: 82, //门店id
@@ -29,6 +30,7 @@ exports.response = {
       pictureUrl:
         "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg", //图片地址
       problem: "人员离岗", //问题描述
+      optStatusDesc: "待处理", //状态
     },
     {
       projectId: 83, //门店id
@@ -36,6 +38,7 @@ exports.response = {
       pictureUrl:
         "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg", //图片地址
       problem: "人员离岗", //问题描述
+      optStatusDesc: "待处理", //状态
     },
     {
       projectId: 84, //门店id
@@ -43,6 +46,7 @@ exports.response = {
       pictureUrl:
         "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg", //图片地址
       problem: "人员离岗", //问题描述
+      optStatusDesc: "待处理", //状态
     },
     {
       projectId: 85, //门店id
@@ -50,6 +54,7 @@ exports.response = {
       pictureUrl:
         "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg", //图片地址
       problem: "人员离岗", //问题描述
+      optStatusDesc: "待处理", //状态
     },
   ],
 };

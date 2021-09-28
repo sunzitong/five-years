@@ -4,7 +4,7 @@
  *
  * 拓展盘面详情-年度目标表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午2:40:59
+ * @updateAt 2021/9/28 下午6:25:40
  * @method GET
  */
 
@@ -25,8 +25,8 @@ exports.response = {
         id: 1, //主键ID
         year: "2021", //年份
         city: "北京", //城市
-        target_number: 100, //年度拓展目标
-        annual_opening_target: 100, //"年度开业目标"
+        targetNumber: 100, //年度拓展目标
+        annualOpeningTarget: 100, //"年度开业目标"
       },
     ],
     orders: [],
