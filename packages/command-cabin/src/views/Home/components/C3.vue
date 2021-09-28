@@ -128,7 +128,7 @@ $problem-height: 74px;
   }
   .desc {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 10px;
     padding: 10px 15px;
     color: #fff;
