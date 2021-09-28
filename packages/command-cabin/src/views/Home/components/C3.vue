@@ -18,6 +18,9 @@
                 <div class="problem">
                   <span>{{ item.problem }}</span>
                 </div>
+                <div class="desc" v-if="item.optStatusDesc">
+                  <span>{{ item.optStatusDesc }}</span>
+                </div>
               </div>
             </van-col>
           </van-row>
@@ -122,6 +125,15 @@ $problem-height: 74px;
       display: block;
       @extend %txt-over;
     }
+  }
+  .desc {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 10px 15px;
+    color: #fff;
+    background: #ff3980;
+    border-radius: 8px;
   }
 }
 </style>
