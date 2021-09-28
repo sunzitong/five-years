@@ -74,7 +74,7 @@ export default class B1 extends Base {}
     display: inline-block;
     width: 12px;
     height: 12px;
-    margin-left: 20px;
+    margin-left: 16px;
   }
 }
 

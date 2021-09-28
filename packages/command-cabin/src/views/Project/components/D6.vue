@@ -1,13 +1,13 @@
 <template>
   <!-- <Spin :height="833" :loading="loading" :empty="empty"> -->
-  <div class="page__d5__map">
+  <div class="page__d6__map">
     <div class="whole_pannel">
       <div class="big_title">
         <div>金额</div>
         <div class="big_values">
-          <span>{{ sepNumber(201485) }}</span>
+          <span>{{ sepNumber(resData.overdueAmount) }}</span>
           万
-          <span>{{ 1.4 }}%</span>
+          <span>{{ resData.overdueRatio }}%</span>
           逾期率
         </div>
       </div>
@@ -15,29 +15,29 @@
         <div class="flex_box">
           <div class="text_style">
             长租
-            <span>{{ sepNumber(2200.34) }}</span>
+            <span>{{ sepNumber(resData.overdueAmountGuanyu) }}</span>
             万
             <div class="whole_border_box">
               <div class="border_box">
                 企客
-                <span>{{ 1218900 }}</span>
+                <span>{{ sepNumber(resData.overdueAmountGuanyuPro) }}</span>
                 万
               </div>
               <div class="border_box">
                 散客
-                <span>{{ 36 }}</span>
+                <span>{{ sepNumber(resData.overdueAmountGuanyuFit) }}</span>
                 万
               </div>
             </div>
           </div>
           <div class="text_style">
             底商增值
-            <span>{{ sepNumber(200.34) }}</span>
+            <span>{{ sepNumber(resData.overdueAmountCommerce) }}</span>
             万
           </div>
           <div class="text_style">
             一展空间
-            <span>{{ sepNumber(1296) }}</span>
+            <span>{{ sepNumber(resData.overdueAmountCoworking) }}</span>
             万
           </div>
         </div>
@@ -45,7 +45,7 @@
       <div class="big_title">
         <div>轻资产待回款</div>
         <div class="big_values">
-          <span>{{ sepNumber(201485) }}</span>
+          <span>{{ sepNumber(resData.payBackAmount) }}</span>
           万
         </div>
       </div>
@@ -56,12 +56,34 @@
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
+import {
+  fetchOverdue,
+  OverdueReturn,
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/overdue";
 
 @Component({
   components: {},
 })
-export default class D5 extends Base {}
+export default class D6 extends Base implements IFetch {
+  resData: Partial<OverdueReturn> = {};
+
+  async fetch() {
+    const response = await useStore(fetchOverdue, {
+      key: StoreKey.ProjectOverdue,
+      params: {
+        phId: this.store.global.project.phId,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    } else {
+      this.empty = true;
+    }
+    return response;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

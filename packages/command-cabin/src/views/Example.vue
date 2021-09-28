@@ -191,7 +191,7 @@
           <div
             style="display: flex; flex-flow: row wrap; justify-content: center"
           >
-            <svg width="300" height="300">
+            <!-- <svg width="300" height="300">
               <defs>
                 <radialGradient
                   id="radialGradientId1"
@@ -230,7 +230,7 @@
                 stroke="#fff"
                 mask="url(#maskIdTest)"
               />
-            </svg>
+            </svg> -->
 
             <!-- <ProgressCircle
               :styleType="1"

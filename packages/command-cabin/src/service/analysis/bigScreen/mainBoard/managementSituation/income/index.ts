@@ -30,7 +30,8 @@ export interface IncomeParams {
  * 指挥中心-经营现状-收入量价情况-返回值
  */
 export interface IncomeReturn {
-  updateAt: Date;
+  dataSource: string;
+  updateTime: Date;
   totalIncome: number;
   totalFinishLimit: number;
   guanyuIncome: number;
@@ -54,7 +55,7 @@ export interface IncomeReturn {
 /**
  * 指挥中心-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/9/24 下午2:37:04
+ * @updateAt 2021/9/27 下午5:27:44
  * @method GET
  */
 export const fetchIncome = (params: IncomeParams) => {

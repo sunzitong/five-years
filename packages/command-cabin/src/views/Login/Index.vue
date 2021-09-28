@@ -3,16 +3,16 @@
     <div class="background">
       <video
         style="width: 100%; height: 100%; object-fit: cover"
-        src="/video/loginbg.mov"
+        :src="`${store.env.BASE_URL}video/loginbg.mov`"
         autoplay
         loop
-        poster="/img/earth.png"
+        :poster="`${store.env.BASE_URL}video/poster.jpg`"
       ></video>
     </div>
     <div class="content">
       <svg
-        width="2070"
-        height="2070"
+        width="100%"
+        height="100%"
         viewBox="0 0 2070 2070"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -167,14 +167,20 @@ export default class Login extends Base {}
   .background {
     position: relative;
     z-index: 1;
+    width: 100%;
+    height: 100%;
   }
 
   .content {
     position: fixed;
-    right: 20%;
-    top: 50%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 10;
-    transform: translate(0, -50%);
+    width: 15vw;
+    height: 15vw;
+    margin: auto;
   }
 }
 </style>

@@ -119,7 +119,7 @@
           <stop offset="0%" stop-color="#fff" stop-opacity="1"></stop>
           <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
         </radialGradient>
-        <mask :id="`${uuid}_maskIdTest`">
+        <mask :id="`${uuid}_maskIdTest`" v-if="animate">
           <circle
             r="50"
             cx="0"
