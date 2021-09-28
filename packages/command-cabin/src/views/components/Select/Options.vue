@@ -62,7 +62,7 @@ export default class Options extends Base {
   @Watch("value", { deep: true, immediate: true })
   valueChanged() {
     if (Array.isArray(this.value)) {
-      this.localValue = this.value;
+      this.localValue = [...this.value];
     } else {
       this.localValue = this.value ? [this.value] : [];
     }
