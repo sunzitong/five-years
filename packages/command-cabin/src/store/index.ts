@@ -99,9 +99,23 @@ export enum StoreKey {
    */
   CostAnalysisList = "CostAnalysisList",
   /**
+<<<<<<< HEAD
    * 首屏-现场监控
    */
   HomeMonitorList = "HomeMonitorList",
+=======
+   * 拓展盘面详情-拓宽台账宽表
+   */
+  ExpansionAwardInfo = "ExpansionAwardInfo",
+  /**
+   * 拓展盘面详情-年度目标表
+   */
+  YearTargetDetail = "YearTargetDetail",
+  /**
+   * 拓展盘面详情-战略合作表
+   */
+  StrategyCoopDetail = "StrategyCoopDetail",
+>>>>>>> deploy/command-cabin
 }
 /**
  * 方法重载

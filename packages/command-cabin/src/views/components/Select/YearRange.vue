@@ -20,7 +20,7 @@
                   active: localValue[0] === n,
                   disabled: localValue[1] && n > localValue[1],
                 }"
-                @click="setValue(0, n)"
+                @click="setValue(0, n, vm)"
               />
             </van-grid>
           </van-tab>
@@ -34,14 +34,14 @@
                   active: localValue[1] === n,
                   disabled: localValue[0] && n < localValue[0],
                 }"
-                @click="setValue(1, n)"
+                @click="setValue(1, n, vm)"
               />
             </van-grid>
           </van-tab>
         </van-tabs>
-        <van-button class="confirm" block color="#102B60" @click="confirm(vm)">
+        <!-- <van-button class="confirm" block color="#102B60" @click="confirm(vm)">
           确定
-        </van-button>
+        </van-button> -->
       </div>
     </template>
   </SelectWrap>
@@ -100,7 +100,7 @@ export default class YearRange extends Base {
     }
   }
 
-  setValue(index: number, value: number) {
+  setValue(index: number, value: number, vm: SelectWrap) {
     if (this.localValue[index] === value) {
       this.$set(this.localValue, index, null);
     } else {
@@ -108,6 +108,9 @@ export default class YearRange extends Base {
       if (index === 0) {
         this.tab = 1;
       }
+    }
+    if (index === 1) {
+      this.confirm(vm);
     }
   }
 }

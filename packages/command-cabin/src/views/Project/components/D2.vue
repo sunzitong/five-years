@@ -1,243 +1,197 @@
 <template>
-  <Spin :loading="loading" :empty="empty">
-    <div class="box">
-      <Icon
-        v-if="monthData.warn"
-        type="warning"
-        class="icon-warn animate__animated animate__infinite animate__flash animate__slower"
-        :size="54"
-      />
-      <div class="content">
-        <div class="chart">
-          <van-circle
-            v-model="currentRate"
-            :rate="monthData.totalScore"
-            layer-color="#14437F"
-            color="#5180E4"
-            :size="242"
-            :strokeWidth="60"
-            :speed="100"
-          >
-            <div class="rate-text">
-              <div class="desc">总分</div>
-              <div class="value">{{ currentRate }}</div>
-            </div>
-          </van-circle>
+  <!-- <Spin :height="361" :loading="loading" :empty="empty"> -->
+  <div class="page__d3__map">
+    <div class="left_circle">
+      <div class="left_pic">
+        <van-circle
+          v-model="currentRate1"
+          class="circle_setting"
+          :rate="75.3"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="160"
+          :strokeWidth="50"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ 75.3 }}%</div>
+          </div>
+        </van-circle>
+        <div class="bottom_text special_position">投诉率</div>
+      </div>
+      <div class="right_text">
+        <div>
+          <span>TOP1：</span>
+          <span>{{ "管家服务" }}</span>
         </div>
-        <div class="right">
-          <div class="tag-year">{{ monthData.dataDateDesc }}</div>
-          <ul class="list">
-            <li class="item">
-              <div class="name">信用指数</div>
-              <div class="value">
-                <StepNumber
-                  :duration="100"
-                  :precision="1"
-                  :to="monthData.creditScore"
-                />
-              </div>
-            </li>
-            <li class="item">
-              <div class="name">渠道效能值</div>
-              <div class="value">
-                <StepNumber
-                  :duration="100"
-                  :precision="1"
-                  :to="monthData.channelEffectScore"
-                />
-              </div>
-            </li>
-            <li class="item">
-              <div class="name">运营健康度</div>
-              <div class="value">
-                <StepNumber
-                  :duration="100"
-                  :precision="1"
-                  :to="monthData.healthyScore"
-                />
-              </div>
-            </li>
-          </ul>
+        <div>
+          <span>TOP2：</span>
+          <span>{{ "噪音问题" }}</span>
+        </div>
+        <div>
+          <span>TOP3：</span>
+          <span>{{ "费用问题" }}</span>
         </div>
       </div>
     </div>
-  </Spin>
+    <div class="right_flex_box">
+      <div class="cirle_wrap">
+        <van-circle
+          v-model="currentRate2"
+          class="circle_setting"
+          :rate="12"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="160"
+          :strokeWidth="50"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ 12 }}%</div>
+          </div>
+        </van-circle>
+        <div class="bottom_text">及时接单率</div>
+      </div>
+      <div class="cirle_wrap">
+        <van-circle
+          v-model="currentRate3"
+          class="circle_setting"
+          :rate="12"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="160"
+          :strokeWidth="50"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ 12 }}%</div>
+          </div>
+        </van-circle>
+        <div class="bottom_text">NPS</div>
+      </div>
+      <div class="cirle_wrap">
+        <van-circle
+          v-model="currentRate4"
+          class="circle_setting"
+          :rate="12"
+          layer-color="#14437F"
+          color="#5180E4"
+          :size="160"
+          :strokeWidth="50"
+          :speed="100"
+        >
+          <div class="rate-text">
+            <div class="value">{{ 12 }}%</div>
+          </div>
+        </van-circle>
+        <div class="bottom_text">综合满意度</div>
+      </div>
+    </div>
+  </div>
+  <!-- </Spin> -->
 </template>
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import Icon from "@/components/Icon/Index.vue";
-import dayjs from "dayjs";
-import {
-  BusinessScoreReturn,
-  fetchBusinessScore,
-} from "@/service/analysis/bigScreen/projectBoard/finance/businessScore";
-import { Base, IFetch } from "@/views/Base";
-import StepNumber from "@/components/StepNumber/Index.vue";
-import { StoreKey, useStore } from "@/store";
-
-type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
+import { Base } from "@/views/Base";
 
 @Component({
-  components: { Icon, StepNumber },
+  components: {},
 })
-export default class D2 extends Base implements IFetch {
-  /**
-   * 返回数据
-   */
-  response: null | BusinessScoreReturn = null;
-  /**
-   * v-model进度
-   */
-  currentRate = 0;
-  /**
-   * 显示当月数据
-   */
-  showCurrentMonth = true;
-
-  /**
-   * 当前展示数据
-   */
-  get monthData() {
-    const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
-    const response: MonthData = this.response?.[key] ?? {};
-    // 转换日期为月
-    const month = dayjs(response.dataDate).format("M");
-    // 如果当前月去掉试算
-    const dataDateDesc = `${month}${this.showCurrentMonth ? "月" : "月试算"}`;
-    // 综合经营指数报警
-    const warn = response.totalScore && response.totalScore < 90;
-    return {
-      ...response,
-      dataDateDesc,
-      warn,
-    };
-  }
-
-  /**
-   * 组件创建
-   * 自动触发 重复调用
-   * @returns response
-   */
-  async fetch() {
-    const response = await useStore(fetchBusinessScore, {
-      key: StoreKey.ProjectBusinessScore,
-      params: { phId: this.store.global.project.phId },
-    });
-    if (response?.status === "ok") {
-      this.response = response.data ?? {};
-      this.loading = false;
-    }
-    return response;
-  }
-
-  /**
-   * 显示月数据
-   */
-  showMonthData() {
-    // 10秒钟刷新一次数据
-    const time = 10 * 1000;
-    const next = () => {
-      this.showCurrentMonth = !this.showCurrentMonth;
-      this.currentRate = 0;
-      this.timer = setTimeout(next, time);
-    };
-    this.timer = setTimeout(next, time);
-  }
-
-  mounted() {
-    this.showMonthData();
-  }
-
-  beforeDestroy() {
-    clearTimeout(this.timer);
-  }
+export default class D2 extends Base {
+  currentRate1 = 0;
+  currentRate2 = 0;
+  currentRate3 = 0;
+  currentRate4 = 0;
 }
 </script>
 
 <style lang="scss" scoped>
-$light: #dbf0ff;
-.box {
-  height: 330px;
-  font-size: 36px;
-  color: #90a4c3;
-}
-.content {
+.page__d3__map {
   display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  .chart {
-    position: relative;
-    @extend %flex-center;
-    width: 350px;
-    height: 100%;
-    margin: 0 60px 0 50px;
-    .rate-text {
-      @extend %flex-center;
-      flex-flow: column nowrap;
-      height: 100%;
-      line-height: 1;
-      .value {
-        @extend %value-font;
-        font-weight: bold;
-        font-size: 48px;
-        color: #dbf0ff;
-        margin-top: 8px;
-      }
-      .desc {
-        font-size: 24px;
-        line-height: 24px;
-        color: #8090aa;
-      }
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 36px 50px 66px 50px;
+
+  .left_circle {
+    width: 588px;
+    margin-right: 100px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    .left_pic {
+      flex: 1;
+      width: 200px;
+      height: 240px;
+      @extend %bg-img-circle-1;
+      background-position: 0 -11px;
+      background-size: 240px 240px;
     }
-    @extend %bg-img-circle-1;
-    background-position-y: -34px;
   }
-  .right {
-    height: 100%;
+  .circle_setting {
+    position: relative;
+    top: 42px;
+    left: 40px;
   }
-  .list {
+  .value {
+    @extend %value-font;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 48px;
+    color: #dbf0ff;
+    margin-top: 53px;
+  }
+
+  .bottom_text {
+    font-size: 36px;
+    line-height: 40px;
+    color: #90a4c3;
+    margin: 73px 0 0 0;
+    text-align: center;
+  }
+  .special_position {
+    position: relative;
+    left: -33px;
+  }
+
+  .right_text {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
-    line-height: 1;
-    height: 178px;
-    .item {
-      display: flex;
-      align-items: center;
-      .name {
-        width: 232px;
-        font-size: 36px;
-      }
-      .value {
-        @extend %value-font;
-        font-weight: bold;
-        font-size: 48px;
-        color: $light;
-      }
+    justify-content: space-around;
+    margin: 40px 0 20px 0;
+    span {
+      font-size: 40px;
+      line-height: 44px;
+    }
+    span:nth-child(1) {
+      @extend %value-font;
+      color: #90a4c3;
+    }
+    span:nth-child(2) {
+      color: #dbf0ff;
     }
   }
-}
-.tag-year {
-  @extend %flex-center;
-  width: 144px;
-  height: 50px;
-  background: #182966;
-  border-radius: 4px;
-  font-size: 36px;
-  color: #90a4c3;
-  margin: 37px 0 28px 0;
-}
-.icon-warn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-}
-.fade-enter-active {
-  animation: fadeIn 1s;
-}
-.fade-leave-active {
-  animation: fadeOut 1s;
+
+  .right_flex_box {
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .cirle_wrap {
+      width: 240px;
+      height: 240px;
+      @extend %bg-img-circle-1;
+      background-position: 0 -11px;
+      background-size: 240px 240px;
+      margin: 0 50px;
+    }
+  }
+
+  .cirle_wrap {
+    @extend %bg-img-circle-1;
+  }
 }
 </style>
