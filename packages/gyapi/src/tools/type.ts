@@ -177,7 +177,7 @@ export const getReturnType = async (api: Api) => {
   if (
     api.res_body_type === "json" &&
     !api.res_body_is_json_schema &&
-    api.res_body.trim()
+    api.res_body?.trim()
   ) {
     const data = json5.parse(api.res_body)?.data;
     const dataType = typeof data;

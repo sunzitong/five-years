@@ -18,7 +18,7 @@
         <div class="label">底商面积</div>
         <div class="value">
           {{ formatValue(sepNumber(response.businessArea)) }}
-          <span class="unit">万m²</span>
+          <span class="unit">m²</span>
         </div>
       </li>
       <li class="item">

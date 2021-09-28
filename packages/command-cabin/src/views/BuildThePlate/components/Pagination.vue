@@ -36,7 +36,7 @@ import Paginate from "vuejs-paginate";
 @Component({
   components: { Paginate },
 })
-export default class Page extends Vue {
+export default class Pagination extends Vue {
   @Prop({ default: 0 }) total!: number;
 
   @Prop({ default: 1 }) value!: number;

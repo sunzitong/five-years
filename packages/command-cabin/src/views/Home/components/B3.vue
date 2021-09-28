@@ -31,13 +31,11 @@
               <div class="line_box">
                 <div
                   class="content"
-                  :style="{ width: (el.useRate || 0) + '%' }"
+                  :style="{ width: (el.diff || 0) + '%' }"
                 ></div>
               </div>
               <div class="item_value">
-                <div class="item_value_item">
-                  {{ formatValue(el.useRate) }}%
-                </div>
+                <div class="item_value_item">{{ formatValue(el.diff) }}%</div>
               </div>
             </div>
           </template>
@@ -72,8 +70,6 @@ export default class B3 extends Base implements IFetch {
   @Ref() wrapper!: HTMLDivElement;
   projecttNum: number | string = formatValue(); // 成本风险预警项目
   differRatio: number | string = formatValue(); // 总体成本差异率
-  labels: string[] = []; // name标签
-  values: number[] = []; // 数值标签
 
   async fetch() {
     const response = await useStore(fetchCostAnalysis, {
@@ -87,12 +83,6 @@ export default class B3 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.projecttNum = formatValue(this.resData.riskItemNum);
       this.differRatio = formatValue(this.resData.allItemDiff);
-
-      this.resData.costAnalysisModelList?.forEach((el) => {
-        this.labels.push(el.projectName);
-        this.values.push(el.useRate);
-      });
-      // this.paintChart();
     } else {
       this.empty = true;
     }

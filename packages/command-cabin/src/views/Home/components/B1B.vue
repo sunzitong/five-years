@@ -149,7 +149,7 @@ export default class B1B extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = response.data;
-      this.$parent.empty = false;
+      this.empty = false;
 
       this.targetNum = formatValue(this.resData.openTargetNum);
 
@@ -189,7 +189,7 @@ export default class B1B extends Base implements IFetch {
       this.values1 = this.getArrayValue(this.pieData1, "value"); // value数组
       this.values2 = this.getArrayValue(this.pieData2, "value"); // value数组
     } else {
-      this.$parent.empty = true;
+      this.empty = true;
     }
     return response;
   }

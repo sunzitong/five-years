@@ -26,6 +26,7 @@ exports.method = "{{=it.api.method}}";
   if (
     it.api.res_body_type === "json" &&
     !it.api.res_body_is_json_schema &&
+    it.api.res_body &&
     it.api.res_body.trim()
   ) {
 }}

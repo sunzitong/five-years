@@ -33,6 +33,7 @@ import mitter, { EventName } from "./utils/mitter";
 import { StoreKey, useStore } from "./store";
 import { fetchOrgTree } from "./service/analysis/commandCabin/orgTree";
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
+import _ from "lodash";
 
 @Component({
   name: "app",
@@ -105,8 +106,15 @@ export default class App extends Mixins(MixStore) {
   }
 
   created() {
+    // TODO
+    // this.$router.onReady(() => {
+    //   if (this.$route.meta.title !== "index") {
+    //     this.$router.push("/");
+    //   }
+    // });
+    this.resizeHandleDebounce = _.debounce(this.resizeHandle, 1000);
     // 7680 x 3240
-    window.addEventListener("resize", this.resizeHandle);
+    window.addEventListener("resize", this.resizeHandleDebounce);
     // 点击网页触发
     window.addEventListener("click", this.documentClick);
     if (!this.$root.env.DEBUG) {
@@ -118,7 +126,7 @@ export default class App extends Mixins(MixStore) {
     this.resizeHandle();
   }
   destroyed() {
-    window.removeEventListener("resize", this.resizeHandle);
+    window.removeEventListener("resize", this.resizeHandleDebounce);
     window.removeEventListener("click", this.documentClick);
     if (!this.$root.env.DEBUG) {
       document.removeEventListener("contextmenu", this.contentMenuHandle);
