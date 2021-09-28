@@ -53,7 +53,7 @@ export interface CenterRegionDetail {
 /**
  * 查询主屏(中心位置)地区(城市)维度详细信息
  * @createBy zhangyao03
- * @updateAt 2021/9/28 下午2:13:42
+ * @updateAt 2021-9-28 2:13:42 ├F10: PM┤
  * @method GET
  */
 export const fetchRegionDetailsInfo = (params: RegionDetailsInfoParams) => {

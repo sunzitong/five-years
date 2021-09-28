@@ -98,6 +98,10 @@ export enum StoreKey {
    * 成本分析详情列表
    */
   CostAnalysisList = "CostAnalysisList",
+  /**
+   * 首屏-现场监控
+   */
+  HomeMonitorList = "HomeMonitorList",
 }
 /**
  * 方法重载

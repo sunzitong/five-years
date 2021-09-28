@@ -35,7 +35,7 @@ export interface Group {
 /**
  * 门店基本信息-团队信息
  * @createBy huyanan
- * @updateAt 2021/9/10 下午3:26:25
+ * @updateAt 2021-9-10 3:26:25 ├F10: PM┤
  * @method GET
  */
 export const fetchGroupInfo = (params: GroupInfoParams) => {

@@ -58,14 +58,14 @@ export interface List {
   id: number;
   year: string;
   city: string;
-  target_number: number;
-  annual_opening_target: number;
+  targetNumber: number;
+  annualOpeningTarget: number;
 }
 
 /**
  * 拓展盘面详情-年度目标表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午2:40:59
+ * @updateAt 2021-9-28 6:25:40 ├F10: PM┤
  * @method GET
  */
 export const fetchYearTargetDetail = (params?: YearTargetDetailParams) => {

@@ -4,7 +4,7 @@
  *
  * 指挥中心-现场监控详情
  * @createBy wuyao
- * @updateAt 2021/9/27 下午6:36:15
+ * @updateAt 2021-9-27 6:36:15 ├F10: PM┤
  * @method GET
  */
 

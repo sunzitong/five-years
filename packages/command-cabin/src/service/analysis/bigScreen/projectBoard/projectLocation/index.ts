@@ -7,7 +7,7 @@ import http from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 项目区位-参数
+ * 门店屏-项目区位-参数
  */
 export interface ProjectLocationParams {
   /**
@@ -17,16 +17,16 @@ export interface ProjectLocationParams {
 }
 
 /**
- * 项目区位-返回值
+ * 门店屏-项目区位-返回值
  */
 export interface ProjectLocationReturn {
   projectLocation: string;
 }
 
 /**
- * 项目区位
+ * 门店屏-项目区位
  * @createBy baishiqiang
- * @updateAt 2021/9/28 上午11:52:37
+ * @updateAt 2021-9-28 3:53:28 ├F10: PM┤
  * @method GET
  */
 export const fetchProjectLocation = (params: ProjectLocationParams) => {
