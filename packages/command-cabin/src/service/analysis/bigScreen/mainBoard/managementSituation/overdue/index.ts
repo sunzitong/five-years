@@ -13,7 +13,7 @@ export interface OverdueParams {
   /**
    * OMS-公用枚举-dataLevels 组织级别
    */
-  dataLevel?: string;
+  dataLevel?: unknown;
 
   /**
    * 国家组织ID/大区组织ID/城市组织ID
@@ -23,7 +23,7 @@ export interface OverdueParams {
   /**
    * phId
    */
-  phId?: string;
+  phId?: unknown;
 }
 
 /**

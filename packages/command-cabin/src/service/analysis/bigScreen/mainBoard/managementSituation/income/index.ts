@@ -13,7 +13,7 @@ export interface IncomeParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: string;
+  dataLevel: unknown;
 
   /**
    * 组织id
@@ -23,7 +23,7 @@ export interface IncomeParams {
   /**
    * 时间范围：见公用枚举
    */
-  dateScope: string;
+  dateScope: unknown;
 }
 
 /**

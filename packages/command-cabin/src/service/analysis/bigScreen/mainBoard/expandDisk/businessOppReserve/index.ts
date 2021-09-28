@@ -13,7 +13,7 @@ export interface BusinessOppReserveParams {
   /**
    * 组织类型
    */
-  orgType: string;
+  orgType: unknown;
 
   /**
    * 组织ID

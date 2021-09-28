@@ -13,7 +13,7 @@ export interface RepairStatParams {
   /**
    * OMS-公用枚举-dataLevels 组织级别
    */
-  orgType: string;
+  orgType: unknown;
 
   /**
    * 国家组织ID/大区组织ID/城市组织ID

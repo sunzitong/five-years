@@ -13,7 +13,7 @@ export interface ListParams {
   /**
    * AREA:大区；CITY:城市；不传则默认全部
    */
-  orgType?: string;
+  orgType?: unknown;
 
   /**
    * 大区组织ID/城市组织ID；
@@ -33,12 +33,12 @@ export interface ListParams {
   /**
    * 项目阶段  Open("已开业"), NotOpen("未开业")，默认全部
    */
-  stage?: string;
+  stage?: unknown;
 
   /**
    * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")，默认全部
    */
-  riskType?: string;
+  riskType?: unknown;
 
   /**
    * 第几页，默认第1页

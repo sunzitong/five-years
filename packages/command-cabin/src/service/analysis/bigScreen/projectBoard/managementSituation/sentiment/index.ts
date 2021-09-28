@@ -18,7 +18,7 @@ export interface SentimentParams {
   /**
    * 时间范围：见公用枚举
    */
-  dateScope: string;
+  dateScope: unknown;
 }
 
 /**

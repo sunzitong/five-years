@@ -25,7 +25,8 @@ export const inferQueryType = (value: unknown) => {
   if (value === "true" || value === "false") return "boolean";
   const n = _.toNumber(value);
   if (_.isNumber(n) && !_.isNaN(n)) return "number";
-  return value ? "string" : "unknown";
+  // return value ? "string" : "unknown";
+  return "unknown";
 };
 
 /**

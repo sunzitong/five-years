@@ -13,7 +13,7 @@ export interface CostAnalysisParams {
   /**
    * 项目分期id
    */
-  phId: string;
+  phId: unknown;
 }
 
 /**
