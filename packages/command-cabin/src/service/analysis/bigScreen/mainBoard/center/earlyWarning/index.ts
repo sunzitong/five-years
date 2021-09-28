@@ -13,7 +13,7 @@ export interface EarlyWarningParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: string;
+  dataLevel: unknown;
 
   /**
    * 组织id
@@ -23,12 +23,12 @@ export interface EarlyWarningParams {
   /**
    * 时间范围：见公用枚举
    */
-  dateScope: string;
+  dateScope: unknown;
 
   /**
    * 预警阶段：见公用枚举
    */
-  stage: string;
+  stage: unknown;
 
   /**
    * 风险程度：1=一个红灯。。。

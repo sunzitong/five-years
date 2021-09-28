@@ -13,7 +13,7 @@ export interface CostAnalysisListParams {
   /**
    * 地区类型
    */
-  regionType: string;
+  regionType: unknown;
 
   /**
    * 地区id
@@ -23,12 +23,12 @@ export interface CostAnalysisListParams {
   /**
    * 开始目标成本上线时间
    */
-  approvedDateFrom: string;
+  approvedDateFrom: unknown;
 
   /**
    * 结束目标成本上线时间
    */
-  approvedDateTo: string;
+  approvedDateTo: unknown;
 
   /**
    * 目标成本差异是否有风险

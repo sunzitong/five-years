@@ -81,7 +81,7 @@ export default class TheConstructList extends Base implements IFetch {
   stage = {
     Default: "全部",
     Open: "已开业",
-    NotOpen: "已开业",
+    NotOpen: "未开业",
   };
   stageValue = "Default";
 

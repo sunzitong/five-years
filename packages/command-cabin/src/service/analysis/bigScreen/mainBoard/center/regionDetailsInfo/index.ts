@@ -13,7 +13,7 @@ export interface RegionDetailsInfoParams {
   /**
    * 地区类型
    */
-  regionType: string;
+  regionType: unknown;
 
   /**
    * 地区id
@@ -23,7 +23,7 @@ export interface RegionDetailsInfoParams {
   /**
    * 数据范围（年累，月累）
    */
-  dateScope: string;
+  dateScope: unknown;
 }
 
 /**

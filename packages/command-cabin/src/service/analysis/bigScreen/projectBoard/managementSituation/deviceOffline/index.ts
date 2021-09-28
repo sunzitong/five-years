@@ -18,7 +18,7 @@ export interface DeviceOfflineParams {
   /**
    * 最新统计日，默认是当前时间，yyyy-mm-dd
    */
-  dataTime?: string;
+  dataTime?: unknown;
 }
 
 /**

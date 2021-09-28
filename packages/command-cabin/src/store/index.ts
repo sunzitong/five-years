@@ -98,6 +98,10 @@ export enum StoreKey {
    * 成本分析详情列表
    */
   CostAnalysisList = "CostAnalysisList",
+  /**
+   * 拓展盘面详情-拓宽台账宽表
+   */
+  ExpansionAwardInfo = "ExpansionAwardInfo",
 }
 /**
  * 方法重载

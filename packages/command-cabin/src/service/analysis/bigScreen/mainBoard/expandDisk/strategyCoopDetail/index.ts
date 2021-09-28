@@ -13,7 +13,7 @@ export interface StrategyCoopDetailParams {
   /**
    * 组织类型，默认全部
    */
-  orgType?: string;
+  orgType?: unknown;
 
   /**
    * 组织ID
@@ -23,12 +23,12 @@ export interface StrategyCoopDetailParams {
   /**
    * 类型，1-国企平台，2-总对总，3-资金方
    */
-  type?: string;
+  type?: unknown;
 
   /**
    * 企业状态，1-已合作，2-洽谈中，3-暂缓，4-流失'，默认全部
    */
-  enterpriseState?: string;
+  enterpriseState?: unknown;
 
   /**
    * 第几页，默认1

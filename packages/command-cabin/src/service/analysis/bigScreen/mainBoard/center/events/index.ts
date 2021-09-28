@@ -13,7 +13,7 @@ export interface EventsParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: string;
+  dataLevel: unknown;
 
   /**
    * 组织id

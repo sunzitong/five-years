@@ -13,7 +13,7 @@ export interface ExpandWideDetailParams {
   /**
    * 大区/城市组织ID，默认全部
    */
-  orgType?: string;
+  orgType?: unknown;
 
   /**
    * 组织ID，默认全部
@@ -33,12 +33,12 @@ export interface ExpandWideDetailParams {
   /**
    * 等级，默认全部（A、B、C、D、E、F）
    */
-  gradeList?: string;
+  gradeList?: unknown;
 
   /**
    * 过会超期预警，是-Y/否-N，默认全部
    */
-  overdueWarning?: string;
+  overdueWarning?: unknown;
 
   /**
    * 第几页，默认1
@@ -96,7 +96,7 @@ export interface List {
 /**
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午2:44:00
+ * @updateAt 2021/9/28 下午5:44:48
  * @method GET
  */
 export const fetchExpandWideDetail = (params?: ExpandWideDetailParams) => {

@@ -18,7 +18,7 @@ export interface EarlyWarningParams {
   /**
    * 预警阶段：见公用枚举
    */
-  stage: string;
+  stage: unknown;
 
   /**
    * 风险程度：1=一个红灯。。。

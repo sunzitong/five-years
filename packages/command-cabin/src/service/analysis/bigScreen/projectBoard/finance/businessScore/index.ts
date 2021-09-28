@@ -13,7 +13,7 @@ export interface BusinessScoreParams {
   /**
    * 门店分期ID
    */
-  phId: string;
+  phId: unknown;
 }
 
 /**

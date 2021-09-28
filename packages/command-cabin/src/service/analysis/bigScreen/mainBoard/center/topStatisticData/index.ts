@@ -13,7 +13,7 @@ export interface TopStatisticDataParams {
   /**
    * 地区类型
    */
-  regionType: string;
+  regionType: unknown;
 
   /**
    * 地区id
@@ -23,7 +23,7 @@ export interface TopStatisticDataParams {
   /**
    * 数据范围
    */
-  dateScope: string;
+  dateScope: unknown;
 }
 
 /**

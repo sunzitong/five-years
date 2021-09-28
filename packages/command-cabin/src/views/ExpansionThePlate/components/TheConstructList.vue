@@ -25,22 +25,26 @@
       <Select
         @input="fetch"
         name="YearRange"
-        title="开业年份"
+        title="首次投委会时间"
         v-model="yearRange"
       ></Select>
       <Select
         @input="fetch"
         name="Options"
-        :options="stage"
-        v-model="stageValue"
-        title="项目阶段"
+        :options="grade"
+        v-model="gradeValue"
+        title="等级"
+        multiple
+        placeholder="全部"
       ></Select>
       <Select
         @input="fetch"
         name="Options"
-        :options="riskType"
-        v-model="riskTypeValue"
-        title="风险类型"
+        :options="overdue"
+        v-model="overdueValue"
+        title="过会超期预警"
+        multiple
+        placeholder="全部"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination :total="response.pages" @change="change" :value="pageNum" />
@@ -51,16 +55,17 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
-import {
-  fetchList,
-  List,
-  ListReturn,
-} from "@/service/analysis/bigScreen/mainBoard/construct/list";
 import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
+
+import {
+  ExpandWideDetailReturn,
+  fetchExpandWideDetail,
+  List,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/expandWideDetail";
 
 /**营造台账宽表 */
 @Component({
@@ -74,6 +79,25 @@ export default class TheConstructList extends Base implements IFetch {
     this.yearRange = [year, year];
     window.dayjs = dayjs;
   }
+
+  grade = {
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    F: "F",
+  };
+  gradeValue: string[] = [];
+
+  overdue = {
+    Y: "是",
+    N: "否",
+  };
+  overdueValue: string[] = [];
+
+  // multiple
+  // required
 
   /**
    * 项目阶段  Open("已开业"), NotOpen("未开业")，默认全部
@@ -97,62 +121,49 @@ export default class TheConstructList extends Base implements IFetch {
   riskTypeValue = "Default";
 
   options: { name: keyof List; text: string }[] = [
-    // { name: "projectNo", text: "分期ID" },
-    { name: "name", text: "项目名称" },
-    { name: "cityDepartmentName", text: "城市" },
-    { name: "year", text: "开业年份" },
-    { name: "stage", text: "项目阶段" },
-    { name: "transactionModel", text: "资产类型" },
-    { name: "roomNum", text: "房间间数" },
-    { name: "planEnterDate", text: "计划进场时间" },
-    { name: "actualEnterDate", text: "实际进场时间" },
-    // { name: "structureFinishDate", text: "结构封顶时间\n（重）" },
-    // { name: "mainFinishDate", text: "主体竣备时间\n（重）" },
-    // {
-    //   name: "transferImprovementDate",
-    //   text: "室内清水作业面\n移交精装完成时间（重）",
-    // },
-    // { name: "improvementStartDate", text: "精装进场时间\n（中、轻）" },
-    { name: "isIpd", text: "是否IPD" },
-    { name: "transferServiceDate", text: "移交运营时间" },
-    { name: "workDays", text: "工期天数" },
-    { name: "planOpenDate", text: "计划开业时间" },
-    { name: "actualOpenDate", text: "实际开业时间" },
-    { name: "startCheckScore", text: "开业检分数" },
-    { name: "midCheckScore", text: "中期停止点\n检查得分" },
-    { name: "qualityScore", text: "移交质量评估\n合格率" },
-    { name: "riskTypeDesc", text: "风险类别" },
-    { name: "riskReportDate", text: "风险提报时间" },
-    { name: "chokePoint", text: "项目卡点" },
-    { name: "fireControlType", text: "消防证照合规性" },
+    { name: "projectCode", text: "项目编码" },
+    { name: "create_time", text: "立项时间" },
+    { name: "grade", text: "等级" },
+    { name: "gradeDesc", text: "等级对应的名称" },
+    { name: "existingStatus", text: "现有状态" },
+    { name: "cityCode", text: "城市编码" },
+    { name: "city", text: "城市" },
+    { name: "project_name", text: "项目名称" },
+    { name: "asset_type", text: "资产类型" },
+    { name: "cooperationMode", text: "合作模式" },
+    { name: "expander_login_name", text: "拓展人" },
+    { name: "number_of_rooms", text: "房间数" },
+    { name: "first_investment_time", text: "首次投委会时间" },
+    { name: "signing_time", text: "签约时间" },
+    { name: "oa_regional_development_director", text: "地区拓展负责人" },
+    { name: "this_week_latest_progress", text: "本周最新进展" },
+    { name: "project_reason_action", text: "项目卡点原因及\n突破动作" },
+    { name: "suspend_drain", text: "暂缓/流失原因" },
+    { name: "overdue_warning", text: "过会超期预警" },
+    { name: "overdue_days", text: "超期天数" },
   ];
 
   pageNum = 1;
 
   pageSize = 20;
 
-  response: Partial<ListReturn> = {};
+  response: Partial<ExpandWideDetailReturn> = {};
 
   /**
    * 自动触发 重复调用
    */
   async fetch() {
-    const response = await useStore(fetchList, {
-      key: StoreKey.ConstructList,
+    const response = await useStore(fetchExpandWideDetail, {
+      key: StoreKey.ExpansionAwardInfo,
       params: {
         // 大区城市
         orgType: this.store.global.dataLevel,
         // 组织ID
         orgId: this.store.global.orgTree.orgId,
-        // 开业开始时间
-        openYearStart: this.yearRange[0],
-        // 开业结束时间
-        openYearEnd: this.yearRange[1],
-        // 项目阶段
-        stage: this.stageValue === "Default" ? undefined : this.stageValue,
-        // 延期类型
-        riskType:
-          this.riskTypeValue === "Default" ? undefined : this.riskTypeValue,
+        firstInvestStartTime: this.yearRange[0],
+        firstInvestEndTime: this.yearRange[1],
+        gradeList: this.gradeValue,
+        overdueWarning: this.overdueValue,
         // 页容量
         pageSize: this.pageSize,
         // 页码
@@ -234,3 +245,9 @@ export default class TheConstructList extends Base implements IFetch {
   margin-right: 86px;
 }
 </style>
+
+function fetchExpandWideDetail(fetchExpandWideDetail: any, arg1: { key:
+StoreKey.ExpansionAwardInfo; params: { // 大区城市 orgType:
+import("../../../service/analysis/commandCabin/publicEnum").DataLevels; //
+组织ID orgId: number; // 页容量 pageSize: number; // 页码 pageNum: number; }; })
+{ throw new Error("Function not implemented."); }

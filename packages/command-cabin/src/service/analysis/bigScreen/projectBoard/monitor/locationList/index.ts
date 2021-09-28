@@ -28,7 +28,7 @@ export interface LocationListItemReturn {
 /**
  * 门店屏-现场监控
  * @createBy baishiqiang
- * @updateAt 2021/9/28 下午3:40:05
+ * @updateAt 2021/9/28 下午4:40:15
  * @method GET
  */
 export const fetchLocationList = (params: LocationListParams) => {

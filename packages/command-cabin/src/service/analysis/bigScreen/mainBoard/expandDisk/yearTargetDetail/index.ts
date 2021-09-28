@@ -13,7 +13,7 @@ export interface YearTargetDetailParams {
   /**
    * 组织类型，默认全部
    */
-  orgType?: string;
+  orgType?: unknown;
 
   /**
    * 组织ID，默认全部

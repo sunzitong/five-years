@@ -10,15 +10,7 @@
           {{ projecttNum }}
           <span>个</span>
         </van-col>
-        <van-col
-          class="span_style2"
-          :class="{
-            danger: differRatio < 0,
-          }"
-          :span="12"
-        >
-          {{ differRatio }}%
-        </van-col>
+        <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
       </van-row>
       <div class="process_container">
         <Animationend :scrollMinCount="3" :height="322" :dataSource="newList">

@@ -13,7 +13,7 @@ export interface BasicInformationParams {
   /**
    * 40306
    */
-  orgId: string;
+  orgId: unknown;
 }
 
 /**

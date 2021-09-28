@@ -13,7 +13,7 @@ export interface FinanceLineParams {
   /**
    * 门店分期ID
    */
-  phId: string;
+  phId: unknown;
 }
 
 /**

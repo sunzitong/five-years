@@ -13,7 +13,7 @@ export interface ExpansionAwardInfoParams {
   /**
    * 地区类型
    */
-  regionType: string;
+  regionType: unknown;
 
   /**
    * 地区id
