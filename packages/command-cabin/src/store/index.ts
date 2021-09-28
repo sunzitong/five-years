@@ -47,6 +47,10 @@ export enum StoreKey {
    */
   ProjectOverdue = "ProjectOverdue",
   /**
+   * 财务相关指标-财务指标达成与预估
+   */
+   ProjectFinanceLine = "ProjectFinanceLine",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
