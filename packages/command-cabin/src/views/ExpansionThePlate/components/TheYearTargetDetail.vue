@@ -84,7 +84,8 @@ export default class TheYearTargetDetail extends Base implements IFetch {
         orgType: this.store.global.dataLevel,
         // 组织ID
         orgId: this.store.global.orgTree.orgId,
-        year: 2021,
+        startYear: this.yearRange[0],
+        endYear: this.yearRange[1],
         // 页容量
         pageSize: this.pageSize,
         // 页码

@@ -53,7 +53,6 @@ import { StoreKey, useStore } from "@/store";
 import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
-import dayjs from "dayjs";
 import {
   fetchStrategyCoopDetail,
   StrategyCoopDetailReturn,
