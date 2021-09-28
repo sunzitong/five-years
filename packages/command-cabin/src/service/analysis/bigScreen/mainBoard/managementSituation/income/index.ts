@@ -55,7 +55,7 @@ export interface IncomeReturn {
 /**
  * 指挥中心-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021-9-27 5:27:44 ├F10: PM┤
+ * @updateAt 2021/9/27 下午5:27:44
  * @method GET
  */
 export const fetchIncome = (params: IncomeParams) => {

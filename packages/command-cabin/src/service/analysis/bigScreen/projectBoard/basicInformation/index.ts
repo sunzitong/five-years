@@ -38,7 +38,7 @@ export interface BasicInformationReturn {
 /**
  * 门店里程碑（不包含成本决算信息）
  * @createBy baishiqiang
- * @updateAt 2021-9-28 11:54:49 ├F10: AM┤
+ * @updateAt 2021/9/28 上午11:54:49
  * @method GET
  */
 export const fetchBasicInformation = (params: BasicInformationParams) => {

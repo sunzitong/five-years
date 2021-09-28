@@ -21,9 +21,14 @@ export interface YearTargetDetailParams {
   orgId?: number;
 
   /**
-   * 年份，默认当年
+   * 开始年份，默认当年
    */
-  year?: number;
+  startYear?: number;
+
+  /**
+   * 结束年份，默认当年
+   */
+  endYear?: number;
 
   /**
    * 第几页，默认1
@@ -65,7 +70,7 @@ export interface List {
 /**
  * 拓展盘面详情-年度目标表
  * @createBy baishiqiang
- * @updateAt 2021-9-28 6:25:40 ├F10: PM┤
+ * @updateAt 2021/9/28 下午7:17:12
  * @method GET
  */
 export const fetchYearTargetDetail = (params?: YearTargetDetailParams) => {
