@@ -93,7 +93,6 @@ export default class B3 extends Base implements IFetch {
   getFormatString(strVal: string, len: number) {
     const strLen = strVal.length;
     if (strLen > len) {
-      console.log(111111, strVal.length, len);
       return `...${strVal.substring(strVal.length - len + 1)}`;
     } else {
       return strVal;
