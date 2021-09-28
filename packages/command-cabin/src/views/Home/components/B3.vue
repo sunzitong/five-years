@@ -56,7 +56,7 @@ import {
   fetchCostAnalysis,
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysis";
 import { formatValue } from "@/utils/tools";
-import { AnyObject, iwant } from "@guanyu/shared";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
