@@ -106,12 +106,6 @@ export default class App extends Mixins(MixStore) {
   }
 
   created() {
-    // TODO
-    // this.$router.onReady(() => {
-    //   if (this.$route.meta.title !== "index") {
-    //     this.$router.push("/");
-    //   }
-    // });
     this.resizeHandleDebounce = _.debounce(this.resizeHandle, 1000);
     // 7680 x 3240
     window.addEventListener("resize", this.resizeHandleDebounce);

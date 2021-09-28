@@ -33,7 +33,7 @@ export default class TheNavMenu extends Base {
       value: "/home",
       level: 0,
     },
-    { name: "拓展盘面详情", value: "", level: 1 },
+    { name: "拓展盘面详情", value: "/expansion-the-plate", level: 1 },
     { name: "营造盘面详情", value: "/build-the-plate", level: 1 },
     { name: "经营现状详情", value: "", level: 1 },
     {

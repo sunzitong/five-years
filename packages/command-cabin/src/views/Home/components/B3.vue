@@ -194,7 +194,8 @@ export default class B3 extends Base implements IFetch {
     background: #172c47;
 
     .content {
-      width: 0;
+      min-width: 0;
+      max-width: 100%;
       height: 100%;
       background: linear-gradient(
         -90deg,

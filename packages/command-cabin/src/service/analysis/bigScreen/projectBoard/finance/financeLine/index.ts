@@ -1,15 +1,15 @@
 /**
  * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
- * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114772
+ * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114808
  */
 
 import http from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 财务相关指标-财务指标达成与预估-图表数据-参数
+ * 财务相关指标-财务指标达成与预估-参数
  */
-export interface BusinessScore1632737107359Params {
+export interface FinanceLineParams {
   /**
    * 门店分期ID
    */
@@ -17,9 +17,15 @@ export interface BusinessScore1632737107359Params {
 }
 
 /**
- * 财务相关指标-财务指标达成与预估-图表数据-返回值
+ * 财务相关指标-财务指标达成与预估-返回值
  */
-export interface BusinessScore1632737107359Return {
+export interface FinanceLineReturn {
+  month: number;
+  transactionModel: string;
+  infoMap: InfoMap;
+}
+
+export interface InfoMap {
   month1: Month[];
   month2: Month[];
   month3: Month[];
@@ -53,16 +59,14 @@ export interface Year {
 }
 
 /**
- * 财务相关指标-财务指标达成与预估-图表数据
+ * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/9/27 下午6:24:24
+ * @updateAt 2021/9/28 上午11:08:06
  * @method GET
  */
-export const fetchBusinessScore1632737107359 = (
-  params: BusinessScore1632737107359Params
-) => {
-  return http.get<BusinessScore1632737107359Return>(
-    `${BASE_URL}/analysis/bigScreen/projectBoard/finance/businessScore_1632737107359`,
+export const fetchFinanceLine = (params: FinanceLineParams) => {
+  return http.get<FinanceLineReturn>(
+    `${BASE_URL}/analysis/bigScreen/projectBoard/finance/financeLine`,
     {
       ...params,
     }
