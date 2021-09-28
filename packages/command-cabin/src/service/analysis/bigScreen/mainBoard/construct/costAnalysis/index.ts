@@ -44,7 +44,7 @@ export interface CostAnalysisModelList {
 /**
  * 成本分析模块
  * @createBy zhangyao03
- * @updateAt 2021/9/27 下午6:08:27
+ * @updateAt 2021/9/28 下午1:49:40
  * @method GET
  */
 export const fetchCostAnalysis = (params: CostAnalysisParams) => {

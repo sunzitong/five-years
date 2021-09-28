@@ -7,7 +7,7 @@ import http from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 门店里程碑-参数
+ * 门店里程碑（不包含成本决算信息）-参数
  */
 export interface BasicInformationParams {
   /**
@@ -17,7 +17,7 @@ export interface BasicInformationParams {
 }
 
 /**
- * 门店里程碑-返回值
+ * 门店里程碑（不包含成本决算信息）-返回值
  */
 export interface BasicInformationReturn {
   firstInvestmentTime: string;
@@ -36,9 +36,9 @@ export interface BasicInformationReturn {
 }
 
 /**
- * 门店里程碑
+ * 门店里程碑（不包含成本决算信息）
  * @createBy baishiqiang
- * @updateAt 2021/9/27 下午6:48:18
+ * @updateAt 2021/9/28 上午11:54:49
  * @method GET
  */
 export const fetchBasicInformation = (params: BasicInformationParams) => {

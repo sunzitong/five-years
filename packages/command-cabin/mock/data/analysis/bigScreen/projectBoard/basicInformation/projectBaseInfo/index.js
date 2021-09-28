@@ -4,7 +4,7 @@
  *
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/18 上午11:39:14
+ * @updateAt 2021/9/28 上午11:53:09
  * @method GET
  */
 
@@ -25,17 +25,15 @@ exports.response = {
     workstationNum: 111, //工位数
     parkingSpaceNum: 111, //车位个数
     valueAddedPoint: 111, //增值点位
-    acquireTime: 111, //获取时间（重资产用）
-    term: 111, //年限
-    projectBeginTime: 111, //门店开始时间（中，轻资产用）
-    projectEndTime: 111, //门店结束时间（中，轻资产用）
-    transactionOpponent: "重庆三快在线有限公司", //交易对手
-    acquireManner: "直委", //获取方式（招投标、直委，联交所，其他）
-    cooperationModel: "委托管理(轻)", //合作模式（委托管理(轻)，毛坯交付(中)）
-    rentalArea: 123.22, //租赁面积
-    landProperty: "直委", //土地性质
-    buildingProperty: "直委", //楼体性质
-    licensePropertyRight: "直委", //证照产权
+    acquireTime: "2021-01-01", //获取时间（重资产用）
     investmentLink: "", //投资任务书链接 https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN1101000020180402242470&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D
+    customerProperty: "重庆三快", //客户性质
+    cooperationMode: "委托管理", //合作模式
+    rentalArea: 123.2, //租赁面积(m2)
+    useLandNature: "", //用地性质
+    propertyRightNature: "", //产权性质,
+    years: 10, //年限
+    projectStartTime: "2021-01-01", //开始时间
+    projectEndTime: "2031-01-01", //结束时间
   },
 };

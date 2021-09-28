@@ -28,19 +28,22 @@ export interface ProjectBaseInfoReturn {
   workstationNum: number;
   parkingSpaceNum: number;
   valueAddedPoint: number;
-  acquireTime: number;
+  acquireTime: Date;
   investmentLink: string;
   customerProperty: string;
   cooperationMode: string;
   rentalArea: number;
   useLandNature: string;
   propertyRightNature: string;
+  years: number;
+  projectStartTime: Date;
+  projectEndTime: Date;
 }
 
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/27 下午6:27:13
+ * @updateAt 2021/9/28 上午11:53:09
  * @method GET
  */
 export const fetchProjectBaseInfo = (params: ProjectBaseInfoParams) => {
