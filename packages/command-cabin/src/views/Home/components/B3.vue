@@ -219,7 +219,7 @@ export default class B3 extends Base implements IFetch {
       font-size: 50px;
       line-height: 66px;
       text-align: right;
-      width: 135px;
+      min-width: 140px;
     }
   }
 }
