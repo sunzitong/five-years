@@ -40,7 +40,7 @@ export interface MonitorListItemReturn {
 /**
  * 指挥中心-现场监控列表
  * @createBy wuyao
- * @updateAt 2021/9/28 下午6:25:42
+ * @updateAt 2021-9-28 6:35:49 ├F10: PM┤
  * @method GET
  */
 export const fetchMonitorList = (params: MonitorListParams) => {

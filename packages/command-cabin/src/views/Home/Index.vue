@@ -96,7 +96,9 @@
           style="width: 2113px; height: 680px; margin: 0 0 44px"
           title="现场风险监控"
         >
-          <CardA style="height: 530px"></CardA>
+          <CardA style="height: 530px">
+            <C3 />
+          </CardA>
         </SubWrapperA>
         <div class="global-button global-button--2">
           <ButtonGroupA revert>
@@ -256,6 +258,7 @@ import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
+import C3 from "./components/C3.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -283,6 +286,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     B5,
     C1,
     C2,
+    C3,
     D1,
     D2,
     D3,

@@ -19,6 +19,7 @@ import {
   Tabs,
   Grid,
   GridItem,
+  Image,
   Button,
 } from "vant";
 import Vue from "vue";
@@ -46,3 +47,4 @@ Vue.use(Tabs);
 Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Button);
+Vue.use(Image);

@@ -25,7 +25,7 @@ export interface CrisisLabel {
 /**
  * OMS-公用枚举
  * @createBy wuyao
- * @updateAt 2021/9/22 下午2:34:27
+ * @updateAt 2021-9-22 2:34:27 ├F10: PM┤
  * @method GET
  */
 export const fetchPublicEnum = (params?: Record<string, unknown>) => {
