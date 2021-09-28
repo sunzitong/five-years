@@ -21,7 +21,10 @@
           <template v-slot="{ list }">
             <div class="process_item" animated v-for="el in list" :key="el.id">
               <div class="item_name">
-                <div class="item_name_item van-multi-ellipsis--l2">
+                <div
+                  class="item_name_item van-multi-ellipsis--l2"
+                  :title="el.projectName"
+                >
                   {{ el.projectName }}
                 </div>
               </div>

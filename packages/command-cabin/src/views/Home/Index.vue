@@ -20,7 +20,7 @@
             </van-col>
             <van-col>
               <CardA title="战略合作" style="width: 870px; height: 452px">
-                <!-- <A4 /> -->
+                <A4 />
               </CardA>
               <WhiteSpace />
               <van-row gutter="20">
