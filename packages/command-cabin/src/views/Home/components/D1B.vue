@@ -11,6 +11,7 @@
             <Icon v-bind="getIconConfig(resData.rentRatioYoy)" size="62" />
           </span>
           <strong
+            class="value_font_size"
             :class="{
               desc: resData.rentRatioYoy < 0,
               asce: resData.rentRatioYoy >= 0,
@@ -30,6 +31,7 @@
             <Icon v-bind="getIconConfig(resData.renewRatioYoy)" size="62" />
           </span>
           <strong
+            class="value_font_size"
             :class="{
               desc: resData.renewRatioYoy < 0,
               asce: resData.renewRatioYoy >= 0,
@@ -50,6 +52,7 @@
             <Icon v-bind="getIconConfig(resData.avgPriceYoy)" size="62" />
           </span>
           <strong
+            class="value_font_size"
             :class="{
               desc: resData.avgPriceYoy < 0,
               asce: resData.avgPriceYoy >= 0,
@@ -179,6 +182,11 @@ $asce: #22cb98;
     @extend %value-font;
   }
 
+  .value_font_size {
+    font-size: 48px;
+    line-height: 60px;
+  }
+
   .simple {
     display: flex;
     align-items: center;
@@ -194,9 +202,6 @@ $asce: #22cb98;
       margin-left: 10px;
       font-size: 40px;
     }
-  }
-
-  .icon {
   }
 
   .pointOfTime {
