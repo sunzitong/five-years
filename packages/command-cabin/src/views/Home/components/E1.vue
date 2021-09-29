@@ -12,29 +12,31 @@
         <tbody>
           <tr v-for="item of response" :key="item.projectId">
             <td v-for="o of columns" :key="o.dataIndex">
-              <template v-if="o.dataIndex === columns[4].dataIndex">
-                <Icon
-                  type="warning"
-                  v-for="(n, index) of 3"
-                  :color="
-                    index + 1 <= item[o.dataIndex] ? ['#FF3980'] : ['#6F6F6F']
-                  "
-                  :key="n"
-                />
-              </template>
-              <template v-else-if="o.dataIndex === columns[2].dataIndex">
-                <div class="warningType" :class="getWarningInfo(item).cls">
+              <div :class="o.dataIndex">
+                <template v-if="o.dataIndex === columns[4].dataIndex">
                   <Icon
-                    size="20"
-                    type="security"
-                    :color="getWarningInfo(item).color"
+                    type="warning"
+                    v-for="(n, index) of 3"
+                    :color="
+                      index + 1 <= item[o.dataIndex] ? ['#FF3980'] : ['#6F6F6F']
+                    "
+                    :key="n"
                   />
-                  <span>{{ item[o.dataIndex] }}</span>
-                </div>
-              </template>
-              <template v-else>
-                {{ item[o.dataIndex] }}
-              </template>
+                </template>
+                <template v-else-if="o.dataIndex === columns[2].dataIndex">
+                  <div class="warningType" :class="getWarningInfo(item).cls">
+                    <Icon
+                      size="24"
+                      type="security"
+                      :color="getWarningInfo(item).color"
+                    />
+                    <span>{{ item[o.dataIndex] }}</span>
+                  </div>
+                </template>
+                <template v-else>
+                  {{ item[o.dataIndex] }}
+                </template>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -90,12 +92,40 @@ export default class E1 extends Base implements IFetch {
   /**
    * 获取预警信息更改主题
    */
-  getWarningInfo(type: string) {
+  getWarningInfo(item: EarlyWarningItemReturn) {
     const cls = {
-      aaa: true,
+      // 超期预警
+      OVER_PERIOD: item.type === "OVER_PERIOD",
+      // 收入预警
+      INCOME: item.type === "INCOME",
+      // 出租率预警
+      RENT_RATIO: item.type === "RENT_RATIO",
+      // 人员离岗
+      STAFF_LEAVE: item.type === "STAFF_LEAVE",
+      // 运营品质
+      OPT_QUALITY: item.type === "OPT_QUALITY",
+      // 安全风险
+      SECURITY: item.type === "SECURITY",
+      // 火情风险
+      FIRE_SITUATION: item.type === "FIRE_SITUATION",
     };
-    const color = "#fff";
-    return { cls, color };
+    const colors = {
+      // 超期预警
+      OVER_PERIOD: "ffcb7b",
+      // 收入预警
+      INCOME: "#ff3980",
+      // 出租率预警
+      RENT_RATIO: "#99b7f6",
+      // 人员离岗
+      STAFF_LEAVE: item.type === "STAFF_LEAVE",
+      // 运营品质
+      OPT_QUALITY: "#b491fd",
+      // 安全风险
+      SECURITY: "#22cb98",
+      // 火情风险
+      FIRE_SITUATION: item.type === "FIRE_SITUATION",
+    };
+    return { cls, color: colors[item.type] };
   }
 
   /**
@@ -132,6 +162,7 @@ $step-color: #0e173c;
   width: 100%;
   table-layout: fixed;
   text-align: center;
+  font-size: 40px;
   td,
   th {
     height: 100px;
@@ -147,34 +178,48 @@ $step-color: #0e173c;
       background: $step-color;
     }
   }
+  .projectName {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1.2;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
   .warningType {
     display: inline-block;
     padding: 5px 15px;
     border: 1px solid #f50;
     text-align: center;
     border-radius: 100px;
+    font-size: 34px;
     svg {
       margin-right: 5px;
     }
-    &.aaa {
+    &.OVER_PERIOD {
       background: rgba(255, 203, 123, 0.2);
       border: 1px solid #ffcb7b;
+      color: #ffcb7b;
     }
-    &.bbb {
+    &.INCOME {
       background: rgba(255, 57, 128, 0.2);
       border: 1px solid #ff3980;
+      color: #ff3980;
     }
-    &.ccc {
+    &.RENT_RATIO {
       background: rgba(153, 183, 246, 0.2);
       border: 1px solid #99b7f6;
+      color: #99b7f6;
     }
-    &.ddd {
+    &.OPT_QUALITY {
       background: rgba(180, 145, 253, 0.2);
       border: 1px solid #b491fd;
+      color: #b491fd;
     }
-    &.eee {
+    &.SECURITY {
       background: rgba(34, 203, 152, 0.2);
       border: 1px solid #22cb98;
+      color: #22cb98;
     }
   }
 }
