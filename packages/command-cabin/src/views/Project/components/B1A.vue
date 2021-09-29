@@ -1,5 +1,7 @@
 <template>
-  <div class="page__b1a__map"></div>
+  <div class="page__b1a__map">
+    <B1B :title="titles[0]" :tabNames="tabs[0]" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,7 +26,15 @@ export default class B1A extends Base {
    * 折线图数据源
    */
   @Prop({ default: () => ({}) }) readonly list!: AnyObject;
+
+  mounted() {
+    // console.log(2222, this.titles);
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page__b1a__map {
+  padding: 80px;
+}
+</style>
