@@ -378,6 +378,9 @@ $asce: #ff2a76;
     margin: 18px 0 0 0;
     font-size: 36px;
     line-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
 }
 </style>

@@ -198,8 +198,7 @@ export default class D6 extends Base implements IFetch {
           margin-right: 30px;
         }
         span {
-          margin: 0 6px 0 80px;
-          width: 150px;
+          margin: 0 6px 0 auto;
           @extend %value-font;
           font-weight: bold;
           font-size: 36px;
