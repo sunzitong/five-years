@@ -7,6 +7,9 @@
         <div class="row_style">
           <strong class="strong_value">{{ resData.avgRentRatio }}%</strong>
           <span class="after">环比</span>
+          <span class="icon">
+            <Icon v-bind="getIconConfig(resData.rentRatioYoy)" size="62" />
+          </span>
           <strong
             :class="{
               desc: resData.rentRatioYoy < 0,
@@ -15,9 +18,6 @@
           >
             {{ resData.rentRatioYoy }}%
           </strong>
-          <span class="icon">
-            <Icon v-bind="getIconConfig(resData.rentRatioYoy)" size="62" />
-          </span>
           <span class="pointOfTime">时点 {{ resData.pointRentRatio }}%</span>
         </div>
       </van-col>
@@ -26,6 +26,9 @@
         <div class="row_style">
           <strong class="strong_value">{{ resData.avgRenewRatio }}%</strong>
           <span class="after">环比</span>
+          <span class="icon">
+            <Icon v-bind="getIconConfig(resData.renewRatioYoy)" size="62" />
+          </span>
           <strong
             :class="{
               desc: resData.renewRatioYoy < 0,
@@ -34,9 +37,6 @@
           >
             {{ resData.renewRatioYoy }}%
           </strong>
-          <span class="icon">
-            <Icon v-bind="getIconConfig(resData.renewRatioYoy)" size="62" />
-          </span>
         </div>
       </van-col>
     </van-row>
@@ -46,6 +46,9 @@
         <div class="row_style">
           <strong class="strong_value">{{ resData.avgPrice }}</strong>
           <span class="after">同比</span>
+          <span class="icon">
+            <Icon v-bind="getIconConfig(resData.avgPriceYoy)" size="62" />
+          </span>
           <strong
             :class="{
               desc: resData.avgPriceYoy < 0,
@@ -54,9 +57,6 @@
           >
             {{ resData.avgPriceYoy }}%
           </strong>
-          <span class="icon">
-            <Icon v-bind="getIconConfig(resData.avgPriceYoy)" size="62" />
-          </span>
         </div>
       </van-col>
       <van-col hidden :span="5" style="padding-top: 30px">
@@ -107,7 +107,7 @@ export default class D1B extends Base implements IFetch {
   getIconConfig(num: number) {
     return {
       type: num >= 0 ? "asce" : "desc",
-      color: num >= 0 ? "#ff3980" : "#22cb98",
+      color: num >= 0 ? "#22cb98" : "#ff3980",
     };
   }
 
@@ -131,8 +131,8 @@ export default class D1B extends Base implements IFetch {
 
 <style lang="scss" scoped>
 $light: rgba(219, 240, 255, 1);
-$desc: #22cb98;
-$asce: #ff2a76;
+$desc: #ff2a76;
+$asce: #22cb98;
 
 .row_style {
   display: flex;
