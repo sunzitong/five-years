@@ -44,7 +44,7 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/9/10 下午4:14:25
+ * @updateAt 2021/9/10 PM 4:14:25
  * @method GET
  */
 export const fetchRepairStat = (params: RepairStatParams) => {

@@ -11,11 +11,9 @@
       </thead>
       <tbody>
         <tr
-          v-for="item in list"
+          v-for="item in response.list"
           :key="item.id"
-          :class="{
-            warn: item.dynamicCostNonTax >= item.targetCostNonTax * 0.97,
-          }"
+          :class="{ warn: item.overdueWarning === '是' }"
         >
           <td v-for="opt in options" :key="opt.name">
             {{ formatValue(item[opt.name]) }}
@@ -25,22 +23,27 @@
     </table>
     <div class="footer">
       <Select
-        name="YearRange"
-        title="成本上线时间"
-        v-model="yearRange"
         @input="fetch"
+        name="Options"
+        :options="type"
+        v-model="typeValue"
+        title="类型"
+        multiple
+        placeholder="全部"
       ></Select>
       <Select
-        name="Options"
-        :options="risk"
-        v-model="riskValue"
-        title="目标成本差异率风险"
         @input="fetch"
+        name="Options"
+        :options="enterpriseState"
+        v-model="enterpriseStateValue"
+        title="企业状态"
+        multiple
+        placeholder="全部"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination
-        :total="response.length"
-        :pages="Math.ceil(response.length / pageSize)"
+        :pages="response.pages"
+        :total="response.total"
         @change="change"
         :value="pageNum"
       />
@@ -52,89 +55,79 @@
 import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
+import { iwant } from "@guanyu/shared";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
-import dayjs from "dayjs";
 import {
-  CostAnalysisListItemReturn,
-  fetchCostAnalysisList,
-} from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysisList";
-import { iwant } from "@guanyu/shared";
+  fetchStrategyCoopDetail,
+  StrategyCoopDetailReturn,
+  List,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/strategyCoopDetail";
 
-/**成本列表 */
+/**战略宽表 */
 @Component({
   components: { Select, Pagination },
 })
-export default class TheCostAnalysisList extends Base implements IFetch {
-  yearRange: number[] = [];
-
-  created() {
-    const year = dayjs().year();
-    this.yearRange = [year, year];
-  }
+export default class TheStrategyCoopDetail extends Base implements IFetch {
+  /**
+   * 类型
+   */
+  type = {
+    1: "国企平台",
+    2: "总对总",
+    3: "资金方",
+  };
+  typeValue: string[] = [];
 
   /**
-   * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")，默认全部
+   * 企业状态
    */
-  risk = {
-    Default: "全部",
-    True: "有风险",
-    False: "无风险",
+  enterpriseState = {
+    1: "已合作",
+    2: "洽谈中",
+    3: "暂缓",
+    4: "流失",
   };
-  riskValue = "Default";
+  enterpriseStateValue: string[] = [];
 
-  options: { name: keyof CostAnalysisListItemReturn; text: string }[] = [
-    { name: "phId", text: "分期ID" },
-    { name: "projectName", text: "项目名称" },
+  options: { name: keyof List; text: string }[] = [
     { name: "city", text: "城市" },
-    { name: "approvedDate", text: "目标成本上线时间" },
-    { name: "targetCostNonTax", text: "总目标成本" },
-    { name: "dynamicCostNonTax", text: "总动态成本" },
-    { name: "diff", text: "目标成本差异率" },
+    { name: "partnerName", text: "合作方名称" },
+    { name: "enterpriseStateDesc", text: "企业状态描述" },
+    { name: "typeDesc", text: "类型描述" },
   ];
 
   pageNum = 1;
+
   pageSize = 20;
 
-  response: CostAnalysisListItemReturn[] = [];
-
-  /**
-   * 前端翻页
-   */
-  get list() {
-    const { pageNum, pageSize, response } = this;
-    return response.slice((pageNum - 1) * pageSize, pageNum * pageSize);
-  }
+  response: Partial<StrategyCoopDetailReturn> = {};
 
   /**
    * 自动触发 重复调用
    */
   async fetch() {
-    let isRisk: boolean | undefined = undefined;
-    if (this.riskValue === "True") {
-      isRisk = true;
-    }
-    if (this.riskValue === "False") {
-      isRisk = false;
-    }
-    const response = await useStore(fetchCostAnalysisList, {
-      key: StoreKey.CostAnalysisList,
+    const response = await useStore(fetchStrategyCoopDetail, {
+      key: StoreKey.ExpansionAwardInfo,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
-        approvedDateFrom: dayjs()
-          .year(this.yearRange[0])
-          .startOf("y")
-          .format("YYYY-MM-DD HH:mm:ss"),
-        approvedDateTo: dayjs()
-          .year(this.yearRange[1])
-          .endOf("y")
-          .format("YYYY-MM-DD HH:mm:ss"),
-        isRisk,
+        // 大区城市
+        orgType: this.store.global.dataLevel,
+        // 组织ID
+        orgId: this.store.global.orgTree.orgId,
+        type: this.typeValue.length ? this.typeValue.join(",") : undefined,
+        enterpriseState: this.enterpriseStateValue.length
+          ? this.enterpriseStateValue.join(",")
+          : undefined,
+        // 页容量
+        pageSize: this.pageSize,
+        // 页码
+        pageNum: this.pageNum,
       },
     });
     if (response?.status === "ok") {
-      this.response = iwant.array(response.data);
+      response.data = iwant.object(response.data);
+      response.data.list = iwant.array(response.data.list);
+      this.response = response.data;
     }
     return response;
   }
@@ -144,6 +137,7 @@ export default class TheCostAnalysisList extends Base implements IFetch {
    */
   change(num: number) {
     this.pageNum = num;
+    this.fetch();
   }
 }
 </script>
@@ -205,3 +199,9 @@ export default class TheCostAnalysisList extends Base implements IFetch {
   margin-right: 86px;
 }
 </style>
+
+function fetchExpandWideDetail(fetchExpandWideDetail: any, arg1: { key:
+StoreKey.ExpansionAwardInfo; params: { // 大区城市 orgType:
+import("../../../service/analysis/commandCabin/publicEnum").DataLevels; //
+组织ID orgId: number; // 页容量 pageSize: number; // 页码 pageNum: number; }; })
+{ throw new Error("Function not implemented."); }

@@ -47,6 +47,10 @@ export enum StoreKey {
    */
   ProjectOverdue = "ProjectOverdue",
   /**
+   * 财务相关指标-财务指标达成与预估
+   */
+  ProjectFinanceLine = "ProjectFinanceLine",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
@@ -99,9 +103,21 @@ export enum StoreKey {
    */
   CostAnalysisList = "CostAnalysisList",
   /**
+   * 首屏-现场监控
+   */
+  HomeMonitorList = "HomeMonitorList",
+  /*
    * 拓展盘面详情-拓宽台账宽表
    */
   ExpansionAwardInfo = "ExpansionAwardInfo",
+  /**
+   * 拓展盘面详情-年度目标表
+   */
+  YearTargetDetail = "YearTargetDetail",
+  /**
+   * 拓展盘面详情-战略合作表
+   */
+  StrategyCoopDetail = "StrategyCoopDetail",
 }
 /**
  * 方法重载

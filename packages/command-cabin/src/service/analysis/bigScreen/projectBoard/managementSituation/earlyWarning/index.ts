@@ -43,7 +43,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 门店屏幕-分险预警
  * @createBy wuyao
- * @updateAt 2021/9/27 下午6:49:15
+ * @updateAt 2021/9/27 PM 6:49:15
  * @method GET
  */
 export const fetchEarlyWarning = (params: EarlyWarningParams) => {

@@ -27,7 +27,9 @@
               <CardA
                 title="财务相关指标及预估"
                 style="width: 1590px; height: 2610px"
-              ></CardA>
+              >
+                <B1 />
+              </CardA>
             </van-col>
             <van-col>
               <CardA
@@ -210,6 +212,7 @@ import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import B1 from "./components/B1.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -230,6 +233,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     WhiteSpace,
     A1,
     A2,
+    B1,
     D1,
     D2,
     D3,

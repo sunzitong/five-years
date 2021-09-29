@@ -20,7 +20,7 @@ export interface OrgTreeItemReturn {
 /**
  * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/9/10 下午2:40:07
+ * @updateAt 2021/9/10 PM 2:40:7
  * @method GET
  */
 export const fetchOrgTree = (params?: Record<string, unknown>) => {

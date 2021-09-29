@@ -54,7 +54,7 @@ export interface CostAnalysisListItemReturn {
 /**
  * 成本分析详情列表
  * @createBy zhangyao03
- * @updateAt 2021/9/24 上午10:37:14
+ * @updateAt 2021/9/24 AM 10:37:14
  * @method GET
  */
 export const fetchCostAnalysisList = (params: CostAnalysisListParams) => {

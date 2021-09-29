@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import { Api } from "@/config";
+import * as dayjs from "dayjs";
 
 /**
  * 获取接口地址尾部
@@ -49,4 +50,12 @@ export const getApiPath = (api: Api, toParams = false) => {
   }
   return path;
   // http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=%E5%9F%BA%E7%A1%80-%E5%B9%B3%E5%8F%B0
+};
+
+/**
+ * 生成接口修改时间
+ * @param api 接口
+ */
+export const getUpdateTime = (api: Api) => {
+  return dayjs(api.up_time * 1000).format("YYYY/M/D A h:m:s");
 };
