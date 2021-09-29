@@ -1,6 +1,6 @@
 <template>
   <div class="page__plate">
-    <SubWrapperA title="营造盘面详情" style="height: 2750px">
+    <SubWrapperA :title="tabs[tab]" style="height: 2750px">
       <TheExpandWideDetail v-if="tab === 0" />
       <TheYearTargetDetail v-if="tab === 1" />
       <TheStrategyCoopDetail v-if="tab === 2" />
@@ -18,9 +18,11 @@
         :line-width="88"
         color="#01F5F1"
       >
-        <van-tab title="营造台账宽表"></van-tab>
-        <van-tab title="年度目标表"></van-tab>
-        <van-tab title="战略合作表"></van-tab>
+        <van-tab
+          :title="title"
+          v-for="(title, index) in tabs"
+          :key="index"
+        ></van-tab>
       </van-tabs>
     </div>
   </div>
@@ -46,6 +48,7 @@ import Icon from "@/components/Icon/Index.vue";
   },
 })
 export default class ExpansionThePlate extends Base {
+  tabs = ["营造台账宽表", "年度目标表", "战略合作表"];
   tab = 0;
   back() {
     this.$router.back();
