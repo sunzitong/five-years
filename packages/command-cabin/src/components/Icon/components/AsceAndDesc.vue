@@ -70,10 +70,10 @@ export default class AsceAndDesc extends Vue {
 
 <style lang="scss" scoped>
 .app-icon {
-  &--asce {
-    transform: matrix(-1, 0, 0, -1, 0, 0);
-  }
   &--desc {
+    transform: matrix(1, 0, 0, -1, 0, 8);
+  }
+  &--asce {
     transform: matrix(1, 0, 0, 1, 0, 0);
   }
 }
