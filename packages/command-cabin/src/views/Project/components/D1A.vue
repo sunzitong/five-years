@@ -255,6 +255,10 @@ $asce: #ff2a76;
   height: 478px;
   margin: 0 63px 0 50px;
 }
+.rate-text {
+  height: 100%;
+  @extend %flex-center;
+}
 .circle1_group {
   width: 280px;
   height: 340px;
@@ -272,15 +276,14 @@ $asce: #ff2a76;
     @extend %value-font;
     @extend %value-font;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 41px;
     color: #dbf0ff;
-    margin-top: 68px;
   }
 
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 58px;
+    font-size: 41px;
     line-height: 60px;
     color: #dbf0ff;
     margin-right: 6px;
@@ -304,9 +307,8 @@ $asce: #ff2a76;
     @extend %value-font;
     @extend %value-font;
     font-weight: bold;
-    font-size: 42px;
+    font-size: 33px;
     color: #dbf0ff;
-    margin-top: 45px;
   }
   .flex_text_box {
     margin: 90px 0 0 0;
@@ -314,7 +316,7 @@ $asce: #ff2a76;
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 41px;
+    font-size: 33px;
     line-height: 56px;
     color: #dbf0ff;
     margin-right: 6px;
@@ -369,6 +371,9 @@ $asce: #ff2a76;
     margin: 18px 0 0 0;
     font-size: 36px;
     line-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
 }
 </style>

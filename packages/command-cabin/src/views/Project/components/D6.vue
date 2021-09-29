@@ -96,30 +96,24 @@ export default class D6 extends Base implements IFetch {
 
   .big_title {
     font-size: 40px;
-    line-height: 40px;
-
     .big_values {
       font-size: 36px;
-      line-height: 36px;
-      margin-top: 6px;
-
+      height: 83px;
+      display: flex;
+      align-items: flex-end;
       span:nth-child(1) {
         @extend %value-font;
         font-weight: bold;
         font-size: 66px;
-        line-height: 77px;
         color: #dbf0ff;
-
-        margin: 12px 2px 30px 0;
+        margin: 0 2px -6px 0;
       }
       span:nth-child(2) {
         @extend %value-font;
         font-weight: bold;
         font-size: 66px;
-        line-height: 77px;
         color: #ff3980;
-
-        margin: 12px 2px 30px 30px;
+        margin: 0 2px -6px 30px;
       }
     }
   }
@@ -198,8 +192,7 @@ export default class D6 extends Base implements IFetch {
           margin-right: 30px;
         }
         span {
-          margin: 0 6px 0 80px;
-          width: 150px;
+          margin: 0 6px 0 auto;
           @extend %value-font;
           font-weight: bold;
           font-size: 36px;

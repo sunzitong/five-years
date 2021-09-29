@@ -64,7 +64,7 @@ import { iwant } from "@guanyu/shared";
 import {
   DataLevels,
   DateScopes,
-} from "@/service/analysis/commandCabin/publicEnum";
+} from "@/service/analysis/commandCabin/publicEnum/enums";
 import {
   fetchOrgTree,
   OrgTreeItemReturn,

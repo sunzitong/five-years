@@ -77,6 +77,7 @@
         <div style="height: 1876px">
           <C1 />
           <C2 />
+          <C4 />
         </div>
         <div class="global-button global-button--1">
           <ButtonGroupA>
@@ -244,7 +245,7 @@ import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
-import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 /** Jing */
 import A1 from "./components/A1.vue";
@@ -261,6 +262,7 @@ import B5 from "./components/B5.vue";
 import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import C3 from "./components/C3.vue";
+import C4 from "./components/C4.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -290,6 +292,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     C1,
     C2,
     C3,
+    C4,
     D1,
     D2,
     D3,
@@ -386,7 +389,7 @@ export default class Home extends Base {
     margin-right: 12px;
   }
   &--1 {
-    justify-content: flex-end;
+    justify-content: center;
     margin: 50px 0 62px;
   }
   &--2 {

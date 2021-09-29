@@ -46,15 +46,9 @@ export interface OpenInfo {
 }
 
 export interface NotOpenInfoList {
-  transactionModel: TransactionModel;
+  transactionModel: string;
   roomNum: number;
   ratio: number;
-}
-
-export enum TransactionModel {
-  中资产 = "中资产",
-  轻资产 = "轻资产",
-  重资产 = "重资产",
 }
 
 export interface TotalOpenList {
@@ -64,14 +58,14 @@ export interface TotalOpenList {
 }
 
 export interface TotalOpenListList {
-  transactionModel: TransactionModel;
+  transactionModel: string;
   roomNum: number;
 }
 
 /**
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/16 AM 11:25:23
+ * @updateAt 2021/9/16 11:25:23
  * @method GET
  */
 export const fetchProjectOpen = (params: ProjectOpenParams) => {

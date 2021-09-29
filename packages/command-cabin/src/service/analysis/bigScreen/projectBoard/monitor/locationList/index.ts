@@ -21,14 +21,14 @@ export interface LocationListParams {
  */
 export interface LocationListItemReturn {
   imageUrl: string;
-  videoUrl: string;
+  cameraId: string;
   location: string;
 }
 
 /**
  * 门店屏-现场监控
  * @createBy baishiqiang
- * @updateAt 2021/9/28 PM 4:40:15
+ * @updateAt 2021/9/29 11:1:24
  * @method GET
  */
 export const fetchLocationList = (params: LocationListParams) => {

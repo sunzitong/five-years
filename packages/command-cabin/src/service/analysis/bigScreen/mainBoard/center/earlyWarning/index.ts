@@ -53,7 +53,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/9/28 PM 7:45:37
+ * @updateAt 2021/9/29 9:26:55
  * @method GET
  */
 export const fetchEarlyWarning = (params: EarlyWarningParams) => {

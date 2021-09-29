@@ -173,7 +173,7 @@
 import { Component } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 import { Base } from "@/views/Base";
-import { DataLevels } from "@/service/analysis/commandCabin/publicEnum";
+import { DataLevels } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {},
@@ -191,12 +191,18 @@ export default class Header extends Base {
     if (this.$route.meta.name === "project") {
       return "冠寓门店指挥中心";
     }
-    if (["home", "build-the-plate"].includes(this.$route.meta.name)) {
+    if (["home"].includes(this.$route.meta.name)) {
       if (this.store.global.dataLevel === DataLevels.GROUP) {
         return "冠寓总指挥中心";
       } else {
         return "冠寓区域指挥中心";
       }
+    }
+    if (this.$route.meta.name === "build-the-plate") {
+      return "营造盘面详情";
+    }
+    if (this.$route.meta.name === "expansion-the-plate") {
+      return "拓展盘面详情";
     }
     return null;
   }

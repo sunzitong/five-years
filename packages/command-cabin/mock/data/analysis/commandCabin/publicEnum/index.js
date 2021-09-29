@@ -4,7 +4,7 @@
  *
  * OMS-公用枚举
  * @createBy wuyao
- * @updateAt 2021/9/22 PM 2:34:27
+ * @updateAt 2021/9/29 17:32:14
  * @method GET
  */
 
@@ -45,5 +45,19 @@ exports.response = {
       { name: "CrossYear", desc: "跨年风险" },
       { name: "NoRisk", desc: "无风险" },
     ],
+    warningOptStages: [
+      { name: "INVEST", desc: "投资" },
+      { name: "OPERATE", desc: "运营" },
+      { name: "MARKETING", desc: "营销" },
+    ], //预警阶段
+    warningTypes: [
+      { name: "OVER_PERIOD", desc: "超期预警" },
+      { name: "INCOME", desc: "收入预警" },
+      { name: "RENT_RATIO", desc: "出租率预警" },
+      { name: "STAFF_LEAVE", desc: "人员离岗" },
+      { name: "OPT_QUALITY", desc: "运营品质" },
+      { name: "SECURITY", desc: "安全风险" },
+      { name: "FIRE_SITUATION", desc: "火情风险" },
+    ], //预警类型
   },
 };

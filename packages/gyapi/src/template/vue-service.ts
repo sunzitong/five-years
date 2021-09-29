@@ -64,27 +64,4 @@ export const {{=apiName}} = (
     ...params
   });
 };
-
-{{?it.tools.isEnumApi(it.api)}}
-{{
-  const record = it.tools.formatEnumData(it.api);
-}}
-{{ for(var name in record) { }}
-/**
- * 枚举-{{=name}}
- */
-export enum {{=name}} {
-  {{
-    const list = record[name];
-  }}
-  {{~list:item}}
-  /**
-   * {{=it.tools.getEnumLabel(item)}}
-   */
-  {{=it.tools.getEnumValue(item)}}="{{=it.tools.getEnumValue(item)}}",
-  {{~}}
-}
-{{ } }}
-
-{{?}}
 `;

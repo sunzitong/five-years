@@ -4,7 +4,7 @@
  *
  * 门店屏-现场监控
  * @createBy baishiqiang
- * @updateAt 2021/9/28 PM 4:40:15
+ * @updateAt 2021/9/29 11:1:24
  * @method GET
  */
 
@@ -18,8 +18,8 @@ exports.response = {
   data: [
     {
       imageUrl: "", //缩略图url
-      videoUrl: "", //视频url
-      location: "", //位置描述
+      cameraId: "", //摄像头ID
+      location: "", //位置描述(三个空间名称)
     },
   ],
 };

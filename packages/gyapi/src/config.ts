@@ -69,34 +69,10 @@ export type YApiConfig = {
     name: string;
     output: string;
     enable: boolean;
-    extname: string;
+    filename: string;
   }[];
   /**
    * 项目token
    */
   token: string;
 };
-
-/**
- * 项目配置demo
- */
-// {
-//   /**
-//    * 项目token
-//    */
-//   token: "85633e9f514a365577e0901919a0ea10942178f02cee9506dea950923d28e7ed",
-//   /**
-//    * 分类id
-//    */
-//   // category_ids: [12058, 16379, 16418],
-//   category_ids: [16418],
-//   /**
-//    * 代码模版
-//    * name 对应template里的文件
-//    * output 输出路径 相对路径
-//    */
-//   template: [
-//     { name: "mock", output: "./output/", enable: false },
-//     { name: "vue-service", output: "./output/service/", enable: true },
-//   ],
-// };
