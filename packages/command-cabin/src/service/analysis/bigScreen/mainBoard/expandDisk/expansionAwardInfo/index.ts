@@ -36,7 +36,7 @@ export interface ExpansionAwardInfoReturn {
 /**
  * 中央奖补、投后攻坚模块
  * @createBy zhangyao03
- * @updateAt 2021-9-17 2:00:54 ├F10: PM┤
+ * @updateAt 2021/9/17 PM 2:0:54
  * @method GET
  */
 export const fetchExpansionAwardInfo = (params: ExpansionAwardInfoParams) => {

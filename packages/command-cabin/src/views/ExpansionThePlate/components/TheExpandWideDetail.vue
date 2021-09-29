@@ -45,7 +45,12 @@
         title="过会超期预警"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
-      <Pagination :total="response.pages" @change="change" :value="pageNum" />
+      <Pagination
+        :pages="response.pages"
+        :total="response.total"
+        @change="change"
+        :value="pageNum"
+      />
     </div>
   </div>
 </template>
@@ -75,7 +80,6 @@ export default class TheExpandWideDetail extends Base implements IFetch {
   created() {
     const year = dayjs().year();
     this.yearRange = [year, year];
-    window.dayjs = dayjs;
   }
 
   grade = {

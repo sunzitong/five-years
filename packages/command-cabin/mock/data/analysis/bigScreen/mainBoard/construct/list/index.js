@@ -4,7 +4,7 @@
  *
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021-9-24 10:32:59 ├F10: AM┤
+ * @updateAt 2021/9/24 AM 10:32:59
  * @method GET
  */
 

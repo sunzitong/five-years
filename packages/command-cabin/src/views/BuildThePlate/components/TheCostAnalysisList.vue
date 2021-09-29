@@ -39,7 +39,8 @@
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination
-        :total="Math.ceil(response.length / pageSize)"
+        :total="response.length"
+        :pages="Math.ceil(response.length / pageSize)"
         @change="change"
         :value="pageNum"
       />
@@ -60,7 +61,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysisList";
 import { iwant } from "@guanyu/shared";
 
-/**拓展台账宽表 */
+/**成本列表 */
 @Component({
   components: { Select, Pagination },
 })
@@ -70,7 +71,6 @@ export default class TheCostAnalysisList extends Base implements IFetch {
   created() {
     const year = dayjs().year();
     this.yearRange = [year, year];
-    window.dayjs = dayjs;
   }
 
   /**

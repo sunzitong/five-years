@@ -38,7 +38,7 @@ export interface TopStatisticDataReturn {
 /**
  * 查询主屏(中心位置)顶部信息
  * @createBy zhangyao03
- * @updateAt 2021-9-28 2:37:06 ├F10: PM┤
+ * @updateAt 2021/9/28 PM 2:37:6
  * @method GET
  */
 export const fetchTopStatisticData = (params: TopStatisticDataParams) => {

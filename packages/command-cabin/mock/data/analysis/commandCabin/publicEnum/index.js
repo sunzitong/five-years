@@ -4,7 +4,7 @@
  *
  * OMS-公用枚举
  * @createBy wuyao
- * @updateAt 2021-9-22 2:34:27 ├F10: PM┤
+ * @updateAt 2021/9/22 PM 2:34:27
  * @method GET
  */
 

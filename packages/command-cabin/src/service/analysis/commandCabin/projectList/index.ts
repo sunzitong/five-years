@@ -48,7 +48,7 @@ export interface ProjectListItemReturn {
 /**
  * 门店列表获取
  * @createBy baishiqiang
- * @updateAt 2021-9-13 4:05:06 ├F10: PM┤
+ * @updateAt 2021/9/13 PM 4:5:6
  * @method GET
  */
 export const fetchProjectList = (params?: ProjectListParams) => {

@@ -35,7 +35,7 @@ export interface BusinessOppTransReturn {
 /**
  * 拓展盘面-商机转化
  * @createBy baishiqiang
- * @updateAt 2021-9-28 11:12:26 ├F10: AM┤
+ * @updateAt 2021/9/28 AM 11:12:26
  * @method GET
  */
 export const fetchBusinessOppTrans = (params: BusinessOppTransParams) => {

@@ -15,7 +15,7 @@ export default `
  *
  * {{=it.api.title}}
  * @createBy {{=it.api.username}}
- * @updateAt {{=new Date(it.api.up_time*1000).toLocaleString()}}
+ * @updateAt {{=it.tools.getUpdateTime(it.api)}}
  * @method {{=it.api.method}}
  */
 

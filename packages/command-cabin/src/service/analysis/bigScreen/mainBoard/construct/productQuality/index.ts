@@ -38,7 +38,7 @@ export interface ProductQualityReturn {
 /**
  * 营造盘面-产品品质
  * @createBy huyanan
- * @updateAt 2021-9-18 3:24:27 ├F10: PM┤
+ * @updateAt 2021/9/18 PM 3:24:27
  * @method GET
  */
 export const fetchProductQuality = (params: ProductQualityParams) => {
