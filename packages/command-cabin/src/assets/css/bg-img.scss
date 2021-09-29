@@ -28,6 +28,7 @@ $img-map: (
   "bar-shadow": "bar-shadow.png",
   "logo": "logo.png",
   "step-bg": "step-bg.png",
+  "china": "china.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
