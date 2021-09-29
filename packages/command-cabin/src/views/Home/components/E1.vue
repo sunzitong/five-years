@@ -149,7 +149,7 @@ $step-color: #0e173c;
   }
   .warningType {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 15px;
     border: 1px solid #f50;
     text-align: center;
     border-radius: 100px;
