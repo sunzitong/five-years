@@ -43,13 +43,14 @@ const callback = async (api: Api) => {
       tools: t.tools,
       types: { paramsType, returnType },
     });
+    if (!code.trim()) continue;
     const fullPath = path
       .join(
         path.dirname(configFile),
         tmpl.output,
         api.basepath,
         api.path,
-        `index${tmpl.extname}`
+        tmpl.filename
       )
       .replace(/{|}/g, "");
     console.log(`写入${fullPath}`);
