@@ -114,6 +114,11 @@ export enum StoreKey {
    * 拓展盘面详情-战略合作表
    */
   StrategyCoopDetail = "StrategyCoopDetail",
+
+  /**
+   * 指挥中心-异常预警
+   */
+  HomeEarlyWarning = "HomeEarlyWarning",
 }
 /**
  * 方法重载

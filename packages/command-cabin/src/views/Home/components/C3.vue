@@ -1,5 +1,5 @@
 <template>
-  <div class="pictrues-wrapper">
+  <Spin class="pictrues-wrapper" :loading="loading" :empty="empty">
     <van-swipe autoplay="20000" indicator-color="transparent">
       <van-swipe-item v-for="(pictrue, index) of pictures" :key="index">
         <div class="pictures">
@@ -27,7 +27,7 @@
         </div>
       </van-swipe-item>
     </van-swipe>
-  </div>
+  </Spin>
 </template>
 
 <script lang="ts">
