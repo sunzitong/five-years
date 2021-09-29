@@ -60,7 +60,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysisList";
 import { iwant } from "@guanyu/shared";
 
-/**拓展台账宽表 */
+/**成本列表 */
 @Component({
   components: { Select, Pagination },
 })

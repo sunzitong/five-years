@@ -59,7 +59,7 @@ import {
   List,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/strategyCoopDetail";
 
-/**营造台账宽表 */
+/**战略宽表 */
 @Component({
   components: { Select, Pagination },
 })
@@ -88,9 +88,7 @@ export default class TheStrategyCoopDetail extends Base implements IFetch {
   options: { name: keyof List; text: string }[] = [
     { name: "city", text: "城市" },
     { name: "partnerName", text: "合作方名称" },
-    { name: "enterpriseState", text: "企业状态" },
     { name: "enterpriseStateDesc", text: "企业状态描述" },
-    { name: "type", text: "类型" },
     { name: "typeDesc", text: "类型描述" },
   ];
 

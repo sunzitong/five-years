@@ -48,7 +48,7 @@ import {
   List,
 } from "@/service/analysis/bigScreen/mainBoard/expandDisk/yearTargetDetail";
 
-/**营造台账宽表 */
+/**年度目标表 */
 @Component({
   components: { Select, Pagination },
 })
