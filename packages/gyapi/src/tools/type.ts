@@ -46,11 +46,14 @@ export const inferFormType = (value: unknown, type: "text" | "file") => {
  * @param jsonString json字符串
  * @returns ts类型
  */
-export const inferJsonType = async (
-  typeName: string,
-  jsonString: string,
-  description?: string
-) => {
+export const inferJsonType = async (options: {
+  typeName: string;
+  jsonString: string;
+  description?: string;
+  allPropertiesOptional?: boolean;
+}) => {
+  const { typeName, jsonString, description, allPropertiesOptional } = options;
+
   const tsLang = new TypeScriptTargetLanguage();
   const jsonInput = jsonInputForTargetLanguage(tsLang);
 
@@ -66,7 +69,8 @@ export const inferJsonType = async (
   const { lines } = await quicktype({
     inputData,
     lang: tsLang,
-    // inferEnums: false,
+    inferEnums: false,
+    allPropertiesOptional,
     rendererOptions: {
       "just-types": "on",
     },
@@ -135,11 +139,12 @@ export const getParamsType = async (api: Api) => {
     ) {
       const json = json5.parse(api.req_body_other);
       if (typeof json === "object") {
-        qkType.jsonType = await inferJsonType(
-          typeName,
-          JSON.stringify(json),
-          `${api.title}-参数`
-        );
+        qkType.jsonType = await inferJsonType({
+          typeName: typeName,
+          jsonString: JSON.stringify(json),
+          description: `${api.title}-参数`,
+          allPropertiesOptional: true,
+        });
         qkType.hasJsonType = true;
       }
     }
@@ -199,11 +204,12 @@ export const getReturnType = async (api: Api) => {
           suffix: returnType.jsonIsArray ? "ItemReturn" : "Return",
         });
         returnType.hasJsonType = true;
-        returnType.jsonType = await inferJsonType(
-          typeName,
-          JSON.stringify(data),
-          `${api.title}-返回值`
-        );
+        returnType.jsonType = await inferJsonType({
+          typeName: typeName,
+          jsonString: JSON.stringify(data),
+          description: `${api.title}-返回值`,
+          allPropertiesOptional: false,
+        });
         returnType.typeName = typeName;
       }
     }
