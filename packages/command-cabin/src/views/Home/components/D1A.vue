@@ -265,6 +265,10 @@ $asce: #ff2a76;
   height: 478px;
   margin: 0 63px 0 50px;
 }
+.rate-text {
+  height: 100%;
+  @extend %flex-center;
+}
 .circle1_group {
   width: 280px;
   height: 340px;
@@ -283,7 +287,6 @@ $asce: #ff2a76;
     font-weight: bold;
     font-size: 43px;
     color: #dbf0ff;
-    margin-top: 60px;
   }
 
   .flex_value span:nth-child(1) {
@@ -308,13 +311,11 @@ $asce: #ff2a76;
     left: 32px;
     height: 200px;
   }
-
   .value {
     @extend %value-font;
     font-weight: bold;
     font-size: 32px;
     color: #dbf0ff;
-    margin-top: 50px;
   }
   .flex_text_box {
     margin: 90px 0 0 0;
