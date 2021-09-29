@@ -43,7 +43,12 @@
         title="风险类型"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
-      <Pagination :total="response.pages" @change="change" :value="pageNum" />
+      <Pagination
+        :pages="response.pages"
+        :total="response.total"
+        @change="change"
+        :value="pageNum"
+      />
     </div>
   </div>
 </template>

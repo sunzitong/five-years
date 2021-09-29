@@ -3,12 +3,12 @@
     <div class="page__total">
       共
       <span>{{ total }}</span>
-      页
+      条
     </div>
     <Paginate
       :initial-page="value - 1"
       :force-page="value - 1"
-      :page-count="total"
+      :page-count="pages"
       container-class="page__paginate"
       :margin-pages="1"
       :page-range="5"
@@ -38,6 +38,8 @@ import Paginate from "vuejs-paginate";
 })
 export default class Pagination extends Vue {
   @Prop({ default: 0 }) total!: number;
+
+  @Prop({ default: 0 }) pages!: number;
 
   @Prop({ default: 1 }) value!: number;
 

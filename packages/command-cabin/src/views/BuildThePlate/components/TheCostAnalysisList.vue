@@ -39,7 +39,8 @@
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination
-        :total="Math.ceil(response.length / pageSize)"
+        :total="response.length"
+        :pages="Math.ceil(response.length / pageSize)"
         @change="change"
         :value="pageNum"
       />

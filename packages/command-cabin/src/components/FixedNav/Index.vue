@@ -104,7 +104,7 @@ export default class FixedNav extends Vue {
    */
   menus: MenuItemProps[] = [
     { title: "冠寓指挥中心", href: "/home" },
-    // { title: "拓展盘面详情", href: "/", children: true },
+    { title: "拓展盘面详情", href: "/expansion-the-plate", children: true },
     { title: "营造盘面详情", href: "/build-the-plate", children: true },
     // { title: "经营现状详情", href: "/", children: true },
     { title: "冠寓门店指挥中心", href: "/project" },
