@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import { Base } from "@/views/Base";
-import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component
 export default class TheDateScopes extends Base {

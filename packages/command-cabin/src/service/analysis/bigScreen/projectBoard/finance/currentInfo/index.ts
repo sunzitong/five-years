@@ -29,7 +29,7 @@ export interface CurrentInfoReturn {
 /**
  * 财务相关指标-当前投资实现情况
  * @createBy huyanan
- * @updateAt 2021/9/28 PM 2:48:58
+ * @updateAt 2021/9/28 14:48:58
  * @method GET
  */
 export const fetchCurrentInfo = (params: CurrentInfoParams) => {

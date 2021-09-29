@@ -222,7 +222,7 @@ import F1 from "./components/F1.vue";
 import OperatingIndex from "./components/OperatingIndex.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
-import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import OptionPanel from "@/views/components/OptionPanel/Index.vue";
 

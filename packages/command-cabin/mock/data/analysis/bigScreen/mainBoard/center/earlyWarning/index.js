@@ -4,7 +4,7 @@
  *
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/9/28 PM 7:45:37
+ * @updateAt 2021/9/29 9:26:55
  * @method GET
  */
 
@@ -24,7 +24,7 @@ exports.response = {
       type: "INCOME", //预警类型
       typeDesc: "收入预警", //预警类型描述
       detail: "收入预警", //预警详情
-      riskDegree: 3, //风险程度
+      riskDegree: 1, //风险程度
     },
     {
       projectId: 82, //门店id
@@ -34,7 +34,7 @@ exports.response = {
       type: "INCOME", //预警类型
       typeDesc: "收入预警", //预警类型描述
       detail: "收入预警", //预警详情
-      riskDegree: 3, //风险程度
+      riskDegree: 2, //风险程度
     },
     {
       projectId: 83, //门店id
@@ -68,6 +68,66 @@ exports.response = {
     },
     {
       projectId: 86, //门店id
+      projectName: "酒仙桥店", //门店名称
+      stage: "INVEST", //阶段
+      stageDesc: "投资", //阶段描述
+      type: "INCOME", //预警类型
+      typeDesc: "收入预警", //预警类型描述
+      detail: "收入预警", //预警详情
+      riskDegree: 3, //风险程度
+    },
+    {
+      projectId: 811, //门店id
+      projectName: "酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店", //门店名称
+      stage: "INVEST", //阶段
+      stageDesc: "投资", //阶段描述
+      type: "INCOME", //预警类型
+      typeDesc: "收入预警", //预警类型描述
+      detail: "收入预警", //预警详情
+      riskDegree: 3, //风险程度
+    },
+    {
+      projectId: 812, //门店id
+      projectName: "酒仙桥店", //门店名称
+      stage: "INVEST", //阶段
+      stageDesc: "投资", //阶段描述
+      type: "INCOME", //预警类型
+      typeDesc: "收入预警", //预警类型描述
+      detail: "收入预警", //预警详情
+      riskDegree: 3, //风险程度
+    },
+    {
+      projectId: 813, //门店id
+      projectName: "酒仙桥店", //门店名称
+      stage: "INVEST", //阶段
+      stageDesc: "投资", //阶段描述
+      type: "INCOME", //预警类型
+      typeDesc: "收入预警", //预警类型描述
+      detail: "收入预警", //预警详情
+      riskDegree: 3, //风险程度
+    },
+    {
+      projectId: 814, //门店id
+      projectName: "酒仙桥店", //门店名称
+      stage: "INVEST", //阶段
+      stageDesc: "投资", //阶段描述
+      type: "INCOME", //预警类型
+      typeDesc: "收入预警", //预警类型描述
+      detail: "收入预警", //预警详情
+      riskDegree: 3, //风险程度
+    },
+    {
+      projectId: 815, //门店id
+      projectName: "酒仙桥店", //门店名称
+      stage: "INVEST", //阶段
+      stageDesc: "投资", //阶段描述
+      type: "INCOME", //预警类型
+      typeDesc: "收入预警", //预警类型描述
+      detail: "收入预警", //预警详情
+      riskDegree: 3, //风险程度
+    },
+    {
+      projectId: 816, //门店id
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
       stageDesc: "投资", //阶段描述

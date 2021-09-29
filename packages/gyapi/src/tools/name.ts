@@ -57,5 +57,5 @@ export const getApiPath = (api: Api, toParams = false) => {
  * @param api 接口
  */
 export const getUpdateTime = (api: Api) => {
-  return dayjs(api.up_time * 1000).format("YYYY/M/D A h:m:s");
+  return dayjs(api.up_time * 1000).format("YYYY/M/D H:m:s");
 };
