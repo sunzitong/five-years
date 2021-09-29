@@ -281,15 +281,15 @@ $asce: #ff2a76;
   .value {
     @extend %value-font;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 43px;
     color: #dbf0ff;
-    margin-top: 68px;
+    margin-top: 60px;
   }
 
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 66px;
+    font-size: 56px;
     line-height: 60px;
     color: #dbf0ff;
     margin-right: 6px;
@@ -312,9 +312,9 @@ $asce: #ff2a76;
   .value {
     @extend %value-font;
     font-weight: bold;
-    font-size: 42px;
+    font-size: 32px;
     color: #dbf0ff;
-    margin-top: 45px;
+    margin-top: 50px;
   }
   .flex_text_box {
     margin: 90px 0 0 0;
@@ -322,7 +322,7 @@ $asce: #ff2a76;
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 39px;
     line-height: 56px;
     color: #dbf0ff;
     margin-right: 6px;
@@ -341,7 +341,7 @@ $asce: #ff2a76;
   .flex_value span:nth-child(1) {
     @extend %value-font;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 40px;
     line-height: 56px;
     color: #dbf0ff;
     margin-right: 6px;
