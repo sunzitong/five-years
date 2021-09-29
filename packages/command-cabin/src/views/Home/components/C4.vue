@@ -1,5 +1,7 @@
 <template>
-  <div class="box">22222</div>
+  <div class="continer">
+    <div class="china"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,4 +21,14 @@ export default class C4 extends Base implements IFetch {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.continer {
+  width: 2113px;
+  height: 2000px;
+}
+.china {
+  @extend %bg-img-china;
+  width: 2607px;
+  height: 2098px;
+}
+</style>
