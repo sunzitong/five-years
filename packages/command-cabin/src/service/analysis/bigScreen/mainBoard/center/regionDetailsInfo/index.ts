@@ -45,15 +45,16 @@ export interface CenterRegionDetail {
   id: number;
   phId: string;
   projectName: string;
-  dynamicCostNonTax: number;
-  targetCostNonTax: number;
-  diff: number;
+  netProfitRate: number;
+  netProfitRateBias: number;
+  totalIncome: number;
+  totalIncomeBias: number;
 }
 
 /**
  * 查询主屏(中心位置)地区(城市)维度详细信息
  * @createBy zhangyao03
- * @updateAt 2021/9/28 PM 2:13:42
+ * @updateAt 2021/9/29 14:36:25
  * @method GET
  */
 export const fetchRegionDetailsInfo = (params: RegionDetailsInfoParams) => {

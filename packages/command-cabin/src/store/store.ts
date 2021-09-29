@@ -3,7 +3,7 @@ import { ProjectListItemReturn } from "@/service/analysis/commandCabin/projectLi
 import {
   DataLevels,
   DateScopes,
-} from "@/service/analysis/commandCabin/publicEnum";
+} from "@/service/analysis/commandCabin/publicEnum/enums";
 
 const store = {
   /**

@@ -28,13 +28,19 @@ export default {
     {
       name: "vue-service",
       output: "./src/service/",
-      extname: ".ts",
+      filename: "index.ts",
       enable: true,
     },
     {
       name: "express-mock",
       output: "./mock/data/",
-      extname: ".js",
+      filename: "index.js",
+      enable: true,
+    },
+    {
+      name: "typescript-enums",
+      output: "./src/service/",
+      filename: "enums.ts",
       enable: true,
     },
   ],

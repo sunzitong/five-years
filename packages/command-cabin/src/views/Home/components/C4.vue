@@ -24,7 +24,7 @@ export default class C4 extends Base implements IFetch {
 <style lang="scss" scoped>
 .continer {
   width: 2113px;
-  height: 2000px;
+  height: 2098px;
 }
 .china {
   @extend %bg-img-china;

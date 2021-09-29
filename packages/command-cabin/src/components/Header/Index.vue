@@ -173,7 +173,7 @@
 import { Component } from "vue-property-decorator";
 import { uuid } from "@guanyu/shared";
 import { Base } from "@/views/Base";
-import { DataLevels } from "@/service/analysis/commandCabin/publicEnum";
+import { DataLevels } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {},

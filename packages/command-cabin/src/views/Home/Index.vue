@@ -245,7 +245,7 @@ import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
-import { DateScopes } from "@/service/analysis/commandCabin/publicEnum";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 /** Jing */
 import A1 from "./components/A1.vue";

@@ -40,27 +40,16 @@ export interface DelayModelList {
   planOpenDate: null | string;
   cityName: string;
   projectName: string;
-  transactionModel: TransactionModel;
+  transactionModel: string;
   roomNum: number;
-  riskType: RiskType;
+  riskType: string;
   chokePoint: null | string;
-}
-
-export enum RiskType {
-  延期风险 = "延期风险",
-  跨年风险 = "跨年风险",
-}
-
-export enum TransactionModel {
-  中资产 = "中资产",
-  轻资产 = "轻资产",
-  重资产 = "重资产",
 }
 
 /**
  * 营造盘面-开业延期
  * @createBy huyanan
- * @updateAt 2021/9/13 AM 10:31:31
+ * @updateAt 2021/9/13 10:31:31
  * @method GET
  */
 export const fetchProjectDelayInfo = (params: ProjectDelayInfoParams) => {
