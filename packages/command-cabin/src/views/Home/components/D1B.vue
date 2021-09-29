@@ -204,9 +204,6 @@ $asce: #22cb98;
     }
   }
 
-  .icon {
-  }
-
   .pointOfTime {
     display: inline-block;
     padding: 8px 26px;
