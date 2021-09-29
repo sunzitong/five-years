@@ -1,6 +1,6 @@
 <template>
   <div class="page__plate">
-    <SubWrapperA title="营造盘面详情" style="height: 2750px">
+    <SubWrapperA :title="tabs[tab]" style="height: 2750px">
       <TheConstructList v-if="tab === 0" />
       <TheCostAnalysisList v-if="tab === 1" />
     </SubWrapperA>
@@ -17,8 +17,11 @@
         :line-width="88"
         color="#01F5F1"
       >
-        <van-tab title="营造台账宽表"></van-tab>
-        <van-tab title="成本列表"></van-tab>
+        <van-tab
+          :title="title"
+          v-for="(title, index) in tabs"
+          :key="index"
+        ></van-tab>
       </van-tabs>
     </div>
   </div>
@@ -42,6 +45,7 @@ import Icon from "@/components/Icon/Index.vue";
   },
 })
 export default class BuildThePlate extends Base {
+  tabs = ["营造台账宽表", "成本列表"];
   tab = 0;
   back() {
     this.$router.back();
