@@ -1,7 +1,7 @@
 <template>
   <Spin class="warning" :loading="loading" :empty="empty">
     <div class="table-wrapper">
-      <van-row type="flex" align="center">
+      <van-row type="flex" align="center" style="margin-bottom: 47px">
         <van-col span="2" class="cus-label">预警阶段</van-col>
         <van-col span="10" class="cus-checkbox-wrapper">
           <label v-for="item of warningOptStages" :key="item.name">
@@ -9,10 +9,14 @@
               class="cus-checkbox"
               name="stage"
               :value="item.name"
+              @change="fetch"
               type="checkbox"
               v-model="stage"
             />
-            <span class="type1">{{ item.desc }}</span>
+            <span class="type1">
+              {{ item.desc }}
+              <em><Icon type="checked" /></em>
+            </span>
           </label>
         </van-col>
         <van-col span="2" class="cus-label">预警阶段</van-col>
@@ -22,6 +26,7 @@
               class="cus-checkbox"
               name="riskDegree"
               type="checkbox"
+              @change="fetch"
               :value="m.name"
               v-model="riskDegree"
             />
@@ -33,6 +38,7 @@
                 :color="index + 1 <= 3 - i ? ['#FF3980'] : ['#6F6F6F']"
                 :key="n"
               />
+              <em><Icon type="checked" /></em>
             </span>
           </label>
         </van-col>
@@ -48,8 +54,8 @@
       </table>
       <Animationend
         key="1"
-        :height="595"
-        :scrollMinCount="10"
+        :height="500"
+        :scrollMinCount="5"
         :dataSource="response"
       >
         <template v-slot="{ list }">
@@ -178,8 +184,8 @@ export default class E1 extends Base implements IFetch {
    */
   getWarningInfo(item: EarlyWarningItemReturn) {
     const typeMaps = {
-      // 超期预警
-      OVER_PERIOD: {
+      // 投资
+      INVEST: {
         style: {
           "background-color": "rgba(255, 203, 123, 0.2)",
           "border-color": "#ffcb7b",
@@ -187,8 +193,8 @@ export default class E1 extends Base implements IFetch {
         },
         iconColor: "#ffcb7b",
       },
-      // 收入预警
-      INCOME: {
+      // 运营
+      OPERATE: {
         style: {
           "background-color": "rgba(255, 57, 128, 0.2)",
           "border-color": "#ff3980",
@@ -196,8 +202,8 @@ export default class E1 extends Base implements IFetch {
         },
         iconColor: "#ff3980",
       },
-      // 出租率预警
-      RENT_RATIO: {
+      // 营销
+      MARKETING: {
         style: {
           "background-color": "rgba(153, 183, 246, 0.2)",
           "border-color": "#99b7f6",
@@ -205,44 +211,71 @@ export default class E1 extends Base implements IFetch {
         },
         iconColor: "#99b7f6",
       },
-      // TODO 人员离岗, 颜色无
-      STAFF_LEAVE: {
-        style: {
-          "background-color": "rgba(255, 203, 123, 0.2)",
-          "border-color": "#99b7f6",
-          color: "#99b7f6",
-        },
-        iconColor: "#99b7f6",
-      },
-      // 运营品质
-      OPT_QUALITY: {
-        style: {
-          "background-color": "rgba(180, 145, 253, 0.2)",
-          "border-color": "#b491fd",
-          color: "#b491fd",
-        },
-        iconColor: "#b491fd",
-      },
-      // 安全风险
-      SECURITY: {
-        style: {
-          "background-color": "rgba(34, 203, 152, 0.2)",
-          "border-color": "#22cb98",
-          color: "#22cb98",
-        },
-        iconColor: "#22cb98",
-      },
-      // 火情风险
-      FIRE_SITUATION: {
-        style: {
-          "background-color": "rgba(34, 203, 152, 0.2)",
-          "border-color": "#f50",
-          color: "#f50",
-        },
-        iconColor: "#f50",
-      },
+      // // 超期预警
+      // OVER_PERIOD: {
+      //   style: {
+      //     "background-color": "rgba(255, 203, 123, 0.2)",
+      //     "border-color": "#ffcb7b",
+      //     color: "#ffcb7b",
+      //   },
+      //   iconColor: "#ffcb7b",
+      // },
+      // // 收入预警
+      // INCOME: {
+      //   style: {
+      //     "background-color": "rgba(255, 57, 128, 0.2)",
+      //     "border-color": "#ff3980",
+      //     color: "#ff3980",
+      //   },
+      //   iconColor: "#ff3980",
+      // },
+      // // 出租率预警
+      // RENT_RATIO: {
+      //   style: {
+      //     "background-color": "rgba(153, 183, 246, 0.2)",
+      //     "border-color": "#99b7f6",
+      //     color: "#99b7f6",
+      //   },
+      //   iconColor: "#99b7f6",
+      // },
+      //  人员离岗, 颜色无
+      // STAFF_LEAVE: {
+      //   style: {
+      //     "background-color": "rgba(255, 203, 123, 0.2)",
+      //     "border-color": "#99b7f6",
+      //     color: "#99b7f6",
+      //   },
+      //   iconColor: "#99b7f6",
+      // },
+      // // 运营品质
+      // OPT_QUALITY: {
+      //   style: {
+      //     "background-color": "rgba(180, 145, 253, 0.2)",
+      //     "border-color": "#b491fd",
+      //     color: "#b491fd",
+      //   },
+      //   iconColor: "#b491fd",
+      // },
+      // // 安全风险
+      // SECURITY: {
+      //   style: {
+      //     "background-color": "rgba(34, 203, 152, 0.2)",
+      //     "border-color": "#22cb98",
+      //     color: "#22cb98",
+      //   },
+      //   iconColor: "#22cb98",
+      // },
+      // // 火情风险
+      // FIRE_SITUATION: {
+      //   style: {
+      //     "background-color": "rgba(34, 203, 152, 0.2)",
+      //     "border-color": "#f50",
+      //     color: "#f50",
+      //   },
+      //   iconColor: "#f50",
+      // },
     };
-    const theme = typeMaps[item.type] ?? {};
+    const theme = typeMaps[item.stage] ?? {};
     return theme;
   }
 
@@ -258,8 +291,8 @@ export default class E1 extends Base implements IFetch {
         dataLevel: this.store.global.dataLevel,
         levelId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
-        stage: this.stage,
-        riskDegree: this.riskDegree,
+        stage: this.stage.join(","),
+        riskDegree: this.riskDegree.join(","),
       },
     });
     if (response?.status === "ok") {
@@ -273,6 +306,7 @@ export default class E1 extends Base implements IFetch {
 <style lang="scss" scoped>
 $step-color: #0e173c;
 .table-wrapper {
+  padding-top: 47px;
   .cus-checkbox {
     -webkit-appearance: none;
     outline: none;
@@ -284,6 +318,7 @@ $step-color: #0e173c;
   }
   .cus-checkbox-wrapper {
     span {
+      position: relative;
       display: inline-block;
       color: #90a4c3;
       margin: 0 10px;
@@ -294,6 +329,15 @@ $step-color: #0e173c;
       border: 2px solid #0e173c;
       text-align: center;
       cursor: pointer;
+      em {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: none;
+        svg {
+          vertical-align: top;
+        }
+      }
     }
     .type1 {
       width: 152px;
@@ -306,6 +350,9 @@ $step-color: #0e173c;
     .cus-checkbox:checked + span {
       color: #01f5f1;
       border: 2px solid #01f5f1;
+      em {
+        display: block;
+      }
     }
     svg {
       vertical-align: middle;
