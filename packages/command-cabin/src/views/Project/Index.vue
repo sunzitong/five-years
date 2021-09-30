@@ -13,7 +13,9 @@
             <A2 />
           </CardA>
           <WhiteSpace />
-          <CardA title="项目区位" style="width: 1909px; height: 914px"></CardA>
+          <CardA title="项目区位" style="width: 1909px; height: 914px">
+            <A3 />
+          </CardA>
         </SubWrapperA>
       </div>
       <div class="main-center">
@@ -224,6 +226,7 @@ import CardA from "@/components/CardA/Index.vue";
 import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
+import A3 from "./components/A3.vue";
 import B1 from "./components/B1.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
@@ -246,6 +249,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     WhiteSpace,
     A1,
     A2,
+    A3,
     B1,
     D1,
     D2,

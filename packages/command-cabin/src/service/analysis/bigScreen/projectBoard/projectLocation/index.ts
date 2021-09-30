@@ -26,7 +26,7 @@ export interface ProjectLocationReturn {
 /**
  * 门店屏-项目区位
  * @createBy baishiqiang
- * @updateAt 2021/9/28 15:53:28
+ * @updateAt 2021/9/30 14:48:17
  * @method GET
  */
 export const fetchProjectLocation = (params: ProjectLocationParams) => {

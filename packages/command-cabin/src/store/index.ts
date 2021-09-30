@@ -123,6 +123,11 @@ export enum StoreKey {
    * 指挥中心-异常预警
    */
   HomeEarlyWarning = "HomeEarlyWarning",
+
+  /**
+   * 基础信息-项目区位
+   */
+  ProjectLocation = "ProjectLocation",
 }
 /**
  * 方法重载
