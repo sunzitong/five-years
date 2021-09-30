@@ -82,23 +82,34 @@
         <div class="global-button global-button--1">
           <ButtonGroupA>
             <van-radio-group v-model="centerChartType" direction="horizontal">
-              <van-radio name="main" @click="showMapScopePanel = true">
+              <van-radio
+                name="main"
+                @click="
+                  () => {
+                    if (store.global.dataLevel === DataLevels.GROUP) {
+                      showMapScopePanel = !showMapScopePanel;
+                    }
+                  }
+                "
+              >
                 <Icon type="map" :size="36" class="button-icon--left" />
                 总盘面({{ mapScopeOptions[mapScopeValue] }})
-                <Icon
-                  type="arrow-bold-bottom"
-                  class="button-icon--right"
-                  :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
-                  v-if="showMapScopePanel"
-                />
-                <Icon
-                  type="arrow-bold-top"
-                  class="button-icon--right"
-                  :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
-                  v-else
-                />
+                <span v-show="store.global.dataLevel === DataLevels.GROUP">
+                  <Icon
+                    type="arrow-bold-bottom"
+                    class="button-icon--right"
+                    :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
+                    v-if="showMapScopePanel"
+                  />
+                  <Icon
+                    type="arrow-bold-top"
+                    class="button-icon--right"
+                    :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
+                    v-else
+                  />
+                </span>
               </van-radio>
-              <van-radio name="guanyu">
+              <van-radio name="guanyu" @click="showMapScopePanel = false">
                 <Icon type="flag" :size="36" class="button-icon--left" />
                 冠寓大事记
               </van-radio>
@@ -266,7 +277,7 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import CardA from "@/components/CardA/Index.vue";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
@@ -338,10 +349,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
   },
 })
 export default class Home extends Base {
-  /**
-   * 时间维度枚举
-   */
-  DateScopes = DateScopes;
+  DataLevels = DataLevels;
   /**
    * 数据周期
    */
@@ -353,6 +361,7 @@ export default class Home extends Base {
   }
   /**
    * 总盘面、冠寓大事记
+   * main guanyu
    */
   centerChartType = "main";
   /**
@@ -363,6 +372,18 @@ export default class Home extends Base {
    * 总盘面数据区域
    */
   mapScopeValue = DataLevels.AREA;
+
+  /**
+   * 全局切换时同步切换总盘面
+   */
+  @Watch("store.global.dataLevel")
+  dataLevelChanged(val: DataLevels) {
+    if (val !== DataLevels.GROUP) {
+      this.mapScopeValue = val;
+      this.showMapScopePanel = false;
+    }
+  }
+
   /**
    * 总盘面大区、城市
    */
