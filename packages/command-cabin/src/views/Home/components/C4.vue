@@ -200,6 +200,7 @@ export default class C4 extends Base implements IFetch {
     line-height: 84px;
     padding: 0 36px;
     margin: 10px 0;
+    transition: 150ms;
     &.active {
       @extend %bg-img-mopt-1;
       color: #ffffff;

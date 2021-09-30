@@ -42,7 +42,7 @@ export interface MapCircleItemReturn {
 /**
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/9/30 12:7:48
+ * @updateAt 2021/9/30 17:3:50
  * @method GET
  */
 export const fetchMapCircle = (params: MapCircleParams) => {
