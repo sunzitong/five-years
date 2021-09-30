@@ -14,6 +14,15 @@
         <span v-if="key === 'netProfitsRatio'">%</span>
       </li>
     </ul>
+    <div
+      class="circle"
+      v-for="item in mapData"
+      :key="item.orgId"
+      @click="setOrgTree(item)"
+    >
+      {{ item.orgName }}
+      {{ item.newIncreNum }}
+    </div>
   </div>
 </template>
 
@@ -32,6 +41,7 @@ import {
   fetchMapCircle,
   MapCircleItemReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapCircle";
+import { OrgTreeItemReturn } from "@/service/analysis/commandCabin/orgTree";
 
 @Component({
   components: {
@@ -42,7 +52,7 @@ export default class C4 extends Base implements IFetch {
   /**
    * 总盘面大区、城市
    */
-  @Prop({ required: true }) scopeValue!: DataLevels;
+  @Prop({ required: true }) levelValue!: DataLevels;
 
   options = {
     newIncreNum: "新增获取房间数",
@@ -61,7 +71,7 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchMapCircle, {
       key: StoreKey.HomeMapCircle,
       params: {
-        dataLevel: this.store.global.dataLevel,
+        dataLevel: this.levelValue,
         dateScope: this.store.global.dateScope,
       },
     });
@@ -104,6 +114,14 @@ export default class C4 extends Base implements IFetch {
       this.optionBar = iwant.object(response.data);
     }
   }
+
+  /**
+   * 设置全局组架
+   */
+  setOrgTree(item: OrgTreeItemReturn) {
+    this.store.global.dataLevel = this.levelValue;
+    this.store.global.orgTree = item;
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -118,6 +136,7 @@ export default class C4 extends Base implements IFetch {
   height: 2098px;
   left: -330px;
   bottom: 0;
+  pointer-events: none;
 }
 .options {
   position: absolute;
@@ -128,7 +147,7 @@ export default class C4 extends Base implements IFetch {
   cursor: pointer;
   .item {
     @extend %bg-img-mopt-0;
-    background-size: 100% 100%;
+    background-size: 100% 100% !important;
     height: 84px;
     line-height: 84px;
     padding: 0 36px;
