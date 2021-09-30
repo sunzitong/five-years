@@ -3,31 +3,33 @@
     <div class="china"></div>
     <ul class="options">
       <li
+        v-for="(item, index) in options"
+        :key="index"
         class="item"
-        :class="{ active: optionValue === key }"
-        v-for="(text, key) in options"
-        :key="key"
-        @click="optionValue = key"
+        :class="{ active: optionIndex === index }"
+        @click="optionIndex = index"
       >
-        {{ text }}
-        <StepNumber :to="optionBar[key]" />
-        <span v-if="key === 'netProfitsRatio'">%</span>
+        {{ item.text }}
+        <StepNumber :to="optionBar[item.numName]" :duration="100" />
+        <span v-if="index === 2">%</span>
       </li>
     </ul>
     <div
       class="circle"
+      :class="{ 'circle--warn': circleWarn(item) }"
       v-for="item in mapData"
       :key="item.orgId"
       @click="setOrgTree(item)"
     >
       {{ item.orgName }}
-      {{ item.newIncreNum }}
+      {{ item[options[optionIndex].numName] }}
+      {{ item[options[optionIndex].limitName] }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { DataLevels } from "@/service/analysis/commandCabin/publicEnum/enums";
@@ -54,19 +56,43 @@ export default class C4 extends Base implements IFetch {
    */
   @Prop({ required: true }) levelValue!: DataLevels;
 
-  options = {
-    newIncreNum: "新增获取房间数",
-    openNum: "开业间数",
-    netProfitsRatio: "净利润率",
-    allFormatIncome: "全业态收入(万元)",
-  };
-
-  optionValue: string | null = null;
-
+  /**
+   * 切换条
+   */
+  options: {
+    numName: keyof MapCircleItemReturn;
+    limitName: keyof MapCircleItemReturn;
+    text: string;
+  }[] = [
+    {
+      numName: "newIncreNum",
+      limitName: "newIncreFinishLimit",
+      text: "新增获取房间数",
+    },
+    { numName: "openNum", limitName: "openFinishLimit", text: "开业间数" },
+    {
+      numName: "netProfitsRatio",
+      limitName: "netProfitsFinishLimit",
+      text: "净利润率",
+    },
+    {
+      numName: "allFormatIncome",
+      limitName: "allFormatIncomeFinishLimit",
+      text: "全业态收入(万元)",
+    },
+  ];
+  optionIndex = 2;
   optionBar: Partial<MapChangeBarReturn> = {};
 
+  /**
+   * 地图圆圈数据
+   */
   mapData: MapCircleItemReturn[] = [];
 
+  /**
+   * 请求圆圈数据
+   */
+  @Watch("levelValue")
   async fetch() {
     const response = await useStore(fetchMapCircle, {
       key: StoreKey.HomeMapCircle,
@@ -92,9 +118,7 @@ export default class C4 extends Base implements IFetch {
       const optionBar = this.mapData.find(
         (item) => item.orgId === this.store.global.orgTree.orgId
       );
-      if (optionBar) {
-        this.optionBar = optionBar;
-      }
+      this.optionBar = optionBar || {};
     }
   }
 
@@ -121,6 +145,30 @@ export default class C4 extends Base implements IFetch {
   setOrgTree(item: OrgTreeItemReturn) {
     this.store.global.dataLevel = this.levelValue;
     this.store.global.orgTree = item;
+  }
+
+  /**
+   * 圆圈颜色
+   */
+  circleWarn(item: MapCircleItemReturn) {
+    // 新增获取房间数
+    if (this.optionIndex === 0) {
+      return item.newIncreFinishLimit < 100;
+    }
+    // 开业间数
+    if (this.optionIndex === 1) {
+      return item.openFinishLimit < 100;
+    }
+    // 净利润率
+    if (this.optionIndex === 2) {
+      return item.netProfitsFinishLimit < 100;
+    }
+    // 全业态收入(万元)
+    if (this.optionIndex === 3) {
+      // FIXME 收入总额/收入总额预算＜95%时
+      return item.allFormatIncomeFinishLimit < 95;
+    }
+    return false;
   }
 }
 </script>
@@ -156,6 +204,11 @@ export default class C4 extends Base implements IFetch {
       @extend %bg-img-mopt-1;
       color: #ffffff;
     }
+  }
+}
+.circle {
+  &--warn {
+    color: red;
   }
 }
 </style>
