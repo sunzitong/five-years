@@ -82,9 +82,21 @@
         <div class="global-button global-button--1">
           <ButtonGroupA>
             <van-radio-group v-model="centerChartType" direction="horizontal">
-              <van-radio name="main">
+              <van-radio name="main" @click="showMapScopePanel = true">
                 <Icon type="map" :size="36" class="button-icon--left" />
-                总盘面
+                总盘面({{ mapScopeOptions[mapScopeValue] }})
+                <Icon
+                  type="arrow-bold-bottom"
+                  class="button-icon--right"
+                  :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
+                  v-if="showMapScopePanel"
+                />
+                <Icon
+                  type="arrow-bold-top"
+                  class="button-icon--right"
+                  :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
+                  v-else
+                />
               </van-radio>
               <van-radio name="guanyu">
                 <Icon type="flag" :size="36" class="button-icon--left" />
@@ -92,6 +104,13 @@
               </van-radio>
             </van-radio-group>
           </ButtonGroupA>
+          <!-- 快捷导航 -->
+          <OptionPanel
+            name="Options"
+            :show.sync="showMapScopePanel"
+            :options="mapScopeOptions"
+            v-model="mapScopeValue"
+          />
         </div>
         <SubWrapperA
           style="width: 2113px; height: 680px; margin: 0 0 44px"
@@ -131,7 +150,12 @@
             >
               <van-checkbox
                 :name="showScopePanel ? 'scope' : null"
-                @click="showScopePanel = !showScopePanel"
+                @click="
+                  () => {
+                    showScopePanel = !showScopePanel;
+                    showOrgPanel = false;
+                  }
+                "
               >
                 {{ scopeValue }}
                 <Icon
@@ -149,7 +173,12 @@
               </van-checkbox>
               <van-checkbox
                 :name="showOrgPanel ? 'orgTree' : null"
-                @click="showOrgPanel = !showOrgPanel"
+                @click="
+                  () => {
+                    showOrgPanel = !showOrgPanel;
+                    showScopePanel = false;
+                  }
+                "
               >
                 {{ store.global.orgTree.orgName }}
                 <Icon
@@ -245,7 +274,10 @@ import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
-import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
+import {
+  DataLevels,
+  DateScopes,
+} from "@/service/analysis/commandCabin/publicEnum/enums";
 
 /** Jing */
 import A1 from "./components/A1.vue";
@@ -324,6 +356,18 @@ export default class Home extends Base {
    */
   centerChartType = "main";
   /**
+   * 总盘面数据区域
+   */
+  mapScopeOptions = { [DataLevels.AREA]: "大区", [DataLevels.CITY]: "城市" };
+  /**
+   * 总盘面数据区域
+   */
+  mapScopeValue = DataLevels.AREA;
+  /**
+   * 总盘面大区、城市
+   */
+  showMapScopePanel = false;
+  /**
    * 显示快捷导航
    */
   showNavPanel = false;
@@ -380,6 +424,7 @@ export default class Home extends Base {
   }
 }
 .global-button {
+  position: relative;
   display: flex;
   padding: 0 5px;
   .button-icon--right {
@@ -406,6 +451,10 @@ export default class Home extends Base {
   }
   &.TheNavMenu {
     left: 0;
+    right: auto;
+  }
+  &.Options {
+    left: 664px;
     right: auto;
   }
 }

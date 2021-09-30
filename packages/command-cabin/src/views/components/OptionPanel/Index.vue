@@ -4,6 +4,8 @@
     :show.sync="pipeShow"
     :class="name"
     @click.native.stop
+    v-bind="$attrs"
+    v-on="$listeners"
   />
 </template>
 
@@ -14,11 +16,19 @@ import TheProjectList from "./TheProjectList.vue";
 import TheDateScopes from "./TheDateScopes.vue";
 import TheNavMenu from "./TheNavMenu.vue";
 import mitter, { EventName } from "@/utils/mitter";
+import Options from "./Options.vue";
 
-const components = { TheOrgTree, TheProjectList, TheDateScopes, TheNavMenu };
+const components = {
+  TheOrgTree,
+  TheProjectList,
+  TheDateScopes,
+  TheNavMenu,
+  Options,
+};
 
 @Component({
   components,
+  inheritAttrs: false,
 })
 export default class OptionPanel extends Vue {
   /**
