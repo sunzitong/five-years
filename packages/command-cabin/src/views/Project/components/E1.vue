@@ -21,7 +21,7 @@
         </van-col>
         <van-col span="2" class="cus-label">预警阶段</van-col>
         <van-col span="10" class="cus-checkbox-wrapper">
-          <label v-for="(m, i) of riskDegrees" :key="m">
+          <label v-for="(m, i) of riskDegrees" :key="m.name">
             <input
               class="cus-checkbox"
               name="riskDegree"
@@ -115,7 +115,10 @@ import { Swipe } from "vant";
 import Animationend from "@/components/Animationend/Index.vue";
 
 import { WarningOptStages } from "@/service/analysis/commandCabin/publicEnum/enums";
-import { EarlyWarningItemReturn, fetchEarlyWarning } from "@/service/analysis/bigScreen/projectBoard/managementSituation/earlyWarning";
+import {
+  EarlyWarningItemReturn,
+  fetchEarlyWarning,
+} from "@/service/analysis/bigScreen/projectBoard/managementSituation/earlyWarning";
 
 @Component({
   components: {
