@@ -2,46 +2,50 @@
   <div class="box">
     <ul class="list">
       <li class="item">
-        <div class="name">资产类型</div>
-        <div class="desc">{{ formatValue(response.transactionModel) }}</div>
-      </li>
-      <li class="item">
-        <div class="name">交易对手</div>
-        <div class="desc">{{ formatValue(response.transactionOpponent) }}</div>
-      </li>
-      <li class="item">
-        <div class="name">获取方式</div>
-        <div class="desc">{{ formatValue(response.acquireManner) }}</div>
+        <div class="name">客户性质</div>
+        <div class="desc">{{ formatValue(response.customerProperty) }}</div>
       </li>
       <li class="item">
         <div class="name">合作模式</div>
-        <div class="desc">{{ formatValue(response.cooperationModel) }}</div>
+        <div class="desc">{{ formatValue(response.cooperationMode) }}</div>
       </li>
       <li class="item">
         <div class="name">租赁面积</div>
+        <div class="desc">{{ formatValue(response.rentalArea) }}</div>
+      </li>
+      <li class="item">
+        <div class="name">用地性质</div>
+        <div class="desc">{{ formatValue(response.useLandNature) }}</div>
+      </li>
+      <li class="item">
+        <div class="name">产权性质</div>
         <div class="desc">
-          {{ formatValue(sepNumber(response.rentalArea)) }}
+          {{ formatValue(sepNumber(response.propertyRightNature)) }}
         </div>
       </li>
-      <li class="item">
-        <div class="name">土地性质</div>
-        <div class="desc">{{ formatValue(response.landProperty) }}</div>
-      </li>
-      <li class="item">
-        <div class="name">楼体性质</div>
-        <div class="desc">{{ formatValue(response.buildingProperty) }}</div>
-      </li>
-      <li class="item">
-        <div class="name">证照产权</div>
-        <div class="desc">{{ response.licensePropertyRight }}</div>
-      </li>
     </ul>
-    <a class="footer">
+    <a class="footer" @click="toggleDialog">
       <div class="text">
         投资任务书
         <van-icon name="down" />
       </div>
     </a>
+    <van-dialog
+      class="dialog"
+      width="2000"
+      v-model="show"
+      :show-confirm-button="false"
+      :get-container="() => $root.$el"
+    >
+      <CardB>
+        <div class="content">
+          <embed width="100%" height="960" :src="response.investmentLink" />
+          <span class="cross" @click="toggleDialog">
+            <van-icon name="cross" />
+          </span>
+        </div>
+      </CardB>
+    </van-dialog>
   </div>
 </template>
 
@@ -53,10 +57,17 @@ import {
 import { StoreKey, useStore } from "@/store";
 import { Base, IFetch } from "@/views/Base";
 import { iwant } from "@guanyu/shared";
+import CardB from "@/components/CardB/Index.vue";
 import { Component } from "vue-property-decorator";
 
-@Component
+@Component({
+  components: {
+    CardB,
+  },
+})
 export default class A1C extends Base implements IFetch {
+  show = true;
+
   response: Partial<ProjectBaseInfoReturn> = {};
   /**
    * 自动触发 重复调用
@@ -71,6 +82,13 @@ export default class A1C extends Base implements IFetch {
       this.response = iwant.object(response.data);
     }
     return response;
+  }
+
+  /**
+   * 弹窗显示/隐藏
+   */
+  toggleDialog() {
+    this.show = !this.show;
   }
 }
 </script>
@@ -143,6 +161,18 @@ $padding-x: 100px;
     bottom: -2px;
     left: -2px;
     border-radius: 10px;
+  }
+}
+.dialog {
+  background: transparent;
+  .content {
+    margin: 30px;
+  }
+  .cross {
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    font-size: 40px;
   }
 }
 </style>
