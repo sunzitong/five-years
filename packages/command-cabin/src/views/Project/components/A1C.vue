@@ -32,15 +32,24 @@
     </a>
     <van-dialog
       class="dialog"
-      width="2000"
+      :width="device().width"
       v-model="show"
       :show-confirm-button="false"
       :get-container="() => $root.$el"
     >
       <CardB>
         <div class="content">
-          <embed width="100%" height="960" :src="response.investmentLink" />
+          <iframe
+            :width="device().width - 80"
+            :height="device().height"
+            frameborder="0"
+            scrolling="no"
+            :src="response.investmentLink"
+          ></iframe>
           <span class="cross" @click="toggleDialog">
+            <van-icon name="cross" />
+          </span>
+          <span class="crossLeft" @click="toggleDialog">
             <van-icon name="cross" />
           </span>
         </div>
@@ -89,6 +98,16 @@ export default class A1C extends Base implements IFetch {
    */
   toggleDialog() {
     this.show = !this.show;
+  }
+
+  /**
+   * device
+   */
+  device() {
+    return {
+      width: screen.width * 0.8,
+      height: screen.height * 0.8,
+    };
   }
 }
 </script>
@@ -171,6 +190,12 @@ $padding-x: 100px;
   .cross {
     position: absolute;
     right: 0;
+    bottom: -40px;
+    font-size: 40px;
+  }
+  .crossLeft {
+    position: absolute;
+    left: 0;
     bottom: -40px;
     font-size: 40px;
   }
