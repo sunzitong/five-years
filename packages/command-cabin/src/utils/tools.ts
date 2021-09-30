@@ -55,11 +55,13 @@ export const formatColors = (
   colors: string | string[],
   length: number
 ): string[] => {
-  let arr = [];
+  let arr: string[] = [];
   if (_.isArray(colors)) {
     arr = colors;
   } else {
-    arr = colors.split("|");
+    if (typeof colors === "string") {
+      arr = colors.split("|");
+    }
   }
   arr = arr.slice(0, length);
   if (arr.length < length) {

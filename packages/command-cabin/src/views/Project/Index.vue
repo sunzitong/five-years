@@ -95,7 +95,12 @@
               </van-checkbox>
               <van-checkbox
                 :name="showScopePanel ? 'scope' : null"
-                @click="showScopePanel = !showScopePanel"
+                @click="
+                  () => {
+                    showScopePanel = !showScopePanel;
+                    showOrgPanel = false;
+                  }
+                "
               >
                 {{ scopeValue }}
                 <Icon
@@ -113,7 +118,12 @@
               </van-checkbox>
               <van-checkbox
                 :name="showOrgPanel ? 'orgTree' : null"
-                @click="showOrgPanel = !showOrgPanel"
+                @click="
+                  () => {
+                    showOrgPanel = !showOrgPanel;
+                    showScopePanel = false;
+                  }
+                "
               >
                 门店选择
                 <Icon
@@ -316,6 +326,12 @@ export default class Index extends Base {
   height: 192px;
   margin-top: 40px;
   padding: 0 14px 0 8px;
+  .button-icon--right {
+    margin-left: 12px;
+  }
+  .button-icon--left {
+    margin-right: 12px;
+  }
 }
 .project-name {
   position: absolute;
