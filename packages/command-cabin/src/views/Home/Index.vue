@@ -77,7 +77,7 @@
         <div style="height: 1876px">
           <C1 />
           <C2 />
-          <C4 />
+          <C4 :scopeValue="mapScopeValue" />
         </div>
         <div class="global-button global-button--1">
           <ButtonGroupA>
