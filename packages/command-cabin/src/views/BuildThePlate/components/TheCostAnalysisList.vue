@@ -14,7 +14,7 @@
           v-for="item in list"
           :key="item.id"
           :class="{
-            warn: item.dynamicCostNonTax >= item.targetCostNonTax * 0.97,
+            warn: item.isRisk,
           }"
         >
           <td v-for="opt in options" :key="opt.name">
