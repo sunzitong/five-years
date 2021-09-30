@@ -33,7 +33,7 @@ export interface EarlyWarningParams {
   /**
    * 风险程度：1=一个红灯。。。
    */
-  riskDegree: number;
+  riskDegree: unknown;
 }
 
 /**
@@ -53,7 +53,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/9/29 9:26:55
+ * @updateAt 2021/9/30 14:8:48
  * @method GET
  */
 export const fetchEarlyWarning = (params: EarlyWarningParams) => {

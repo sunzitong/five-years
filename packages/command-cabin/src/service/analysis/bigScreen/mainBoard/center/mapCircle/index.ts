@@ -16,11 +16,6 @@ export interface MapCircleParams {
   dataLevel: unknown;
 
   /**
-   * 组织id
-   */
-  levelId: number;
-
-  /**
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
@@ -47,7 +42,7 @@ export interface MapCircleItemReturn {
 /**
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/9/27 18:17:37
+ * @updateAt 2021/9/30 12:7:48
  * @method GET
  */
 export const fetchMapCircle = (params: MapCircleParams) => {

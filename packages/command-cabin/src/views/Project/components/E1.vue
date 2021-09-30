@@ -113,11 +113,9 @@ import { StoreKey, useStore } from "@/store";
 import Icon from "@/components/Icon/Index.vue";
 import { Swipe } from "vant";
 import Animationend from "@/components/Animationend/Index.vue";
-import {
-  EarlyWarningItemReturn,
-  fetchEarlyWarning,
-} from "@/service/analysis/bigScreen/mainBoard/center/earlyWarning";
+
 import { WarningOptStages } from "@/service/analysis/commandCabin/publicEnum/enums";
+import { EarlyWarningItemReturn, fetchEarlyWarning } from "@/service/analysis/bigScreen/projectBoard/managementSituation/earlyWarning";
 
 @Component({
   components: {
@@ -288,9 +286,7 @@ export default class E1 extends Base implements IFetch {
     const response = await useStore(fetchEarlyWarning, {
       key: StoreKey.HomeEarlyWarning,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
-        dateScope: this.store.global.dateScope,
+        projectId: this.store.global.project.projectId,
         stage: this.stage.join(","),
         riskDegree: this.riskDegree.join(","),
       },
