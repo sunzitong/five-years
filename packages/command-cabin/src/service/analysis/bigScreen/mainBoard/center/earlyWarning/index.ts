@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114788
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -56,11 +56,13 @@ export interface EarlyWarningItemReturn {
  * @updateAt 2021/9/30 14:8:48
  * @method GET
  */
-export const fetchEarlyWarning = (params: EarlyWarningParams) => {
+export const fetchEarlyWarning = (
+  params: EarlyWarningParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<EarlyWarningItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/earlyWarning`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

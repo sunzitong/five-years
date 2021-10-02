@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114798
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -39,11 +39,13 @@ export interface BusinessOppReserveReturn {
  * @updateAt 2021/9/28 10:29:44
  * @method GET
  */
-export const fetchBusinessOppReserve = (params: BusinessOppReserveParams) => {
+export const fetchBusinessOppReserve = (
+  params: BusinessOppReserveParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<BusinessOppReserveReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/businessOppReserve`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

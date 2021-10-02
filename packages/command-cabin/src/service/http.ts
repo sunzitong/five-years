@@ -19,7 +19,7 @@ const loading = {
 export type ServiceOptions = { showLoading: boolean; headers?: any };
 
 const mergeOptions = (partial?: Partial<ServiceOptions>): ServiceOptions => {
-  return { showLoading: false, ...partial };
+  return { showLoading: true, ...partial };
 };
 
 const before = (partial?: Partial<ServiceOptions>) => {

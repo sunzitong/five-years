@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114928
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -44,8 +44,13 @@ export interface SwitchRoleReturn {
  * @updateAt 2021/10/2 14:59:4
  * @method POST
  */
-export const fetchSwitchRole = (params: SwitchRoleParams) => {
-  return http.post<SwitchRoleReturn>(`${BASE_URL}/auth/switchRole`, {
-    ...params,
-  });
+export const fetchSwitchRole = (
+  params: SwitchRoleParams,
+  options?: Partial<ServiceOptions>
+) => {
+  return http.post<SwitchRoleReturn>(
+    `${BASE_URL}/auth/switchRole`,
+    { ...params },
+    { ...options }
+  );
 };

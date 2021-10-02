@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114784
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -54,11 +54,13 @@ export interface Value {
  * @updateAt 2021/9/30 18:8:26
  * @method GET
  */
-export const fetchMilepost = (params: MilepostParams) => {
+export const fetchMilepost = (
+  params: MilepostParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<MilepostItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation/milepost`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

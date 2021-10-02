@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114930
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -12,8 +12,13 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  * @updateAt 2021/10/2 15:2:31
  * @method POST
  */
-export const fetchLogout = (params?: Record<string, unknown>) => {
-  return http.post<any>(`${BASE_URL}/auth/api/logout`, {
-    ...params,
-  });
+export const fetchLogout = (
+  params?: Record<string, unknown>,
+  options?: Partial<ServiceOptions>
+) => {
+  return http.post<any>(
+    `${BASE_URL}/auth/api/logout`,
+    { ...params },
+    { ...options }
+  );
 };

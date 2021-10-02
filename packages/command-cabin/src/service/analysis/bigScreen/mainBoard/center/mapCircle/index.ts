@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114770
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -45,11 +45,13 @@ export interface MapCircleItemReturn {
  * @updateAt 2021/9/30 17:3:50
  * @method GET
  */
-export const fetchMapCircle = (params: MapCircleParams) => {
+export const fetchMapCircle = (
+  params: MapCircleParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<MapCircleItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/mapCircle`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

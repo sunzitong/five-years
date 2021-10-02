@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/112036
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -30,11 +30,13 @@ export interface CrisisLabel {
  * @updateAt 2021/9/29 17:32:14
  * @method GET
  */
-export const fetchPublicEnum = (params?: Record<string, unknown>) => {
+export const fetchPublicEnum = (
+  params?: Record<string, unknown>,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<PublicEnumReturn>(
     `${BASE_URL}/analysis/commandCabin/publicEnum`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

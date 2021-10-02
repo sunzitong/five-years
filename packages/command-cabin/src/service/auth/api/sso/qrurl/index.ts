@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114922
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -30,9 +30,17 @@ export interface QrurlReturn {
  * @updateAt 2021/10/2 14:38:56
  * @method GET
  */
-export const fetchQrurl = (params: QrurlParams) => {
+export const fetchQrurl = (
+  params: QrurlParams,
+  options?: Partial<ServiceOptions>
+) => {
   const { source, ...partial } = params;
-  return http.get<QrurlReturn>(`${BASE_URL}/auth/api/sso/qrurl`, partial, {
-    headers: { source },
-  });
+  return http.get<QrurlReturn>(
+    `${BASE_URL}/auth/api/sso/qrurl`,
+    options?.headers ? params : partial,
+    {
+      headers: { source },
+      ...options,
+    }
+  );
 };

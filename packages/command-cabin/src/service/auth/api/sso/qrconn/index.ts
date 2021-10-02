@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114924
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -42,9 +42,17 @@ export interface QrconnReturn {
  * @updateAt 2021/10/2 14:41:43
  * @method GET
  */
-export const fetchQrconn = (params: QrconnParams) => {
+export const fetchQrconn = (
+  params: QrconnParams,
+  options?: Partial<ServiceOptions>
+) => {
   const { source, ...partial } = params;
-  return http.get<QrconnReturn>(`${BASE_URL}/auth/api/sso/qrconn`, partial, {
-    headers: { source },
-  });
+  return http.get<QrconnReturn>(
+    `${BASE_URL}/auth/api/sso/qrconn`,
+    options?.headers ? params : partial,
+    {
+      headers: { source },
+      ...options,
+    }
+  );
 };

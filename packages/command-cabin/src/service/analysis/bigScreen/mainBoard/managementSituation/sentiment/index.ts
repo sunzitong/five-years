@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113594
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -55,11 +55,13 @@ export interface NumsByType {
  * @updateAt 2021/9/7 18:54:36
  * @method GET
  */
-export const fetchSentiment = (params: SentimentParams) => {
+export const fetchSentiment = (
+  params: SentimentParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<SentimentReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/managementSituation/sentiment`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

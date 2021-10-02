@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113946
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -41,11 +41,13 @@ export interface ProductQualityReturn {
  * @updateAt 2021/9/18 15:24:27
  * @method GET
  */
-export const fetchProductQuality = (params: ProductQualityParams) => {
+export const fetchProductQuality = (
+  params: ProductQualityParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProductQualityReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/construct/productQuality`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

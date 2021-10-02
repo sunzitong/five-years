@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114840
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -75,11 +75,13 @@ export interface List {
  * @updateAt 2021/9/28 19:14:59
  * @method GET
  */
-export const fetchStrategyCoopDetail = (params?: StrategyCoopDetailParams) => {
+export const fetchStrategyCoopDetail = (
+  params?: StrategyCoopDetailParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<StrategyCoopDetailReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/strategyCoopDetail`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

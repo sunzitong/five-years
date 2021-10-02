@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113542
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -24,11 +24,13 @@ export interface NumYearlyReturn {
  * @updateAt 2021/9/1 20:13:57
  * @method GET
  */
-export const fetchNumYearly = (params?: Record<string, unknown>) => {
+export const fetchNumYearly = (
+  params?: Record<string, unknown>,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<NumYearlyReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/numYearly`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113546
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -46,11 +46,13 @@ export interface ProjectBaseInfoReturn {
  * @updateAt 2021/9/30 15:59:1
  * @method GET
  */
-export const fetchProjectBaseInfo = (params: ProjectBaseInfoParams) => {
+export const fetchProjectBaseInfo = (
+  params: ProjectBaseInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProjectBaseInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation/projectBaseInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

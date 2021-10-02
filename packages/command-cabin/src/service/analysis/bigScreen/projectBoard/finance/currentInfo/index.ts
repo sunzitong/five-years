@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114920
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -39,11 +39,13 @@ export interface List {
  * @updateAt 2021/9/30 17:50:26
  * @method GET
  */
-export const fetchCurrentInfo = (params: CurrentInfoParams) => {
+export const fetchCurrentInfo = (
+  params: CurrentInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<CurrentInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/finance/currentInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

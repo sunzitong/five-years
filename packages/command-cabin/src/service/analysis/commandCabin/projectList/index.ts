@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114348
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -51,11 +51,13 @@ export interface ProjectListItemReturn {
  * @updateAt 2021/9/13 16:5:6
  * @method GET
  */
-export const fetchProjectList = (params?: ProjectListParams) => {
+export const fetchProjectList = (
+  params?: ProjectListParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProjectListItemReturn[]>(
     `${BASE_URL}/analysis/commandCabin/projectList`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

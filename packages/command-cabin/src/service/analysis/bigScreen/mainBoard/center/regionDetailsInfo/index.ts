@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114804
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -57,11 +57,13 @@ export interface CenterRegionDetail {
  * @updateAt 2021/9/30 17:12:11
  * @method GET
  */
-export const fetchRegionDetailsInfo = (params: RegionDetailsInfoParams) => {
+export const fetchRegionDetailsInfo = (
+  params: RegionDetailsInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<RegionDetailsInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/regionDetailsInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

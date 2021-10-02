@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114602
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -58,11 +58,13 @@ export interface CostAnalysisListItemReturn {
  * @updateAt 2021/9/29 14:15:19
  * @method GET
  */
-export const fetchCostAnalysisList = (params: CostAnalysisListParams) => {
+export const fetchCostAnalysisList = (
+  params: CostAnalysisListParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<CostAnalysisListItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/construct/costAnalysisList`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

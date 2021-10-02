@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113944
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -68,11 +68,13 @@ export interface TotalOpenListList {
  * @updateAt 2021/9/16 11:25:23
  * @method GET
  */
-export const fetchProjectOpen = (params: ProjectOpenParams) => {
+export const fetchProjectOpen = (
+  params: ProjectOpenParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProjectOpenReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/construct/projectOpen`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

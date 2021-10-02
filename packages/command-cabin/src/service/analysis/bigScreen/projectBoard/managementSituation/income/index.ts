@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114572
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -53,11 +53,13 @@ export interface IncomeReturn {
  * @updateAt 2021/9/29 11:50:42
  * @method GET
  */
-export const fetchIncome = (params: IncomeParams) => {
+export const fetchIncome = (
+  params: IncomeParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<IncomeReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/managementSituation/income`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

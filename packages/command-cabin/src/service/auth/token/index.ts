@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114926
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -51,8 +51,13 @@ export interface OrganizationInfo {
  * @updateAt 2021/10/2 15:3:23
  * @method GET
  */
-export const fetchToken = (params?: Record<string, unknown>) => {
-  return http.get<TokenReturn>(`${BASE_URL}/auth/token`, {
-    ...params,
-  });
+export const fetchToken = (
+  params?: Record<string, unknown>,
+  options?: Partial<ServiceOptions>
+) => {
+  return http.get<TokenReturn>(
+    `${BASE_URL}/auth/token`,
+    { ...params },
+    { ...options }
+  );
 };
