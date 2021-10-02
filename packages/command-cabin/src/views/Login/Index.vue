@@ -143,7 +143,12 @@
           </linearGradient>
         </defs>
       </svg>
-      <QR :value="qrCodePath" class="qr" />
+      <QR :value="qrCodePath" class="qr" v-if="qrCodePath" />
+      <van-loading
+        class="qr"
+        size="50%"
+        v-if="!qrCodePath || qrCodeStatus !== 'VALID'"
+      />
     </div>
   </div>
 </template>
@@ -318,6 +323,10 @@ export default class Login extends Base {
       width: 100% !important;
       height: 100% !important;
     }
+    @extend %flex-center;
+    line-height: 100%;
+    background: #14314c;
+    color: #8cf8fa;
   }
 }
 </style>
