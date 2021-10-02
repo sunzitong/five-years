@@ -200,6 +200,7 @@ export default class Login extends Base {
    * 请求二维码
    */
   async fetchQR() {
+    this.qrCodePath = "";
     const response = await fetchQrurl({ source: "oms" });
     if (response?.status === "ok") {
       const { data } = response;
