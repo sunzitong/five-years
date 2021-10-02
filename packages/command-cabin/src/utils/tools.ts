@@ -55,11 +55,13 @@ export const formatColors = (
   colors: string | string[],
   length: number
 ): string[] => {
-  let arr = [];
+  let arr: string[] = [];
   if (_.isArray(colors)) {
     arr = colors;
   } else {
-    arr = colors.split("|");
+    if (typeof colors === "string") {
+      arr = colors.split("|");
+    }
   }
   arr = arr.slice(0, length);
   if (arr.length < length) {
@@ -128,10 +130,16 @@ export const stepNumber = (
     to,
     from = 0,
     duration = 1000,
-    precision = 0,
+    precision,
   }: { to: number; from?: number; duration?: number; precision?: number },
   callback: (to: number) => void
 ) => {
+  let per: number;
+  if (precision === undefined) {
+    per = to.toString().split(".")[1]?.length ?? 0;
+  } else {
+    per = precision;
+  }
   const plus = (to - from) / (duration / 30);
   const timer = setInterval(() => {
     from = from + plus;
@@ -141,7 +149,7 @@ export const stepNumber = (
       clearInterval(timer);
       from = to;
     }
-    callback(iwant.calc(from, precision));
+    callback(iwant.calc(from, per));
   }, 30);
   return {
     clear: () => clearInterval(timer),

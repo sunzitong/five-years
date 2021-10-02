@@ -1,6 +1,10 @@
 <template>
   <div ref="card" class="app-card-a">
-    <CardABackground :showHeader="!!title" />
+    <CardABackground
+      :showHeader="!!title"
+      :fill="fill"
+      :fillOpacity="opacity"
+    />
     <div class="app-card-a__head" v-if="!!title">
       <slot name="title" v-bind="title">
         <h3 class="app-card-a__title">
@@ -89,12 +93,17 @@ export default class CardA extends Vue {
   /**
    * 是否显示页脚
    */
-  @Prop({ default: 1 }) opacity!: number;
+  @Prop({ default: 0.5 }) opacity!: number;
 
   /**
    * 数据来源
    */
   @Prop({ default: "" }) dataSource!: string;
+
+  /**
+   * 数据来源
+   */
+  @Prop({ default: "#010F41" }) fill!: string;
 
   W = 0;
   H = 0;

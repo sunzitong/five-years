@@ -25,9 +25,9 @@ export default class StepNumber extends Vue {
    */
   @Prop({ default: 1000 }) duration!: number;
   /**
-   * 保留数字精度
+   * 小数精度 默认以最终数字小数位为准
    */
-  @Prop({ default: 0 }) precision!: number;
+  @Prop({ type: Number }) precision!: number;
   /**
    * v-model
    */

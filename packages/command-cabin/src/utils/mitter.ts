@@ -15,7 +15,15 @@ export enum EventName {
   /**
    * 点击网页时触发
    */
-  DocumentClick = "doc-click",
+  DocumentClick = "document-click",
+  /**
+   * 请求出错
+   */
+  ServiceError = "service-error",
+  /**
+   * 登录成功
+   */
+  UpdateGlobalData = "global-data",
 }
 
 /*

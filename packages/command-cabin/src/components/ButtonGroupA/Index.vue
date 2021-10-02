@@ -1,5 +1,9 @@
 <template>
-  <div class="button-group" :class="{ 'button-group--revert': revert }">
+  <div
+    class="button-group"
+    :class="{ 'button-group--revert': revert }"
+    @click.stop
+  >
     <slot></slot>
   </div>
 </template>
@@ -38,7 +42,8 @@ export default class ButtonGroupA extends Vue {
     }
 
     .van-radio[aria-checked] {
-      width: 397px;
+      min-width: 367px;
+      padding: 0 15px;
       height: 94px;
       margin: 0;
       position: relative;
@@ -53,6 +58,7 @@ export default class ButtonGroupA extends Vue {
         left: 0;
         width: 102%;
         @extend %bg-img-btn-normal-center;
+        background-size: 100% 100px !important;
       }
       /* 首尾背景图 */
       &:nth-child(1),
@@ -147,7 +153,8 @@ export default class ButtonGroupA extends Vue {
     }
 
     .van-checkbox[aria-checked] {
-      width: 397px;
+      min-width: 367px;
+      padding: 0 15px;
       height: 94px;
       margin: 0;
       position: relative;
@@ -162,6 +169,7 @@ export default class ButtonGroupA extends Vue {
         left: 0;
         width: 102%;
         @extend %bg-img-btn-normal-center;
+        background-size: 100% 100px !important;
       }
       /* 首尾背景图 */
       &:nth-child(1),

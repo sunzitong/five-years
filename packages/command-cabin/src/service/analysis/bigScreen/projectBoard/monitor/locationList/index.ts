@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114858
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -31,11 +31,13 @@ export interface LocationListItemReturn {
  * @updateAt 2021/9/29 11:1:24
  * @method GET
  */
-export const fetchLocationList = (params: LocationListParams) => {
+export const fetchLocationList = (
+  params: LocationListParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<LocationListItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/monitor/locationList`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

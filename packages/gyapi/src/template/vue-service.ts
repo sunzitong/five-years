@@ -14,7 +14,7 @@ export default `
  * 接口文档: http://docs.gyapt.cn/project/{{=it.api.project_id}}/interface/api/{{=it.api._id}}
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 {{
   /* 名称相关 */
@@ -58,10 +58,20 @@ export interface {{=paramsType.typeName}} {
  * @method {{=it.api.method}}
  */
 export const {{=apiName}} = (
-  params{{?!paramsType.hasJsonType&&(paramsType.isOptional||paramsType.isUnknown)}}?{{?}}: {{?!paramsType.hasJsonType&&paramsType.isUnknown}}Record<string,unknown>{{??}}{{=paramsType.typeName}}{{?}}
+  params{{?!paramsType.hasJsonType&&(paramsType.isOptional||paramsType.isUnknown)}}?{{?}}: {{?!paramsType.hasJsonType&&paramsType.isUnknown}}Record<string,unknown>{{??}}{{=paramsType.typeName}}{{?}},
+  options?: Partial<ServiceOptions>
 ) => {
-  return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`, {
-    ...params
-  });
+  {{?paramsType.headersName.length}}
+  const {
+    {{=paramsType.headersName.join(',')}},
+    ...partial
+  } = params; {{?}}
+  return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`,
+  {{?paramsType.headersName.length}} options?.headers ? {...params} : partial, {
+    headers: { {{=paramsType.headersName.join(',')}} },
+    ...options
+  }
+  {{??}} { ...params },{ ...options } {{?}}
+  );
 };
 `;

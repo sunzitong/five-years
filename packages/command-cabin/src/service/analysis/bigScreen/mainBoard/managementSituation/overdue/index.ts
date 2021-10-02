@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114598
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -48,11 +48,13 @@ export interface OverdueReturn {
  * @updateAt 2021/9/22 19:26:18
  * @method GET
  */
-export const fetchOverdue = (params?: OverdueParams) => {
+export const fetchOverdue = (
+  params?: OverdueParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<OverdueReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/managementSituation/overdue`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114824
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -42,11 +42,13 @@ export interface EventsItemReturn {
  * @updateAt 2021/9/28 11:39:47
  * @method GET
  */
-export const fetchEvents = (params: EventsParams) => {
+export const fetchEvents = (
+  params: EventsParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<EventsItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/events`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

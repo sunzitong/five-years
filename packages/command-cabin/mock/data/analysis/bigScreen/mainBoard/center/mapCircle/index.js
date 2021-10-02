@@ -4,7 +4,7 @@
  *
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/9/27 18:17:37
+ * @updateAt 2021/9/30 17:3:50
  * @method GET
  */
 
@@ -21,8 +21,8 @@ exports.response = {
       orgName: "北京", //组架名称
       longitude: 93345.5, //横坐标
       latitude: 93345.5, //纵坐标
-      newIncreNum: 23233, //新增获取房间数
-      newIncreFinishLimit: 89.2, //新增获取房间完成度
+      newIncreNum: 1111, //新增获取房间数
+      newIncreFinishLimit: 100, //新增获取房间完成度
       openNum: 932, //开业间数
       openFinishLimit: 93.4, //开业间数完成度
       netProfitsRatio: 93.6, //净利润率

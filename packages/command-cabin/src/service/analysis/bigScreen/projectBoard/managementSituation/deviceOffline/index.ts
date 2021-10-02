@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113624
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -38,11 +38,13 @@ export interface DeviceOfflineReturn {
  * @updateAt 2021/9/10 14:39:38
  * @method GET
  */
-export const fetchDeviceOffline = (params: DeviceOfflineParams) => {
+export const fetchDeviceOffline = (
+  params: DeviceOfflineParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<DeviceOfflineReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/managementSituation/deviceOffline`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113540
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -39,11 +39,13 @@ export interface ExpansionAwardInfoReturn {
  * @updateAt 2021/9/17 14:0:54
  * @method GET
  */
-export const fetchExpansionAwardInfo = (params: ExpansionAwardInfoParams) => {
+export const fetchExpansionAwardInfo = (
+  params: ExpansionAwardInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ExpansionAwardInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/expansionAwardInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

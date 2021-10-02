@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114820
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -38,11 +38,13 @@ export interface BusinessOppTransReturn {
  * @updateAt 2021/9/28 11:12:26
  * @method GET
  */
-export const fetchBusinessOppTrans = (params: BusinessOppTransParams) => {
+export const fetchBusinessOppTrans = (
+  params: BusinessOppTransParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<BusinessOppTransReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/businessOppTrans`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114778
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -43,11 +43,13 @@ export interface MonitorListItemReturn {
  * @updateAt 2021/9/28 18:35:49
  * @method GET
  */
-export const fetchMonitorList = (params: MonitorListParams) => {
+export const fetchMonitorList = (
+  params: MonitorListParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<MonitorListItemReturn[]>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/monitorList`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

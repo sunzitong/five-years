@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114836
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -99,11 +99,13 @@ export interface List {
  * @updateAt 2021/9/28 19:14:37
  * @method GET
  */
-export const fetchExpandWideDetail = (params?: ExpandWideDetailParams) => {
+export const fetchExpandWideDetail = (
+  params?: ExpandWideDetailParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ExpandWideDetailReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/expandWideDetail`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

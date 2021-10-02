@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114808
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -64,11 +64,13 @@ export interface Year {
  * @updateAt 2021/9/28 11:8:6
  * @method GET
  */
-export const fetchFinanceLine = (params: FinanceLineParams) => {
+export const fetchFinanceLine = (
+  params: FinanceLineParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<FinanceLineReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/finance/financeLine`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

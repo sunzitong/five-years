@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114796
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -39,11 +39,13 @@ export interface ProjectAcquireReturn {
  * @updateAt 2021/9/28 10:25:11
  * @method GET
  */
-export const fetchProjectAcquire = (params: ProjectAcquireParams) => {
+export const fetchProjectAcquire = (
+  params: ProjectAcquireParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProjectAcquireReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/expandDisk/projectAcquire`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

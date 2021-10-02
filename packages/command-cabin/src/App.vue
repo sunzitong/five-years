@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <div v-show="$route.meta.name !== 'login'">
+    <div v-show="!inLogin">
       <div class="logo"></div>
       <AppHeader />
       <FixedNav />
       <FixedNav position="right" />
     </div>
-    <router-view v-if="!appLoading" :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="appLoading" />
+    <AppLoading v-if="appLoading && !inLogin" />
+    <!-- 路由 -->
+    <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
     <div
       v-if="true || $root.env.DEBUG"
@@ -52,6 +53,12 @@ export default class App extends Mixins(MixStore) {
 
   scale = 1;
 
+  get inLogin() {
+    return this.$route.meta.name === "login";
+  }
+  /**
+   * 屏幕缩放
+   */
   resizeHandle(event?: UIEvent) {
     /**
      * 触发mitt事件重绘echarts
@@ -94,15 +101,30 @@ export default class App extends Mixins(MixStore) {
     } else {
       sessionStorage.removeItem("resize");
     }
+    this.store.env.SCALE = this.scale;
   }
-
+  /**
+   * 右键点击
+   */
   contentMenuHandle(e: MouseEvent) {
     e.preventDefault();
     return false;
   }
-
+  /**
+   * 网页点击
+   */
   documentClick(event: MouseEvent) {
     mitter.emit(EventName.DocumentClick, event);
+  }
+  /**
+   * 接口出错
+   */
+  serviceError(status?: number) {
+    if (status === 401) {
+      if (!this.inLogin) {
+        this.$router.replace("/login").catch(_.noop);
+      }
+    }
   }
 
   created() {
@@ -114,7 +136,16 @@ export default class App extends Mixins(MixStore) {
     if (!this.$root.env.DEBUG) {
       document.addEventListener("contextmenu", this.contentMenuHandle);
     }
-    this.fetchOrgData();
+    // 注册接口错误事件
+    mitter.on(EventName.ServiceError, this.serviceError);
+    // 注册登录回调事件
+    mitter.on(EventName.UpdateGlobalData, this.fetchGlobalData);
+    // 请求全局数据
+    this.$router.onReady(() => {
+      if (!this.inLogin) {
+        mitter.emit(EventName.UpdateGlobalData);
+      }
+    });
   }
   mounted() {
     this.resizeHandle();
@@ -131,7 +162,10 @@ export default class App extends Mixins(MixStore) {
    * 请求区域门店数据
    * 赋值全局数据
    */
-  async fetchOrgData() {
+  async fetchGlobalData() {
+    this.appLoading = true;
+    // 清空所有数据
+    this.store.$service = {};
     // 获取区域数据
     const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
     // 获取门店数据
@@ -158,6 +192,7 @@ export default class App extends Mixins(MixStore) {
   font-family: "PingFang SC";
   position: relative;
   @extend %bg-img-bg-earth;
+  background-position-y: 180px;
 }
 .logo {
   width: 336px;

@@ -95,7 +95,12 @@
               </van-checkbox>
               <van-checkbox
                 :name="showScopePanel ? 'scope' : null"
-                @click="showScopePanel = !showScopePanel"
+                @click="
+                  () => {
+                    showScopePanel = !showScopePanel;
+                    showOrgPanel = false;
+                  }
+                "
               >
                 {{ scopeValue }}
                 <Icon
@@ -113,7 +118,12 @@
               </van-checkbox>
               <van-checkbox
                 :name="showOrgPanel ? 'orgTree' : null"
-                @click="showOrgPanel = !showOrgPanel"
+                @click="
+                  () => {
+                    showOrgPanel = !showOrgPanel;
+                    showScopePanel = false;
+                  }
+                "
               >
                 门店选择
                 <Icon
@@ -178,7 +188,9 @@
         <van-row gutter="20">
           <van-col>
             <SubWrapperA title="风险预警" style="width: 1846px; height: 920px">
-              <CardA style="width: 1794px; height: 770px"></CardA>
+              <CardA style="width: 1794px; height: 770px">
+                <E1 />
+              </CardA>
             </SubWrapperA>
           </van-col>
           <van-col>
@@ -218,6 +230,7 @@ import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
 import D5 from "./components/D5.vue";
 import D6 from "./components/D6.vue";
+import E1 from "./components/E1.vue";
 import F1 from "./components/F1.vue";
 import OperatingIndex from "./components/OperatingIndex.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
@@ -239,6 +252,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     D3,
     D5,
     D6,
+    E1,
     F1,
     ButtonGroup,
     Icon,
@@ -312,6 +326,12 @@ export default class Index extends Base {
   height: 192px;
   margin-top: 40px;
   padding: 0 14px 0 8px;
+  .button-icon--right {
+    margin-left: 12px;
+  }
+  .button-icon--left {
+    margin-right: 12px;
+  }
 }
 .project-name {
   position: absolute;

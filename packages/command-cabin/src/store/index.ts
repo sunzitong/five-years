@@ -123,6 +123,14 @@ export enum StoreKey {
    * 指挥中心-异常预警
    */
   HomeEarlyWarning = "HomeEarlyWarning",
+  /**
+   * 指挥中心-地图数据切换条
+   */
+  HomeMapChangeBar = "HomeMapChangeBar",
+  /**
+   * 指挥中心-地图大区/城市圆圈
+   */
+  HomeMapCircle = "HomeMapCircle",
 }
 /**
  * 方法重载

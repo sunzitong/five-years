@@ -77,21 +77,51 @@
         <div style="height: 1876px">
           <C1 />
           <C2 />
-          <C4 />
+          <C4 :levelValue="mapLevelValue" />
         </div>
         <div class="global-button global-button--1">
           <ButtonGroupA>
             <van-radio-group v-model="centerChartType" direction="horizontal">
-              <van-radio name="main">
+              <van-radio
+                name="main"
+                @click="
+                  () => {
+                    if (store.global.dataLevel === DataLevels.GROUP) {
+                      showMapLevelPanel = !showMapLevelPanel;
+                    }
+                  }
+                "
+              >
                 <Icon type="map" :size="36" class="button-icon--left" />
-                总盘面
+                总盘面({{ mapLevelOptions[mapLevelValue] }})
+                <span v-show="store.global.dataLevel === DataLevels.GROUP">
+                  <Icon
+                    type="arrow-bold-bottom"
+                    class="button-icon--right"
+                    :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
+                    v-if="showMapLevelPanel"
+                  />
+                  <Icon
+                    type="arrow-bold-top"
+                    class="button-icon--right"
+                    :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
+                    v-else
+                  />
+                </span>
               </van-radio>
-              <van-radio name="guanyu">
+              <van-radio name="guanyu" @click="showMapLevelPanel = false">
                 <Icon type="flag" :size="36" class="button-icon--left" />
                 冠寓大事记
               </van-radio>
             </van-radio-group>
           </ButtonGroupA>
+          <!-- 总盘面大区、城市 -->
+          <OptionPanel
+            name="Options"
+            :show.sync="showMapLevelPanel"
+            :options="mapLevelOptions"
+            v-model="mapLevelValue"
+          />
         </div>
         <SubWrapperA
           style="width: 2113px; height: 680px; margin: 0 0 44px"
@@ -131,7 +161,12 @@
             >
               <van-checkbox
                 :name="showScopePanel ? 'scope' : null"
-                @click="showScopePanel = !showScopePanel"
+                @click="
+                  () => {
+                    showScopePanel = !showScopePanel;
+                    showOrgPanel = false;
+                  }
+                "
               >
                 {{ scopeValue }}
                 <Icon
@@ -149,7 +184,12 @@
               </van-checkbox>
               <van-checkbox
                 :name="showOrgPanel ? 'orgTree' : null"
-                @click="showOrgPanel = !showOrgPanel"
+                @click="
+                  () => {
+                    showOrgPanel = !showOrgPanel;
+                    showScopePanel = false;
+                  }
+                "
               >
                 {{ store.global.orgTree.orgName }}
                 <Icon
@@ -237,7 +277,7 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import CardA from "@/components/CardA/Index.vue";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
@@ -245,7 +285,10 @@ import WhiteSpace from "@/components/WhiteSpace/Index.vue";
 import FooterBackground from "@/components/FooterBackground/Index.vue";
 import ButtonGroupA from "@/components/ButtonGroupA/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
-import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
+import {
+  DataLevels,
+  DateScopes,
+} from "@/service/analysis/commandCabin/publicEnum/enums";
 
 /** Jing */
 import A1 from "./components/A1.vue";
@@ -306,10 +349,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
   },
 })
 export default class Home extends Base {
-  /**
-   * 时间维度枚举
-   */
-  DateScopes = DateScopes;
+  DataLevels = DataLevels;
   /**
    * 数据周期
    */
@@ -321,8 +361,33 @@ export default class Home extends Base {
   }
   /**
    * 总盘面、冠寓大事记
+   * main guanyu
    */
   centerChartType = "main";
+  /**
+   * 总盘面数据区域
+   */
+  mapLevelOptions = { [DataLevels.AREA]: "大区", [DataLevels.CITY]: "城市" };
+  /**
+   * 总盘面数据区域
+   */
+  mapLevelValue = DataLevels.AREA;
+
+  /**
+   * 全局切换时同步切换总盘面
+   */
+  @Watch("store.global.dataLevel")
+  dataLevelChanged(val: DataLevels) {
+    if (val !== DataLevels.GROUP) {
+      this.mapLevelValue = val;
+      this.showMapLevelPanel = false;
+    }
+  }
+
+  /**
+   * 总盘面大区、城市
+   */
+  showMapLevelPanel = false;
   /**
    * 显示快捷导航
    */
@@ -380,6 +445,7 @@ export default class Home extends Base {
   }
 }
 .global-button {
+  position: relative;
   display: flex;
   padding: 0 5px;
   .button-icon--right {
@@ -406,6 +472,10 @@ export default class Home extends Base {
   }
   &.TheNavMenu {
     left: 0;
+    right: auto;
+  }
+  &.Options {
+    left: 664px;
     right: auto;
   }
 }

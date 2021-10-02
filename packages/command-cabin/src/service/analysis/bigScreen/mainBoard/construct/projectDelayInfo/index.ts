@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113942
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -52,11 +52,13 @@ export interface DelayModelList {
  * @updateAt 2021/9/13 10:31:31
  * @method GET
  */
-export const fetchProjectDelayInfo = (params: ProjectDelayInfoParams) => {
+export const fetchProjectDelayInfo = (
+  params: ProjectDelayInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProjectDelayInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/construct/projectDelayInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

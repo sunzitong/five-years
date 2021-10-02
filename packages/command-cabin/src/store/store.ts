@@ -4,6 +4,7 @@ import {
   DataLevels,
   DateScopes,
 } from "@/service/analysis/commandCabin/publicEnum/enums";
+import { TokenReturn } from "@/service/auth/token";
 
 const store = {
   /**
@@ -21,6 +22,10 @@ const store = {
      * 默认字体
      */
     TEXT_FONT: "PingFang SC",
+    /**
+     * 全局缩放比例
+     */
+    SCALE: 1,
   } as Env,
   /**
    * 全局参数
@@ -47,6 +52,10 @@ const store = {
    * 接口数据
    */
   $service: {},
+  /**
+   * 当前用户信息
+   */
+  currentUser: null as null | TokenReturn,
 };
 
 export default store;

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113952
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -38,11 +38,13 @@ export interface TMonthScore {
  * @updateAt 2021/9/10 15:26:15
  * @method GET
  */
-export const fetchBusinessScore = (params: BusinessScoreParams) => {
+export const fetchBusinessScore = (
+  params: BusinessScoreParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<BusinessScoreReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/finance/businessScore`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

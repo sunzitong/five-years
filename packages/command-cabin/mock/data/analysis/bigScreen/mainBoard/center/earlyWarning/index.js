@@ -4,7 +4,7 @@
  *
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/9/29 9:26:55
+ * @updateAt 2021/9/30 14:8:48
  * @method GET
  */
 
@@ -21,15 +21,15 @@ exports.response = {
       projectName: "酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店", //门店名称
       stage: "INVEST", //阶段
       stageDesc: "投资", //阶段描述
-      type: "INCOME", //预警类型
-      typeDesc: "收入预警", //预警类型描述
+      type: "OVER_PERIOD", //预警类型
+      typeDesc: "超期预警", //预警类型描述
       detail: "收入预警", //预警详情
       riskDegree: 1, //风险程度
     },
     {
       projectId: 82, //门店id
       projectName: "酒仙桥店", //门店名称
-      stage: "INVEST", //阶段
+      stage: "OPERATE", //阶段
       stageDesc: "投资", //阶段描述
       type: "INCOME", //预警类型
       typeDesc: "收入预警", //预警类型描述
@@ -39,10 +39,10 @@ exports.response = {
     {
       projectId: 83, //门店id
       projectName: "酒仙桥店", //门店名称
-      stage: "INVEST", //阶段
+      stage: "MARKETING", //阶段
       stageDesc: "投资", //阶段描述
-      type: "INCOME", //预警类型
-      typeDesc: "收入预警", //预警类型描述
+      type: "RENT_RATIO", //预警类型
+      typeDesc: "出租率预警", //预警类型描述
       detail: "收入预警", //预警详情
       riskDegree: 3, //风险程度
     },
@@ -51,8 +51,8 @@ exports.response = {
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
       stageDesc: "投资", //阶段描述
-      type: "INCOME", //预警类型
-      typeDesc: "收入预警", //预警类型描述
+      type: "STAFF_LEAVE", //预警类型
+      typeDesc: "人员离岗", //预警类型描述
       detail: "收入预警", //预警详情
       riskDegree: 3, //风险程度
     },
@@ -61,8 +61,8 @@ exports.response = {
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
       stageDesc: "投资", //阶段描述
-      type: "INCOME", //预警类型
-      typeDesc: "收入预警", //预警类型描述
+      type: "OPT_QUALITY", //预警类型
+      typeDesc: "运营品质", //预警类型描述
       detail: "收入预警", //预警详情
       riskDegree: 3, //风险程度
     },
@@ -81,8 +81,8 @@ exports.response = {
       projectName: "酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店", //门店名称
       stage: "INVEST", //阶段
       stageDesc: "投资", //阶段描述
-      type: "INCOME", //预警类型
-      typeDesc: "收入预警", //预警类型描述
+      type: "SECURITY", //预警类型
+      typeDesc: "安全风险", //预警类型描述
       detail: "收入预警", //预警详情
       riskDegree: 3, //风险程度
     },
@@ -101,8 +101,8 @@ exports.response = {
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
       stageDesc: "投资", //阶段描述
-      type: "INCOME", //预警类型
-      typeDesc: "收入预警", //预警类型描述
+      type: "FIRE_SITUATION", //预警类型
+      typeDesc: "火情风险", //预警类型描述
       detail: "收入预警", //预警详情
       riskDegree: 3, //风险程度
     },

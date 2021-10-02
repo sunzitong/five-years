@@ -22,11 +22,7 @@
         </van-col>
         <van-col>
           <span class="score">
-            <StepNumber
-              :duration="100"
-              :precision="1"
-              :to="monthData.totalScore"
-            />
+            <StepNumber :duration="100" :to="monthData.totalScore" />
           </span>
           <span class="tag-year">总分</span>
         </van-col>

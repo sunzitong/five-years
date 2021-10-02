@@ -77,6 +77,8 @@ export default class C1 extends Base implements IFetch {
   font-size: 40px;
   color: #90a4c3;
   margin: 70px 60px 0;
+  position: relative;
+  z-index: 1;
 }
 .item {
   display: flex;

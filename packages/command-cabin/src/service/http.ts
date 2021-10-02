@@ -16,7 +16,7 @@ const loading = {
   count: 0,
 };
 
-export type ServiceOptions = { showLoading: boolean };
+export type ServiceOptions = { showLoading: boolean; headers?: any };
 
 const mergeOptions = (partial?: Partial<ServiceOptions>): ServiceOptions => {
   return { showLoading: true, ...partial };
@@ -54,7 +54,7 @@ const http = {
     before(options);
     const res = await service.get<unknown, ResponseData<T> | undefined>(
       unify(url, params),
-      { params }
+      { params, headers: options?.headers }
     );
     after(options);
     return res;
@@ -68,7 +68,8 @@ const http = {
     before(options);
     const res = await service.post<unknown, ResponseData<T> | undefined>(
       unify(url, data),
-      data
+      data,
+      { headers: options?.headers }
     );
     after(options);
     return res;

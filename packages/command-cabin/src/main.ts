@@ -32,6 +32,6 @@ const VIEW = new Vue({
   provide: {},
 }).$mount("#app");
 
-if (store.env.DEBUG) {
-  window.VIEW = VIEW;
-}
+// if (store.env.DEBUG) {
+// }
+window.VIEW = VIEW;
