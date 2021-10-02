@@ -201,7 +201,10 @@ export default class Login extends Base {
    */
   async fetchQR() {
     this.qrCodePath = "";
-    const response = await fetchQrurl({ source: "oms" });
+    const response = await fetchQrurl(
+      { source: "oms" },
+      { showLoading: false }
+    );
     if (response?.status === "ok") {
       const { data } = response;
       const path = `longfor://login/scanCode?name=${encodeURIComponent(
@@ -224,11 +227,14 @@ export default class Login extends Base {
    * 轮询二维码
    */
   async fetchQRStatus(qrId: string) {
-    const response = await fetchQrconn({
-      code: qrId,
-      timestamp: dayjs().valueOf(),
-      source: "oms",
-    });
+    const response = await fetchQrconn(
+      {
+        code: qrId,
+        timestamp: dayjs().valueOf(),
+        source: "oms",
+      },
+      { showLoading: false }
+    );
     if (response?.status === "ok") {
       const {
         data: { status, token },
