@@ -60,8 +60,20 @@ export interface {{=paramsType.typeName}} {
 export const {{=apiName}} = (
   params{{?!paramsType.hasJsonType&&(paramsType.isOptional||paramsType.isUnknown)}}?{{?}}: {{?!paramsType.hasJsonType&&paramsType.isUnknown}}Record<string,unknown>{{??}}{{=paramsType.typeName}}{{?}}
 ) => {
-  return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`, {
-    ...params
-  });
+  {{?paramsType.headersName.length}}
+  const {
+    {{=paramsType.headersName.join(',')}},
+    ...partial
+  } = params; {{?}}
+  return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`,
+  {{?paramsType.headersName.length}} {
+     partial
+  },{
+    headers: { {{=paramsType.headersName.join(',')}} }
+  }
+  {{??}} {
+     ...params
+  } {{?}}
+  );
 };
 `;

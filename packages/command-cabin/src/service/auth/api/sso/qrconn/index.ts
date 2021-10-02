@@ -19,6 +19,11 @@ export interface QrconnParams {
    * 时间戳
    */
   timestamp: number;
+
+  /**
+   * oms
+   */
+  source: unknown;
 }
 
 /**
@@ -38,7 +43,14 @@ export interface QrconnReturn {
  * @method GET
  */
 export const fetchQrconn = (params: QrconnParams) => {
-  return http.get<QrconnReturn>(`${BASE_URL}/auth/api/sso/qrconn`, {
-    ...params,
-  });
+  const { source, ...partial } = params;
+  return http.get<QrconnReturn>(
+    `${BASE_URL}/auth/api/sso/qrconn`,
+    {
+      partial,
+    },
+    {
+      headers: { source },
+    }
+  );
 };
