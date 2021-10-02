@@ -49,7 +49,7 @@ export const fetchQrconn = (
   const { source, ...partial } = params;
   return http.get<QrconnReturn>(
     `${BASE_URL}/auth/api/sso/qrconn`,
-    options?.headers ? params : partial,
+    options?.headers ? { ...params } : partial,
     {
       headers: { source },
       ...options,

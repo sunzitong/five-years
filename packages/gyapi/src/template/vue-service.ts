@@ -67,7 +67,7 @@ export const {{=apiName}} = (
     ...partial
   } = params; {{?}}
   return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`,
-  {{?paramsType.headersName.length}} options?.headers ? params : partial, {
+  {{?paramsType.headersName.length}} options?.headers ? {...params} : partial, {
     headers: { {{=paramsType.headersName.join(',')}} },
     ...options
   }

@@ -37,7 +37,7 @@ export const fetchQrurl = (
   const { source, ...partial } = params;
   return http.get<QrurlReturn>(
     `${BASE_URL}/auth/api/sso/qrurl`,
-    options?.headers ? params : partial,
+    options?.headers ? { ...params } : partial,
     {
       headers: { source },
       ...options,
