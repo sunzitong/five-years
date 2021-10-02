@@ -23,7 +23,7 @@ export enum EventName {
   /**
    * 登录成功
    */
-  LoginSuccess = "login-success",
+  UpdateGlobalData = "global-data",
 }
 
 /*

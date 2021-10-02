@@ -4,6 +4,7 @@ import {
   DataLevels,
   DateScopes,
 } from "@/service/analysis/commandCabin/publicEnum/enums";
+import { TokenReturn } from "@/service/auth/token";
 
 const store = {
   /**
@@ -51,6 +52,10 @@ const store = {
    * 接口数据
    */
   $service: {},
+  /**
+   * 当前用户信息
+   */
+  currentUser: null as null | TokenReturn,
 };
 
 export default store;

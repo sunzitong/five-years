@@ -138,14 +138,14 @@ export default class App extends Mixins(MixStore) {
     }
     // 注册接口错误事件
     mitter.on(EventName.ServiceError, this.serviceError);
+    // 注册登录回调事件
+    mitter.on(EventName.UpdateGlobalData, this.fetchGlobalData);
     // 请求全局数据
     this.$router.onReady(() => {
       if (!this.inLogin) {
-        this.fetchGlobalData();
+        mitter.emit(EventName.UpdateGlobalData);
       }
     });
-    // 注册登录回调事件
-    mitter.on(EventName.LoginSuccess, this.fetchGlobalData);
   }
   mounted() {
     this.resizeHandle();

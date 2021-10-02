@@ -156,6 +156,8 @@ import { fetchQrconn } from "@/service/auth/api/sso/qrconn";
 import dayjs from "dayjs";
 import mitter, { EventName } from "@/utils/mitter";
 import QR from "qrcode.vue";
+import { fetchToken } from "@/service/auth/token";
+import { fetchSwitchRole } from "@/service/auth/switchRole";
 
 /**营造盘面详情 */
 @Component({
@@ -248,8 +250,31 @@ export default class Login extends Base {
    */
   successCallback(token: string) {
     localStorage.setItem("token", token);
-    mitter.emit(EventName.LoginSuccess);
+    mitter.emit(EventName.UpdateGlobalData);
     this.$router.push("/");
+  }
+  /**
+   * 获取用户信息
+   */
+  async fetchCurrentUser() {
+    const response = await fetchToken();
+    if (response?.status === "ok") {
+      this.store.currentUser = response.data;
+    }
+  }
+  /**
+   * 切换角色
+   */
+  async switchRole() {
+    if (!this.store.currentUser) return;
+    const response = await fetchSwitchRole({
+      userId: this.store.currentUser.userId,
+      roleId: this.store.currentUser.roleId,
+      source: "oms",
+    });
+    if (response?.status === "ok") {
+      this.successCallback(response.data.token);
+    }
   }
 }
 </script>
