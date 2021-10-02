@@ -20,6 +20,10 @@ type Env = {
    * 默认字体
    */
   TEXT_FONT: string;
+  /**
+   * 全局缩放比例
+   */
+  SCALE: number;
   [key: string]: any;
 };
 

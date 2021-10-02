@@ -94,6 +94,7 @@ export default class App extends Mixins(MixStore) {
     } else {
       sessionStorage.removeItem("resize");
     }
+    this.store.env.SCALE = this.scale;
   }
 
   contentMenuHandle(e: MouseEvent) {

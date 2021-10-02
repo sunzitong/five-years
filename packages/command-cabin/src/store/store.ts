@@ -21,6 +21,10 @@ const store = {
      * 默认字体
      */
     TEXT_FONT: "PingFang SC",
+    /**
+     * 全局缩放比例
+     */
+    SCALE: 1,
   } as Env,
   /**
    * 全局参数
