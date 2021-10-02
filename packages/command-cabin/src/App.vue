@@ -6,9 +6,10 @@
       <FixedNav />
       <FixedNav position="right" />
     </div>
-    <router-view v-if="!appLoading" :class="{ 'show-shadow': showShadow }" />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="appLoading" />
+    <AppLoading v-if="appLoading && $route.meta.name !== 'login'" />
+    <!-- 路由 -->
+    <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
     <div
       v-if="true || $root.env.DEBUG"
@@ -51,7 +52,9 @@ export default class App extends Mixins(MixStore) {
   appLoading = true;
 
   scale = 1;
-
+  /**
+   * 屏幕缩放
+   */
   resizeHandle(event?: UIEvent) {
     /**
      * 触发mitt事件重绘echarts
@@ -96,14 +99,28 @@ export default class App extends Mixins(MixStore) {
     }
     this.store.env.SCALE = this.scale;
   }
-
+  /**
+   * 右键点击
+   */
   contentMenuHandle(e: MouseEvent) {
     e.preventDefault();
     return false;
   }
-
+  /**
+   * 网页点击
+   */
   documentClick(event: MouseEvent) {
     mitter.emit(EventName.DocumentClick, event);
+  }
+  /**
+   * 接口出错
+   */
+  serviceError(status?: number) {
+    if (status === 500) {
+      if (this.$route.meta.name !== "login") {
+        this.$router.replace("/login").catch(_.noop);
+      }
+    }
   }
 
   created() {
@@ -115,6 +132,8 @@ export default class App extends Mixins(MixStore) {
     if (!this.$root.env.DEBUG) {
       document.addEventListener("contextmenu", this.contentMenuHandle);
     }
+    // 接口错误
+    mitter.on(EventName.ServiceError, this.serviceError);
     this.fetchOrgData();
   }
   mounted() {

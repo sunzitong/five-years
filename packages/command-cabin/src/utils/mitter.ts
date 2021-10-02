@@ -11,11 +11,15 @@ export enum EventName {
   /**
    * resize时重绘echarts
    */
-  ResizeEcharts = "resize-echarts",
+  ResizeEcharts = "re",
   /**
    * 点击网页时触发
    */
-  DocumentClick = "doc-click",
+  DocumentClick = "dc",
+  /**
+   * 请求出错
+   */
+  ServiceError = "se",
 }
 
 /*

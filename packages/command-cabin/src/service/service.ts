@@ -1,4 +1,5 @@
 // import { getToken } from "@/utils/guanyu";
+import mitter, { EventName } from "@/utils/mitter";
 import axios from "axios";
 import { Toast } from "vant";
 
@@ -39,6 +40,7 @@ service.interceptors.response.use(
       return;
     }
     if (error.response) {
+      mitter.emit(EventName.ServiceError, error.response.status);
       switch (error.response.status) {
         case 400:
           error.message = "请求错误";

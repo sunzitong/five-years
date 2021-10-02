@@ -21,6 +21,7 @@ import {
   GridItem,
   Image,
   Button,
+  Notify,
 } from "vant";
 import Vue from "vue";
 
@@ -48,3 +49,4 @@ Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Button);
 Vue.use(Image);
+Vue.use(Notify);
