@@ -150,10 +150,19 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
+import { fetchQrurl } from "@/service/auth/api/sso/qrurl";
 
 /**营造盘面详情 */
 @Component
-export default class Login extends Base {}
+export default class Login extends Base {
+  created() {
+    this.fetchQR();
+  }
+
+  fetchQR() {
+    fetchQrurl({ source: "oms" });
+  }
+}
 </script>
 
 <style lang="scss" scoped>

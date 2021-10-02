@@ -32,13 +32,7 @@ export interface QrurlReturn {
  */
 export const fetchQrurl = (params: QrurlParams) => {
   const { source, ...partial } = params;
-  return http.get<QrurlReturn>(
-    `${BASE_URL}/auth/api/sso/qrurl`,
-    {
-      partial,
-    },
-    {
-      headers: { source },
-    }
-  );
+  return http.get<QrurlReturn>(`${BASE_URL}/auth/api/sso/qrurl`, partial, {
+    headers: { source },
+  });
 };

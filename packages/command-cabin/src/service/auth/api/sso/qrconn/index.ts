@@ -44,13 +44,7 @@ export interface QrconnReturn {
  */
 export const fetchQrconn = (params: QrconnParams) => {
   const { source, ...partial } = params;
-  return http.get<QrconnReturn>(
-    `${BASE_URL}/auth/api/sso/qrconn`,
-    {
-      partial,
-    },
-    {
-      headers: { source },
-    }
-  );
+  return http.get<QrconnReturn>(`${BASE_URL}/auth/api/sso/qrconn`, partial, {
+    headers: { source },
+  });
 };

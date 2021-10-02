@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <div v-show="$route.meta.name !== 'login'">
+    <div v-show="!inLogin">
       <div class="logo"></div>
       <AppHeader />
       <FixedNav />
       <FixedNav position="right" />
     </div>
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="appLoading && $route.meta.name !== 'login'" />
+    <AppLoading v-if="appLoading && !inLogin" />
     <!-- 路由 -->
     <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
@@ -52,6 +52,10 @@ export default class App extends Mixins(MixStore) {
   appLoading = true;
 
   scale = 1;
+
+  get inLogin() {
+    return this.$route.meta.name === "login";
+  }
   /**
    * 屏幕缩放
    */
@@ -117,7 +121,7 @@ export default class App extends Mixins(MixStore) {
    */
   serviceError(status?: number) {
     if (status === 500) {
-      if (this.$route.meta.name !== "login") {
+      if (!this.inLogin) {
         this.$router.replace("/login").catch(_.noop);
       }
     }
@@ -132,9 +136,16 @@ export default class App extends Mixins(MixStore) {
     if (!this.$root.env.DEBUG) {
       document.addEventListener("contextmenu", this.contentMenuHandle);
     }
-    // 接口错误
+    // 注册接口错误事件
     mitter.on(EventName.ServiceError, this.serviceError);
-    this.fetchOrgData();
+    // 请求全局数据
+    this.$router.onReady(() => {
+      if (!this.inLogin) {
+        this.fetchGlobalData();
+      }
+    });
+    // 注册登录回调事件
+    mitter.on(EventName.LoginSuccess, this.fetchGlobalData);
   }
   mounted() {
     this.resizeHandle();
@@ -151,7 +162,10 @@ export default class App extends Mixins(MixStore) {
    * 请求区域门店数据
    * 赋值全局数据
    */
-  async fetchOrgData() {
+  async fetchGlobalData() {
+    this.appLoading = true;
+    // 清空所有数据
+    this.store.$service = {};
     // 获取区域数据
     const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
     // 获取门店数据
