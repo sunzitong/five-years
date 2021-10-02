@@ -249,6 +249,7 @@ export default class Login extends Base {
   successCallback(token: string) {
     localStorage.setItem("token", token);
     mitter.emit(EventName.LoginSuccess);
+    this.$router.push("/");
   }
 }
 </script>

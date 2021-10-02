@@ -120,7 +120,7 @@ export default class App extends Mixins(MixStore) {
    * 接口出错
    */
   serviceError(status?: number) {
-    if (status === 500) {
+    if (status === 401) {
       if (!this.inLogin) {
         this.$router.replace("/login").catch(_.noop);
       }
