@@ -19,11 +19,6 @@ export interface QrconnParams {
    * 时间戳
    */
   timestamp: number;
-
-  /**
-   * oms
-   */
-  source: unknown;
 }
 
 /**
@@ -41,18 +36,15 @@ export interface QrconnReturn {
  * @createBy xiejiabin
  * @updateAt 2021/10/2 14:41:43
  * @method GET
+ * @headers source
  */
 export const fetchQrconn = (
   params: QrconnParams,
   options?: Partial<ServiceOptions>
 ) => {
-  const { source, ...partial } = params;
   return http.get<QrconnReturn>(
     `${BASE_URL}/auth/api/sso/qrconn`,
-    options?.headers ? { ...params } : partial,
-    {
-      headers: { source },
-      ...options,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -201,10 +201,10 @@ export default class Login extends Base {
    */
   async fetchQR() {
     this.qrCodePath = "";
-    const response = await fetchQrurl(
-      { source: "oms" },
-      { showLoading: false }
-    );
+    const response = await fetchQrurl(undefined, {
+      showLoading: false,
+      headers: { source: "oms" },
+    });
     if (response?.status === "ok") {
       const { data } = response;
       const path = `longfor://login/scanCode?name=${encodeURIComponent(
@@ -231,9 +231,8 @@ export default class Login extends Base {
       {
         code: qrId,
         timestamp: dayjs().valueOf(),
-        source: "oms",
       },
-      { showLoading: false }
+      { showLoading: false, headers: { source: "oms" } }
     );
     if (response?.status === "ok") {
       const {

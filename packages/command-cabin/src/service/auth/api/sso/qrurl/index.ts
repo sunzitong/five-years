@@ -7,16 +7,6 @@ import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 请求二维码-参数
- */
-export interface QrurlParams {
-  /**
-   * oms
-   */
-  source: unknown;
-}
-
-/**
  * 请求二维码-返回值
  */
 export interface QrurlReturn {
@@ -29,18 +19,15 @@ export interface QrurlReturn {
  * @createBy xiejiabin
  * @updateAt 2021/10/2 14:38:56
  * @method GET
+ * @headers source
  */
 export const fetchQrurl = (
-  params: QrurlParams,
+  params?: Record<string, unknown>,
   options?: Partial<ServiceOptions>
 ) => {
-  const { source, ...partial } = params;
   return http.get<QrurlReturn>(
     `${BASE_URL}/auth/api/sso/qrurl`,
-    options?.headers ? { ...params } : partial,
-    {
-      headers: { source },
-      ...options,
-    }
+    { ...params },
+    { ...options }
   );
 };
