@@ -175,3 +175,15 @@ export const useStore: UseStoreHook = (
     promise: service(params),
   }).promise;
 };
+
+/**
+ * 删除缓存的数据
+ * @param key StoreKey 不传清除所有
+ */
+export const removeStore = (key?: StoreKey) => {
+  if (key) {
+    delete store.$service[key];
+  } else {
+    store.$service = {};
+  }
+};
