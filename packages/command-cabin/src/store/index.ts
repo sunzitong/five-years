@@ -135,7 +135,7 @@ export enum StoreKey {
 /**
  * 方法重载
  */
-interface useStoreHook {
+interface UseStoreHook {
   /**
    * 获取service数据
    */
@@ -157,7 +157,7 @@ interface useStoreHook {
  * @param param 配置
  * @returns Promise
  */
-export const useStore: useStoreHook = (
+export const useStore: UseStoreHook = (
   service: any,
   { key, params, force = false }: any
 ) => {

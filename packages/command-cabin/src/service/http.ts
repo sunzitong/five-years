@@ -1,6 +1,6 @@
 import service from "./service";
 import isPlainObject from "lodash/isPlainObject";
-import { ResponseData } from "@guanyu/shared";
+import { AnyObject, ResponseData } from "@guanyu/shared";
 import { Notify } from "vant";
 
 const unify = <T>(url: string, obj: T) => {
@@ -16,7 +16,7 @@ const loading = {
   count: 0,
 };
 
-export type ServiceOptions = { showLoading: boolean; headers?: any };
+export type ServiceOptions = { showLoading: boolean; headers?: AnyObject };
 
 const mergeOptions = (partial?: Partial<ServiceOptions>): ServiceOptions => {
   return { showLoading: true, ...partial };

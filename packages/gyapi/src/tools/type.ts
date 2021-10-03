@@ -162,12 +162,12 @@ export const getParamsType = async (api: Api) => {
   const headersName: string[] = [];
   api.req_headers.forEach((param) => {
     if (!param.name.includes("-")) {
-      parsedTypes.push({
-        name: param.name,
-        desc: param.desc,
-        type: inferQueryType(param.example),
-        required: !!+param.required,
-      });
+      //     parsedTypes.push({
+      //       name: param.name,
+      //       desc: param.desc,
+      //       type: inferQueryType(param.example),
+      //       required: !!+param.required,
+      //     });
       headersName.push(param.name);
     }
   });

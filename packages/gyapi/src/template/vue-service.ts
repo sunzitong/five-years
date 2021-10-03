@@ -55,23 +55,16 @@ export interface {{=paramsType.typeName}} {
  * {{=it.api.title}}
  * @createBy {{=it.api.username}}
  * @updateAt {{=it.tools.getUpdateTime(it.api)}}
- * @method {{=it.api.method}}
+ * @method {{=it.api.method}}{{?paramsType.headersName.length}}
+ * @headers {{=paramsType.headersName.join(',')}}{{?}}
  */
 export const {{=apiName}} = (
   params{{?!paramsType.hasJsonType&&(paramsType.isOptional||paramsType.isUnknown)}}?{{?}}: {{?!paramsType.hasJsonType&&paramsType.isUnknown}}Record<string,unknown>{{??}}{{=paramsType.typeName}}{{?}},
   options?: Partial<ServiceOptions>
 ) => {
-  {{?paramsType.headersName.length}}
-  const {
-    {{=paramsType.headersName.join(',')}},
-    ...partial
-  } = params; {{?}}
   return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`,
-  {{?paramsType.headersName.length}} options?.headers ? {...params} : partial, {
-    headers: { {{=paramsType.headersName.join(',')}} },
-    ...options
-  }
-  {{??}} { ...params },{ ...options } {{?}}
+  { ...params },
+  { ...options }
   );
 };
 `;
