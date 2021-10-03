@@ -149,6 +149,16 @@
         size="50%"
         v-if="!qrCodePath || qrCodeStatus !== 'VALID'"
       />
+      <div>
+        <div
+          v-for="item in userRoles"
+          :key="item.id"
+          :style="{ color: item.active ? 'red' : '#fff' }"
+          @click="fetchSwitchRole(item.id)"
+        >
+          {{ item.desc }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -161,15 +171,23 @@ import { fetchQrconn } from "@/service/auth/api/sso/qrconn";
 import dayjs from "dayjs";
 import mitter, { EventName } from "@/utils/mitter";
 import QR from "qrcode.vue";
-import { fetchToken } from "@/service/auth/token";
+import { fetchToken, TokenReturn } from "@/service/auth/token";
 import { fetchSwitchRole } from "@/service/auth/switchRole";
+import { Nullable } from "@guanyu/shared";
+import { fetchLogout } from "@/service/auth/api/logout";
 
 /**营造盘面详情 */
 @Component({
   components: { QR },
 })
 export default class Login extends Base {
+  /**
+   * 二维码字符串
+   */
   qrCodePath = "";
+  /**
+   * 二维码状态
+   */
   qrCodeStatus = "VALID";
   timer = -1;
   idmStatus = {
@@ -188,8 +206,12 @@ export default class Login extends Base {
     CANCEL: "CANCEL", //  已取消
   };
 
+  currentUser: Nullable<TokenReturn> = null;
+
+  userRoles: { id: number; desc: string; active: boolean }[] = [];
+
   created() {
-    this.fetchQR();
+    this.fetchCurrentUser();
   }
 
   beforeDestroy() {
@@ -242,7 +264,9 @@ export default class Login extends Base {
       this.qrCodeStatus = qrCodeStatus;
       if (qrCodeStatus === "CONFIRM") {
         // 登录成功
-        this.successCallback(token);
+        localStorage.setItem("token", token);
+        // 请求用户数据
+        this.fetchCurrentUser();
         return;
       }
       if (qrCodeStatus === "INVALID") {
@@ -257,34 +281,56 @@ export default class Login extends Base {
     }, 3000);
   }
   /**
-   * 登录成功回调
-   */
-  successCallback(token: string) {
-    localStorage.setItem("token", token);
-    mitter.emit(EventName.UpdateGlobalData);
-    this.$router.push("/");
-  }
-  /**
    * 获取用户信息
    */
   async fetchCurrentUser() {
     const response = await fetchToken();
     if (response?.status === "ok") {
-      this.store.currentUser = response.data;
+      this.currentUser = response.data;
+      const { userRoleOrgs = [], roleId } = this.currentUser;
+      this.userRoles = userRoleOrgs.map((role) => ({
+        id: role.roleId,
+        desc:
+          role.roleName +
+          " | " +
+          role.organizationInfos.map((org) => org.name).join("-"),
+        active: role.roleId === roleId,
+      }));
     }
   }
   /**
    * 切换角色
    */
-  async switchRole() {
-    if (!this.store.currentUser) return;
+  async fetchSwitchRole(roleId: number) {
+    if (!this.currentUser) return;
+    const switchCallback = () => {
+      // 请求全局数据
+      mitter.emit(EventName.UpdateGlobalData);
+      this.$router.push("/");
+    };
+    if (this.currentUser.roleId === roleId) {
+      switchCallback();
+      return;
+    }
     const response = await fetchSwitchRole({
-      userId: this.store.currentUser.userId,
-      roleId: this.store.currentUser.roleId,
+      userId: this.currentUser.userId,
+      roleId: roleId,
       source: "oms",
     });
     if (response?.status === "ok") {
-      this.successCallback(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      // 请求全局数据
+      switchCallback();
+      // this.fetchCurrentUser();
+    }
+  }
+  /**
+   * 退出登录
+   */
+  async fetchLogout() {
+    const response = await fetchLogout();
+    if (response?.status === "ok") {
+      localStorage.removeItem("token");
     }
   }
 }
