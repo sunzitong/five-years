@@ -31,7 +31,7 @@ import MixStore from "@/store/MixStore";
 import FixedNav from "@/components/FixedNav/Index.vue";
 import AppHeader from "@/components/Header/Index.vue";
 import mitter, { EventName } from "./utils/mitter";
-import { StoreKey, useStore } from "./store";
+import { removeStore, StoreKey, useStore } from "./store";
 import { fetchOrgTree } from "./service/analysis/commandCabin/orgTree";
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
@@ -165,7 +165,7 @@ export default class App extends Mixins(MixStore) {
   async fetchGlobalData() {
     this.appLoading = true;
     // 清空所有数据
-    this.store.$service = {};
+    removeStore();
     // 获取区域数据
     const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
     // 获取门店数据
