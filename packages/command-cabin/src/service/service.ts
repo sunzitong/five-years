@@ -1,6 +1,6 @@
 // import { getToken } from "@/utils/guanyu";
+import mitter, { EventName } from "@/utils/mitter";
 import axios from "axios";
-import { Toast } from "vant";
 
 const service = axios.create({
   withCredentials: true, // 是否携带cookie信息
@@ -19,7 +19,7 @@ service.interceptors.request.use(
     return config;
   },
   () => {
-    Toast.fail("出错了");
+    console.error("[接口]", "出错了");
     return;
   }
 );
@@ -30,15 +30,17 @@ service.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    console.error("[url]", error?.response?.config?.url);
     if (!error) {
-      Toast.fail("出错了");
+      console.error("[接口]", "出错了");
       return;
     }
     if (error.message.includes("timeout")) {
-      Toast.fail("请求超时，请稍后再试");
+      console.error("[接口]", "请求超时，请稍后再试");
       return;
     }
     if (error.response) {
+      mitter.emit(EventName.ServiceError, error.response.status);
       switch (error.response.status) {
         case 400:
           error.message = "请求错误";
@@ -50,7 +52,7 @@ service.interceptors.response.use(
           error.message = "拒绝访问";
           break;
         case 404:
-          error.message = `请求地址出错: ${error.response.config.url}`;
+          error.message = `请求地址出错`;
           break;
         case 408:
           error.message = "请求超时";
@@ -76,10 +78,10 @@ service.interceptors.response.use(
         default:
           error.message = "请求失败，请稍后再试";
       }
-      Toast.fail(error.message);
+      console.error("[接口]", error.message);
       return;
     }
-    Toast.fail("出错了");
+    console.error("[接口]", "出错了");
     return;
   }
 );

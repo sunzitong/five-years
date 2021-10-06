@@ -158,11 +158,25 @@ export const getParamsType = async (api: Api) => {
       required: true,
     })
   );
+  // headers参数
+  const headersName: string[] = [];
+  api.req_headers.forEach((param) => {
+    if (!param.name.includes("-")) {
+      //     parsedTypes.push({
+      //       name: param.name,
+      //       desc: param.desc,
+      //       type: inferQueryType(param.example),
+      //       required: !!+param.required,
+      //     });
+      headersName.push(param.name);
+    }
+  });
   return {
     typeName,
     parsedTypes,
     isUnknown: paramsTypeIsUnknown(parsedTypes),
     isOptional: paramsTypeIsOptional(parsedTypes),
+    headersName,
     ...qkType,
   };
 };

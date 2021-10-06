@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114282
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -23,11 +23,13 @@ export interface OrgTreeItemReturn {
  * @updateAt 2021/9/10 14:40:7
  * @method GET
  */
-export const fetchOrgTree = (params?: Record<string, unknown>) => {
+export const fetchOrgTree = (
+  params?: Record<string, unknown>,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<OrgTreeItemReturn[]>(
     `${BASE_URL}/analysis/commandCabin/orgTree`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

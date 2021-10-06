@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114848
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -41,11 +41,13 @@ export interface TopStatisticDataReturn {
  * @updateAt 2021/9/28 14:37:6
  * @method GET
  */
-export const fetchTopStatisticData = (params: TopStatisticDataParams) => {
+export const fetchTopStatisticData = (
+  params: TopStatisticDataParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<TopStatisticDataReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/topStatisticData`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -77,7 +77,7 @@
         <div style="height: 1876px">
           <C1 />
           <C2 />
-          <C4 />
+          <C4 :levelValue="mapLevelValue" />
         </div>
         <div class="global-button global-button--1">
           <ButtonGroupA>
@@ -87,19 +87,19 @@
                 @click="
                   () => {
                     if (store.global.dataLevel === DataLevels.GROUP) {
-                      showMapScopePanel = !showMapScopePanel;
+                      showMapLevelPanel = !showMapLevelPanel;
                     }
                   }
                 "
               >
                 <Icon type="map" :size="36" class="button-icon--left" />
-                总盘面({{ mapScopeOptions[mapScopeValue] }})
+                总盘面({{ mapLevelOptions[mapLevelValue] }})
                 <span v-show="store.global.dataLevel === DataLevels.GROUP">
                   <Icon
                     type="arrow-bold-bottom"
                     class="button-icon--right"
                     :color="centerChartType === 'main' ? '#01F5F1' : '#5180e4'"
-                    v-if="showMapScopePanel"
+                    v-if="showMapLevelPanel"
                   />
                   <Icon
                     type="arrow-bold-top"
@@ -109,18 +109,18 @@
                   />
                 </span>
               </van-radio>
-              <van-radio name="guanyu" @click="showMapScopePanel = false">
+              <van-radio name="guanyu" @click="showMapLevelPanel = false">
                 <Icon type="flag" :size="36" class="button-icon--left" />
                 冠寓大事记
               </van-radio>
             </van-radio-group>
           </ButtonGroupA>
-          <!-- 快捷导航 -->
+          <!-- 总盘面大区、城市 -->
           <OptionPanel
             name="Options"
-            :show.sync="showMapScopePanel"
-            :options="mapScopeOptions"
-            v-model="mapScopeValue"
+            :show.sync="showMapLevelPanel"
+            :options="mapLevelOptions"
+            v-model="mapLevelValue"
           />
         </div>
         <SubWrapperA
@@ -367,11 +367,11 @@ export default class Home extends Base {
   /**
    * 总盘面数据区域
    */
-  mapScopeOptions = { [DataLevels.AREA]: "大区", [DataLevels.CITY]: "城市" };
+  mapLevelOptions = { [DataLevels.AREA]: "大区", [DataLevels.CITY]: "城市" };
   /**
    * 总盘面数据区域
    */
-  mapScopeValue = DataLevels.AREA;
+  mapLevelValue = DataLevels.AREA;
 
   /**
    * 全局切换时同步切换总盘面
@@ -379,15 +379,15 @@ export default class Home extends Base {
   @Watch("store.global.dataLevel")
   dataLevelChanged(val: DataLevels) {
     if (val !== DataLevels.GROUP) {
-      this.mapScopeValue = val;
-      this.showMapScopePanel = false;
+      this.mapLevelValue = val;
+      this.showMapLevelPanel = false;
     }
   }
 
   /**
    * 总盘面大区、城市
    */
-  showMapScopePanel = false;
+  showMapLevelPanel = false;
   /**
    * 显示快捷导航
    */

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114782
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -43,11 +43,13 @@ export interface Contact {
  * @updateAt 2021/9/27 18:36:15
  * @method GET
  */
-export const fetchMonitorInfo = (params: MonitorInfoParams) => {
+export const fetchMonitorInfo = (
+  params: MonitorInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<MonitorInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/monitorInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113950
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -38,11 +38,13 @@ export interface Group {
  * @updateAt 2021/9/10 15:26:25
  * @method GET
  */
-export const fetchGroupInfo = (params: GroupInfoParams) => {
+export const fetchGroupInfo = (
+  params: GroupInfoParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<GroupInfoReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation/groupInfo`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

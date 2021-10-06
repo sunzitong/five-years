@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114768
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -42,11 +42,13 @@ export interface MapChangeBarReturn {
  * @updateAt 2021/9/27 18:2:21
  * @method GET
  */
-export const fetchMapChangeBar = (params: MapChangeBarParams) => {
+export const fetchMapChangeBar = (
+  params: MapChangeBarParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<MapChangeBarReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/center/mapChangeBar`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

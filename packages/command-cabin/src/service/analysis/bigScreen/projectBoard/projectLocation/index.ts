@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114834
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -29,11 +29,13 @@ export interface ProjectLocationReturn {
  * @updateAt 2021/9/30 14:48:17
  * @method GET
  */
-export const fetchProjectLocation = (params: ProjectLocationParams) => {
+export const fetchProjectLocation = (
+  params: ProjectLocationParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<ProjectLocationReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/projectLocation`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -36,7 +36,13 @@ export interface Api {
     desc: string;
     _id: string;
   }[];
-  req_headers: unknown[];
+  req_headers: {
+    desc: string;
+    example: string;
+    name: string;
+    required: "1" | "0";
+    _id: string;
+  }[];
   req_body_form: {
     desc: string;
     example: string;

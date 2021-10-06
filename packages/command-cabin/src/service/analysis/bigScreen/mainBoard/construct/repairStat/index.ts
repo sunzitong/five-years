@@ -3,7 +3,7 @@
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/113592
  */
 
-import http from "@/service/http";
+import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
@@ -47,11 +47,13 @@ export interface DecorationRepair {
  * @updateAt 2021/9/10 16:14:25
  * @method GET
  */
-export const fetchRepairStat = (params: RepairStatParams) => {
+export const fetchRepairStat = (
+  params: RepairStatParams,
+  options?: Partial<ServiceOptions>
+) => {
   return http.get<RepairStatReturn>(
     `${BASE_URL}/analysis/bigScreen/mainBoard/construct/repairStat`,
-    {
-      ...params,
-    }
+    { ...params },
+    { ...options }
   );
 };

@@ -14,7 +14,7 @@ export default {
   /**
    * 分类id
    */
-  category_ids: [16724, 16731],
+  category_ids: [16724, 16731, 17368],
   /**
    * 接口id(不包含在分类id内的其他接口)
    */

@@ -128,11 +128,19 @@ export enum StoreKey {
    * 基础信息-项目区位
    */
   ProjectLocation = "ProjectLocation",
+  /**
+   * 指挥中心-地图数据切换条
+   */
+  HomeMapChangeBar = "HomeMapChangeBar",
+  /**
+   * 指挥中心-地图大区/城市圆圈
+   */
+  HomeMapCircle = "HomeMapCircle",
 }
 /**
  * 方法重载
  */
-interface useStoreHook {
+interface UseStoreHook {
   /**
    * 获取service数据
    */
@@ -154,7 +162,7 @@ interface useStoreHook {
  * @param param 配置
  * @returns Promise
  */
-export const useStore: useStoreHook = (
+export const useStore: UseStoreHook = (
   service: any,
   { key, params, force = false }: any
 ) => {
@@ -171,4 +179,16 @@ export const useStore: useStoreHook = (
     params,
     promise: service(params),
   }).promise;
+};
+
+/**
+ * 删除缓存的数据
+ * @param key StoreKey 不传清除所有
+ */
+export const removeStore = (key?: StoreKey) => {
+  if (key) {
+    delete store.$service[key];
+  } else {
+    store.$service = {};
+  }
 };

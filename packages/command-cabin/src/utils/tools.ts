@@ -130,10 +130,16 @@ export const stepNumber = (
     to,
     from = 0,
     duration = 1000,
-    precision = 0,
+    precision,
   }: { to: number; from?: number; duration?: number; precision?: number },
   callback: (to: number) => void
 ) => {
+  let per: number;
+  if (precision === undefined) {
+    per = to.toString().split(".")[1]?.length ?? 0;
+  } else {
+    per = precision;
+  }
   const plus = (to - from) / (duration / 30);
   const timer = setInterval(() => {
     from = from + plus;
@@ -143,7 +149,7 @@ export const stepNumber = (
       clearInterval(timer);
       from = to;
     }
-    callback(iwant.calc(from, precision));
+    callback(iwant.calc(from, per));
   }, 30);
   return {
     clear: () => clearInterval(timer),
