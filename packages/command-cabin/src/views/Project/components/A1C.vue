@@ -75,7 +75,10 @@ import { Component } from "vue-property-decorator";
   },
 })
 export default class A1C extends Base implements IFetch {
-  show = true;
+  /**
+   * 投资任务书弹窗
+   */
+  show = false;
 
   response: Partial<ProjectBaseInfoReturn> = {};
   /**
