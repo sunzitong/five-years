@@ -43,6 +43,7 @@
                 title="奖补到账"
                 style="width: 1193px; height: 246px"
               ></CardA>
+              <WhiteSpace />
               <SubWrapperA
                 title="风险监控"
                 size="small"
@@ -328,7 +329,7 @@ export default class Index extends Base {
   right: 0;
   bottom: 0;
   height: 192px;
-  margin-top: 40px;
+  margin-top: 50px;
   padding: 0 14px 0 8px;
   .button-icon--right {
     margin-left: 12px;
