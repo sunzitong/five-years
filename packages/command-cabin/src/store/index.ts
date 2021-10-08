@@ -146,6 +146,11 @@ export enum StoreKey {
    * 门店屏-里程碑
    */
   ProjectMilepost = "ProjectMilepost",
+
+  /**
+   * 查询主屏(中心位置)地区(城市)维度详细信息
+   */
+  HomeRegionDetailsInfo = "HomeRegionDetailsInfo",
 }
 /**
  * 方法重载
