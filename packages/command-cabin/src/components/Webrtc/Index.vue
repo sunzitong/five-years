@@ -22,13 +22,13 @@ export default class Webrtc extends Vue {
    * 组件挂载
    */
   mounted() {
-    this.initPlayer();
+    // this.initPlayer();
   }
 
   /**
    * 初始化webrtc 播放器
    */
-  @Watch("config")
+  @Watch("config", { deep: true, immediate: true })
   onConfigChange(value: PlayerConfig) {
     this.initPlayer(value);
   }
@@ -37,16 +37,18 @@ export default class Webrtc extends Vue {
    * 初始化播放器
    */
   initPlayer(val?: PlayerConfig) {
-    const config = {
-      accessChannel: "huiyan",
-      watermark: "jxxxx",
-      autoplay: false,
-      // cameraId: "00bcf8bbe82e0c36daa781e8568cd7d4",
-      cameraId: "16c01eaf613008b444a842d860911a17",
-      ...(val ?? {}),
-    };
-    this.destroyPlayer();
-    this.player = new window.Player(this.webrtc, config);
+    this.$nextTick(() => {
+      const config = {
+        accessChannel: "huiyan",
+        watermark: "jxxxx",
+        autoplay: false,
+        // cameraId: "00bcf8bbe82e0c36daa781e8568cd7d4",
+        cameraId: "16c01eaf613008b444a842d860911a17",
+        ...(val ?? {}),
+      };
+      this.destroyPlayer();
+      this.player = new window.Player(this.webrtc, config);
+    });
   }
 
   /**
