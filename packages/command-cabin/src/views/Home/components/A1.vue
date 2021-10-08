@@ -7,7 +7,7 @@
         已签约间数
         <div class="num">
           <span>{{ sepNumber(signRoom) }}</span>
-          万
+          <!-- 万 -->
         </div>
       </div>
       <div class="right_top_text">
@@ -32,7 +32,7 @@
           获取目标
           <div class="num">
             <span>{{ sepNumber(gainTarget) }}</span>
-            万
+            <!-- 万 -->
           </div>
         </div>
         <div class="left_text">
@@ -44,7 +44,7 @@
             }"
           >
             <span>{{ sepNumber(targetDiffer) }}</span>
-            万
+            <!-- 万 -->
           </div>
         </div>
         <!-- <div class="left_text">
