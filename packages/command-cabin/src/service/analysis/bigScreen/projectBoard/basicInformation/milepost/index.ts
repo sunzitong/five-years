@@ -7,7 +7,7 @@ import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 门店里程碑（不包含成本决算信息）-参数
+ * 门店里程碑-参数
  */
 export interface MilepostParams {
   /**
@@ -17,7 +17,7 @@ export interface MilepostParams {
 }
 
 /**
- * 门店里程碑（不包含成本决算信息）-返回值
+ * 门店里程碑-返回值
  */
 export interface MilepostItemReturn {
   title: string;
@@ -49,9 +49,9 @@ export interface Value {
 }
 
 /**
- * 门店里程碑（不包含成本决算信息）
+ * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/9/30 18:8:26
+ * @updateAt 2021/10/8 9:20:38
  * @method GET
  */
 export const fetchMilepost = (

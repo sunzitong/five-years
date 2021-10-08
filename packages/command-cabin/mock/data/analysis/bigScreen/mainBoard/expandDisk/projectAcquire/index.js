@@ -4,7 +4,7 @@
  *
  * 拓展盘面-项目获取
  * @createBy baishiqiang
- * @updateAt 2021/9/28 10:25:11
+ * @updateAt 2021/10/8 9:9:37
  * @method GET
  */
 
@@ -17,6 +17,9 @@ exports.response = {
   msg: "ok",
   data: {
     signedRoomNum: 100, //已签约总间数量
+    mediumSignedRoomNum: 30, //中资产签约间数
+    lightSignedRoomNum: 30, //轻资产签约间数
+    heavySignedRoomNum: 40, //重资产签约间数
     yearExpandTarget: 100, //年度拓展目标
     expandFinishRatio: 33.3, //拓展完成率
     targetDiff: 30, //目标差额
