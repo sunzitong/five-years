@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
+import { Prop, Component, Ref } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
@@ -127,6 +127,11 @@ import { Swipe } from "vant";
 })
 export default class C1A extends Base implements IFetch {
   @Ref() swipe!: Swipe;
+
+  /**
+   * 对外暴露事件
+   */
+  @Prop() onToggle!: (val: boolean) => void;
 
   /**
    * 当前索引
@@ -178,6 +183,9 @@ export default class C1A extends Base implements IFetch {
    */
   toggleDialog() {
     this.show = !this.show;
+    if (typeof this.onToggle === "function") {
+      this.onToggle(this.show);
+    }
   }
 
   /**
