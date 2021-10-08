@@ -98,15 +98,48 @@
       </li>
     </ul>
     <div
-      class="circle"
-      :class="{ 'circle--warn': circleWarn(item) }"
       v-for="item in mapData"
       :key="item.orgId"
+      class="circle"
+      :class="{
+        circle__city: levelValue === DataLevels.CITY,
+        'circle--warn': circleWarn(item),
+        'circle--active': circleActive(item),
+      }"
+      :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
       @click="circleClicked(item)"
     >
-      {{ item.orgName }}
-      {{ item[options[optionIndex].numName] }}
-      {{ item[options[optionIndex].limitName] }}
+      <van-circle
+        :value="item[options[optionIndex].limitName]"
+        :layer-color="getCircleColor(item, 0)"
+        :color="getCircleColor(item, 1)"
+        :stroke-width="56"
+      >
+        <div
+          class="circle__text"
+          v-if="levelValue !== DataLevels.CITY || circleActive(item)"
+        >
+          <div
+            class="value"
+            :class="{
+              'value--city': levelValue === DataLevels.CITY,
+            }"
+          >
+            {{ item[options[optionIndex].numName] }}
+          </div>
+          <div
+            class="name"
+            :class="{
+              'name--city': levelValue === DataLevels.CITY,
+            }"
+          >
+            {{ item.orgName }}
+          </div>
+        </div>
+        <div class="circle__text" v-else>
+          {{ item.orgName }}
+        </div>
+      </van-circle>
     </div>
   </div>
 </template>
@@ -152,6 +185,7 @@ import {
 })
 export default class C4 extends Base implements IFetch {
   DateScopes = DateScopes;
+  DataLevels = DataLevels;
   /**
    * 总盘面大区、城市
    */
@@ -266,6 +300,37 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
+   * 点击地图圆圈数据
+   * 设置全局组架
+   * 设置切换条数据
+   */
+  async circleClicked(item: OrgTreeItemReturn) {
+    const orgTree = await findOrgTreeByOrgId(item.orgId);
+    if (!orgTree) return;
+    this.store.global.dataLevel = this.levelValue;
+    this.store.global.orgTree = orgTree;
+    this.showTable = true;
+    this.setOptionBar();
+    this.fetchDetails();
+  }
+
+  /**
+   * 选择门店
+   * @item 门店数据
+   */
+  async projectClicked(item: CenterRegionDetail) {
+    // 当前门店
+    const project = await findProjectByPhId(item.phId);
+    if (!project) return;
+    // 不能设置全局组架
+    // this.store.global.dataLevel = DataLevels.CITY;
+    // this.store.global.orgTree = orgTree;
+    // 全局门店与全局组架无关
+    this.store.global.project = project;
+    this.$router.push("/project");
+  }
+
+  /**
    * 圆圈颜色
    */
   circleWarn(item: MapCircleItemReturn) {
@@ -290,34 +355,26 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
-   * 点击地图圆圈数据
-   * 设置全局组架
-   * 设置切换条数据
+   * 圆圈是否选中
    */
-  async circleClicked(item: OrgTreeItemReturn) {
-    const orgTree = await findOrgTreeByOrgId(item.orgId);
-    if (!orgTree) return;
-    this.store.global.dataLevel = this.levelValue;
-    this.store.global.orgTree = orgTree;
-    this.showTable = true;
-    this.setOptionBar();
+  circleActive(item: MapCircleItemReturn) {
+    return item.orgId === this.store.global.orgTree.orgId;
   }
 
   /**
-   * 选择门店
-   * @item 门店数据
+   * 获取进度颜色
+   * @type 1:color 0:layout-color
    */
-  async projectClicked(item: CenterRegionDetail) {
-    // 当前门店
-    const project = await findProjectByPhId(item.phId);
-    if (!project) return;
-
-    // 不能设置全局组架
-    // this.store.global.dataLevel = DataLevels.CITY;
-    // this.store.global.orgTree = orgTree;
-    // 全局门店与全局组架无关
-    this.store.global.project = project;
-    this.$router.push("/project");
+  getCircleColor(item: MapCircleItemReturn, type: 1 | 0) {
+    const isActive = this.circleActive(item);
+    if (isActive) {
+      return ["#4C452D", "#F7D14A"][type];
+    }
+    const isWarn = this.circleWarn(item);
+    if (isWarn) {
+      return ["#75384E", "#FF3980"][type];
+    }
+    return ["#10674D", "#22CB98"][type];
   }
 }
 </script>
@@ -362,9 +419,50 @@ export default class C4 extends Base implements IFetch {
 }
 /* 地图圆圈 */
 .circle {
-  &--warn {
-    color: red;
+  transform-origin: center center;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  &::v-deep {
+    .van-circle {
+      width: 100%;
+      height: 100%;
+    }
   }
+  &__text {
+    @extend %flex-center;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100%;
+    color: #acbfdc;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    font-weight: normal;
+    .name {
+      font-size: 30px;
+      &--city {
+        font-size: 18px;
+      }
+    }
+    .value {
+      color: #dbf0ff;
+      @extend %value-font;
+      font-size: 42px;
+      &--city {
+        font-size: 25px;
+      }
+    }
+  }
+  &__city {
+    width: 100px;
+    height: 100px;
+    font-size: 36px;
+  }
+}
+.circle__city.circle--active {
+  transform: scale(1.7);
+  z-index: 2;
 }
 /* 数据表格 */
 .tb-card {
