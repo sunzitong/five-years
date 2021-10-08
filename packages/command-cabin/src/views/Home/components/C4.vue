@@ -1,7 +1,7 @@
 <template>
   <div class="continer">
     <div class="china"></div>
-    <div class="tb-card">
+    <div class="tb-card" v-if="showTable">
       <CardB>
         <table class="sum">
           <tr>
@@ -55,7 +55,7 @@
             <table class="scroll">
               <tr animated v-for="item in list" :key="item.id">
                 <td width="320">
-                  <div class="proj-name" @click="setProject(item)">
+                  <div class="proj-name" @click="projectClicked(item)">
                     <div class="van-multi-ellipsis--l2">
                       {{ item.projectName }}
                       {{ item.projectName }}
@@ -81,7 +81,7 @@
         >
           月
         </div>
-        <van-icon name="cross" class="close" />
+        <van-icon name="cross" class="close" @click="showTable = false" />
       </CardB>
     </div>
     <ul class="options">
@@ -102,7 +102,7 @@
       :class="{ 'circle--warn': circleWarn(item) }"
       v-for="item in mapData"
       :key="item.orgId"
-      @click="setOrgTree(item)"
+      @click="circleClicked(item)"
     >
       {{ item.orgName }}
       {{ item[options[optionIndex].numName] }}
@@ -115,6 +115,8 @@
 import { Component, Prop, Watch } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import CardB from "@/components/CardB/Index.vue";
+import Animationend from "@/components/Animationend/Index.vue";
 import {
   DataLevels,
   DateScopes,
@@ -123,18 +125,19 @@ import {
   fetchMapChangeBar,
   MapChangeBarReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapChangeBar";
-import { StoreKey, useStore } from "@/store";
+import {
+  findCityOrgTreeByProject,
+  findOrgTreeByOrgId,
+  findProjectByPhId,
+  StoreKey,
+  useStore,
+} from "@/store";
 import { iwant } from "@guanyu/shared";
 import {
   fetchMapCircle,
   MapCircleItemReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapCircle";
-import {
-  fetchOrgTree,
-  OrgTreeItemReturn,
-} from "@/service/analysis/commandCabin/orgTree";
-import CardB from "@/components/CardB/Index.vue";
-import Animationend from "@/components/Animationend/Index.vue";
+import { OrgTreeItemReturn } from "@/service/analysis/commandCabin/orgTree";
 import {
   CenterRegionDetail,
   fetchRegionDetailsInfo,
@@ -190,7 +193,7 @@ export default class C4 extends Base implements IFetch {
    * 表格数据
    */
   tableData: Partial<RegionDetailsInfoReturn> = {};
-
+  showTable = false;
   /**
    * 地图圆圈数据
    */
@@ -198,6 +201,7 @@ export default class C4 extends Base implements IFetch {
 
   /**
    * 请求圆圈数据
+   * 参数不是直接使用global dateLevel
    */
   @Watch("levelValue")
   async fetch() {
@@ -212,8 +216,6 @@ export default class C4 extends Base implements IFetch {
       this.mapData = response.data;
     }
     this.setOptionBar();
-    // 请求表格
-    this.fetchDetails();
     return response;
   }
 
@@ -266,14 +268,6 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
-   * 设置全局组架
-   */
-  setOrgTree(item: OrgTreeItemReturn) {
-    this.store.global.dataLevel = this.levelValue;
-    this.store.global.orgTree = item;
-  }
-
-  /**
    * 圆圈颜色
    */
   circleWarn(item: MapCircleItemReturn) {
@@ -298,46 +292,27 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
+   * 点击地图圆圈数据
+   * 设置全局组架
+   * 设置切换条数据
+   */
+  async circleClicked(item: OrgTreeItemReturn) {
+    const orgTree = await findOrgTreeByOrgId(item.orgId);
+    if (!orgTree) return;
+    this.store.global.dataLevel = this.levelValue;
+    this.store.global.orgTree = orgTree;
+    this.showTable = true;
+    this.setOptionBar();
+  }
+
+  /**
    * 选择门店
    * @item 门店数据
    */
-  async setProject(item: CenterRegionDetail) {
-    const globalProjectList = iwant.array(
-      (
-        await useStore(fetchProjectList, {
-          key: StoreKey.ProjectList,
-        })
-      )?.data
-    );
-    const globalOrgTree = iwant.array(
-      (await useStore(fetchOrgTree, { key: StoreKey.OrgTree }))?.data
-    );
+  async projectClicked(item: CenterRegionDetail) {
     // 当前门店
-    const project = globalProjectList.find((proj) => proj.phId === item.phId);
+    const project = await findProjectByPhId(item.phId);
     if (!project) return;
-
-    let orgTree: null | OrgTreeItemReturn = null;
-    // 查找国家
-    findOrgTree: for (let i = 0; i < globalOrgTree.length; i++) {
-      const group = globalOrgTree[i];
-      if (group.orgId === project?.groupOrgId && group.childList) {
-        // 查找大区
-        for (let j = 0; j < group.childList.length; j++) {
-          const area = group.childList[j];
-          if (area.orgId === project.areaOrgId && area.childList) {
-            // 查找城市
-            for (let k = 0; k < area.childList.length; k++) {
-              const city = area.childList[k];
-              if (city.orgId === project.cityOrgId) {
-                orgTree = city;
-                break findOrgTree;
-              }
-            }
-          }
-        }
-      }
-    }
-    if (!orgTree) return;
 
     // 不能设置全局组架
     // this.store.global.dataLevel = DataLevels.CITY;
@@ -396,7 +371,7 @@ export default class C4 extends Base implements IFetch {
 /* 数据表格 */
 .tb-card {
   position: absolute;
-  top: 20px;
+  bottom: 1000px;
   left: 0;
   .app-card-b {
     width: 1292px;
@@ -483,6 +458,7 @@ export default class C4 extends Base implements IFetch {
     color: #fff;
     font-size: 40px;
     padding: 14px;
+    cursor: pointer;
   }
 
   .warn {
@@ -493,6 +469,7 @@ export default class C4 extends Base implements IFetch {
     display: flex;
     align-items: center;
     line-height: 1.2;
+    cursor: pointer;
   }
 
   &::v-deep {
