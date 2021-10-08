@@ -127,7 +127,7 @@ export enum StoreKey {
   /**
    * 基础信息-项目区位
    */
-  ProjectLocation = "ProjectLocation",
+  ProjectLocationUrl = "ProjectLocationUrl",
   /**
    * 指挥中心-地图数据切换条
    */
@@ -136,6 +136,11 @@ export enum StoreKey {
    * 指挥中心-地图大区/城市圆圈
    */
   HomeMapCircle = "HomeMapCircle",
+
+  /**
+   * 当前投资实现情况
+   */
+  ProjectCurrentInfo = "ProjectCurrentInfo",
 }
 /**
  * 方法重载
