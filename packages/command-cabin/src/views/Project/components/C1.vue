@@ -121,12 +121,10 @@ export default class C1 extends Base implements IFetch {
   margin: 0 auto;
   padding-top: 25px;
   .btns {
-    position: absolute;
-    bottom: -42px;
-    left: 0;
-    right: 0;
     display: flex;
+    width: 500px;
     justify-content: center;
+    margin: -48px auto 0;
   }
   .btn {
     display: flex;
@@ -134,7 +132,7 @@ export default class C1 extends Base implements IFetch {
     align-items: center;
     width: 240px;
     height: 90px;
-    margin: 0 10px;
+    margin: 0 5px;
     background: rgba(56, 196, 255, 0.3);
     backdrop-filter: blur(20px);
     color: #01f5f1;
