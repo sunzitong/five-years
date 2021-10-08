@@ -19,46 +19,42 @@ export interface MilepostParams {
 /**
  * 门店里程碑-返回值
  */
-export interface MilepostItemReturn {
-  title: string;
-  value: Value;
-}
-
-export interface Value {
-  firstInvestmentTime?: Date;
-  signingTime?: Date;
-  structureFinishDate?: Date;
-  mainFinishDate?: Date;
-  transferImprovementDate?: Date;
-  isIpd?: string;
-  improvementStartDate?: Date;
-  transferServiceDate?: Date;
-  startCheckScore?: number;
-  workDays?: number;
-  fireControlType?: string;
-  actualOpenDate?: Date;
-  pointRentRatioToday?: number;
-  id?: number;
-  phId?: string;
-  projectName?: string;
-  approvedDate?: Date;
-  targetCostNonTax?: number;
-  dynamicCostNonTax?: number;
-  costValLandSum?: number;
-  budgetBalanceNoTax?: number;
+export interface MilepostReturn {
+  transactionModel: string;
+  transactionModelType: string;
+  firstInvestmentTime: Date;
+  signingTime: Date;
+  structureFinishDate: Date;
+  mainFinishDate: Date;
+  transferImprovementDate: Date;
+  isIpd: string;
+  improvementStartDate: Date;
+  transferServiceDate: Date;
+  workDays: number;
+  startCheckScore: number;
+  fireControlType: string;
+  actualOpenDate: Date;
+  pointRentRatioToday: number;
+  phId: string;
+  projectName: string;
+  approvedDate: Date;
+  targetCostNonTax: number;
+  dynamicCostNonTax: number;
+  costValLandSum: number;
+  budgetBalanceNoTax: number;
 }
 
 /**
  * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/10/8 9:20:38
+ * @updateAt 2021/10/8 12:37:57
  * @method GET
  */
 export const fetchMilepost = (
   params: MilepostParams,
   options?: Partial<ServiceOptions>
 ) => {
-  return http.get<MilepostItemReturn[]>(
+  return http.get<MilepostReturn>(
     `${BASE_URL}/analysis/bigScreen/projectBoard/basicInformation/milepost`,
     { ...params },
     { ...options }
