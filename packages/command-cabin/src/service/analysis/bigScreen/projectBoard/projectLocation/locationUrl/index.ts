@@ -19,7 +19,7 @@ export interface LocationUrlParams {
 /**
  * 门店屏-项目区位-返回值
  */
-export interface LocationURLReturn {
+export interface LocationUrlReturn {
   locationUrl: string;
 }
 

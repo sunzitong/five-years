@@ -73,6 +73,7 @@ export const inferJsonType = async (options: {
     allPropertiesOptional,
     rendererOptions: {
       "just-types": "on",
+      "acronym-style": "original",
     },
   });
   return lines.join("\n");
