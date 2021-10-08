@@ -136,6 +136,10 @@ export enum StoreKey {
    * 指挥中心-地图大区/城市圆圈
    */
   HomeMapCircle = "HomeMapCircle",
+  /**
+   * 查询主屏(中心位置)地区(城市)维度详细信息
+   */
+  HomeRegionDetailsInfo = "HomeRegionDetailsInfo",
 }
 /**
  * 方法重载
