@@ -2,9 +2,9 @@
  * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114784
  *
- * 门店里程碑（不包含成本决算信息）
+ * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/9/30 18:8:26
+ * @updateAt 2021/10/8 9:20:38
  * @method GET
  */
 
