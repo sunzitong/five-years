@@ -3,9 +3,9 @@
     <div class="pictures-wrapper">
       <van-swipe
         ref="swipe"
-        @change="changeHandle"
         :loop="false"
-        indicator-color="transparent"
+        :show-indicators="false"
+        @change="changeHandle"
       >
         <van-swipe-item v-for="(item, index) of response" :key="index">
           <div class="pictures">
@@ -40,6 +40,9 @@
         >
           <van-icon name="arrow" />
         </div>
+        <div class="btn">
+          <C1A />
+        </div>
       </div>
     </div>
   </Spin>
@@ -56,10 +59,12 @@ import {
 } from "@/service/analysis/bigScreen/projectBoard/monitor/cameraList";
 import { iwant } from "@guanyu/shared";
 import { Swipe } from "vant";
+import C1A from "./C1A.vue";
 
 @Component({
   components: {
     Webrtc,
+    C1A,
   },
 })
 export default class C1 extends Base implements IFetch {
