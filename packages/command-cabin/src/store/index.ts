@@ -1,6 +1,14 @@
-import { UnpackParameter } from "@guanyu/shared";
+import { iwant, UnpackParameter } from "@guanyu/shared";
 import store from "./store";
 import _ from "lodash";
+import {
+  fetchOrgTree,
+  OrgTreeItemReturn,
+} from "@/service/analysis/commandCabin/orgTree";
+import {
+  fetchProjectList,
+  ProjectListItemReturn,
+} from "@/service/analysis/commandCabin/projectList";
 
 export default store;
 
@@ -206,4 +214,79 @@ export const removeStore = (key?: StoreKey) => {
   } else {
     store.$service = {};
   }
+};
+
+/**
+ * 根据门店查找城市组架
+ * @param project 门店
+ * @returns orgTree
+ */
+export const findCityOrgTreeByProject = async (
+  project: ProjectListItemReturn
+) => {
+  const globalOrgTree = iwant.array(
+    (await useStore(fetchOrgTree, { key: StoreKey.OrgTree }))?.data
+  );
+  let orgTree: null | OrgTreeItemReturn = null;
+  // 查找国家
+  findOrgTree: for (let i = 0; i < globalOrgTree.length; i++) {
+    const group = globalOrgTree[i];
+    if (group.orgId === project?.groupOrgId && group.childList) {
+      // 查找大区
+      for (let j = 0; j < group.childList.length; j++) {
+        const area = group.childList[j];
+        if (area.orgId === project.areaOrgId && area.childList) {
+          // 查找城市
+          for (let k = 0; k < area.childList.length; k++) {
+            const city = area.childList[k];
+            if (city.orgId === project.cityOrgId) {
+              orgTree = city;
+              break findOrgTree;
+            }
+          }
+        }
+      }
+    }
+  }
+  return orgTree;
+};
+
+/**
+ * 根据门店查找组架
+ * @param project 门店
+ * @returns orgTree
+ */
+export const findOrgTreeByOrgId = async (orgId: number) => {
+  const globalOrgTree = iwant.array(
+    (await useStore(fetchOrgTree, { key: StoreKey.OrgTree }))?.data
+  );
+
+  const find = (list: OrgTreeItemReturn[]): OrgTreeItemReturn | null => {
+    for (let i = 0; i < list.length; i++) {
+      const item = list[i];
+      if (item.orgId === orgId) return item;
+      if (item.childList) {
+        return find(item.childList);
+      }
+    }
+    return null;
+  };
+
+  return find(globalOrgTree);
+};
+
+/**
+ * 根据phId查找门店
+ * @param phId phId
+ * @returns 门店
+ */
+export const findProjectByPhId = async (phId: string) => {
+  const globalProjectList = iwant.array(
+    (
+      await useStore(fetchProjectList, {
+        key: StoreKey.ProjectList,
+      })
+    )?.data
+  );
+  return globalProjectList.find((proj) => proj.phId === phId) || null;
 };

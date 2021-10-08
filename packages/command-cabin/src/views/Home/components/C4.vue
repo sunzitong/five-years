@@ -1,7 +1,7 @@
 <template>
   <div class="continer">
     <div class="china"></div>
-    <div class="tb-card">
+    <div class="tb-card" v-if="showTable">
       <CardB>
         <table class="sum">
           <tr>
@@ -55,7 +55,7 @@
             <table class="scroll">
               <tr animated v-for="item in list" :key="item.id">
                 <td width="320">
-                  <div class="proj-name" @click="setProject(item)">
+                  <div class="proj-name" @click="projectClicked(item)">
                     <div class="van-multi-ellipsis--l2">
                       {{ item.projectName }}
                       {{ item.projectName }}
@@ -81,7 +81,7 @@
         >
           月
         </div>
-        <van-icon name="cross" class="close" />
+        <van-icon name="cross" class="close" @click="showTable = false" />
       </CardB>
     </div>
     <ul class="options">
@@ -98,15 +98,48 @@
       </li>
     </ul>
     <div
-      class="circle"
-      :class="{ 'circle--warn': circleWarn(item) }"
       v-for="item in mapData"
       :key="item.orgId"
-      @click="setOrgTree(item)"
+      class="circle"
+      :class="{
+        circle__city: levelValue === DataLevels.CITY,
+        'circle--warn': circleWarn(item),
+        'circle--active': circleActive(item),
+      }"
+      :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
+      @click="circleClicked(item)"
     >
-      {{ item.orgName }}
-      {{ item[options[optionIndex].numName] }}
-      {{ item[options[optionIndex].limitName] }}
+      <van-circle
+        :value="item[options[optionIndex].limitName]"
+        :layer-color="getCircleColor(item, 0)"
+        :color="getCircleColor(item, 1)"
+        :stroke-width="56"
+      >
+        <div
+          class="circle__text"
+          v-if="levelValue !== DataLevels.CITY || circleActive(item)"
+        >
+          <div
+            class="value"
+            :class="{
+              'value--city': levelValue === DataLevels.CITY,
+            }"
+          >
+            {{ item[options[optionIndex].numName] }}
+          </div>
+          <div
+            class="name"
+            :class="{
+              'name--city': levelValue === DataLevels.CITY,
+            }"
+          >
+            {{ item.orgName }}
+          </div>
+        </div>
+        <div class="circle__text" v-else>
+          {{ item.orgName }}
+        </div>
+      </van-circle>
     </div>
   </div>
 </template>
@@ -115,6 +148,8 @@
 import { Component, Prop, Watch } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import CardB from "@/components/CardB/Index.vue";
+import Animationend from "@/components/Animationend/Index.vue";
 import {
   DataLevels,
   DateScopes,
@@ -123,24 +158,23 @@ import {
   fetchMapChangeBar,
   MapChangeBarReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapChangeBar";
-import { StoreKey, useStore } from "@/store";
+import {
+  findOrgTreeByOrgId,
+  findProjectByPhId,
+  StoreKey,
+  useStore,
+} from "@/store";
 import { iwant } from "@guanyu/shared";
 import {
   fetchMapCircle,
   MapCircleItemReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapCircle";
-import {
-  fetchOrgTree,
-  OrgTreeItemReturn,
-} from "@/service/analysis/commandCabin/orgTree";
-import CardB from "@/components/CardB/Index.vue";
-import Animationend from "@/components/Animationend/Index.vue";
+import { OrgTreeItemReturn } from "@/service/analysis/commandCabin/orgTree";
 import {
   CenterRegionDetail,
   fetchRegionDetailsInfo,
   RegionDetailsInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/regionDetailsInfo";
-import { fetchProjectList } from "@/service/analysis/commandCabin/projectList";
 
 @Component({
   components: {
@@ -151,6 +185,7 @@ import { fetchProjectList } from "@/service/analysis/commandCabin/projectList";
 })
 export default class C4 extends Base implements IFetch {
   DateScopes = DateScopes;
+  DataLevels = DataLevels;
   /**
    * 总盘面大区、城市
    */
@@ -190,7 +225,7 @@ export default class C4 extends Base implements IFetch {
    * 表格数据
    */
   tableData: Partial<RegionDetailsInfoReturn> = {};
-
+  showTable = false;
   /**
    * 地图圆圈数据
    */
@@ -198,6 +233,7 @@ export default class C4 extends Base implements IFetch {
 
   /**
    * 请求圆圈数据
+   * 参数不是直接使用global dateLevel
    */
   @Watch("levelValue")
   async fetch() {
@@ -212,8 +248,6 @@ export default class C4 extends Base implements IFetch {
       this.mapData = response.data;
     }
     this.setOptionBar();
-    // 请求表格
-    this.fetchDetails();
     return response;
   }
 
@@ -266,11 +300,34 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
+   * 点击地图圆圈数据
    * 设置全局组架
+   * 设置切换条数据
    */
-  setOrgTree(item: OrgTreeItemReturn) {
+  async circleClicked(item: OrgTreeItemReturn) {
+    const orgTree = await findOrgTreeByOrgId(item.orgId);
+    if (!orgTree) return;
     this.store.global.dataLevel = this.levelValue;
-    this.store.global.orgTree = item;
+    this.store.global.orgTree = orgTree;
+    this.showTable = true;
+    this.setOptionBar();
+    this.fetchDetails();
+  }
+
+  /**
+   * 选择门店
+   * @item 门店数据
+   */
+  async projectClicked(item: CenterRegionDetail) {
+    // 当前门店
+    const project = await findProjectByPhId(item.phId);
+    if (!project) return;
+    // 不能设置全局组架
+    // this.store.global.dataLevel = DataLevels.CITY;
+    // this.store.global.orgTree = orgTree;
+    // 全局门店与全局组架无关
+    this.store.global.project = project;
+    this.$router.push("/project");
   }
 
   /**
@@ -298,53 +355,26 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
-   * 选择门店
-   * @item 门店数据
+   * 圆圈是否选中
    */
-  async setProject(item: CenterRegionDetail) {
-    const globalProjectList = iwant.array(
-      (
-        await useStore(fetchProjectList, {
-          key: StoreKey.ProjectList,
-        })
-      )?.data
-    );
-    const globalOrgTree = iwant.array(
-      (await useStore(fetchOrgTree, { key: StoreKey.OrgTree }))?.data
-    );
-    // 当前门店
-    const project = globalProjectList.find((proj) => proj.phId === item.phId);
-    if (!project) return;
+  circleActive(item: MapCircleItemReturn) {
+    return item.orgId === this.store.global.orgTree.orgId;
+  }
 
-    let orgTree: null | OrgTreeItemReturn = null;
-    // 查找国家
-    findOrgTree: for (let i = 0; i < globalOrgTree.length; i++) {
-      const group = globalOrgTree[i];
-      if (group.orgId === project?.groupOrgId && group.childList) {
-        // 查找大区
-        for (let j = 0; j < group.childList.length; j++) {
-          const area = group.childList[j];
-          if (area.orgId === project.areaOrgId && area.childList) {
-            // 查找城市
-            for (let k = 0; k < area.childList.length; k++) {
-              const city = area.childList[k];
-              if (city.orgId === project.cityOrgId) {
-                orgTree = city;
-                break findOrgTree;
-              }
-            }
-          }
-        }
-      }
+  /**
+   * 获取进度颜色
+   * @type 1:color 0:layout-color
+   */
+  getCircleColor(item: MapCircleItemReturn, type: 1 | 0) {
+    const isActive = this.circleActive(item);
+    if (isActive) {
+      return ["#4C452D", "#F7D14A"][type];
     }
-    if (!orgTree) return;
-
-    // 不能设置全局组架
-    // this.store.global.dataLevel = DataLevels.CITY;
-    // this.store.global.orgTree = orgTree;
-    // 全局门店与全局组架无关
-    this.store.global.project = project;
-    this.$router.push("/project");
+    const isWarn = this.circleWarn(item);
+    if (isWarn) {
+      return ["#75384E", "#FF3980"][type];
+    }
+    return ["#10674D", "#22CB98"][type];
   }
 }
 </script>
@@ -389,14 +419,55 @@ export default class C4 extends Base implements IFetch {
 }
 /* 地图圆圈 */
 .circle {
-  &--warn {
-    color: red;
+  transform-origin: center center;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  &::v-deep {
+    .van-circle {
+      width: 100%;
+      height: 100%;
+    }
   }
+  &__text {
+    @extend %flex-center;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100%;
+    color: #acbfdc;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    font-weight: normal;
+    .name {
+      font-size: 30px;
+      &--city {
+        font-size: 18px;
+      }
+    }
+    .value {
+      color: #dbf0ff;
+      @extend %value-font;
+      font-size: 42px;
+      &--city {
+        font-size: 25px;
+      }
+    }
+  }
+  &__city {
+    width: 100px;
+    height: 100px;
+    font-size: 36px;
+  }
+}
+.circle__city.circle--active {
+  transform: scale(1.7);
+  z-index: 2;
 }
 /* 数据表格 */
 .tb-card {
   position: absolute;
-  top: 20px;
+  bottom: 1000px;
   left: 0;
   .app-card-b {
     width: 1292px;
@@ -483,6 +554,7 @@ export default class C4 extends Base implements IFetch {
     color: #fff;
     font-size: 40px;
     padding: 14px;
+    cursor: pointer;
   }
 
   .warn {
@@ -493,6 +565,7 @@ export default class C4 extends Base implements IFetch {
     display: flex;
     align-items: center;
     line-height: 1.2;
+    cursor: pointer;
   }
 
   &::v-deep {
