@@ -146,6 +146,11 @@ export enum StoreKey {
    * 门店屏-里程碑
    */
   ProjectMilepost = "ProjectMilepost",
+
+  /**
+   * 门店屏-现场监控
+   */
+  ProjectCameraList = "ProjectCameraList",
 }
 /**
  * 方法重载

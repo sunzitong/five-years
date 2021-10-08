@@ -49,7 +49,9 @@
                 size="small"
                 style="width: 1193px; height: 736px"
               >
-                <CardA style="width: 1148px; height: 584px"></CardA>
+                <CardA style="width: 1148px; height: 584px">
+                  <C1 />
+                </CardA>
               </SubWrapperA>
             </van-col>
           </van-row>
@@ -229,6 +231,7 @@ import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
 import A3 from "./components/A3.vue";
 import B1 from "./components/B1.vue";
+import C1 from "./components/C1.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -252,6 +255,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     A2,
     A3,
     B1,
+    C1,
     D1,
     D2,
     D3,
