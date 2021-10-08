@@ -6,6 +6,7 @@
         :loop="false"
         :show-indicators="false"
         @change="changeHandle"
+        lazy-render
       >
         <van-swipe-item v-for="(item, index) of response" :key="index">
           <div class="pictures">

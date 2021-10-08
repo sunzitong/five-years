@@ -13,6 +13,7 @@
           <Spin :loading="loading" :empty="empty">
             <div class="pictures-wrapper">
               <van-swipe
+                lazy-render
                 ref="swipe"
                 :loop="false"
                 :show-indicators="false"
