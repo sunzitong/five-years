@@ -16,7 +16,7 @@
 import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
-import { fetchProjectLocation } from "@/service/analysis/bigScreen/projectBoard/projectLocation";
+import { fetchLocationUrl } from "@/service/analysis/bigScreen/projectBoard/projectLocation/locationUrl";
 
 @Component
 export default class A3 extends Base implements IFetch {
@@ -30,12 +30,12 @@ export default class A3 extends Base implements IFetch {
    * @returns response
    */
   async fetch() {
-    const response = await useStore(fetchProjectLocation, {
-      key: StoreKey.ProjectLocation,
+    const response = await useStore(fetchLocationUrl, {
+      key: StoreKey.ProjectLocationUrl,
       params: { orgId: this.store.global.project.orgId },
     });
     if (response?.status === "ok") {
-      this.response = response.data?.projectLocation;
+      this.response = response.data?.locationUrl;
     }
     return response;
   }
