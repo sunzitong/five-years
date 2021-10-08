@@ -141,6 +141,11 @@ export enum StoreKey {
    * 当前投资实现情况
    */
   ProjectCurrentInfo = "ProjectCurrentInfo",
+
+  /**
+   * 门店屏-里程碑
+   */
+  ProjectMilepost = "ProjectMilepost",
 }
 /**
  * 方法重载
