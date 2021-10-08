@@ -126,7 +126,6 @@ import {
   MapChangeBarReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapChangeBar";
 import {
-  findCityOrgTreeByProject,
   findOrgTreeByOrgId,
   findProjectByPhId,
   StoreKey,
@@ -143,7 +142,6 @@ import {
   fetchRegionDetailsInfo,
   RegionDetailsInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/regionDetailsInfo";
-import { fetchProjectList } from "@/service/analysis/commandCabin/projectList";
 
 @Component({
   components: {
