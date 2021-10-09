@@ -77,7 +77,14 @@ export default class A2 extends Base implements IFetch {
   }
 
   paintChart() {
-    const myChart = echarts.init(this.wrapper);
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+
+    const { myChart } = this;
     // myChart.showLoading();
     let option = {
       legend: {
@@ -143,9 +150,6 @@ export default class A2 extends Base implements IFetch {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

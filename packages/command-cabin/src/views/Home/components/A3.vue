@@ -3,12 +3,12 @@
   <div class="page__a3__map">
     <div class="groop1">
       <div>转化率</div>
-      <div>{{ conversionRate1 }}%</div>
+      <div>{{ resData.estabTransRatio }}%</div>
       <AnimationForward class="arrow" />
     </div>
     <div class="groop2">
       <div>转化率</div>
-      <div>{{ conversionRate2 }}%</div>
+      <div>{{ resData.meetingTransRatio }}%</div>
       <AnimationForward class="arrow" />
     </div>
     <div
@@ -23,27 +23,62 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
 import AnimationForward from "@/components/AnimationForward/Index.vue";
 import { AnyObject } from "@guanyu/shared";
+import {
+  BusinessOppTransReturn,
+  fetchBusinessOppTrans,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/businessOppTrans";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: { AnimationForward },
 })
-export default class A3 extends Base {
+export default class A3 extends Base implements IFetch {
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<BusinessOppTransReturn> = {};
 
-  conversionRate1 = 100.0; // 转化率1
-  conversionRate2 = 23.0; // 转化率2
-  resData = [
-    { name: "年累立项", value: 120 },
-    { name: "年累过会", value: 80 },
-    { name: "年累签约", value: 60 },
-  ];
+  dataSet: AnyObject[] = []; // 柱状图数据
 
-  mounted() {
-    const myChart = echarts.init(this.wrapper);
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
+  async fetch() {
+    const response = await useStore(fetchBusinessOppTrans, {
+      key: StoreKey.HomeBusinessOppTrans,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+      if (this.resData) {
+        this.dataSet = [
+          { name: "年累立项", value: this.resData.yearsEstabProjectNum },
+          { name: "年累过会", value: this.resData.yearsMeetingProjectNum },
+          { name: "年累签约", value: this.resData.yeasSignedProjectNum },
+        ];
+        this.paintChart();
+      }
+    } else {
+      this.empty = true;
+    }
+    return response;
+  }
+
+  paintChart() {
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+
+    const { myChart } = this;
     let option = {
       grid: {
         left: "-10%",
@@ -58,7 +93,7 @@ export default class A3 extends Base {
         axisLabel: {
           formatter: (value: number) => {
             let name = "";
-            this.resData.forEach((el: AnyObject) => {
+            this.dataSet.forEach((el: AnyObject) => {
               if (value == el.value) {
                 name = el.name;
               }
@@ -90,12 +125,12 @@ export default class A3 extends Base {
             },
           },
         },
-        data: this.resData,
+        data: this.dataSet,
       },
       yAxis: { show: false },
       series: [
         {
-          data: this.resData,
+          data: this.dataSet,
           type: "bar",
           color: "#57A6FB",
           barWidth: 24,
@@ -116,9 +151,6 @@ export default class A3 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

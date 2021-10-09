@@ -228,10 +228,10 @@ export default class A1 extends Base implements IFetch {
   height: 500px;
   @extend %bg-img-circle-1;
   background-size: 370px 370px;
-  background-position: 65px 31px;
+  background-position: 65px 47px;
 
   .position {
-    margin: 110px 125px;
+    margin: 125px 125px;
   }
 
   .rate-text {
