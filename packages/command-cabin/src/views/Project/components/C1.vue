@@ -41,9 +41,9 @@
         >
           <van-icon name="arrow" />
         </div>
-        <div class="btn">
+        <!-- <div class="btn">
           <C1A />
-        </div>
+        </div> -->
       </div>
     </div>
   </Spin>
