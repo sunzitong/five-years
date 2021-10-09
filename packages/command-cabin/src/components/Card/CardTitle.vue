@@ -1,5 +1,6 @@
 <template>
   <svg
+    v-if="formatSize.W && formatSize.H"
     style="vertical-align: middle"
     :width="formatSize.W"
     :height="formatSize.H"

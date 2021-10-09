@@ -1,5 +1,5 @@
 <template>
-  <div class="app-btn" v-on="$listeners">
+  <div class="app-btn" v-on="$listeners" v-if="rect.width && rect.height">
     <svg
       :width="rect.width"
       :height="rect.height"

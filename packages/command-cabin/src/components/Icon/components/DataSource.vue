@@ -1,5 +1,6 @@
 <template>
   <svg
+    v-if="iconSize"
     class="app-icon__datasource"
     :width="iconSize"
     :height="iconSize"

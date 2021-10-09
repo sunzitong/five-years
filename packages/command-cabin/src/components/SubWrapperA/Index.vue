@@ -2,6 +2,7 @@
   <div ref="wrapper" class="app-subwrapper-a">
     <div class="app-subwrapper-a__background">
       <svg
+        v-if="width && height"
         :width="width"
         :height="height"
         :viewBox="`0 0 ${width} ${height}`"

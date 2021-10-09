@@ -3,7 +3,7 @@
     <div class="app-card-decorate__header" v-if="showHeader">
       <CardTitle :size="size" />
     </div>
-    <div ref="wrapper" class="app-card-decorate__body">
+    <div ref="wrapper" class="app-card-decorate__body" v-if="width && height">
       <svg
         :width="width"
         :height="height"
