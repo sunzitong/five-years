@@ -1,194 +1,128 @@
 <template>
-  <!-- <Spin :height="955" :loading="loading" :empty="empty"> -->
-  <div class="page__a1__map">
-    <!-- 上半部分 -->
-    <div class="top_text">
-      <div class="left_text">
-        已签约间数
-        <div class="num">
-          <span>{{ sepNumber(signRoom) }}</span>
-          <!-- 万 -->
-        </div>
-      </div>
-      <div class="right_top_text">
-        <div class="row_content">
-          重资产
-          <span class="value">{{ sepNumber(heavyNum) }}</span>
-        </div>
-        <div class="row_content">
-          中资产
-          <span class="value">{{ sepNumber(middleNum) }}</span>
-        </div>
-        <div class="row_content">
-          轻资产
-          <span class="value">{{ sepNumber(lightNum) }}</span>
-        </div>
-      </div>
-    </div>
-    <!-- 下半部分 -->
-    <div class="bottom_content">
-      <div class="left_bottom_text">
+  <Spin :height="955" :loading="loading" :empty="empty">
+    <div class="page__a1__map">
+      <!-- 上半部分 -->
+      <div class="top_text">
         <div class="left_text">
-          获取目标
+          已签约间数
           <div class="num">
-            <span>{{ sepNumber(gainTarget) }}</span>
+            <span>{{ sepNumber(resData.signedRoomNum) }}</span>
             <!-- 万 -->
           </div>
         </div>
-        <div class="left_text">
-          目标差额
-          <div
-            class="num"
-            :class="{
-              danger: targetDiffer < 0,
-            }"
-          >
-            <span>{{ sepNumber(targetDiffer) }}</span>
-            <!-- 万 -->
+        <div class="right_top_text">
+          <div class="row_content">
+            重资产
+            <span class="value">
+              {{ sepNumber(resData.heavySignedRoomNum) }}
+            </span>
+          </div>
+          <div class="row_content">
+            中资产
+            <span class="value">
+              {{ sepNumber(resData.mediumSignedRoomNum) }}
+            </span>
+          </div>
+          <div class="row_content">
+            轻资产
+            <span class="value">
+              {{ sepNumber(resData.lightSignedRoomNum) }}
+            </span>
           </div>
         </div>
-        <!-- <div class="left_text">
+      </div>
+      <!-- 下半部分 -->
+      <div class="bottom_content">
+        <div class="left_bottom_text">
+          <div class="left_text">
+            获取目标
+            <div class="num">
+              <span>{{ sepNumber(resData.yearExpandTarget) }}</span>
+              <!-- 万 -->
+            </div>
+          </div>
+          <div class="left_text">
+            目标差额
+            <div
+              class="num"
+              :class="{
+                danger: resData.targetDiff < 0,
+              }"
+            >
+              <span>{{ sepNumber(resData.targetDiff) }}</span>
+              <!-- 万 -->
+            </div>
+          </div>
+          <!-- <div class="left_text">
           已签约间数（非协同）
           <div class="num">
             <span>{{ sepNumber(signedRoom) }}</span>
             万
           </div>
         </div> -->
+        </div>
+        <!-- 饼图 -->
+        <div class="chart">
+          <van-circle
+            v-model="currentRate"
+            class="position"
+            :rate="resData.expandFinishRatio"
+            layer-color="rgba(247, 209, 74, 0.35)"
+            color="#F7D14A"
+            :size="250"
+            :strokeWidth="50"
+            :speed="100"
+          >
+            <div class="rate-text">
+              <div>拓展完成率</div>
+              <div class="value">{{ resData.expandFinishRatio }}%</div>
+            </div>
+          </van-circle>
+        </div>
       </div>
-      <!-- 饼图 -->
-      <div class="right_bottom_text chart" ref="wrapper"></div>
     </div>
-  </div>
-  <!-- </Spin> -->
+  </Spin>
 </template>
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
-import { Base } from "@/views/Base";
-import { AnyObject } from "@guanyu/shared";
-import { EChartsOption } from "echarts/types/dist/shared";
-import mitter, { EventName } from "@/utils/mitter";
+import { Base, IFetch } from "@/views/Base";
+import {
+  fetchProjectAcquire,
+  ProjectAcquireReturn,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/projectAcquire";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
 })
-export default class A1 extends Base {
+export default class A1 extends Base implements IFetch {
   /**
    * 饼图
    */
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<ProjectAcquireReturn> = {};
 
-  signRoom = 1218900; // 已签约间数
-  heavyNum = 6000; // 重资产间数
-  middleNum = 6000; // 中资产间数
-  lightNum = 6000; // 轻资产间数
+  currentRate = 0;
 
-  gainTarget = 54544; // 获取目标
-
-  targetDiffer = -54544; // 目标差额
-  signedRoom = 23900; // 已签约间数
-
-  pieData: AnyObject[] = [
-    // 饼图对象数组
-    {
-      name: "获取目标",
-      value: 80,
-    },
-    {
-      name: "已签约间数",
-      value: 20,
-    },
-  ];
-
-  getArrayValue = (array: AnyObject[], key: string) => {
-    key = key || "value";
-    let res: number[] = [];
-    if (array) {
-      array.forEach(function (t) {
-        res.push(t[key]);
-      });
-    }
-    return res;
-  };
-
-  values = this.getArrayValue(this.resData, "value"); // value数组
-
-  centerVlue = 80; // 饼图中心值文本
-
-  mounted() {
-    const myChart = echarts.init(this.wrapper);
-    // myChart.showLoading();
-    let option: EChartsOption = {
-      title: {
-        //中心数值
-        text: this.centerVlue + "%",
-        left: "center",
-        top: "35%",
-        z: 100,
-        textStyle: {
-          fontFamily: this.store.env.VALUE_FONT,
-          fontWeight: "bold",
-          fontSize: 48,
-          lineHeight: 48,
-          color: "#DBF0FF",
-        },
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
+  async fetch() {
+    const response = await useStore(fetchProjectAcquire, {
+      key: StoreKey.HomeProjectAcquire,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
       },
-      graphic: {
-        // 中心文字
-        type: "text",
-        left: "center",
-        top: "30%",
-        z: 100,
-        style: {
-          text: "拓展完成率",
-          textAlign: "center",
-          fontFamily: this.store.env.TEXT_FONT,
-          fontSize: 24,
-          lineHeight: 24,
-          fill: "#8090AA",
-        },
-      },
-
-      legend: {
-        show: true,
-        icon: "rec",
-        bottom: 39,
-        itemGap: 20,
-        itemHeight: 12,
-        itemWidth: 12,
-        textStyle: {
-          padding: [0, 0, 0, 18],
-          fontFamily: this.store.env.TEXT_FONT,
-          fontSize: 36,
-          lineHeight: 36,
-          color: "#90A4C3",
-        },
-        data: this.names,
-      },
-      xAxis: { show: false },
-      yAxis: { show: false },
-      series: [
-        {
-          // 展示数据
-          type: "pie",
-          radius: [121, 108],
-          center: ["50%", "37%"],
-          label: {
-            show: false,
-          },
-          itemStyle: {
-            borderRadius: 88,
-          },
-          color: ["#F7D14A", "#57A6FB"],
-          data: this.pieData,
-        },
-      ],
-    };
-    option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
     });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    } else {
+      this.empty = true;
+    }
+    return response;
   }
 }
 </script>
@@ -290,10 +224,29 @@ export default class A1 extends Base {
 }
 
 .chart {
-  width: 300px;
-  height: 534px;
+  width: 500px;
+  height: 500px;
   @extend %bg-img-circle-1;
-  background-size: 100%;
-  background-position: 0 -9px;
+  background-size: 370px 370px;
+  background-position: 65px 31px;
+
+  .position {
+    margin: 110px 125px;
+  }
+
+  .rate-text {
+    margin: 92px 0;
+    font-size: 24px;
+    line-height: 24px;
+    color: #8090aa;
+
+    .value {
+      @extend %value-font;
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 48px;
+      color: #dbf0ff;
+    }
+  }
 }
 </style>
