@@ -12,6 +12,8 @@
         :yLabel2="yLabel2"
         :yLabel3="yLabel3"
         :num="num"
+        :currentMonth="resData.month"
+        :currentYear="resData.year"
       />
     </div>
   </Spin>
@@ -92,7 +94,7 @@ export default class B1 extends Base implements IFetch {
       if (transactionModel === "LightAsset") {
         // 构建月度横坐标
         infoMap.month1.forEach((el: AnyObject) => {
-          this.monthXLabel.push(el.dataNum / 12);
+          this.monthXLabel.push(el.dataNum);
         });
 
         // 构建三条折线数据结构（二维数组）
@@ -146,7 +148,7 @@ export default class B1 extends Base implements IFetch {
       } else if (transactionModel === "MediumAsset") {
         // 构建月度横坐标
         infoMap.month1.forEach((el: AnyObject) => {
-          this.monthXLabel.push(el.dataNum / 12);
+          this.monthXLabel.push(el.dataNum);
         });
 
         infoMap.year1.forEach((el: AnyObject) => {
@@ -222,7 +224,7 @@ export default class B1 extends Base implements IFetch {
       } else if (transactionModel === "HeavyAsset") {
         // 构建月度横坐标
         infoMap.month1.forEach((el: AnyObject) => {
-          this.monthXLabel.push(el.dataNum / 12);
+          this.monthXLabel.push(el.dataNum);
         });
 
         infoMap.year1.forEach((el: AnyObject) => {
