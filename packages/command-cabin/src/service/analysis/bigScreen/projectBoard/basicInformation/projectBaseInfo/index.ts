@@ -43,7 +43,7 @@ export interface ProjectBaseInfoReturn {
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/30 15:59:1
+ * @updateAt 2021/10/9 10:9:43
  * @method GET
  */
 export const fetchProjectBaseInfo = (

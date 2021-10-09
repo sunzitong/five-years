@@ -7,7 +7,7 @@ import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 成本决算信息-参数
+ * 成本决算信息（已废弃）-参数
  */
 export interface CostAnalysisParams {
   /**
@@ -17,7 +17,7 @@ export interface CostAnalysisParams {
 }
 
 /**
- * 成本决算信息-返回值
+ * 成本决算信息（已废弃）-返回值
  */
 export interface CostAnalysisReturn {
   id: number;
@@ -31,9 +31,9 @@ export interface CostAnalysisReturn {
 }
 
 /**
- * 成本决算信息
+ * 成本决算信息（已废弃）
  * @createBy zhangyao03
- * @updateAt 2021/9/22 14:23:38
+ * @updateAt 2021/10/9 16:3:1
  * @method GET
  */
 export const fetchCostAnalysis = (

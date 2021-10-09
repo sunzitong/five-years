@@ -11,14 +11,14 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface YearTargetDetailParams {
   /**
-   * 组织类型，默认全部
+   * GROUP:全国；AREA:大区；CITY:城市；
    */
-  orgType?: unknown;
+  orgType: unknown;
 
   /**
-   * 组织ID，默认全部
+   * 组织ID
    */
-  orgId?: number;
+  orgId: number;
 
   /**
    * 开始年份，默认当年
@@ -70,11 +70,11 @@ export interface List {
 /**
  * 拓展盘面详情-年度目标表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 19:17:12
+ * @updateAt 2021/10/8 18:41:7
  * @method GET
  */
 export const fetchYearTargetDetail = (
-  params?: YearTargetDetailParams,
+  params: YearTargetDetailParams,
   options?: Partial<ServiceOptions>
 ) => {
   return http.get<YearTargetDetailReturn>(

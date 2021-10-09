@@ -11,14 +11,14 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ExpandWideDetailParams {
   /**
-   * 大区/城市组织ID，默认全部
+   * GROUP:全国；AREA:大区；CITY:城市；
    */
-  orgType?: unknown;
+  orgType: unknown;
 
   /**
-   * 组织ID，默认全部
+   * 组织ID
    */
-  orgId?: number;
+  orgId: number;
 
   /**
    * 首次投委开始时间，格式yyyy，默认当前时间
@@ -96,11 +96,11 @@ export interface List {
 /**
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 19:14:37
+ * @updateAt 2021/10/8 18:40:51
  * @method GET
  */
 export const fetchExpandWideDetail = (
-  params?: ExpandWideDetailParams,
+  params: ExpandWideDetailParams,
   options?: Partial<ServiceOptions>
 ) => {
   return http.get<ExpandWideDetailReturn>(

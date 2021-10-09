@@ -4,7 +4,7 @@
  *
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/9/30 14:8:48
+ * @updateAt 2021/10/8 18:1:7
  * @method GET
  */
 
@@ -17,6 +17,7 @@ exports.response = {
   msg: "ok",
   data: [
     {
+      orderId: 12345, //工单id
       projectId: 81, //门店id
       projectName: "酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店", //门店名称
       stage: "INVEST", //阶段
@@ -27,6 +28,7 @@ exports.response = {
       riskDegree: 1, //风险程度
     },
     {
+      orderId: 12345, //工单id
       projectId: 82, //门店id
       projectName: "酒仙桥店", //门店名称
       stage: "OPERATE", //阶段
@@ -37,6 +39,7 @@ exports.response = {
       riskDegree: 2, //风险程度
     },
     {
+      orderId: 12345, //工单id
       projectId: 83, //门店id
       projectName: "酒仙桥店", //门店名称
       stage: "MARKETING", //阶段
@@ -47,6 +50,7 @@ exports.response = {
       riskDegree: 3, //风险程度
     },
     {
+      orderId: 12345, //工单id
       projectId: 84, //门店id
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
@@ -57,6 +61,7 @@ exports.response = {
       riskDegree: 3, //风险程度
     },
     {
+      orderId: 12345, //工单id
       projectId: 85, //门店id
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
@@ -67,6 +72,7 @@ exports.response = {
       riskDegree: 3, //风险程度
     },
     {
+      orderId: 12345, //工单id
       projectId: 86, //门店id
       projectName: "酒仙桥店", //门店名称
       stage: "INVEST", //阶段
@@ -77,6 +83,7 @@ exports.response = {
       riskDegree: 3, //风险程度
     },
     {
+      orderId: 12345, //工单id
       projectId: 811, //门店id
       projectName: "酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店", //门店名称
       stage: "INVEST", //阶段

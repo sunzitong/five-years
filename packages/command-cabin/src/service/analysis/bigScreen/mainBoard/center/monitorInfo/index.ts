@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface MonitorInfoParams {
   /**
-   * 门店id
+   * 工单id
    */
-  projectId: number;
+  orderId: number;
 }
 
 /**
@@ -40,7 +40,7 @@ export interface Contact {
 /**
  * 指挥中心-现场监控详情
  * @createBy wuyao
- * @updateAt 2021/9/27 18:36:15
+ * @updateAt 2021/10/8 18:2:30
  * @method GET
  */
 export const fetchMonitorInfo = (

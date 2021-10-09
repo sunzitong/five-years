@@ -2,9 +2,9 @@
  * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
  * 接口文档: http://docs.gyapt.cn/project/712/interface/api/114606
  *
- * 成本决算信息
+ * 成本决算信息（已废弃）
  * @createBy zhangyao03
- * @updateAt 2021/9/22 14:23:38
+ * @updateAt 2021/10/9 16:3:1
  * @method GET
  */
 

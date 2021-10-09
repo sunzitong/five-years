@@ -4,7 +4,7 @@
  *
  * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/9/28 11:8:6
+ * @updateAt 2021/10/9 15:51:28
  * @method GET
  */
 
@@ -16,15 +16,67 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    month: 48, //当前是第n月
+    month: 2, //当前是第n月
+    year: 4, //当前是第n年
     transactionModel: "LightAsset", //资产类型 LightAsset MediumAsset HeavyAsset
     infoMap: {
       //指标数据
       month1: [
         //投资任务书-月指标
         {
-          profitRate: 0, //净利润率
+          profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 11, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 111, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 1, //年份、月份数
+        },
+        {
+          profitRate: 2, //净利润率
+          npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 22, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 222, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 2, //年份、月份数
+        },
+        {
+          profitRate: 3, //净利润率
+          npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 33, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 333, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 3, //年份、月份数
+        },
+        {
+          profitRate: 333, //净利润率
+          npiProfitRate: 333, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
@@ -37,13 +89,13 @@ exports.response = {
           manageCost: 0, //管理成本
           rental: 0, //承租租金
           dataType: "month", //指标类型 year month
-          dataNum: 1, //年份、月份数
+          dataNum: 4, //年份、月份数
         },
       ],
       month2: [
         //最新过会版-月指标
         {
-          profitRate: 0, //净利润率
+          profitRate: 7897879, //净利润率
           npiProfitRate: 0, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
@@ -59,11 +111,8 @@ exports.response = {
           dataType: "month", //指标类型 year month
           dataNum: 1, //年份、月份数
         },
-      ],
-      month3: [
-        //月度运维版-月指标
         {
-          profitRate: 0, //净利润率
+          profitRate: 789779, //净利润率
           npiProfitRate: 0, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
@@ -77,7 +126,112 @@ exports.response = {
           manageCost: 0, //管理成本
           rental: 0, //承租租金
           dataType: "month", //指标类型 year month
+          dataNum: 2, //年份、月份数
+        },
+        {
+          profitRate: 78879, //净利润率
+          npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 0, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 0, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 3, //年份、月份数
+        },
+        {
+          profitRate: 333, //净利润率
+          npiProfitRate: 333, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 0, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 0, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 4, //年份、月份数
+        },
+      ],
+      month3: [
+        //月度运维版-月指标
+        {
+          profitRate: 3, //净利润率
+          npiProfitRate: 3, //npi利润率
+          ycost: 3, //y-c
+          cashSum: 0, //现金流
+          openIncome: 0, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 0, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
           dataNum: 1, //年份、月份数
+        },
+        {
+          profitRate: 3, //净利润率
+          npiProfitRate: 33, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 0, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 0, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 2, //年份、月份数
+        },
+        {
+          profitRate: 333, //净利润率
+          npiProfitRate: 333, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 0, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 0, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 3, //年份、月份数
+        },
+        {
+          profitRate: 333, //净利润率
+          npiProfitRate: 333, //npi利润率
+          ycost: 0, //y-c
+          cashSum: 0, //现金流
+          openIncome: 0, //收入
+          avgRate: 0.47, //平局出租率
+          avgPriece: 2, //平均单房价格
+          priceIncrement: 0, //涨幅
+          threeCost: 0, //三费合计
+          marketExpense: 0, //营销费用
+          operCost: 0, //运营成本
+          manageCost: 0, //管理成本
+          rental: 0, //承租租金
+          dataType: "month", //指标类型 year month
+          dataNum: 4, //年份、月份数
         },
       ],
       year1: [

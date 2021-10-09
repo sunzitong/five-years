@@ -4,7 +4,7 @@
  *
  * 财务相关指标-当前投资实现情况
  * @createBy huyanan
- * @updateAt 2021/9/30 17:50:26
+ * @updateAt 2021/10/9 16:1:24
  * @method GET
  */
 
@@ -16,7 +16,8 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    awards: 39.6, //奖补到账
+    dataSource: "OMS", //数据来源
+    updateTime: "2021-09-26 10:21:40", //数据最近更新时间
     month: 60, //项目动态收益回收周期
     transactionModel: "LightAsset", //资产类型 LightAsset MediumAsset HeavyAsset
     list: [

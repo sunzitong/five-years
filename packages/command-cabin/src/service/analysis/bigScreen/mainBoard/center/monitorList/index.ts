@@ -30,6 +30,7 @@ export interface MonitorListParams {
  * 指挥中心-现场监控列表-返回值
  */
 export interface MonitorListItemReturn {
+  orderId: number;
   projectId: number;
   projectName: string;
   pictureUrl: string;
@@ -40,7 +41,7 @@ export interface MonitorListItemReturn {
 /**
  * 指挥中心-现场监控列表
  * @createBy wuyao
- * @updateAt 2021/9/28 18:35:49
+ * @updateAt 2021/10/8 18:1:38
  * @method GET
  */
 export const fetchMonitorList = (

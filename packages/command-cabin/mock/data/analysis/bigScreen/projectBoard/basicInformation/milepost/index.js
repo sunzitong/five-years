@@ -4,7 +4,7 @@
  *
  * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/10/8 10:46:19
+ * @updateAt 2021/10/9 9:36:13
  * @method GET
  */
 
@@ -33,10 +33,11 @@ exports.response = {
     pointRentRatioToday: 97.9, //出租率-当日时点出租率
     phId: "L-CD00-CDSDT00.08", //项目分期id
     projectName: "龙湖冠寓成都时代店", //项目名字
-    approvedDate: "2020-09-16 00:00:00", //目标成本上线时间
-    targetCostNonTax: 123123.12, //总目标成本
-    dynamicCostNonTax: 123123.12, //动态总成本
-    costValLandSum: 123123.12, //项目结算成本
-    budgetBalanceNoTax: 123123.12, //结余金额
+    approvedDate: "2020-09-16", //目标成本上线时间
+    targetCostNonTax: 123.1, //总目标成本（万元）
+    dynamicCostNonTax: 123.1, //动态总成本（万元）
+    costValLandSum: 123.1, //项目结算成本（万元）
+    budgetBalanceNoTax: 123.1, //结余金额（万元）
+    dataFrom: "取自主数据、龙头、智计划、成本管理系统",
   },
 };

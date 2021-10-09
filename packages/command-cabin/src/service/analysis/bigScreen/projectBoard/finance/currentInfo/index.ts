@@ -20,7 +20,8 @@ export interface CurrentInfoParams {
  * 财务相关指标-当前投资实现情况-返回值
  */
 export interface CurrentInfoReturn {
-  awards: number;
+  dataSource: string;
+  updateTime: Date;
   month: number;
   transactionModel: string;
   list: List[];
@@ -36,7 +37,7 @@ export interface List {
 /**
  * 财务相关指标-当前投资实现情况
  * @createBy huyanan
- * @updateAt 2021/9/30 17:50:26
+ * @updateAt 2021/10/9 16:1:24
  * @method GET
  */
 export const fetchCurrentInfo = (

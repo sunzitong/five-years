@@ -4,7 +4,7 @@
  *
  * 门店屏-项目区位
  * @createBy baishiqiang
- * @updateAt 2021/10/8 9:20:23
+ * @updateAt 2021/10/9 16:4:27
  * @method GET
  */
 
@@ -17,6 +17,7 @@ exports.response = {
   msg: "ok",
   data: {
     locationUrl:
-      "https://test-smartdata.longfor.com/falcon/#/redirect/5177?channel=3&token=7e2d0ec641474c1985758959825cc1f9de29b2f02be84d90b9a7dc1edf731eba", //猎鹰URL, https://test-smartdata.longfor.com/falcon/#/redirect/5177?channel=3&token=7e2d0ec641474c1985758959825cc1f9de29b2f02be84d90b9a7dc1edf731eba
+      "https://test-smartdata.longfor.com/falcon/#/longcitySP/9895?channel=3&version=1.0&timeStamp=1628842933540&loginName=zhangxun02", //猎鹰URL, https://test-smartdata.longfor.com/falcon/#/redirect/5177?channel=3&token=7e2d0ec641474c1985758959825cc1f9de29b2f02be84d90b9a7dc1edf731eba
+    dataFrom: "猎鹰",
   },
 };
