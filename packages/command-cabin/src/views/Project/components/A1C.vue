@@ -108,8 +108,8 @@ export default class A1C extends Base implements IFetch {
    */
   device() {
     return {
-      width: screen.width * 0.8,
-      height: screen.height * 0.8,
+      width: 1500,
+      height: 1500,
     };
   }
 }
