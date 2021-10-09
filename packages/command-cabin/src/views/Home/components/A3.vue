@@ -1,23 +1,23 @@
 <template>
-  <!-- <Spin :height="483" :loading="loading" :empty="empty"> -->
-  <div class="page__a3__map">
-    <div class="groop1">
-      <div>转化率</div>
-      <div>{{ resData.estabTransRatio }}%</div>
-      <AnimationForward class="arrow" />
+  <Spin :height="483" :loading="loading" :empty="empty">
+    <div class="page__a3__map">
+      <div class="groop1">
+        <div>转化率</div>
+        <div>{{ resData.estabTransRatio }}%</div>
+        <AnimationForward class="arrow" />
+      </div>
+      <div class="groop2">
+        <div>转化率</div>
+        <div>{{ resData.meetingTransRatio }}%</div>
+        <AnimationForward class="arrow" />
+      </div>
+      <div
+        class="app-echarts"
+        ref="wrapper"
+        style="width: 700px; height: 400px; margin: 0 80px"
+      ></div>
     </div>
-    <div class="groop2">
-      <div>转化率</div>
-      <div>{{ resData.meetingTransRatio }}%</div>
-      <AnimationForward class="arrow" />
-    </div>
-    <div
-      class="app-echarts"
-      ref="wrapper"
-      style="width: 700px; height: 400px; margin: 0 80px"
-    ></div>
-  </div>
-  <!-- </Spin> -->
+  </Spin>
 </template>
 
 <script lang="ts">

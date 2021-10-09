@@ -71,6 +71,10 @@ export enum StoreKey {
    */
   HomeBusinessOppTrans = "HomeBusinessOppTrans",
   /**
+   * 拓展盘面-战略合作
+   */
+  HomeStrategyCooperation = "HomeStrategyCooperation",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
