@@ -57,7 +57,7 @@ export enum StoreKey {
   /**
    * 拓展盘面-商机储备
    */
-   HomeBusinessOppReserve = "HomeBusinessOppReserve",
+  HomeBusinessOppReserve = "HomeBusinessOppReserve",
   /**
    * 中央奖补、投后攻坚模块
    */
