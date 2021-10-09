@@ -73,7 +73,7 @@ export default class Animationed extends Vue {
    * 滚动容器的样式
    */
   get listStyle() {
-    return `height: ${this.height}px`;
+    return `max-height: ${this.height}px`;
   }
 
   /**
@@ -157,7 +157,6 @@ export default class Animationed extends Vue {
 <style lang="scss">
 .app-animated {
   &__list {
-    height: 200px;
     overflow-y: scroll;
   }
 }

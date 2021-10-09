@@ -1,25 +1,29 @@
 <template>
   <div class="continer">
     <div class="china"></div>
-    <div class="tb-card">
+    <div class="tb-card" v-if="showTable">
       <CardB>
-        <table>
-          <tr class="dark">
-            <td rowspan="3">深港</td>
+        <table class="sum">
+          <tr>
+            <td rowspan="3" width="320">{{ store.global.orgTree.orgName }}</td>
             <td colspan="2">新增获取房间数</td>
             <td colspan="2">开业房间数</td>
           </tr>
-          <tr class="dark">
+          <tr>
             <td>实际</td>
             <td>偏差</td>
             <td>实际</td>
             <td>偏差</td>
           </tr>
-          <tr class="dark">
-            <td>97878间</td>
-            <td>97878间</td>
-            <td>97878间</td>
-            <td>97878间</td>
+          <tr>
+            <td>{{ formatValue(tableData.newGetRoomNum) }}间</td>
+            <td :class="{ warn: tableData.newGetRoomNumBias < 0 }">
+              {{ formatValue(tableData.newGetRoomNumBias) }}间
+            </td>
+            <td>{{ formatValue(tableData.openRoomNum) }}间</td>
+            <td :class="{ warn: tableData.newOpenRoomNumBias < 0 }">
+              {{ formatValue(tableData.newOpenRoomNumBias) }}间
+            </td>
           </tr>
           <tr>
             <td rowspan="2">项目数据</td>
@@ -32,7 +36,52 @@
             <td>实际</td>
             <td>偏差</td>
           </tr>
+          <tr>
+            <td>总计</td>
+            <td>{{ formatValue(tableData.netProfitRateAll) }}%</td>
+            <td :class="{ warn: tableData.netProfitRateBiasAll < 0 }">
+              {{ formatValue(tableData.netProfitRateBiasAll) }}%
+            </td>
+            <td>{{ formatValue(tableData.totalIncomeAll) }}万</td>
+            <td>{{ formatValue(tableData.totalIncomeBiasAll) }}万 缺预算</td>
+          </tr>
         </table>
+        <Animationend
+          :scrollMinCount="3"
+          :height="300"
+          :dataSource="tableData.centerRegionDetails"
+        >
+          <template v-slot="{ list }">
+            <table class="scroll">
+              <tr animated v-for="item in list" :key="item.id">
+                <td width="320">
+                  <div class="proj-name" @click="projectClicked(item)">
+                    <div class="van-multi-ellipsis--l2">
+                      {{ item.projectName }}
+                      {{ item.projectName }}
+                    </div>
+                    <van-icon name="arrow" />
+                  </div>
+                </td>
+                <td>{{ formatValue(item.netProfitRate) }}%</td>
+                <td :class="{ warn: item.netProfitRateBias < 0 }">
+                  {{ formatValue(item.netProfitRateBias) }}%
+                </td>
+                <td>{{ formatValue(item.totalIncome) }}万</td>
+                <td :class="{ warn: item.totalIncomeBias < 0 }">
+                  {{ formatValue(item.totalIncomeBias) }}万
+                </td>
+              </tr>
+            </table>
+          </template>
+        </Animationend>
+        <div
+          class="date"
+          v-show="store.global.dateScope === DateScopes.MONTHLY"
+        >
+          月
+        </div>
+        <van-icon name="cross" class="close" @click="showTable = false" />
       </CardB>
     </div>
     <ul class="options">
@@ -44,20 +93,53 @@
         @click="optionIndex = index"
       >
         {{ item.text }}
-        <StepNumber :to="optionBar[item.numName]" :duration="100" />
+        <StepNumber :to="optionData[item.numName]" :duration="100" />
         <span v-if="index === 2">%</span>
       </li>
     </ul>
     <div
-      class="circle"
-      :class="{ 'circle--warn': circleWarn(item) }"
       v-for="item in mapData"
       :key="item.orgId"
-      @click="setOrgTree(item)"
+      class="circle"
+      :class="{
+        circle__city: levelValue === DataLevels.CITY,
+        'circle--warn': circleWarn(item),
+        'circle--active': circleActive(item),
+      }"
+      :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
+      @click="circleClicked(item)"
     >
-      {{ item.orgName }}
-      {{ item[options[optionIndex].numName] }}
-      {{ item[options[optionIndex].limitName] }}
+      <van-circle
+        :value="item[options[optionIndex].limitName]"
+        :layer-color="getCircleColor(item, 0)"
+        :color="getCircleColor(item, 1)"
+        :stroke-width="56"
+      >
+        <div
+          class="circle__text"
+          v-if="levelValue !== DataLevels.CITY || circleActive(item)"
+        >
+          <div
+            class="value"
+            :class="{
+              'value--city': levelValue === DataLevels.CITY,
+            }"
+          >
+            {{ item[options[optionIndex].numName] }}
+          </div>
+          <div
+            class="name"
+            :class="{
+              'name--city': levelValue === DataLevels.CITY,
+            }"
+          >
+            {{ item.orgName }}
+          </div>
+        </div>
+        <div class="circle__text" v-else>
+          {{ item.orgName }}
+        </div>
+      </van-circle>
     </div>
   </div>
 </template>
@@ -66,27 +148,44 @@
 import { Component, Prop, Watch } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
-import { DataLevels } from "@/service/analysis/commandCabin/publicEnum/enums";
+import CardB from "@/components/CardB/Index.vue";
+import Animationend from "@/components/Animationend/Index.vue";
+import {
+  DataLevels,
+  DateScopes,
+} from "@/service/analysis/commandCabin/publicEnum/enums";
 import {
   fetchMapChangeBar,
   MapChangeBarReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapChangeBar";
-import { StoreKey, useStore } from "@/store";
+import {
+  findOrgTreeByOrgId,
+  findProjectByPhId,
+  StoreKey,
+  useStore,
+} from "@/store";
 import { iwant } from "@guanyu/shared";
 import {
   fetchMapCircle,
   MapCircleItemReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/mapCircle";
 import { OrgTreeItemReturn } from "@/service/analysis/commandCabin/orgTree";
-import CardB from "@/components/CardB/Index.vue";
+import {
+  CenterRegionDetail,
+  fetchRegionDetailsInfo,
+  RegionDetailsInfoReturn,
+} from "@/service/analysis/bigScreen/mainBoard/center/regionDetailsInfo";
 
 @Component({
   components: {
     StepNumber,
     CardB,
+    Animationend,
   },
 })
 export default class C4 extends Base implements IFetch {
+  DateScopes = DateScopes;
+  DataLevels = DataLevels;
   /**
    * 总盘面大区、城市
    */
@@ -118,8 +217,15 @@ export default class C4 extends Base implements IFetch {
     },
   ];
   optionIndex = 2;
-  optionBar: Partial<MapChangeBarReturn> = {};
-
+  /**
+   * 切换条数据
+   */
+  optionData: Partial<MapChangeBarReturn> = {};
+  /**
+   * 表格数据
+   */
+  tableData: Partial<RegionDetailsInfoReturn> = {};
+  showTable = false;
   /**
    * 地图圆圈数据
    */
@@ -127,6 +233,7 @@ export default class C4 extends Base implements IFetch {
 
   /**
    * 请求圆圈数据
+   * 参数不是直接使用global dateLevel
    */
   @Watch("levelValue")
   async fetch() {
@@ -151,10 +258,10 @@ export default class C4 extends Base implements IFetch {
     if (this.store.global.dataLevel === DataLevels.GROUP) {
       this.fetchGroup();
     } else {
-      const optionBar = this.mapData.find(
+      const optionData = this.mapData.find(
         (item) => item.orgId === this.store.global.orgTree.orgId
       );
-      this.optionBar = optionBar || {};
+      this.optionData = optionData || {};
     }
   }
 
@@ -171,16 +278,56 @@ export default class C4 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.optionBar = iwant.object(response.data);
+      this.optionData = iwant.object(response.data);
     }
   }
 
   /**
-   * 设置全局组架
+   * 请求表格数据
    */
-  setOrgTree(item: OrgTreeItemReturn) {
+  async fetchDetails() {
+    const response = await useStore(fetchRegionDetailsInfo, {
+      key: StoreKey.HomeRegionDetailsInfo,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+        dateScope: this.store.global.dateScope,
+      },
+    });
+    if (response?.status === "ok") {
+      this.tableData = iwant.object(response.data);
+    }
+  }
+
+  /**
+   * 点击地图圆圈数据
+   * 设置全局组架
+   * 设置切换条数据
+   */
+  async circleClicked(item: OrgTreeItemReturn) {
+    const orgTree = await findOrgTreeByOrgId(item.orgId);
+    if (!orgTree) return;
     this.store.global.dataLevel = this.levelValue;
-    this.store.global.orgTree = item;
+    this.store.global.orgTree = orgTree;
+    this.showTable = true;
+    this.setOptionBar();
+    this.fetchDetails();
+  }
+
+  /**
+   * 选择门店
+   * @item 门店数据
+   */
+  async projectClicked(item: CenterRegionDetail) {
+    // 当前门店
+    const project = await findProjectByPhId(item.phId);
+    if (!project) return;
+    // 不能设置全局组架
+    // this.store.global.dataLevel = DataLevels.CITY;
+    // this.store.global.orgTree = orgTree;
+    // 全局门店与全局组架无关
+    this.store.global.project = project;
+    this.$router.push("/project");
   }
 
   /**
@@ -206,12 +353,37 @@ export default class C4 extends Base implements IFetch {
     }
     return false;
   }
+
+  /**
+   * 圆圈是否选中
+   */
+  circleActive(item: MapCircleItemReturn) {
+    return item.orgId === this.store.global.orgTree.orgId;
+  }
+
+  /**
+   * 获取进度颜色
+   * @type 1:color 0:layout-color
+   */
+  getCircleColor(item: MapCircleItemReturn, type: 1 | 0) {
+    const isActive = this.circleActive(item);
+    if (isActive) {
+      return ["#4C452D", "#F7D14A"][type];
+    }
+    const isWarn = this.circleWarn(item);
+    if (isWarn) {
+      return ["#75384E", "#FF3980"][type];
+    }
+    return ["#10674D", "#22CB98"][type];
+  }
 }
 </script>
 <style lang="scss" scoped>
 .continer {
   position: relative;
   height: 1858px;
+  --dart: #0e173c;
+  --light: rgba(14, 23, 60, 0.5);
 }
 /* 地图 */
 .china {
@@ -227,7 +399,7 @@ export default class C4 extends Base implements IFetch {
 .options {
   position: absolute;
   left: 0;
-  bottom: 600px;
+  bottom: 560px;
   font-size: 42px;
   color: #3b8db2;
   cursor: pointer;
@@ -247,20 +419,62 @@ export default class C4 extends Base implements IFetch {
 }
 /* 地图圆圈 */
 .circle {
-  &--warn {
-    color: red;
+  transform-origin: center center;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  &::v-deep {
+    .van-circle {
+      width: 100%;
+      height: 100%;
+    }
   }
+  &__text {
+    @extend %flex-center;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100%;
+    color: #acbfdc;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    font-weight: normal;
+    .name {
+      font-size: 30px;
+      &--city {
+        font-size: 18px;
+      }
+    }
+    .value {
+      color: #dbf0ff;
+      @extend %value-font;
+      font-size: 42px;
+      &--city {
+        font-size: 25px;
+      }
+    }
+  }
+  &__city {
+    width: 100px;
+    height: 100px;
+    font-size: 36px;
+  }
+}
+.circle__city.circle--active {
+  transform: scale(1.7);
+  z-index: 2;
 }
 /* 数据表格 */
 .tb-card {
   position: absolute;
-  top: 140px;
+  bottom: 1000px;
   left: 0;
   .app-card-b {
     width: 1292px;
-    height: 650px;
+    max-height: 840px;
   }
   table {
+    table-layout: fixed;
     border-collapse: collapse;
     width: 100%;
     border-radius: 6px 6px 0 0;
@@ -268,44 +482,95 @@ export default class C4 extends Base implements IFetch {
     text-align: center;
     color: #90a4c3;
     font-size: 36px;
+    tr {
+      background: var(--dart);
+    }
   }
-  tr {
-    height: 100px;
-    &:nth-child(-n + 4) {
+  .sum {
+    tr {
       height: 60px;
+      /* 综合数据 */
+      &:nth-child(-n + 2) {
+        border-bottom: 1px solid #445da5;
+      }
+      &:nth-child(-n + 3) {
+        td {
+          border-right: 1px solid #445da5;
+          &:nth-last-child(1) {
+            border-right: none;
+          }
+        }
+      }
+      &:nth-child(3) {
+        color: #fff;
+      }
+      /* 项目数据header */
+      &:nth-child(4) {
+        border-bottom: 1px solid #445da5;
+      }
+      &:nth-child(4),
+      &:nth-child(5) {
+        background: var(--light);
+        td {
+          border-right: 1px solid #445da5;
+          &:nth-last-child(1) {
+            border-right: none;
+          }
+        }
+      }
+      &:nth-last-child(1) {
+        height: 100px;
+      }
     }
-    &:nth-child(-n + 2) {
-      border-bottom: 1px solid #445da5;
-    }
-    &:nth-child(-n + 3) {
-      td {
-        border-right: 1px solid #445da5;
-        &:nth-last-child(1) {
-          border-right: none;
+  }
+  .scroll {
+    max-height: 300px;
+    overflow: hidden;
+    tr {
+      height: 100px;
+      /* 数据行 */
+      &:nth-child(2n + 1) {
+        background: var(--light);
+      }
+      &:hover {
+        .proj-name {
+          color: #01f5f1;
         }
       }
     }
-    background: #0e173c;
-    /* &:nth-child(4) {
-      background: rgba(14, 23, 60, 0.5);
-    } */
-    &:nth-child(3) {
-      color: #fff;
-    }
-    &:nth-child(2n + 4) {
-      background: rgba(14, 23, 60, 0.5);
-    }
   }
+
+  .date {
+    color: #90a4c3;
+    font-size: 36px;
+    position: absolute;
+    bottom: 10px;
+    left: 33px;
+  }
+  .close {
+    position: absolute;
+    bottom: 0;
+    right: 6px;
+    color: #fff;
+    font-size: 40px;
+    padding: 14px;
+    cursor: pointer;
+  }
+
   .warn {
     color: #ff3980;
   }
-  .active {
-    color: #01f5f1;
+
+  .proj-name {
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+    cursor: pointer;
   }
 
   &::v-deep {
     .app-card-b__content {
-      padding: 33px 36px;
+      padding: 33px 36px 78px 36px;
     }
   }
 }

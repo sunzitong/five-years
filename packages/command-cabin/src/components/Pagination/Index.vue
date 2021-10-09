@@ -13,6 +13,7 @@
       :margin-pages="1"
       :page-range="5"
       :click-handler="clickCallback"
+      ref="Paginate"
     >
       <template v-slot:prevContent>
         <div class="prev">
@@ -29,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Paginate from "vuejs-paginate";
 
 /**营造台账宽表 */
@@ -42,6 +43,12 @@ export default class Pagination extends Vue {
   @Prop({ default: 0 }) pages!: number;
 
   @Prop({ default: 1 }) value!: number;
+
+  // FIXME 不能自动更新
+  @Watch("value")
+  valueChange() {
+    (this.$refs.Paginate as any).$forceUpdate();
+  }
 
   clickCallback(value: number) {
     this.$emit("change", value);
