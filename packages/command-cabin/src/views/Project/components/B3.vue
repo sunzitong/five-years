@@ -12,9 +12,9 @@ import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import {
-  CurrentInfoReturn,
-  fetchCurrentInfo,
-} from "@/service/analysis/bigScreen/projectBoard/finance/currentInfo";
+  AwardsInfoReturn,
+  fetchAwardsInfo,
+} from "@/service/analysis/bigScreen/projectBoard/finance/awardsInfo";
 import { iwant } from "@guanyu/shared";
 
 @Component
@@ -22,7 +22,7 @@ export default class B3 extends Base implements IFetch {
   /**
    * 返回数据
    */
-  response: Partial<CurrentInfoReturn> = {};
+  response: Partial<AwardsInfoReturn> = {};
 
   /**
    * 奖补到账
@@ -37,8 +37,8 @@ export default class B3 extends Base implements IFetch {
    * @returns response
    */
   async fetch() {
-    const response = await useStore(fetchCurrentInfo, {
-      key: StoreKey.ProjectCurrentInfo,
+    const response = await useStore(fetchAwardsInfo, {
+      key: StoreKey.ProjectAwardsInfo,
       params: {
         phId: this.store.global.project.phId,
       },

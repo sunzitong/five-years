@@ -179,6 +179,10 @@ export enum StoreKey {
    * 查询主屏(中心位置)地区(城市)维度详细信息
    */
   HomeRegionDetailsInfo = "HomeRegionDetailsInfo",
+  /**
+   * 财务相关指标-奖补到账
+   */
+  ProjectAwardsInfo = "ProjectAwardsInfo",
 }
 /**
  * 方法重载
