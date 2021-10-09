@@ -183,6 +183,10 @@ export enum StoreKey {
    * 财务相关指标-奖补到账
    */
   ProjectAwardsInfo = "ProjectAwardsInfo",
+  /**
+   * 指挥中心-现场监控详情
+   */
+  HomeMonitorInfo = "HomeMonitorInfo",
 }
 /**
  * 方法重载
