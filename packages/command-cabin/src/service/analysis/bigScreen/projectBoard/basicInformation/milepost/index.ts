@@ -47,7 +47,7 @@ export interface MilepostReturn {
 /**
  * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/10/8 10:46:19
+ * @updateAt 2021/10/8 12:37:57
  * @method GET
  */
 export const fetchMilepost = (

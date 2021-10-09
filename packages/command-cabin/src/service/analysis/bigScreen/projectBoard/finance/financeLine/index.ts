@@ -21,6 +21,7 @@ export interface FinanceLineParams {
  */
 export interface FinanceLineReturn {
   month: number;
+  year: number;
   transactionModel: string;
   infoMap: InfoMap;
 }
@@ -61,7 +62,7 @@ export interface Year {
 /**
  * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/9/28 11:8:6
+ * @updateAt 2021/10/8 16:35:36
  * @method GET
  */
 export const fetchFinanceLine = (

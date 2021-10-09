@@ -1,6 +1,17 @@
 <template>
   <div class="page__b1a__map">
-    <B1B :title="titles[0]" :tabNames="tabs[0]" />
+    <B1B
+      v-for="i in num"
+      :key="i"
+      :title="titles[i - 1]"
+      :tabNames="tabs[i - 1]"
+      :xLabel0="monthXLabel"
+      :xLabel1="yearXlabel"
+      :yLabel0="yLabel0[i - 1]"
+      :yLabel1="yLabel1[i - 1]"
+      :yLabel2="yLabel2[i - 1]"
+      :yLabel3="yLabel3[i - 1]"
+    />
   </div>
 </template>
 
@@ -27,8 +38,38 @@ export default class B1A extends Base {
    */
   @Prop({ default: () => ({}) }) readonly list!: AnyObject;
 
+  /**
+   * 折线图月度横坐标
+   */
+  @Prop({ default: () => [] }) readonly monthXLabel!: number[];
+  /**
+   * 折线图年度横坐标
+   */
+  @Prop({ default: () => [] }) readonly yearXlabel!: number[];
+  /**
+   * 折线图月度数据源1
+   */
+  @Prop({ default: () => [] }) readonly yLabel0!: number[][];
+  /**
+   * 折线图数据源2
+   */
+  @Prop({ default: () => [] }) readonly yLabel1!: number[][][];
+  /**
+   * 折线图数据源3
+   */
+  @Prop({ default: () => [] }) readonly yLabel2!: number[][][];
+  /**
+   * 折线图数据源4
+   */
+  @Prop({ default: () => [] }) readonly yLabel3!: number[][][];
+  /**
+   * 折线图数量
+   */
+  @Prop({ default: () => 0 }) readonly num!: number;
+
   mounted() {
     // console.log(2222, this.titles);
+    console.log(this.num);
   }
 }
 </script>

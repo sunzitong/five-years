@@ -59,6 +59,14 @@ export enum StoreKey {
    */
   ProjectFinanceLine = "ProjectFinanceLine",
   /**
+   * 拓展盘面-项目获取
+   */
+  HomeProjectAcquire = "HomeProjectAcquire",
+  /**
+   * 拓展盘面-商机储备
+   */
+  HomeBusinessOppReserve = "HomeBusinessOppReserve",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
