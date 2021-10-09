@@ -1,61 +1,90 @@
 <template>
-  <!-- <Spin :height="361" :loading="loading" :empty="empty"> -->
-  <div class="page__a1__map">
-    <div class="chart" ref="wrapper"></div>
-  </div>
-  <!-- </Spin> -->
+  <Spin :height="361" :loading="loading" :empty="empty">
+    <div class="page__a1__map">
+      <div class="chart" ref="wrapper"></div>
+    </div>
+  </Spin>
 </template>
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { Base } from "@/views/Base";
-import { AnyObject, arrayToObject } from "@guanyu/shared";
+import { Base, IFetch } from "@/views/Base";
+import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
 import mitter, { EventName } from "@/utils/mitter";
+import {
+  BusinessOppReserveReturn,
+  fetchBusinessOppReserve,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/businessOppReserve";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
 })
-export default class A2 extends Base {
+export default class A2 extends Base implements IFetch {
   /**
    * 饼图
    */
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<BusinessOppReserveReturn> = {};
 
-  chanceNum = 2300; // 机会总数
-  ChanceRoom = 19000;
-
-  pieData: AnyObject[] = [
-    // 饼图对象数组
-    {
-      name: "过会待签约",
-      value: 105,
-      room: 6230,
-    },
-    {
-      name: "立项待上会",
-      value: 105,
-      room: 6230,
-    },
-  ];
+  pieData: AnyObject[] = [];
 
   objData1: AnyObject = {}; // 饼图name-value键值对对象
   objData2: AnyObject = {}; // 左侧饼图name-room键值对对象
 
-  mounted() {
-    this.objData1 = arrayToObject(this.pieData, {
-      key: "name",
-      value: "value",
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
+  async fetch() {
+    const response = await useStore(fetchBusinessOppReserve, {
+      key: StoreKey.HomeBusinessOppReserve,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+      },
     });
-    this.objData2 = arrayToObject(this.pieData, {
-      key: "name",
-      value: "room",
-    });
-    this.paintPieChart();
+    if (response?.status === "ok") {
+      this.resData = iwant.object(response.data);
+      this.pieData = [
+        // 饼图对象数组
+        {
+          name: "过会待签约",
+          value: this.resData.toSignProjectNum,
+          room: this.resData.toSignRommNum,
+        },
+        {
+          name: "立项待上会",
+          value: this.resData.toMeetingProjectNum,
+          room: this.resData.toMeetingRoomNum,
+        },
+      ];
+
+      this.objData1 = arrayToObject(this.pieData, {
+        key: "name",
+        value: "value",
+      });
+      this.objData2 = arrayToObject(this.pieData, {
+        key: "name",
+        value: "room",
+      });
+      this.paintChart();
+    } else {
+      this.empty = true;
+    }
+    return response;
   }
 
-  paintPieChart() {
-    const myChart = echarts.init(this.wrapper);
+  paintChart() {
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+
+    const { myChart } = this;
     // myChart.showLoading();
     let option = {
       legend: {
@@ -68,7 +97,7 @@ export default class A2 extends Base {
         itemGap: 46,
         data: this.names,
         formatter: (params: any) => {
-          return `{a|${params}:}{b|\n${this.sepNumber(
+          return `{a|${params}:\n}{b|${this.sepNumber(
             this.objData1[params]
           )}}{c|个}{b|${this.sepNumber(this.objData2[params])}}{c|间}`;
         },
@@ -121,9 +150,6 @@ export default class A2 extends Base {
       ],
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>

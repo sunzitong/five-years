@@ -1,62 +1,100 @@
 <template>
-  <!-- <Spin :height="362" :loading="loading" :empty="empty"> -->
-  <div class="page__a4__map">
-    <div class="position">
-      <van-row class="legend-group" :gutter="18">
-        <van-col>
-          <span class="legend"></span>
-          <span>洽谈中</span>
-        </van-col>
-        <van-col>
-          <div class="legend"></div>
-          <span>已合作</span>
-        </van-col>
-      </van-row>
-    </div>
-    <div class="names_box">
-      <div class="name_style" v-for="(name, index) in names" :key="index">
-        {{ name }}
+  <Spin :height="362" :loading="loading" :empty="empty">
+    <div class="page__a4__map">
+      <div class="position">
+        <van-row class="legend-group" :gutter="18">
+          <van-col>
+            <span class="legend"></span>
+            <span>洽谈中</span>
+          </van-col>
+          <van-col>
+            <div class="legend"></div>
+            <span>已合作</span>
+          </van-col>
+        </van-row>
+      </div>
+      <div class="names_box">
+        <div class="name_style" v-for="(name, index) in names" :key="index">
+          {{ name }}
+        </div>
+      </div>
+      <div
+        class="app-echarts"
+        ref="wrapper"
+        style="width: 700px; height: 180px; margin: 0 80px"
+      ></div>
+      <div class="bottom_legend">
+        <van-row :gutter="18">
+          <van-col v-for="(el, index) in ing" :key="index" :span="8">
+            <span class="icon"></span>
+            <span>{{ el }}</span>
+          </van-col>
+        </van-row>
+        <van-row :gutter="18">
+          <van-col v-for="(el, index) in has" :key="index" :span="8">
+            <span class="icon"></span>
+            <span>{{ el }}</span>
+          </van-col>
+        </van-row>
       </div>
     </div>
-    <div
-      class="app-echarts"
-      ref="wrapper"
-      style="width: 700px; height: 180px; margin: 0 80px"
-    ></div>
-    <div class="bottom_legend">
-      <van-row :gutter="18">
-        <van-col v-for="(el, index) in ing" :key="index" :span="8">
-          <span class="icon"></span>
-          <span>{{ el }}</span>
-        </van-col>
-      </van-row>
-      <van-row :gutter="18">
-        <van-col v-for="(el, index) in has" :key="index" :span="8">
-          <span class="icon"></span>
-          <span>{{ el }}</span>
-        </van-col>
-      </van-row>
-    </div>
-  </div>
-  <!-- </Spin> -->
+  </Spin>
 </template>
 
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
 import echarts from "@/plugins/echarts";
 import mitter, { EventName } from "@/utils/mitter";
 import { EChartsOption } from "echarts/types/dist/shared";
+import { StoreKey, useStore } from "@/store";
+import {
+  fetchStrategyCooperation,
+  StrategyCooperationReturn,
+} from "@/service/analysis/bigScreen/mainBoard/expandDisk/strategyCooperation";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {},
 })
-export default class A4 extends Base {
+export default class A4 extends Base implements IFetch {
   @Ref() wrapper!: HTMLDivElement;
+  resData: Partial<StrategyCooperationReturn> = {};
 
-  ing = [1218, 9953, 3000]; // 洽谈中
-  has = [554, 69893, 4000]; // 已洽谈
+  ing: number[] = []; // 洽谈中
+  has: number[] = []; // 已洽谈
   names = ["国企平台合作", "资金方合作", "总对总战略"];
+
+  /**
+   * 自动触发 重复调用
+   * @returns response
+   */
+  async fetch() {
+    const response = await useStore(fetchStrategyCooperation, {
+      key: StoreKey.HomeStrategyCooperation,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+      this.ing = [
+        iwant.number(this.resData.stateEnterpriseNegoNum),
+        iwant.number(this.resData.fundSideNegoNum),
+        iwant.number(this.resData.mainToMainNegoNum),
+      ];
+      this.has = [
+        iwant.number(this.resData.stateEnterpriseCoopNum),
+        iwant.number(this.resData.fundSideCoopNum),
+        iwant.number(this.resData.mainToMainCoopNum),
+      ];
+      this.paintChart();
+    } else {
+      this.empty = true;
+    }
+    return response;
+  }
 
   getSetting() {
     let res = {
@@ -138,8 +176,15 @@ export default class A4 extends Base {
     return res;
   }
 
-  mounted() {
-    const myChart = echarts.init(this.wrapper);
+  paintChart() {
+    if (!this.myChart) {
+      this.myChart = echarts.init(this.wrapper);
+      mitter.on(EventName.ResizeEcharts, () => {
+        myChart.resize();
+      });
+    }
+
+    const { myChart } = this;
     let option = {
       grid: {
         top: "0%",
@@ -161,9 +206,6 @@ export default class A4 extends Base {
       series: this.getSetting().series,
     };
     option && myChart.setOption(option);
-    mitter.on(EventName.ResizeEcharts, () => {
-      myChart.resize();
-    });
   }
 }
 </script>
