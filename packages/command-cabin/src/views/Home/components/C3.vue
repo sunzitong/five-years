@@ -3,10 +3,11 @@
     <van-swipe autoplay="20000" indicator-color="transparent">
       <van-swipe-item v-for="(pictrue, index) of pictures" :key="index">
         <div class="pictures">
-          <van-row gutter="20" @click="toggleModal">
+          <van-row gutter="20">
             <van-col v-for="item of pictrue" :key="item.projectId">
               <div class="picture">
                 <van-image
+                  @click="toggleModal"
                   radius="5px 5px 0 0"
                   width="700"
                   height="394"
@@ -59,7 +60,7 @@ export default class C3 extends Base implements IFetch {
   /**
    * 是否显示弹窗
    */
-  show = true;
+  show = false;
 
   /**
    * 图片分组
