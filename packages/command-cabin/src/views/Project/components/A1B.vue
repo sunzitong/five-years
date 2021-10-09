@@ -199,6 +199,7 @@ export default class A1B extends Base implements IFetch {
 <style lang="scss" scoped>
 .timeline {
   position: relative;
+  height: 380px;
   margin: 40px 40px -40px 40px;
   text-align: center;
   &::before {

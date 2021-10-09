@@ -1,5 +1,5 @@
 <template>
-  <Spin :loading="loading" :empty="empty">
+  <Spin :height="584" :loading="loading" :empty="empty">
     <div class="pictures-wrapper">
       <van-swipe
         ref="swipe"
