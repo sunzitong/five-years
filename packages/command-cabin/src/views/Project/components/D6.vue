@@ -1,57 +1,57 @@
 <template>
-  <!-- <Spin :height="833" :loading="loading" :empty="empty"> -->
-  <div class="page__d6__map">
-    <div class="whole_pannel">
-      <div class="big_title">
-        <div>金额</div>
-        <div class="big_values">
-          <span>{{ sepNumber(resData.overdueAmount) }}</span>
-          万
-          <span>{{ resData.overdueRatio }}%</span>
-          逾期率
-        </div>
-      </div>
-      <div class="center">
-        <div class="flex_box">
-          <div class="text_style">
-            长租
-            <span>{{ sepNumber(resData.overdueAmountGuanyu) }}</span>
+  <Spin :height="833" :loading="loading" :empty="empty">
+    <div class="page__d6__map">
+      <div class="whole_pannel">
+        <div class="big_title">
+          <div>金额</div>
+          <div class="big_values">
+            <span>{{ sepNumber(resData.overdueAmount) }}</span>
             万
-            <div class="whole_border_box">
-              <div class="border_box">
-                企客
-                <span>{{ sepNumber(resData.overdueAmountGuanyuPro) }}</span>
-                万
-              </div>
-              <div class="border_box">
-                散客
-                <span>{{ sepNumber(resData.overdueAmountGuanyuFit) }}</span>
-                万
+            <span>{{ resData.overdueRatio }}%</span>
+            逾期率
+          </div>
+        </div>
+        <div class="center">
+          <div class="flex_box">
+            <div class="text_style">
+              长租
+              <span>{{ sepNumber(resData.overdueAmountGuanyu) }}</span>
+              万
+              <div class="whole_border_box">
+                <div class="border_box">
+                  企客
+                  <span>{{ sepNumber(resData.overdueAmountGuanyuPro) }}</span>
+                  万
+                </div>
+                <div class="border_box">
+                  散客
+                  <span>{{ sepNumber(resData.overdueAmountGuanyuFit) }}</span>
+                  万
+                </div>
               </div>
             </div>
-          </div>
-          <div class="text_style">
-            底商增值
-            <span>{{ sepNumber(resData.overdueAmountCommerce) }}</span>
-            万
-          </div>
-          <div class="text_style">
-            一展空间
-            <span>{{ sepNumber(resData.overdueAmountCoworking) }}</span>
-            万
+            <div class="text_style">
+              底商增值
+              <span>{{ sepNumber(resData.overdueAmountCommerce) }}</span>
+              万
+            </div>
+            <div class="text_style">
+              一展空间
+              <span>{{ sepNumber(resData.overdueAmountCoworking) }}</span>
+              万
+            </div>
           </div>
         </div>
-      </div>
-      <div class="big_title">
-        <div>轻资产待回款</div>
-        <div class="big_values">
-          <span>{{ sepNumber(resData.payBackAmount) }}</span>
-          万
+        <div class="big_title">
+          <div>轻资产待回款</div>
+          <div class="big_values">
+            <span>{{ sepNumber(resData.payBackAmount) }}</span>
+            万
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- </Spin> -->
+  </Spin>
 </template>
 
 <script lang="ts">
