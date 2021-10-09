@@ -185,7 +185,7 @@ export default class A1B extends Base implements IFetch {
     const response = await useStore(fetchMilepost, {
       key: StoreKey.ProjectMilepost,
       params: {
-        orgId: this.store.global.orgTree.orgId,
+        orgId: this.store.global.project.orgId,
       },
     });
     if (response?.status === "ok") {

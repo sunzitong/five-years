@@ -106,7 +106,7 @@ export default class C1 extends Base implements IFetch {
     const response = await useStore(fetchCameraList, {
       key: StoreKey.ProjectCameraList,
       params: {
-        orgId: this.store.global.orgTree.orgId,
+        orgId: this.store.global.project.orgId,
       },
     });
     if (response?.status === "ok") {
