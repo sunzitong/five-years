@@ -26,70 +26,7 @@
         <template v-slot="{ list }">
           <table class="table" cellspacing="0">
             <tbody>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
-                <td v-for="o of columns" :key="o.dataIndex">
-                  <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
-                  </div>
-                </td>
-              </tr>
-              <tr animated v-for="item of list" :key="item.projectId">
+              <tr animated v-for="item of list" :key="item.quota">
                 <td v-for="o of columns" :key="o.dataIndex">
                   <div :class="o.dataIndex">
                     {{ item[o.dataIndex] }}
@@ -206,7 +143,7 @@ $step-color: #0e173c;
       background: $step-color;
     }
   }
-  .projectName {
+  .quota {
     display: -webkit-box;
     text-overflow: ellipsis;
     overflow: hidden;
