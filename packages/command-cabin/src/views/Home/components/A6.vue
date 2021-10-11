@@ -6,7 +6,8 @@
         <div class="chart" ref="wrapper"></div>
         <div class="content_box">
           <div class="top_text">净利润贡献值</div>
-          <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div>
+          <!-- <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div> -->
+          <div class="top_text">(全周期)</div>
         </div>
         <div class="container">
           <div class="text_row">
@@ -103,11 +104,11 @@ export default class A6 extends Base implements IFetch {
         // 饼图对象数组
         {
           name: "all",
-          value: 100 - iwant.number(this.resData.yearNetIncomeCompletionRate),
+          value: 100 - iwant.number(this.resData.allNetIncomeCompletionRate),
         },
         {
           name: "reach",
-          value: iwant.number(this.resData.yearNetIncomeCompletionRate),
+          value: iwant.number(this.resData.allNetIncomeCompletionRate),
         },
       ];
       this.paintChart();
@@ -115,24 +116,24 @@ export default class A6 extends Base implements IFetch {
       /**
        * 全周期与全年取值循环切换
        */
-      clearInterval(this.timer);
-      this.timer = setInterval(() => {
-        if (this.yearFlag) {
-          this.pieData[0].value =
-            100 - iwant.number(this.resData.allNetIncomeCompletionRate);
-          this.pieData[1].value = iwant.number(
-            this.resData.allNetIncomeCompletionRate
-          );
-        } else {
-          this.pieData[0].value =
-            100 - iwant.number(this.resData.yearNetIncomeCompletionRate);
-          this.pieData[1].value = iwant.number(
-            this.resData.yearNetIncomeCompletionRate
-          );
-        }
-        this.yearFlag = !this.yearFlag;
-        this.paintChart();
-      }, 2000);
+      // clearInterval(this.timer);
+      // this.timer = setInterval(() => {
+      //   if (this.yearFlag) {
+      //     this.pieData[0].value =
+      //       100 - iwant.number(this.resData.allNetIncomeCompletionRate);
+      //     this.pieData[1].value = iwant.number(
+      //       this.resData.allNetIncomeCompletionRate
+      //     );
+      //   } else {
+      //     this.pieData[0].value =
+      //       100 - iwant.number(this.resData.yearNetIncomeCompletionRate);
+      //     this.pieData[1].value = iwant.number(
+      //       this.resData.yearNetIncomeCompletionRate
+      //     );
+      //   }
+      //   this.yearFlag = !this.yearFlag;
+      //   this.paintChart();
+      // }, 2000);
     } else {
       this.empty = true;
     }
