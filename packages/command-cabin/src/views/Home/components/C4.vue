@@ -448,6 +448,7 @@ export default class C4 extends Base implements IFetch {
   position: absolute;
   width: 170px;
   height: 170px;
+  cursor: pointer;
   &::v-deep {
     .van-circle {
       width: 100%;
