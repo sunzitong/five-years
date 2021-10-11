@@ -11,6 +11,8 @@
       :yLabel1="yLabel1[i - 1]"
       :yLabel2="yLabel2[i - 1]"
       :yLabel3="yLabel3[i - 1]"
+      :currentMonth="currentMonth"
+      :currentYear="currentYear"
     />
   </div>
 </template>
@@ -66,6 +68,14 @@ export default class B1A extends Base {
    * 折线图数量
    */
   @Prop({ default: () => 0 }) readonly num!: number;
+  /**
+   * 当前月
+   */
+  @Prop({ default: () => 0 }) readonly currentMonth!: number;
+  /**
+   * 当前年
+   */
+  @Prop({ default: () => 0 }) readonly currentYear!: number;
 
   mounted() {
     // console.log(2222, this.titles);

@@ -47,7 +47,7 @@ export default class Pagination extends Vue {
   // FIXME 不能自动更新
   @Watch("value")
   valueChange() {
-    (this.$refs.Paginate as any).$forceUpdate();
+    (this.$refs.Paginate as Vue).$forceUpdate();
   }
 
   clickCallback(value: number) {

@@ -110,7 +110,9 @@
       @click="circleClicked(item)"
     >
       <van-circle
-        :value="item[options[optionIndex].limitName]"
+        v-model="item.currentRate"
+        :rate="item[options[optionIndex].limitName]"
+        :speed="150"
         :layer-color="getCircleColor(item, 0)"
         :color="getCircleColor(item, 1)"
         :stroke-width="56"
@@ -176,6 +178,10 @@ import {
   RegionDetailsInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/regionDetailsInfo";
 
+type MapData = (MapCircleItemReturn & {
+  currentRate?: number;
+})[];
+
 @Component({
   components: {
     StepNumber,
@@ -229,7 +235,7 @@ export default class C4 extends Base implements IFetch {
   /**
    * 地图圆圈数据
    */
-  mapData: MapCircleItemReturn[] = [];
+  mapData: MapData = [];
 
   /**
    * 请求圆圈数据
@@ -245,7 +251,11 @@ export default class C4 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.mapData = response.data;
+      const data: MapData = iwant.array(response.data);
+      data.forEach((item) => {
+        item.currentRate = 0;
+      });
+      this.mapData = data;
     }
     this.setOptionBar();
     return response;
