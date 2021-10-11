@@ -38,13 +38,9 @@ export default class B1B extends Base {
    */
   @Prop({ default: () => [] }) readonly tabNames!: string[];
   /**
-   * 折线图月度横坐标
+   * 折线图横坐标
    */
-  @Prop({ default: () => [] }) readonly xLabel0!: number[];
-  /**
-   * 折线图年度横坐标
-   */
-  @Prop({ default: () => [] }) readonly xLabel1!: number[];
+  @Prop({ default: () => [] }) readonly xLabel!: number[][];
   /**
    * 折线图月度数据源1
    */
@@ -64,39 +60,45 @@ export default class B1B extends Base {
   /**
    * 当前月
    */
-  @Prop({ default: () => [] }) readonly currentMonth!: number;
+  @Prop({ default: () => [] }) readonly monthTag!: number;
   /**
    * 当前年
    */
-  @Prop({ default: () => [] }) readonly currentYear!: number;
+  @Prop({ default: () => [] }) readonly yearTag!: number;
+  /**
+   * cost tab所在index
+   */
+  @Prop({ default: () => -1 }) readonly specialTabIndex!: number;
+
   @Ref() wrapper!: HTMLDivElement;
 
   currentSort = 0;
-  xTag = 0;
+  xTag = this.monthTag;
   tabTag = 0;
+  xLabels = this.xLabel[0];
 
   handleClick(index: number) {
     this.currentSort = index;
     this.tabTag = index;
+    if (this.tabTag === this.specialTabIndex) {
+      this.xLabels = this.xLabel[1];
+      this.xTag = this.yearTag;
+    } else {
+      this.xLabels = this.xLabel[0];
+      this.xTag = this.monthTag;
+    }
   }
 
   mounted() {
+    if (this.specialTabIndex === 0) {
+      this.xLabels = this.xLabel[1];
+      this.xTag = this.yearTag;
+    }
     this.paintChart();
   }
 
   @Watch("tabTag", { deep: true })
   paintChart() {
-    console
-      .log
-      // this.yLabel0[0],
-      // this.yLabel1[0],
-      // this.yLabel2[0],
-      // this.yLabel3[0]
-      // this.xLabel0,
-      // this.currentMonth
-      ();
-    this.xTag = this.xLabel0.indexOf(this.currentMonth);
-
     if (!this.myChart) {
       this.myChart = echarts.init(this.wrapper);
       mitter.on(EventName.ResizeEcharts, () => {
@@ -122,9 +124,13 @@ export default class B1B extends Base {
         borderColor: "transparent",
         borderWidth: 2,
         padding: [8, 30],
-        formatter(params: AnyObject[]) {
+        formatter: (params: AnyObject[]) => {
           let str = `<div class='tooltip'><div class="tool-title">第`;
-          str += `${params[0].axisValue}运营年</div>`;
+          if (this.xTag === this.monthTag) {
+            str += `${params[0].axisValue}运营月</div>`;
+          } else {
+            str += `${params[0].axisValue}运营年</div>`;
+          }
           if (params[0].axisValue < 2) {
             params.forEach((el) => {
               if (el.seriesName !== "月度运维版") {
@@ -200,7 +206,7 @@ export default class B1B extends Base {
           type: "category",
           position: "bottom",
           boundaryGap: false,
-          data: this.xLabel0,
+          data: this.xLabels,
           axisLine: {
             lineStyle: {
               width: "2",
@@ -228,14 +234,6 @@ export default class B1B extends Base {
             },
           },
         },
-        // {
-        //   type: "category",
-        //   boundaryGap: false,
-        //   data: this.xLabel1,
-        //   // axisLine: { show: false },
-        //   // axisTick: { show: false },
-        //   axisLabel: { color: "#90A4C3" },
-        // },
       ],
       yAxis: {
         name: "百分比",
@@ -380,7 +378,7 @@ export default class B1B extends Base {
                     fill: "#FFFFFF",
                   },
                 },
-                { xAxis: "2" },
+                { xAxis: this.xTag },
               ],
             ],
             itemStyle: {
@@ -402,7 +400,6 @@ export default class B1B extends Base {
         },
       ],
     };
-    console.log(option);
     option && myChart.setOption(option, true);
   }
 }
