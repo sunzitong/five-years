@@ -89,39 +89,45 @@ export default class B1B extends Base {
     let option = {
       tooltip: {
         trigger: "axis",
-        // axisPointer: {
-        //   type: "none", // 默认为直线，可选为：'line' | 'shadow'
-        // },
+        axisPointer: {
+          type: "line", // 默认为直线，可选为：'line' | 'shadow'
+          snap: true,
+          lineStyle: {
+            type: "solid",
+            width: 2,
+            color: "#01F5F1",
+          },
+        },
         renderMode: "html",
         backgroundColor: "transparent",
         borderColor: "transparent",
         borderWidth: 2,
         padding: [8, 30],
-        // className: "tooltip",
         formatter(params: AnyObject[]) {
-          let str = `<div class='tooltip'><div class="tool-title">第运营年</div>`;
-          console.log(params[0].dataIndex);
-          // <div>第${
-          //   this.xLabel0[params[0].dataIndex]
-          // }运营年</div>
-          params.forEach((el) => {
-            str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
-          });
+          let str = `<div class='tooltip'><div class="tool-title">第`;
+          str += `${params[0].axisValue}运营年</div>`;
+          if (params[0].axisValue < 2) {
+            params.forEach((el) => {
+              if (el.seriesName !== "月度运维版") {
+                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+              }
+            });
+          } else {
+            params.forEach((el) => {
+              if (el.seriesName !== "实际") {
+                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+              }
+            });
+          }
           return str + "</div>";
         },
       },
-      // tooltip: {
-      //   //触发方式
-      //   trigger: "axis", //坐标
-      // },
       legend: {
         left: 0,
         padding: [32, 0],
         itemGap: 16,
         itemWidth: 30,
         itemStyle: { opacity: 0 },
-        // itemHeight: 4,
-        // color: ["#57A6FB", "#A957FB", "#F7D14A", "#57FBB6"],
         data: [
           {
             name: "投资任务书版",
