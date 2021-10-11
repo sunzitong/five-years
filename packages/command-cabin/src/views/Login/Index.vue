@@ -9,7 +9,7 @@
         :poster="`${store.env.BASE_URL}video/poster.jpg`"
       ></video>
     </div>
-    <div class="content">
+    <div class="content" v-if="!userRoles">
       <svg
         width="100%"
         height="100%"
@@ -149,36 +149,48 @@
         size="50%"
         v-if="!qrCodePath || qrCodeStatus !== 'VALID'"
       />
-      <div>
-        <div
-          v-for="item in userRoles"
-          :key="item.id"
-          :style="{ color: item.active ? 'red' : '#fff' }"
-          @click="fetchSwitchRole(item.id)"
-        >
-          {{ item.desc }}
-        </div>
-      </div>
+    </div>
+    <div class="roles" v-if="userRoles">
+      <CardA style="width: 100%; height: auto" title="身份选择">
+        <ul class="list">
+          <li
+            v-for="item in userRoles"
+            :key="item.id"
+            @click="activeRoleId = item.id"
+            class="role"
+            :class="{ active: item.active }"
+          >
+            <span>
+              {{ item.desc }}
+            </span>
+          </li>
+          <li class="hr"></li>
+          <li class="entry" @click="fetchSwitchRole">进入</li>
+          <li class="logout" @click="fetchLogout">
+            <Icon type="back" />
+          </li>
+        </ul>
+      </CardA>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
-import { fetchQrurl } from "@/service/auth/api/sso/qrurl";
-import { fetchQrconn } from "@/service/auth/api/sso/qrconn";
 import dayjs from "dayjs";
-import mitter, { EventName } from "@/utils/mitter";
 import QR from "qrcode.vue";
-import { fetchToken, TokenReturn } from "@/service/auth/token";
-import { fetchSwitchRole } from "@/service/auth/switchRole";
-import { Nullable } from "@guanyu/shared";
+import CardA from "@/components/CardA/Index.vue";
+import Icon from "@/components/Icon/Index.vue";
+import { Component } from "vue-property-decorator";
 import { fetchLogout } from "@/service/auth/api/logout";
+import { fetchQrconn } from "@/service/auth/api/sso/qrconn";
+import { fetchQrurl } from "@/service/auth/api/sso/qrurl";
+import { fetchSwitchRole } from "@/service/auth/switchRole";
+import { removeStore } from "@/store";
+import mitter, { EventName } from "@/utils/mitter";
+import { Base } from "@/views/Base";
 
-/**营造盘面详情 */
 @Component({
-  components: { QR },
+  components: { QR, CardA, Icon },
 })
 export default class Login extends Base {
   /**
@@ -189,7 +201,9 @@ export default class Login extends Base {
    * 二维码状态
    */
   qrCodeStatus = "VALID";
+
   timer = -1;
+
   idmStatus = {
     1: "CONFIRM", // 二维码已扫描，已确认登录
     2104: "INVALID", // 参数为空或者不符合规则
@@ -206,12 +220,28 @@ export default class Login extends Base {
     CANCEL: "CANCEL", //  已取消
   };
 
-  currentUser: Nullable<TokenReturn> = null;
+  activeRoleId: null | number = null;
 
-  userRoles: { id: number; desc: string; active: boolean }[] = [];
+  // { id: number; desc: string; active: boolean }[] = [];
+  get userRoles() {
+    if (!this.store.currentUser) return null;
+    const { userRoleOrgs = [] } = this.store.currentUser;
+    return userRoleOrgs.map((role) => ({
+      id: role.roleId,
+      desc: role.roleName,
+      // role.roleName +
+      // " | " +
+      // role.organizationInfos.map((org) => org.name).join("-"),
+      active: role.roleId === this.activeRoleId,
+    }));
+  }
 
   created() {
-    this.fetchCurrentUser();
+    if (!this.store.currentUser) {
+      this.fetchQR();
+    } else {
+      this.activeRoleId = this.store.currentUser.roleId;
+    }
   }
 
   beforeDestroy() {
@@ -263,10 +293,9 @@ export default class Login extends Base {
       const qrCodeStatus = this.idmStatus[status] || "VALID";
       this.qrCodeStatus = qrCodeStatus;
       if (qrCodeStatus === "CONFIRM") {
-        // 登录成功
+        // 登录成功 请求全局数据
         localStorage.setItem("token", token);
-        // 请求用户数据
-        this.fetchCurrentUser();
+        mitter.emit(EventName.FetchGlobalData);
         return;
       }
       if (qrCodeStatus === "INVALID") {
@@ -281,56 +310,40 @@ export default class Login extends Base {
     }, 3000);
   }
   /**
-   * 获取用户信息
-   */
-  async fetchCurrentUser() {
-    const response = await fetchToken();
-    if (response?.status === "ok") {
-      this.currentUser = response.data;
-      const { userRoleOrgs = [], roleId } = this.currentUser;
-      this.userRoles = userRoleOrgs.map((role) => ({
-        id: role.roleId,
-        desc:
-          role.roleName +
-          " | " +
-          role.organizationInfos.map((org) => org.name).join("-"),
-        active: role.roleId === roleId,
-      }));
-    }
-  }
-  /**
    * 切换角色
    */
-  async fetchSwitchRole(roleId: number) {
-    if (!this.currentUser) return;
+  async fetchSwitchRole() {
+    if (!this.store.currentUser || !this.activeRoleId) return;
     const switchCallback = () => {
       // 请求全局数据
       mitter.emit(EventName.FetchGlobalData);
       this.$router.push("/");
     };
-    if (this.currentUser.roleId === roleId) {
+    if (this.store.currentUser.roleId === this.activeRoleId) {
       switchCallback();
       return;
     }
     const response = await fetchSwitchRole({
-      userId: this.currentUser.userId,
-      roleId: roleId,
+      userId: this.store.currentUser.userId,
+      roleId: this.activeRoleId,
       source: "oms",
     });
     if (response?.status === "ok") {
       localStorage.setItem("token", response.data.token);
       // 请求全局数据
       switchCallback();
-      // this.fetchCurrentUser();
     }
   }
   /**
    * 退出登录
    */
   async fetchLogout() {
+    // 清空所有数据
+    removeStore();
     const response = await fetchLogout();
     if (response?.status === "ok") {
       localStorage.removeItem("token");
+      this.store.currentUser = null;
     }
   }
 }
@@ -379,6 +392,85 @@ export default class Login extends Base {
     line-height: 100%;
     background: #14314c;
     color: #8cf8fa;
+  }
+
+  .roles {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 1100px;
+    margin: auto;
+    bottom: 24%;
+    z-index: 10;
+    background: rgba(21, 48, 69, 0.8);
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+    .list {
+      color: #90a4c3;
+      font-size: 40px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      padding: 60px 0 0;
+      li {
+        @extend %flex-center;
+        cursor: pointer;
+      }
+    }
+    .role {
+      width: 700px;
+      height: 90px;
+      background: #22475f;
+      border: 2px solid #3b707d;
+      border-radius: 4px;
+      margin: 18px 0;
+      box-sizing: border-box;
+      &.active {
+        border-color: #01f5f1;
+        color: #fff;
+        background: transparent;
+        padding: 6px;
+        span {
+          @extend %flex-center;
+          background: linear-gradient(
+            181.25deg,
+            rgba(1, 245, 241, 0) 10.53%,
+            rgba(1, 245, 241, 0.48) 118.58%
+          );
+          border-radius: 2px;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .hr {
+      width: 100%;
+      height: 1px;
+      margin: 42px 0 60px 0;
+      background: linear-gradient(
+        90deg,
+        rgba(83, 214, 255, 0.05) 0%,
+        rgba(81, 128, 228, 0.5) 52.37%,
+        rgba(83, 214, 255, 0.05) 104.91%
+      );
+    }
+    .entry {
+      width: 700px;
+      height: 100px;
+      background: #1d5e8f;
+      backdrop-filter: blur(20px);
+      border-radius: 10px;
+    }
+    .logout {
+      width: 100px;
+      height: 100px;
+      margin: 20px 0;
+    }
+    &::v-deep {
+      .app-card-a-background {
+        display: none;
+      }
+    }
   }
 }
 </style>

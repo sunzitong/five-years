@@ -7,7 +7,7 @@
       <FixedNav position="right" />
     </div>
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="appLoading && !inLogin" />
+    <AppLoading v-if="appLoading" />
     <!-- 路由 -->
     <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
@@ -172,6 +172,13 @@ export default class App extends Mixins(MixStore) {
       if (response?.status === "ok") {
         this.store.currentUser = response.data;
       } else {
+        // 用户信息请求失败 跳转login
+        this.$router
+          .push("/login")
+          .catch(_.noop)
+          .finally(() => {
+            this.appLoading = false;
+          });
         return;
       }
     }
@@ -191,6 +198,7 @@ export default class App extends Mixins(MixStore) {
   }
 }
 </script>
+
 <style lang="scss">
 #app {
   background-color: #09080c;
