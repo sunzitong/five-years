@@ -158,6 +158,7 @@
         </div>
       </van-circle>
     </div>
+    <C4A />
   </div>
 </template>
 
@@ -193,6 +194,8 @@ import {
   RegionDetailsInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/regionDetailsInfo";
 
+import C4A from "./C4A.vue";
+
 type MapData = (MapCircleItemReturn & {
   currentRate?: number;
 })[];
@@ -202,6 +205,7 @@ type MapData = (MapCircleItemReturn & {
     StepNumber,
     CardB,
     Animationend,
+    C4A,
   },
 })
 export default class C4 extends Base implements IFetch {

@@ -78,7 +78,6 @@
           <C1 />
           <C2 />
           <C4 :levelValue="mapLevelValue" />
-          <C5 />
         </div>
         <div class="global-button global-button--1">
           <ButtonGroupA>
@@ -307,7 +306,6 @@ import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import C3 from "./components/C3.vue";
 import C4 from "./components/C4.vue";
-import C5 from "./components/C5.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -338,7 +336,6 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     C2,
     C3,
     C4,
-    C5,
     D1,
     D2,
     D3,
