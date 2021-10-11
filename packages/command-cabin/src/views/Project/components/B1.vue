@@ -14,6 +14,7 @@
         :monthTag="monthTag"
         :yearTag="yearTag"
         :specialTabIndex="specialTabIndex"
+        :yIndex="yIndex[resData.transactionModel]"
       />
     </div>
   </Spin>
@@ -70,6 +71,22 @@ export default class B1 extends Base implements IFetch {
       "承租租金&COST预估",
     ],
     LightAsset: ["净利润率/NPI利润率/Y-C/现金流预估", "收入预估", "三费预估"],
+  };
+
+  yIndex = {
+    //百分比 - 0, 万元 - 1, 元 - 2
+    HeavyAsset: [[0, 0, 0, 1], [1, 0, 2, 0], [1, 1, 1, 1], [1]],
+    MediumAsset: [
+      [0, 0, 0, 1],
+      [1, 0, 2, 0],
+      [1, 1, 1, 1],
+      [1, 1],
+    ],
+    LightAsset: [
+      [0, 0, 1],
+      [1, 0, 2, 0],
+      [1, 1, 1, 1],
+    ],
   };
 
   tabList: string[][] = [];

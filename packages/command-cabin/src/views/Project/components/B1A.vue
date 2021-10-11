@@ -13,6 +13,7 @@
         :yLabel3="yLabel3[i - 1]"
         :monthTag="monthTag"
         :yearTag="yearTag"
+        :yIndex="yIndex[i - 1]"
       />
       <B1B
         :key="i"
@@ -26,6 +27,7 @@
         :yLabel3="yLabel3[i - 1]"
         :monthTag="monthTag"
         :yearTag="yearTag"
+        :yIndex="yIndex[i - 1]"
         :specialTabIndex="specialTabIndex"
       />
     </template>
@@ -91,6 +93,10 @@ export default class B1A extends Base {
    * cost tab所在index
    */
   @Prop({ default: () => -1 }) readonly specialTabIndex!: number;
+  /**
+   * yIndex设置
+   */
+  @Prop({ default: () => [] }) readonly yIndex!: number[][];
 
   // mounted() {}
 }
