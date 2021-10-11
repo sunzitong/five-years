@@ -4,7 +4,7 @@
  *
  * 指挥中心-现场监控详情
  * @createBy wuyao
- * @updateAt 2021/10/8 18:2:30
+ * @updateAt 2021/10/11 14:57:30
  * @method GET
  */
 
@@ -18,12 +18,17 @@ exports.response = {
   data: {
     projectId: 84, //门店id
     projectName: "酒仙桥店", //门店名称
+    position: "大门口", //位置区域
     pictureUrl: "http://", //图片地址
     problem: "人员离岗", //问题描述
     showTime: "2021-09-23 12:34:23", //发现时间
     reformTime: "2021-09-23 12:34:23", //整改时间
-    monitorId: "34534tewrtert", //摄像头id
-    problemPictureUrls: ["http://", "http://"], //问题图片地址
+    cameraId: "34534tewrtert", //摄像头id
+    problemPictureUrls: [
+      "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg",
+      "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg",
+      "https://goyoo-assets.longfor.com/prod/CMS/Gfx-42OIAHQz5etMhx6z0A.jpg?x-oss-process=image/resize,h_288/interlace,1/format,jpg",
+    ], //问题图片地址
     contacts: [
       {
         roleName: "社区经理",

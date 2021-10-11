@@ -4,7 +4,7 @@
  *
  * 拓展盘面-项目获取
  * @createBy baishiqiang
- * @updateAt 2021/10/8 9:9:37
+ * @updateAt 2021/10/11 14:15:57
  * @method GET
  */
 
@@ -23,7 +23,7 @@ exports.response = {
     yearExpandTarget: 100, //年度拓展目标
     expandFinishRatio: 33.3, //拓展完成率
     targetDiff: 30, //目标差额
-    dataFrom: "龙头", //数据来源
-    dataTime: "2021-09-28 09:39", //数据更新时间
+    dataSource: "龙头", //数据来源
+    updateTime: "09-28 09:39", //数据更新时间
   },
 };

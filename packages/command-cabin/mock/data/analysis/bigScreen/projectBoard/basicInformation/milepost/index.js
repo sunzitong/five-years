@@ -4,7 +4,7 @@
  *
  * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/10/8 12:37:57
+ * @updateAt 2021/10/11 11:39:52
  * @method GET
  */
 
@@ -38,6 +38,6 @@ exports.response = {
     dynamicCostNonTax: 123.1, //动态总成本（万元）
     costValLandSum: 123.1, //项目结算成本（万元）
     budgetBalanceNoTax: 123.1, //结余金额（万元）
-    dataFrom: "取自主数据、龙头、智计划、成本管理系统",
+    dataSource: "主数据、龙头、智计划、成本管理系统",
   },
 };
