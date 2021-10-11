@@ -143,9 +143,7 @@ export default class App extends Mixins(MixStore) {
     mitter.on(EventName.FetchGlobalData, this.fetchGlobalData);
     // 请求全局数据
     this.$router.onReady(() => {
-      if (!this.inLogin) {
-        mitter.emit(EventName.FetchGlobalData);
-      }
+      mitter.emit(EventName.FetchGlobalData);
     });
   }
 
