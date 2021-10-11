@@ -23,7 +23,7 @@ import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { Base } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
-import { AnyObject, iwant } from "@guanyu/shared";
+import { AnyObject } from "@guanyu/shared";
 
 @Component({
   components: {},
