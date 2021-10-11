@@ -7,6 +7,7 @@
             <van-col v-for="item of pictrue" :key="item.projectId">
               <div class="picture">
                 <van-image
+                  @click="toggleModal"
                   radius="5px 5px 0 0"
                   width="700"
                   height="394"
@@ -27,6 +28,7 @@
         </div>
       </van-swipe-item>
     </van-swipe>
+    <C3A v-model="show" :dataSource="response" />
   </Spin>
 </template>
 
@@ -35,6 +37,7 @@ import { Component } from "vue-property-decorator";
 import Icon from "@/components/Icon/Index.vue";
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
+import C3A from "./C3A.vue";
 import { StoreKey, useStore } from "@/store";
 import {
   fetchMonitorList,
@@ -43,6 +46,7 @@ import {
 
 @Component({
   components: {
+    C3A,
     Icon,
     StepNumber,
   },
@@ -52,6 +56,11 @@ export default class C3 extends Base implements IFetch {
    * 返回数据
    */
   response: MonitorListItemReturn[] = [];
+
+  /**
+   * 是否显示弹窗
+   */
+  show = false;
 
   /**
    * 图片分组
@@ -64,6 +73,13 @@ export default class C3 extends Base implements IFetch {
       array.push(pics.slice(i, i + LEN));
     }
     return array;
+  }
+
+  /**
+   * 显示弹窗
+   */
+  toggleModal() {
+    this.show = !this.show;
   }
 
   /**

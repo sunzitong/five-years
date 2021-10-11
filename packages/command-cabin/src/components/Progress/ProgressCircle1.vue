@@ -1,6 +1,7 @@
 <template>
   <div>
     <svg
+      v-if="size"
       :width="size"
       :height="size"
       :viewBox="`0 0 ${size} ${size}`"

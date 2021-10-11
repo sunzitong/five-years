@@ -118,6 +118,7 @@ import {
   fetchEarlyWarning,
 } from "@/service/analysis/bigScreen/mainBoard/center/earlyWarning";
 import { WarningOptStages } from "@/service/analysis/commandCabin/publicEnum/enums";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -211,69 +212,6 @@ export default class E1 extends Base implements IFetch {
         },
         iconColor: "#99b7f6",
       },
-      // // 超期预警
-      // OVER_PERIOD: {
-      //   style: {
-      //     "background-color": "rgba(255, 203, 123, 0.2)",
-      //     "border-color": "#ffcb7b",
-      //     color: "#ffcb7b",
-      //   },
-      //   iconColor: "#ffcb7b",
-      // },
-      // // 收入预警
-      // INCOME: {
-      //   style: {
-      //     "background-color": "rgba(255, 57, 128, 0.2)",
-      //     "border-color": "#ff3980",
-      //     color: "#ff3980",
-      //   },
-      //   iconColor: "#ff3980",
-      // },
-      // // 出租率预警
-      // RENT_RATIO: {
-      //   style: {
-      //     "background-color": "rgba(153, 183, 246, 0.2)",
-      //     "border-color": "#99b7f6",
-      //     color: "#99b7f6",
-      //   },
-      //   iconColor: "#99b7f6",
-      // },
-      //  人员离岗, 颜色无
-      // STAFF_LEAVE: {
-      //   style: {
-      //     "background-color": "rgba(255, 203, 123, 0.2)",
-      //     "border-color": "#99b7f6",
-      //     color: "#99b7f6",
-      //   },
-      //   iconColor: "#99b7f6",
-      // },
-      // // 运营品质
-      // OPT_QUALITY: {
-      //   style: {
-      //     "background-color": "rgba(180, 145, 253, 0.2)",
-      //     "border-color": "#b491fd",
-      //     color: "#b491fd",
-      //   },
-      //   iconColor: "#b491fd",
-      // },
-      // // 安全风险
-      // SECURITY: {
-      //   style: {
-      //     "background-color": "rgba(34, 203, 152, 0.2)",
-      //     "border-color": "#22cb98",
-      //     color: "#22cb98",
-      //   },
-      //   iconColor: "#22cb98",
-      // },
-      // // 火情风险
-      // FIRE_SITUATION: {
-      //   style: {
-      //     "background-color": "rgba(34, 203, 152, 0.2)",
-      //     "border-color": "#f50",
-      //     color: "#f50",
-      //   },
-      //   iconColor: "#f50",
-      // },
     };
     const theme = typeMaps[item.stage] ?? {};
     return theme;
@@ -296,8 +234,9 @@ export default class E1 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.response = response.data ?? [];
+      this.response = iwant.array(response.data);
     }
+    this.empty = !!this.response.length;
     return response;
   }
 }

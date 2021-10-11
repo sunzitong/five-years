@@ -1,5 +1,5 @@
 <template>
-  <div class="app-blur-box" :style="style">
+  <div class="app-blur-box" :style="style" v-if="width && height">
     <div class="app-blur-box__background">
       <div
         class="app-blur-box__backdrop"

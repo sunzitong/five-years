@@ -11,14 +11,14 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ListParams {
   /**
-   * AREA:大区；CITY:城市；不传则默认全部
+   * GROUP:全国，AREA:大区；CITY:城市；
    */
-  orgType?: unknown;
+  orgType: unknown;
 
   /**
-   * 大区组织ID/城市组织ID；
+   * 全国组织ID/大区组织ID/城市组织ID；
    */
-  orgId?: number;
+  orgId: number;
 
   /**
    * 开始时间, 格式 YYYY，默认当前时间
@@ -120,11 +120,11 @@ export interface List {
 /**
  * 营造盘面详情
  * @createBy huyanan
- * @updateAt 2021/9/24 10:32:59
+ * @updateAt 2021/10/9 16:25:8
  * @method GET
  */
 export const fetchList = (
-  params?: ListParams,
+  params: ListParams,
   options?: Partial<ServiceOptions>
 ) => {
   return http.get<ListReturn>(

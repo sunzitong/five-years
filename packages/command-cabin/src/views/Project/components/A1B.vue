@@ -185,7 +185,7 @@ export default class A1B extends Base implements IFetch {
     const response = await useStore(fetchMilepost, {
       key: StoreKey.ProjectMilepost,
       params: {
-        orgId: this.store.global.orgTree.orgId,
+        orgId: this.store.global.project.orgId,
       },
     });
     if (response?.status === "ok") {
@@ -199,6 +199,7 @@ export default class A1B extends Base implements IFetch {
 <style lang="scss" scoped>
 .timeline {
   position: relative;
+  height: 380px;
   margin: 40px 40px -40px 40px;
   text-align: center;
   &::before {

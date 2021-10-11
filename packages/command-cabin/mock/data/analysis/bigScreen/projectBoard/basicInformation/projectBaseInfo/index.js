@@ -4,7 +4,7 @@
  *
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/9/30 15:59:1
+ * @updateAt 2021/10/9 10:9:43
  * @method GET
  */
 
@@ -27,7 +27,7 @@ exports.response = {
     valueAddedPoint: 111, //增值点位
     acquireTime: "2021-01-01", //获取时间（重资产用）
     investmentLink:
-      "https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN1101000020180402242470&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D", //投资任务书链接 https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN1101000020180402242470&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D
+      "https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN20210723001&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D", //投资任务书链接 https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN1101000020180402242470&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D
     customerProperty: "重庆三快", //客户性质
     cooperationMode: "委托管理", //合作模式
     rentalArea: 123.2, //租赁面积(m2)

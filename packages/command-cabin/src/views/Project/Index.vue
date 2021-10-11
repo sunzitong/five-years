@@ -37,19 +37,22 @@
               <CardA
                 title="当前投资实现情况"
                 style="width: 1193px; height: 1611px"
-              ></CardA>
+              >
+                <B2 />
+              </CardA>
               <WhiteSpace />
-              <CardA
-                title="奖补到账"
-                style="width: 1193px; height: 246px"
-              ></CardA>
+              <CardA title="奖补到账" style="width: 1193px; height: 246px">
+                <B3 />
+              </CardA>
               <WhiteSpace />
               <SubWrapperA
                 title="风险监控"
                 size="small"
                 style="width: 1193px; height: 736px"
               >
-                <CardA style="width: 1148px; height: 584px"></CardA>
+                <CardA style="width: 1148px; height: 584px">
+                  <C1 />
+                </CardA>
               </SubWrapperA>
             </van-col>
           </van-row>
@@ -229,6 +232,9 @@ import A1 from "./components/A1.vue";
 import A2 from "./components/A2.vue";
 import A3 from "./components/A3.vue";
 import B1 from "./components/B1.vue";
+import B2 from "./components/B2.vue";
+import B3 from "./components/B3.vue";
+import C1 from "./components/C1.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -252,6 +258,9 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     A2,
     A3,
     B1,
+    B2,
+    B3,
+    C1,
     D1,
     D2,
     D3,

@@ -21,12 +21,13 @@ export interface LocationUrlParams {
  */
 export interface LocationUrlReturn {
   locationUrl: string;
+  dataFrom: string;
 }
 
 /**
  * 门店屏-项目区位
  * @createBy baishiqiang
- * @updateAt 2021/10/8 9:20:23
+ * @updateAt 2021/10/9 16:4:27
  * @method GET
  */
 export const fetchLocationUrl = (

@@ -2,6 +2,7 @@
   <div ref="wrapper" class="app-card-a-background">
     <div class="app-card-a-background__body">
       <svg
+        v-if="width && height"
         :width="width"
         :height="height"
         :viewBox="`0 0 ${width} ${height}`"

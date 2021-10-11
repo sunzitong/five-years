@@ -59,6 +59,22 @@ export enum StoreKey {
    */
   ProjectFinanceLine = "ProjectFinanceLine",
   /**
+   * 拓展盘面-项目获取
+   */
+  HomeProjectAcquire = "HomeProjectAcquire",
+  /**
+   * 拓展盘面-商机储备
+   */
+  HomeBusinessOppReserve = "HomeBusinessOppReserve",
+  /**
+   * 拓展盘面-商机转化
+   */
+  HomeBusinessOppTrans = "HomeBusinessOppTrans",
+  /**
+   * 拓展盘面-战略合作
+   */
+  HomeStrategyCooperation = "HomeStrategyCooperation",
+  /**
    * 中央奖补、投后攻坚模块
    */
   HomeExpansionAwardInfo = "HomeExpansionAwardInfo",
@@ -156,9 +172,21 @@ export enum StoreKey {
   ProjectMilepost = "ProjectMilepost",
 
   /**
+   * 门店屏-现场监控
+   */
+  ProjectCameraList = "ProjectCameraList",
+  /**
    * 查询主屏(中心位置)地区(城市)维度详细信息
    */
   HomeRegionDetailsInfo = "HomeRegionDetailsInfo",
+  /**
+   * 财务相关指标-奖补到账
+   */
+  ProjectAwardsInfo = "ProjectAwardsInfo",
+  /**
+   * 指挥中心-现场监控详情
+   */
+  HomeMonitorInfo = "HomeMonitorInfo",
 }
 /**
  * 方法重载

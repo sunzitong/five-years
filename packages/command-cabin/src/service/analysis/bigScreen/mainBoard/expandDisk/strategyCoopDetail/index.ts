@@ -11,14 +11,14 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface StrategyCoopDetailParams {
   /**
-   * 组织类型，默认全部
+   * GROUP:全国；AREA:大区；CITY:城市；
    */
-  orgType?: unknown;
+  orgType: unknown;
 
   /**
    * 组织ID
    */
-  orgId?: number;
+  orgId: number;
 
   /**
    * 类型，1-国企平台，2-总对总，3-资金方
@@ -72,11 +72,11 @@ export interface List {
 /**
  * 拓展盘面详情-战略合作表
  * @createBy baishiqiang
- * @updateAt 2021/9/28 19:14:59
+ * @updateAt 2021/10/8 18:41:0
  * @method GET
  */
 export const fetchStrategyCoopDetail = (
-  params?: StrategyCoopDetailParams,
+  params: StrategyCoopDetailParams,
   options?: Partial<ServiceOptions>
 ) => {
   return http.get<StrategyCoopDetailReturn>(

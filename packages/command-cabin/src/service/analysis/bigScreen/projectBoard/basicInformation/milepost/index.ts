@@ -11,7 +11,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface MilepostParams {
   /**
-   * 40306
+   * 40033
    */
   orgId: unknown;
 }
@@ -42,12 +42,13 @@ export interface MilepostReturn {
   dynamicCostNonTax: number;
   costValLandSum: number;
   budgetBalanceNoTax: number;
+  dataFrom: string;
 }
 
 /**
  * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/10/8 10:46:19
+ * @updateAt 2021/10/8 12:37:57
  * @method GET
  */
 export const fetchMilepost = (

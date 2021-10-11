@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="size"
     class="progress-circle"
     :class="`progress-circle--${styleType}`"
     :style="{ height: size + 'px' }"
@@ -48,6 +49,7 @@
     </svg>
     <!-- 圈层动画 -->
     <svg
+      v-if="size"
       :width="size"
       :height="size"
       viewBox="0 0 420 420"

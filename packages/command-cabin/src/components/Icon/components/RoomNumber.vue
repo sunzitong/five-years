@@ -1,5 +1,6 @@
 <template>
   <svg
+    v-if="iconSize"
     :width="iconSize"
     :height="(iconSize * 217) / 200"
     viewBox="0 0 200 217"
