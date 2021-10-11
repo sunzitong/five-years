@@ -91,6 +91,7 @@ export default class B1 extends Base implements IFetch {
     let { infoMap, month, year } = this.resData;
 
     if (infoMap && month) {
+      console.log(infoMap);
       if (transactionModel === "LightAsset") {
         // 构建月度横坐标
         infoMap.month1.forEach((el: AnyObject) => {
@@ -149,6 +150,7 @@ export default class B1 extends Base implements IFetch {
         }
         this.num = 3;
       } else if (transactionModel === "MediumAsset") {
+        console.log("wacthyou!");
         // 构建月度横坐标
         infoMap.month1.forEach((el: AnyObject) => {
           this.monthXLabel.push(el.dataNum);
