@@ -22,11 +22,12 @@ export interface MonitorInfoParams {
 export interface MonitorInfoReturn {
   projectId: number;
   projectName: string;
+  position: string;
   pictureUrl: string;
   problem: string;
   showTime: Date;
   reformTime: Date;
-  monitorId: string;
+  cameraId: string;
   problemPictureUrls: string[];
   contacts: Contact[];
 }
@@ -40,7 +41,7 @@ export interface Contact {
 /**
  * 指挥中心-现场监控详情
  * @createBy wuyao
- * @updateAt 2021/10/8 18:2:30
+ * @updateAt 2021/10/11 14:57:30
  * @method GET
  */
 export const fetchMonitorInfo = (

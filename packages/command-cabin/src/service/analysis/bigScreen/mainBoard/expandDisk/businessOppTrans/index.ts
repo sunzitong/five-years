@@ -30,12 +30,14 @@ export interface BusinessOppTransReturn {
   yeasSignedProjectNum: number;
   estabTransRatio: number;
   meetingTransRatio: number;
+  dataSource: string;
+  updateTime: string;
 }
 
 /**
  * 拓展盘面-商机转化
  * @createBy baishiqiang
- * @updateAt 2021/9/28 11:12:26
+ * @updateAt 2021/10/11 14:15:42
  * @method GET
  */
 export const fetchBusinessOppTrans = (

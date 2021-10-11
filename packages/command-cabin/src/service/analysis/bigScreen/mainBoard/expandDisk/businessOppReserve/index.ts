@@ -29,14 +29,14 @@ export interface BusinessOppReserveReturn {
   toSignRommNum: number;
   toMeetingProjectNum: number;
   toMeetingRoomNum: number;
-  dataFrom: string;
-  dataTime: string;
+  dataSource: string;
+  updateTime: string;
 }
 
 /**
  * 拓展盘面-商机储备
  * @createBy baishiqiang
- * @updateAt 2021/9/28 10:29:44
+ * @updateAt 2021/10/11 14:15:27
  * @method GET
  */
 export const fetchBusinessOppReserve = (

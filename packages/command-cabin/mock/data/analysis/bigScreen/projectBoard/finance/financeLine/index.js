@@ -4,7 +4,7 @@
  *
  * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/10/8 16:35:36
+ * @updateAt 2021/10/11 16:21:18
  * @method GET
  */
 
@@ -16,9 +16,9 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    month: 38, //当前是第n月
-    year: 4, //当前是第n年
-    transactionModel: "LightAsset", //资产类型 LightAsset MediumAsset HeavyAsset
+    month: 2, //当前是第n月
+    year: 3, //当前是第n年
+    transactionModel: "MediumAsset", //资产类型 LightAsset MediumAsset HeavyAsset
     infoMap: {
       //指标数据
       month1: [
@@ -58,7 +58,7 @@ exports.response = {
           dataNum: 2, //年份、月份数
         },
         {
-          profitRate: 3, //净利润率
+          profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
@@ -75,8 +75,8 @@ exports.response = {
           dataNum: 3, //年份、月份数
         },
         {
-          profitRate: 333, //净利润率
-          npiProfitRate: 333, //npi利润率
+          profitRate: 33, //净利润率
+          npiProfitRate: 33, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
@@ -95,7 +95,7 @@ exports.response = {
       month2: [
         //最新过会版-月指标
         {
-          profitRate: 7897879, //净利润率
+          profitRate: 78, //净利润率
           npiProfitRate: 0, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
@@ -112,7 +112,7 @@ exports.response = {
           dataNum: 1, //年份、月份数
         },
         {
-          profitRate: 789779, //净利润率
+          profitRate: 78, //净利润率
           npiProfitRate: 0, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
@@ -129,7 +129,7 @@ exports.response = {
           dataNum: 2, //年份、月份数
         },
         {
-          profitRate: 78879, //净利润率
+          profitRate: 78, //净利润率
           npiProfitRate: 0, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
@@ -146,8 +146,8 @@ exports.response = {
           dataNum: 3, //年份、月份数
         },
         {
-          profitRate: 333, //净利润率
-          npiProfitRate: 333, //npi利润率
+          profitRate: 3, //净利润率
+          npiProfitRate: 33, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
@@ -166,15 +166,15 @@ exports.response = {
       month3: [
         //月度运维版-月指标
         {
-          profitRate: 3, //净利润率
+          profitRate: 8, //净利润率
           npiProfitRate: 3, //npi利润率
           ycost: 3, //y-c
           cashSum: 0, //现金流
-          openIncome: 0, //收入
+          openIncome: 8, //收入
           avgRate: 0.47, //平局出租率
           avgPriece: 2, //平均单房价格
           priceIncrement: 0, //涨幅
-          threeCost: 0, //三费合计
+          threeCost: 8, //三费合计
           marketExpense: 0, //营销费用
           operCost: 0, //运营成本
           manageCost: 0, //管理成本
@@ -183,15 +183,15 @@ exports.response = {
           dataNum: 1, //年份、月份数
         },
         {
-          profitRate: 3, //净利润率
+          profitRate: 11, //净利润率
           npiProfitRate: 33, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
-          openIncome: 0, //收入
+          openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
           avgPriece: 2, //平均单房价格
           priceIncrement: 0, //涨幅
-          threeCost: 0, //三费合计
+          threeCost: 11, //三费合计
           marketExpense: 0, //营销费用
           operCost: 0, //运营成本
           manageCost: 0, //管理成本
@@ -200,15 +200,15 @@ exports.response = {
           dataNum: 2, //年份、月份数
         },
         {
-          profitRate: 333, //净利润率
-          npiProfitRate: 333, //npi利润率
+          profitRate: 13, //净利润率
+          npiProfitRate: 33, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
-          openIncome: 0, //收入
+          openIncome: 13, //收入
           avgRate: 0.47, //平局出租率
           avgPriece: 2, //平均单房价格
           priceIncrement: 0, //涨幅
-          threeCost: 0, //三费合计
+          threeCost: 13, //三费合计
           marketExpense: 0, //营销费用
           operCost: 0, //运营成本
           manageCost: 0, //管理成本
@@ -217,15 +217,15 @@ exports.response = {
           dataNum: 3, //年份、月份数
         },
         {
-          profitRate: 333, //净利润率
-          npiProfitRate: 333, //npi利润率
+          profitRate: 18, //净利润率
+          npiProfitRate: 33, //npi利润率
           ycost: 0, //y-c
           cashSum: 0, //现金流
-          openIncome: 0, //收入
+          openIncome: 18, //收入
           avgRate: 0.47, //平局出租率
           avgPriece: 2, //平均单房价格
           priceIncrement: 0, //涨幅
-          threeCost: 0, //三费合计
+          threeCost: 18, //三费合计
           marketExpense: 0, //营销费用
           operCost: 0, //运营成本
           manageCost: 0, //管理成本
@@ -241,6 +241,26 @@ exports.response = {
           dataType: "year", //指标类型 year month
           dataNum: 1, //年份、月份数
         },
+        {
+          cost: 1, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 2, //年份、月份数
+        },
+        {
+          cost: 3, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 3, //年份、月份数
+        },
+        {
+          cost: 78, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 4, //年份、月份数
+        },
+        {
+          cost: 78, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 5, //年份、月份数
+        },
       ],
       year2: [
         //最新过会版-年指标
@@ -249,6 +269,26 @@ exports.response = {
           dataType: "year", //指标类型 year month
           dataNum: 1, //年份、月份数
         },
+        {
+          cost: 1, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 2, //年份、月份数
+        },
+        {
+          cost: 3, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 3, //年份、月份数
+        },
+        {
+          cost: 78, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 4, //年份、月份数
+        },
+        {
+          cost: 78, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 5, //年份、月份数
+        },
       ],
       year3: [
         //月度运维版-年指标
@@ -256,6 +296,26 @@ exports.response = {
           cost: 0, //cost预估
           dataType: "year", //指标类型 year month
           dataNum: 1, //年份、月份数
+        },
+        {
+          cost: 1, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 2, //年份、月份数
+        },
+        {
+          cost: 3, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 3, //年份、月份数
+        },
+        {
+          cost: 78, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 4, //年份、月份数
+        },
+        {
+          cost: 78, //cost预估
+          dataType: "year", //指标类型 year month
+          dataNum: 5, //年份、月份数
         },
       ],
     },
