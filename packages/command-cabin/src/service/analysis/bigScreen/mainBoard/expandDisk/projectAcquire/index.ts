@@ -32,14 +32,14 @@ export interface ProjectAcquireReturn {
   yearExpandTarget: number;
   expandFinishRatio: number;
   targetDiff: number;
-  dataFrom: string;
-  dataTime: string;
+  dataSource: string;
+  updateTime: string;
 }
 
 /**
  * 拓展盘面-项目获取
  * @createBy baishiqiang
- * @updateAt 2021/10/8 9:9:37
+ * @updateAt 2021/10/11 14:15:57
  * @method GET
  */
 export const fetchProjectAcquire = (

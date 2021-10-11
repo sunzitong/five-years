@@ -4,7 +4,7 @@
  *
  * 拓展盘面-商机转化
  * @createBy baishiqiang
- * @updateAt 2021/9/28 11:12:26
+ * @updateAt 2021/10/11 14:15:42
  * @method GET
  */
 
@@ -21,5 +21,7 @@ exports.response = {
     yeasSignedProjectNum: 10, //年累签约
     estabTransRatio: 30.0, // 转化率，立项-签约
     meetingTransRatio: 30.0, //转化率，过会-签约
+    dataSource: "龙头", //数据来源
+    updateTime: "09-28 09:39", //数据更新时间
   },
 };
