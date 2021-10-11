@@ -79,8 +79,8 @@ export default class B1 extends Base implements IFetch {
   yearXlabel: number[] = []; // 运营月、运营年横坐标
   yLabel0: number[][][] = []; // 投资任务书版
   yLabel1: number[][][] = []; //最新过会版
-  yLabel2: number[][][] = []; // 实际+月度运维版
-  yLabel3: number[][][] = []; // 月度运维版
+  yLabel2: (number | string)[][][] = []; // 实际+月度运维版
+  yLabel3: (number | string)[][][] = []; // 月度运维版
 
   num = 0; // 折线图数量
 
@@ -109,13 +109,13 @@ export default class B1 extends Base implements IFetch {
           let props = propMap[i].length;
           let pic0: number[][] = [], // 折线图i中投资任务书版
             pic1: number[][] = [], // 折线图i中投资最新过会版
-            pic2: number[][] = [], // 折线图i中实际运维版
-            pic3: number[][] = []; // 折线图i中月度运维版
+            pic2: (number | string)[][] = [], // 折线图i中实际运维版
+            pic3: (number | string)[][] = []; // 折线图i中月度运维版
           for (let j = 0; j < props; j++) {
             let data0: number[] = [], // 折线图i标签j中投资任务书版
               data1: number[] = [], // 折线图i标签j中投资最新过会版
-              data2: number[] = [], // 折线图i标签j中实际运维版
-              data3: number[] = []; // 折线图i标签j中月度运维版
+              data2: (number | string)[] = [], // 折线图i标签j中实际运维版
+              data3: (number | string)[] = []; // 折线图i标签j中月度运维版
             // 第j个标签
             let prop = propMap[i][j];
             infoMap?.month1.forEach((el) => {
@@ -126,12 +126,15 @@ export default class B1 extends Base implements IFetch {
               data1.push(el[prop]);
             });
             infoMap?.month3.forEach((el) => {
-              if (el.dataNum > (month as number)) {
-                data2.push(0);
+              if (el.dataNum < (month as number)) {
+                data2.push("-");
+                data3.push(el[prop]);
+              } else if (el.dataNum === (month as number)) {
+                data2.push(el[prop]);
                 data3.push(el[prop]);
               } else {
                 data2.push(el[prop]);
-                data3.push(0);
+                data3.push("-");
               }
             });
             pic0.push(data0);
@@ -167,13 +170,13 @@ export default class B1 extends Base implements IFetch {
           let props = propMap[i].length;
           let pic0: number[][] = [], // 折线图i中投资任务书版
             pic1: number[][] = [], // 折线图i中投资最新过会版
-            pic2: number[][] = [], // 折线图i中实际运维版
-            pic3: number[][] = []; // 折线图i中月度运维版
+            pic2: (number | string)[][] = [], // 折线图i中实际运维版
+            pic3: (number | string)[][] = []; // 折线图i中月度运维版
           for (let j = 0; j < props; j++) {
             let data0: number[] = [], // 折线图i标签j中投资任务书版
               data1: number[] = [], // 折线图i标签j中投资最新过会版
-              data2: number[] = [], // 折线图i标签j中实际运维版
-              data3: number[] = []; // 折线图i标签j中月度运维版
+              data2: (number | string)[] = [], // 折线图i标签j中实际运维版
+              data3: (number | string)[] = []; // 折线图i标签j中月度运维版
             // 第j个标签
             let prop = propMap[i][j];
             if (prop === "cost") {
@@ -184,12 +187,15 @@ export default class B1 extends Base implements IFetch {
                 data1.push(el[prop]);
               });
               infoMap?.year3.forEach((el) => {
-                if (el.dataNum > (year as number)) {
-                  data2.push(0);
+                if (el.dataNum < (year as number)) {
+                  data2.push("-");
+                  data3.push(el[prop]);
+                } else if (el.dataNum === (month as number)) {
+                  data2.push(el[prop]);
                   data3.push(el[prop]);
                 } else {
                   data2.push(el[prop]);
-                  data3.push(0);
+                  data3.push("-");
                 }
               });
             } else {
@@ -201,12 +207,15 @@ export default class B1 extends Base implements IFetch {
                 data1.push(el[prop]);
               });
               infoMap?.month3.forEach((el) => {
-                if (el.dataNum > (month as number)) {
-                  data2.push(0);
+                if (el.dataNum < (month as number)) {
+                  data2.push("-");
+                  data3.push(el[prop]);
+                } else if (el.dataNum === (month as number)) {
+                  data2.push(el[prop]);
                   data3.push(el[prop]);
                 } else {
                   data2.push(el[prop]);
-                  data3.push(0);
+                  data3.push("-");
                 }
               });
             }
@@ -243,13 +252,13 @@ export default class B1 extends Base implements IFetch {
           let props = propMap[i].length;
           let pic0: number[][] = [], // 折线图i中投资任务书版
             pic1: number[][] = [], // 折线图i中投资最新过会版
-            pic2: number[][] = [], // 折线图i中实际运维版
-            pic3: number[][] = []; // 折线图i中月度运维版
+            pic2: (number | string)[][] = [], // 折线图i中实际运维版
+            pic3: (number | string)[][] = []; // 折线图i中月度运维版
           for (let j = 0; j < props; j++) {
             let data0: number[] = [], // 折线图i标签j中投资任务书版
               data1: number[] = [], // 折线图i标签j中投资最新过会版
-              data2: number[] = [], // 折线图i标签j中实际运维版
-              data3: number[] = []; // 折线图i标签j中月度运维版
+              data2: (number | string)[] = [], // 折线图i标签j中实际运维版
+              data3: (number | string)[] = []; // 折线图i标签j中月度运维版
             // 第j个标签
             let prop = propMap[i][j];
             if (prop === "cost") {
@@ -260,12 +269,15 @@ export default class B1 extends Base implements IFetch {
                 data1.push(el[prop]);
               });
               infoMap?.year3.forEach((el) => {
-                if (el.dataNum > (year as number)) {
-                  data2.push(0);
+                if (el.dataNum < (year as number)) {
+                  data2.push("-");
+                  data3.push(el[prop]);
+                } else if (el.dataNum === (month as number)) {
+                  data2.push(el[prop]);
                   data3.push(el[prop]);
                 } else {
                   data2.push(el[prop]);
-                  data3.push(0);
+                  data3.push("-");
                 }
               });
             } else {
@@ -277,12 +289,15 @@ export default class B1 extends Base implements IFetch {
                 data1.push(el[prop]);
               });
               infoMap?.month3.forEach((el) => {
-                if (el.dataNum > (month as number)) {
-                  data2.push(0);
+                if (el.dataNum < (month as number)) {
+                  data2.push("-");
+                  data3.push(el[prop]);
+                } else if (el.dataNum === (month as number)) {
+                  data2.push(el[prop]);
                   data3.push(el[prop]);
                 } else {
                   data2.push(el[prop]);
-                  data3.push(0);
+                  data3.push("-");
                 }
               });
             }
