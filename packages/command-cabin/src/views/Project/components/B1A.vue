@@ -92,7 +92,7 @@ export default class B1A extends Base {
    */
   @Prop({ default: () => -1 }) readonly specialTabIndex!: number;
 
-  mounted() {}
+  // mounted() {}
 }
 </script>
 
