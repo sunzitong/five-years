@@ -1,5 +1,5 @@
 <template>
-  <div class="continer">
+  <div class="container">
     <div class="china"></div>
     <div class="tb-card" v-if="showTable">
       <CardB>
@@ -408,7 +408,7 @@ export default class C4 extends Base implements IFetch {
 }
 </script>
 <style lang="scss" scoped>
-.continer {
+.container {
   position: relative;
   height: 1858px;
   --dart: #0e173c;

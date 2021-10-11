@@ -84,7 +84,7 @@ const conponents = {
   "arrow-bold-bottom": ArrowBold,
   "arrow-bold-left": ArrowBold,
   fold: Fold,
-  "un-fold": UnFold,
+  unfold: UnFold,
 };
 
 @Component({
