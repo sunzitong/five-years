@@ -130,11 +130,22 @@ export default class B1B extends Base {
         padding: [8, 30],
         formatter: (params: AnyObject[]) => {
           let str = `<div class='tooltip'><div class="tool-title">第`;
+          let unit = "";
+
           if (this.xTag === this.monthTag) {
             str += `${params[0].axisValue}运营月</div>`;
           } else {
             str += `${params[0].axisValue}运营年</div>`;
           }
+
+          if (0 === this.yIndex[this.tabTag]) {
+            unit = "%";
+          } else if (1 === this.yIndex[this.tabTag]) {
+            unit = "万元";
+          } else {
+            unit = "元";
+          }
+
           if (params[0].axisValue < 2) {
             params.forEach((el) => {
               if (el.seriesName !== "月度运维版") {
@@ -144,7 +155,7 @@ export default class B1B extends Base {
           } else {
             params.forEach((el) => {
               if (el.seriesName !== "实际") {
-                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>${unit}</span></div>`;
               }
             });
           }
