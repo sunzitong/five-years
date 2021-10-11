@@ -35,6 +35,7 @@ import { removeStore, StoreKey, useStore } from "./store";
 import { fetchOrgTree } from "./service/analysis/commandCabin/orgTree";
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
+import { fetchToken } from "./service/auth/token";
 
 @Component({
   name: "app",
@@ -139,17 +140,19 @@ export default class App extends Mixins(MixStore) {
     // 注册接口错误事件
     mitter.on(EventName.ServiceError, this.serviceError);
     // 注册登录回调事件
-    mitter.on(EventName.UpdateGlobalData, this.fetchGlobalData);
+    mitter.on(EventName.FetchGlobalData, this.fetchGlobalData);
     // 请求全局数据
     this.$router.onReady(() => {
       if (!this.inLogin) {
-        mitter.emit(EventName.UpdateGlobalData);
+        mitter.emit(EventName.FetchGlobalData);
       }
     });
   }
+
   mounted() {
     this.resizeHandle();
   }
+
   destroyed() {
     window.removeEventListener("resize", this.resizeHandleDebounce);
     window.removeEventListener("click", this.documentClick);
@@ -166,6 +169,14 @@ export default class App extends Mixins(MixStore) {
     this.appLoading = true;
     // 清空所有数据
     removeStore();
+    if (!this.store.currentUser) {
+      const response = await fetchToken();
+      if (response?.status === "ok") {
+        this.store.currentUser = response.data;
+      } else {
+        return;
+      }
+    }
     // 获取区域数据
     const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
     // 获取门店数据

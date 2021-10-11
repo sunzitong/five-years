@@ -305,7 +305,7 @@ export default class Login extends Base {
     if (!this.currentUser) return;
     const switchCallback = () => {
       // 请求全局数据
-      mitter.emit(EventName.UpdateGlobalData);
+      mitter.emit(EventName.FetchGlobalData);
       this.$router.push("/");
     };
     if (this.currentUser.roleId === roleId) {

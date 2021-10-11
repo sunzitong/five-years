@@ -23,7 +23,7 @@ export enum EventName {
   /**
    * 登录成功
    */
-  UpdateGlobalData = "global-data",
+  FetchGlobalData = "global-data",
 }
 
 /*
