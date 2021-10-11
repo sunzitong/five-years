@@ -1,6 +1,10 @@
 <template>
   <Spin class="pictrues-wrapper" :loading="loading" :empty="empty">
-    <van-swipe autoplay="20000" indicator-color="transparent">
+    <van-swipe
+      :touchable="false"
+      autoplay="20000"
+      indicator-color="transparent"
+    >
       <van-swipe-item v-for="(pictrue, index) of pictures" :key="index">
         <div class="pictures">
           <van-row gutter="20">
@@ -43,6 +47,7 @@ import {
   fetchMonitorList,
   MonitorListItemReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/monitorList";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -67,7 +72,7 @@ export default class C3 extends Base implements IFetch {
    */
   get pictures() {
     const LEN = 3;
-    const pics = this.response ?? [];
+    const pics = iwant.array(this.response);
     const array = [];
     for (let i = 0; i < pics.length; i += LEN) {
       array.push(pics.slice(i, i + LEN));
@@ -96,7 +101,7 @@ export default class C3 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.response = response.data ?? [];
+      this.response = iwant.array(response.data);
     }
     return response;
   }
