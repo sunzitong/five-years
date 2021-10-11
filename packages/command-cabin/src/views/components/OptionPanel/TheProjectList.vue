@@ -46,11 +46,7 @@
         </div>
       </div>
       <div class="project-list">
-        <div
-          class="row"
-          v-for="project in projectList"
-          :key="project.projectId"
-        >
+        <div class="row" v-for="project in projectList" :key="project.phId">
           <div class="col left"></div>
           <div
             class="col right"
@@ -304,6 +300,8 @@ export default class TheProjectList extends Base {
     top: 0;
     bottom: 0;
     overflow: auto;
+    /* fix shadow overflow */
+    padding-right: 1px;
     .left {
       opacity: 0;
     }
