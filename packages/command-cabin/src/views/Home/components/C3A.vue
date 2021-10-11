@@ -96,7 +96,7 @@
 </template>
 
 <script lang="ts">
-import { Prop, Component, Ref, VModel } from "vue-property-decorator";
+import { Prop, Component, Ref, VModel, Watch } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import SubWrapperA from "@/components/SubWrapperA/Index.vue";
@@ -110,6 +110,7 @@ import {
   fetchMonitorInfo,
   MonitorInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/monitorInfo";
+import { MonitorListItemReturn } from "@/service/analysis/bigScreen/mainBoard/center/monitorList";
 
 @Component({
   components: {
@@ -136,7 +137,7 @@ export default class C3A extends Base implements IFetch {
   /**
    * orderId 集合
    */
-  @Prop({ default: () => [] }) dataSource!: string[];
+  @Prop({ default: () => [] }) dataSource!: MonitorListItemReturn[];
 
   /**
    * 当前索引
@@ -147,6 +148,11 @@ export default class C3A extends Base implements IFetch {
    * 当前页
    */
   pageNum = 1;
+
+  /**
+   * 工单id列表
+   */
+  orderIdList: number[] = [];
 
   /**
    * 联系人
@@ -182,6 +188,14 @@ export default class C3A extends Base implements IFetch {
   }
 
   /**
+   * 监听dataSource 更新工单id列表
+   */
+  @Watch("dataSource", { deep: true })
+  onDataSourceChange(val: MonitorListItemReturn[]) {
+    this.orderIdList = iwant.array(val).map((item) => item.orderId);
+  }
+
+  /**
    * 切换轮播
    */
   changeHandle(index: number) {
@@ -214,10 +228,13 @@ export default class C3A extends Base implements IFetch {
   }
 
   /**
-   * 返回数据
+   * 工单详情返回数据
    */
   response: Partial<MonitorInfoReturn> = {};
 
+  /**
+   * 获取工单详情
+   */
   async fetch() {
     const response = await useStore(fetchMonitorInfo, {
       key: StoreKey.HomeMonitorInfo,

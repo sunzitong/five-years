@@ -32,7 +32,7 @@
         </div>
       </van-swipe-item>
     </van-swipe>
-    <C3A v-model="show" :dataSource="response" />
+    <C3A v-model="show" v-if="show" :dataSource="response" />
   </Spin>
 </template>
 
@@ -91,7 +91,7 @@ export default class C3 extends Base implements IFetch {
    * 自动触发 重复调用
    * @returns response
    */
-  async fetch() {
+  async fetch(force?: boolean) {
     const response = await useStore(fetchMonitorList, {
       key: StoreKey.HomeMonitorList,
       params: {
@@ -99,11 +99,20 @@ export default class C3 extends Base implements IFetch {
         levelId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
       },
+      force,
     });
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
     }
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.fetch(true);
+    }, 1000 * 60 * 10);
     return response;
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
   }
 }
 </script>
