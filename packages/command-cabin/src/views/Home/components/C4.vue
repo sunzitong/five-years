@@ -43,7 +43,16 @@
               {{ formatValue(tableData.netProfitRateBiasAll) }}%
             </td>
             <td>{{ formatValue(tableData.totalIncomeAll) }}万</td>
-            <td>{{ formatValue(tableData.totalIncomeBiasAll) }}万 缺预算</td>
+            <td
+              :class="{
+                warn:
+                  tableData.totalIncomeAll /
+                    (tableData.totalIncomeAll - tableData.totalIncomeBiasAll) <
+                  95,
+              }"
+            >
+              {{ formatValue(tableData.totalIncomeBiasAll) }}万
+            </td>
           </tr>
         </table>
         <Animationend
@@ -58,7 +67,6 @@
                   <div class="proj-name" @click="projectClicked(item)">
                     <div class="van-multi-ellipsis--l2">
                       {{ item.projectName }}
-                      {{ item.projectName }}
                     </div>
                     <van-icon name="arrow" />
                   </div>
@@ -68,7 +76,14 @@
                   {{ formatValue(item.netProfitRateBias) }}%
                 </td>
                 <td>{{ formatValue(item.totalIncome) }}万</td>
-                <td :class="{ warn: item.totalIncomeBias < 0 }">
+                <td
+                  :class="{
+                    warn:
+                      item.totalIncome /
+                        (item.totalIncome - item.totalIncomeBias) <
+                      95,
+                  }"
+                >
                   {{ formatValue(item.totalIncomeBias) }}万
                 </td>
               </tr>
@@ -358,7 +373,7 @@ export default class C4 extends Base implements IFetch {
     }
     // 全业态收入(万元)
     if (this.optionIndex === 3) {
-      // FIXME 收入总额/收入总额预算＜95%时
+      // 收入总额/收入总额预算＜95%时
       return item.allFormatIncomeFinishLimit < 95;
     }
     return false;
