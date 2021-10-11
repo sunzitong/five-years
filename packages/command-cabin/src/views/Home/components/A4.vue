@@ -188,8 +188,8 @@ export default class A4 extends Base implements IFetch {
     let option = {
       grid: {
         top: "0%",
-        left: "-5%",
-        right: "-15%",
+        left: "3%",
+        right: "-5%",
         bottom: "-8%",
         containLabel: true,
       },
@@ -262,7 +262,7 @@ export default class A4 extends Base implements IFetch {
 }
 
 .bottom_legend {
-  margin: 10px 120px 12px 120px;
+  margin: 10px 120px 12px 180px;
 
   .icon {
     display: inline-block;
@@ -272,7 +272,7 @@ export default class A4 extends Base implements IFetch {
   }
 
   .van-row {
-    width: 800px;
+    width: 724px;
   }
 
   .van-row:nth-child(1) .icon {

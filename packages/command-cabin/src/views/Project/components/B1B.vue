@@ -3,7 +3,13 @@
     <div class="header">
       <div class="left_title">{{ title }}</div>
       <div class="tabs_box">
-        <span class="tab_btn" v-for="(el, index) in tabNames" :key="index">
+        <span
+          class="tab_btn"
+          :class="{ active: currentSort == index }"
+          v-for="(el, index) in tabNames"
+          :key="index"
+          @click="handleClick(index)"
+        >
           {{ el }}
         </span>
       </div>
@@ -13,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Ref } from "vue-property-decorator";
+import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { Base } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
@@ -65,17 +71,30 @@ export default class B1B extends Base {
   @Prop({ default: () => [] }) readonly currentYear!: number;
   @Ref() wrapper!: HTMLDivElement;
 
+  currentSort = 0;
   xTag = 0;
+  tabTag = 0;
+
+  handleClick(index: number) {
+    this.currentSort = index;
+    this.tabTag = index;
+  }
 
   mounted() {
-    console.log(
+    this.paintChart();
+  }
+
+  @Watch("tabTag", { deep: true })
+  paintChart() {
+    console
+      .log
       // this.yLabel0[0],
       // this.yLabel1[0],
       // this.yLabel2[0],
       // this.yLabel3[0]
-      this.xLabel0,
-      this.currentMonth
-    );
+      // this.xLabel0,
+      // this.currentMonth
+      ();
     this.xTag = this.xLabel0.indexOf(this.currentMonth);
 
     if (!this.myChart) {
@@ -89,39 +108,45 @@ export default class B1B extends Base {
     let option = {
       tooltip: {
         trigger: "axis",
-        // axisPointer: {
-        //   type: "none", // 默认为直线，可选为：'line' | 'shadow'
-        // },
+        axisPointer: {
+          type: "line", // 默认为直线，可选为：'line' | 'shadow'
+          snap: true,
+          lineStyle: {
+            type: "solid",
+            width: 2,
+            color: "#01F5F1",
+          },
+        },
         renderMode: "html",
         backgroundColor: "transparent",
         borderColor: "transparent",
         borderWidth: 2,
         padding: [8, 30],
-        // className: "tooltip",
         formatter(params: AnyObject[]) {
-          let str = `<div class='tooltip'><div class="tool-title">第运营年</div>`;
-          console.log(params[0].dataIndex);
-          // <div>第${
-          //   this.xLabel0[params[0].dataIndex]
-          // }运营年</div>
-          params.forEach((el) => {
-            str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
-          });
+          let str = `<div class='tooltip'><div class="tool-title">第`;
+          str += `${params[0].axisValue}运营年</div>`;
+          if (params[0].axisValue < 2) {
+            params.forEach((el) => {
+              if (el.seriesName !== "月度运维版") {
+                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+              }
+            });
+          } else {
+            params.forEach((el) => {
+              if (el.seriesName !== "实际") {
+                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+              }
+            });
+          }
           return str + "</div>";
         },
       },
-      // tooltip: {
-      //   //触发方式
-      //   trigger: "axis", //坐标
-      // },
       legend: {
         left: 0,
         padding: [32, 0],
         itemGap: 16,
         itemWidth: 30,
         itemStyle: { opacity: 0 },
-        // itemHeight: 4,
-        // color: ["#57A6FB", "#A957FB", "#F7D14A", "#57FBB6"],
         data: [
           {
             name: "投资任务书版",
@@ -255,7 +280,7 @@ export default class B1B extends Base {
         {
           name: "投资任务书版",
           zIndex: 100,
-          data: this.yLabel0[0],
+          data: this.yLabel0[this.tabTag],
           lineStyle: { color: "#57A6FB", width: 4 },
           type: "line",
           symbol: "none",
@@ -282,7 +307,7 @@ export default class B1B extends Base {
         },
         {
           name: "最新过会版",
-          data: this.yLabel1[0],
+          data: this.yLabel1[this.tabTag],
           lineStyle: { color: "#A957FB", width: 4 },
           type: "line",
           symbol: "none",
@@ -301,7 +326,7 @@ export default class B1B extends Base {
         },
         {
           name: "月度运维版",
-          data: this.yLabel2[0],
+          data: this.yLabel2[this.tabTag],
           lineStyle: { color: "#F7D14A", width: 4 },
           type: "line",
           symbol: "none",
@@ -320,7 +345,7 @@ export default class B1B extends Base {
         },
         {
           name: "实际",
-          data: this.yLabel3[0],
+          data: this.yLabel3[this.tabTag],
           lineStyle: { color: "#57FBB6", width: 4 },
           markLine: {
             // 标记虚线
@@ -377,7 +402,8 @@ export default class B1B extends Base {
         },
       ],
     };
-    option && myChart.setOption(option);
+    console.log(option);
+    option && myChart.setOption(option, true);
   }
 }
 </script>
@@ -386,6 +412,10 @@ export default class B1B extends Base {
 .page__b1b__map {
   width: 100%;
   height: 600px;
+}
+
+.active {
+  color: #01f5f1;
 }
 
 .header {
@@ -486,3 +516,5 @@ export default class B1B extends Base {
   }
 }
 </style>
+
+function tabTag(tabTag: any) { throw new Error("Function not implemented."); }

@@ -1,6 +1,10 @@
 <template>
   <Spin class="pictrues-wrapper" :loading="loading" :empty="empty">
-    <van-swipe autoplay="20000" indicator-color="transparent">
+    <van-swipe
+      :touchable="false"
+      autoplay="20000"
+      indicator-color="transparent"
+    >
       <van-swipe-item v-for="(pictrue, index) of pictures" :key="index">
         <div class="pictures">
           <van-row gutter="20">
@@ -28,7 +32,7 @@
         </div>
       </van-swipe-item>
     </van-swipe>
-    <C3A v-model="show" :dataSource="response" />
+    <C3A v-model="show" v-if="show" :dataSource="response" />
   </Spin>
 </template>
 
@@ -43,6 +47,7 @@ import {
   fetchMonitorList,
   MonitorListItemReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/monitorList";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -67,7 +72,7 @@ export default class C3 extends Base implements IFetch {
    */
   get pictures() {
     const LEN = 3;
-    const pics = this.response ?? [];
+    const pics = iwant.array(this.response);
     const array = [];
     for (let i = 0; i < pics.length; i += LEN) {
       array.push(pics.slice(i, i + LEN));
@@ -86,7 +91,7 @@ export default class C3 extends Base implements IFetch {
    * 自动触发 重复调用
    * @returns response
    */
-  async fetch() {
+  async fetch(force?: boolean) {
     const response = await useStore(fetchMonitorList, {
       key: StoreKey.HomeMonitorList,
       params: {
@@ -94,11 +99,20 @@ export default class C3 extends Base implements IFetch {
         levelId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
       },
+      force,
     });
     if (response?.status === "ok") {
-      this.response = response.data ?? [];
+      this.response = iwant.array(response.data);
     }
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.fetch(true);
+    }, 1000 * 60 * 10);
     return response;
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
   }
 }
 </script>

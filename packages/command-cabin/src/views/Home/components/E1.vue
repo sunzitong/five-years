@@ -222,7 +222,7 @@ export default class E1 extends Base implements IFetch {
    * 自动触发 重复调用
    * @returns response
    */
-  async fetch() {
+  async fetch(force?: boolean) {
     const response = await useStore(fetchEarlyWarning, {
       key: StoreKey.HomeEarlyWarning,
       params: {
@@ -232,12 +232,21 @@ export default class E1 extends Base implements IFetch {
         stage: this.stage.join(","),
         riskDegree: this.riskDegree.join(","),
       },
+      force,
     });
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
     }
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.fetch(true);
+    }, 1000 * 60 * 10);
     this.empty = !!this.response.length;
     return response;
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
   }
 }
 </script>
