@@ -7,7 +7,7 @@
       <FixedNav position="right" />
     </div>
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="appLoading && !inLogin" />
+    <AppLoading v-if="appLoading" />
     <!-- 路由 -->
     <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
@@ -35,6 +35,7 @@ import { removeStore, StoreKey, useStore } from "./store";
 import { fetchOrgTree } from "./service/analysis/commandCabin/orgTree";
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
+import { fetchToken } from "./service/auth/token";
 
 @Component({
   name: "app",
@@ -139,17 +140,17 @@ export default class App extends Mixins(MixStore) {
     // 注册接口错误事件
     mitter.on(EventName.ServiceError, this.serviceError);
     // 注册登录回调事件
-    mitter.on(EventName.UpdateGlobalData, this.fetchGlobalData);
+    mitter.on(EventName.FetchGlobalData, this.fetchGlobalData);
     // 请求全局数据
     this.$router.onReady(() => {
-      if (!this.inLogin) {
-        mitter.emit(EventName.UpdateGlobalData);
-      }
+      mitter.emit(EventName.FetchGlobalData);
     });
   }
+
   mounted() {
     this.resizeHandle();
   }
+
   destroyed() {
     window.removeEventListener("resize", this.resizeHandleDebounce);
     window.removeEventListener("click", this.documentClick);
@@ -166,6 +167,21 @@ export default class App extends Mixins(MixStore) {
     this.appLoading = true;
     // 清空所有数据
     removeStore();
+    if (!this.store.currentUser) {
+      const response = await fetchToken();
+      if (response?.status === "ok") {
+        this.store.currentUser = response.data;
+      } else {
+        // 用户信息请求失败 跳转login
+        this.$router
+          .push("/login")
+          .catch(_.noop)
+          .finally(() => {
+            this.appLoading = false;
+          });
+        return;
+      }
+    }
     // 获取区域数据
     const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
     // 获取门店数据
@@ -182,6 +198,7 @@ export default class App extends Mixins(MixStore) {
   }
 }
 </script>
+
 <style lang="scss">
 #app {
   background-color: #09080c;

@@ -37,7 +37,7 @@ import TheYearTargetDetail from "./components/TheYearTargetDetail.vue";
 import TheStrategyCoopDetail from "./components/TheStrategyCoopDetail.vue";
 import Icon from "@/components/Icon/Index.vue";
 
-/**营造盘面详情 */
+/**拓展盘面详情 */
 @Component({
   components: {
     SubWrapperA,
@@ -48,7 +48,7 @@ import Icon from "@/components/Icon/Index.vue";
   },
 })
 export default class ExpansionThePlate extends Base {
-  tabs = ["营造台账宽表", "年度目标表", "战略合作表"];
+  tabs = ["拓展台账宽表", "年度目标表", "战略合作表"];
   tab = 0;
   back() {
     this.$router.back();
