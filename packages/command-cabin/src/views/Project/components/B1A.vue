@@ -1,19 +1,34 @@
 <template>
   <div class="page__b1a__map">
-    <B1B
-      v-for="i in num"
-      :key="i"
-      :title="titles[i - 1]"
-      :tabNames="tabs[i - 1]"
-      :xLabel0="monthXLabel"
-      :xLabel1="yearXlabel"
-      :yLabel0="yLabel0[i - 1]"
-      :yLabel1="yLabel1[i - 1]"
-      :yLabel2="yLabel2[i - 1]"
-      :yLabel3="yLabel3[i - 1]"
-      :currentMonth="currentMonth"
-      :currentYear="currentYear"
-    />
+    <template v-for="i in num">
+      <B1B
+        :key="i"
+        v-if="i < 4"
+        :title="titles[i - 1]"
+        :tabNames="tabs[i - 1]"
+        :xLabel="xLabel"
+        :yLabel0="yLabel0[i - 1]"
+        :yLabel1="yLabel1[i - 1]"
+        :yLabel2="yLabel2[i - 1]"
+        :yLabel3="yLabel3[i - 1]"
+        :monthTag="monthTag"
+        :yearTag="yearTag"
+      />
+      <B1B
+        :key="i"
+        v-else
+        :title="titles[i - 1]"
+        :tabNames="tabs[i - 1]"
+        :xLabel="xLabel"
+        :yLabel0="yLabel0[i - 1]"
+        :yLabel1="yLabel1[i - 1]"
+        :yLabel2="yLabel2[i - 1]"
+        :yLabel3="yLabel3[i - 1]"
+        :monthTag="monthTag"
+        :yearTag="yearTag"
+        :specialTabIndex="specialTabIndex"
+      />
+    </template>
   </div>
 </template>
 
@@ -41,13 +56,9 @@ export default class B1A extends Base {
   @Prop({ default: () => ({}) }) readonly list!: AnyObject;
 
   /**
-   * 折线图月度横坐标
+   * 折线图横坐标
    */
-  @Prop({ default: () => [] }) readonly monthXLabel!: number[];
-  /**
-   * 折线图年度横坐标
-   */
-  @Prop({ default: () => [] }) readonly yearXlabel!: number[];
+  @Prop({ default: () => [] }) readonly xLabel!: number[][];
   /**
    * 折线图月度数据源1
    */
@@ -71,16 +82,17 @@ export default class B1A extends Base {
   /**
    * 当前月
    */
-  @Prop({ default: () => 0 }) readonly currentMonth!: number;
+  @Prop({ default: () => 0 }) readonly monthTag!: number;
   /**
    * 当前年
    */
-  @Prop({ default: () => 0 }) readonly currentYear!: number;
+  @Prop({ default: () => 0 }) readonly yearTag!: number;
+  /**
+   * cost tab所在index
+   */
+  @Prop({ default: () => -1 }) readonly specialTabIndex!: number;
 
-  mounted() {
-    // console.log(2222, this.titles);
-    console.log(this.num);
-  }
+  // mounted() {}
 }
 </script>
 

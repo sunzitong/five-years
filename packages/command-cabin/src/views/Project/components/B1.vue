@@ -5,15 +5,15 @@
         :titles="titles"
         :tabs="tabList"
         :list="resData.infoMap"
-        :monthXLabel="monthXLabel"
-        :yearXlabel="yearXlabel"
+        :xLabel="xLabel"
         :yLabel0="yLabel0"
         :yLabel1="yLabel1"
         :yLabel2="yLabel2"
         :yLabel3="yLabel3"
         :num="num"
-        :currentMonth="resData.month"
-        :currentYear="resData.year"
+        :monthTag="monthTag"
+        :yearTag="yearTag"
+        :specialTabIndex="specialTabIndex"
       />
     </div>
   </Spin>
@@ -75,12 +75,14 @@ export default class B1 extends Base implements IFetch {
   tabList: string[][] = [];
   titles: string[] = [];
 
-  monthXLabel: number[] = [];
-  yearXlabel: number[] = []; // 运营月、运营年横坐标
+  xLabel: number[][] = []; // 运营月、运营年横坐标
   yLabel0: number[][][] = []; // 投资任务书版
   yLabel1: number[][][] = []; //最新过会版
   yLabel2: (number | string)[][][] = []; // 实际+月度运维版
   yLabel3: (number | string)[][][] = []; // 月度运维版
+  monthTag = 0; // 运营月单位 分割线
+  yearTag = 0; // 运营年单位 分割线
+  specialTabIndex = -1; //cost tab所在index
 
   num = 0; // 折线图数量
 
@@ -91,12 +93,14 @@ export default class B1 extends Base implements IFetch {
     let { infoMap, month, year } = this.resData;
 
     if (infoMap && month) {
-      console.log(infoMap);
       if (transactionModel === "LightAsset") {
         // 构建月度横坐标
+        let monthXLabel: number[] = [];
         infoMap.month1.forEach((el: AnyObject) => {
-          this.monthXLabel.push(el.dataNum);
+          monthXLabel.push(el.dataNum);
         });
+        this.xLabel.push(this.monthXLabel);
+        this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
 
         // 构建三条折线数据结构（二维数组）
         let propMap = [
@@ -150,15 +154,21 @@ export default class B1 extends Base implements IFetch {
         }
         this.num = 3;
       } else if (transactionModel === "MediumAsset") {
-        console.log("wacthyou!");
-        // 构建月度横坐标
+        // 构建横坐标
+        let monthXLabel: number[] = [],
+          yearXLabel: number[] = [];
         infoMap.month1.forEach((el: AnyObject) => {
-          this.monthXLabel.push(el.dataNum);
+          monthXLabel.push(el.dataNum);
         });
-
         infoMap.year1.forEach((el: AnyObject) => {
-          this.yearXLabel.push(el.dataNum);
+          yearXLabel.push(el.dataNum);
         });
+        this.xLabel.push(monthXLabel, yearXLabel);
+
+        this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
+        this.yearTag = yearXLabel.indexOf(iwant.number(this.resData.year));
+        this.specialTabIndex = 1;
+
         // 构建三条折线数据结构（二维数组）
         let propMap = [
           ["profitRate", "npiProfitRate", "ycost", "cashSum"],
@@ -192,7 +202,7 @@ export default class B1 extends Base implements IFetch {
                 if (el.dataNum < (year as number)) {
                   data2.push("-");
                   data3.push(el[prop]);
-                } else if (el.dataNum === (month as number)) {
+                } else if (el.dataNum === (year as number)) {
                   data2.push(el[prop]);
                   data3.push(el[prop]);
                 } else {
@@ -233,14 +243,21 @@ export default class B1 extends Base implements IFetch {
         }
         this.num = 4;
       } else if (transactionModel === "HeavyAsset") {
-        // 构建月度横坐标
+        // 构建横坐标
+        let monthXLabel: number[] = [],
+          yearXLabel: number[] = [];
         infoMap.month1.forEach((el: AnyObject) => {
-          this.monthXLabel.push(el.dataNum);
+          monthXLabel.push(el.dataNum);
         });
-
         infoMap.year1.forEach((el: AnyObject) => {
-          this.yearXLabel.push(el.dataNum);
+          yearXLabel.push(el.dataNum);
         });
+        this.xLabel.push(monthXLabel, yearXLabel);
+
+        this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
+        this.yearTag = yearXLabel.indexOf(iwant.number(this.resData.year));
+        this.specialTabIndex = 0;
+
         // 构建三条折线数据结构（二维数组）
         let propMap = [
           ["profitRate", "npiProfitRate", "ycost", "cashSum"],
