@@ -415,6 +415,9 @@ export default class Login extends Base {
       li {
         @extend %flex-center;
         cursor: pointer;
+        &:hover {
+          color: #fff;
+        }
       }
     }
     .role {

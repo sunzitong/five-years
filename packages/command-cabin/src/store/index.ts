@@ -288,13 +288,13 @@ export const findOrgTreeByOrgId = async (orgId: number) => {
   const globalOrgTree = iwant.array(
     (await useStore(fetchOrgTree, { key: StoreKey.OrgTree }))?.data
   );
-
   const find = (list: OrgTreeItemReturn[]): OrgTreeItemReturn | null => {
     for (let i = 0; i < list.length; i++) {
       const item = list[i];
       if (item.orgId === orgId) return item;
       if (item.childList) {
-        return find(item.childList);
+        const match = find(item.childList);
+        if (match) return match;
       }
     }
     return null;
