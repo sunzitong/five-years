@@ -39,6 +39,8 @@ import Security from "./components/Security.vue";
 import Checked from "./components/Checked.vue";
 import ArrowBold from "./components/ArrorwBold.vue";
 import Back from "./components/Back.vue";
+import Fold from "./components/Fold.vue";
+import UnFold from "./components/UnFold.vue";
 
 const conponents = {
   asce: AsceAndDesc,
@@ -81,6 +83,8 @@ const conponents = {
   "arrow-bold-right": ArrowBold,
   "arrow-bold-bottom": ArrowBold,
   "arrow-bold-left": ArrowBold,
+  fold: Fold,
+  "un-fold": UnFold,
 };
 
 @Component({
