@@ -59,7 +59,6 @@
                 <div class="gallery">
                   <div
                     class="item"
-                    @click="() => swipe.swipeTo(item.index)"
                     v-for="(item, index) of pageContent.list"
                     :key="index"
                   >
@@ -158,6 +157,11 @@ export default class C3A extends Base implements IFetch {
   @Prop({ default: () => [] }) dataSource!: MonitorListItemReturn[];
 
   /**
+   * 工单id
+   */
+  @Prop({ default: null }) orderId!: number | null;
+
+  /**
    * 当前页
    */
   pageNum = 1;
@@ -176,7 +180,6 @@ export default class C3A extends Base implements IFetch {
    * 联系人
    */
   get contacts() {
-    console.log(this.response.contacts);
     return iwant.array(this.response.contacts);
   }
 
@@ -213,6 +216,21 @@ export default class C3A extends Base implements IFetch {
   onDataSourceChange(val: MonitorListItemReturn[]) {
     console.log("dataSource", val);
     this.orderIdList = iwant.array(val).map((item) => item.orderId);
+  }
+
+  /**
+   * 工单id变更
+   */
+  @Watch("orderId")
+  onOrderIdChange(val: number | null) {
+    console.log("orderId", val);
+    const orderIdIndex = this.orderIdList.findIndex((item) => item === val);
+    this.orderIdIndex = orderIdIndex;
+  }
+
+  @Watch("orderIdIndex")
+  onOrderIdIndexChange() {
+    this.fetch(true);
   }
 
   /**
@@ -264,11 +282,6 @@ export default class C3A extends Base implements IFetch {
     console.log("this.nextOrderDetail", this.orderIdIndex);
   }
 
-  @Watch("orderIdIndex")
-  onOrderIdChange() {
-    this.fetch(true);
-  }
-
   /**
    * 工单详情返回数据
    */
@@ -280,6 +293,8 @@ export default class C3A extends Base implements IFetch {
   async fetch(force?: boolean) {
     const orderId = this.getCurrentOrderId();
     // if (!orderId) return;
+
+    console.log("aaaaa", orderId);
 
     const response = await useStore(fetchMonitorInfo, {
       key: StoreKey.HomeMonitorInfo,

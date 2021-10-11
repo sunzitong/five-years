@@ -11,7 +11,7 @@
             <van-col v-for="item of pictrue" :key="item.projectId">
               <div class="picture">
                 <van-image
-                  @click="toggleModal"
+                  @click="toggleModal(item)"
                   radius="5px 5px 0 0"
                   width="700"
                   height="394"
@@ -32,7 +32,7 @@
         </div>
       </van-swipe-item>
     </van-swipe>
-    <C3A v-model="show" v-if="show" :dataSource="response" />
+    <C3A v-model="show" v-if="show" :orderId="orderId" :dataSource="response" />
   </Spin>
 </template>
 
@@ -68,6 +68,11 @@ export default class C3 extends Base implements IFetch {
   show = false;
 
   /**
+   * 工单id
+   */
+  orderId: null | number = null;
+
+  /**
    * 图片分组
    */
   get pictures() {
@@ -83,7 +88,13 @@ export default class C3 extends Base implements IFetch {
   /**
    * 显示弹窗
    */
-  toggleModal() {
+  toggleModal(item: MonitorListItemReturn) {
+    if (item.orderId && !this.show) {
+      this.orderId = item.orderId;
+      console.log(this.orderId);
+    } else {
+      this.orderId = null;
+    }
     this.show = !this.show;
   }
 
