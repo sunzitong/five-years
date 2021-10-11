@@ -85,16 +85,16 @@ export default class TheStrategyCoopDetail extends Base implements IFetch {
   enterpriseState = {
     1: "已合作",
     2: "洽谈中",
-    3: "暂缓",
-    4: "流失",
+    // 3: "暂缓",
+    // 4: "流失",
   };
   enterpriseStateValue: string[] = [];
 
   options: { name: keyof List; text: string }[] = [
     { name: "city", text: "城市" },
     { name: "partnerName", text: "合作方名称" },
-    { name: "enterpriseStateDesc", text: "企业状态描述" },
-    { name: "typeDesc", text: "类型描述" },
+    { name: "enterpriseStateDesc", text: "企业状态" },
+    { name: "typeDesc", text: "类型" },
   ];
 
   pageNum = 1;

@@ -32,7 +32,10 @@ import FixedNav from "@/components/FixedNav/Index.vue";
 import AppHeader from "@/components/Header/Index.vue";
 import mitter, { EventName } from "./utils/mitter";
 import { removeStore, StoreKey, useStore } from "./store";
-import { fetchOrgTree } from "./service/analysis/commandCabin/orgTree";
+import {
+  fetchOrgTree,
+  OrgTreeItemReturn,
+} from "./service/analysis/commandCabin/orgTree";
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
 import { fetchToken } from "./service/auth/token";
@@ -191,10 +194,23 @@ export default class App extends Mixins(MixStore) {
     const resOrgTree = await promiseOrgTree;
     const resProjectList = await promiseProjectList;
     if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
+      this.formatOrgTree(resOrgTree.data);
       this.store.global.orgTree = resOrgTree.data[0];
       this.store.global.project = resProjectList.data[0];
       this.appLoading = false;
     }
+  }
+
+  /**
+   * 给orgTree添加parent属性
+   */
+  formatOrgTree(tree: OrgTreeItemReturn[], parent?: OrgTreeItemReturn) {
+    tree.forEach((item: OrgTreeItemReturn & { parent?: OrgTreeItemReturn }) => {
+      item.parent = parent;
+      if (item.childList) {
+        this.formatOrgTree(item.childList, item);
+      }
+    });
   }
 }
 </script>

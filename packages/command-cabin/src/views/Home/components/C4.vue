@@ -1,5 +1,5 @@
 <template>
-  <div class="continer">
+  <div class="container">
     <div class="china"></div>
     <div class="tb-card" v-if="showTable">
       <CardB>
@@ -158,6 +158,7 @@
         </div>
       </van-circle>
     </div>
+    <C4A />
   </div>
 </template>
 
@@ -193,6 +194,8 @@ import {
   RegionDetailsInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/regionDetailsInfo";
 
+import C4A from "./C4A.vue";
+
 type MapData = (MapCircleItemReturn & {
   currentRate?: number;
 })[];
@@ -202,6 +205,7 @@ type MapData = (MapCircleItemReturn & {
     StepNumber,
     CardB,
     Animationend,
+    C4A,
   },
 })
 export default class C4 extends Base implements IFetch {
@@ -404,7 +408,7 @@ export default class C4 extends Base implements IFetch {
 }
 </script>
 <style lang="scss" scoped>
-.continer {
+.container {
   position: relative;
   height: 1858px;
   --dart: #0e173c;
@@ -448,6 +452,7 @@ export default class C4 extends Base implements IFetch {
   position: absolute;
   width: 170px;
   height: 170px;
+  cursor: pointer;
   &::v-deep {
     .van-circle {
       width: 100%;
