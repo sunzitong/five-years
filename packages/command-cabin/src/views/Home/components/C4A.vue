@@ -12,7 +12,43 @@
           <van-icon name="down" />
         </div>
       </div>
-      <div class="table-container" v-if="!isFold">222</div>
+      <div class="table-container" v-if="!isFold">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2" width="14%">区域</th>
+              <th rowspan="2" width="12%">
+                YTD收入
+                <br />
+                缺口
+              </th>
+              <th rowspan="2" width="12%">已开业项目收入缺口</th>
+              <th colspan="4">已开业项目收入缺口</th>
+              <th rowspan="2" width="14%">解约&终止项目收入缺口</th>
+            </tr>
+            <tr>
+              <th width="12%">延期开业</th>
+              <th width="12%">提前开业</th>
+              <th width="12%">正常营业</th>
+              <th width="12%">中止</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ formatValue(response.regionName) }}</td>
+              <td>{{ formatValue(response.ytdIncomeGap) }}</td>
+              <td>{{ formatValue(response.forecastIncomeGap) }}</td>
+              <td class="warn">
+                {{ formatValue(response.openedAndPostponeIncomeGap) }}
+              </td>
+              <td>{{ formatValue(response.openedAndAheadIncomeGap) }}</td>
+              <td>{{ formatValue(response.openAsUsualIncomeGap) }}</td>
+              <td>{{ formatValue(response.openedAndTerminationIncomeGap) }}</td>
+              <td>{{ formatValue(response.contractTerminationIncomeGap) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </CardB>
   </div>
 </template>
@@ -22,20 +58,38 @@ import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import Icon from "@/components/Icon/Index.vue";
 import CardB from "@/components/CardB/Index.vue";
+import { StoreKey, useStore } from "@/store";
+import {
+  fetchSupplyAndMarketingSave,
+  SupplyAndMarketingSaveReturn,
+} from "@/service/analysis/bigScreen/mainBoard/center/supplyAndMarketingSave";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: { Icon, CardB },
 })
 export default class C4A extends Base implements IFetch {
   isFold = true;
+  response: Partial<SupplyAndMarketingSaveReturn> = {};
   async fetch() {
-    return;
+    const response = await useStore(fetchSupplyAndMarketingSave, {
+      key: StoreKey.HomeSupplyAndMarketingSave,
+      params: {
+        dateScope: this.store.global.dataLevel,
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+        regionName: this.store.global.orgTree.orgName,
+      },
+    });
+    if (response?.status === "ok") {
+      this.response = iwant.object(response.data);
+    }
+    return response;
   }
 }
 </script>
 <style lang="scss" scoped>
 .c4a-container {
-  width: 1644px;
   position: absolute;
   bottom: 180px;
   font-size: 40px;
@@ -82,6 +136,40 @@ export default class C4A extends Base implements IFetch {
     .van-icon {
       transform: rotate(-90deg);
     }
+  }
+}
+.table-container {
+  font-size: 36px;
+  color: #fff;
+  table {
+    table-layout: fixed;
+    min-width: 1572px;
+    margin: 0 36px 40px;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  thead {
+    background: #0e173c;
+  }
+  tbody {
+    color: #90a4c3;
+    background: rgba(14, 23, 60, 0.5);
+  }
+  tr {
+    height: 60px;
+  }
+  th {
+    font-weight: normal;
+    border-left: 1px solid #445da5;
+  }
+  thead tr:nth-child(1) {
+    border-bottom: 1px solid #445da5;
+    th:nth-child(1) {
+      border: none;
+    }
+  }
+  .warn {
+    color: #ff3980;
   }
 }
 </style>

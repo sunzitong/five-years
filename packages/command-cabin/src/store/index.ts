@@ -187,6 +187,10 @@ export enum StoreKey {
    * 指挥中心-现场监控详情
    */
   HomeMonitorInfo = "HomeMonitorInfo",
+  /**
+   * 供销存
+   */
+  HomeSupplyAndMarketingSave = "HomeSupplyAndMarketingSave",
 }
 /**
  * 方法重载
