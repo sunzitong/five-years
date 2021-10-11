@@ -23,7 +23,7 @@ import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { Base } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
-import { AnyObject } from "@guanyu/shared";
+import { AnyObject, iwant } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -69,6 +69,10 @@ export default class B1B extends Base {
    * cost tab所在index
    */
   @Prop({ default: () => -1 }) readonly specialTabIndex!: number;
+  /**
+   * yIndex设置
+   */
+  @Prop({ default: () => [] }) readonly yIndex!: number[];
 
   @Ref() wrapper!: HTMLDivElement;
 
@@ -195,13 +199,14 @@ export default class B1B extends Base {
       },
       xAxis: [
         {
-          name: "运营年",
+          name: "\n\n运营年",
           nameLocation: "end",
+          nameGap: 0,
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [21, 0, 0, 0],
+            padding: [0, 0, 0, 0],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",
@@ -224,60 +229,144 @@ export default class B1B extends Base {
           }, // 轴线
           axisTick: { show: false },
           axisLabel: {
+            interval: this.xTag === this.monthTag ? 11 : 0,
             fontFamily: this.store.env.TEXT_FONT,
             color: "#90A4C3",
             margin: 13,
             fontSize: 26,
             lineHeight: 36,
             formatter: (value: any) => {
-              return parseInt(value);
+              if (this.xTag !== this.monthTag) {
+                return parseInt(value);
+              } else {
+                return Math.ceil(value / 12);
+              }
             },
           },
         },
       ],
-      yAxis: {
-        name: "百分比",
-        nameLocation: "end",
-        nameTextStyle: {
-          color: "#90A4C3",
-          fontSize: 24,
-          lineHeight: 26,
-          padding: [21, 0, 0, 0],
-        },
-        type: "value",
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: new echarts.graphic.LinearGradient(
-              0,
-              0,
-              0,
-              1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
-              [
-                { offset: 0, color: "rgba(81, 128, 228, 0) " },
-                { offset: 0.3, color: "rgba(81, 128, 228, 0.6)" },
-              ]
-            ),
-            width: 2,
+      yAxis: [
+        {
+          name: "百分比",
+          show: 0 === this.yIndex[this.tabTag],
+          nameLocation: "end",
+          nameTextStyle: {
+            color: "#90A4C3",
+            fontSize: 24,
+            lineHeight: 26,
+            padding: [0, 100, 13, 0],
+          },
+          type: "value",
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                [
+                  { offset: 0, color: "rgba(81, 128, 228, 0) " },
+                  { offset: 0.3, color: "rgba(81, 128, 228, 0.6)" },
+                ]
+              ),
+              width: 2,
+            },
+          },
+          splitLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: {
+            fontFamily: this.store.env.TEXT_FONT,
+            color: "#90A4C3",
+            margin: 20,
+            fontSize: 26,
+            lineHeight: 36,
+            formatter: function (value: number) {
+              return value + "%";
+            },
           },
         },
-        splitLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: {
-          fontFamily: this.store.env.TEXT_FONT,
-          color: "#90A4C3",
-          margin: 13,
-          fontSize: 26,
-          lineHeight: 36,
-          formatter: function (value: number) {
-            return value + "%";
+        {
+          name: "万元",
+          show: 1 === this.yIndex[this.tabTag],
+          position: "left",
+          nameLocation: "end",
+          nameTextStyle: {
+            color: "#90A4C3",
+            fontSize: 24,
+            lineHeight: 26,
+            padding: [0, 80, 13, 0],
+          },
+          type: "value",
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                [
+                  { offset: 0, color: "rgba(81, 128, 228, 0) " },
+                  { offset: 0.3, color: "rgba(81, 128, 228, 0.6)" },
+                ]
+              ),
+              width: 2,
+            },
+          },
+          splitLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: {
+            fontFamily: this.store.env.TEXT_FONT,
+            color: "#90A4C3",
+            margin: 20,
+            fontSize: 26,
+            lineHeight: 36,
           },
         },
-      },
+        {
+          name: "元",
+          show: 2 === this.yIndex[this.tabTag],
+          position: "left",
+          nameLocation: "end",
+          nameTextStyle: {
+            color: "#90A4C3",
+            fontSize: 24,
+            lineHeight: 26,
+            padding: [0, 60, 13, 0],
+          },
+          type: "value",
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                [
+                  { offset: 0, color: "rgba(81, 128, 228, 0) " },
+                  { offset: 0.3, color: "rgba(81, 128, 228, 0.6)" },
+                ]
+              ),
+              width: 2,
+            },
+          },
+          splitLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: {
+            fontFamily: this.store.env.TEXT_FONT,
+            color: "#90A4C3",
+            margin: 20,
+            fontSize: 26,
+            lineHeight: 36,
+          },
+        },
+      ],
       series: [
         {
           name: "投资任务书版",
-          zIndex: 100,
+          yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel0[this.tabTag],
           lineStyle: { color: "#57A6FB", width: 4 },
           type: "line",
@@ -305,6 +394,7 @@ export default class B1B extends Base {
         },
         {
           name: "最新过会版",
+          yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel1[this.tabTag],
           lineStyle: { color: "#A957FB", width: 4 },
           type: "line",
@@ -324,6 +414,7 @@ export default class B1B extends Base {
         },
         {
           name: "月度运维版",
+          yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel2[this.tabTag],
           lineStyle: { color: "#F7D14A", width: 4 },
           type: "line",
@@ -343,6 +434,7 @@ export default class B1B extends Base {
         },
         {
           name: "实际",
+          yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel3[this.tabTag],
           lineStyle: { color: "#57FBB6", width: 4 },
           markLine: {
@@ -370,7 +462,7 @@ export default class B1B extends Base {
                   // yAxis: "100%",
                   label: {
                     show: true,
-                    offset: [0, -46],
+                    offset: [0, -58],
                     position: "insideTop", // markArea中文字（name）位置
                     color: "#ffff", // markArea中文字（name）颜色
                     fontSize: 36,
