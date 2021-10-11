@@ -30,7 +30,7 @@
                   <ul>
                     <li>
                       <div class="label">位置区域：</div>
-                      <div class="con">暂未提供</div>
+                      <div class="con">{{ response.position }}</div>
                     </li>
                     <li>
                       <div class="label">问题描述：</div>
@@ -201,8 +201,8 @@ export default class C3A extends Base implements IFetch {
       width: 2181,
       height: 1226,
       autoplay: true,
-      poster: item.monitorId,
-      cameraId: item.monitorId,
+      poster: item.pictureUrl,
+      cameraId: item.cameraId,
     };
   }
 
@@ -245,12 +245,10 @@ export default class C3A extends Base implements IFetch {
    */
   nextOrderDetail() {
     if (this.orderIdList.length === 0) return;
-    if (this.orderIdIndex === -1) {
-      this.orderIdIndex = this.orderIdList.length - 1;
-    } else {
-      this.orderIdIndex -= 1;
+    this.orderIdIndex += 1;
+    if (this.orderIdIndex === this.orderIdList.length) {
+      this.orderIdIndex = 0;
     }
-
     console.log("this.nextOrderDetail", this.orderIdIndex);
   }
 
@@ -259,12 +257,16 @@ export default class C3A extends Base implements IFetch {
    */
   prevOrderDetail() {
     if (this.orderIdList.length === 0) return;
-    if (this.orderIdIndex === this.orderIdList.length) {
-      this.orderIdIndex = 0;
-    } else {
-      this.orderIdIndex += 1;
+    this.orderIdIndex -= 1;
+    if (this.orderIdIndex === -1) {
+      this.orderIdIndex = this.orderIdList.length - 1;
     }
     console.log("this.nextOrderDetail", this.orderIdIndex);
+  }
+
+  @Watch("orderIdIndex")
+  onOrderIdChange() {
+    this.fetch(true);
   }
 
   /**
@@ -275,7 +277,7 @@ export default class C3A extends Base implements IFetch {
   /**
    * 获取工单详情
    */
-  async fetch() {
+  async fetch(force?: boolean) {
     const orderId = this.getCurrentOrderId();
     // if (!orderId) return;
 
@@ -284,6 +286,7 @@ export default class C3A extends Base implements IFetch {
       params: {
         orderId,
       },
+      force,
     });
 
     if (response?.status === "ok") {
