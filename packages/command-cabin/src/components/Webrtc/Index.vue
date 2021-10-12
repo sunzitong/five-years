@@ -48,7 +48,7 @@ export default class Webrtc extends Vue {
   initPlayer(val?: PlayerConfig) {
     this.$nextTick(() => {
       const user = iwant.object(this.store?.currentUser);
-      // if (!user.phone && !user.oaAccount) return;
+      if (!user.phone && !user.oaAccount) return;
       const config = {
         accessChannel: "huiyan",
         watermark: `${user.oaAccount} ${user.phone}`,
