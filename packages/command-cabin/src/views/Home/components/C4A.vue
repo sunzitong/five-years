@@ -7,10 +7,10 @@
           <span>{{ isFold ? "点击展开" : "点击收起" }}</span>
           <Icon :type="isFold ? 'unfold' : 'fold'" :size="44" />
         </div>
-        <div class="detail">
+        <router-link class="detail" to="/supply-the-plate" tag="div">
           <span>供销存详情</span>
           <van-icon name="down" />
-        </div>
+        </router-link>
       </div>
       <div class="table-container" v-if="!isFold">
         <table>
@@ -38,7 +38,7 @@
               <td>{{ formatValue(response.regionName) }}</td>
               <td>{{ formatValue(response.ytdIncomeGap) }}</td>
               <td>{{ formatValue(response.forecastIncomeGap) }}</td>
-              <td class="warn">
+              <td>
                 {{ formatValue(response.openedAndPostponeIncomeGap) }}
               </td>
               <td>{{ formatValue(response.openedAndAheadIncomeGap) }}</td>

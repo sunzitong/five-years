@@ -188,9 +188,6 @@ export default class Header extends Base {
    * 动态标题
    */
   get title() {
-    if (this.$route.meta.name === "project") {
-      return "冠寓门店指挥中心";
-    }
     if (["home"].includes(this.$route.meta.name)) {
       if (this.store.global.dataLevel === DataLevels.GROUP) {
         return "冠寓总指挥中心";
@@ -198,13 +195,7 @@ export default class Header extends Base {
         return "冠寓区域指挥中心";
       }
     }
-    if (this.$route.meta.name === "build-the-plate") {
-      return "营造盘面详情";
-    }
-    if (this.$route.meta.name === "expansion-the-plate") {
-      return "拓展盘面详情";
-    }
-    return null;
+    return this.$route.meta.title;
   }
 }
 </script>

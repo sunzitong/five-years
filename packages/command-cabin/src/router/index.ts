@@ -23,6 +23,7 @@ const subRouter = [
     component: () => import("@/views/Home/Index.vue"),
     meta: {
       name: "home",
+      title: "冠寓总指挥中心",
     },
   },
   {
@@ -30,6 +31,7 @@ const subRouter = [
     component: () => import("@/views/Project/Index.vue"),
     meta: {
       name: "project",
+      title: "冠寓门店指挥中心",
     },
   },
   {
@@ -37,6 +39,7 @@ const subRouter = [
     component: () => import("@/views/BuildThePlate/Index.vue"),
     meta: {
       name: "build-the-plate",
+      title: "营造盘面详情",
     },
   },
   {
@@ -44,6 +47,15 @@ const subRouter = [
     component: () => import("@/views/ExpansionThePlate/Index.vue"),
     meta: {
       name: "expansion-the-plate",
+      title: "拓展盘面详情",
+    },
+  },
+  {
+    path: "supply-the-plate",
+    component: () => import("@/views/SupplyThePlate/Index.vue"),
+    meta: {
+      name: "supply-the-plate",
+      title: "供销存详情",
     },
   },
   {
