@@ -43,10 +43,12 @@ export default class Webrtc extends Vue {
         watermark: "jxxxx",
         autoplay: false,
         // cameraId: "00bcf8bbe82e0c36daa781e8568cd7d4",
-        cameraId: "16c01eaf613008b444a842d860911a17",
+        // cameraId: "0002c6450e0cd4025ef3ba3a9c712aac",
+        env: process.env.VUE_APP_BUILD,
         ...(val ?? {}),
       };
       this.destroyPlayer();
+      console.log("process", process.env);
       this.player = new window.Player(this.webrtc, config);
     });
   }

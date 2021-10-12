@@ -10,8 +10,8 @@
           <van-row gutter="20">
             <van-col v-for="item of pictrue" :key="item.projectId">
               <div class="picture">
-                  <!-- @click="toggleModal(item)" -->
                 <van-image
+                  @click="toggleModal(item)"
                   radius="5px 5px 0 0"
                   width="700"
                   height="394"
