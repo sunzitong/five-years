@@ -145,20 +145,21 @@ export default class B1B extends Base {
           } else {
             unit = "元";
           }
+          console.log(this.xTag);
 
-          if (params[0].axisValue < 2) {
-            params.forEach((el) => {
+          params.forEach((el) => {
+            if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
-                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+                // console.log(el.seriesName, el.value);
+                str += `<div class="tool-item1"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
               }
-            });
-          } else {
-            params.forEach((el) => {
+            } else {
               if (el.seriesName !== "实际") {
-                str += `<div class="tool-item"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>${unit}</span></div>`;
+                str += `<div class="tool-item2"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>${unit}</span></div>`;
               }
-            });
-          }
+            }
+          });
+
           return str + "</div>";
         },
       },
@@ -574,17 +575,19 @@ export default class B1B extends Base {
       margin-bottom: 8px;
     }
 
-    .tool-item:nth-child(2) span:nth-child(1) {
+    .tool-item1:nth-child(2) span:nth-child(1),
+    .tool-item2:nth-child(2) span:nth-child(1) {
       background: #57a6fb;
     }
-    .tool-item:nth-child(3) span:nth-child(1) {
+    .tool-item1:nth-child(3) span:nth-child(1),
+    .tool-item2:nth-child(3) span:nth-child(1) {
       background: #f7d14a;
     }
-    .tool-item:nth-child(4) span:nth-child(1) {
-      background: #a957fb;
-    }
-    .tool-item:nth-child(5) span:nth-child(1) {
+    .tool-item1:nth-child(4) span:nth-child(1) {
       background: #57fbb6;
+    }
+    .tool-item2:nth-child(4) span:nth-child(1) {
+      background: #a957fb;
     }
 
     span:nth-child(1) {
