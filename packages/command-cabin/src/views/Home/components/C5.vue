@@ -2,38 +2,54 @@
   <div class="container">
     <div class="content">
       <ul class="list">
-        <template v-for="item in [1, 2, 3, 4, 5]">
+        <template v-for="item in list">
           <li
             class="item animate__animated animate__fadeIn"
-            :key="item"
-            :class="{ active: item === activeYear }"
-            @click="activeYear = item"
+            :key="item.year"
+            :class="{ active: item.year === activeYear }"
+            @click="activeYear = item.year"
           >
             <div class="details">
-              <div class="year">2017</div>
+              <div class="year">{{ item.year }}</div>
               <ul class="part">
-                <li>新增获取间数：11230</li>
-                <li>新增开业间数：222</li>
+                <li>新增获取间数：{{ formatValue(item.newRoomNum) }}</li>
+                <li>新增开业间数：{{ formatValue(item.newOpenNum) }}</li>
               </ul>
               <ul class="part">
-                <li>净利润率：-15%</li>
-                <li>NPI利润率（中重）：99%</li>
-                <li>NPI利润率（轻）：3.1%</li>
+                <li>净利润率：{{ formatValue(item.profit) }}%</li>
+                <li>
+                  NPI利润率（中重）：{{ formatValue(item.npiProfitHeavy) }}%
+                </li>
+                <li>
+                  NPI利润率（轻）：{{ formatValue(item.npiProfitLight) }}%
+                </li>
               </ul>
               <ul class="part">
-                <li>收入总额：12000万元</li>
-                <li>收入达成率：120%</li>
-                <li>平均出租率：98%</li>
+                <li>收入总额：{{ formatValue(item.income) }}万元</li>
+                <li>收入达成率：{{ formatValue(item.incomeRate) }}%</li>
+                <li>平均出租率：{{ formatValue(item.rentRate) }}%</li>
               </ul>
             </div>
           </li>
         </template>
       </ul>
       <div class="tools">
-        <div class="btn btn--prev">
+        <div
+          class="btn btn--prev"
+          :class="{
+            disabled: startIndex <= 0 || itemLength >= response.length,
+          }"
+          @click="startIndex--"
+        >
           <van-icon name="arrow-left" />
         </div>
-        <div class="btn btn--next">
+        <div
+          class="btn btn--next"
+          :class="{
+            disabled: startIndex + itemLength >= response.length,
+          }"
+          @click="startIndex++"
+        >
           <van-icon name="arrow" />
         </div>
       </div>
@@ -64,7 +80,18 @@ import { iwant } from "@guanyu/shared";
 export default class C5 extends Base implements IFetch {
   response: EventsItemReturn[] = [];
 
+  startIndex = 0;
+
+  itemLength = 5;
+
   activeYear = 2;
+
+  get list() {
+    return this.response.slice(
+      this.startIndex,
+      this.startIndex + this.itemLength
+    );
+  }
 
   async fetch() {
     const response = await useStore(fetchEvents, {
@@ -202,7 +229,7 @@ export default class C5 extends Base implements IFetch {
       &.disabled {
         background: rgba(56, 196, 255, 0.1);
         color: #3e6997;
-        cursor: default;
+        pointer-events: none;
       }
     }
   }
