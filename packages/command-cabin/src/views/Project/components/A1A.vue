@@ -51,15 +51,15 @@
       <li
         class="item"
         v-if="
-          ['MiddleAsset', 'LightAsset'].includes(response.transactionModelType)
+          ['MediumAsset', 'LightAsset'].includes(response.transactionModelType)
         "
       >
         <div class="label">年限</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.term)) }}
+          {{ formatValue(sepNumber(response.years)) }}
           <span class="unit">
             {{
-              `年（${formatValue(response.projectBeginTime)}～${formatValue(
+              `年（${formatValue(response.projectStartTime)}～${formatValue(
                 response.projectEndTime
               )}）`
             }}
