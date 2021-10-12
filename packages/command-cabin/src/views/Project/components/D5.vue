@@ -63,7 +63,7 @@
         <div class="felx_details">
           <div class="flex_text">能源费用（收支差）</div>
           <div>
-            <span class="flex_value">{{ 23 }}</span>
+            <span class="flex_value">{{ sepNumber(resData.energyCost) }}</span>
             <span class="flex_unit">万</span>
           </div>
         </div>

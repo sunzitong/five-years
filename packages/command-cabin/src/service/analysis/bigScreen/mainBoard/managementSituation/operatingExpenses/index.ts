@@ -41,12 +41,14 @@ export interface OperatingExpensesReturn {
   allCost: number;
   allCostRatio: number;
   yuanAverageCost: number;
+  peopleAndRoomRatio: string;
+  energyCost: number;
 }
 
 /**
  * 经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/11 13:54:13
+ * @updateAt 2021/10/12 10:49:21
  * @method GET
  */
 export const fetchOperatingExpenses = (

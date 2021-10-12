@@ -54,26 +54,28 @@
       </van-row>
       <div class="bottom_text_group">
         <span class="bottom_text">租金成本</span>
-        <span class="bottom_value">{{ resData.rentCost }}</span>
+        <span class="bottom_value">{{ sepNumber(resData.rentCost) }}</span>
         <span class="bottom_text">万</span>
         <span class="bottom_value">{{ resData.rentCostRatio }}%</span>
       </div>
       <div class="flex_box_group">
         <div class="flex_box">
           <div>入房比</div>
-          <div class="flex_value">{{ "1:30" }}</div>
+          <div class="flex_value">{{ resData.peopleAndRoomRatio }}</div>
         </div>
         <div class="flex_box">
           <div>元均收入</div>
           <div>
-            <span class="flex_value">{{ 7252 }}</span>
+            <span class="flex_value">
+              {{ sepNumber(resData.yuanAverageCost) }}
+            </span>
             <span>元</span>
           </div>
         </div>
         <div class="flex_box">
           <div>能源费用（收支差）</div>
           <div>
-            <span class="flex_value">{{ 23 }}</span>
+            <span class="flex_value">{{ sepNumber(resData.energyCost) }}</span>
             <span>万</span>
           </div>
         </div>
