@@ -3,7 +3,35 @@
     <table class="table" cellspacing="0">
       <thead>
         <tr>
-          <th v-for="opt in options" :key="opt.name">{{ opt.text }}</th>
+          <template v-for="(opt, index) in options">
+            <th
+              :key="opt.name"
+              v-if="index < 3 || index > 6"
+              rowspan="2"
+              :class="{ 'line--left': index === options.length - 1 }"
+            >
+              {{ opt.text }}
+            </th>
+            <th
+              :key="opt.name"
+              v-if="index === 3"
+              colspan="4"
+              class="line--left line--bottom"
+            >
+              已开业项目收入缺口
+            </th>
+          </template>
+        </tr>
+        <tr>
+          <template v-for="(opt, index) in options">
+            <th
+              :key="opt.name"
+              v-if="index >= 3 && index <= 6"
+              :class="{ 'line--left': index === 3 }"
+            >
+              {{ opt.text }}
+            </th>
+          </template>
         </tr>
         <tr class="line">
           <th :colspan="options.length" class="line"></th>
@@ -25,16 +53,10 @@
     </table>
     <div class="footer">
       <Select
-        name="YearRange"
-        title="成本上线时间"
-        v-model="yearRange"
-        @input="fetch"
-      ></Select>
-      <Select
         name="Options"
-        :options="risk"
-        v-model="riskValue"
-        title="目标成本差异率风险"
+        :options="years"
+        v-model="yearValue"
+        title="年份"
         @input="fetch"
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
@@ -51,14 +73,9 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
-import { StoreKey, useStore } from "@/store";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
-import {
-  CostAnalysisListItemReturn,
-  fetchCostAnalysisList,
-} from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysisList";
 import { iwant } from "@guanyu/shared";
 
 /**成本列表 */
@@ -66,38 +83,34 @@ import { iwant } from "@guanyu/shared";
   components: { Select, Pagination },
 })
 export default class TheList extends Base implements IFetch {
-  yearRange: number[] = [];
-
-  created() {
-    const year = dayjs().year();
-    this.yearRange = [year, year];
-  }
-
   /**
-   * 风险类型 Delay("延期风险"), CrossYear("跨年风险"), NoRisk("无风险")，默认全部
+   * 当前年和上一年
    */
-  risk = {
-    Default: "全部",
-    True: "有风险",
-    False: "无风险",
-  };
-  riskValue = "Default";
-
-  options: { name: keyof CostAnalysisListItemReturn; text: string }[] = [
-    { name: "phId", text: "分期ID" },
-    { name: "projectName", text: "项目名称" },
-    { name: "city", text: "城市" },
-    { name: "approvedDate", text: "目标成本上线时间" },
-    { name: "targetCostNonTax", text: "总目标成本" },
-    { name: "dynamicCostNonTax", text: "总动态成本" },
-    { name: "diff", text: "目标成本差异率" },
-  ];
-
+  years: Record<string, number> = {};
+  yearValue = "";
   pageNum = 1;
   pageSize = 20;
+  response: any[] = [];
 
-  response: CostAnalysisListItemReturn[] = [];
+  options: { name: any; text: string }[] = [
+    { name: "phId", text: "区域" },
+    { name: "projectName", text: "YTD收入缺口" },
+    { name: "city", text: "预估获取项目收入缺口" },
+    { name: "approvedDate1", text: "延期开业" },
+    { name: "approvedDate2", text: "提前开业" },
+    { name: "approvedDate3", text: "正常开业" },
+    { name: "approvedDate4", text: "中止" },
+    { name: "targetCostNonTax", text: "解约&终止项目收入缺口" },
+  ];
 
+  created() {
+    const now = dayjs();
+    this.years = {
+      [now.format("YYYYMM")]: now.year(),
+      [now.format("YYYY12")]: now.year() - 1,
+    };
+    this.yearValue = now.format("YYYYMM");
+  }
   /**
    * 前端翻页
    */
@@ -110,33 +123,7 @@ export default class TheList extends Base implements IFetch {
    * 自动触发 重复调用
    */
   async fetch() {
-    let isRisk: boolean | undefined = undefined;
-    if (this.riskValue === "True") {
-      isRisk = true;
-    }
-    if (this.riskValue === "False") {
-      isRisk = false;
-    }
-    const response = await useStore(fetchCostAnalysisList, {
-      key: StoreKey.CostAnalysisList,
-      params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
-        approvedDateFrom: dayjs()
-          .year(this.yearRange[0])
-          .startOf("y")
-          .format("YYYY-MM-DD HH:mm:ss"),
-        approvedDateTo: dayjs()
-          .year(this.yearRange[1])
-          .endOf("y")
-          .format("YYYY-MM-DD HH:mm:ss"),
-        isRisk,
-      },
-    });
-    if (response?.status === "ok") {
-      this.response = iwant.array(response.data);
-    }
-    return response;
+    this.response = [];
   }
 
   /**
@@ -167,9 +154,16 @@ export default class TheList extends Base implements IFetch {
     width: 100%;
     white-space: pre-line;
     text-align: center;
+    table-layout: fixed;
   }
   thead {
     color: #fff;
+    .line--left {
+      border-left: 1px solid #445da5;
+    }
+    .line--bottom {
+      border-bottom: 1px solid #445da5;
+    }
   }
   tbody {
     max-height: 2200px;
