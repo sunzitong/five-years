@@ -29,7 +29,7 @@ import {
   FinanceLineReturn,
 } from "@/service/analysis/bigScreen/projectBoard/finance/financeLine";
 import B1A from "./B1A.vue";
-import { AnyObject, iwant } from "@guanyu/shared";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: { B1A },
@@ -113,9 +113,17 @@ export default class B1 extends Base implements IFetch {
       if (transactionModel === "LightAsset") {
         // 构建月度横坐标
         let monthXLabel: number[] = [];
-        infoMap.month1.forEach((el: AnyObject) => {
-          monthXLabel.push(el.dataNum);
-        });
+        const list = (monthNum: number) => [...new Array(monthNum).keys()];
+
+        let monthNum = Math.max(
+          infoMap.month1 && infoMap.month1.length,
+          infoMap.month2 && infoMap.month2.length,
+          infoMap.month3 && infoMap.month3.length
+        );
+        if (monthNum > 0) {
+          monthXLabel = list(monthNum);
+        }
+
         this.xLabel.push(this.monthXLabel);
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
 
@@ -140,25 +148,28 @@ export default class B1 extends Base implements IFetch {
               data3: (number | string)[] = []; // 折线图i标签j中月度运维版
             // 第j个标签
             let prop = propMap[i][j];
-            infoMap?.month1.forEach((el) => {
-              // 第k条折线
-              data0.push(el[prop]);
-            });
-            infoMap?.month2.forEach((el) => {
-              data1.push(el[prop]);
-            });
-            infoMap?.month3.forEach((el) => {
-              if (el.dataNum < (month as number)) {
-                data2.push("-");
-                data3.push(el[prop]);
-              } else if (el.dataNum === (month as number)) {
-                data2.push(el[prop]);
-                data3.push(el[prop]);
-              } else {
-                data2.push(el[prop]);
-                data3.push("-");
-              }
-            });
+            infoMap.month1 &&
+              infoMap?.month1.forEach((el) => {
+                // 第k条折线
+                data0.push(el[prop]);
+              });
+            infoMap.month2 &&
+              infoMap?.month2.forEach((el) => {
+                data1.push(el[prop]);
+              });
+            infoMap.month3 &&
+              infoMap?.month3.forEach((el) => {
+                if (el.dataNum < (month as number)) {
+                  data2.push("-");
+                  data3.push(el[prop]);
+                } else if (el.dataNum === (month as number)) {
+                  data2.push(el[prop]);
+                  data3.push(el[prop]);
+                } else {
+                  data2.push(el[prop]);
+                  data3.push("-");
+                }
+              });
             pic0.push(data0);
             pic1.push(data1);
             pic2.push(data2);
@@ -174,12 +185,26 @@ export default class B1 extends Base implements IFetch {
         // 构建横坐标
         let monthXLabel: number[] = [],
           yearXLabel: number[] = [];
-        infoMap.month1.forEach((el: AnyObject) => {
-          monthXLabel.push(el.dataNum);
-        });
-        infoMap.year1.forEach((el: AnyObject) => {
-          yearXLabel.push(el.dataNum);
-        });
+        const list = (monthNum: number) => [...new Array(monthNum).keys()];
+
+        let monthNum = Math.max(
+          infoMap.month1 && infoMap.month1.length,
+          infoMap.month2 && infoMap.month2.length,
+          infoMap.month3 && infoMap.month3.length
+        );
+        if (monthNum > 0) {
+          monthXLabel = list(monthNum);
+        }
+
+        let yearNum = Math.max(
+          infoMap.year1 && infoMap.year1.length,
+          infoMap.year2 && infoMap.year2.length,
+          infoMap.year3 && infoMap.year3.length
+        );
+        if (yearNum > 0) {
+          yearXLabel = list(yearNum);
+        }
+
         this.xLabel.push(monthXLabel, yearXLabel);
 
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
@@ -209,44 +234,50 @@ export default class B1 extends Base implements IFetch {
             // 第j个标签
             let prop = propMap[i][j];
             if (prop === "cost") {
-              infoMap?.year1.forEach((el) => {
-                data0.push(el[prop]);
-              });
-              infoMap?.year2.forEach((el) => {
-                data1.push(el[prop]);
-              });
-              infoMap?.year3.forEach((el) => {
-                if (el.dataNum < (year as number)) {
-                  data2.push("-");
-                  data3.push(el[prop]);
-                } else if (el.dataNum === (year as number)) {
-                  data2.push(el[prop]);
-                  data3.push(el[prop]);
-                } else {
-                  data2.push(el[prop]);
-                  data3.push("-");
-                }
-              });
+              infoMap.year1 &&
+                infoMap?.year1.forEach((el) => {
+                  data0.push(el[prop]);
+                });
+              infoMap.year2 &&
+                infoMap?.year2.forEach((el) => {
+                  data1.push(el[prop]);
+                });
+              infoMap.year3 &&
+                infoMap?.year3.forEach((el) => {
+                  if (el.dataNum < (year as number)) {
+                    data2.push("-");
+                    data3.push(el[prop]);
+                  } else if (el.dataNum === (year as number)) {
+                    data2.push(el[prop]);
+                    data3.push(el[prop]);
+                  } else {
+                    data2.push(el[prop]);
+                    data3.push("-");
+                  }
+                });
             } else {
-              infoMap?.month1.forEach((el) => {
-                // 第k条折线
-                data0.push(el[prop]);
-              });
-              infoMap?.month2.forEach((el) => {
-                data1.push(el[prop]);
-              });
-              infoMap?.month3.forEach((el) => {
-                if (el.dataNum < (month as number)) {
-                  data2.push("-");
-                  data3.push(el[prop]);
-                } else if (el.dataNum === (month as number)) {
-                  data2.push(el[prop]);
-                  data3.push(el[prop]);
-                } else {
-                  data2.push(el[prop]);
-                  data3.push("-");
-                }
-              });
+              infoMap.month1 &&
+                infoMap?.month1.forEach((el) => {
+                  // 第k条折线
+                  data0.push(el[prop]);
+                });
+              infoMap.month2 &&
+                infoMap?.month2.forEach((el) => {
+                  data1.push(el[prop]);
+                });
+              infoMap.month3 &&
+                infoMap?.month3.forEach((el) => {
+                  if (el.dataNum < (month as number)) {
+                    data2.push("-");
+                    data3.push(el[prop]);
+                  } else if (el.dataNum === (month as number)) {
+                    data2.push(el[prop]);
+                    data3.push(el[prop]);
+                  } else {
+                    data2.push(el[prop]);
+                    data3.push("-");
+                  }
+                });
             }
             pic0.push(data0);
             pic1.push(data1);
@@ -263,12 +294,26 @@ export default class B1 extends Base implements IFetch {
         // 构建横坐标
         let monthXLabel: number[] = [],
           yearXLabel: number[] = [];
-        infoMap.month1.forEach((el: AnyObject) => {
-          monthXLabel.push(el.dataNum);
-        });
-        infoMap.year1.forEach((el: AnyObject) => {
-          yearXLabel.push(el.dataNum);
-        });
+        const list = (monthNum: number) => [...new Array(monthNum).keys()];
+
+        let monthNum = Math.max(
+          infoMap.month1 && infoMap.month1.length,
+          infoMap.month2 && infoMap.month2.length,
+          infoMap.month3 && infoMap.month3.length
+        );
+        if (monthNum > 0) {
+          monthXLabel = list(monthNum);
+        }
+
+        let yearNum = Math.max(
+          infoMap.year1 && infoMap.year1.length,
+          infoMap.year2 && infoMap.year2.length,
+          infoMap.year3 && infoMap.year3.length
+        );
+        if (yearNum > 0) {
+          yearXLabel = list(yearNum);
+        }
+
         this.xLabel.push(monthXLabel, yearXLabel);
 
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
@@ -298,44 +343,50 @@ export default class B1 extends Base implements IFetch {
             // 第j个标签
             let prop = propMap[i][j];
             if (prop === "cost") {
-              infoMap?.year1.forEach((el) => {
-                data0.push(el[prop]);
-              });
-              infoMap?.year2.forEach((el) => {
-                data1.push(el[prop]);
-              });
-              infoMap?.year3.forEach((el) => {
-                if (el.dataNum < (year as number)) {
-                  data2.push("-");
-                  data3.push(el[prop]);
-                } else if (el.dataNum === (month as number)) {
-                  data2.push(el[prop]);
-                  data3.push(el[prop]);
-                } else {
-                  data2.push(el[prop]);
-                  data3.push("-");
-                }
-              });
+              infoMap.year1 &&
+                infoMap?.year1.forEach((el) => {
+                  data0.push(el[prop]);
+                });
+              infoMap.year2 &&
+                infoMap?.year2.forEach((el) => {
+                  data1.push(el[prop]);
+                });
+              infoMap.year3 &&
+                infoMap?.year3.forEach((el) => {
+                  if (el.dataNum < (year as number)) {
+                    data2.push("-");
+                    data3.push(el[prop]);
+                  } else if (el.dataNum === (month as number)) {
+                    data2.push(el[prop]);
+                    data3.push(el[prop]);
+                  } else {
+                    data2.push(el[prop]);
+                    data3.push("-");
+                  }
+                });
             } else {
-              infoMap?.month1.forEach((el) => {
-                // 第k条折线
-                data0.push(el[prop]);
-              });
-              infoMap?.month2.forEach((el) => {
-                data1.push(el[prop]);
-              });
-              infoMap?.month3.forEach((el) => {
-                if (el.dataNum < (month as number)) {
-                  data2.push("-");
-                  data3.push(el[prop]);
-                } else if (el.dataNum === (month as number)) {
-                  data2.push(el[prop]);
-                  data3.push(el[prop]);
-                } else {
-                  data2.push(el[prop]);
-                  data3.push("-");
-                }
-              });
+              infoMap.month1 &&
+                infoMap?.month1.forEach((el) => {
+                  // 第k条折线
+                  data0.push(el[prop]);
+                });
+              infoMap.month2 &&
+                infoMap?.month2.forEach((el) => {
+                  data1.push(el[prop]);
+                });
+              infoMap.month3 &&
+                infoMap?.month3.forEach((el) => {
+                  if (el.dataNum < (month as number)) {
+                    data2.push("-");
+                    data3.push(el[prop]);
+                  } else if (el.dataNum === (month as number)) {
+                    data2.push(el[prop]);
+                    data3.push(el[prop]);
+                  } else {
+                    data2.push(el[prop]);
+                    data3.push("-");
+                  }
+                });
             }
             pic0.push(data0);
             pic1.push(data1);
@@ -360,7 +411,7 @@ export default class B1 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.tabList = this.tabLabels[
         iwant.string(this.resData.transactionModel)
       ];
