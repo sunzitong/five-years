@@ -7,6 +7,7 @@
         :show-indicators="false"
         @change="changeHandle"
         lazy-render
+        :style="`height: ${webrtcConfig.height}px`"
       >
         <van-swipe-item v-for="(item, index) of response" :key="index">
           <div class="pictures">
@@ -112,7 +113,7 @@ export default class C1 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
     }
-    this.empty = !!this.response.length;
+    this.empty = !this.response.length;
     return response;
   }
 }
