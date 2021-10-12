@@ -123,6 +123,7 @@
       }"
       :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
       @click="circleClicked(item)"
+      v-show="showCircle"
     >
       <van-circle
         v-model="item.currentRate"
@@ -256,6 +257,13 @@ export default class C4 extends Base implements IFetch {
    */
   mapData: MapData = [];
 
+  showCircle = false;
+
+  @Watch("levelValue")
+  levelValueChanged() {
+    this.showCircle = false;
+  }
+
   /**
    * 请求圆圈数据
    * 参数不是直接使用global dateLevel
@@ -277,6 +285,7 @@ export default class C4 extends Base implements IFetch {
       this.mapData = data;
     }
     this.setOptionBar();
+    this.showCircle = true;
     return response;
   }
 
