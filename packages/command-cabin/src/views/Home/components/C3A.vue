@@ -29,10 +29,6 @@
                   <h3>{{ response.projectName }}</h3>
                   <ul>
                     <li>
-                      <div class="label">位置区域：</div>
-                      <div class="con">{{ response.position }}</div>
-                    </li>
-                    <li>
                       <div class="label">问题描述：</div>
                       <div class="con">{{ response.problem }}</div>
                     </li>
