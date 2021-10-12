@@ -64,7 +64,7 @@ export class Base extends Mixins(MixStore) {
           updateLoading(false);
           console.log("已更新loading", this.$options.name);
           // 设置数据来源
-          if (response?.data?.dataSource && response?.data?.updateTime) {
+          if (response?.data?.dataSource || response?.data?.updateTime) {
             this.setCardDataSource({
               from: response.data.dataSource,
               time: response.data.updateTime,
