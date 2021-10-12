@@ -174,7 +174,7 @@ export default class B1A extends Base implements IFetch {
         },
       ],
       grid: {
-        top: "6%",
+        top: "13%",
         right: "10%",
         bottom: "8%",
         containLabel: true,
