@@ -2,6 +2,7 @@
   <div ref="webrtc" class="app-webrtc"></div>
 </template>
 <script lang="ts">
+import { getEnvHost, iwant } from "@guanyu/shared";
 import { Component, Prop, Ref, Vue, Watch } from "vue-property-decorator";
 import { PlayerConfig } from "./webrtc.type";
 export type { PlayerConfig } from "./webrtc.type";
@@ -34,21 +35,31 @@ export default class Webrtc extends Vue {
   }
 
   /**
+   * 用户数据更新
+   */
+  @Watch("store.currentUser", { deep: true, immediate: true })
+  onCurrentUserChange() {
+    this.initPlayer(this.config);
+  }
+
+  /**
    * 初始化播放器
    */
   initPlayer(val?: PlayerConfig) {
     this.$nextTick(() => {
+      const user = iwant.object(this.store?.currentUser);
+      // if (!user.phone && !user.oaAccount) return;
       const config = {
         accessChannel: "huiyan",
-        watermark: "jxxxx",
+        watermark: `${user.oaAccount} ${user.phone}`,
         autoplay: false,
         // cameraId: "00bcf8bbe82e0c36daa781e8568cd7d4",
-        // cameraId: "0002c6450e0cd4025ef3ba3a9c712aac",
-        env: process.env.VUE_APP_BUILD,
+        env: getEnvHost() === "production" ? "prod" : "uat",
         ...(val ?? {}),
+        cameraId: "0002c6450e0cd4025ef3ba3a9c712aac",
       };
       this.destroyPlayer();
-      console.log("process", process.env);
+      console.log(getEnvHost());
       this.player = new window.Player(this.webrtc, config);
     });
   }
