@@ -116,7 +116,7 @@ import Animationend from "@/components/Animationend/Index.vue";
 import {
   EarlyWarningItemReturn,
   fetchEarlyWarning,
-} from "@/service/analysis/bigScreen/mainBoard/center/earlyWarning";
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/earlyWarning";
 import { WarningOptStages } from "@/service/analysis/commandCabin/publicEnum/enums";
 import { iwant } from "@guanyu/shared";
 
@@ -228,7 +228,6 @@ export default class E1 extends Base implements IFetch {
       params: {
         dataLevel: this.store.global.dataLevel,
         levelId: this.store.global.orgTree.orgId,
-        dateScope: this.store.global.dateScope,
         stage: this.stage.join(","),
         riskDegree: this.riskDegree.join(","),
       },

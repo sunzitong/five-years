@@ -21,9 +21,9 @@ export interface SupplyAndMarketingSaveParams {
   regionId: number;
 
   /**
-   * 数据范围（年累，月累）
+   * 数据范围（年累，月累）【但是目前需求数据只有年累级别】
    */
-  dateScope: unknown;
+  dateScope?: unknown;
 
   /**
    * 地区名字
@@ -48,7 +48,7 @@ export interface SupplyAndMarketingSaveReturn {
 /**
  * 主屏-供销存
  * @createBy zhangyao03
- * @updateAt 2021/10/9 16:23:46
+ * @updateAt 2021/10/12 16:8:39
  * @method GET
  */
 export const fetchSupplyAndMarketingSave = (

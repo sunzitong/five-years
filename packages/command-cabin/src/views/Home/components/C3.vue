@@ -91,7 +91,6 @@ export default class C3 extends Base implements IFetch {
   toggleModal(item: MonitorListItemReturn) {
     if (item.orderId && !this.show) {
       this.orderId = item.orderId;
-      console.log(this.orderId);
     } else {
       this.orderId = null;
     }
