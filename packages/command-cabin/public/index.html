@@ -14,6 +14,42 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <!-- <script src="//res.wx.qq.com/open/js/jweixin-1.6.0.js"></script> -->
-    <script src="https://static-iot.longfor.com/lfplayer-v2/0.5.2.4/js/Player.min.js?t=<%=Date.now()%>" defer></script>
+    <script
+      src="https://static-iot.longfor.com/lfplayer-v2/0.5.2.4/js/Player.min.js?t=<%=Date.now()%>"
+      defer
+    ></script>
+
+    <% if (process.env.NODE_ENV !== 'development') { %>
+    <script
+      id="MAIAAPM"
+      src="https://s.longfor.com/public/js/maia-apm/1.0/maia-apm-sdk.js"
+    ></script>
+    <script>
+      (function () {
+        try {
+          // apm 配置
+          var APM_CONFIG = {
+            "oms.gyapt.cn": {
+              key: "QlIiNQeph-8", // 应⽤识别key，必须
+            },
+            "oms.test109.gyapt.cn": {
+              key: "Qj2XNsuKwJ4", // 应⽤识别key，必须
+              debug: true, // 是否测试环境,默认生产环境
+            },
+            "oms.test108.gyapt.cn": {
+              key: "ummC6oXRvUc", // 应⽤识别key，必须
+              debug: true, // 是否测试环境,默认生产环境
+            },
+          }[location.host] || { key: "false" };
+
+          if (APM_CONFIG && MAIAAPM && MAIAAPM.init) {
+            MAIAAPM.init(APM_CONFIG);
+          }
+        } catch (e) {
+          console.log("[apm]", e);
+        }
+      })();
+    </script>
+    <% } %>
   </body>
 </html>

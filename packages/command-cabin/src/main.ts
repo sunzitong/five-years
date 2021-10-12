@@ -23,6 +23,14 @@ import Spin from "@/components/Spin";
 Vue.use(Spin);
 // console
 Vue.config.productionTip = false;
+
+// 监控代码开始
+if (window.MAIAAPM && window.MAIAAPM.wrapVueRouter) {
+  window.MAIAAPM.wrapVueRouter(router, {
+    endDelay: 500, // 切换路由后延迟结束时间
+  });
+}
+
 // 实例
 const VIEW = new Vue({
   data: store,

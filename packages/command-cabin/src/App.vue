@@ -199,6 +199,8 @@ export default class App extends Mixins(MixStore) {
       this.store.global.project = resProjectList.data[0];
       this.appLoading = false;
     }
+    // window.MAIAAPM?.setUid(this.store.currentUser?.userId);
+    window.MAIAAPM?.setUid(88888888);
   }
 
   /**
