@@ -7,6 +7,7 @@
         :show-indicators="false"
         @change="changeHandle"
         lazy-render
+        :style="`height: ${webrtcConfig.height}px`"
       >
         <van-swipe-item v-for="(item, index) of response" :key="index">
           <div class="pictures">
