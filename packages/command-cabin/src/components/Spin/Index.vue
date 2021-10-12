@@ -6,7 +6,10 @@
     <div class="empty" v-else-if="empty">
       <NoData />
     </div>
-    <div class="spin-content" :style="{ opacity: loading || empty ? 0 : null }">
+    <div
+      class="spin-content"
+      :style="{ visibility: loading || empty ? 'hidden' : null }"
+    >
       <slot></slot>
     </div>
   </div>
