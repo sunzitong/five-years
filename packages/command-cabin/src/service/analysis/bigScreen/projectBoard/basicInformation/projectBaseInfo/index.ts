@@ -38,12 +38,13 @@ export interface ProjectBaseInfoReturn {
   years: number;
   projectStartTime: Date;
   projectEndTime: Date;
+  dataSource: string;
 }
 
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/10/9 10:9:43
+ * @updateAt 2021/10/12 14:34:57
  * @method GET
  */
 export const fetchProjectBaseInfo = (

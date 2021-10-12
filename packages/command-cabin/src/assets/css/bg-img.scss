@@ -31,6 +31,8 @@ $img-map: (
   "china": "china.png",
   "mopt-0": "mopt-0.png",
   "mopt-1": "mopt-1.png",
+  "track-1": "track-1.png",
+  "track-2": "track-2.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
@@ -40,3 +42,6 @@ $img-map: (
 }
 
 $circle-border: $VUE_APP_BASE_IMG + map-get($img-map, "circle-border");
+// 大事记背景
+$track-1:$VUE_APP_BASE_IMG + map-get($img-map, "track-1");
+$track-2:$VUE_APP_BASE_IMG + map-get($img-map, "track-2");

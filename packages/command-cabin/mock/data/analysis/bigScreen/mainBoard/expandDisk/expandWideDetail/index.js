@@ -4,7 +4,7 @@
  *
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/10/8 18:40:51
+ * @updateAt 2021/10/12 14:47:37
  * @method GET
  */
 
@@ -24,7 +24,7 @@ exports.response = {
       {
         id: 1, //主键ID
         projectCode: "", //项目编码
-        create_time: "", //立项时间
+        createTime: "", //立项时间
         grade: "", //等级
         gradeDesc: "", //等级对应的描述
         existingStatus: "", //现有状态

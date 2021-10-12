@@ -101,7 +101,7 @@ export default class TheExpandWideDetail extends Base implements IFetch {
 
   options: { name: keyof List; text: string }[] = [
     { name: "projectCode", text: "项目编码" },
-    { name: "create_time", text: "立项时间" },
+    { name: "createTime", text: "立项时间" },
     { name: "grade", text: "等级" },
     { name: "gradeDesc", text: "等级对应的名称" },
     { name: "existingStatus", text: "现有状态" },
