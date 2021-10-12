@@ -1,57 +1,57 @@
 <template>
-  <Spin class="pre-warning" :loading="loading" :empty="empty">
-    <div class="table-wrapper">
-      <van-row type="flex" align="center" style="margin-bottom: 47px">
-        <van-col span="2" class="cus-label">预警阶段</van-col>
-        <van-col span="10" class="cus-checkbox-wrapper">
-          <label v-for="item of warningOptStages" :key="item.name">
-            <input
-              class="cus-checkbox"
-              name="stage"
-              :value="item.name"
-              @change="fetch"
-              type="checkbox"
-              v-model="stage"
+  <div class="table-wrapper">
+    <van-row type="flex" align="center" style="margin-bottom: 47px">
+      <van-col span="2" class="cus-label">预警阶段</van-col>
+      <van-col span="10" class="cus-checkbox-wrapper">
+        <label v-for="item of warningOptStages" :key="item.name">
+          <input
+            class="cus-checkbox"
+            name="stage"
+            :value="item.name"
+            @change="fetch"
+            type="checkbox"
+            v-model="stage"
+          />
+          <span class="type1">
+            {{ item.desc }}
+            <em><Icon type="checked" /></em>
+          </span>
+        </label>
+      </van-col>
+      <van-col span="2" class="cus-label">预警阶段</van-col>
+      <van-col span="10" class="cus-checkbox-wrapper">
+        <label v-for="(m, i) of riskDegrees" :key="m.name">
+          <input
+            class="cus-checkbox"
+            name="riskDegree"
+            type="checkbox"
+            @change="fetch"
+            :value="m.name"
+            v-model="riskDegree"
+          />
+          <span class="type2">
+            <Icon
+              :size="54"
+              type="warning"
+              v-for="(n, index) of 3"
+              :color="index + 1 <= 3 - i ? ['#FF3980'] : ['#6F6F6F']"
+              :key="n"
             />
-            <span class="type1">
-              {{ item.desc }}
-              <em><Icon type="checked" /></em>
-            </span>
-          </label>
-        </van-col>
-        <van-col span="2" class="cus-label">预警阶段</van-col>
-        <van-col span="10" class="cus-checkbox-wrapper">
-          <label v-for="(m, i) of riskDegrees" :key="m.name">
-            <input
-              class="cus-checkbox"
-              name="riskDegree"
-              type="checkbox"
-              @change="fetch"
-              :value="m.name"
-              v-model="riskDegree"
-            />
-            <span class="type2">
-              <Icon
-                :size="54"
-                type="warning"
-                v-for="(n, index) of 3"
-                :color="index + 1 <= 3 - i ? ['#FF3980'] : ['#6F6F6F']"
-                :key="n"
-              />
-              <em><Icon type="checked" /></em>
-            </span>
-          </label>
-        </van-col>
-      </van-row>
-      <table class="table" cellspacing="0">
-        <thead>
-          <tr>
-            <th v-for="item of columns" :key="item.dataIndex">
-              {{ item.title }}
-            </th>
-          </tr>
-        </thead>
-      </table>
+            <em><Icon type="checked" /></em>
+          </span>
+        </label>
+      </van-col>
+    </van-row>
+    <table class="table" cellspacing="0">
+      <thead>
+        <tr>
+          <th v-for="item of columns" :key="item.dataIndex">
+            {{ item.title }}
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <Spin class="pre-warning" :loading="loading" :empty="empty">
       <Animationend
         key="1"
         :height="500"
@@ -61,7 +61,7 @@
         <template v-slot="{ list }">
           <table class="table" cellspacing="0">
             <tbody>
-              <tr animated v-for="item of list" :key="item.projectId">
+              <tr animated v-for="(item, index) of list" :key="index">
                 <td v-for="o of columns" :key="o.dataIndex">
                   <div :class="o.dataIndex">
                     <template v-if="o.dataIndex === columns[4].dataIndex">
@@ -100,8 +100,8 @@
           </table>
         </template>
       </Animationend>
-    </div>
-  </Spin>
+    </Spin>
+  </div>
 </template>
 
 <script lang="ts">
@@ -321,7 +321,7 @@ export default class E1 extends Base implements IFetch {
 <style lang="scss" scoped>
 $step-color: #0e173c;
 .pre-warning {
-  height: 769px;
+  height: 369px;
 }
 .table-wrapper {
   padding-top: 47px;
