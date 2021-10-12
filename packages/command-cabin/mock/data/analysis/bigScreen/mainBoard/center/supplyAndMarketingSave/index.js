@@ -4,7 +4,7 @@
  *
  * 主屏-供销存
  * @createBy zhangyao03
- * @updateAt 2021/10/9 16:23:46
+ * @updateAt 2021/10/12 16:8:39
  * @method GET
  */
 
@@ -16,7 +16,7 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    regionName: "北京地区", //新增获取房间数
+    regionName: "北京地区", //区域名称
     ytdIncomeGap: 111.1, //YTD收入缺口(万元)
     forecastIncomeGap: 10.1, //预估获取项目收入缺口(万元)
     contractTerminationIncomeGap: 98.1, //解约&终止项目收入缺口(万元)
