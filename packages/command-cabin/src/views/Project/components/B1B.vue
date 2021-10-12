@@ -203,7 +203,7 @@ export default class B1B extends Base {
       },
       grid: {
         top: "28%",
-        left: "3%",
+        left: "8%",
         right: "6%",
         bottom: "8%",
         //是否显示刻度标签
