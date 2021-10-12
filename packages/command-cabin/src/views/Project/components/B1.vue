@@ -29,7 +29,7 @@ import {
   FinanceLineReturn,
 } from "@/service/analysis/bigScreen/projectBoard/finance/financeLine";
 import B1A from "./B1A.vue";
-import { AnyObject, iwant } from "@guanyu/shared";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: { B1A },
