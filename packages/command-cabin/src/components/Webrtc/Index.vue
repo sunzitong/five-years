@@ -35,7 +35,7 @@ export default class Webrtc extends Base {
     this.$nextTick(() => {
       const user = iwant.object(this.store?.currentUser);
       const config = {
-        accessChannel: "huiyan",
+        accessChannel: "c3-zhihuicang",
         watermark: `${user.oaAccount} ${user.phone}`,
         autoplay: false,
         // cameraId: "00bcf8bbe82e0c36daa781e8568cd7d4",
