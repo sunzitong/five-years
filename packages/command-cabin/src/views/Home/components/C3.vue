@@ -115,6 +115,9 @@ export default class C3 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
     }
+
+    this.empty = !this.response.length;
+
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.fetch(true);
@@ -132,6 +135,7 @@ $problem-height: 74px;
 
 .pictrues-wrapper {
   padding: 25px;
+  height: 500px;
 }
 .pictures {
   display: flex;
