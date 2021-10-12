@@ -453,6 +453,7 @@ export default class C4 extends Base implements IFetch {
   width: 170px;
   height: 170px;
   cursor: pointer;
+
   &::v-deep {
     .van-circle {
       width: 100%;
@@ -462,8 +463,13 @@ export default class C4 extends Base implements IFetch {
   &__text {
     @extend %flex-center;
     flex-flow: column nowrap;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    border-radius: 50%;
+
+    background: rgba(5, 11, 36, 0.1);
+    backdrop-filter: blur(10px);
     color: #acbfdc;
     white-space: nowrap;
     position: relative;
