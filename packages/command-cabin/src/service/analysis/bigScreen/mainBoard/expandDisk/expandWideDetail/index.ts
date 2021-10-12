@@ -72,7 +72,7 @@ export interface ExpandWideDetailReturn {
 export interface List {
   id: number;
   projectCode: string;
-  create_time: string;
+  createTime: string;
   grade: string;
   gradeDesc: string;
   existingStatus: string;
@@ -96,7 +96,7 @@ export interface List {
 /**
  * 拓展盘面详情-拓宽台账宽表
  * @createBy baishiqiang
- * @updateAt 2021/10/8 18:40:51
+ * @updateAt 2021/10/12 14:47:37
  * @method GET
  */
 export const fetchExpandWideDetail = (
