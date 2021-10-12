@@ -1,5 +1,5 @@
 <template>
-  <Spin class="warning" :loading="loading" :empty="empty">
+  <Spin class="pre-warning" :loading="loading" :empty="empty">
     <div class="table-wrapper">
       <van-row type="flex" align="center" style="margin-bottom: 47px">
         <van-col span="2" class="cus-label">预警阶段</van-col>
@@ -116,7 +116,7 @@ import Animationend from "@/components/Animationend/Index.vue";
 import {
   EarlyWarningItemReturn,
   fetchEarlyWarning,
-} from "@/service/analysis/bigScreen/mainBoard/center/earlyWarning";
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/earlyWarning";
 import { WarningOptStages } from "@/service/analysis/commandCabin/publicEnum/enums";
 import { iwant } from "@guanyu/shared";
 
@@ -228,7 +228,6 @@ export default class E1 extends Base implements IFetch {
       params: {
         dataLevel: this.store.global.dataLevel,
         levelId: this.store.global.orgTree.orgId,
-        dateScope: this.store.global.dateScope,
         stage: this.stage.join(","),
         riskDegree: this.riskDegree.join(","),
       },
@@ -258,6 +257,9 @@ export default class E1 extends Base implements IFetch {
 
 <style lang="scss" scoped>
 $step-color: #0e173c;
+.pre-warning {
+  height: 769px;
+}
 .table-wrapper {
   padding-top: 47px;
   .cus-checkbox {
