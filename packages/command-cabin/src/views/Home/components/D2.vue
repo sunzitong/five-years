@@ -1,95 +1,118 @@
 <template>
-  <!-- <Spin :height="830" :loading="loading" :empty="empty"> -->
-  <div class="page__d2__map">
-    <van-row>
-      <van-col :span="12"><div class="top_abstract">三费总和</div></van-col>
-      <van-col :span="12"><div class="top_abstract">费效比</div></van-col>
-    </van-row>
-    <van-row>
-      <van-col :span="12">
-        <div class="top_value_box">
-          <span class="top_value">{{ sepNumber(201485) }}</span>
-          <span class="top_text">万</span>
+  <Spin :height="830" :loading="loading" :empty="empty">
+    <div class="page__d2__map">
+      <van-row>
+        <van-col :span="12"><div class="top_abstract">三费总和</div></van-col>
+        <van-col :span="12"><div class="top_abstract">费效比</div></van-col>
+      </van-row>
+      <van-row>
+        <van-col :span="12">
+          <div class="top_value_box">
+            <span class="top_value">{{ sepNumber(resData.allCost) }}</span>
+            <span class="top_text">万</span>
+          </div>
+        </van-col>
+        <van-col :span="12">
+          <div class="top_value_box">
+            <span class="top_value">{{ resData.allCostRatio }}%</span>
+          </div>
+        </van-col>
+      </van-row>
+      <van-row class="border_groups">
+        <van-col :span="16">
+          <div class="border_box_group">
+            <div class="border_box">
+              营销费用
+              <span class="gap">{{ sepNumber(resData.marketingExpense) }}</span>
+              万
+            </div>
+            <div class="border_box">
+              运营成本
+              <span class="gap">{{ sepNumber(resData.operatingCost) }}</span>
+              万
+            </div>
+            <div class="border_box">
+              管理成本
+              <span class="gap">{{ sepNumber(resData.managementCost) }}</span>
+              万
+            </div>
+          </div>
+        </van-col>
+        <van-col :span="8">
+          <div class="border_box_group">
+            <div class="border_box">
+              <span>{{ resData.marketingExpenseRatio }}%</span>
+            </div>
+            <div class="border_box">
+              <span>{{ resData.operatingCostRatio }}%</span>
+            </div>
+            <div class="border_box">
+              <span>{{ resData.managementCostRatio }}%</span>
+            </div>
+          </div>
+        </van-col>
+      </van-row>
+      <div class="bottom_text_group">
+        <span class="bottom_text">租金成本</span>
+        <span class="bottom_value">{{ resData.rentCost }}</span>
+        <span class="bottom_text">万</span>
+        <span class="bottom_value">{{ resData.rentCostRatio }}%</span>
+      </div>
+      <div class="flex_box_group">
+        <div class="flex_box">
+          <div>入房比</div>
+          <div class="flex_value">{{ "1:30" }}</div>
         </div>
-      </van-col>
-      <van-col :span="12">
-        <div class="top_value_box">
-          <span class="top_value">{{ 85 }}%</span>
-        </div>
-      </van-col>
-    </van-row>
-    <van-row class="border_groups">
-      <van-col :span="16">
-        <div class="border_box_group">
-          <div class="border_box">
-            营销费用
-            <span class="gap">{{ sepNumber(2000) }}</span>
-            万
-          </div>
-          <div class="border_box">
-            运营成本
-            <span class="gap">{{ sepNumber(1553.8) }}</span>
-            万
-          </div>
-          <div class="border_box">
-            管理成本
-            <span class="gap">{{ sepNumber(2000) }}</span>
-            万
+        <div class="flex_box">
+          <div>元均收入</div>
+          <div>
+            <span class="flex_value">{{ 7252 }}</span>
+            <span>元</span>
           </div>
         </div>
-      </van-col>
-      <van-col :span="8">
-        <div class="border_box_group">
-          <div class="border_box">
-            <span>{{ 35 }}%</span>
-          </div>
-          <div class="border_box">
-            <span>{{ 66.3 }}%</span>
-          </div>
-          <div class="border_box">
-            <span>{{ 3 }}%</span>
+        <div class="flex_box">
+          <div>能源费用（收支差）</div>
+          <div>
+            <span class="flex_value">{{ 23 }}</span>
+            <span>万</span>
           </div>
         </div>
-      </van-col>
-    </van-row>
-    <div class="bottom_text_group">
-      <span class="bottom_text">租金成本</span>
-      <span class="bottom_value">{{ 1553.8 }}</span>
-      <span class="bottom_text">万</span>
-      <span class="bottom_value">{{ 12 }}%</span>
+      </div>
     </div>
-    <div class="flex_box_group">
-      <div class="flex_box">
-        <div>入房比</div>
-        <div class="flex_value">{{ "1:30" }}</div>
-      </div>
-      <div class="flex_box">
-        <div>元均收入</div>
-        <div>
-          <span class="flex_value">{{ 7252 }}</span>
-          <span>元</span>
-        </div>
-      </div>
-      <div class="flex_box">
-        <div>能源费用（收支差）</div>
-        <div>
-          <span class="flex_value">{{ 23 }}</span>
-          <span>万</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- </Spin> -->
+  </Spin>
 </template>
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { Base } from "@/views/Base";
+import { Base, IFetch } from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
+import {
+  fetchOperatingExpenses,
+  OperatingExpensesReturn,
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/operatingExpenses";
 
 @Component({
   components: {},
 })
-export default class D2 extends Base {}
+export default class D2 extends Base implements IFetch {
+  resData: Partial<OperatingExpensesReturn> = {};
+  async fetch() {
+    const response = await useStore(fetchOperatingExpenses, {
+      key: StoreKey.HomeOperatingExpenses,
+      params: {
+        dataLevel: this.store.global.dataLevel,
+        levelId: this.store.global.orgTree.orgId,
+        dateScope: this.store.global.dateScope,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = response.data;
+    } else {
+      this.empty = true;
+    }
+    return response;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

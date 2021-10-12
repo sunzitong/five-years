@@ -11,16 +11,6 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface OperatingExpensesParams {
   /**
-   * 地区类型
-   */
-  dataLevel: unknown;
-
-  /**
-   * 地区id
-   */
-  levelId: number;
-
-  /**
    * 数据范围（年累，月累）
    */
   dateScope: unknown;
@@ -50,7 +40,7 @@ export interface OperatingExpensesReturn {
 /**
  * 门店屏-经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/11 13:54:19
+ * @updateAt 2021/10/12 10:14:9
  * @method GET
  */
 export const fetchOperatingExpenses = (

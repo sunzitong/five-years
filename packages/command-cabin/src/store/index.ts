@@ -187,6 +187,14 @@ export enum StoreKey {
    * 指挥中心-现场监控详情
    */
   HomeMonitorInfo = "HomeMonitorInfo",
+  /**
+   * 门店屏-经营性支出
+   */
+  ProjectOperatingExpenses = "ProjectOperatingExpenses",
+  /**
+   * 首页-经营性支出
+   */
+  HomeOperatingExpenses = "HomeOperatingExpenses",
 }
 /**
  * 方法重载

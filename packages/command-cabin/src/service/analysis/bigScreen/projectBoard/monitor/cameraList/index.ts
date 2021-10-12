@@ -28,7 +28,7 @@ export interface CameraListItemReturn {
 /**
  * 门店屏-现场监控
  * @createBy baishiqiang
- * @updateAt 2021/10/8 14:52:56
+ * @updateAt 2021/10/12 10:18:15
  * @method GET
  */
 export const fetchCameraList = (
