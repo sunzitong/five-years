@@ -41,7 +41,7 @@ export interface Contact {
 /**
  * 指挥中心-现场监控详情
  * @createBy wuyao
- * @updateAt 2021/10/11 14:57:30
+ * @updateAt 2021/10/11 17:53:41
  * @method GET
  */
 export const fetchMonitorInfo = (
