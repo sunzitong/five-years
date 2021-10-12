@@ -95,7 +95,7 @@ export default class TheList extends Base implements IFetch {
   years: Record<string, number> = {};
   yearValue = "";
   pageNum = 1;
-  pageSize = 3;
+  pageSize = 18;
   response: Partial<SupplyAndMarketingSaveDetailReturn> = {
     citySupplyDetails: [],
   };
