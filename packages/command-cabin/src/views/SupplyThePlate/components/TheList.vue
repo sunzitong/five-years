@@ -61,8 +61,8 @@
       ></Select>
       <Select name="TheOrgTree" title="地区选择"></Select>
       <Pagination
-        :total="response.length"
-        :pages="Math.ceil(response.length / pageSize)"
+        :total="response.citySupplyDetails.length + 1"
+        :pages="Math.ceil(response.citySupplyDetails.length / pageSize)"
         @change="change"
         :value="pageNum"
       />
@@ -76,6 +76,13 @@ import { Base, IFetch } from "@/views/Base";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
+import { StoreKey, useStore } from "@/store";
+import {
+  fetchSupplyAndMarketingSaveDetail,
+  SupplyAndMarketingSaveDetailReturn,
+} from "@/service/analysis/bigScreen/mainBoard/center/supplyAndMarketingSaveDetail";
+import { iwant } from "@guanyu/shared";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 /**成本列表 */
 @Component({
@@ -88,18 +95,23 @@ export default class TheList extends Base implements IFetch {
   years: Record<string, number> = {};
   yearValue = "";
   pageNum = 1;
-  pageSize = 20;
-  response: any[] = [];
+  pageSize = 18;
+  response: Partial<SupplyAndMarketingSaveDetailReturn> = {
+    citySupplyDetails: [],
+  };
 
-  options: { name: any; text: string }[] = [
-    { name: "phId", text: "区域" },
-    { name: "projectName", text: "YTD收入缺口" },
-    { name: "city", text: "预估获取项目收入缺口" },
-    { name: "approvedDate1", text: "延期开业" },
-    { name: "approvedDate2", text: "提前开业" },
-    { name: "approvedDate3", text: "正常开业" },
-    { name: "approvedDate4", text: "中止" },
-    { name: "targetCostNonTax", text: "解约&终止项目收入缺口" },
+  options: {
+    name: keyof SupplyAndMarketingSaveDetailReturn;
+    text: string;
+  }[] = [
+    { name: "needShowName", text: "区域" },
+    { name: "ytdIncomeGap", text: "YTD收入缺口" },
+    { name: "forecastIncomeGap", text: "预估获取项目收入缺口" },
+    { name: "openedAndPostponeIncomeGap", text: "延期开业" },
+    { name: "openedAndAheadIncomeGap", text: "提前开业" },
+    { name: "openAsUsualIncomeGap", text: "正常开业" },
+    { name: "openedAndTerminationIncomeGap", text: "中止" },
+    { name: "contractTerminationIncomeGap", text: "解约&终止项目收入缺口" },
   ];
 
   created() {
@@ -115,14 +127,34 @@ export default class TheList extends Base implements IFetch {
    */
   get list() {
     const { pageNum, pageSize, response } = this;
-    return response.slice((pageNum - 1) * pageSize, pageNum * pageSize);
+    const details = iwant.array(response.citySupplyDetails);
+    const list = [response];
+    list.push(...details.slice((pageNum - 1) * pageSize, pageNum * pageSize));
+    return list;
   }
 
   /**
    * 自动触发 重复调用
    */
   async fetch() {
-    this.response = [];
+    const response = await useStore(fetchSupplyAndMarketingSaveDetail, {
+      key: StoreKey.HomeSupplyAndMarketingSaveDetail,
+      params: {
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
+        regionName: this.store.global.orgTree.orgName,
+        dateShort: +this.yearValue,
+        // TODO 固定年累
+        dateScope: DateScopes.YEARLY,
+      },
+    });
+    if (response?.status === "ok") {
+      const data = iwant.object(response.data);
+      data.needShowName = data.regionName;
+      data.citySupplyDetails = iwant.array(data.citySupplyDetails);
+      this.response = data;
+    }
+    return response;
   }
 
   /**
