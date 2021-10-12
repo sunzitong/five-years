@@ -194,6 +194,10 @@ export enum StoreKey {
    * 供销存
    */
   HomeSupplyAndMarketingSave = "HomeSupplyAndMarketingSave",
+  /**
+   * 首屏大事记
+   */
+  HomeEvents = "HomeEvents",
 }
 /**
  * 方法重载
