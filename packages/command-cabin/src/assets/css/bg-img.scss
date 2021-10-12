@@ -33,6 +33,8 @@ $img-map: (
   "mopt-1": "mopt-1.png",
   "track-1": "track-1.png",
   "track-2": "track-2.png",
+  "supply-normal": "supply-normal.png",
+  "supply-active": "supply-active.png",
 );
 @each $label, $map in $img-map {
   %bg-img-#{$label} {
