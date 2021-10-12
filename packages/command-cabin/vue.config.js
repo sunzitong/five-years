@@ -25,6 +25,11 @@ const getPublicPath = () => {
   return "";
 };
 
+/**
+ * 视频区分环境，正式线为PROD
+ */
+process.env.VUE_APP_BUILD = (process.env.BUILD || "prod").toLowerCase();
+
 const mockProxy = {
   yapi: "http://docs.gyapt.cn/mock/712",
   mock: "http://localhost:3000",

@@ -4,7 +4,7 @@
  *
  * 门店屏-经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/11 13:54:19
+ * @updateAt 2021/10/12 10:53:52
  * @method GET
  */
 
@@ -27,5 +27,6 @@ exports.response = {
     rentCostRatio: 23.1, //租金成本(费效比)
     allCost: 23.1, //三费总和(万元)
     allCostRatio: 23.1, //三费总和(费效比)
+    energyCost: 23.1, //能源费用(万元)
   },
 };

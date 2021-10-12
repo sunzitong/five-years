@@ -142,12 +142,10 @@ export enum StoreKey {
    * 拓展盘面详情-战略合作表
    */
   StrategyCoopDetail = "StrategyCoopDetail",
-
   /**
    * 指挥中心-异常预警
    */
   HomeEarlyWarning = "HomeEarlyWarning",
-
   /**
    * 基础信息-项目区位
    */
@@ -160,17 +158,14 @@ export enum StoreKey {
    * 指挥中心-地图大区/城市圆圈
    */
   HomeMapCircle = "HomeMapCircle",
-
   /**
    * 当前投资实现情况
    */
   ProjectCurrentInfo = "ProjectCurrentInfo",
-
   /**
    * 门店屏-里程碑
    */
   ProjectMilepost = "ProjectMilepost",
-
   /**
    * 门店屏-现场监控
    */
@@ -187,6 +182,14 @@ export enum StoreKey {
    * 指挥中心-现场监控详情
    */
   HomeMonitorInfo = "HomeMonitorInfo",
+  /**
+   * 门店屏-经营性支出
+   */
+  ProjectOperatingExpenses = "ProjectOperatingExpenses",
+  /**
+   * 首页-经营性支出
+   */
+  HomeOperatingExpenses = "HomeOperatingExpenses",
   /**
    * 供销存
    */

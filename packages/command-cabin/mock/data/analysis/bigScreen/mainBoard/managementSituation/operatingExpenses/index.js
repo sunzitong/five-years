@@ -4,7 +4,7 @@
  *
  * 经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/11 13:54:13
+ * @updateAt 2021/10/12 10:49:21
  * @method GET
  */
 
@@ -28,5 +28,7 @@ exports.response = {
     allCost: 23.1, //三费总和(万元)
     allCostRatio: 23.1, //三费总和(费效比)
     yuanAverageCost: 23, //元均收入(元)
+    peopleAndRoomRatio: "1:23", //人房比
+    energyCost: 23.1, //能源费用(万元)
   },
 };

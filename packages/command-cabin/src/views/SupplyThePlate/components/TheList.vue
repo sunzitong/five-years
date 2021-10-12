@@ -76,7 +76,6 @@ import { Base, IFetch } from "@/views/Base";
 import Select from "@/views/components/Select/Index.vue";
 import Pagination from "@/components/Pagination/Index.vue";
 import dayjs from "dayjs";
-import { iwant } from "@guanyu/shared";
 
 /**成本列表 */
 @Component({
