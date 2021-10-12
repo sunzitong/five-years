@@ -119,6 +119,7 @@ import {
   EarlyWarningItemReturn,
   fetchEarlyWarning,
 } from "@/service/analysis/bigScreen/projectBoard/managementSituation/earlyWarning";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -296,12 +297,18 @@ export default class E1 extends Base implements IFetch {
       force,
     });
     if (response?.status === "ok") {
-      this.response = response.data ?? [];
+      this.response = iwant.array(response.data);
     }
+
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.fetch(true);
     }, 1000 * 60 * 10);
+
+    /**
+     * 处理无数据
+     */
+    this.empty = !this.response.length;
     return response;
   }
 

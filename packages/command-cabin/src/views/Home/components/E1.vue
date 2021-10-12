@@ -237,11 +237,16 @@ export default class E1 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
     }
+
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.fetch(true);
     }, 1000 * 60 * 10);
-    this.empty = !!this.response.length;
+
+    /**
+     * 处理无数据
+     */
+    this.empty = !this.response.length;
     return response;
   }
 
