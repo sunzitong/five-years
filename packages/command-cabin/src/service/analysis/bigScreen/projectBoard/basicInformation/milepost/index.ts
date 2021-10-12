@@ -42,13 +42,12 @@ export interface MilepostReturn {
   dynamicCostNonTax: number;
   costValLandSum: number;
   budgetBalanceNoTax: number;
-  dataSource: string;
 }
 
 /**
  * 门店里程碑
  * @createBy baishiqiang
- * @updateAt 2021/10/11 11:39:52
+ * @updateAt 2021/10/12 14:36:6
  * @method GET
  */
 export const fetchMilepost = (

@@ -77,7 +77,8 @@
         <div style="height: 1876px">
           <C1 />
           <C2 />
-          <C4 :levelValue="mapLevelValue" />
+          <C4 :levelValue="mapLevelValue" v-if="centerChartType === 'main'" />
+          <C5 v-if="centerChartType === 'guanyu'" />
         </div>
         <div class="global-button global-button--1">
           <ButtonGroupA>
@@ -109,7 +110,11 @@
                   />
                 </span>
               </van-radio>
-              <van-radio name="guanyu" @click="showMapLevelPanel = false">
+              <van-radio
+                name="guanyu"
+                @click="showMapLevelPanel = false"
+                v-show="store.global.dataLevel === DataLevels.GROUP"
+              >
                 <Icon type="flag" :size="36" class="button-icon--left" />
                 冠寓大事记
               </van-radio>
@@ -306,6 +311,7 @@ import C1 from "./components/C1.vue";
 import C2 from "./components/C2.vue";
 import C3 from "./components/C3.vue";
 import C4 from "./components/C4.vue";
+import C5 from "./components/C5.vue";
 import D1 from "./components/D1.vue";
 import D2 from "./components/D2.vue";
 import D3 from "./components/D3.vue";
@@ -336,6 +342,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     C2,
     C3,
     C4,
+    C5,
     D1,
     D2,
     D3,
@@ -381,6 +388,8 @@ export default class Home extends Base {
     if (val !== DataLevels.GROUP) {
       this.mapLevelValue = val;
       this.showMapLevelPanel = false;
+      // 大事记只有全国数据
+      this.centerChartType = "main";
     }
   }
 

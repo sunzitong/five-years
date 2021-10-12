@@ -4,7 +4,7 @@
  *
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/10/9 10:9:43
+ * @updateAt 2021/10/12 14:34:57
  * @method GET
  */
 
@@ -36,5 +36,6 @@ exports.response = {
     years: 10, //年限
     projectStartTime: "2021-01-01", //开始时间
     projectEndTime: "2031-01-01", //结束时间
+    dataSource: "主数据、龙头、智计划、成本管理系统", //数据来源
   },
 };

@@ -4,7 +4,7 @@
  *
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/9/16 11:25:23
+ * @updateAt 2021/10/12 11:18:35
  * @method GET
  */
 
@@ -23,19 +23,19 @@ exports.response = {
       //开业柱状图
       {
         year: 2017,
-        total: 1959,
+        total: 36000,
         list: [
           {
             transactionModel: "中资产",
-            roomNum: 1054,
+            roomNum: 12000,
           },
           {
             transactionModel: "重资产",
-            roomNum: 640,
+            roomNum: 12000,
           },
           {
             transactionModel: "轻资产",
-            roomNum: 265,
+            roomNum: 12000,
           },
         ],
       },
