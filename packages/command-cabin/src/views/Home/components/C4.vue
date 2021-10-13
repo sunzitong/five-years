@@ -2,7 +2,7 @@
   <div class="container">
     <div class="china"></div>
     <div class="tb-card" v-if="showTable">
-      <CardB>
+      <CardB fill="#113069" :fillOpacity="0.6">
         <table class="sum">
           <tr>
             <td rowspan="3" width="320">{{ store.global.orgTree.orgName }}</td>
