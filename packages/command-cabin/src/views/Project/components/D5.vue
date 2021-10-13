@@ -8,13 +8,17 @@
       <van-row>
         <van-col :span="12">
           <div class="top_value_box">
-            <span class="top_value">{{ sepNumber(resData.allCost) }}</span>
+            <span class="top_value">
+              {{ formatValue(sepNumber(resData.allCost)) }}
+            </span>
             <span class="top_text">万</span>
           </div>
         </van-col>
         <van-col :span="12">
           <div class="top_value_box">
-            <span class="top_value">{{ resData.allCostRatio }}%</span>
+            <span class="top_value">
+              {{ formatValue(resData.allCostRatio) }}%
+            </span>
           </div>
         </van-col>
       </van-row>
@@ -23,17 +27,23 @@
           <div class="border_box_group">
             <div class="border_box">
               营销费用
-              <span class="gap">{{ sepNumber(resData.marketingExpense) }}</span>
+              <span class="gap">
+                {{ formatValue(sepNumber(resData.marketingExpense)) }}
+              </span>
               万
             </div>
             <div class="border_box">
               运营成本
-              <span class="gap">{{ sepNumber(resData.operatingCost) }}</span>
+              <span class="gap">
+                {{ formatValue(sepNumber(resData.operatingCost)) }}
+              </span>
               万
             </div>
             <div class="border_box">
               管理成本
-              <span class="gap">{{ sepNumber(resData.managementCost) }}</span>
+              <span class="gap">
+                {{ formatValue(sepNumber(resData.managementCost)) }}
+              </span>
               万
             </div>
           </div>
@@ -41,29 +51,35 @@
         <van-col :span="8">
           <div class="border_box_group">
             <div class="border_box">
-              <span>{{ resData.marketingExpenseRatio }}%</span>
+              <span>{{ formatValue(resData.marketingExpenseRatio) }}%</span>
             </div>
             <div class="border_box">
-              <span>{{ resData.operatingCostRatio }}%</span>
+              <span>{{ formatValue(resData.operatingCostRatio) }}%</span>
             </div>
             <div class="border_box">
-              <span>{{ resData.managementCostRatio }}%</span>
+              <span>{{ formatValue(resData.managementCostRatio) }}%</span>
             </div>
           </div>
         </van-col>
       </van-row>
       <div class="bottom_text_group">
         <span class="bottom_text">租金成本</span>
-        <span class="bottom_value">{{ sepNumber(resData.rentCost) }}</span>
+        <span class="bottom_value">
+          {{ formatValue(sepNumber(resData.rentCost)) }}
+        </span>
         <span class="bottom_text">万</span>
-        <span class="bottom_value">{{ resData.rentCostRatio }}%</span>
+        <span class="bottom_value">
+          {{ formatValue(resData.rentCostRatio) }}%
+        </span>
       </div>
       <div class="flex_box">
         <Icon type="energy" :size="200" />
         <div class="felx_details">
           <div class="flex_text">能源费用（收支差）</div>
           <div>
-            <span class="flex_value">{{ sepNumber(resData.energyCost) }}</span>
+            <span class="flex_value">
+              {{ formatValue(sepNumber(resData.energyCost)) }}
+            </span>
             <span class="flex_unit">万</span>
           </div>
         </div>
