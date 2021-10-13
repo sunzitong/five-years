@@ -257,11 +257,12 @@ export default class Login extends Base {
 
   created() {
     this.fetchAllowRoleList();
-    if (!this.store.currentUser) {
-      this.fetchQR();
-    } else {
-      this.activeRoleId = this.store.currentUser.roleId;
-    }
+    this.fetchLogout();
+    // if (!this.store.currentUser) {
+    //   this.fetchQR();
+    // } else {
+    //   this.activeRoleId = this.store.currentUser.roleId;
+    // }
   }
 
   beforeDestroy() {
@@ -364,12 +365,10 @@ export default class Login extends Base {
   async fetchLogout() {
     // 清空所有数据
     removeStore();
-    const response = await fetchLogout();
-    if (response?.status === "ok") {
-      localStorage.removeItem("token");
-      this.store.currentUser = null;
-      this.fetchQR();
-    }
+    await fetchLogout();
+    localStorage.removeItem("token");
+    this.store.currentUser = null;
+    this.fetchQR();
   }
 
   /**
