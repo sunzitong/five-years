@@ -83,7 +83,7 @@ export default class B1B extends Base {
   currentSort = 0;
   xTag = this.monthTag;
   tabTag = 0;
-  xLabels:number[] = [];
+  xLabels: number[] = [];
 
   handleClick(index: number) {
     this.currentSort = index;
