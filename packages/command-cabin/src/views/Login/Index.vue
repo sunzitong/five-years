@@ -147,7 +147,7 @@
           </linearGradient>
         </defs>
       </svg>
-      <QR :value="qrCodePath" class="qr" v-if="qrCodePath" />
+      <QR v-if="qrCodePath" :value="qrCodePath" :size="852" class="qr" />
       <van-loading
         class="qr"
         size="50%"
@@ -168,8 +168,13 @@
               {{ item.desc }}
             </span>
           </li>
+          <li v-if="!userRoles.length && allowRoleList.length">
+            对不起，该用户没有权限。
+          </li>
           <li class="hr"></li>
-          <li class="entry" @click="fetchSwitchRole">进入</li>
+          <li class="entry" @click="fetchSwitchRole" v-if="userRoles.length">
+            进入
+          </li>
           <li class="logout" @click="fetchLogout">
             <Icon type="back" />
           </li>
@@ -192,6 +197,7 @@ import { fetchSwitchRole } from "@/service/auth/switchRole";
 import { removeStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 import { Base } from "@/views/Base";
+import { fetchRoleList } from "@/service/analysis/commandCabin/roleList";
 
 @Component({
   components: { QR, CardA, Icon },
@@ -226,11 +232,19 @@ export default class Login extends Base {
 
   activeRoleId: null | number = null;
 
+  allowRoleList: number[] = [];
+
   // { id: number; desc: string; active: boolean }[] = [];
   get userRoles() {
     if (!this.store.currentUser) return null;
     const { userRoleOrgs = [] } = this.store.currentUser;
-    return userRoleOrgs.map((role) => ({
+    const list = [];
+    for (const role of userRoleOrgs) {
+      if (this.allowRoleList.includes(role.roleId)) {
+        list.push(role);
+      }
+    }
+    return list.map((role) => ({
       id: role.roleId,
       desc: role.roleName,
       // role.roleName +
@@ -241,6 +255,7 @@ export default class Login extends Base {
   }
 
   created() {
+    this.fetchAllowRoleList();
     if (!this.store.currentUser) {
       this.fetchQR();
     } else {
@@ -317,7 +332,13 @@ export default class Login extends Base {
    * 切换角色
    */
   async fetchSwitchRole() {
-    if (!this.store.currentUser || !this.activeRoleId) return;
+    if (
+      !this.store.currentUser ||
+      !this.activeRoleId ||
+      !this.allowRoleList.includes(this.activeRoleId)
+    ) {
+      return;
+    }
     const switchCallback = () => {
       // 请求全局数据
       mitter.emit(EventName.FetchGlobalData);
@@ -348,6 +369,16 @@ export default class Login extends Base {
     if (response?.status === "ok") {
       localStorage.removeItem("token");
       this.store.currentUser = null;
+    }
+  }
+
+  /**
+   * 获取合法的角色列表
+   */
+  async fetchAllowRoleList() {
+    const response = await fetchRoleList();
+    if (response?.status === "ok") {
+      this.allowRoleList = response.data;
     }
   }
 }
@@ -453,7 +484,7 @@ export default class Login extends Base {
     .hr {
       width: 100%;
       height: 1px;
-      margin: 42px 0 60px 0;
+      margin: 42px 0 0;
       background: linear-gradient(
         90deg,
         rgba(83, 214, 255, 0.05) 0%,
@@ -467,6 +498,7 @@ export default class Login extends Base {
       background: #1d5e8f;
       backdrop-filter: blur(20px);
       border-radius: 10px;
+      margin-top: 60px;
     }
     .logout {
       width: 100px;
