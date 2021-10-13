@@ -1,22 +1,22 @@
 <template>
-  <Spin class="investment" :loading="loading" :empty="empty">
-    <div class="table-wrapper">
-      <van-row type="flex" align="center">
-        <van-col class="cus-label">
-          项目动态收益回收周期
-          <span>{{ month }}</span>
-          个月
-        </van-col>
-      </van-row>
-      <table class="table" cellspacing="0">
-        <thead>
-          <tr>
-            <th v-for="item of columns" :key="item.dataIndex">
-              {{ item.title }}
-            </th>
-          </tr>
-        </thead>
-      </table>
+  <div class="table-wrapper">
+    <van-row type="flex" align="center">
+      <van-col class="cus-label">
+        项目动态收益回收周期
+        <span>{{ month }}</span>
+        个月
+      </van-col>
+    </van-row>
+    <table class="table" cellspacing="0">
+      <thead>
+        <tr>
+          <th v-for="item of columns" :key="item.dataIndex">
+            {{ item.title }}
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <Spin class="investment" :loading="loading" :empty="empty">
       <Animationend
         key="1"
         :height="1300"
@@ -37,8 +37,8 @@
           </table>
         </template>
       </Animationend>
-    </div>
-  </Spin>
+    </Spin>
+  </div>
 </template>
 
 <script lang="ts">
@@ -101,6 +101,8 @@ export default class B2 extends Base implements IFetch {
       this.response = iwant.object(response.data);
       this.dataSource = iwant.array(this.response.list);
     }
+
+    this.empty = !this.dataSource.length;
     return response;
   }
 }
@@ -109,7 +111,7 @@ export default class B2 extends Base implements IFetch {
 <style lang="scss" scoped>
 $step-color: #0e173c;
 .investment {
-  height: 1500px;
+  height: 1290px;
 }
 
 .cus-label {
