@@ -237,7 +237,7 @@ export default class App extends Mixins(MixStore) {
   height: 3240px;
   transform-origin: 0 0;
   overflow: hidden;
-  font-family: "PingFang SC";
+  font-family: "DIN Alternate, PingFang SC";
   position: relative;
   @extend %bg-img-bg-earth;
   background-position-y: 180px;
