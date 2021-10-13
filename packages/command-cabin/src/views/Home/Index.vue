@@ -385,7 +385,9 @@ export default class Home extends Base {
    */
   @Watch("store.global.dataLevel")
   dataLevelChanged(val: DataLevels) {
-    if (val !== DataLevels.GROUP) {
+    if (val === DataLevels.GROUP) {
+      this.mapLevelValue = DataLevels.AREA;
+    } else {
       this.mapLevelValue = val;
       this.showMapLevelPanel = false;
       // 大事记只有全国数据
