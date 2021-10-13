@@ -80,13 +80,14 @@ export default class B1B extends Base {
 
   @Ref() wrapper!: HTMLDivElement;
 
-  currentSort = 0;
+  @Prop({ default: 0 }) currentSort!: number;
+
   xTag = this.monthTag;
   tabTag = 0;
   xLabels: number[] = [];
 
   handleClick(index: number) {
-    this.currentSort = index;
+    this.$emit("update:currentSort", index);
     this.tabTag = index;
     if (this.tabTag === this.specialTabIndex) {
       this.xLabels = this.xLabel[1];

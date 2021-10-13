@@ -15,6 +15,8 @@
         :yearTag="yearTag"
         :yIndex="yIndex[i - 1]"
         :ifChange="ifChange"
+        :currentSort.sync="sortList[i - 1]"
+        ref="charts"
       />
       <B1B
         :key="i"
@@ -31,13 +33,43 @@
         :yIndex="yIndex[i - 1]"
         :specialTabIndex="specialTabIndex"
         :ifChange="ifChange"
+        :currentSort.sync="sortList[i - 1]"
+        ref="charts"
       />
     </template>
+
+    <div
+      style="
+        position: absolute;
+        bottom: 100px;
+        font-size: 40px;
+        background: #000;
+      "
+    >
+      <div
+        v-for="i in num"
+        :key="i"
+        @click="sortList[i - 1] = 1"
+        style="margin: 100px"
+      >
+        {{ titles[i - 1] }}----
+        <span
+          v-for="(tab, j) in tabs[i - 1]"
+          :key="tab"
+          :style="{ color: j === (sortList[i - 1] || 0) ? 'red' : '#fff' }"
+          @click="handleClick(i, j)"
+        >
+          {{ j }}
+          -{{ tab }}
+          {{ sortList[i - 1] }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Ref } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
 import B1B from "./B1B.vue";
@@ -46,6 +78,10 @@ import B1B from "./B1B.vue";
   components: { B1B },
 })
 export default class B1A extends Base {
+  handleClick(refIndex: number, tagIndex: number) {
+    this.charts[refIndex - 1]?.handleClick(tagIndex);
+  }
+  @Ref() charts!: B1B[];
   /**
    * 折线图标题列表
    */
@@ -103,11 +139,14 @@ export default class B1A extends Base {
    * 门店切换标志
    */
   @Prop({ default: () => false }) readonly ifChange!: boolean;
+
+  sortList: number[] = [];
 }
 </script>
 
 <style lang="scss" scoped>
 .page__b1a__map {
+  position: relative;
   padding: 80px;
 }
 </style>
