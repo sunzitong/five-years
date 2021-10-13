@@ -43,6 +43,7 @@ import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { StoreKey, useStore } from "@/store";
 import _ from "lodash";
+import { iwant } from "@guanyu/shared";
 
 type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 
@@ -104,7 +105,7 @@ export default class OperatingIndex extends Base implements IFetch {
       params: { phId: this.store.global.project.phId },
     });
     if (response?.status === "ok") {
-      this.response = response.data ?? {};
+      this.response = iwant.object(response.data);
       this.loading = false;
     }
     const noCurrent = _.isNil(

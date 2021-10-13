@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Ref } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
-import { AnyObject } from "@guanyu/shared";
+import { AnyObject, iwant } from "@guanyu/shared";
 import {
   fetchRepairStat,
   RepairStatReturn,
@@ -75,7 +75,7 @@ export default class B5 extends Base implements IFetch {
     });
     this.reset();
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.buildData(this.resData);
       this.paintChart();
     }

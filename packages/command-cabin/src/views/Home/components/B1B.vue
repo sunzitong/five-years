@@ -148,7 +148,7 @@ export default class B1B extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.empty = false;
 
       this.targetNum = formatValue(this.resData.openTargetNum);

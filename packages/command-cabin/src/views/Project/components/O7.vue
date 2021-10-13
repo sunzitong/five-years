@@ -55,7 +55,7 @@ export default class D7 extends Base implements IFetch {
     });
 
     if (response?.status === "ok") {
-      this.response = response.data ?? {};
+      this.response = Object.assign(this.response, iwant.object(response.data));
     }
     return response;
   }

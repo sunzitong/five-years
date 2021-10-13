@@ -166,7 +166,7 @@ export default class TheConstructList extends Base implements IFetch {
     if (response?.status === "ok") {
       response.data = iwant.object(response.data);
       response.data.list = iwant.array(response.data.list);
-      this.response = response.data;
+      this.response = iwant.object(response.data);
     }
     return response;
   }

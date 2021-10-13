@@ -20,7 +20,7 @@
       <li class="item">
         <div class="name">产权性质</div>
         <div class="desc">
-          {{ formatValue(sepNumber(response.propertyRightNature)) }}
+          {{ sepNumber(response.propertyRightNature) }}
         </div>
       </li>
     </ul>

@@ -26,7 +26,7 @@ import echarts from "@/plugins/echarts";
 import { Base, IFetch } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
 import AnimationForward from "@/components/AnimationForward/Index.vue";
-import { AnyObject } from "@guanyu/shared";
+import { AnyObject, iwant } from "@guanyu/shared";
 import {
   BusinessOppTransReturn,
   fetchBusinessOppTrans,
@@ -55,7 +55,7 @@ export default class A3 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       if (this.resData) {
         this.dataSet = [
           { name: "年累立项", value: this.resData.yearsEstabProjectNum },

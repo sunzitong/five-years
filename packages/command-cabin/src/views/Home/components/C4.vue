@@ -293,6 +293,9 @@ export default class C4 extends Base implements IFetch {
     if (val === DataLevels.GROUP) {
       this.tableData = {};
       this.showTable = false;
+    } else {
+      this.fetchDetails();
+      this.showTable = true;
     }
   }
 
@@ -322,6 +325,8 @@ export default class C4 extends Base implements IFetch {
         }
       });
       this.mapData = data;
+    } else {
+      this.mapData = [];
     }
     this.setOptionBar();
     this.showCircle = true;
