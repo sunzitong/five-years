@@ -69,7 +69,6 @@ export default class Spin extends Vue {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
   }
 }
 </style>
