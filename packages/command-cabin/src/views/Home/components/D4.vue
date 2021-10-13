@@ -95,6 +95,9 @@ export default class D4 extends Base implements IFetch {
           icon: "door",
         },
       ];
+      this.empty = false;
+    } else {
+      this.empty = true;
     }
     return response;
   }
