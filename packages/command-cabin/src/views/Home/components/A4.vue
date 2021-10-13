@@ -78,7 +78,7 @@ export default class A4 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.ing = [
         iwant.number(this.resData.stateEnterpriseNegoNum),
         iwant.number(this.resData.fundSideNegoNum),

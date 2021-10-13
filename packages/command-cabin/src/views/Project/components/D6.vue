@@ -62,6 +62,7 @@ import {
   fetchOverdue,
   OverdueReturn,
 } from "@/service/analysis/bigScreen/mainBoard/managementSituation/overdue";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -77,7 +78,7 @@ export default class D6 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
     } else {
       this.empty = true;
     }

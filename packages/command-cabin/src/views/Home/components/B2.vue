@@ -103,7 +103,7 @@ export default class B2 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
 
       this.riskProject = formatValue(this.resData.delayProjectNum);
       this.storeNum = formatValue(this.resData.delayRoomNum);

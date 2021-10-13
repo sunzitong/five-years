@@ -94,6 +94,7 @@ import {
   fetchIncome,
   IncomeReturn,
 } from "@/service/analysis/bigScreen/mainBoard/managementSituation/income";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -124,7 +125,7 @@ export default class D1B extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
     } else {
       this.empty = true;
     }

@@ -41,6 +41,7 @@ import {
 import { Base, IFetch } from "@/views/Base";
 import StepNumber from "@/components/StepNumber/Index.vue";
 import { StoreKey, useStore } from "@/store";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -76,7 +77,7 @@ export default class C2 extends Base implements IFetch {
       key: StoreKey.HomeNumYearly,
     });
     if (response?.status === "ok") {
-      this.response = response.data ?? {};
+      this.response = Object.assign(this.response, iwant.object(response.data));
     }
     return response;
   }
