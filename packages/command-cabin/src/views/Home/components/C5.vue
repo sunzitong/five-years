@@ -154,7 +154,6 @@ export default class C5 extends Base implements IFetch {
     font-size: 30px;
     color: #90a4c3;
     line-height: 1.4;
-    background: transparent;
     .details {
       margin: 0 auto;
       width: 383px;
@@ -185,7 +184,6 @@ export default class C5 extends Base implements IFetch {
         rgba(5, 203, 253, 0.1) 0%,
         rgba(0, 127, 249, 0) 100.9%
       );
-      backdrop-filter: blur(10px);
       margin: 0 10px 34px;
       padding: 0 8px;
       white-space: nowrap;
