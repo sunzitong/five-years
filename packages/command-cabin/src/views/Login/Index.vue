@@ -147,7 +147,7 @@
           </linearGradient>
         </defs>
       </svg>
-      <QR :value="qrCodePath" class="qr" v-if="qrCodePath" />
+      <QR v-if="qrCodePath" :value="qrCodePath" :size="852" class="qr" />
       <van-loading
         class="qr"
         size="50%"
