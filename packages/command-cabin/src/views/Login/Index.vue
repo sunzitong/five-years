@@ -198,6 +198,7 @@ import { removeStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 import { Base } from "@/views/Base";
 import { fetchRoleList } from "@/service/analysis/commandCabin/roleList";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: { QR, CardA, Icon },
@@ -277,7 +278,7 @@ export default class Login extends Base {
       headers: { source: "oms" },
     });
     if (response?.status === "ok") {
-      const { data } = response;
+      const data = iwant.object(response.data);
       const path = `longfor://login/scanCode?name=${encodeURIComponent(
         data.appName
       )}&id=${encodeURIComponent(data.qrId)}`;
@@ -306,14 +307,12 @@ export default class Login extends Base {
       { showLoading: false, headers: { source: "oms" } }
     );
     if (response?.status === "ok") {
-      const {
-        data: { status, token },
-      } = response;
-      const qrCodeStatus = this.idmStatus[status] || "VALID";
+      const data = iwant.object(response.data);
+      const qrCodeStatus = this.idmStatus[data.status] || "VALID";
       this.qrCodeStatus = qrCodeStatus;
       if (qrCodeStatus === "CONFIRM") {
         // 登录成功 请求全局数据
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", data.token);
         mitter.emit(EventName.FetchGlobalData);
         return;
       }
@@ -378,7 +377,7 @@ export default class Login extends Base {
   async fetchAllowRoleList() {
     const response = await fetchRoleList();
     if (response?.status === "ok") {
-      this.allowRoleList = response.data;
+      this.allowRoleList = iwant.array(response.data);
     }
   }
 }

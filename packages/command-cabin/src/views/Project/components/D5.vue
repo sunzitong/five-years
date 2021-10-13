@@ -97,6 +97,7 @@ import {
   OperatingExpensesReturn,
   fetchOperatingExpenses,
 } from "@/service/analysis/bigScreen/projectBoard/managementSituation/operatingExpenses";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: { Icon },
@@ -112,7 +113,7 @@ export default class D5 extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
     } else {
       this.empty = true;
     }

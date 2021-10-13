@@ -33,6 +33,7 @@ import F1B from "./F1B.vue";
 import Spin from "@/components/Spin/Index.vue";
 import { fetchSentiment } from "@/service/analysis/bigScreen/projectBoard/managementSituation/sentiment";
 import { StoreKey, useStore } from "@/store";
+import { iwant } from "@guanyu/shared";
 
 @Component({
   components: {
@@ -73,7 +74,7 @@ export default class F1 extends Base implements IFetch {
     });
 
     if (response?.status === "ok") {
-      this.response = response.data ?? {};
+      this.response = iwant.object(response.data);
     }
     return response;
   }
