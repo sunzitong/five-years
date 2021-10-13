@@ -133,7 +133,15 @@ export default class CardA extends Vue {
   setCardDataSource(source: SourceType) {
     const { from, time } = source ?? {};
     if (!from || !time) return;
-    this.dataSourceFromChildren = `数据取自${from.toUpperCase()} | 更新时间${time}`;
+    let s = "";
+    let t = "";
+    if (from) {
+      s = `数据取自${from.toUpperCase()}`;
+    }
+    if (time) {
+      t = ` | 更新时间${time}`;
+    }
+    this.dataSourceFromChildren = `${s}${t}`;
   }
 
   mounted() {
