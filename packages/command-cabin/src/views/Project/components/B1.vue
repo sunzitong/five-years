@@ -1,5 +1,5 @@
 <template>
-  <Spin :height="2533" :loading="loading" :empty="empty">
+  <Spin :height="2533" :empty="empty">
     <div class="page__b1__map">
       <B1A
         :titles="titles"
@@ -15,13 +15,14 @@
         :yearTag="yearTag"
         :specialTabIndex="specialTabIndex"
         :yIndex="yIndex[resData.transactionModel]"
+        :ifChange="this.flag.reset"
       />
     </div>
   </Spin>
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import {
@@ -108,12 +109,18 @@ export default class B1 extends Base implements IFetch {
    */
   buildData(transactionModel: string) {
     let { infoMap, month, year } = this.resData;
+    this.xLabel = [];
+    this.yLabel0 = [];
+    this.yLabel1 = [];
+    this.yLabel2 = [];
+    this.yLabel3 = [];
 
     if (infoMap && month) {
       if (transactionModel === "LightAsset") {
         // 构建月度横坐标
         let monthXLabel: number[] = [];
-        const list = (monthNum: number) => [...new Array(monthNum).keys()];
+        const list = (monthNum: number) =>
+          [...new Array(monthNum).keys()].map((el) => el + 1);
 
         let monthNum = Math.max(
           infoMap.month1 && infoMap.month1.length,
@@ -185,17 +192,17 @@ export default class B1 extends Base implements IFetch {
         // 构建横坐标
         let monthXLabel: number[] = [],
           yearXLabel: number[] = [];
-        const list = (monthNum: number) => [...new Array(monthNum).keys()];
 
         let monthNum = Math.max(
           infoMap.month1 && infoMap.month1.length,
           infoMap.month2 && infoMap.month2.length,
           infoMap.month3 && infoMap.month3.length
         );
+        const list = (monthNum: number) =>
+          [...new Array(monthNum).keys()].map((el) => el + 1);
         if (monthNum > 0) {
           monthXLabel = list(monthNum);
         }
-
         let yearNum = Math.max(
           infoMap.year1 && infoMap.year1.length,
           infoMap.year2 && infoMap.year2.length,
@@ -205,6 +212,7 @@ export default class B1 extends Base implements IFetch {
           yearXLabel = list(yearNum);
         }
 
+        // this.xLabel = [];
         this.xLabel.push(monthXLabel, yearXLabel);
 
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
@@ -294,7 +302,8 @@ export default class B1 extends Base implements IFetch {
         // 构建横坐标
         let monthXLabel: number[] = [],
           yearXLabel: number[] = [];
-        const list = (monthNum: number) => [...new Array(monthNum).keys()];
+        const list = (monthNum: number) =>
+          [...new Array(monthNum).keys()].map((el) => el + 1);
 
         let monthNum = Math.max(
           infoMap.month1 && infoMap.month1.length,
@@ -403,6 +412,16 @@ export default class B1 extends Base implements IFetch {
     }
   }
 
+  flag = {
+    phId: true,
+    reset: false,
+  };
+
+  @Watch("store.global.project.phId")
+  projectChanged() {
+    this.flag.phId = true;
+  }
+
   async fetch() {
     const response = await useStore(fetchFinanceLine, {
       key: StoreKey.ProjectFinanceLine,
@@ -412,15 +431,21 @@ export default class B1 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
-      this.tabList = this.tabLabels[
-        iwant.string(this.resData.transactionModel)
-      ];
-      this.titles = this.pannelTitles[
-        iwant.string(this.resData.transactionModel)
-      ];
-      this.buildData(iwant.string(this.resData.transactionModel));
+      if (this.resData.transactionModel) {
+        this.tabList = this.tabLabels[
+          iwant.string(this.resData.transactionModel)
+        ];
+        this.titles = this.pannelTitles[
+          iwant.string(this.resData.transactionModel)
+        ];
+        this.buildData(iwant.string(this.resData.transactionModel));
+      }
     } else {
       this.empty = true;
+    }
+    if (this.flag.phId) {
+      this.flag.phId = false;
+      this.flag.reset = !this.flag.reset;
     }
     return response;
   }

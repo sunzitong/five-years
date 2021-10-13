@@ -73,13 +73,17 @@ export default class B1B extends Base {
    * yIndex设置
    */
   @Prop({ default: () => [] }) readonly yIndex!: number[];
+  /**
+   * 门店切换标志
+   */
+  @Prop() readonly ifChange!: boolean;
 
   @Ref() wrapper!: HTMLDivElement;
 
   currentSort = 0;
   xTag = this.monthTag;
   tabTag = 0;
-  xLabels = this.xLabel[0];
+  xLabels: number[] = [];
 
   handleClick(index: number) {
     this.currentSort = index;
@@ -91,17 +95,24 @@ export default class B1B extends Base {
       this.xLabels = this.xLabel[0];
       this.xTag = this.monthTag;
     }
+    this.paintChart();
   }
 
   mounted() {
     if (this.specialTabIndex === 0) {
       this.xLabels = this.xLabel[1];
       this.xTag = this.yearTag;
+    } else {
+      this.xLabels = this.xLabel[0];
     }
     this.paintChart();
   }
 
-  @Watch("tabTag", { deep: true })
+  @Watch("ifChange")
+  monthTagChanged() {
+    this.handleClick(0);
+  }
+
   paintChart() {
     if (!this.myChart) {
       this.myChart = echarts.init(this.wrapper);
@@ -145,13 +156,11 @@ export default class B1B extends Base {
           } else {
             unit = "元";
           }
-          console.log(this.xTag);
 
           params.forEach((el) => {
             if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
-                // console.log(el.seriesName, el.value);
-                str += `<div class="tool-item1"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>万</span></div>`;
+                str += `<div class="tool-item1"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>${unit}</span></div>`;
               }
             } else {
               if (el.seriesName !== "实际") {
@@ -213,18 +222,17 @@ export default class B1B extends Base {
         {
           name: "\n\n运营年",
           nameLocation: "end",
-          nameGap: 0,
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 0, 0, 0],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",
           boundaryGap: false,
           data: this.xLabels,
           axisLine: {
+            show: true,
             lineStyle: {
               width: "2",
               color: new echarts.graphic.LinearGradient(
@@ -261,12 +269,12 @@ export default class B1B extends Base {
         {
           name: "百分比",
           show: 0 === this.yIndex[this.tabTag],
-          nameLocation: "end",
+          nameLocation: "center",
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 100, 13, 0],
+            padding: [0, 0, 100, 0],
           },
           type: "value",
           axisLine: {
@@ -302,12 +310,12 @@ export default class B1B extends Base {
           name: "万元",
           show: 1 === this.yIndex[this.tabTag],
           position: "left",
-          nameLocation: "end",
+          nameLocation: "center",
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 80, 13, 0],
+            padding: [0, 0, 100, 0],
           },
           type: "value",
           axisLine: {
@@ -340,12 +348,12 @@ export default class B1B extends Base {
           name: "元",
           show: 2 === this.yIndex[this.tabTag],
           position: "left",
-          nameLocation: "end",
+          nameLocation: "center",
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 60, 13, 0],
+            padding: [0, 0, 100, 0],
           },
           type: "value",
           axisLine: {
@@ -619,5 +627,3 @@ export default class B1B extends Base {
   }
 }
 </style>
-
-function tabTag(tabTag: any) { throw new Error("Function not implemented."); }
