@@ -4,7 +4,7 @@
  *
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/10/12 18:42:32
+ * @updateAt 2021/10/13 15:12:19
  * @method GET
  */
 
@@ -17,6 +17,7 @@ exports.response = {
   msg: "ok",
   data: [
     {
+      id: 12, //唯一id
       orderId: 12345, //工单id
       projectId: 81, //门店id
       projectName: "酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店酒仙桥店", //门店名称

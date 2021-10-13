@@ -4,7 +4,7 @@
  *
  * 门店屏幕-分险预警
  * @createBy wuyao
- * @updateAt 2021/10/8 18:0:22
+ * @updateAt 2021/10/13 15:12:33
  * @method GET
  */
 
@@ -18,6 +18,7 @@ exports.response = {
   msg: "ok",
   data: [
     {
+      id: 12, //唯一id
       orderId: 12345, //工单id
       projectId: 84, //门店id
       projectName: "酒仙桥店", //门店名称
