@@ -4,7 +4,7 @@
       <van-swipe
         ref="swipe"
         :loop="false"
-        :show-indicators="false"
+        :-indicators="false"
         @change="changeHandle"
         lazy-render
         :style="`height: ${webrtcConfig.height}px`"
@@ -15,7 +15,7 @@
             <Webrtc
               :key="item.cameraId"
               :config="webrtcConfig"
-              v-if="index === currentIndex"
+              v-if="index === currentIndex && !show"
             />
             <van-image
               v-else
@@ -42,9 +42,9 @@
         >
           <van-icon name="arrow" />
         </div>
-        <!-- <div class="btn">
-          <C1A />
-        </div> -->
+        <div class="btn more">
+          <C1A :onToggle="onToggleModal" />
+        </div>
       </div>
     </div>
   </Spin>
@@ -73,6 +73,11 @@ export default class C1 extends Base implements IFetch {
   @Ref() swipe!: Swipe;
 
   /**
+   * 是否显示了弹窗
+   */
+  show = false;
+
+  /**
    * 当前索引
    */
   currentIndex = 0;
@@ -84,11 +89,19 @@ export default class C1 extends Base implements IFetch {
     const item = this.response[this.currentIndex] ?? {};
     return {
       width: 940,
-      height: 530,
+      height: 480,
       autoplay: true,
       poster: item.imageUrl,
       cameraId: item.cameraId,
     };
+  }
+
+  /**
+   * 是否显示了弹窗
+   */
+  onToggleModal(status: boolean) {
+    this.show = status;
+    console.log("this.show", this.show);
   }
 
   /**
@@ -127,9 +140,7 @@ export default class C1 extends Base implements IFetch {
   padding-top: 25px;
   .btns {
     display: flex;
-    width: 500px;
-    justify-content: center;
-    margin: -48px auto 0;
+    margin: 0 auto;
   }
   .btn {
     display: flex;
@@ -137,11 +148,15 @@ export default class C1 extends Base implements IFetch {
     align-items: center;
     width: 240px;
     height: 90px;
-    margin: 0 5px;
+    margin-right: 5px;
     background: rgba(56, 196, 255, 0.3);
     backdrop-filter: blur(20px);
     color: #01f5f1;
     font-size: 50px;
+  }
+  .more {
+    margin: 0 0 0 auto;
+    font-size: 36px;
   }
   .disabled {
     background: rgba(56, 196, 255, 0.1);

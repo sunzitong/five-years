@@ -61,8 +61,12 @@
         <template v-slot="{ list }">
           <table class="table" cellspacing="0">
             <tbody>
-              <tr animated v-for="(item, index) of list" :key="index">
-                <td v-for="o of columns" :key="o.dataIndex">
+              <tr animated v-for="item of list" :key="item.id">
+                <td
+                  v-for="o of columns"
+                  :key="o.dataIndex"
+                  @click="toggleModal(item, o.dataIndex)"
+                >
                   <div :class="o.dataIndex">
                     <template v-if="o.dataIndex === columns[4].dataIndex">
                       <Icon
@@ -101,6 +105,7 @@
         </template>
       </Animationend>
     </Spin>
+    <C3A v-model="show" :orderId="orderId" :dataSource="response" />
   </div>
 </template>
 
@@ -113,7 +118,7 @@ import { StoreKey, useStore } from "@/store";
 import Icon from "@/components/Icon/Index.vue";
 import { Swipe } from "vant";
 import Animationend from "@/components/Animationend/Index.vue";
-
+import C3A from "./../../Home/components/C3A.vue";
 import { WarningOptStages } from "@/service/analysis/commandCabin/publicEnum/enums";
 import {
   EarlyWarningItemReturn,
@@ -126,6 +131,7 @@ import { iwant } from "@guanyu/shared";
     F1A,
     F1B,
     Icon,
+    C3A,
     Animationend,
   },
 })
@@ -177,9 +183,31 @@ export default class E1 extends Base implements IFetch {
   riskDegree = [];
 
   /**
+   * 显示弹窗
+   */
+  show = false;
+
+  /**
+   * 工单ID
+   */
+  orderId: null | number = null;
+
+  /**
    * 返回数据
    */
   response: EarlyWarningItemReturn[] = [];
+
+  toggleModal(item: EarlyWarningItemReturn, type: string) {
+    // 门店ID可点击
+    if (type !== this.columns[0].dataIndex) return;
+    if (!item.orderId) return;
+    this.orderId = item.orderId;
+    if (!this.show) {
+      this.orderId = null;
+    }
+    this.orderId = item.orderId;
+    this.show = !this.show;
+  }
 
   /**
    * 获取预警信息更改主题
@@ -213,69 +241,6 @@ export default class E1 extends Base implements IFetch {
         },
         iconColor: "#99b7f6",
       },
-      // // 超期预警
-      // OVER_PERIOD: {
-      //   style: {
-      //     "background-color": "rgba(255, 203, 123, 0.2)",
-      //     "border-color": "#ffcb7b",
-      //     color: "#ffcb7b",
-      //   },
-      //   iconColor: "#ffcb7b",
-      // },
-      // // 收入预警
-      // INCOME: {
-      //   style: {
-      //     "background-color": "rgba(255, 57, 128, 0.2)",
-      //     "border-color": "#ff3980",
-      //     color: "#ff3980",
-      //   },
-      //   iconColor: "#ff3980",
-      // },
-      // // 出租率预警
-      // RENT_RATIO: {
-      //   style: {
-      //     "background-color": "rgba(153, 183, 246, 0.2)",
-      //     "border-color": "#99b7f6",
-      //     color: "#99b7f6",
-      //   },
-      //   iconColor: "#99b7f6",
-      // },
-      //  人员离岗, 颜色无
-      // STAFF_LEAVE: {
-      //   style: {
-      //     "background-color": "rgba(255, 203, 123, 0.2)",
-      //     "border-color": "#99b7f6",
-      //     color: "#99b7f6",
-      //   },
-      //   iconColor: "#99b7f6",
-      // },
-      // // 运营品质
-      // OPT_QUALITY: {
-      //   style: {
-      //     "background-color": "rgba(180, 145, 253, 0.2)",
-      //     "border-color": "#b491fd",
-      //     color: "#b491fd",
-      //   },
-      //   iconColor: "#b491fd",
-      // },
-      // // 安全风险
-      // SECURITY: {
-      //   style: {
-      //     "background-color": "rgba(34, 203, 152, 0.2)",
-      //     "border-color": "#22cb98",
-      //     color: "#22cb98",
-      //   },
-      //   iconColor: "#22cb98",
-      // },
-      // // 火情风险
-      // FIRE_SITUATION: {
-      //   style: {
-      //     "background-color": "rgba(34, 203, 152, 0.2)",
-      //     "border-color": "#f50",
-      //     color: "#f50",
-      //   },
-      //   iconColor: "#f50",
-      // },
     };
     const theme = typeMaps[item.stage] ?? {};
     return theme;
