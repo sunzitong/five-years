@@ -325,6 +325,8 @@ export default class C4 extends Base implements IFetch {
         }
       });
       this.mapData = data;
+    } else {
+      this.mapData = [];
     }
     this.setOptionBar();
     this.showCircle = true;
