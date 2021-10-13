@@ -10,35 +10,35 @@
       <li class="item">
         <div class="label">开业间数</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.openRoomNum)) }}
+          {{ sepNumber(response.openRoomNum) }}
           <span class="unit">间</span>
         </div>
       </li>
       <li class="item">
         <div class="label">底商面积</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.businessArea)) }}
+          {{ sepNumber(response.businessArea) }}
           <span class="unit">m²</span>
         </div>
       </li>
       <li class="item">
         <div class="label">一展工位数</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.workstationNum)) }}
+          {{ sepNumber(response.workstationNum) }}
           <span class="unit">个</span>
         </div>
       </li>
       <li class="item">
         <div class="label">车位个数</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.parkingSpaceNum)) }}
+          {{ sepNumber(response.parkingSpaceNum) }}
           <span class="unit">个</span>
         </div>
       </li>
       <li class="item">
         <div class="label">增值点位</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.valueAddedPoint)) }}
+          {{ sepNumber(response.valueAddedPoint) }}
           <span class="unit">个</span>
         </div>
       </li>
@@ -56,7 +56,7 @@
       >
         <div class="label">年限</div>
         <div class="value">
-          {{ formatValue(sepNumber(response.years)) }}
+          {{ sepNumber(response.years) }}
           <span class="unit">
             {{
               `年（${formatValue(response.projectStartTime)}～${formatValue(
