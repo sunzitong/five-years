@@ -197,8 +197,11 @@ export default class App extends Mixins(MixStore) {
             this.appLoading = false;
           });
       }
+      if (loginCallback) {
+        this.appLoading = false;
+        loginCallback();
+      }
       if (!isOk || loginCallback) {
-        loginCallback?.();
         return;
       }
     }
