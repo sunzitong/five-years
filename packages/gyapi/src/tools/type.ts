@@ -76,7 +76,7 @@ export const inferJsonType = async (options: {
       "acronym-style": "original",
     },
   });
-  return lines.join("\n");
+  return lines.join("\n") || `type ${typeName} = any;`;
 };
 
 /**

@@ -9,6 +9,7 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
 /**
  * 获取角色列表-返回值
  */
+type RoleListItemReturn = any;
 
 /**
  * 获取角色列表
