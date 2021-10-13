@@ -4,7 +4,7 @@
  *
  * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/10/13 15:2:43
+ * @updateAt 2021/10/13 15:24:57
  * @method GET
  */
 
@@ -29,6 +29,7 @@ exports.response = {
           orgId: 10001,
           orgName: "华北区域",
           parentOrgId: 1,
+          isHidden: 0,
           childList: [
             {
               orgLevel: 3,

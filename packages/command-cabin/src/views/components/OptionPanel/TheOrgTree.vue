@@ -1,7 +1,7 @@
 <template>
   <div class="option-panel animate__animated animate__fadeIn" v-show="show">
     <div v-for="group in resOrgTree" :key="group.orgId">
-      <div class="row">
+      <div class="row" v-if="!group.isHidden">
         <div
           class="col left"
           :class="{

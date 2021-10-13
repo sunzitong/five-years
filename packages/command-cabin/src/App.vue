@@ -203,9 +203,15 @@ export default class App extends Mixins(MixStore) {
     const resProjectList = await promiseProjectList;
     if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
       this.formatOrgTree(resOrgTree.data);
-      this.store.global.orgTree = resOrgTree.data[0];
-      this.store.global.project = resProjectList.data[0];
-      this.appLoading = false;
+      if (resOrgTree.data[0].childList) {
+        if (resOrgTree.data[0].isHidden) {
+          this.store.global.orgTree = resOrgTree.data[0].childList[0];
+        } else {
+          this.store.global.orgTree = resOrgTree.data[0];
+        }
+        this.store.global.project = resProjectList.data[0];
+        this.appLoading = false;
+      }
     }
     window.MAIAAPM?.setUid(this.store.currentUser?.userId);
   }

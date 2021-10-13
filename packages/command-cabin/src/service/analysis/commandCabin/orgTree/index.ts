@@ -14,22 +14,14 @@ export interface OrgTreeItemReturn {
   orgId: number;
   orgName: string;
   parentOrgId: number;
-  isHidden: number;
-  childList: ChildList[];
-}
-
-export interface ChildList {
-  orgLevel: number;
-  orgId: number;
-  orgName: string;
-  parentOrgId: number;
-  childList: ChildList[] | null;
+  isHidden?: number;
+  childList: OrgTreeItemReturn[] | null;
 }
 
 /**
  * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/10/13 15:2:43
+ * @updateAt 2021/10/13 15:24:57
  * @method GET
  */
 export const fetchOrgTree = (
