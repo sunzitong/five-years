@@ -432,11 +432,6 @@ export default class B1 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
       if (this.resData.transactionModel) {
-        console.log(
-          "\n\n-------------------------",
-          this.resData.transactionModel,
-          "-------------------------\n\n"
-        );
         this.tabList = this.tabLabels[
           iwant.string(this.resData.transactionModel)
         ];

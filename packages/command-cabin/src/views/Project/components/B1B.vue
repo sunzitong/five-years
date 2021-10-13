@@ -114,13 +114,6 @@ export default class B1B extends Base {
   }
 
   paintChart() {
-    console.log("=================================");
-    console.log("LINE1", this.yLabel0[this.tabTag]);
-    console.log("LINE2", this.yLabel1[this.tabTag]);
-    console.log("LINE3", this.yLabel2[this.tabTag]);
-    console.log("LINE4", this.yLabel3[this.tabTag]);
-    console.log("=================================");
-
     if (!this.myChart) {
       this.myChart = echarts.init(this.wrapper);
       mitter.on(EventName.ResizeEcharts, () => {
@@ -634,5 +627,3 @@ export default class B1B extends Base {
   }
 }
 </style>
-
-function tabTag(tabTag: any) { throw new Error("Function not implemented."); }
