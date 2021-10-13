@@ -22,7 +22,7 @@
                 <br />
                 缺口
               </th>
-              <th rowspan="2" width="12%">已开业项目收入缺口</th>
+              <th rowspan="2" width="12%">预估获取项目收入缺口</th>
               <th colspan="4">已开业项目收入缺口</th>
               <th rowspan="2" width="14%">解约&终止项目收入缺口</th>
             </tr>
