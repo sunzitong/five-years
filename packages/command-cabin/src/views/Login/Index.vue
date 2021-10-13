@@ -257,12 +257,12 @@ export default class Login extends Base {
 
   created() {
     this.fetchAllowRoleList();
-    this.fetchLogout();
-    // if (!this.store.currentUser) {
-    //   this.fetchQR();
-    // } else {
-    //   this.activeRoleId = this.store.currentUser.roleId;
-    // }
+    // this.fetchLogout();
+    if (!this.store.currentUser) {
+      this.fetchQR();
+    } else {
+      this.activeRoleId = this.store.currentUser.roleId;
+    }
   }
 
   beforeDestroy() {
