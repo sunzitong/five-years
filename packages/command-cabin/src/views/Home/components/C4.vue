@@ -260,6 +260,17 @@ export default class C4 extends Base implements IFetch {
 
   showCircle = false;
 
+  /**
+   * 全局切换时
+   */
+  @Watch("store.global.dataLevel")
+  dataLevelChanged(val: DataLevels) {
+    if (val === DataLevels.GROUP) {
+      this.tableData = {};
+      this.showTable = false;
+    }
+  }
+
   @Watch("levelValue")
   levelValueChanged() {
     this.showCircle = false;
@@ -325,6 +336,9 @@ export default class C4 extends Base implements IFetch {
    * 请求表格数据
    */
   async fetchDetails() {
+    if (this.store.global.dataLevel === DataLevels.GROUP) {
+      return;
+    }
     const response = await useStore(fetchRegionDetailsInfo, {
       key: StoreKey.HomeRegionDetailsInfo,
       params: {
