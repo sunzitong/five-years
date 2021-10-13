@@ -29,6 +29,11 @@ body {
     height: 0;
   }
 }
+
+@font-face {
+  font-family: "DIN Alternate";
+  src: url('../front/DIN\ Alternate\ Bold.ttf');
+}
 // 微信长按hotfix
 .wx-callout {
   -webkit-touch-callout: none;
