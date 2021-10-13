@@ -27,7 +27,7 @@
           >
             <div class="rate-text">
               <div class="desc">{{ item.name }}</div>
-              <div class="value">{{ item.currentRate }}%</div>
+              <div class="value">{{ formatValue(item.currentRate) }}%</div>
             </div>
           </van-circle>
         </div>

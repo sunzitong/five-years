@@ -93,7 +93,7 @@ export default class B1A extends Base implements IFetch {
     });
     this.reset();
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
       this.empty = false;
       this.openingNum = this.resData.totalOpenNum;
       this.getSubData();

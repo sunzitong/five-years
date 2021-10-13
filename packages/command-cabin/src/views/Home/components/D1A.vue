@@ -245,7 +245,7 @@ export default class D1A extends Base implements IFetch {
       },
     });
     if (response?.status === "ok") {
-      this.resData = response.data;
+      this.resData = iwant.object(response.data);
     } else {
       this.empty = true;
     }
