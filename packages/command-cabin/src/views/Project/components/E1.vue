@@ -61,7 +61,7 @@
         <template v-slot="{ list }">
           <table class="table" cellspacing="0">
             <tbody>
-              <tr animated v-for="(item, index) of list" :key="index">
+              <tr animated v-for="item of list" :key="item.id">
                 <td v-for="o of columns" :key="o.dataIndex">
                   <div :class="o.dataIndex">
                     <template v-if="o.dataIndex === columns[4].dataIndex">
