@@ -368,6 +368,7 @@ export default class Login extends Base {
     if (response?.status === "ok") {
       localStorage.removeItem("token");
       this.store.currentUser = null;
+      this.fetchQR();
     }
   }
 

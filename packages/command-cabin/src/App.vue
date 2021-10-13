@@ -49,7 +49,7 @@ import { fetchToken } from "./service/auth/token";
   },
 })
 export default class App extends Mixins(MixStore) {
-  resize = !!sessionStorage.getItem("resize");
+  resize = !sessionStorage.getItem("unresize");
 
   showShadow = false;
 
@@ -101,9 +101,9 @@ export default class App extends Mixins(MixStore) {
       document.body.style.setProperty("height", "100vh");
     }
     if (this.resize) {
-      sessionStorage.setItem("resize", "resize");
+      sessionStorage.removeItem("unresize");
     } else {
-      sessionStorage.removeItem("resize");
+      sessionStorage.setItem("unresize", "unresize");
     }
     this.store.env.SCALE = this.scale;
   }
