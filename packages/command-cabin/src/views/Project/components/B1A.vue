@@ -14,6 +14,7 @@
         :monthTag="monthTag"
         :yearTag="yearTag"
         :yIndex="yIndex[i - 1]"
+        :ifChange="ifChange"
       />
       <B1B
         :key="i"
@@ -29,6 +30,7 @@
         :yearTag="yearTag"
         :yIndex="yIndex[i - 1]"
         :specialTabIndex="specialTabIndex"
+        :ifChange="ifChange"
       />
     </template>
   </div>
@@ -97,8 +99,10 @@ export default class B1A extends Base {
    * yIndex设置
    */
   @Prop({ default: () => [] }) readonly yIndex!: number[][];
-
-  // mounted() {}
+  /**
+   * 门店切换标志
+   */
+  @Prop({ default: () => false }) readonly ifChange!: boolean;
 }
 </script>
 
