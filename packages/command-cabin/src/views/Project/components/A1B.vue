@@ -1,21 +1,23 @@
 <template>
-  <Spin class="timeline" :loading="loading">
-    <van-row
-      gutter="10"
-      type="flex"
-      justify="space-between"
-      style="position: relative; z-index: 10"
-    >
-      <van-col class="col" v-for="item in timeLineData" :key="item.label">
-        <div class="top">
-          <div class="label">{{ item.label }}</div>
-          <div class="date">{{ item.date }}</div>
-        </div>
-        <div class="note">
-          <span v-for="s of item.note" :key="s">{{ s }}</span>
-        </div>
-      </van-col>
-    </van-row>
+  <Spin class="timeline-wrapper" :loading="loading" :empty="empty">
+    <div class="timeline">
+      <van-row
+        gutter="10"
+        type="flex"
+        justify="space-between"
+        style="position: relative; z-index: 10"
+      >
+        <van-col class="col" v-for="item in timeLineData" :key="item.label">
+          <div class="top">
+            <div class="label">{{ item.label }}</div>
+            <div class="date">{{ item.date }}</div>
+          </div>
+          <div class="note">
+            <span v-for="s of item.note" :key="s">{{ s }}</span>
+          </div>
+        </van-col>
+      </van-row>
+    </div>
   </Spin>
 </template>
 
@@ -24,6 +26,7 @@ import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
 import { useStore, StoreKey } from "@/store";
 import { iwant } from "@guanyu/shared";
+import _ from "lodash";
 import {
   fetchMilepost,
   MilepostReturn,
@@ -191,15 +194,22 @@ export default class A1B extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
     }
+
+    this.empty = _.isEmpty(this.response);
+
     return response;
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.timeline-wrapper {
+  height: 380px;
+  overflow: hidden;
+}
 .timeline {
   position: relative;
-  height: 380px;
+  height: 100%;
   margin: 40px 40px -40px 40px;
   text-align: center;
   &::before {
