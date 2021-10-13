@@ -132,7 +132,6 @@ export default class CardA extends Vue {
    */
   setCardDataSource(source: SourceType) {
     const { from, time } = source ?? {};
-    if (!from || !time) return;
     let s = "";
     let t = "";
     if (from) {
