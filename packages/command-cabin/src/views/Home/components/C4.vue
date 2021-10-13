@@ -317,7 +317,9 @@ export default class C4 extends Base implements IFetch {
     if (response?.status === "ok") {
       const data: MapData = iwant.array(response.data);
       data.forEach((item) => {
-        item.currentRate = 0;
+        if (!item.currentRate) {
+          item.currentRate = 0;
+        }
       });
       this.mapData = data;
     }
