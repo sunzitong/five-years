@@ -1,103 +1,108 @@
 <template>
   <div class="pictrues-more">
-    <span @click="toggleDialog">more</span>
-    <van-dialog
-      class="dialog"
-      v-model="show"
-      width="2293"
-      :show-confirm-button="false"
-      :get-container="() => $root.$el"
-    >
-      <SubWrapperA title="现场风险监控" style="width: 2293px">
-        <CardA title="现场监控">
-          <Spin :loading="loading" :empty="empty">
-            <div class="pictures-wrapper">
-              <van-swipe
-                lazy-render
-                ref="swipe"
-                :loop="false"
-                :show-indicators="false"
-                @change="changeHandle"
-              >
-                <van-swipe-item v-for="(item, index) of response" :key="index">
-                  <div class="pictures">
-                    <div class="label">{{ item.location }}</div>
-                    <Webrtc
-                      :key="item.cameraId"
-                      :config="webrtcConfig"
-                      v-if="index === currentIndex"
-                    />
-                    <van-image
-                      v-else
-                      radius="5px 5px 0 0"
-                      :width="webrtcConfig.width"
-                      :height="webrtcConfig.height"
-                      :src="item.imageUrl"
-                    ></van-image>
-                  </div>
-                </van-swipe-item>
-              </van-swipe>
-              <div class="btns">
-                <div
-                  class="btn"
-                  :class="{ disabled: currentIndex === 0 }"
-                  @click="() => swipe.prev()"
+    <span @click="toggleDialog">更多</span>
+    <div v-if="show">
+      <van-dialog
+        class="dialog"
+        v-model="show"
+        width="2293"
+        :show-confirm-button="false"
+        :get-container="() => $root.$el"
+      >
+        <SubWrapperA title="现场风险监控" style="width: 2293px">
+          <CardA title="现场监控">
+            <Spin :loading="loading" :empty="empty">
+              <div class="pictures-wrapper">
+                <van-swipe
+                  lazy-render
+                  ref="swipe"
+                  :loop="false"
+                  :show-indicators="false"
+                  @change="changeHandle"
                 >
-                  <van-icon name="arrow-left" />
-                </div>
-                <div
-                  class="btn"
-                  :class="{ disabled: currentIndex === response.length - 1 }"
-                  @click="() => swipe.next()"
-                >
-                  <van-icon name="arrow" />
-                </div>
-              </div>
-            </div>
-            <div class="pictures-gallery">
-              <div class="title">
-                <span>视觉选择</span>
-              </div>
-              <div class="body">
-                <div class="gallery">
-                  <div
-                    class="item"
-                    @click="() => swipe.swipeTo(item.index)"
-                    v-for="item of pageContent"
-                    :key="item.cameraId"
+                  <van-swipe-item
+                    v-for="(item, index) of response"
+                    :key="index"
                   >
-                    <van-image
-                      width="707"
-                      height="379"
-                      :src="item.imageUrl"
-                    ></van-image>
-                    <div class="label">{{ item.location }}</div>
+                    <div class="pictures">
+                      <div class="label">{{ item.location }}</div>
+                      <Webrtc
+                        :key="item.cameraId"
+                        :config="webrtcConfig"
+                        v-if="index === currentIndex"
+                      />
+                      <van-image
+                        v-else
+                        radius="5px 5px 0 0"
+                        :width="webrtcConfig.width"
+                        :height="webrtcConfig.height"
+                        :src="item.imageUrl"
+                      ></van-image>
+                    </div>
+                  </van-swipe-item>
+                </van-swipe>
+                <div class="btns">
+                  <div
+                    class="btn"
+                    :class="{ disabled: currentIndex === 0 }"
+                    @click="() => swipe.prev()"
+                  >
+                    <van-icon name="arrow-left" />
+                  </div>
+                  <div
+                    class="btn"
+                    :class="{ disabled: currentIndex === response.length - 1 }"
+                    @click="() => swipe.next()"
+                  >
+                    <van-icon name="arrow" />
                   </div>
                 </div>
-                <div class="pagination">
-                  <Pagination
-                    :total="response.length"
-                    :pages="Math.ceil(response.length / 3)"
-                    v-model="pageNum"
-                  />
+              </div>
+              <div class="pictures-gallery">
+                <div class="title">
+                  <span>视觉选择</span>
+                </div>
+                <div class="body">
+                  <div class="gallery">
+                    <div
+                      class="item"
+                      @click="() => swipe.swipeTo(item.index)"
+                      v-for="item of pageContent"
+                      :key="item.cameraId"
+                    >
+                      <van-image
+                        width="707"
+                        height="379"
+                        :src="item.imageUrl"
+                      ></van-image>
+                      <div class="label">{{ item.location }}</div>
+                    </div>
+                  </div>
+                  <div class="pagination">
+                    <Pagination
+                      :total="response.length"
+                      :pages="Math.ceil(response.length / 3)"
+                      v-model="pageNum"
+                    />
+                  </div>
                 </div>
               </div>
+            </Spin>
+          </CardA>
+          <WhiteSpace />
+          <CardA>
+            <div class="closes">
+              <span class="cross" @click="toggleDialog">
+                <van-icon name="cross" />
+              </span>
+              <span class="cross" @click="toggleDialog">
+                <van-icon name="cross" />
+              </span>
             </div>
-          </Spin>
-        </CardA>
-        <WhiteSpace />
-        <CardA>
-          <div class="closes">
-            <span class="cross" @click="toggleDialog">
-              <van-icon name="cross" />
-            </span>
-            <span class="cross" @click="toggleDialog">
-              <van-icon name="cross" />
-            </span>
-          </div>
-        </CardA>
-      </SubWrapperA>
-    </van-dialog>
+          </CardA>
+        </SubWrapperA>
+      </van-dialog>
+    </div>
   </div>
 </template>
 
@@ -147,7 +152,7 @@ export default class C1A extends Base implements IFetch {
   /**
    * 是否显示弹窗
    */
-  show = true;
+  show = false;
 
   /**
    * 渲染页面内容
