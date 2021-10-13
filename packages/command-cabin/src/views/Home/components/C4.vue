@@ -112,53 +112,54 @@
         <span v-if="index === 2">%</span>
       </li>
     </ul>
-    <div
-      v-for="item in mapData"
-      :key="item.orgId"
-      class="circle"
-      :class="{
-        circle__city: levelValue === DataLevels.CITY,
-        'circle--warn': circleWarn(item),
-        'circle--active': circleActive(item),
-      }"
-      :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
-      @click="circleClicked(item)"
-      v-show="showCircle"
-    >
-      <van-circle
-        v-model="item.currentRate"
-        :rate="item[options[optionIndex].limitName]"
-        :speed="150"
-        :layer-color="getCircleColor(item, 0)"
-        :color="getCircleColor(item, 1)"
-        :stroke-width="56"
+    <template v-if="showCircle">
+      <div
+        v-for="item in mapData"
+        :key="item.orgId"
+        class="circle"
+        :class="{
+          circle__city: levelValue === DataLevels.CITY,
+          'circle--warn': circleWarn(item),
+          'circle--active': circleActive(item),
+        }"
+        :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
+        @click="circleClicked(item)"
       >
-        <div
-          class="circle__text"
-          v-if="levelValue !== DataLevels.CITY || circleActive(item)"
+        <van-circle
+          v-model="item.currentRate"
+          :rate="item[options[optionIndex].limitName]"
+          :speed="150"
+          :layer-color="getCircleColor(item, 0)"
+          :color="getCircleColor(item, 1)"
+          :stroke-width="56"
         >
           <div
-            class="value"
-            :class="{
-              'value--city': levelValue === DataLevels.CITY,
-            }"
+            class="circle__text"
+            v-if="levelValue !== DataLevels.CITY || circleActive(item)"
           >
-            {{ item[options[optionIndex].numName] }}
+            <div
+              class="value"
+              :class="{
+                'value--city': levelValue === DataLevels.CITY,
+              }"
+            >
+              {{ item[options[optionIndex].numName] }}
+            </div>
+            <div
+              class="name"
+              :class="{
+                'name--city': levelValue === DataLevels.CITY,
+              }"
+            >
+              {{ item.orgName }}
+            </div>
           </div>
-          <div
-            class="name"
-            :class="{
-              'name--city': levelValue === DataLevels.CITY,
-            }"
-          >
+          <div class="circle__text" v-else>
             {{ item.orgName }}
           </div>
-        </div>
-        <div class="circle__text" v-else>
-          {{ item.orgName }}
-        </div>
-      </van-circle>
-    </div>
+        </van-circle>
+      </div>
+    </template>
     <C4A />
   </div>
 </template>
@@ -482,7 +483,6 @@ export default class C4 extends Base implements IFetch {
     color: #acbfdc;
     white-space: nowrap;
     position: relative;
-    z-index: 1;
     font-weight: normal;
     .name {
       font-size: 30px;
@@ -507,7 +507,7 @@ export default class C4 extends Base implements IFetch {
 }
 .circle__city.circle--active {
   transform: scale(1.7);
-  z-index: 2;
+  z-index: 1;
 }
 /* 数据表格 */
 .tb-card {

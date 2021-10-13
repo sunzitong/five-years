@@ -148,5 +148,16 @@ export default class CardABackground extends Vue {
   svg {
     vertical-align: middle;
   }
+  &__body {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      bottom: 16px;
+      left: 16px;
+      backdrop-filter: blur(10px);
+    }
+  }
 }
 </style>
