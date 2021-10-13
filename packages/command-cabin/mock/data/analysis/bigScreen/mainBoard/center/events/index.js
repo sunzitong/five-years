@@ -4,7 +4,7 @@
  *
  * 指挥中心-冠寓大事记
  * @createBy huyanan
- * @updateAt 2021/9/28 11:39:47
+ * @updateAt 2021/10/12 19:9:37
  * @method GET
  */
 
@@ -21,8 +21,7 @@ exports.response = {
       newRoomNum: 11389, //新增获取间数
       newOpenNum: 9980, //新增开业间数
       profit: 15.2, //净利润率
-      npiProfitHeavy: 15.2, //NPI利润率(中重)
-      npiProfitLight: 15.2, //NPI利润率(轻)
+      npiProfit: 15.2, //NPI利润率
       income: 150.2, //收入总额
       incomeRate: 100.2, //收入达成率
       rentRate: 98.2, //平均出租率

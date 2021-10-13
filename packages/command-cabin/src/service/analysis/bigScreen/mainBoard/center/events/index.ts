@@ -29,8 +29,7 @@ export interface EventsItemReturn {
   newRoomNum: number;
   newOpenNum: number;
   profit: number;
-  npiProfitHeavy: number;
-  npiProfitLight: number;
+  npiProfit: number;
   income: number;
   incomeRate: number;
   rentRate: number;
@@ -39,7 +38,7 @@ export interface EventsItemReturn {
 /**
  * 指挥中心-冠寓大事记
  * @createBy huyanan
- * @updateAt 2021/9/28 11:39:47
+ * @updateAt 2021/10/12 19:9:37
  * @method GET
  */
 export const fetchEvents = (

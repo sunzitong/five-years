@@ -2,7 +2,7 @@
   <div class="container">
     <div class="china"></div>
     <div class="tb-card" v-if="showTable">
-      <CardB>
+      <CardB fill="#113069" :fillOpacity="0.6">
         <table class="sum">
           <tr>
             <td rowspan="3" width="320">{{ store.global.orgTree.orgName }}</td>
@@ -105,59 +105,61 @@
         :key="index"
         class="item"
         :class="{ active: optionIndex === index }"
-        @click="optionIndex = index"
+        @click="setOptionIndex(index)"
       >
         {{ item.text }}
         <StepNumber :to="optionData[item.numName]" :duration="100" />
         <span v-if="index === 2">%</span>
       </li>
     </ul>
-    <div
-      v-for="item in mapData"
-      :key="item.orgId"
-      class="circle"
-      :class="{
-        circle__city: levelValue === DataLevels.CITY,
-        'circle--warn': circleWarn(item),
-        'circle--active': circleActive(item),
-      }"
-      :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
-      @click="circleClicked(item)"
-    >
-      <van-circle
-        v-model="item.currentRate"
-        :rate="item[options[optionIndex].limitName]"
-        :speed="150"
-        :layer-color="getCircleColor(item, 0)"
-        :color="getCircleColor(item, 1)"
-        :stroke-width="56"
+    <template v-if="showCircle">
+      <div
+        v-for="item in mapData"
+        :key="item.orgId"
+        class="circle"
+        :class="{
+          circle__city: levelValue === DataLevels.CITY,
+          'circle--warn': circleWarn(item),
+          'circle--active': circleActive(item),
+        }"
+        :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
+        @click="circleClicked(item)"
       >
-        <div
-          class="circle__text"
-          v-if="levelValue !== DataLevels.CITY || circleActive(item)"
+        <van-circle
+          v-model="item.currentRate"
+          :rate="item[options[optionIndex].limitName]"
+          :speed="150"
+          :layer-color="getCircleColor(item, 0)"
+          :color="getCircleColor(item, 1)"
+          :stroke-width="56"
         >
           <div
-            class="value"
-            :class="{
-              'value--city': levelValue === DataLevels.CITY,
-            }"
+            class="circle__text"
+            v-if="levelValue !== DataLevels.CITY || circleActive(item)"
           >
-            {{ item[options[optionIndex].numName] }}
+            <div
+              class="value"
+              :class="{
+                'value--city': levelValue === DataLevels.CITY,
+              }"
+            >
+              {{ item[options[optionIndex].numName] }}
+            </div>
+            <div
+              class="name"
+              :class="{
+                'name--city': levelValue === DataLevels.CITY,
+              }"
+            >
+              {{ item.orgName }}
+            </div>
           </div>
-          <div
-            class="name"
-            :class="{
-              'name--city': levelValue === DataLevels.CITY,
-            }"
-          >
+          <div class="circle__text" v-else>
             {{ item.orgName }}
           </div>
-        </div>
-        <div class="circle__text" v-else>
-          {{ item.orgName }}
-        </div>
-      </van-circle>
-    </div>
+        </van-circle>
+      </div>
+    </template>
     <C4A />
   </div>
 </template>
@@ -241,7 +243,7 @@ export default class C4 extends Base implements IFetch {
       text: "全业态收入(万元)",
     },
   ];
-  optionIndex = 2;
+  optionIndex = 0;
   /**
    * 切换条数据
    */
@@ -255,6 +257,49 @@ export default class C4 extends Base implements IFetch {
    * 地图圆圈数据
    */
   mapData: MapData = [];
+
+  showCircle = false;
+
+  mounted() {
+    this.loopOption();
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
+  }
+
+  setOptionIndex(index: number) {
+    clearTimeout(this.timer);
+    this.optionIndex = index;
+    this.loopOption(1000 * 120);
+  }
+
+  loopOption(sec = 6000) {
+    this.timer = setTimeout(() => {
+      if (this.optionIndex >= 3) {
+        this.optionIndex = 0;
+      } else {
+        this.optionIndex++;
+      }
+      this.loopOption();
+    }, sec);
+  }
+
+  /**
+   * 全局切换时
+   */
+  @Watch("store.global.dataLevel")
+  dataLevelChanged(val: DataLevels) {
+    if (val === DataLevels.GROUP) {
+      this.tableData = {};
+      this.showTable = false;
+    }
+  }
+
+  @Watch("levelValue")
+  levelValueChanged() {
+    this.showCircle = false;
+  }
 
   /**
    * 请求圆圈数据
@@ -272,11 +317,14 @@ export default class C4 extends Base implements IFetch {
     if (response?.status === "ok") {
       const data: MapData = iwant.array(response.data);
       data.forEach((item) => {
-        item.currentRate = 0;
+        if (!item.currentRate) {
+          item.currentRate = 0;
+        }
       });
       this.mapData = data;
     }
     this.setOptionBar();
+    this.showCircle = true;
     return response;
   }
 
@@ -315,6 +363,9 @@ export default class C4 extends Base implements IFetch {
    * 请求表格数据
    */
   async fetchDetails() {
+    if (this.store.global.dataLevel === DataLevels.GROUP) {
+      return;
+    }
     const response = await useStore(fetchRegionDetailsInfo, {
       key: StoreKey.HomeRegionDetailsInfo,
       params: {
@@ -453,6 +504,7 @@ export default class C4 extends Base implements IFetch {
   width: 170px;
   height: 170px;
   cursor: pointer;
+
   &::v-deep {
     .van-circle {
       width: 100%;
@@ -462,12 +514,16 @@ export default class C4 extends Base implements IFetch {
   &__text {
     @extend %flex-center;
     flex-flow: column nowrap;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    border-radius: 50%;
+
+    background: rgba(5, 11, 36, 0.1);
+    backdrop-filter: blur(10px);
     color: #acbfdc;
     white-space: nowrap;
     position: relative;
-    z-index: 1;
     font-weight: normal;
     .name {
       font-size: 30px;
@@ -492,7 +548,7 @@ export default class C4 extends Base implements IFetch {
 }
 .circle__city.circle--active {
   transform: scale(1.7);
-  z-index: 2;
+  z-index: 1;
 }
 /* 数据表格 */
 .tb-card {

@@ -9,7 +9,11 @@
         :poster="`${store.env.BASE_URL}video/poster.jpg`"
       ></video>
     </div>
-    <div class="content" v-if="!userRoles">
+    <div
+      class="content"
+      v-if="!userRoles"
+      :style="{ transform: `scale(${1 / store.env.SCALE})` }"
+    >
       <svg
         width="100%"
         height="100%"
