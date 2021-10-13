@@ -8,7 +8,7 @@
       :get-container="() => $root.$el"
     >
       <SubWrapperA title="现场风险监控" style="width: 3015">
-        <Spin :loading="loading" :empty="empty"> 
+        <Spin :loading="loading" :empty="empty">
           <CardA opacity="1" fill="rgba(8, 18, 35, 1)">
             <van-row gutter="40">
               <van-col span="18">
@@ -31,15 +31,21 @@
                     <ul>
                       <li>
                         <div class="label">问题描述：</div>
-                        <div class="con">{{ response.problem }}</div>
+                        <div class="con">
+                          {{ formatValue(response.problem) }}
+                        </div>
                       </li>
                       <li>
                         <div class="label">发现时间：</div>
-                        <div class="con">{{ response.showTime }}</div>
+                        <div class="con">
+                          {{ formatValue(response.showTime) }}
+                        </div>
                       </li>
                       <li>
                         <div class="label">整改时间：</div>
-                        <div class="con">{{ response.reformTime }}</div>
+                        <div class="con">
+                          {{ formatValue(response.reformTime) }}
+                        </div>
                       </li>
                     </ul>
                   </div>
