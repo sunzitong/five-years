@@ -34,7 +34,7 @@ export default class StepNumber extends Vue {
   @Prop() value!: number;
 
   // 绑定值
-  currentValue: unknown = "--";
+  currentValue: unknown = formatValue();
 
   @Watch("to", { immediate: true })
   changed(val: unknown, oldVal: unknown) {
@@ -64,7 +64,7 @@ export default class StepNumber extends Vue {
   }
 
   callback(n: number | null) {
-    this.currentValue = formatValue(sepNumber(n));
+    this.currentValue = sepNumber(n);
     this.$emit("input", n);
   }
 }
