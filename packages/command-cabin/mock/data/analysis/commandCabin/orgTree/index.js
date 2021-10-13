@@ -4,7 +4,7 @@
  *
  * 地区筛选（国家-大区-城市）
  * @createBy baishiqiang
- * @updateAt 2021/9/10 14:40:7
+ * @updateAt 2021/10/13 15:2:43
  * @method GET
  */
 
@@ -21,6 +21,7 @@ exports.response = {
       orgId: 1, //组织ID
       orgName: "中国", //组织名称
       parentOrgId: 0, //上一级组织ID
+      isHidden: 1, //是否隐藏  1是  0否
       childList: [
         //下一级组织
         {

@@ -30,6 +30,7 @@ export interface EarlyWarningParams {
  * 门店屏幕-分险预警-返回值
  */
 export interface EarlyWarningItemReturn {
+  id: number;
   orderId: number;
   projectId: number;
   projectName: string;
@@ -44,7 +45,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 门店屏幕-分险预警
  * @createBy wuyao
- * @updateAt 2021/10/8 18:0:22
+ * @updateAt 2021/10/13 15:12:33
  * @method GET
  */
 export const fetchEarlyWarning = (

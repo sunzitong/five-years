@@ -35,6 +35,7 @@ export interface EarlyWarningParams {
  * 指挥中心-异常预警-返回值
  */
 export interface EarlyWarningItemReturn {
+  id?: number;
   orderId?: number;
   projectId: number;
   projectName: string;
@@ -49,7 +50,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/10/12 18:42:32
+ * @updateAt 2021/10/13 15:12:19
  * @method GET
  */
 export const fetchEarlyWarning = (
