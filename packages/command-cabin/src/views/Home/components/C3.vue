@@ -94,7 +94,7 @@ export default class C3 extends Base implements IFetch {
     } else {
       this.orderId = null;
     }
-    this.show = !this.show;
+    // this.show = !this.show;
   }
 
   /**
