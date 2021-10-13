@@ -89,6 +89,9 @@ export default class D3 extends Base implements IFetch {
         rate: data.doorDeviceOfflineRatio,
         currentRate: 0,
       });
+      this.empty = false;
+    } else {
+      this.empty = true;
     }
     return response;
   }
