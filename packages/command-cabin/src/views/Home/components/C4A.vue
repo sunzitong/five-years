@@ -1,6 +1,6 @@
 <template>
   <div class="c4a-container" :class="{ fold: isFold }">
-    <CardB>
+    <CardB fill="#113069">
       <div class="head">
         <div class="title">供销存</div>
         <div class="fold" @click="isFold = !isFold">

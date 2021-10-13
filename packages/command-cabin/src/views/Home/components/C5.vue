@@ -17,12 +17,7 @@
               </ul>
               <ul class="part">
                 <li>净利润率：{{ formatValue(item.profit) }}%</li>
-                <li>
-                  NPI利润率（中重）：{{ formatValue(item.npiProfitHeavy) }}%
-                </li>
-                <li>
-                  NPI利润率（轻）：{{ formatValue(item.npiProfitLight) }}%
-                </li>
+                <li>NPI利润率：{{ formatValue(item.npiProfit) }}%</li>
               </ul>
               <ul class="part">
                 <li>收入总额：{{ formatValue(item.income) }}万元</li>
@@ -158,7 +153,7 @@ export default class C5 extends Base implements IFetch {
     display: flex;
     font-size: 30px;
     color: #90a4c3;
-    line-height: 1.3;
+    line-height: 1.4;
     background: transparent;
     .details {
       margin: 0 auto;
@@ -166,6 +161,7 @@ export default class C5 extends Base implements IFetch {
       height: 600px;
       @extend %bg-img-supply-normal;
       transition: 500ms;
+      pointer-events: none;
     }
     &.active {
       background: linear-gradient(
@@ -190,7 +186,7 @@ export default class C5 extends Base implements IFetch {
         rgba(0, 127, 249, 0) 100.9%
       );
       backdrop-filter: blur(10px);
-      margin: 0 10px 30px;
+      margin: 0 10px 34px;
       padding: 0 8px;
       white-space: nowrap;
     }

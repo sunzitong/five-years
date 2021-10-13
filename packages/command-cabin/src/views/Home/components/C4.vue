@@ -2,7 +2,7 @@
   <div class="container">
     <div class="china"></div>
     <div class="tb-card" v-if="showTable">
-      <CardB>
+      <CardB fill="#113069" :fillOpacity="0.6">
         <table class="sum">
           <tr>
             <td rowspan="3" width="320">{{ store.global.orgTree.orgName }}</td>
@@ -123,6 +123,7 @@
       }"
       :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
       @click="circleClicked(item)"
+      v-show="showCircle"
     >
       <van-circle
         v-model="item.currentRate"
@@ -256,6 +257,13 @@ export default class C4 extends Base implements IFetch {
    */
   mapData: MapData = [];
 
+  showCircle = false;
+
+  @Watch("levelValue")
+  levelValueChanged() {
+    this.showCircle = false;
+  }
+
   /**
    * 请求圆圈数据
    * 参数不是直接使用global dateLevel
@@ -277,6 +285,7 @@ export default class C4 extends Base implements IFetch {
       this.mapData = data;
     }
     this.setOptionBar();
+    this.showCircle = true;
     return response;
   }
 
@@ -453,6 +462,7 @@ export default class C4 extends Base implements IFetch {
   width: 170px;
   height: 170px;
   cursor: pointer;
+
   &::v-deep {
     .van-circle {
       width: 100%;
@@ -462,8 +472,13 @@ export default class C4 extends Base implements IFetch {
   &__text {
     @extend %flex-center;
     flex-flow: column nowrap;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    border-radius: 50%;
+
+    background: rgba(5, 11, 36, 0.1);
+    backdrop-filter: blur(10px);
     color: #acbfdc;
     white-space: nowrap;
     position: relative;

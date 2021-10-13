@@ -125,8 +125,16 @@ export default class App extends Mixins(MixStore) {
    */
   serviceError(status?: number) {
     if (status === 401) {
+      // 清除用户信息
+      removeStore();
+      this.store.currentUser = null;
       if (!this.inLogin) {
-        this.$router.replace("/login").catch(_.noop);
+        this.$router
+          .replace("/login")
+          .catch(_.noop)
+          .finally(() => {
+            this.appLoading = false;
+          });
       }
     }
   }
