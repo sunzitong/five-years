@@ -105,7 +105,7 @@
         :key="index"
         class="item"
         :class="{ active: optionIndex === index }"
-        @click="optionIndex = index"
+        @click="setOptionIndex(index)"
       >
         {{ item.text }}
         <StepNumber :to="optionData[item.numName]" :duration="100" />
@@ -243,7 +243,7 @@ export default class C4 extends Base implements IFetch {
       text: "全业态收入(万元)",
     },
   ];
-  optionIndex = 2;
+  optionIndex = 0;
   /**
    * 切换条数据
    */
@@ -259,6 +259,31 @@ export default class C4 extends Base implements IFetch {
   mapData: MapData = [];
 
   showCircle = false;
+
+  mounted() {
+    this.loopOption();
+  }
+
+  beforeDestroy() {
+    clearTimeout(this.timer);
+  }
+
+  setOptionIndex(index: number) {
+    clearTimeout(this.timer);
+    this.optionIndex = index;
+    this.loopOption(1000 * 120);
+  }
+
+  loopOption(sec = 6000) {
+    this.timer = setTimeout(() => {
+      if (this.optionIndex >= 3) {
+        this.optionIndex = 0;
+      } else {
+        this.optionIndex++;
+      }
+      this.loopOption();
+    }, sec);
+  }
 
   /**
    * 全局切换时
