@@ -39,6 +39,7 @@ import {
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
 import { fetchToken } from "./service/auth/token";
+import { DataLevels } from "./service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   name: "app",
@@ -205,8 +206,11 @@ export default class App extends Mixins(MixStore) {
       this.formatOrgTree(resOrgTree.data);
       if (resOrgTree.data[0].childList) {
         if (resOrgTree.data[0].isHidden) {
+          // 无全国权限
+          this.store.global.dataLevel = DataLevels.AREA;
           this.store.global.orgTree = resOrgTree.data[0].childList[0];
         } else {
+          this.store.global.dataLevel = DataLevels.GROUP;
           this.store.global.orgTree = resOrgTree.data[0];
         }
         this.store.global.project = resProjectList.data[0];
