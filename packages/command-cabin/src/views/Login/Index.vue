@@ -257,16 +257,29 @@ export default class Login extends Base {
 
   created() {
     this.fetchAllowRoleList();
-    // this.fetchLogout();
-    if (!this.store.currentUser) {
-      this.fetchQR();
-    } else {
-      this.activeRoleId = this.store.currentUser.roleId;
-    }
+    this.fetchLogout();
+    // if (!this.store.currentUser) {
+    //   this.fetchQR();
+    // } else {
+    //   this.activeRoleId = this.store.currentUser.roleId;
+    // }
   }
 
   beforeDestroy() {
     clearTimeout(this.timer);
+  }
+
+  /**
+   * 扫码成功后
+   * token解析成功展示主岗
+   * token解析失败重新请求
+   */
+  loginCallback() {
+    if (this.store.currentUser) {
+      this.activeRoleId = this.store.currentUser.roleId;
+    } else {
+      this.fetchQR();
+    }
   }
 
   /**
@@ -314,7 +327,7 @@ export default class Login extends Base {
       if (qrCodeStatus === "CONFIRM") {
         // 登录成功 请求全局数据
         localStorage.setItem("token", data.token);
-        mitter.emit(EventName.FetchGlobalData);
+        mitter.emit(EventName.FetchGlobalData, this.loginCallback);
         return;
       }
       if (qrCodeStatus === "INVALID") {

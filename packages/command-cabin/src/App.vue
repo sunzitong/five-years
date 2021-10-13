@@ -6,10 +6,13 @@
       <FixedNav />
       <FixedNav position="right" />
     </div>
+    <!-- 路由 -->
+    <router-view
+      v-if="!appLoading || inLogin"
+      :class="{ 'show-shadow': showShadow }"
+    />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="appLoading" />
-    <!-- 路由 -->
-    <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
     <div
       v-if="true || $root.env.DEBUG"
@@ -175,14 +178,16 @@ export default class App extends Mixins(MixStore) {
    * 请求区域门店数据
    * 赋值全局数据
    */
-  async fetchGlobalData() {
+  async fetchGlobalData(loginCallback?: AnyFunction) {
     this.appLoading = true;
     // 清空所有数据
     removeStore();
     if (!this.store.currentUser) {
       const response = await fetchToken();
+      let isOk = false;
       if (response?.status === "ok") {
         this.store.currentUser = response.data;
+        isOk = true;
       } else {
         // 用户信息请求失败 跳转login
         this.$router
@@ -191,6 +196,9 @@ export default class App extends Mixins(MixStore) {
           .finally(() => {
             this.appLoading = false;
           });
+      }
+      if (!isOk || loginCallback) {
+        loginCallback?.();
         return;
       }
     }
