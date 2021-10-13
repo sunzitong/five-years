@@ -88,7 +88,7 @@ export default class D4 extends Base implements IFetch {
           icon: "lightning",
         },
         {
-          name: "门禁",
+          name: "门锁",
           value: data.doorDeviceOfflineRatio * 100,
           currentRate: 0,
           color: "#F7D14A",
