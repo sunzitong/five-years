@@ -1,5 +1,5 @@
 <template>
-  <div class="pictrues-more">
+  <div class="pictrues-more" v-if="show">
     <van-dialog
       class="dialog"
       v-model="show"
@@ -228,7 +228,7 @@ export default class C3A extends Base implements IFetch {
   /**
    * 工单id变更
    */
-  @Watch("orderId")
+  @Watch("orderId", { immediate: true })
   onOrderIdChange(val: number | null) {
     const orderIdIndex = this.orderIdList.findIndex((item) => item === val);
     this.orderIdIndex = orderIdIndex;

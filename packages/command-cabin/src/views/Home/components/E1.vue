@@ -62,7 +62,11 @@
           <table class="table" cellspacing="0">
             <tbody>
               <tr animated v-for="item of list" :key="item.id">
-                <td v-for="o of columns" :key="o.dataIndex">
+                <td
+                  v-for="o of columns"
+                  :key="o.dataIndex"
+                  @click="toggleModal(item, o.dataIndex)"
+                >
                   <div :class="o.dataIndex">
                     <template v-if="o.dataIndex === columns[4].dataIndex">
                       <Icon
@@ -101,6 +105,7 @@
         </template>
       </Animationend>
     </Spin>
+    <C3A v-model="show" :orderId="orderId" :dataSource="response" />
   </div>
 </template>
 
@@ -113,6 +118,7 @@ import { StoreKey, useStore } from "@/store";
 import Icon from "@/components/Icon/Index.vue";
 import { Swipe } from "vant";
 import Animationend from "@/components/Animationend/Index.vue";
+import C3A from "./C3A.vue";
 import {
   EarlyWarningItemReturn,
   fetchEarlyWarning,
@@ -125,6 +131,7 @@ import { iwant } from "@guanyu/shared";
     F1A,
     F1B,
     Icon,
+    C3A,
     Animationend,
   },
 })
@@ -176,9 +183,31 @@ export default class E1 extends Base implements IFetch {
   riskDegree = [];
 
   /**
+   * 显示弹窗
+   */
+  show = false;
+
+  /**
+   * 工单ID
+   */
+  orderId: null | number = null;
+
+  /**
    * 返回数据
    */
   response: EarlyWarningItemReturn[] = [];
+
+  toggleModal(item: EarlyWarningItemReturn, type: string) {
+    // 门店ID可点击
+    if (type !== this.columns[0].dataIndex) return;
+    if (!item.orderId) return;
+    this.orderId = item.orderId;
+    if (!this.show) {
+      this.orderId = null;
+    }
+    this.orderId = item.orderId;
+    this.show = !this.show;
+  }
 
   /**
    * 获取预警信息更改主题
