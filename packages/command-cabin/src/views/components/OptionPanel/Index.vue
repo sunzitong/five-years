@@ -6,6 +6,7 @@
     @click.native.stop
     v-bind="$attrs"
     v-on="$listeners"
+    v-if="pipeShow"
   />
 </template>
 
