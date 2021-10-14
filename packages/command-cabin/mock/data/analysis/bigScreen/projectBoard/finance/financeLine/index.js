@@ -4,7 +4,7 @@
  *
  * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/10/11 18:57:35
+ * @updateAt 2021/10/14 14:1:2
  * @method GET
  */
 
@@ -16,6 +16,8 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
+    dataSource: "OMS", //数据来源
+    updateTime: "2021-09-26 10:21:40", //数据最近更新时间
     month: 2, //当前是第n月
     year: 3, //当前是第n年
     transactionModel: "MediumAsset", //资产类型 LightAsset MediumAsset HeavyAsset
