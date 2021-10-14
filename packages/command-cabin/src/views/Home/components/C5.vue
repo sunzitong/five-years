@@ -147,9 +147,10 @@ export default class C5 extends Base implements IFetch {
     justify-content: space-between;
     padding: 0 22px;
     height: 100%;
+    --animate-duration: 600ms;
   }
   .item {
-    width: 426px;
+    width: 412px;
     display: flex;
     font-size: 30px;
     color: #90a4c3;
