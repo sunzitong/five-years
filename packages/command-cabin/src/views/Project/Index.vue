@@ -369,14 +369,17 @@ export default class Index extends Base {
   top: 0;
   right: 65px;
 }
-.option-panel {
-  bottom: 220px;
-  &.TheDateScopes {
-    right: 397px;
-  }
-  &.TheNavMenu {
-    left: 0;
-    right: auto;
+
+.page__project {
+  .option-panel {
+    bottom: 220px;
+    &.TheDateScopes {
+      right: 397px;
+    }
+    &.TheNavMenu {
+      left: 0;
+      right: auto;
+    }
   }
 }
 </style>
