@@ -136,6 +136,7 @@ import {
   MonitorInfoReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/monitorInfo";
 import { MonitorListItemReturn } from "@/service/analysis/bigScreen/mainBoard/center/monitorList";
+import _ from "lodash";
 
 @Component({
   components: {
@@ -295,6 +296,7 @@ export default class C3A extends Base implements IFetch {
    * 获取工单详情
    */
   async fetch(force?: boolean) {
+    this.loading = true;
     const orderId = this.getCurrentOrderId();
     if (!orderId) return;
     const response = await useStore(fetchMonitorInfo, {
@@ -304,13 +306,13 @@ export default class C3A extends Base implements IFetch {
       },
       force,
     });
+    this.loading = false;
 
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
-      this.empty = false;
-    } else {
-      this.empty = true;
     }
+
+    this.empty = _.isEmpty(this.response);
     return response;
   }
 }
