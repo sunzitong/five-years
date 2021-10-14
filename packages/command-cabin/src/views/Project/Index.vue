@@ -96,6 +96,7 @@
               <van-checkbox
                 :name="centerType === 'command' ? 'command' : null"
                 @click="centerType = 'command'"
+                v-if="false"
               >
                 实时指挥中心
               </van-checkbox>

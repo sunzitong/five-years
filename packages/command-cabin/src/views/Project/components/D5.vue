@@ -9,7 +9,7 @@
         <van-col :span="12">
           <div class="top_value_box">
             <span class="top_value">
-              {{ formatValue(sepNumber(resData.allCost)) }}
+              {{ sepNumber(resData.allCost) }}
             </span>
             <span class="top_text">万</span>
           </div>
@@ -28,21 +28,21 @@
             <div class="border_box">
               营销费用
               <span class="gap">
-                {{ formatValue(sepNumber(resData.marketingExpense)) }}
+                {{ sepNumber(resData.marketingExpense) }}
               </span>
               万
             </div>
             <div class="border_box">
               运营成本
               <span class="gap">
-                {{ formatValue(sepNumber(resData.operatingCost)) }}
+                {{ sepNumber(resData.operatingCost) }}
               </span>
               万
             </div>
             <div class="border_box">
               管理成本
               <span class="gap">
-                {{ formatValue(sepNumber(resData.managementCost)) }}
+                {{ sepNumber(resData.managementCost) }}
               </span>
               万
             </div>
@@ -65,7 +65,7 @@
       <div class="bottom_text_group">
         <span class="bottom_text">租金成本</span>
         <span class="bottom_value">
-          {{ formatValue(sepNumber(resData.rentCost)) }}
+          {{ sepNumber(resData.rentCost) }}
         </span>
         <span class="bottom_text">万</span>
         <span class="bottom_value">
@@ -78,7 +78,7 @@
           <div class="flex_text">能源费用（收支差）</div>
           <div>
             <span class="flex_value">
-              {{ formatValue(sepNumber(resData.energyCost)) }}
+              {{ sepNumber(resData.energyCost) }}
             </span>
             <span class="flex_unit">万</span>
           </div>

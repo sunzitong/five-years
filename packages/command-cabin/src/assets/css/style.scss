@@ -20,15 +20,15 @@ body,
 html {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
 
 body {
   font-size: 24px;
   background-color: #000;
-  ::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
 }
 
 @font-face {

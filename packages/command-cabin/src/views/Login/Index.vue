@@ -255,17 +255,31 @@ export default class Login extends Base {
     }));
   }
 
-  created() {
-    this.fetchAllowRoleList();
-    if (!this.store.currentUser) {
-      this.fetchQR();
-    } else {
-      this.activeRoleId = this.store.currentUser.roleId;
-    }
+  async created() {
+    await this.fetchLogout();
+    // if (!this.store.currentUser) {
+    //   this.fetchQR();
+    // } else {
+    //   this.activeRoleId = this.store.currentUser.roleId;
+    // }
   }
 
   beforeDestroy() {
     clearTimeout(this.timer);
+  }
+
+  /**
+   * 扫码成功后
+   * token解析成功展示主岗
+   * token解析失败重新请求
+   */
+  loginCallback() {
+    if (this.store.currentUser) {
+      this.activeRoleId = this.store.currentUser.roleId;
+      this.fetchAllowRoleList();
+    } else {
+      this.fetchQR();
+    }
   }
 
   /**
@@ -313,7 +327,7 @@ export default class Login extends Base {
       if (qrCodeStatus === "CONFIRM") {
         // 登录成功 请求全局数据
         localStorage.setItem("token", data.token);
-        mitter.emit(EventName.FetchGlobalData);
+        mitter.emit(EventName.FetchGlobalData, this.loginCallback);
         return;
       }
       if (qrCodeStatus === "INVALID") {
@@ -364,12 +378,10 @@ export default class Login extends Base {
   async fetchLogout() {
     // 清空所有数据
     removeStore();
-    const response = await fetchLogout();
-    if (response?.status === "ok") {
-      localStorage.removeItem("token");
-      this.store.currentUser = null;
-      this.fetchQR();
-    }
+    await fetchLogout();
+    localStorage.removeItem("token");
+    this.store.currentUser = null;
+    this.fetchQR();
   }
 
   /**

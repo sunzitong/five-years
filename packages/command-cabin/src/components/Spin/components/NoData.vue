@@ -1,5 +1,5 @@
 <template>
-  <div style="opacity: 0.5">
+  <div class="nodata">
     <svg
       width="268"
       height="250"
@@ -228,3 +228,10 @@ export default class NoData extends Vue {
   uuid = `spin-${uuid()}`;
 }
 </script>
+
+<style lang="scss">
+.nodata {
+  opacity: 0.5;
+  backdrop-filter: blur(20px);
+}
+</style>

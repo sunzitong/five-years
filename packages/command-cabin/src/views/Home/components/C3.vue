@@ -8,7 +8,7 @@
       <van-swipe-item v-for="(pictrue, index) of pictures" :key="index">
         <div class="pictures">
           <van-row gutter="20">
-            <van-col v-for="item of pictrue" :key="item.projectId">
+            <van-col v-for="item of pictrue" :key="item.orderId">
               <div class="picture">
                 <van-image
                   @click="toggleModal(item)"
@@ -32,7 +32,7 @@
         </div>
       </van-swipe-item>
     </van-swipe>
-    <C3A v-model="show" v-if="show" :orderId="orderId" :dataSource="response" />
+    <C3A v-model="show" :orderId="orderId" :dataSource="response" />
   </Spin>
 </template>
 
@@ -94,7 +94,7 @@ export default class C3 extends Base implements IFetch {
     } else {
       this.orderId = null;
     }
-    // this.show = !this.show;
+    this.show = !this.show;
   }
 
   /**

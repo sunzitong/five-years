@@ -78,7 +78,7 @@ export const formatColors = (
  */
 export const sepNumber = (number: unknown, sep = ",", stepLen = 3) => {
   if (formatValue(number, null) === null) {
-    return "";
+    return formatValue();
   }
   const arr = `${number}`.split(".");
   let str = arr[0];

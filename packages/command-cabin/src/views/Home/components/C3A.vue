@@ -1,5 +1,5 @@
 <template>
-  <div class="pictrues-more">
+  <div class="pictrues-more" v-if="show">
     <van-dialog
       class="dialog"
       v-model="show"
@@ -8,87 +8,99 @@
       :get-container="() => $root.$el"
     >
       <SubWrapperA title="现场风险监控" style="width: 3015">
-        <CardA opacity="1" fill="rgba(8, 18, 35, 1)">
-          <van-row gutter="40">
-            <van-col span="18">
-              <div class="box">
-                <div class="carda-title">
-                  <span>现场风险监控</span>
-                </div>
-                <div class="pictures-wrapper">
-                  <Webrtc :config="webrtcConfig" />
-                </div>
-              </div>
-            </van-col>
-            <van-col span="6">
-              <div class="box">
-                <div class="carda-title">
-                  <span>问题描述</span>
-                </div>
-                <div class="pictrues-info">
-                  <h3>{{ response.projectName }}</h3>
-                  <ul>
-                    <li>
-                      <div class="label">问题描述：</div>
-                      <div class="con">{{ response.problem }}</div>
-                    </li>
-                    <li>
-                      <div class="label">发现时间：</div>
-                      <div class="con">{{ response.showTime }}</div>
-                    </li>
-                    <li>
-                      <div class="label">整改时间：</div>
-                      <div class="con">{{ response.reformTime }}</div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </van-col>
-          </van-row>
-          <WhiteSpace />
-          <van-row gutter="40">
-            <van-col span="18">
-              <div class="box">
-                <div class="carda-title">
-                  <span>问题现场照片</span>
-                </div>
-                <div class="gallery">
-                  <div
-                    class="item"
-                    v-for="(item, index) of pageContent.list"
-                    :key="index"
-                  >
-                    <van-image width="707" height="397" :src="item"></van-image>
+        <Spin :loading="loading" :empty="empty">
+          <CardA opacity="1" fill="rgba(8, 18, 35, 1)">
+            <van-row gutter="40">
+              <van-col span="18">
+                <div class="box">
+                  <div class="carda-title">
+                    <span>现场风险监控</span>
+                  </div>
+                  <div class="pictures-wrapper">
+                    <Webrtc :config="webrtcConfig" />
                   </div>
                 </div>
-                <div class="pagination">
-                  <Pagination
-                    :total="pageContent.total"
-                    :pages="Math.ceil(pageContent.total / 3)"
-                    v-model="pageNum"
-                  />
+              </van-col>
+              <van-col span="6">
+                <div class="box">
+                  <div class="carda-title">
+                    <span>问题描述</span>
+                  </div>
+                  <div class="pictrues-info">
+                    <h3>{{ response.projectName }}</h3>
+                    <ul>
+                      <li>
+                        <div class="label">问题描述：</div>
+                        <div class="con">
+                          {{ formatValue(response.problem) }}
+                        </div>
+                      </li>
+                      <li>
+                        <div class="label">发现时间：</div>
+                        <div class="con">
+                          {{ formatValue(response.showTime) }}
+                        </div>
+                      </li>
+                      <li>
+                        <div class="label">整改时间：</div>
+                        <div class="con">
+                          {{ formatValue(response.reformTime) }}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </van-col>
-            <van-col span="6">
-              <div class="box">
-                <div class="carda-title">
-                  <span>联系人</span>
+              </van-col>
+            </van-row>
+            <WhiteSpace />
+            <van-row gutter="40">
+              <van-col span="18">
+                <div class="box">
+                  <div class="carda-title">
+                    <span>问题现场照片</span>
+                  </div>
+                  <div class="gallery">
+                    <div
+                      class="item"
+                      v-for="(item, index) of pageContent.list"
+                      :key="index"
+                    >
+                      <van-image
+                        width="707"
+                        height="397"
+                        :src="item"
+                      ></van-image>
+                    </div>
+                  </div>
+                  <div class="pagination">
+                    <Pagination
+                      :total="pageContent.total"
+                      :pages="Math.ceil(pageContent.total / 3)"
+                      v-model="pageNum"
+                    />
+                  </div>
                 </div>
-                <div class="pictrues-info contacts">
-                  <ul>
-                    <li v-for="person of contacts" :key="person.phone">
-                      <div class="label">{{ person.roleName }}：</div>
-                      <div class="con">
-                        {{ person.name }} {{ person.phone }}
-                      </div>
-                    </li>
-                  </ul>
+              </van-col>
+              <van-col span="6">
+                <div class="box">
+                  <div class="carda-title">
+                    <span>联系人</span>
+                  </div>
+                  <div class="pictrues-info contacts">
+                    <ul>
+                      <li v-for="person of contacts" :key="person.phone">
+                        <div class="label">{{ person.roleName }}：</div>
+                        <div class="con">
+                          {{ person.name }} {{ person.phone }}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </van-col>
-          </van-row>
-        </CardA>
+              </van-col>
+            </van-row>
+          </CardA>
+        </Spin>
         <CardA fill="rgba(8, 18, 35, 1)" opacity="1">
           <div class="closes">
             <span class="cross" @click="toggleDialog">
@@ -155,7 +167,7 @@ export default class C3A extends Base implements IFetch {
   /**
    * 工单id
    */
-  @Prop({ default: null }) orderId!: number | null;
+  @Prop() orderId!: number;
 
   /**
    * 当前页
@@ -208,18 +220,16 @@ export default class C3A extends Base implements IFetch {
   /**
    * 监听dataSource 更新工单id列表
    */
-  @Watch("dataSource", { deep: true })
+  @Watch("dataSource", { deep: true, immediate: true })
   onDataSourceChange(val: MonitorListItemReturn[]) {
-    console.log("dataSource", val);
     this.orderIdList = iwant.array(val).map((item) => item.orderId);
   }
 
   /**
    * 工单id变更
    */
-  @Watch("orderId")
+  @Watch("orderId", { immediate: true })
   onOrderIdChange(val: number | null) {
-    console.log("orderId", val);
     const orderIdIndex = this.orderIdList.findIndex((item) => item === val);
     this.orderIdIndex = orderIdIndex;
   }
@@ -263,7 +273,6 @@ export default class C3A extends Base implements IFetch {
     if (this.orderIdIndex === this.orderIdList.length) {
       this.orderIdIndex = 0;
     }
-    console.log("this.nextOrderDetail", this.orderIdIndex);
   }
 
   /**
@@ -275,7 +284,6 @@ export default class C3A extends Base implements IFetch {
     if (this.orderIdIndex === -1) {
       this.orderIdIndex = this.orderIdList.length - 1;
     }
-    console.log("this.nextOrderDetail", this.orderIdIndex);
   }
 
   /**
@@ -288,10 +296,7 @@ export default class C3A extends Base implements IFetch {
    */
   async fetch(force?: boolean) {
     const orderId = this.getCurrentOrderId();
-    // if (!orderId) return;
-
-    console.log("aaaaa", orderId);
-
+    if (!orderId) return;
     const response = await useStore(fetchMonitorInfo, {
       key: StoreKey.HomeMonitorInfo,
       params: {

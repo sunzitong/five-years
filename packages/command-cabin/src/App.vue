@@ -6,10 +6,13 @@
       <FixedNav />
       <FixedNav position="right" />
     </div>
+    <!-- 路由 -->
+    <router-view
+      v-if="!appLoading || inLogin"
+      :class="{ 'show-shadow': showShadow }"
+    />
     <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
     <AppLoading v-if="appLoading" />
-    <!-- 路由 -->
-    <router-view v-else :class="{ 'show-shadow': showShadow }" />
     <!-- 控制缩放 -->
     <div
       v-if="true || $root.env.DEBUG"
@@ -39,6 +42,7 @@ import {
 import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
 import { fetchToken } from "./service/auth/token";
+import { DataLevels } from "./service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   name: "app",
@@ -174,7 +178,7 @@ export default class App extends Mixins(MixStore) {
    * 请求区域门店数据
    * 赋值全局数据
    */
-  async fetchGlobalData() {
+  async fetchGlobalData(loginCallback?: AnyFunction) {
     this.appLoading = true;
     // 清空所有数据
     removeStore();
@@ -182,6 +186,11 @@ export default class App extends Mixins(MixStore) {
       const response = await fetchToken();
       if (response?.status === "ok") {
         this.store.currentUser = response.data;
+        if (loginCallback) {
+          this.appLoading = false;
+          loginCallback();
+          return;
+        }
       } else {
         // 用户信息请求失败 跳转login
         this.$router
@@ -190,6 +199,9 @@ export default class App extends Mixins(MixStore) {
           .finally(() => {
             this.appLoading = false;
           });
+        if (loginCallback) {
+          loginCallback();
+        }
         return;
       }
     }
@@ -205,8 +217,11 @@ export default class App extends Mixins(MixStore) {
       this.formatOrgTree(resOrgTree.data);
       if (resOrgTree.data[0].childList) {
         if (resOrgTree.data[0].isHidden) {
+          // 无全国权限
+          this.store.global.dataLevel = DataLevels.AREA;
           this.store.global.orgTree = resOrgTree.data[0].childList[0];
         } else {
+          this.store.global.dataLevel = DataLevels.GROUP;
           this.store.global.orgTree = resOrgTree.data[0];
         }
         this.store.global.project = resProjectList.data[0];
@@ -237,7 +252,7 @@ export default class App extends Mixins(MixStore) {
   height: 3240px;
   transform-origin: 0 0;
   overflow: hidden;
-  font-family: "PingFang SC";
+  font-family: "DIN Alternate, PingFang SC";
   position: relative;
   @extend %bg-img-bg-earth;
   background-position-y: 180px;
