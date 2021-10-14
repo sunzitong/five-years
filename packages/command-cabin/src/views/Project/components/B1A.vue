@@ -141,12 +141,13 @@ export default class B1A extends Base {
 .page__b1a__map {
   position: relative;
   padding: 80px;
+  height: 2440px;
 }
 
 .select_options_container {
   padding: 48px 70px 48px 50px;
   min-width: 780px;
-  height: 614px;
+  min-height: 496px;
   box-sizing: border-box;
 
   background: rgba(11, 31, 81, 0.6);
@@ -154,8 +155,9 @@ export default class B1A extends Base {
   border-radius: 10px;
 
   position: absolute;
-  bottom: 42px;
-  left: -800px;
+  margin-right: 20px;
+  bottom: 81px;
+  right: 100%;
   z-index: 1000;
 
   font-size: 30px;
@@ -183,6 +185,6 @@ export default class B1A extends Base {
 
 .app-fixed-nav__btn {
   position: absolute;
-  // left: -1000px;
+  right: 100%;
 }
 </style>
