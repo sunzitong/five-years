@@ -8,6 +8,7 @@ import {
   TypeScriptTargetLanguage,
 } from "quicktype-core";
 import { getTypeName } from "./name";
+import { isEnumApi } from "./enum";
 
 export type Types = {
   name: string;
@@ -76,7 +77,7 @@ export const inferJsonType = async (options: {
       "acronym-style": "original",
     },
   });
-  return lines.join("\n") || `type ${typeName} = any;`;
+  return lines.join("\n") || `export type ${typeName} = any;`;
 };
 
 /**
@@ -219,15 +220,80 @@ export const getReturnType = async (api: Api) => {
           suffix: returnType.jsonIsArray ? "ItemReturn" : "Return",
         });
         returnType.hasJsonType = true;
-        returnType.jsonType = await inferJsonType({
+        const description = `${api.title}-返回值`;
+
+        const fixJsonType = hotFixQuickType({
           typeName: typeName,
-          jsonString: JSON.stringify(data),
-          description: `${api.title}-返回值`,
-          allPropertiesOptional: false,
+          data,
+          isEnum: isEnumApi(api),
+          description,
         });
+
+        if (fixJsonType) {
+          returnType.jsonType = fixJsonType;
+        } else {
+          returnType.jsonType = await inferJsonType({
+            typeName: typeName,
+            jsonString: JSON.stringify(data),
+            description,
+            allPropertiesOptional: false,
+          });
+        }
         returnType.typeName = typeName;
       }
     }
   }
   return returnType;
 };
+
+/**
+ * quicktype的bug
+ */
+function hotFixQuickType(options: {
+  typeName: string;
+  data: any;
+  isEnum: boolean;
+  description: string;
+}) {
+  const { typeName, data, isEnum, description } = options;
+  if (isEnum) {
+    let result = `
+    /**
+     * ${description}
+     */
+    export interface ${typeName} {`;
+
+    for (const key in data) {
+      result += `${key}: EnumItem[];`;
+    }
+
+    result += `}\n`;
+
+    result += `
+    export interface EnumItem {`;
+
+    const item = _.get(data, `${Object.keys(data)[0]}[0]`);
+
+    for (const key in item) {
+      result += `${key}: string;`;
+    }
+
+    result += `}`;
+    return result;
+  }
+  if (_.isArray(data)) {
+    let sameType = "";
+    for (const item of data) {
+      const itemType = typeof item;
+      if (!["string", "number", "boolean"].includes(itemType)) {
+        return null;
+      }
+      if (sameType && sameType !== itemType) {
+        return null;
+      }
+      sameType = itemType;
+    }
+    return `export type ${typeName} = ${sameType || "any"}`;
+  }
+  return null;
+}

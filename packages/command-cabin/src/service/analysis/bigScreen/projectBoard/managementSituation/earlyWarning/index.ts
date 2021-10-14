@@ -11,9 +11,9 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface EarlyWarningParams {
   /**
-   * 门店id
+   * 分期id
    */
-  projectId: number;
+  phId: unknown;
 
   /**
    * 预警阶段：见公用枚举
@@ -45,7 +45,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 门店屏幕-分险预警
  * @createBy wuyao
- * @updateAt 2021/10/13 15:12:33
+ * @updateAt 2021/10/14 15:16:2
  * @method GET
  */
 export const fetchEarlyWarning = (

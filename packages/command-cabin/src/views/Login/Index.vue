@@ -257,11 +257,13 @@ export default class Login extends Base {
 
   async created() {
     await this.fetchLogout();
-    // if (!this.store.currentUser) {
-    //   this.fetchQR();
-    // } else {
-    //   this.activeRoleId = this.store.currentUser.roleId;
-    // }
+    /*
+    if (!this.store.currentUser) {
+      this.fetchQR();
+    } else {
+      this.activeRoleId = this.store.currentUser.roleId;
+    }
+    */
   }
 
   beforeDestroy() {
@@ -278,6 +280,7 @@ export default class Login extends Base {
       this.activeRoleId = this.store.currentUser.roleId;
       this.fetchAllowRoleList();
     } else {
+      // token失败-重新请求二维码
       this.fetchQR();
     }
   }
@@ -381,7 +384,10 @@ export default class Login extends Base {
     await fetchLogout();
     localStorage.removeItem("token");
     this.store.currentUser = null;
-    this.fetchQR();
+    // 重新请求二维码
+    this.timer = setTimeout(() => {
+      this.fetchQR();
+    }, 1000);
   }
 
   /**

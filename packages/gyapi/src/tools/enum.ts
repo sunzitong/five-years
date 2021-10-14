@@ -9,7 +9,7 @@ import * as _ from "lodash";
  * @returns 是否是公用枚举接口
  */
 export const isEnumApi = (api: Api) => {
-  return (
+  return !!(
     api.title.includes("枚举") &&
     api.path.toLowerCase().includes("enum") &&
     api.res_body_type === "json" &&
