@@ -187,6 +187,7 @@ $padding-x: 100px;
 }
 .dialog {
   background: transparent;
+  border-radius: 0;
   .content {
     margin: 30px;
   }
