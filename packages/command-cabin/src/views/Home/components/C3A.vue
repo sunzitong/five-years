@@ -434,7 +434,7 @@ export default class C3A extends Base implements IFetch {
   }
   &.contacts {
     overflow: hidden;
-    min-height: 400px;
+    height: 400px;
     padding-left: 30px;
     overflow-y: scroll;
     border-left: 2px solid #5180e4;
