@@ -125,10 +125,9 @@
         :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
         @click="circleClicked(item)"
       >
+        <!-- 禁用动画 v-model="item.currentRate" :speed="100" :rate="item[options[optionIndex].limitName]"-->
         <van-circle
-          v-model="item.currentRate"
-          :rate="item[options[optionIndex].limitName]"
-          :speed="150"
+          :value="item[options[optionIndex].limitName]"
           :layer-color="getCircleColor(item, 0)"
           :color="getCircleColor(item, 1)"
           :stroke-width="56"
