@@ -1,8 +1,8 @@
 <template>
   <div id="app">
+    <AppHeader />
+    <div class="logo"></div>
     <div v-show="!inLogin">
-      <div class="logo"></div>
-      <AppHeader />
       <FixedNav />
       <FixedNav position="right" />
     </div>
