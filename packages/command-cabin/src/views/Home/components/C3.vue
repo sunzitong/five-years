@@ -13,7 +13,7 @@
                 <van-image
                   @click="toggleModal(item)"
                   radius="5px 5px 0 0"
-                  width="700"
+                  width="658"
                   height="394"
                   :src="item.pictureUrl"
                 ></van-image>
@@ -141,6 +141,8 @@ $problem-height: 74px;
   width: 2140px;
   .picture {
     position: relative;
+    width: 658px;
+    overflow: hidden;
   }
   .store {
     position: absolute;

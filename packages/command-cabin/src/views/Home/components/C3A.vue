@@ -86,7 +86,7 @@
                   <div class="carda-title">
                     <span>联系人</span>
                   </div>
-                  <div class="pictrues-info contacts">
+                  <div class="pictrues-info contacts hidden-scrollbar">
                     <ul>
                       <li v-for="person of contacts" :key="person.phone">
                         <div class="label">{{ person.roleName }}：</div>
@@ -319,6 +319,7 @@ export default class C3A extends Base implements IFetch {
 <style lang="scss" scoped>
 .dialog {
   background: transparent;
+  border-radius: 0;
   .content {
     margin: 30px;
   }
@@ -427,15 +428,16 @@ export default class C3A extends Base implements IFetch {
     color: #e4f8ff;
     font-size: 36px;
     line-height: 50px;
-    align-items: center;
     .label {
+      white-space: nowrap;
       color: #80a4c9;
     }
   }
   &.contacts {
     overflow: hidden;
-    min-height: 400px;
+    height: 500px;
     padding-left: 30px;
+    overflow-y: scroll;
     border-left: 2px solid #5180e4;
     background: linear-gradient(
       90deg,
