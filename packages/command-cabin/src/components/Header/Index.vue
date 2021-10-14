@@ -207,6 +207,7 @@ export default class Header extends Base {
   height: 220px;
   text-align: center;
   color: #fff;
+  z-index: 10;
   .background {
     position: absolute;
     top: 0;

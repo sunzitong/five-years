@@ -63,6 +63,7 @@ const subRouter = [
     component: () => import("@/views/Login/Index.vue"),
     meta: {
       name: "login",
+      title: "冠寓总指挥中心",
     },
   },
   {
