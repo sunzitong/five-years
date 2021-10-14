@@ -10,16 +10,16 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  * OMS-公用枚举-返回值
  */
 export interface PublicEnumReturn {
-  publicSentimentTypes: CrisisLabel[];
-  crisisLabels: CrisisLabel[];
-  dataLevels: CrisisLabel[];
-  dateScopes: CrisisLabel[];
-  riskTypes: CrisisLabel[];
-  warningOptStages: CrisisLabel[];
-  warningTypes: CrisisLabel[];
+  publicSentimentTypes: EnumItem[];
+  crisisLabels: EnumItem[];
+  dataLevels: EnumItem[];
+  dateScopes: EnumItem[];
+  riskTypes: EnumItem[];
+  warningOptStages: EnumItem[];
+  warningTypes: EnumItem[];
 }
 
-export interface CrisisLabel {
+export interface EnumItem {
   name: string;
   desc: string;
 }
