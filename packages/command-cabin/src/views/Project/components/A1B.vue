@@ -63,9 +63,9 @@ export default class A1B extends Base implements IFetch {
       transferServiceDate,
       actualOpenDate,
       approvedDate,
-      costValLandSum,
+      dynamicCostNonTax,
       targetCostNonTax,
-      budgetBalanceNoTax,
+      costValLandSum,
       startCheckScore,
       workDays,
       fireControlType,
@@ -74,6 +74,7 @@ export default class A1B extends Base implements IFetch {
       structureFinishDate,
       mainFinishDate,
       transferImprovementDate,
+      budgetBalanceNoTax,
     } = this.response;
 
     /**
@@ -119,9 +120,9 @@ export default class A1B extends Base implements IFetch {
             date: this.formatValue(approvedDate),
             note: [
               `目标成本 ${this.formatValue(targetCostNonTax)}万元`,
+              `动态成本 ${this.formatValue(dynamicCostNonTax)}万元`,
               `结算成本 ${this.formatValue(costValLandSum)}万元`,
               `结余金额 ${this.formatValue(budgetBalanceNoTax)}万元`,
-              `翻修成本约 ${this.formatValue(approvedDate)}万元`,
             ],
           },
         ];
@@ -171,9 +172,9 @@ export default class A1B extends Base implements IFetch {
             date: this.formatValue(approvedDate),
             note: [
               `目标成本 ${this.formatValue(targetCostNonTax)}万元`,
+              `动态成本 ${this.formatValue(dynamicCostNonTax)}万元`,
               `结算成本 ${this.formatValue(costValLandSum)}万元`,
               `结余金额 ${this.formatValue(budgetBalanceNoTax)}万元`,
-              `翻修成本约 ${this.formatValue(approvedDate)}万元`,
             ],
           },
         ];
