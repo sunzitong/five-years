@@ -257,8 +257,6 @@ export default class Login extends Base {
 
   async created() {
     await this.fetchLogout();
-    // 必须先logout清空token, 否则401
-    this.fetchAllowRoleList();
     // if (!this.store.currentUser) {
     //   this.fetchQR();
     // } else {
@@ -278,6 +276,7 @@ export default class Login extends Base {
   loginCallback() {
     if (this.store.currentUser) {
       this.activeRoleId = this.store.currentUser.roleId;
+      this.fetchAllowRoleList();
     } else {
       this.fetchQR();
     }
