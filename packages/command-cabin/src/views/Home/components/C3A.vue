@@ -319,6 +319,7 @@ export default class C3A extends Base implements IFetch {
 <style lang="scss" scoped>
 .dialog {
   background: transparent;
+  border-radius: 0;
   .content {
     margin: 30px;
   }
