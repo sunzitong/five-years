@@ -38,31 +38,23 @@
       />
     </template>
 
-    <div
-      style="
-        position: absolute;
-        bottom: 100px;
-        font-size: 40px;
-        background: #000;
-      "
-    >
-      <div
-        v-for="i in num"
-        :key="i"
-        @click="sortList[i - 1] = 1"
-        style="margin: 100px"
-      >
-        {{ titles[i - 1] }}----
-        <span
-          v-for="(tab, j) in tabs[i - 1]"
-          :key="tab"
-          :style="{ color: j === (sortList[i - 1] || 0) ? 'red' : '#fff' }"
-          @click="handleClick(i, j)"
-        >
-          {{ j }}
-          -{{ tab }}
-          {{ sortList[i - 1] }}
-        </span>
+    <div class="select_options_container">
+      <div class="app-fixed-nav__btn">
+        <FixedNavBtn position="right" text="快捷导航" />
+      </div>
+      <div v-for="i in num" :key="i" @click="sortList[i - 1] = 1">
+        <div>{{ titles[i - 1] }}</div>
+        <div class="pic_select_options">
+          <span
+            v-for="(tab, j) in tabs[i - 1]"
+            :key="tab"
+            class="slect_btn"
+            :class="{ active: j === (sortList[i - 1] || 0) }"
+            @click="handleClick(i, j)"
+          >
+            {{ tab }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -73,9 +65,10 @@ import { Component, Prop, Ref } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import { AnyObject } from "@guanyu/shared";
 import B1B from "./B1B.vue";
+import FixedNavBtn from "@/components/FixedNav/components/FixedNavBtn.vue";
 
 @Component({
-  components: { B1B },
+  components: { B1B, FixedNavBtn },
 })
 export default class B1A extends Base {
   handleClick(refIndex: number, tagIndex: number) {
@@ -148,5 +141,48 @@ export default class B1A extends Base {
 .page__b1a__map {
   position: relative;
   padding: 80px;
+}
+
+.select_options_container {
+  padding: 48px 70px 48px 50px;
+  min-width: 780px;
+  height: 614px;
+  box-sizing: border-box;
+
+  background: rgba(11, 31, 81, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+
+  position: absolute;
+  bottom: 42px;
+  left: -800px;
+  z-index: 1000;
+
+  font-size: 30px;
+  line-height: 30px;
+  color: #ffffff;
+}
+.pic_select_options {
+  margin: 30px 0 50px 0;
+}
+.slect_btn {
+  padding: 10px 21px;
+  font-size: 28px;
+  line-height: 28px;
+  color: #b4b4b4;
+  background: #1c3062;
+  border: 1px solid #018da5;
+  box-sizing: border-box;
+}
+.active {
+  color: #ffffff;
+  background: #203771;
+  border: 2px solid #01f5f1;
+  box-sizing: border-box;
+}
+
+.app-fixed-nav__btn {
+  position: absolute;
+  // left: -1000px;
 }
 </style>
