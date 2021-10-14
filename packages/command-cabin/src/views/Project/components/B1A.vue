@@ -39,21 +39,23 @@
     </template>
 
     <div class="select_options_container">
-      <div class="app-fixed-nav__btn">
+      <div @click="toggleNav" class="app-fixed-nav__btn">
         <FixedNavBtn position="right" text="快捷导航" />
       </div>
-      <div v-for="i in num" :key="i" @click="sortList[i - 1] = 1">
-        <div>{{ titles[i - 1] }}</div>
-        <div class="pic_select_options">
-          <span
-            v-for="(tab, j) in tabs[i - 1]"
-            :key="tab"
-            class="slect_btn"
-            :class="{ active: j === (sortList[i - 1] || 0) }"
-            @click="handleClick(i, j)"
-          >
-            {{ tab }}
-          </span>
+      <div v-if="visible" class="options_tab">
+        <div v-for="i in num" :key="i" @click="sortList[i - 1] = 1">
+          <div>{{ titles[i - 1] }}</div>
+          <div class="pic_select_options">
+            <span
+              v-for="(tab, j) in tabs[i - 1]"
+              :key="tab"
+              class="slect_btn"
+              :class="{ active: j === (sortList[i - 1] || 0) }"
+              @click="handleClick(i, j)"
+            >
+              {{ tab }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -71,9 +73,6 @@ import FixedNavBtn from "@/components/FixedNav/components/FixedNavBtn.vue";
   components: { B1B, FixedNavBtn },
 })
 export default class B1A extends Base {
-  handleClick(refIndex: number, tagIndex: number) {
-    this.charts[refIndex - 1]?.handleClick(tagIndex);
-  }
   @Ref() charts!: B1B[];
   /**
    * 折线图标题列表
@@ -134,6 +133,26 @@ export default class B1A extends Base {
   @Prop({ default: () => false }) readonly ifChange!: boolean;
 
   sortList: number[] = [];
+
+  /**
+   * 是否显示导航
+   */
+  visible = false;
+
+  handleClick(refIndex: number, tagIndex: number) {
+    this.charts[refIndex - 1]?.handleClick(tagIndex);
+  }
+
+  /**
+   * 切换快捷导航
+   */
+  toggleNav() {
+    this.visible = !this.visible;
+    // if (this.visible) {
+    //   this.animate.play();
+    // } else {
+    //   this.animate.reverse();
+  }
 }
 </script>
 
@@ -145,14 +164,10 @@ export default class B1A extends Base {
 }
 
 .select_options_container {
-  padding: 48px 70px 48px 50px;
-  min-width: 780px;
-  min-height: 496px;
+  height: 656px;
   box-sizing: border-box;
-
-  background: rgba(11, 31, 81, 0.6);
-  backdrop-filter: blur(20px);
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
 
   position: absolute;
   margin-right: 20px;
@@ -163,6 +178,13 @@ export default class B1A extends Base {
   font-size: 30px;
   line-height: 30px;
   color: #ffffff;
+}
+.options_tab {
+  width: 760px;
+  padding: 48px 0px 48px 50px;
+  background: rgba(11, 31, 81, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
 }
 .pic_select_options {
   margin: 30px 0 50px 0;
@@ -186,5 +208,9 @@ export default class B1A extends Base {
 .app-fixed-nav__btn {
   position: absolute;
   right: 100%;
+  height: 380px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
 }
 </style>
