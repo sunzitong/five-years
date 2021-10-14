@@ -255,7 +255,7 @@ export default class E1 extends Base implements IFetch {
     const response = await useStore(fetchEarlyWarning, {
       key: StoreKey.HomeEarlyWarning,
       params: {
-        projectId: this.store.global.project.projectId,
+        phId: this.store.global.project.phId,
         stage: this.stage.join(","),
         riskDegree: this.riskDegree.join(","),
       },
