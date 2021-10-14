@@ -31,7 +31,7 @@ export interface ProjectBaseInfoReturn {
   acquireTime: Date;
   investmentLink: string;
   customerProperty: string;
-  cooperationMode: string;
+  cooperationModel: string;
   rentalArea: number;
   useLandNature: string;
   propertyRightNature: string;
@@ -44,7 +44,7 @@ export interface ProjectBaseInfoReturn {
 /**
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/10/12 14:34:57
+ * @updateAt 2021/10/14 15:50:0
  * @method GET
  */
 export const fetchProjectBaseInfo = (

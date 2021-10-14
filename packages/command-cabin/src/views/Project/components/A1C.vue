@@ -7,7 +7,7 @@
       </li>
       <li class="item">
         <div class="name">合作模式</div>
-        <div class="desc">{{ formatValue(response.cooperationMode) }}</div>
+        <div class="desc">{{ formatValue(response.cooperationModel) }}</div>
       </li>
       <li class="item">
         <div class="name">租赁面积</div>
@@ -20,7 +20,7 @@
       <li class="item">
         <div class="name">产权性质</div>
         <div class="desc">
-          {{ sepNumber(response.propertyRightNature) }}
+          {{ formatValue(response.propertyRightNature) }}
         </div>
       </li>
     </ul>

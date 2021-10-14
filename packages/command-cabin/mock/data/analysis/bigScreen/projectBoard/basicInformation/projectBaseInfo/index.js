@@ -4,7 +4,7 @@
  *
  * 门店基本信息模块
  * @createBy zhangyao03
- * @updateAt 2021/10/12 14:34:57
+ * @updateAt 2021/10/14 15:50:0
  * @method GET
  */
 
@@ -29,7 +29,7 @@ exports.response = {
     investmentLink:
       "https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN20210723001&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D", //投资任务书链接 https://uat-longtou-c3.longfor.com/hub/#/areaProjectInvestment?projectCode=CN1101000020180402242470&command=CommandBunker&token=TVRZek1qUTBOemd4T1RnMU9UQTBNV1l5TnpObExUUm1NRFF0TkRaaU5pMWhPVEl3TFdZNU1qRTVZVFk0T1RjM1pBPT0%3D
     customerProperty: "重庆三快", //客户性质
-    cooperationMode: "委托管理", //合作模式
+    cooperationModel: "委托管理", //合作模式
     rentalArea: 123.2, //租赁面积(m2)
     useLandNature: "", //用地性质
     propertyRightNature: "", //产权性质,
