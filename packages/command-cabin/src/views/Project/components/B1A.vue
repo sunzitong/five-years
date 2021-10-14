@@ -148,10 +148,6 @@ export default class B1A extends Base {
    */
   toggleNav() {
     this.visible = !this.visible;
-    // if (this.visible) {
-    //   this.animate.play();
-    // } else {
-    //   this.animate.reverse();
   }
 }
 </script>
