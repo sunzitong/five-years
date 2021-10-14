@@ -184,10 +184,13 @@ export default class App extends Mixins(MixStore) {
     removeStore();
     if (!this.store.currentUser) {
       const response = await fetchToken();
-      let isOk = false;
       if (response?.status === "ok") {
         this.store.currentUser = response.data;
-        isOk = true;
+        if (loginCallback) {
+          this.appLoading = false;
+          loginCallback();
+          return;
+        }
       } else {
         // 用户信息请求失败 跳转login
         this.$router
@@ -196,12 +199,9 @@ export default class App extends Mixins(MixStore) {
           .finally(() => {
             this.appLoading = false;
           });
-      }
-      if (loginCallback) {
-        this.appLoading = false;
-        loginCallback();
-      }
-      if (!isOk || loginCallback) {
+        if (loginCallback) {
+          loginCallback();
+        }
         return;
       }
     }

@@ -255,9 +255,10 @@ export default class Login extends Base {
     }));
   }
 
-  created() {
+  async created() {
+    await this.fetchLogout();
+    // 必须先logout清空token, 否则401
     this.fetchAllowRoleList();
-    this.fetchLogout();
     // if (!this.store.currentUser) {
     //   this.fetchQR();
     // } else {
