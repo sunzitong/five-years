@@ -7,8 +7,9 @@
           <div class="big_values">
             <span>{{ sepNumber(resData.overdueAmount) }}</span>
             万
-            <span>{{ resData.overdueRatio }}%</span>
-            逾期率
+            <!-- TODO 隐藏 -->
+            <!-- <span>{{ resData.overdueRatio }}%</span> -->
+            <!-- 逾期率 -->
           </div>
         </div>
         <div class="center">
