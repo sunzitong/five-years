@@ -65,4 +65,10 @@ export default class Webrtc extends Base {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep {
+  .webrtc-video-container .webrtc-control-container {
+    font-size: 36px;
+  }
+}
+</style>
