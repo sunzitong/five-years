@@ -12,8 +12,8 @@
             <div class="details">
               <div class="year">{{ item.year }}</div>
               <ul class="part">
-                <li>新增获取间数：{{ formatValue(item.newRoomNum) }}</li>
-                <li>新增开业间数：{{ formatValue(item.newOpenNum) }}</li>
+                <li>新增获取间数：{{ formatValue(item.newRoomNum) }}万</li>
+                <li>新增开业间数：{{ formatValue(item.newOpenNum) }}万</li>
               </ul>
               <ul class="part">
                 <li>净利润率：{{ formatValue(item.profit) }}%</li>
