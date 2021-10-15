@@ -6,7 +6,7 @@
         <van-circle
           v-model="currentRate1"
           class="circle_setting"
-          :rate="75.3"
+          :rate="0"
           layer-color="#14437F"
           color="#5180E4"
           :size="160"
@@ -14,7 +14,7 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ 75.3 }}%</div>
+            <div class="value">{{ "--" }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text special_position">投诉率</div>
@@ -22,15 +22,15 @@
       <div class="right_text">
         <div>
           <span>TOP1：</span>
-          <span>{{ "管家服务" }}</span>
+          <span>{{ "--" }}</span>
         </div>
         <div>
           <span>TOP2：</span>
-          <span>{{ "噪音问题" }}</span>
+          <span>{{ "--" }}</span>
         </div>
         <div>
           <span>TOP3：</span>
-          <span>{{ "费用问题" }}</span>
+          <span>{{ "--" }}</span>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
         <van-circle
           v-model="currentRate2"
           class="circle_setting"
-          :rate="12"
+          :rate="0"
           layer-color="#14437F"
           color="#5180E4"
           :size="160"
@@ -47,7 +47,7 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ 12 }}%</div>
+            <div class="value">{{ "--" }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text">及时接单率</div>
@@ -56,7 +56,7 @@
         <van-circle
           v-model="currentRate3"
           class="circle_setting"
-          :rate="12"
+          :rate="0"
           layer-color="#14437F"
           color="#5180E4"
           :size="160"
@@ -64,7 +64,7 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ 12 }}%</div>
+            <div class="value">{{ "--" }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text">NPS</div>
@@ -73,7 +73,7 @@
         <van-circle
           v-model="currentRate4"
           class="circle_setting"
-          :rate="12"
+          :rate="0"
           layer-color="#14437F"
           color="#5180E4"
           :size="160"
@@ -81,7 +81,7 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ 12 }}%</div>
+            <div class="value">{{ "--" }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text">综合满意度</div>
