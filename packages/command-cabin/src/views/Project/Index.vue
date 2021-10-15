@@ -360,6 +360,7 @@ export default class Index extends Base {
   font-weight: bold;
   font-size: 66px;
   color: #fff;
+  z-index: 10;
 }
 .header-right-extra {
   position: absolute;
