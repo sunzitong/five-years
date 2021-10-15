@@ -195,7 +195,7 @@ export enum StoreKey {
    */
   HomeSupplyAndMarketingSave = "HomeSupplyAndMarketingSave",
   /**
-   * 首屏大事记
+   * 首屏大事纪
    */
   HomeEvents = "HomeEvents",
   /**

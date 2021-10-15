@@ -5,7 +5,9 @@
       <van-col :span="14">
         <h4 class="label">平均出租率</h4>
         <div class="row_style">
-          <strong class="strong_value">{{ resData.avgRentRatio }}%</strong>
+          <strong class="strong_value">
+            {{ formatValue(resData.avgRentRatio) }}%
+          </strong>
           <span class="after">环比</span>
           <span class="icon">
             <Icon v-bind="getIconConfig(resData.rentRatioYoy)" size="62" />
@@ -17,15 +19,19 @@
               asce: resData.rentRatioYoy >= 0,
             }"
           >
-            {{ resData.rentRatioYoy }}%
+            {{ formatValue(resData.rentRatioYoy) }}%
           </strong>
-          <span class="pointOfTime">时点 {{ resData.pointRentRatio }}%</span>
+          <span class="pointOfTime">
+            时点 {{ formatValue(resData.pointRentRatio) }}%
+          </span>
         </div>
       </van-col>
       <van-col :span="10">
         <h4 class="label">平均续租率</h4>
         <div class="row_style">
-          <strong class="strong_value">{{ resData.avgRenewRatio }}%</strong>
+          <strong class="strong_value">
+            {{ formatValue(resData.avgRenewRatio) }}%
+          </strong>
           <span class="after">环比</span>
           <span class="icon">
             <Icon v-bind="getIconConfig(resData.renewRatioYoy)" size="62" />
@@ -37,7 +43,7 @@
               asce: resData.renewRatioYoy >= 0,
             }"
           >
-            {{ resData.renewRatioYoy }}%
+            {{ formatValue(resData.renewRatioYoy) }}%
           </strong>
         </div>
       </van-col>
@@ -46,7 +52,9 @@
       <van-col :span="14" style="padding-top: 30px">
         <h4 class="label">在租房间平均成交价(元)</h4>
         <div class="row_style">
-          <strong class="strong_value">{{ resData.avgPrice }}</strong>
+          <strong class="strong_value">
+            {{ formatValue(resData.avgPrice) }}
+          </strong>
           <span class="after">同比</span>
           <span class="icon">
             <Icon v-bind="getIconConfig(resData.avgPriceYoy)" size="62" />
@@ -58,7 +66,7 @@
               asce: resData.avgPriceYoy >= 0,
             }"
           >
-            {{ resData.avgPriceYoy }}%
+            {{ formatValue(resData.avgPriceYoy) }}%
           </strong>
         </div>
       </van-col>
@@ -144,7 +152,7 @@ $asce: #22cb98;
 }
 
 .operation {
-  padding: 0 43px;
+  padding: 0 40px 0 70px;
   .line {
     height: 2px;
     margin: 0 0 30px 0;

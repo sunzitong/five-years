@@ -53,7 +53,7 @@ export default class SupplyThePlate extends Base {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 120px;
+    width: 140px;
     height: 110px;
     text-align: center;
     cursor: pointer;

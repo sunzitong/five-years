@@ -524,7 +524,7 @@ export default class Login extends Base {
       height: 100px;
       margin: 20px 0;
       svg {
-        margin-right: 10px;
+        margin-right: 30px;
       }
     }
     &::v-deep {

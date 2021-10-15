@@ -239,7 +239,7 @@ export default class C4 extends Base implements IFetch {
     {
       numName: "allFormatIncome",
       limitName: "allFormatIncomeFinishLimit",
-      text: "全业态收入(万元)",
+      text: "主营业务收入(万元)",
     },
   ];
   optionIndex = 0;

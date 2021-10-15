@@ -91,13 +91,13 @@ export default class A3 extends Base implements IFetch {
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
-          formatter: (value: number) => {
-            let name = "";
-            this.dataSet.forEach((el: AnyObject) => {
-              if (value == el.value) {
-                name = el.name;
-              }
-            });
+          formatter: (value: number, index: number) => {
+            let name = this.dataSet[index].name;
+            // this.dataSet.forEach((el: AnyObject) => {
+            //   if (value == el.value) {
+            //     name = el.name;
+            //   }
+            // });
             return "{title1|" + name + "} {val|\n" + value + "} {title2|个}";
           },
           rich: {

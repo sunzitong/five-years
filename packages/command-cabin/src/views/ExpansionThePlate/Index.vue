@@ -76,7 +76,7 @@ export default class ExpansionThePlate extends Base {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 120px;
+    width: 140px;
     height: 110px;
     margin-right: 60px;
     text-align: center;
