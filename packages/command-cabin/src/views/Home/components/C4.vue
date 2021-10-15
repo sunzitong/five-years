@@ -7,7 +7,7 @@
           <tr>
             <td rowspan="3" width="320">{{ store.global.orgTree.orgName }}</td>
             <td colspan="2">新增获取房间数</td>
-            <td colspan="2">开业房间数</td>
+            <td colspan="2">新增开业间数</td>
           </tr>
           <tr>
             <td>实际</td>
@@ -230,7 +230,7 @@ export default class C4 extends Base implements IFetch {
       limitName: "newIncreFinishLimit",
       text: "新增获取房间数",
     },
-    { numName: "openNum", limitName: "openFinishLimit", text: "开业间数" },
+    { numName: "openNum", limitName: "openFinishLimit", text: "新增开业间数" },
     {
       numName: "netProfitsRatio",
       limitName: "netProfitsFinishLimit",
