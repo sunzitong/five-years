@@ -75,21 +75,21 @@ export default class D4 extends Base implements IFetch {
       this.data = [
         {
           name: "水",
-          value: data.waterDeviceOfflineRatio * 100,
+          value: data.waterDeviceOfflineRatio,
           currentRate: 0,
           color: "#5180E4",
           icon: "water-drop",
         },
         {
           name: "电",
-          value: data.elecDeviceOfflineRatio * 100,
+          value: data.elecDeviceOfflineRatio,
           currentRate: 0,
           color: "#AE95F6",
           icon: "lightning",
         },
         {
           name: "门锁",
-          value: data.doorDeviceOfflineRatio * 100,
+          value: data.doorDeviceOfflineRatio,
           currentRate: 0,
           color: "#F7D14A",
           icon: "door",
