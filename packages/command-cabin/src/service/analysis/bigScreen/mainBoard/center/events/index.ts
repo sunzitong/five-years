@@ -7,7 +7,7 @@ import http, { ServiceOptions } from "@/service/http";
 const BASE_URL = process.env.VUE_APP_BASE_API;
 
 /**
- * 指挥中心-冠寓大事纪-参数
+ * 指挥中心-冠寓大事记-参数
  */
 export interface EventsParams {
   /**
@@ -22,7 +22,7 @@ export interface EventsParams {
 }
 
 /**
- * 指挥中心-冠寓大事纪-返回值
+ * 指挥中心-冠寓大事记-返回值
  */
 export interface EventsItemReturn {
   year: number;
@@ -36,7 +36,7 @@ export interface EventsItemReturn {
 }
 
 /**
- * 指挥中心-冠寓大事纪
+ * 指挥中心-冠寓大事记
  * @createBy huyanan
  * @updateAt 2021/10/12 19:9:37
  * @method GET
