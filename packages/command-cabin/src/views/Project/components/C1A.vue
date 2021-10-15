@@ -274,7 +274,7 @@ export default class C1A extends Base implements IFetch {
   position: relative;
   .label {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
     height: 70px;
