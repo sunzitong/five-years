@@ -153,7 +153,7 @@ export default class D2 extends Base {
   }
   .special_position {
     position: relative;
-    left: -33px;
+    width: 240px;
   }
 
   .right_text {
