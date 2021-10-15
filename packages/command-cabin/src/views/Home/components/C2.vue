@@ -94,6 +94,7 @@ export default class C2 extends Base implements IFetch {
   position: absolute;
   top: 42px;
   right: 100px;
+  z-index: 10;
 }
 .item {
   display: flex;
