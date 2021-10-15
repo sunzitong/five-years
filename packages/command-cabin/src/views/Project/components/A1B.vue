@@ -119,8 +119,8 @@ export default class A1B extends Base implements IFetch {
             label: "成本决算",
             date: this.formatValue(approvedDate),
             note: [
-              `目标成本 ${this.formatValue(targetCostNonTax)}万元`,
-              `动态成本 ${this.formatValue(dynamicCostNonTax)}万元`,
+              // `目标成本 ${this.formatValue(targetCostNonTax)}万元`,
+              // `动态成本 ${this.formatValue(dynamicCostNonTax)}万元`,
               `结算成本 ${this.formatValue(costValLandSum)}万元`,
               `结余金额 ${this.formatValue(budgetBalanceNoTax)}万元`,
             ],
@@ -171,8 +171,8 @@ export default class A1B extends Base implements IFetch {
             label: "成本决算",
             date: this.formatValue(approvedDate),
             note: [
-              `目标成本 ${this.formatValue(targetCostNonTax)}万元`,
-              `动态成本 ${this.formatValue(dynamicCostNonTax)}万元`,
+              // `目标成本 ${this.formatValue(targetCostNonTax)}万元`,
+              // `动态成本 ${this.formatValue(dynamicCostNonTax)}万元`,
               `结算成本 ${this.formatValue(costValLandSum)}万元`,
               `结余金额 ${this.formatValue(budgetBalanceNoTax)}万元`,
             ],
