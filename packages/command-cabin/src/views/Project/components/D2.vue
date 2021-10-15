@@ -1,5 +1,4 @@
 <template>
-  <!-- <Spin :height="361" :loading="loading" :empty="empty"> -->
   <div class="page__d3__map">
     <div class="left_circle">
       <div class="left_pic">
@@ -52,7 +51,8 @@
         </van-circle>
         <div class="bottom_text">及时接单率</div>
       </div>
-      <div class="cirle_wrap">
+      <!-- TODO 隐藏 -->
+      <!-- <div class="cirle_wrap">
         <van-circle
           v-model="currentRate3"
           class="circle_setting"
@@ -85,10 +85,9 @@
           </div>
         </van-circle>
         <div class="bottom_text">综合满意度</div>
-      </div>
+      </div> -->
     </div>
   </div>
-  <!-- </Spin> -->
 </template>
 
 <script lang="ts">
