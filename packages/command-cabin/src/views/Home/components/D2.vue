@@ -74,7 +74,7 @@
       </div>
       <div class="flex_box_group">
         <div class="flex_box">
-          <div>入房比</div>
+          <div>人房比</div>
           <div class="flex_value">
             {{ formatValue(resData.peopleAndRoomRatio) }}
           </div>

@@ -116,7 +116,7 @@
                 v-show="store.global.dataLevel === DataLevels.GROUP"
               >
                 <Icon type="flag" :size="36" class="button-icon--left" />
-                冠寓大事记
+                冠寓大事纪
               </van-radio>
             </van-radio-group>
           </ButtonGroupA>
@@ -367,7 +367,7 @@ export default class Home extends Base {
     return null;
   }
   /**
-   * 总盘面、冠寓大事记
+   * 总盘面、冠寓大事纪
    * main guanyu
    */
   centerChartType = "main";
@@ -390,7 +390,7 @@ export default class Home extends Base {
     } else {
       this.mapLevelValue = val;
       this.showMapLevelPanel = false;
-      // 大事记只有全国数据
+      // 大事纪只有全国数据
       this.centerChartType = "main";
     }
   }
@@ -475,19 +475,21 @@ export default class Home extends Base {
     margin: 0 0 108px;
   }
 }
-.option-panel {
-  bottom: 120%;
-  right: 0px;
-  &.TheDateScopes {
-    right: 397px;
-  }
-  &.TheNavMenu {
-    left: 0;
-    right: auto;
-  }
-  &.Options {
-    left: 664px;
-    right: auto;
+.page__index {
+  .option-panel {
+    bottom: 120%;
+    right: 0px;
+    &.TheDateScopes {
+      right: 397px;
+    }
+    &.TheNavMenu {
+      left: 0;
+      right: auto;
+    }
+    &.Options {
+      left: 664px;
+      right: auto;
+    }
   }
 }
 </style>

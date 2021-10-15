@@ -151,7 +151,7 @@ export default class B4 extends Base implements IFetch {
             width: 338,
           },
           label: { show: false },
-          data: this.values,
+          data: this.values.map((val) => Math.max(0, +val)),
         },
       ],
     };

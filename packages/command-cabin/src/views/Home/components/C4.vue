@@ -125,10 +125,9 @@
         :style="{ left: item.longitude + 'px', top: item.latitude + 'px' }"
         @click="circleClicked(item)"
       >
+        <!-- 禁用动画 v-model="item.currentRate" :speed="100" :rate="item[options[optionIndex].limitName]"-->
         <van-circle
-          v-model="item.currentRate"
-          :rate="item[options[optionIndex].limitName]"
-          :speed="150"
+          :value="item[options[optionIndex].limitName]"
           :layer-color="getCircleColor(item, 0)"
           :color="getCircleColor(item, 1)"
           :stroke-width="56"
@@ -240,7 +239,7 @@ export default class C4 extends Base implements IFetch {
     {
       numName: "allFormatIncome",
       limitName: "allFormatIncomeFinishLimit",
-      text: "全业态收入(万元)",
+      text: "主营业务收入(万元)",
     },
   ];
   optionIndex = 0;

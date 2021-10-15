@@ -7,6 +7,7 @@
     <div class="footer">
       <div class="back" @click="back">
         <Icon type="back" :size="30" />
+        返回
       </div>
       <van-tabs
         v-model="tab"
@@ -69,11 +70,16 @@ export default class BuildThePlate extends Base {
     rgba(50, 107, 152, 0.14) 99.96%
   );
   .back {
-    width: 100px;
-    line-height: 110px;
-    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 140px;
+    height: 110px;
+    margin-right: 70px;
     text-align: center;
     cursor: pointer;
+    color: #90a4c3;
+    font-size: 40px;
   }
   &::v-deep {
     .van-tabs {

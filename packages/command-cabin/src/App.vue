@@ -15,7 +15,7 @@
     <AppLoading v-if="appLoading" />
     <!-- 控制缩放 -->
     <div
-      v-if="true || $root.env.DEBUG"
+      v-if="$root.env.DEBUG"
       :style="{ transform: 'scale(' + 1 / scale + ')' }"
       class="screen-resize"
     >
