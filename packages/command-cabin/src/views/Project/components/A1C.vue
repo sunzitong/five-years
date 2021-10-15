@@ -204,5 +204,4 @@ $padding-x: 100px;
     font-size: 40px;
   }
 }
-
 </style>

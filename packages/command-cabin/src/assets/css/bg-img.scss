@@ -45,5 +45,5 @@ $img-map: (
 
 $circle-border: $VUE_APP_BASE_IMG + map-get($img-map, "circle-border");
 // 大事纪背景
-$track-1:$VUE_APP_BASE_IMG + map-get($img-map, "track-1");
-$track-2:$VUE_APP_BASE_IMG + map-get($img-map, "track-2");
+$track-1: $VUE_APP_BASE_IMG + map-get($img-map, "track-1");
+$track-2: $VUE_APP_BASE_IMG + map-get($img-map, "track-2");
