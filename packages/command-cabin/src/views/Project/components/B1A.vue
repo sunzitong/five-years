@@ -43,7 +43,7 @@
         <FixedNavBtn position="right" text="快捷导航" />
       </div>
       <div v-if="visible" class="options_tab">
-        <div v-for="i in num" :key="i" @click="sortList[i - 1] = 1">
+        <div v-for="i in num" :key="i">
           <div>{{ titles[i - 1] }}</div>
           <div class="pic_select_options">
             <span
@@ -51,7 +51,7 @@
               :key="tab"
               class="slect_btn"
               :class="{ active: j === (sortList[i - 1] || 0) }"
-              @click="handleClick(i, j)"
+              @click="handleClick(i - 1, j)"
             >
               {{ tab }}
             </span>
@@ -132,7 +132,7 @@ export default class B1A extends Base {
    */
   @Prop({ default: () => false }) readonly ifChange!: boolean;
 
-  sortList: number[] = [];
+  sortList: number[] = [0, 0, 0, 0];
 
   /**
    * 是否显示导航
@@ -140,7 +140,7 @@ export default class B1A extends Base {
   visible = false;
 
   handleClick(refIndex: number, tagIndex: number) {
-    this.charts[refIndex - 1]?.handleClick(tagIndex);
+    this.charts[refIndex]?.handleClick(tagIndex);
   }
 
   /**
