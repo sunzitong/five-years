@@ -475,19 +475,21 @@ export default class Home extends Base {
     margin: 0 0 108px;
   }
 }
-.option-panel {
-  bottom: 120%;
-  right: 0px;
-  &.TheDateScopes {
-    right: 397px;
-  }
-  &.TheNavMenu {
-    left: 0;
-    right: auto;
-  }
-  &.Options {
-    left: 664px;
-    right: auto;
+.page__index {
+  .option-panel {
+    bottom: 120%;
+    right: 0px;
+    &.TheDateScopes {
+      right: 397px;
+    }
+    &.TheNavMenu {
+      left: 0;
+      right: auto;
+    }
+    &.Options {
+      left: 664px;
+      right: auto;
+    }
   }
 }
 </style>
