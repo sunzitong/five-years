@@ -177,6 +177,7 @@
           </li>
           <li class="logout" @click="fetchLogout">
             <Icon type="back" />
+            返回
           </li>
         </ul>
       </CardA>
@@ -519,9 +520,12 @@ export default class Login extends Base {
       margin-top: 60px;
     }
     .logout {
-      width: 100px;
+      width: 140px;
       height: 100px;
       margin: 20px 0;
+      svg {
+        margin-right: 10px;
+      }
     }
     &::v-deep {
       .app-card-a-background {
