@@ -73,12 +73,13 @@
         </span>
       </div>
       <div class="flex_box_group">
-        <div class="flex_box">
+        <!-- TODO 隐藏 -->
+        <!-- <div class="flex_box">
           <div>人房比</div>
           <div class="flex_value">
             {{ formatValue(resData.peopleAndRoomRatio) }}
           </div>
-        </div>
+        </div> -->
         <div class="flex_box">
           <div>元均收入</div>
           <div>
