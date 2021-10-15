@@ -11,8 +11,8 @@
       v-if="!appLoading || inLogin"
       :class="{ 'show-shadow': showShadow }"
     />
-    <!-- 若有初始化的请求 可以设置在未完成时页面转圈 -->
-    <AppLoading v-if="appLoading" />
+    <!-- 若有初始化的请求 可以设置在未完成时页面loading -->
+    <AppLoading v-else />
     <!-- 控制缩放 -->
     <div
       v-if="$root.env.DEBUG"

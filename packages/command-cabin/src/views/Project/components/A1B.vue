@@ -144,7 +144,7 @@ export default class A1B extends Base implements IFetch {
             note: [],
           },
           {
-            label: "主题竣备",
+            label: "主体竣备",
             date: this.formatValue(mainFinishDate),
             note: [],
           },
