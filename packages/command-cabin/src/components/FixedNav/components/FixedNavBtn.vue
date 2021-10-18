@@ -149,6 +149,7 @@ export default class FixedNavBtn extends Vue {
     position: absolute;
     top: 50%;
     left: 50%;
+    font-size: 40px;
     text-align: center;
     transform: translate(-50%, -50%);
     display: flex;
