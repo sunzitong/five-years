@@ -99,7 +99,7 @@ export default class Options extends Base {
   &__list {
     --animate-duration: 100ms;
     background: rgba(14, 23, 60, 0.9);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     font-size: 40px;
     color: #90a4c3;
     user-select: none;

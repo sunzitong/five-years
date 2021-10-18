@@ -140,7 +140,7 @@ export default class TheOrgTree extends Base {
   overflow: hidden;
   color: #90a4c3;
   background: rgba(14, 23, 60, 0.9);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
 }
 .row {
   display: flex;
