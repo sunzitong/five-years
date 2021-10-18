@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <div class="project-list">
+      <div class="project-list" ref="projectScroll" @scroll="onScroll">
         <div class="row" v-for="project in projectList" :key="project.phId">
           <div class="col left"></div>
           <div
@@ -60,13 +60,29 @@
           </div>
         </div>
       </div>
-      <AnimationForward :size="12" />
+      <div class="scroll" v-if="projectList.length > 13">
+        <div
+          class="scroll__button scroll--up"
+          :class="{ disabled: disabledScroll === 'up' }"
+          @click="scrollProject(true)"
+        >
+          <van-icon name="arrow-up" />
+        </div>
+        <div
+          class="scroll__button scroll--down"
+          :class="{ disabled: disabledScroll === 'down' }"
+          @click="scrollProject(false)"
+        >
+          <van-icon name="arrow-down" />
+        </div>
+      </div>
+      <AnimationForward :size="12" v-if="projectList.length > 4" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Ref } from "vue-property-decorator";
 import { Base } from "@/views/Base";
 import { iwant } from "@guanyu/shared";
 import {
@@ -88,6 +104,7 @@ import {
   components: { AnimationForward },
 })
 export default class TheProjectList extends Base {
+  @Ref() projectScroll!: HTMLDivElement;
   DateScopes = DateScopes;
   DataLevels = DataLevels;
   /**
@@ -165,6 +182,15 @@ export default class TheProjectList extends Base {
    */
   get projectList() {
     const all = iwant.array(this.resProjectList);
+    setTimeout(() => {
+      const active = this.projectScroll.querySelector<HTMLElement>(
+        ".right.active"
+      );
+      this.projectScroll.scrollTo(
+        0,
+        active?.offsetTop ? active?.offsetTop - 10 : 0
+      );
+    });
     return all.filter((item) => item.cityOrgId === this.currentCity.orgId);
   }
 
@@ -174,6 +200,34 @@ export default class TheProjectList extends Base {
   setProject(project: ProjectListItemReturn) {
     this.store.global.project = project;
     this.$emit("update:show", false);
+  }
+
+  /**
+   * 滚动门店列表
+   */
+  scrollProject(revert: boolean) {
+    this.projectScroll.scrollBy({ left: 0, top: revert ? -100 : 100 });
+  }
+
+  /**
+   * 禁用滚动按钮
+   */
+  disabledScroll: "up" | "down" | null = null;
+
+  /**
+   * 滚动门店列表事件
+   */
+  onScroll() {
+    if (this.projectScroll.scrollTop <= 0) {
+      this.disabledScroll = "up";
+    } else if (
+      this.projectScroll.scrollHeight - this.projectScroll.scrollTop <=
+      this.projectScroll.clientHeight
+    ) {
+      this.disabledScroll = "down";
+    } else {
+      this.disabledScroll = null;
+    }
   }
 }
 </script>
@@ -321,5 +375,31 @@ export default class TheProjectList extends Base {
   position: absolute;
   left: 10px;
   bottom: 50%;
+}
+
+.scroll {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  &__button {
+    margin: 3px 0;
+    width: 60px;
+    height: 100px;
+    font-size: 40px;
+    color: #01f5f1;
+    background: rgba(56, 196, 255, 0.3);
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+    border-radius: 2px;
+    @extend %flex-center;
+    &.disabled {
+      background: rgba(56, 196, 255, 0.1);
+      color: #3e6997;
+    }
+  }
 }
 </style>
