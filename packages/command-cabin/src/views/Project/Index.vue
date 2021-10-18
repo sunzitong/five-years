@@ -218,7 +218,7 @@
     <div class="project-name">{{ store.global.project.projectName }}</div>
 
     <div class="header-right-extra">
-      <OperatingIndex />
+      <O1 />
     </div>
   </div>
 </template>
@@ -243,7 +243,7 @@ import D5 from "./components/D5.vue";
 import D6 from "./components/D6.vue";
 import E1 from "./components/E1.vue";
 import F1 from "./components/F1.vue";
-import OperatingIndex from "./components/OperatingIndex.vue";
+import O1 from "./components/O1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
@@ -272,7 +272,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     ButtonGroup,
     Icon,
     ButtonGroupA,
-    OperatingIndex,
+    O1,
     OptionPanel,
   },
 })
@@ -360,6 +360,7 @@ export default class Index extends Base {
   font-weight: bold;
   font-size: 66px;
   color: #fff;
+  z-index: 10;
 }
 .header-right-extra {
   position: absolute;
