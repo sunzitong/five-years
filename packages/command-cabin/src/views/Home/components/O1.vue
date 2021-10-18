@@ -49,7 +49,7 @@ import { iwant } from "@guanyu/shared";
     StepNumber,
   },
 })
-export default class C2 extends Base implements IFetch {
+export default class O1 extends Base implements IFetch {
   /**
    * 返回数据
    */

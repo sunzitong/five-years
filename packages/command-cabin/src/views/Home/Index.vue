@@ -1,6 +1,7 @@
 <template>
   <div class="page__index">
     <div class="main">
+      <O1 />
       <div class="main-left">
         <SubWrapperA style="width: 2694px; height: 1203px" title="拓展盘面">
           <van-row gutter="20">
@@ -76,7 +77,6 @@
       <div class="main-center">
         <div style="height: 1876px">
           <C1 />
-          <C2 />
           <C4 :levelValue="mapLevelValue" v-if="centerChartType === 'main'" />
           <C5 v-if="centerChartType === 'guanyu'" />
         </div>
@@ -308,7 +308,7 @@ import B3 from "./components/B3.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import C1 from "./components/C1.vue";
-import C2 from "./components/C2.vue";
+import O1 from "./components/O1.vue";
 import C3 from "./components/C3.vue";
 import C4 from "./components/C4.vue";
 import C5 from "./components/C5.vue";
@@ -339,7 +339,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     B4,
     B5,
     C1,
-    C2,
+    O1,
     C3,
     C4,
     C5,
