@@ -40,7 +40,7 @@ export default class TheDateScopes extends Base {
 .option-panel {
   color: #90a4c3;
   background: rgba(14, 23, 60, 0.9);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   font-size: 40px;
 }
 .option-panel {

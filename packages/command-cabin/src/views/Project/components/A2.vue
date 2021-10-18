@@ -254,7 +254,9 @@ export default class A2 extends Base implements IFetch {
   }
 }
 .person {
-  min-width: 4em;
+  width: 4em;
+  display: flex;
+  justify-content: flex-end;
 }
 .icon {
   display: flex;

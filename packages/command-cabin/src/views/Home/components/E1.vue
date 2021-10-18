@@ -2,7 +2,7 @@
   <div class="table-wrapper">
     <van-row type="flex" align="center" style="margin-bottom: 47px">
       <van-col span="2" class="cus-label">预警阶段</van-col>
-      <van-col span="10" class="cus-checkbox-wrapper">
+      <van-col class="cus-checkbox-wrapper">
         <label v-for="item of warningOptStages" :key="item.name">
           <input
             class="cus-checkbox"
@@ -18,8 +18,8 @@
           </span>
         </label>
       </van-col>
-      <van-col span="2" class="cus-label">预警阶段</van-col>
-      <van-col span="10" class="cus-checkbox-wrapper">
+      <van-col span="2" class="cus-label">风险程度</van-col>
+      <van-col class="cus-checkbox-wrapper">
         <label v-for="(m, i) of riskDegrees" :key="m.name">
           <input
             class="cus-checkbox"
@@ -299,20 +299,23 @@ $step-color: #0e173c;
   .cus-label {
     text-align: right;
     color: #90a4c3;
+    font-size: 36px;
+    margin: 0 30px;
   }
   .cus-checkbox-wrapper {
     span {
+      box-sizing: border-box;
       position: relative;
       display: inline-block;
       color: #90a4c3;
-      margin: 0 10px;
       font-size: 36px;
+      height: 70px;
       background: #0e173c;
       border-radius: 10px;
-      padding: 8px;
       border: 2px solid #0e173c;
       text-align: center;
       cursor: pointer;
+      margin-right: 16px;
       em {
         position: absolute;
         right: 0;
@@ -324,10 +327,11 @@ $step-color: #0e173c;
       }
     }
     .type1 {
-      width: 152px;
+      width: 192px;
+      line-height: 66px;
     }
     .type2 {
-      width: 194px;
+      width: 214px;
       border: 2px solid transparent;
       background: transparent;
     }
@@ -351,6 +355,7 @@ $step-color: #0e173c;
   td,
   th {
     height: 100px;
+    font-weight: normal;
   }
   th {
     background: $step-color;

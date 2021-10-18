@@ -213,20 +213,22 @@ export default class B1B extends Base {
       },
       grid: {
         top: "28%",
-        left: "8%",
+        left: "11%",
         right: "6%",
         bottom: "8%",
         //是否显示刻度标签
-        containLabel: true,
+        containLabel: false,
       },
       xAxis: [
         {
-          name: "\n\n运营年",
+          name: "运营年",
           nameLocation: "end",
           nameTextStyle: {
-            color: "#90A4C3",
-            fontSize: 24,
-            lineHeight: 26,
+            color: "#8090AA",
+            nameGap: 200,
+            fontSize: 20,
+            lineHeight: 24,
+            padding: [20, 20, 0, 0],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",
@@ -407,7 +409,7 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0.4, color: "rgba(87, 166, 251, 0.2)" },
+                { offset: 0, color: "rgba(87, 166, 251, 0.2)" },
                 { offset: 1, color: "rgba(87, 166, 251, 0)" },
               ]
             ),
@@ -458,6 +460,18 @@ export default class B1B extends Base {
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel3[this.tabTag],
           lineStyle: { color: "#57FBB6", width: 4 },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+              [
+                { offset: 0, color: "rgba(87, 251, 182, 0.2)" },
+                { offset: 1, color: "rgba(87, 251, 182, 0)" },
+              ]
+            ),
+          },
           markLine: {
             // 标记虚线
             symbol: "none",
@@ -535,8 +549,13 @@ export default class B1B extends Base {
   align-items: flex-end;
 
   .left_title {
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    height: 40px;
     font-size: 40px;
     line-height: 40px;
+    text-align: center;
     color: #ffffff;
   }
   .tabs_box {

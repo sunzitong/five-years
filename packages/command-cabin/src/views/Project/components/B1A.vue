@@ -39,7 +39,11 @@
     </template>
 
     <div class="select_options_container">
-      <div @click="toggleNav" class="app-fixed-nav__btn">
+      <div
+        @click="toggleNav"
+        class="app-fixed-nav__btn"
+        :style="{ top: visible ? null : 'auto' }"
+      >
         <FixedNavBtn position="right" text="快捷导航" />
       </div>
       <div v-if="visible" class="options_tab">
@@ -155,29 +159,27 @@ export default class B1A extends Base {
 <style lang="scss" scoped>
 .page__b1a__map {
   position: relative;
-  padding: 80px;
-  height: 2440px;
+  z-index: 1000;
+  padding: 17px;
+  height: 2484px;
 }
 
 .select_options_container {
-  height: 656px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
 
   position: absolute;
-  margin-right: 20px;
-  bottom: 81px;
+  bottom: 0px;
   right: 100%;
   z-index: 1000;
 
   font-size: 30px;
-  line-height: 30px;
   color: #ffffff;
 }
 .options_tab {
-  width: 760px;
-  padding: 48px 0px 48px 50px;
+  width: 662px;
+  padding: 48px 70px 48px 50px;
   background: rgba(11, 31, 81, 0.6);
   backdrop-filter: blur(20px);
   border-radius: 10px;
@@ -206,7 +208,7 @@ export default class B1A extends Base {
   right: 100%;
   height: 380px;
   top: 0;
-  bottom: 0;
+  bottom: 3px;
   margin: auto 0;
 }
 </style>

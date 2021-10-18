@@ -5,6 +5,7 @@
     </div>
     <div class="empty" v-else-if="empty">
       <NoData />
+      <p>暂无相关数据</p>
     </div>
     <div
       class="spin-content"
@@ -63,6 +64,7 @@ export default class Spin extends Vue {
   .loading {
     position: absolute;
     @extend %flex-center;
+    flex-flow: column;
     top: 0;
     right: 0;
     bottom: 0;
