@@ -2,7 +2,7 @@
   <Spin :height="362" :loading="loading" :empty="empty">
     <div class="page__a4__map">
       <div class="position">
-        <van-row class="legend-group" :gutter="18">
+        <van-row class="legend-group" :gutter="12">
           <van-col>
             <span class="legend"></span>
             <span>洽谈中</span>
@@ -27,13 +27,13 @@
         <van-row :gutter="18">
           <van-col v-for="(el, index) in ing" :key="index" :span="8">
             <span class="icon"></span>
-            <span>{{ el }}</span>
+            <span>{{ sepNumber(el) }}</span>
           </van-col>
         </van-row>
         <van-row :gutter="18">
           <van-col v-for="(el, index) in has" :key="index" :span="8">
             <span class="icon"></span>
-            <span>{{ el }}</span>
+            <span>{{ sepNumber(el) }}</span>
           </van-col>
         </van-row>
       </div>
@@ -221,7 +221,7 @@ export default class A4 extends Base implements IFetch {
 }
 
 .legend-group {
-  width: 300px;
+  width: 250px;
   font-size: 30px;
   line-height: 36px;
   color: #90a4c3;
@@ -238,7 +238,7 @@ export default class A4 extends Base implements IFetch {
 .position {
   position: absolute;
   top: -89px;
-  right: 80px;
+  right: 20px;
 }
 
 .van-col:nth-child(1) .legend {
@@ -263,6 +263,8 @@ export default class A4 extends Base implements IFetch {
 
 .bottom_legend {
   margin: 10px 120px 12px 180px;
+  color: #dbf0ff;
+  @extend %value-font;
 
   .icon {
     display: inline-block;

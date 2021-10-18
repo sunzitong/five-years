@@ -83,7 +83,7 @@ export default class A3 extends Base implements IFetch {
       grid: {
         left: "-10%",
         right: "-8%",
-        bottom: "0%",
+        bottom: "5%",
         containLabel: true,
       },
       xAxis: {
@@ -93,7 +93,13 @@ export default class A3 extends Base implements IFetch {
         axisLabel: {
           formatter: (value: number, index: number) => {
             let name = this.dataSet[index].name;
-            return "{title1|" + name + "} {val|\n" + value + "} {title2|个}";
+            return (
+              "{title1|" +
+              name +
+              "} {val|\n" +
+              this.sepNumber(value) +
+              "} {title2|个}"
+            );
           },
           rich: {
             title1: {
@@ -109,14 +115,14 @@ export default class A3 extends Base implements IFetch {
               fontSize: 48,
               lineHeight: 36,
               color: "#DBF0FF",
-              padding: [36, 0, 0, 0],
+              padding: [36, 0, -18, 0],
             },
             title2: {
               fontFamily: this.store.env.TEXT_FONT,
               color: "#90A4C3",
               fontSize: 36,
               lineHeight: 36,
-              padding: [36, 0, 0, 0],
+              padding: [36, 0, -15, 0],
             },
           },
         },
