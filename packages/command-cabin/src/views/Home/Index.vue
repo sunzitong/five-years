@@ -93,7 +93,7 @@
                   }
                 "
               >
-                <Icon type="map" :size="36" class="button-icon--left" />
+                <!-- <Icon type="map" :size="36" class="button-icon--left" /> -->
                 总盘面({{ mapLevelOptions[mapLevelValue] }})
                 <span v-show="store.global.dataLevel === DataLevels.GROUP">
                   <Icon
@@ -115,7 +115,7 @@
                 @click="showMapLevelPanel = false"
                 v-show="store.global.dataLevel === DataLevels.GROUP"
               >
-                <Icon type="flag" :size="36" class="button-icon--left" />
+                <!-- <Icon type="flag" :size="36" class="button-icon--left" /> -->
                 冠寓大事纪
               </van-radio>
             </van-radio-group>
