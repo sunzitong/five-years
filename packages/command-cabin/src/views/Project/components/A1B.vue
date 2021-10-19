@@ -64,7 +64,7 @@ export default class A1B extends Base implements IFetch {
       actualOpenDate,
       approvedDate,
       costValLandSum,
-      startCheckScore,
+      // startCheckScore,
       workDays,
       fireControlType,
       pointRentRatioToday,
