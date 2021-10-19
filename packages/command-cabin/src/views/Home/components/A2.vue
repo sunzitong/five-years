@@ -1,17 +1,38 @@
 <template>
   <Spin :height="361" :loading="loading" :empty="empty">
     <div class="page__a1__map">
-      <div class="chart" ref="wrapper"></div>
+      <div class="half_part left">
+        <div>过会待签约</div>
+        <div class="margin">
+          <span class="value">{{ sepNumber(resData.toSignProjectNum) }}</span>
+          <span>个</span>
+        </div>
+        <div>
+          <span class="value">{{ sepNumber(resData.toSignRommNum) }}</span>
+          <span>间</span>
+        </div>
+      </div>
+      <div class="half_part right">
+        <div>立项待上会</div>
+        <div class="margin">
+          <span class="value">
+            {{ sepNumber(resData.toMeetingProjectNum) }}
+          </span>
+          <span>个</span>
+        </div>
+        <div>
+          <span class="value">{{ sepNumber(resData.toMeetingRoomNum) }}</span>
+          <span>间</span>
+        </div>
+      </div>
     </div>
   </Spin>
 </template>
 
 <script lang="ts">
-import { Component, Ref } from "vue-property-decorator";
-import echarts from "@/plugins/echarts";
+import { Component } from "vue-property-decorator";
 import { Base, IFetch } from "@/views/Base";
-import { AnyObject, arrayToObject, iwant } from "@guanyu/shared";
-import mitter, { EventName } from "@/utils/mitter";
+import { iwant } from "@guanyu/shared";
 import {
   BusinessOppReserveReturn,
   fetchBusinessOppReserve,
@@ -22,16 +43,7 @@ import { StoreKey, useStore } from "@/store";
   components: {},
 })
 export default class A2 extends Base implements IFetch {
-  /**
-   * 饼图
-   */
-  @Ref() wrapper!: HTMLDivElement;
   resData: Partial<BusinessOppReserveReturn> = {};
-
-  pieData: AnyObject[] = [];
-
-  objData1: AnyObject = {}; // 饼图name-value键值对对象
-  objData2: AnyObject = {}; // 左侧饼图name-room键值对对象
 
   /**
    * 自动触发 重复调用
@@ -47,120 +59,55 @@ export default class A2 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
-      this.pieData = [
-        // 饼图对象数组
-        {
-          name: "过会待签约",
-          value: this.resData.toSignProjectNum,
-          room: this.resData.toSignRommNum,
-        },
-        {
-          name: "立项待上会",
-          value: this.resData.toMeetingProjectNum,
-          room: this.resData.toMeetingRoomNum,
-        },
-      ];
-
-      this.objData1 = arrayToObject(this.pieData, {
-        key: "name",
-        value: "value",
-      });
-      this.objData2 = arrayToObject(this.pieData, {
-        key: "name",
-        value: "room",
-      });
-      this.paintChart();
     } else {
       this.empty = true;
     }
     return response;
   }
-
-  paintChart() {
-    if (!this.myChart) {
-      this.myChart = echarts.init(this.wrapper);
-      mitter.on(EventName.ResizeEcharts, () => {
-        myChart.resize();
-      });
-    }
-
-    const { myChart } = this;
-    // myChart.showLoading();
-    let option = {
-      legend: {
-        orient: "vertical",
-        left: "5%",
-        top: "center",
-        icon: "rec",
-        itemWidth: 12,
-        itemHeight: 12,
-        itemGap: 46,
-        data: this.names,
-        formatter: (params: any) => {
-          return `{a|${params}:\n}{b|${this.sepNumber(
-            this.objData1[params]
-          )}}{c|个}{b|${this.sepNumber(this.objData2[params])}}{c|间}`;
-        },
-        textStyle: {
-          rich: {
-            a: {
-              color: "#90A4C3",
-              fontSize: 36,
-              // lineHeight: 36,
-              padding: [65, 0, 20, 40],
-              width: 140,
-            },
-            b: {
-              fontFamily: this.store.env.VALUE_FONT,
-              color: "#DBF0FF",
-              fontWeight: "bold",
-              fontSize: 48,
-              // lineHeight: 36,
-              align: "left",
-              // width: 100,
-              padding: [0, 0, 0, 40],
-            },
-            c: {
-              fontFamily: this.store.env.VALUE_FONT,
-              color: "#90A4C3",
-              fontSize: 36,
-              // lineHeight: 36,
-              marginLeft: 6,
-              width: 36,
-              padding: [0, 1, 0, 6],
-              align: "right",
-            },
-          },
-        },
-      },
-      series: [
-        {
-          type: "pie",
-          itemStyle: {
-            borderRadius: 88,
-          },
-          radius: [81, 74],
-          center: ["75%", "50%"],
-          color: ["#F7D14A", "#57A6FB"],
-          label: {
-            show: false,
-          },
-          data: this.pieData,
-        },
-      ],
-    };
-    option && myChart.setOption(option);
-  }
 }
 </script>
 
 <style lang="scss" scoped>
-.chart {
-  width: 766px;
-  height: 334px;
-  @extend %bg-img-circle-1;
-  margin: 5px 50px;
-  background-position: 457px 34px;
-  background-size: 234px;
+.page__a1__map {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 75px 140px;
+
+  font-size: 36px;
+  line-height: 36px;
+  color: #90a4c3;
+
+  .half_part {
+    position: relative;
+    &::before {
+      position: absolute;
+      left: -38px;
+      top: 11px;
+      content: "";
+      width: 12px;
+      height: 12px;
+    }
+
+    .value {
+      @extend %value-font;
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 36px;
+      color: #dbf0ff;
+      margin-right: 6px;
+    }
+
+    .margin {
+      margin: 50px 0;
+    }
+  }
+}
+
+.left::before {
+  background-color: rgba(247, 209, 74, 1);
+}
+.right::before {
+  background-color: rgba(81, 128, 228, 1);
 }
 </style>
