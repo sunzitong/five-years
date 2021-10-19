@@ -186,6 +186,8 @@ export default class TheProjectList extends Base {
       const active = this.projectScroll.querySelector<HTMLElement>(
         ".right.active"
       );
+      console.log(2222);
+
       this.projectScroll.scrollTo(
         0,
         active?.offsetTop ? active?.offsetTop - 10 : 0
@@ -212,7 +214,7 @@ export default class TheProjectList extends Base {
   /**
    * 禁用滚动按钮
    */
-  disabledScroll: "up" | "down" | null = null;
+  disabledScroll: "up" | "down" | null = "up";
 
   /**
    * 滚动门店列表事件

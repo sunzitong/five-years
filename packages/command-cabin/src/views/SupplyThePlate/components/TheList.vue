@@ -182,7 +182,8 @@ export default class TheList extends Base implements IFetch {
   color: #90a4c3;
   font-size: 40px;
   .table {
-    width: 100%;
+    min-width: 2700px;
+    margin: auto;
     white-space: pre-line;
     text-align: center;
     table-layout: fixed;

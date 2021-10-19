@@ -155,32 +155,34 @@
       />
     </div>
     <div class="roles" v-if="userRoles">
-      <CardA style="width: 100%; height: auto" title="身份选择">
-        <ul class="list">
-          <li
-            v-for="item in userRoles"
-            :key="item.id"
-            @click="activeRoleId = item.id"
-            class="role"
-            :class="{ active: item.active }"
-          >
-            <span>
-              {{ item.desc }}
-            </span>
-          </li>
-          <li v-if="!userRoles.length && allowRoleList.length">
-            对不起，该用户没有权限。
-          </li>
-          <li class="hr"></li>
-          <li class="entry" @click="fetchSwitchRole" v-if="userRoles.length">
-            进入
-          </li>
-          <li class="logout" @click="fetchLogout">
-            <Icon type="back" />
-            返回
-          </li>
-        </ul>
-      </CardA>
+      <div class="context">
+        <CardA style="width: 100%; height: auto" title="身份选择">
+          <ul class="list">
+            <li
+              v-for="item in userRoles"
+              :key="item.id"
+              @click="activeRoleId = item.id"
+              class="role"
+              :class="{ active: item.active }"
+            >
+              <span>
+                {{ item.desc }}
+              </span>
+            </li>
+            <li v-if="!userRoles.length && allowRoleList.length">
+              对不起，该用户没有权限。
+            </li>
+            <li class="hr"></li>
+            <li class="entry" @click="fetchSwitchRole" v-if="userRoles.length">
+              进入
+            </li>
+            <li class="logout" @click="fetchLogout">
+              <Icon type="back" />
+              返回
+            </li>
+          </ul>
+        </CardA>
+      </div>
     </div>
   </div>
 </template>
@@ -382,7 +384,9 @@ export default class Login extends Base {
   async fetchLogout() {
     // 清空所有数据
     removeStore();
-    await fetchLogout();
+    if (localStorage.getItem("token")) {
+      await fetchLogout();
+    }
     localStorage.removeItem("token");
     this.store.currentUser = null;
     // 重新请求二维码
@@ -449,16 +453,21 @@ export default class Login extends Base {
   }
 
   .roles {
+    display: flex;
     position: fixed;
     left: 0;
     right: 0;
-    width: 1100px;
-    margin: auto;
-    bottom: 24%;
+    width: 100%;
+    top: 34%;
+    bottom: 32%;
     z-index: 10;
-    background: rgba(21, 48, 69, 0.8);
-    backdrop-filter: blur(30px);
-    border-radius: 20px;
+    .context {
+      margin: auto;
+      width: 1100px;
+      background: rgba(21, 48, 69, 0.8);
+      backdrop-filter: blur(30px);
+      border-radius: 20px;
+    }
     .list {
       color: #90a4c3;
       font-size: 40px;
