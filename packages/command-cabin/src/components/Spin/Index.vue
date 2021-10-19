@@ -73,6 +73,7 @@ export default class Spin extends Vue {
     height: 100%;
     opacity: 0.5;
     backdrop-filter: blur(10px);
+    font-size: 24px;
   }
 }
 </style>
