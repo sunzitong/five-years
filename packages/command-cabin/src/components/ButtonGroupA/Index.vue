@@ -21,6 +21,7 @@ export default class ButtonGroupA extends Vue {
 .button-group {
   display: flex;
   position: relative;
+  z-index: 21;
   /* 单选 */
   ::v-deep {
     .van-radio-group {
