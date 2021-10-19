@@ -25,8 +25,8 @@ export default class TheDateScopes extends Base {
   @Prop({ default: true, type: Boolean }) show!: false;
 
   options = [
-    { name: "年累计", value: DateScopes.YEARLY },
-    { name: "月累计", value: DateScopes.MONTHLY },
+    { name: "年累计", value: DateScopes.YEARLY, children: [] },
+    { name: "月累计", value: DateScopes.MONTHLY, children: [] },
   ];
 
   setValue(value: DateScopes) {
