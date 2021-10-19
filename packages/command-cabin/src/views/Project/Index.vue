@@ -46,7 +46,7 @@
               </CardA>
               <WhiteSpace />
               <SubWrapperA
-                title="风险监控"
+                title="现场监控"
                 size="small"
                 style="width: 1193px; height: 736px"
               >

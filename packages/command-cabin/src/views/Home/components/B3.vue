@@ -113,13 +113,13 @@ export default class B3 extends Base implements IFetch {
 
 <style lang="scss" scoped>
 .page__b3__map {
-  padding: 40px 0px 0 0px;
+  padding: 40px 0px 0 15px;
 }
 .abstract_text {
   font-size: 40px;
   line-height: 40px;
   color: #90a4c3;
-  padding: 18px 50px 0px 90px;
+  padding: 18px 20px 0px 90px;
 }
 .span_style1 {
   @extend %value-font;
@@ -174,7 +174,7 @@ export default class B3 extends Base implements IFetch {
     .item_name_item {
       font-size: 40px;
       line-height: 40px;
-      width: 200px;
+      width: 230px;
     }
   }
 
