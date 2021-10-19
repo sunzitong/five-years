@@ -491,6 +491,9 @@ export default class Home extends Base {
       left: 664px;
       right: auto;
     }
+    &.TheOrgTree {
+      z-index: 22;
+    }
   }
 }
 </style>
