@@ -45,6 +45,18 @@ const store = {
      */
     dateScope: DateScopes.YEARLY,
     /**
+     * 时间 年或者月
+     */
+    dateValue: dayjs().format("YYYY"),
+    /**
+     * 时间 年
+     */
+    yearValue: dayjs().format("YYYY"),
+    /**
+     * 时间 月
+     */
+    monthValue: dayjs().format("YYYY-MM"),
+    /**
      * 全国地区城市ID
      */
     orgTree: {} as OrgTreeItemReturn,

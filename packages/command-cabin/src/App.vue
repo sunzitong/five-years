@@ -43,6 +43,7 @@ import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
 import { fetchToken } from "./service/auth/token";
 import { DataLevels } from "./service/analysis/commandCabin/publicEnum/enums";
+import dayjs from "dayjs";
 
 @Component({
   name: "app",
@@ -214,17 +215,38 @@ export default class App extends Mixins(MixStore) {
     const resOrgTree = await promiseOrgTree;
     const resProjectList = await promiseProjectList;
     if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
+      /**
+       * 格式化组架
+       */
       this.formatOrgTree(resOrgTree.data);
+      /**
+       * 初始化时间
+       */
+      this.resetDateScope();
+      /**
+       * 初始化组架
+       */
       if (resOrgTree.data[0].childList) {
         if (resOrgTree.data[0].isHidden) {
-          // 无全国权限
+          /**
+           * 无全国权限
+           * dataLevel初始化为大区
+           */
           this.store.global.dataLevel = DataLevels.AREA;
           this.store.global.orgTree = resOrgTree.data[0].childList[0];
         } else {
+          /**
+           * 有全国权限
+           * dataLevel初始化为全国
+           */
           this.store.global.dataLevel = DataLevels.GROUP;
           this.store.global.orgTree = resOrgTree.data[0];
         }
+        /**
+         * 初始化城市
+         */
         this.store.global.project = resProjectList.data[0];
+
         this.appLoading = false;
       }
     }
@@ -241,6 +263,16 @@ export default class App extends Mixins(MixStore) {
         this.formatOrgTree(item.childList, item);
       }
     });
+  }
+
+  /**
+   * 重设年累月累初始值
+   */
+  resetDateScope() {
+    const now = dayjs(this.store.env.NOW);
+    this.store.global.dateValue = now.format("YYYY");
+    this.store.global.yearValue = now.format("YYYY");
+    this.store.global.monthValue = now.format("YYYY-MM");
   }
 }
 </script>
