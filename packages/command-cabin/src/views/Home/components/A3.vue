@@ -2,13 +2,13 @@
   <Spin :height="483" :loading="loading" :empty="empty">
     <div class="page__a3__map">
       <div class="groop1">
-        <div>转化率</div>
-        <div>{{ resData.estabTransRatio }}%</div>
+        <div class="name_position">转化率</div>
+        <div class="value">{{ resData.estabTransRatio }}%</div>
         <AnimationForward class="arrow" />
       </div>
       <div class="groop2">
-        <div>转化率</div>
-        <div>{{ resData.meetingTransRatio }}%</div>
+        <div class="name_position">转化率</div>
+        <div class="value">{{ resData.meetingTransRatio }}%</div>
         <AnimationForward class="arrow" />
       </div>
       <div
@@ -168,13 +168,13 @@ export default class A3 extends Base implements IFetch {
   justify-content: space-around;
   width: 200px;
 
-  div:nth-child(1) {
+  .name_position {
     font-size: 36px;
     line-height: 36px;
     color: #90a4c3;
     margin-bottom: 18px;
   }
-  div:nth-child(2) {
+  .value {
     @extend %value-font;
     font-weight: bold;
     font-size: 48px;
@@ -186,13 +186,13 @@ export default class A3 extends Base implements IFetch {
 
 .groop1 {
   position: absolute;
-  top: 80px;
+  top: 85px;
   left: 239px;
 }
 
 .groop2 {
   position: absolute;
-  top: 80px;
+  top: 85px;
   left: 518px;
 }
 </style>
