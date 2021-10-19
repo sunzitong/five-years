@@ -439,6 +439,11 @@ export default class B1 extends Base implements IFetch {
           iwant.string(this.resData.transactionModel)
         ];
         this.buildData(iwant.string(this.resData.transactionModel));
+      } else {
+        const { transactionModel } = this.store.global.project;
+        this.tabList = this.tabLabels[transactionModel];
+        this.titles = this.pannelTitles[transactionModel];
+        this.buildData(transactionModel);
       }
     } else {
       this.empty = true;
