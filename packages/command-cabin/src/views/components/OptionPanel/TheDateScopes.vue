@@ -127,14 +127,15 @@ export default class TheDateScopes extends Base {
   background: red;
   text-align: center;
   color: #90a4c3;
-  background: rgba(14, 23, 60, 0.9);
-  margin-left: 1px;
   max-height: 600px;
   overflow: auto;
+  background: transparent;
+  padding-left: 2px;
   .sub-item {
+    @extend %flex-center;
     width: 100%;
     height: 100px;
-    @extend %flex-center;
+    background: rgba(14, 23, 60, 0.9);
     &.active,
     &:hover {
       color: #01f5f1;
