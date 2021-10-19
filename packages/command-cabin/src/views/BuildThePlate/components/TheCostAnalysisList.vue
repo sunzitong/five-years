@@ -164,7 +164,8 @@ export default class TheCostAnalysisList extends Base implements IFetch {
   color: #90a4c3;
   font-size: 40px;
   .table {
-    width: 100%;
+    min-width: 3840px;
+    margin: auto;
     white-space: pre-line;
     text-align: center;
   }
