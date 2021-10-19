@@ -5,6 +5,7 @@ import {
   DateScopes,
 } from "@/service/analysis/commandCabin/publicEnum/enums";
 import { TokenReturn } from "@/service/auth/token";
+import dayjs from "dayjs";
 
 const store = {
   /**
@@ -26,6 +27,10 @@ const store = {
      * 全局缩放比例
      */
     SCALE: 1,
+    /**
+     * 当前时间,自动从服务器更新
+     */
+    NOW: dayjs().valueOf(),
   } as Env,
   /**
    * 全局参数

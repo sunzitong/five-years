@@ -44,7 +44,7 @@
         class="app-fixed-nav__btn"
         :style="{ top: visible ? null : 'auto' }"
       >
-        <FixedNavBtn position="right" text="快捷导航" />
+        <FixedNavBtn position="right" text="图表切换" />
       </div>
       <div v-if="visible" class="options_tab">
         <div v-for="i in num" :key="i">
@@ -159,7 +159,6 @@ export default class B1A extends Base {
 <style lang="scss" scoped>
 .page__b1a__map {
   position: relative;
-  z-index: 1000;
   padding: 17px;
   height: 2484px;
 }
@@ -172,7 +171,6 @@ export default class B1A extends Base {
   position: absolute;
   bottom: 0px;
   right: 100%;
-  z-index: 1000;
 
   font-size: 30px;
   color: #ffffff;

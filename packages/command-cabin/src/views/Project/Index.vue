@@ -329,6 +329,7 @@ export default class Index extends Base {
   .main-center {
     flex: 1;
     margin: 0 20px;
+    z-index: 11;
     &::v-deep {
       .app-subwrapper-a__body {
         overflow: visible;
