@@ -222,13 +222,13 @@ export default class B1B extends Base {
       xAxis: [
         {
           name: "运营年",
-          nameLocation: "end",
+          nameLocation: "center",
+          nameGap: 0,
           nameTextStyle: {
             color: "#8090AA",
-            nameGap: 200,
             fontSize: 20,
             lineHeight: 24,
-            padding: [20, 20, 0, 0],
+            padding: [13, 0, 0, 1380],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",
@@ -409,8 +409,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0, color: "rgba(87, 166, 251, 0.2)" },
-                { offset: 1, color: "rgba(87, 166, 251, 0)" },
+                { offset: 0.4, color: "rgba(87, 166, 251, 0)" },
+                { offset: 0.8, color: "rgba(87, 166, 251, 0.2)" },
               ]
             ),
           },
@@ -429,8 +429,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0, color: "rgba(169, 87, 251, 0.2)" },
-                { offset: 1, color: "rgba(169, 87, 251, 0)" },
+                { offset: 0, color: "rgba(169, 87, 251, 0)" },
+                { offset: 1, color: "rgba(169, 87, 251, 0.2)" },
               ]
             ),
           },
@@ -449,8 +449,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0, color: "rgba(247, 209, 74, 0.2)" },
-                { offset: 1, color: "rgba(247, 209, 74, 0)" },
+                { offset: 0, color: "rgba(247, 209, 74, 0)" },
+                { offset: 1, color: "rgba(247, 209, 74, 0.2)" },
               ]
             ),
           },
@@ -467,8 +467,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0, color: "rgba(87, 251, 182, 0.2)" },
-                { offset: 1, color: "rgba(87, 251, 182, 0)" },
+                { offset: 0.2, color: "rgba(87, 251, 182, 0)" },
+                { offset: 1, color: "rgba(87, 251, 182, 0.2)" },
               ]
             ),
           },
