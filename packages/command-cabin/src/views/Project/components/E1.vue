@@ -300,6 +300,10 @@ $step-color: #0e173c;
     color: #90a4c3;
     font-size: 36px;
     margin: 0 30px;
+    /* 风险程度 */
+    &:nth-child(3) {
+      margin-left: auto;
+    }
   }
   .cus-checkbox-wrapper {
     span {
