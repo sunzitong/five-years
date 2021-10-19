@@ -415,11 +415,12 @@ export default class Home extends Base {
    * 时间维度按钮文案
    */
   get scopeValue() {
+    const suffix = `累计(${this.store.global.dateValue})`;
     if (this.store.global.dateScope === DateScopes.YEARLY) {
-      return "年累计";
+      return `年${suffix}`;
     }
     if (this.store.global.dateScope === DateScopes.MONTHLY) {
-      return "月累计";
+      return `月${suffix}`;
     }
     return this.formatValue(null);
   }
