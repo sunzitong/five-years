@@ -82,6 +82,7 @@
             </van-radio-group>
           </ButtonGroupA>
 
+          <!-- TODO -->
           <ButtonGroupA>
             <van-checkbox-group
               :value="['meeting', 'command', 'scope', 'orgTree']"
@@ -90,6 +91,7 @@
               <van-checkbox
                 :name="centerType === 'meeting' ? 'meeting' : null"
                 @click="centerType = 'meeting'"
+                v-if="false"
               >
                 会议中心
               </van-checkbox>
