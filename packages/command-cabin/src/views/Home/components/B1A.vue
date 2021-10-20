@@ -23,6 +23,7 @@ import { AnyObject, iwant, Nullable } from "@guanyu/shared";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {},
@@ -87,8 +88,10 @@ export default class B1A extends Base implements IFetch {
     const response = await useStore(fetchProjectOpen, {
       key: StoreKey.HomeProjectOpen,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        dateScope: DateScopes.YEARLY,
+        year: +this.store.global.yearValue,
       },
     });
     this.reset();
