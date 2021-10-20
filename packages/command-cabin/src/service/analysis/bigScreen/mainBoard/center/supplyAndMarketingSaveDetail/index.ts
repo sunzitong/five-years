@@ -13,17 +13,17 @@ export interface SupplyAndMarketingSaveDetailParams {
   /**
    * 地区类型
    */
-  orgType: unknown;
+  regionType: unknown;
 
   /**
    * 地区id
    */
-  orgId: number;
+  regionId: number;
 
   /**
    * 地区名字
    */
-  orgName: unknown;
+  regionName: unknown;
 
   /**
    * 年份加月份
@@ -55,7 +55,7 @@ export interface SupplyAndMarketingSaveDetailReturn {
 /**
  * 主屏-供销存详情页
  * @createBy zhangyao03
- * @updateAt 2021/10/20 12:51:49
+ * @updateAt 2021/10/12 17:59:50
  * @method GET
  */
 export const fetchSupplyAndMarketingSaveDetail = (

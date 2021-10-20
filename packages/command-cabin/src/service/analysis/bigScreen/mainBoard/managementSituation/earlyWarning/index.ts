@@ -13,12 +13,12 @@ export interface EarlyWarningParams {
   /**
    * 组织级别：见公用枚举
    */
-  orgType: unknown;
+  dataLevel: unknown;
 
   /**
    * 组织id
    */
-  orgId: number;
+  levelId: number;
 
   /**
    * 预警阶段：见公用枚举
@@ -50,7 +50,7 @@ export interface EarlyWarningItemReturn {
 /**
  * 指挥中心-异常预警
  * @createBy wuyao
- * @updateAt 2021/10/20 13:42:45
+ * @updateAt 2021/10/13 15:12:19
  * @method GET
  */
 export const fetchEarlyWarning = (

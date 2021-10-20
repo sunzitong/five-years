@@ -13,22 +13,17 @@ export interface SentimentParams {
   /**
    * 组织级别：见公用枚举
    */
-  orgType: unknown;
+  dataLevel: unknown;
 
   /**
    * 组织id
    */
-  orgId: number;
+  levelId: number;
 
   /**
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
-
-  /**
-   * 时间
-   */
-  dateNum: unknown;
 }
 
 /**
@@ -57,7 +52,7 @@ export interface NumsByType {
 /**
  * 指挥中心-经营现状-舆情风险
  * @createBy wuyao
- * @updateAt 2021/10/20 13:47:51
+ * @updateAt 2021/9/7 18:54:36
  * @method GET
  */
 export const fetchSentiment = (

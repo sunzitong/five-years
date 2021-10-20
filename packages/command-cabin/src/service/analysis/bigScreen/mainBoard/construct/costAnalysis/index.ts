@@ -13,22 +13,12 @@ export interface CostAnalysisParams {
   /**
    * 地区类型
    */
-  orgType: unknown;
+  regionType: unknown;
 
   /**
    * 地区id
    */
-  orgId: number;
-
-  /**
-   * 年累
-   */
-  dateScope: unknown;
-
-  /**
-   * 年份
-   */
-  year: number;
+  regionId: number;
 }
 
 /**
@@ -54,7 +44,7 @@ export interface CostAnalysisModelList {
 /**
  * 成本分析模块
  * @createBy zhangyao03
- * @updateAt 2021/10/19 15:57:26
+ * @updateAt 2021/9/28 13:49:40
  * @method GET
  */
 export const fetchCostAnalysis = (

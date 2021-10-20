@@ -13,22 +13,17 @@ export interface OperatingExpensesParams {
   /**
    * 地区类型
    */
-  orgType: unknown;
+  dataLevel: unknown;
 
   /**
    * 地区id
    */
-  orgId: number;
+  levelId: number;
 
   /**
    * 数据范围（年累，月累）
    */
   dateScope: unknown;
-
-  /**
-   * 这个无论年累，月累
-   */
-  date: unknown;
 }
 
 /**
@@ -53,7 +48,7 @@ export interface OperatingExpensesReturn {
 /**
  * 经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/20 16:53:15
+ * @updateAt 2021/10/12 10:49:21
  * @method GET
  */
 export const fetchOperatingExpenses = (

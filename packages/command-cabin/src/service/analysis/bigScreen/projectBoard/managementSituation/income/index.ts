@@ -19,11 +19,6 @@ export interface IncomeParams {
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
-
-  /**
-   * 时间
-   */
-  dateNum: unknown;
 }
 
 /**
@@ -55,7 +50,7 @@ export interface IncomeReturn {
 /**
  * 门店屏幕-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/10/19 15:22:59
+ * @updateAt 2021/9/29 11:50:42
  * @method GET
  */
 export const fetchIncome = (

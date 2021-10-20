@@ -11,19 +11,14 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ExpansionAwardInfoParams {
   /**
-   * 组织类型
+   * 地区类型
    */
-  orgType: unknown;
+  regionType: unknown;
 
   /**
-   * 组织id
+   * 地区id
    */
-  orgId: number;
-
-  /**
-   * 年累
-   */
-  year: number;
+  regionId: number;
 }
 
 /**
@@ -41,7 +36,7 @@ export interface ExpansionAwardInfoReturn {
 /**
  * 中央奖补、投后攻坚模块
  * @createBy zhangyao03
- * @updateAt 2021/10/20 11:22:34
+ * @updateAt 2021/9/17 14:0:54
  * @method GET
  */
 export const fetchExpansionAwardInfo = (

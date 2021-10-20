@@ -13,12 +13,12 @@ export interface MonitorListParams {
   /**
    * 组织级别：见公用枚举
    */
-  orgType: unknown;
+  dataLevel: unknown;
 
   /**
    * 组织id
    */
-  orgId: number;
+  levelId: number;
 
   /**
    * 时间范围：见公用枚举
@@ -41,7 +41,7 @@ export interface MonitorListItemReturn {
 /**
  * 指挥中心-现场监控列表
  * @createBy wuyao
- * @updateAt 2021/10/20 13:47:0
+ * @updateAt 2021/10/11 17:56:46
  * @method GET
  */
 export const fetchMonitorList = (

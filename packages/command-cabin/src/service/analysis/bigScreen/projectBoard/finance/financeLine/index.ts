@@ -40,6 +40,7 @@ export interface InfoMap {
 export interface Month {
   profitRate: number;
   npiProfitRate: number;
+  ycost: number;
   cashSum: number;
   openIncome: number;
   avgRate: number;
@@ -52,12 +53,10 @@ export interface Month {
   rental: number;
   dataType: string;
   dataNum: number;
-  ycost?: number;
 }
 
 export interface Year {
   cost: number;
-  ycost: number;
   dataType: string;
   dataNum: number;
 }
@@ -65,7 +64,7 @@ export interface Year {
 /**
  * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/10/20 11:1:56
+ * @updateAt 2021/10/14 14:1:2
  * @method GET
  */
 export const fetchFinanceLine = (

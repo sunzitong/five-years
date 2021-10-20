@@ -21,9 +21,9 @@ export interface RepairStatParams {
   orgId: number;
 
   /**
-   * 年累
+   * 年累，默认是当前年份，yyyy
    */
-  year: number;
+  dataTime?: number;
 }
 
 /**
@@ -44,7 +44,7 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/10/19 14:6:47
+ * @updateAt 2021/9/10 16:14:25
  * @method GET
  */
 export const fetchRepairStat = (

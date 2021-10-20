@@ -11,24 +11,19 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProjectDelayInfoParams {
   /**
-   * 见通用枚举接口  GROUP:全国；AREA:大区；CITY:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
-  orgType: unknown;
+  regionType: unknown;
 
   /**
-   * 大区ID/城市ID，默认传0
+   * 大区ID/城市ID，默认是空
    */
-  orgId: number;
-
-  /**
-   * 见通用枚举接口  YEARLY("年范围"),MONTHLY("月范围"),
-   */
-  dateScope: unknown;
+  regionId?: number;
 
   /**
    * 统计哪一年的数据，默认是当前年份
    */
-  year: number;
+  dataTime?: number;
 }
 
 /**
@@ -54,7 +49,7 @@ export interface DelayModelList {
 /**
  * 营造盘面-开业延期
  * @createBy huyanan
- * @updateAt 2021/10/19 15:43:7
+ * @updateAt 2021/9/13 10:31:31
  * @method GET
  */
 export const fetchProjectDelayInfo = (

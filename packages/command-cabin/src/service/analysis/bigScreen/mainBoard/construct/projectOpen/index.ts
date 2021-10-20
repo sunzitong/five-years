@@ -11,24 +11,19 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProjectOpenParams {
   /**
-   * 见通用枚举接口  GROUP:全国；AREA:大区；CITY:城市
+   * GROUP:全国；AREA:大区；CITY:城市
    */
-  orgType: unknown;
+  regionType: unknown;
 
   /**
-   * 大区ID/城市ID，默认是0
+   * 大区ID/城市ID，默认是空
    */
-  orgId: number;
+  regionId?: number;
 
   /**
-   * 见通用枚举接口  YEARLY("年范围"),MONTHLY("月范围"),
+   * 统计哪一年的数据，默认是当前年份
    */
-  dateScope: unknown;
-
-  /**
-   * 年份
-   */
-  year: number;
+  dataTime?: number;
 }
 
 /**
@@ -70,7 +65,7 @@ export interface TotalOpenListList {
 /**
  * 营造盘面-项目开业
  * @createBy huyanan
- * @updateAt 2021/10/19 15:43:27
+ * @updateAt 2021/10/12 11:18:35
  * @method GET
  */
 export const fetchProjectOpen = (

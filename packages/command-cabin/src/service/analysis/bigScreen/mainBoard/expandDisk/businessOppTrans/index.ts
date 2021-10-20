@@ -19,11 +19,6 @@ export interface BusinessOppTransParams {
    * 组织ID
    */
   orgId: number;
-
-  /**
-   * 年累
-   */
-  year: number;
 }
 
 /**
@@ -42,7 +37,7 @@ export interface BusinessOppTransReturn {
 /**
  * 拓展盘面-商机转化
  * @createBy baishiqiang
- * @updateAt 2021/10/19 14:7:2
+ * @updateAt 2021/10/11 14:15:42
  * @method GET
  */
 export const fetchBusinessOppTrans = (

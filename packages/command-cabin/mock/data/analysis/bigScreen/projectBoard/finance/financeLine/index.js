@@ -4,7 +4,7 @@
  *
  * 财务相关指标-财务指标达成与预估
  * @createBy huyanan
- * @updateAt 2021/10/20 11:1:56
+ * @updateAt 2021/10/14 14:1:2
  * @method GET
  */
 
@@ -18,8 +18,8 @@ exports.response = {
   data: {
     dataSource: "OMS", //数据来源
     updateTime: "2021-09-26 10:21:40", //数据最近更新时间
-    month: 1, //当前是第n月
-    year: 1, //当前是第n年
+    month: 2, //当前是第n月
+    year: 3, //当前是第n年
     transactionModel: "MediumAsset", //资产类型 LightAsset MediumAsset HeavyAsset
     infoMap: {
       //指标数据
@@ -28,6 +28,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -44,6 +45,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -60,6 +62,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -76,6 +79,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -92,6 +96,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -108,6 +113,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -124,6 +130,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -140,6 +147,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -156,6 +164,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -172,6 +181,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -188,6 +198,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -204,6 +215,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -220,6 +232,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -236,7 +249,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -253,7 +266,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -270,7 +283,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -290,7 +303,7 @@ exports.response = {
         {
           profitRate: 78, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -307,7 +320,7 @@ exports.response = {
         {
           profitRate: 78, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -324,7 +337,7 @@ exports.response = {
         {
           profitRate: 78, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -341,7 +354,7 @@ exports.response = {
         {
           profitRate: 3, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -358,7 +371,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -375,7 +388,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -392,7 +405,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -409,7 +422,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -426,7 +439,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -443,7 +456,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -460,7 +473,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -477,7 +490,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -494,7 +507,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -511,7 +524,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -528,7 +541,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -545,7 +558,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -582,7 +595,7 @@ exports.response = {
         {
           profitRate: 11, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -599,7 +612,7 @@ exports.response = {
         {
           profitRate: 13, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 13, //收入
           avgRate: 0.47, //平局出租率
@@ -616,7 +629,7 @@ exports.response = {
         {
           profitRate: 18, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 18, //收入
           avgRate: 0.47, //平局出租率
@@ -633,7 +646,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -650,7 +663,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -667,7 +680,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -684,7 +697,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -701,7 +714,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -718,7 +731,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -735,7 +748,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -752,7 +765,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -769,7 +782,7 @@ exports.response = {
         {
           profitRate: 1, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 11, //收入
           avgRate: 0.47, //平局出租率
@@ -786,7 +799,7 @@ exports.response = {
         {
           profitRate: 2, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 22, //收入
           avgRate: 0.47, //平局出租率
@@ -803,7 +816,7 @@ exports.response = {
         {
           profitRate: 8, //净利润率
           npiProfitRate: 0, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 33, //收入
           avgRate: 0.47, //平局出租率
@@ -820,7 +833,7 @@ exports.response = {
         {
           profitRate: 33, //净利润率
           npiProfitRate: 33, //npi利润率
-
+          ycost: 0, //y-c
           cashSum: 0, //现金流
           openIncome: 0, //收入
           avgRate: 0.47, //平局出租率
@@ -839,31 +852,26 @@ exports.response = {
         //投资任务书-年指标
         {
           cost: 0, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 1, //年份、月份数
         },
         {
           cost: 1, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 2, //年份、月份数
         },
         {
           cost: 3, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 3, //年份、月份数
         },
         {
           cost: 78, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 4, //年份、月份数
         },
         {
           cost: 78, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 5, //年份、月份数
         },
@@ -872,31 +880,26 @@ exports.response = {
         //最新过会版-年指标
         {
           cost: 0, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 1, //年份、月份数
         },
         {
           cost: 1, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 2, //年份、月份数
         },
         {
           cost: 3, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 3, //年份、月份数
         },
         {
           cost: 78, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 4, //年份、月份数
         },
         {
           cost: 78, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 5, //年份、月份数
         },
@@ -905,31 +908,26 @@ exports.response = {
         //月度运维版-年指标
         {
           cost: 0, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 1, //年份、月份数
         },
         {
           cost: 1, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 2, //年份、月份数
         },
         {
           cost: 3, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 3, //年份、月份数
         },
         {
           cost: 78, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 4, //年份、月份数
         },
         {
           cost: 78, //cost预估
-          ycost: 0, //y-c
           dataType: "year", //指标类型 year month
           dataNum: 5, //年份、月份数
         },

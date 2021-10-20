@@ -13,22 +13,17 @@ export interface IncomeParams {
   /**
    * 组织级别：见公用枚举
    */
-  orgType: unknown;
+  dataLevel: unknown;
 
   /**
    * 组织id
    */
-  orgId: number;
+  levelId: number;
 
   /**
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
-
-  /**
-   * 时间
-   */
-  dateNum: unknown;
 }
 
 /**
@@ -60,7 +55,7 @@ export interface IncomeReturn {
 /**
  * 指挥中心-经营现状-收入量价情况
  * @createBy wuyao
- * @updateAt 2021/10/20 13:49:43
+ * @updateAt 2021/9/29 11:35:19
  * @method GET
  */
 export const fetchIncome = (
