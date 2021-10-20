@@ -3,7 +3,7 @@
     <template v-for="i in num">
       <B1B
         :key="i"
-        v-if="i < 4"
+        v-if="i < 4 && i !== 1"
         :title="titles[i - 1]"
         :tabNames="tabs[i - 1]"
         :xLabel="xLabel"
@@ -31,7 +31,7 @@
         :monthTag="monthTag"
         :yearTag="yearTag"
         :yIndex="yIndex[i - 1]"
-        :specialTabIndex="specialTabIndex"
+        :specialTabIndex="i === 1 ? 2 : specialTabIndex"
         :ifChange="ifChange"
         :currentSort.sync="sortList[i - 1]"
         ref="charts"
