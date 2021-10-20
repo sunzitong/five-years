@@ -129,6 +129,7 @@ export default class D1B extends Base implements IFetch {
       params: {
         projectId: this.store.global.project.projectId,
         dateScope: this.store.global.dateScope,
+        dateNum: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {

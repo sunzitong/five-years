@@ -19,6 +19,11 @@ export interface ProjectAcquireParams {
    * 组织ID
    */
   orgId: number;
+
+  /**
+   * 年累
+   */
+  year: number;
 }
 
 /**
@@ -39,7 +44,7 @@ export interface ProjectAcquireReturn {
 /**
  * 拓展盘面-项目获取
  * @createBy baishiqiang
- * @updateAt 2021/10/11 14:15:57
+ * @updateAt 2021/10/19 14:7:18
  * @method GET
  */
 export const fetchProjectAcquire = (

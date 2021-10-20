@@ -24,6 +24,11 @@ export interface MapChangeBarParams {
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
+
+  /**
+   * 时间
+   */
+  dateNum: unknown;
 }
 
 /**
@@ -39,7 +44,7 @@ export interface MapChangeBarReturn {
 /**
  * 指挥中心-地图数据切换条
  * @createBy wuyao
- * @updateAt 2021/9/27 18:2:21
+ * @updateAt 2021/10/19 15:23:54
  * @method GET
  */
 export const fetchMapChangeBar = (

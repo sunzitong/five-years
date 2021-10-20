@@ -122,9 +122,10 @@ export default class D2 extends Base implements IFetch {
     const response = await useStore(fetchOperatingExpenses, {
       key: StoreKey.HomeOperatingExpenses,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {

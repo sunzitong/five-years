@@ -19,6 +19,11 @@ export interface MapCircleParams {
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
+
+  /**
+   * 时间
+   */
+  dateNum: unknown;
 }
 
 /**
@@ -42,7 +47,7 @@ export interface MapCircleItemReturn {
 /**
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/9/30 17:3:50
+ * @updateAt 2021/10/19 15:24:29
  * @method GET
  */
 export const fetchMapCircle = (
