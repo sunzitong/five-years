@@ -6,12 +6,10 @@
         v-for="(item, index) in options"
         :key="item.value"
         @mouseenter="scrollSubList(index)"
-        @click="setValue(item.value)"
       >
         {{ item.name }}
         <van-icon name="arrow" />
-        <!-- TODO -->
-        <ul class="sub-list" v-if="false">
+        <ul class="sub-list">
           <li
             class="sub-item"
             v-for="value of item.children"
@@ -79,16 +77,12 @@ export default class TheDateScopes extends Base {
    */
   setValue(scope: DateScopes, value: string) {
     this.store.global.dateScope = scope;
-    // this.store.global.dateValue = value;
+    this.store.global.dateValue = value;
     if (scope === DateScopes.YEARLY) {
-      // this.store.global.yearValue = value;
-      this.store.global.dateValue = "2019";
-      this.store.global.yearValue = "2019";
+      this.store.global.yearValue = value;
     }
     if (scope === DateScopes.MONTHLY) {
-      // this.store.global.monthValue = value;
-      this.store.global.dateValue = "2019-10";
-      this.store.global.monthValue = "2019-10";
+      this.store.global.monthValue = value;
     }
     this.$emit("update:show", false);
   }
