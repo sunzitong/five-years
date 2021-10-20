@@ -80,9 +80,11 @@ export default class TheDateScopes extends Base {
     this.store.global.dateValue = value;
     if (scope === DateScopes.YEARLY) {
       this.store.global.yearValue = value;
+      this.store.global.monthValue = `${value}-01`;
     }
     if (scope === DateScopes.MONTHLY) {
       this.store.global.monthValue = value;
+      this.store.global.yearValue = dayjs(value).format("YYYY");
     }
     this.$emit("update:show", false);
   }
