@@ -314,7 +314,6 @@ export default class C4 extends Base implements IFetch {
       params: {
         dataLevel: this.levelValue,
         dateScope: this.store.global.dateScope,
-        dateNum: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -357,7 +356,6 @@ export default class C4 extends Base implements IFetch {
         dataLevel: this.store.global.dataLevel,
         dateScope: this.store.global.dateScope,
         levelId: this.store.global.orgTree.orgId,
-        dateNum: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -375,11 +373,9 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchRegionDetailsInfo, {
       key: StoreKey.HomeRegionDetailsInfo,
       params: {
-        orgType: this.store.global.dataLevel,
-        orgId: this.store.global.orgTree.orgId,
+        regionType: this.store.global.dataLevel,
+        regionId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
-        month: this.store.global.monthValue,
-        year: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

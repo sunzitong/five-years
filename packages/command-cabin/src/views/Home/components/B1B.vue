@@ -75,6 +75,7 @@ import {
   fetchProjectOpen,
   ProjectOpenReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/projectOpen";
+import dayjs from "dayjs";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import B1C from "./B1C.vue";
@@ -99,6 +100,8 @@ export default class B1B extends Base implements IFetch {
    * /bigScreen/mainBoard/construct/projectOpen
    */
   resData: Partial<ProjectOpenReturn> = {};
+
+  year = dayjs().year();
 
   targetNum: number | string = formatValue(); // 年开业目标间数
 
