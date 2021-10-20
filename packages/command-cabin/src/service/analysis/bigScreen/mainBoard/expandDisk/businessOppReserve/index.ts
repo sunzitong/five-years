@@ -19,6 +19,11 @@ export interface BusinessOppReserveParams {
    * 组织ID
    */
   orgId: number;
+
+  /**
+   * 年累
+   */
+  year: number;
 }
 
 /**
@@ -36,7 +41,7 @@ export interface BusinessOppReserveReturn {
 /**
  * 拓展盘面-商机储备
  * @createBy baishiqiang
- * @updateAt 2021/10/11 14:15:27
+ * @updateAt 2021/10/19 14:7:12
  * @method GET
  */
 export const fetchBusinessOppReserve = (

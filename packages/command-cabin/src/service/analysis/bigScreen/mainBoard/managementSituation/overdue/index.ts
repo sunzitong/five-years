@@ -13,12 +13,12 @@ export interface OverdueParams {
   /**
    * OMS-公用枚举-dataLevels 组织级别
    */
-  dataLevel?: unknown;
+  orgType?: unknown;
 
   /**
    * 国家组织ID/大区组织ID/城市组织ID
    */
-  levelId?: number;
+  orgId?: number;
 
   /**
    * phId
@@ -45,7 +45,7 @@ export interface OverdueReturn {
 /**
  * 经营现状-逾期金额
  * @createBy huyanan
- * @updateAt 2021/9/22 19:26:18
+ * @updateAt 2021/10/20 13:43:4
  * @method GET
  */
 export const fetchOverdue = (

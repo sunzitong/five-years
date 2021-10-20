@@ -11,19 +11,24 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
  */
 export interface ProductQualityParams {
   /**
-   * GROUP:全国；AREA:大区；CITY:城市
+   * 见通用枚举接口  GROUP:全国；AREA:大区；CITY:城市
    */
-  regionType: unknown;
+  orgType: unknown;
 
   /**
-   * 大区ID/城市ID，默认是空
+   * 大区ID/城市ID，默认传0
    */
-  regionId?: number;
+  orgId: number;
 
   /**
    * 统计哪一年的数据，默认是当前年份
    */
-  dataTime?: number;
+  dateScope: unknown;
+
+  /**
+   * 年份
+   */
+  year: number;
 }
 
 /**
@@ -38,7 +43,7 @@ export interface ProductQualityReturn {
 /**
  * 营造盘面-产品品质
  * @createBy huyanan
- * @updateAt 2021/9/18 15:24:27
+ * @updateAt 2021/10/19 15:43:17
  * @method GET
  */
 export const fetchProductQuality = (
