@@ -206,50 +206,53 @@ export default class App extends Mixins(MixStore) {
         return;
       }
     }
-    // 获取区域数据
-    const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
-    // 获取门店数据
-    const promiseProjectList = useStore(fetchProjectList, {
-      key: StoreKey.ProjectList,
-    });
-    const resOrgTree = await promiseOrgTree;
-    const resProjectList = await promiseProjectList;
-    if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
-      /**
-       * 格式化组架
-       */
-      this.formatOrgTree(resOrgTree.data);
-      /**
-       * 初始化时间
-       */
-      this.resetDateScope();
-      /**
-       * 初始化组架
-       */
-      if (resOrgTree.data[0].childList) {
-        if (resOrgTree.data[0].isHidden) {
-          /**
-           * 无全国权限
-           * dataLevel初始化为大区
-           */
-          this.store.global.dataLevel = DataLevels.AREA;
-          this.store.global.orgTree = resOrgTree.data[0].childList[0];
-        } else {
-          /**
-           * 有全国权限
-           * dataLevel初始化为全国
-           */
-          this.store.global.dataLevel = DataLevels.GROUP;
-          this.store.global.orgTree = resOrgTree.data[0];
-        }
+    // FIXME Auth缓存问题
+    setTimeout(async () => {
+      // 获取区域数据
+      const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
+      // 获取门店数据
+      const promiseProjectList = useStore(fetchProjectList, {
+        key: StoreKey.ProjectList,
+      });
+      const resOrgTree = await promiseOrgTree;
+      const resProjectList = await promiseProjectList;
+      if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
         /**
-         * 初始化城市
+         * 格式化组架
          */
-        this.store.global.project = resProjectList.data[0];
+        this.formatOrgTree(resOrgTree.data);
+        /**
+         * 初始化时间
+         */
+        this.resetDateScope();
+        /**
+         * 初始化组架
+         */
+        if (resOrgTree.data[0].childList) {
+          if (resOrgTree.data[0].isHidden) {
+            /**
+             * 无全国权限
+             * dataLevel初始化为大区
+             */
+            this.store.global.dataLevel = DataLevels.AREA;
+            this.store.global.orgTree = resOrgTree.data[0].childList[0];
+          } else {
+            /**
+             * 有全国权限
+             * dataLevel初始化为全国
+             */
+            this.store.global.dataLevel = DataLevels.GROUP;
+            this.store.global.orgTree = resOrgTree.data[0];
+          }
+          /**
+           * 初始化城市
+           */
+          this.store.global.project = resProjectList.data[0];
 
-        this.appLoading = false;
+          this.appLoading = false;
+        }
       }
-    }
+    }, 1500);
     window.MAIAAPM?.setUid(this.store.currentUser?.userId);
   }
 

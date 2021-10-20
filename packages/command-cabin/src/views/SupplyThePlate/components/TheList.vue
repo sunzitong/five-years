@@ -140,9 +140,9 @@ export default class TheList extends Base implements IFetch {
     const response = await useStore(fetchSupplyAndMarketingSaveDetail, {
       key: StoreKey.HomeSupplyAndMarketingSaveDetail,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
-        regionName: this.store.global.orgTree.orgName,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        orgName: this.store.global.orgTree.orgName,
         dateShort: +this.yearValue,
         // TODO 固定年累
         dateScope: DateScopes.YEARLY,

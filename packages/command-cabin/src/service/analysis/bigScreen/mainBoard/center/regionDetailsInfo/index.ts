@@ -13,17 +13,27 @@ export interface RegionDetailsInfoParams {
   /**
    * 地区类型
    */
-  regionType: unknown;
+  orgType: unknown;
 
   /**
    * 地区id
    */
-  regionId: number;
+  orgId: number;
 
   /**
    * 数据范围（年累，月累）
    */
   dateScope: unknown;
+
+  /**
+   * 月份形式日期
+   */
+  month: unknown;
+
+  /**
+   * 年份形式
+   */
+  year: number;
 }
 
 /**
@@ -54,7 +64,7 @@ export interface CenterRegionDetail {
 /**
  * 查询主屏(中心位置)地区(城市)维度详细信息
  * @createBy zhangyao03
- * @updateAt 2021/9/30 17:12:11
+ * @updateAt 2021/10/20 13:45:3
  * @method GET
  */
 export const fetchRegionDetailsInfo = (

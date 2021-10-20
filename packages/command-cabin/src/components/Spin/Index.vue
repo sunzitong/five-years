@@ -74,6 +74,7 @@ export default class Spin extends Vue {
     opacity: 0.5;
     backdrop-filter: blur(10px);
     font-size: 24px;
+    color: #90a4c3;
   }
 }
 </style>
