@@ -76,9 +76,9 @@ export default class TheDateScopes extends Base {
   /**
    * 更新全局时间
    */
-  setValue(scope: DateScopes, value: string) {
+  setValue(scope: DateScopes /* , value: string */) {
     this.store.global.dateScope = scope;
-    this.store.global.dateValue = value;
+    // this.store.global.dateValue = value;
     // if (scope === DateScopes.YEARLY) {
     //   this.store.global.yearValue = value;
     //   this.store.global.monthValue = `${value}-01`;
