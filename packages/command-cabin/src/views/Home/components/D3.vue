@@ -195,6 +195,7 @@ export default class D3 extends Base {
   }
 
   .right_text {
+    flex: 1;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
