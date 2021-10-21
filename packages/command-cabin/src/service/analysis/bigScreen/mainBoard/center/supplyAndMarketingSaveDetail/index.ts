@@ -28,7 +28,7 @@ export interface SupplyAndMarketingSaveDetailParams {
   /**
    * 年份加月份
    */
-  dateShort: number;
+  date: unknown;
 
   /**
    * 数据范围（年累，月累）【但是目前需求数据只有年累级别】
@@ -55,7 +55,7 @@ export interface SupplyAndMarketingSaveDetailReturn {
 /**
  * 主屏-供销存详情页
  * @createBy zhangyao03
- * @updateAt 2021/10/20 12:51:49
+ * @updateAt 2021/10/21 10:47:58
  * @method GET
  */
 export const fetchSupplyAndMarketingSaveDetail = (

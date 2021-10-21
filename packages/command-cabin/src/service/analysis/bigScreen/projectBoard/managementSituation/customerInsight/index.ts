@@ -28,7 +28,7 @@ export interface CustomerInsightParams {
   /**
    * 时间（如果是年累则为2020，若是月累则为2021-7格式）
    */
-  date: number;
+  date: unknown;
 
   /**
    * 门店分期id
@@ -54,7 +54,7 @@ export interface ComplaintDetail {
 /**
  * 客户洞察
  * @createBy zhangyao03
- * @updateAt 2021/10/20 10:21:35
+ * @updateAt 2021/10/21 11:4:9
  * @method GET
  */
 export const fetchCustomerInsight = (
