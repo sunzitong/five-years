@@ -120,6 +120,10 @@ export default class B2 extends Base implements IFetch {
         };
       });
     }
+    /**
+     * 处理无数据
+     */
+    this.empty = !this.resData.delayModelList?.length;
     return response;
   }
 }
