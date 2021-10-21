@@ -35,6 +35,7 @@ const mockProxy = {
   mock: "http://localhost:3000",
   test108: "http://oms.test108.gyapt.cn",
   test109: "http://oms.test109.gyapt.cn",
+  test109: "http://10.237.5.54:8079",
   staging: "http://oms.staging.gyapt.cn",
   prod: "http://oms.gyapt.cn",
 };
@@ -120,12 +121,20 @@ module.exports = {
     before: (app) => {},
     disableHostCheck: true,
     proxy: {
+      "/dev-api/auth": {
+        target: "http://oms.test109.gyapt.cn",
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          ["^/dev-api"]: "",
+        },
+      },
       [process.env.VUE_APP_BASE_API]: {
         target: mockProxy[process.env.MOCK || "yapi"],
         secure: false,
         changeOrigin: true,
         pathRewrite: {
-          ["^" + process.env.VUE_APP_BASE_API]: "",
+          ["^" + process.env.VUE_APP_BASE_API + "/analysis"]: "",
         },
       },
     },
