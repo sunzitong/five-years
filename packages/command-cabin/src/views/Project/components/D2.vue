@@ -21,15 +21,15 @@
       <div class="right_text">
         <div>
           <span>TOP1：</span>
-          <span>{{ formatValue(resData.complaintDetails[0].itemName) }}</span>
+          <span>{{ formatValue(getComplaintDetails(0).itemName) }}</span>
         </div>
         <div>
           <span>TOP2：</span>
-          <span>{{ formatValue(resData.complaintDetails[1].itemName) }}</span>
+          <span>{{ formatValue(getComplaintDetails(1).itemName) }}</span>
         </div>
         <div>
           <span>TOP3：</span>
-          <span>{{ formatValue(resData.complaintDetails[2].itemName) }}</span>
+          <span>{{ formatValue(getComplaintDetails(2).itemName) }}</span>
         </div>
       </div>
     </div>
@@ -110,6 +110,10 @@ export default class D2 extends Base {
   currentRate2 = 0;
   currentRate3 = 0;
   currentRate4 = 0;
+
+  getComplaintDetails(index: number) {
+    return this.resData?.complaintDetails?.[index] ?? {};
+  }
 
   resData: Partial<CustomerInsightReturn> = {};
   async fetch() {

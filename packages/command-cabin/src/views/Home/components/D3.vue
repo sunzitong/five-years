@@ -21,15 +21,27 @@
       <div class="right_text">
         <div>
           <span>TOP1：</span>
-          <span>{{ formatValue(resData.complaintDetails[0].itemName) }}</span>
+          <span>
+            {{
+              formatValue($data._.get(resData, "complaintDetails[0].itemName"))
+            }}
+          </span>
         </div>
         <div>
           <span>TOP2：</span>
-          <span>{{ formatValue(resData.complaintDetails[1].itemName) }}</span>
+          <span>
+            {{
+              formatValue($data._.get(resData, "complaintDetails[1].itemName"))
+            }}
+          </span>
         </div>
         <div>
           <span>TOP3：</span>
-          <span>{{ formatValue(resData.complaintDetails[2].itemName) }}</span>
+          <span>
+            {{
+              formatValue($data._.get(resData, "complaintDetails[2].itemName"))
+            }}
+          </span>
         </div>
       </div>
     </div>
@@ -101,11 +113,13 @@ import {
   fetchCustomerInsight,
 } from "@/service/analysis/bigScreen/mainBoard/managementSituation/customerInsight";
 import { iwant } from "@guanyu/shared";
+import _ from "lodash";
 
 @Component({
   components: {},
 })
 export default class D3 extends Base {
+  _ = _;
   currentRate1 = 0;
   currentRate2 = 0;
   currentRate3 = 0;
@@ -219,10 +233,3 @@ export default class D3 extends Base {
   }
 }
 </style>
-
-function fetchCustomerInsight(fetchCustomerInsight: any, arg1: { key: any;
-params: { orgType:
-import("../../../service/analysis/commandCabin/publicEnum/enums").DataLevels;
-orgId: number; dateScope:
-import("../../../service/analysis/commandCabin/publicEnum/enums").DateScopes;
-date: string; }; }) { throw new Error("Function not implemented."); }
