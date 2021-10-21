@@ -28,7 +28,7 @@ export interface RegionDetailsInfoParams {
   /**
    * 年累传(2021形式)，月累传(2021-11形式)
    */
-  date: number;
+  date: unknown;
 }
 
 /**
@@ -59,7 +59,7 @@ export interface CenterRegionDetail {
 /**
  * 查询主屏(中心位置)地区(城市)维度详细信息
  * @createBy zhangyao03
- * @updateAt 2021/10/21 10:29:28
+ * @updateAt 2021/10/21 11:49:2
  * @method GET
  */
 export const fetchRegionDetailsInfo = (
