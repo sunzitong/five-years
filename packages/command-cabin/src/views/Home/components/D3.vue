@@ -13,7 +13,7 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">{{ formatValue(resData.complaintRatio) }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text special_position">投诉率</div>
@@ -21,15 +21,27 @@
       <div class="right_text">
         <div>
           <span>TOP1：</span>
-          <span>{{ "--" }}</span>
+          <span>
+            {{
+              formatValue($data._.get(resData, "complaintDetails[0].itemName"))
+            }}
+          </span>
         </div>
         <div>
           <span>TOP2：</span>
-          <span>{{ "--" }}</span>
+          <span>
+            {{
+              formatValue($data._.get(resData, "complaintDetails[1].itemName"))
+            }}
+          </span>
         </div>
         <div>
           <span>TOP3：</span>
-          <span>{{ "--" }}</span>
+          <span>
+            {{
+              formatValue($data._.get(resData, "complaintDetails[2].itemName"))
+            }}
+          </span>
         </div>
       </div>
     </div>
@@ -46,7 +58,9 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">
+              {{ formatValue(resData.receiveOrderTimelinessRatio) }}%
+            </div>
           </div>
         </van-circle>
         <div class="bottom_text">及时接单率</div>
@@ -93,15 +107,40 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
+import {
+  CustomerInsightReturn,
+  fetchCustomerInsight,
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/customerInsight";
+import { iwant } from "@guanyu/shared";
+import _ from "lodash";
 
 @Component({
   components: {},
 })
 export default class D3 extends Base {
+  _ = _;
   currentRate1 = 0;
   currentRate2 = 0;
   currentRate3 = 0;
   currentRate4 = 0;
+
+  resData: Partial<CustomerInsightReturn> = {};
+  async fetch() {
+    const response = await useStore(fetchCustomerInsight, {
+      key: StoreKey.HomeCustomerInsight,
+      params: {
+        dataLevel: this.store.global.dataLevel,
+        levelId: this.store.global.orgTree.orgId,
+        dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = iwant.object(response.data);
+    }
+    return response;
+  }
 }
 </script>
 
@@ -113,8 +152,8 @@ export default class D3 extends Base {
   padding: 36px 50px 66px 50px;
 
   .left_circle {
-    width: 588px;
-    margin-right: 100px;
+    width: 638px;
+    margin-right: 80px;
 
     display: flex;
     flex-flow: row nowrap;

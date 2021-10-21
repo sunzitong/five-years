@@ -230,7 +230,8 @@ export default class B1B extends Base {
             color: "#8090AA",
             fontSize: 20,
             lineHeight: 24,
-            padding: [19, 0, 0, 1350],
+            padding:
+              this.xTag === this.monthTag ? [19, 0, 0, 1350] : [19, 0, 0, 1440],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",

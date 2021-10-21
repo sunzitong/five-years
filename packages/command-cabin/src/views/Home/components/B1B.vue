@@ -79,6 +79,7 @@ import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import B1C from "./B1C.vue";
 import { formatValue } from "@/utils/tools";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {
@@ -140,8 +141,10 @@ export default class B1B extends Base implements IFetch {
     const response = await useStore(fetchProjectOpen, {
       key: StoreKey.HomeProjectOpen,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        dateScope: DateScopes.YEARLY,
+        year: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

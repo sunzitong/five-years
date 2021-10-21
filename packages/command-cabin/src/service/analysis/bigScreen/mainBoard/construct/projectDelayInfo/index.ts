@@ -28,7 +28,7 @@ export interface ProjectDelayInfoParams {
   /**
    * 统计哪一年的数据，默认是当前年份
    */
-  year: number;
+  date: number;
 }
 
 /**
@@ -54,7 +54,7 @@ export interface DelayModelList {
 /**
  * 营造盘面-开业延期
  * @createBy huyanan
- * @updateAt 2021/10/19 15:43:7
+ * @updateAt 2021/10/21 10:1:43
  * @method GET
  */
 export const fetchProjectDelayInfo = (

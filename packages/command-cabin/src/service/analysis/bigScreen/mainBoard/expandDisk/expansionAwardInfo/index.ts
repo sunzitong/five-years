@@ -21,9 +21,9 @@ export interface ExpansionAwardInfoParams {
   orgId: number;
 
   /**
-   * 年累
+   * 年累（只有年累）
    */
-  year: number;
+  date: number;
 }
 
 /**
@@ -41,7 +41,7 @@ export interface ExpansionAwardInfoReturn {
 /**
  * 中央奖补、投后攻坚模块
  * @createBy zhangyao03
- * @updateAt 2021/10/20 11:22:34
+ * @updateAt 2021/10/21 10:8:32
  * @method GET
  */
 export const fetchExpansionAwardInfo = (

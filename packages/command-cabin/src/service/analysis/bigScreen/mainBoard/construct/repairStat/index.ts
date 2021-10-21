@@ -23,7 +23,7 @@ export interface RepairStatParams {
   /**
    * 年累
    */
-  year: number;
+  date: number;
 }
 
 /**
@@ -44,7 +44,7 @@ export interface DecorationRepair {
 /**
  * 营造盘面-维保报事
  * @createBy baishiqiang
- * @updateAt 2021/10/19 14:6:47
+ * @updateAt 2021/10/21 10:4:8
  * @method GET
  */
 export const fetchRepairStat = (

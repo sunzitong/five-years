@@ -4,7 +4,7 @@
       <van-swipe
         ref="swipe"
         :loop="false"
-        :-indicators="false"
+        :show-indicators="false"
         @change="changeHandle"
         lazy-render
         :style="`height: ${webrtcConfig.height}px`"

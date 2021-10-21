@@ -233,6 +233,7 @@ export default class D1A extends Base implements IFetch {
       params: {
         projectId: this.store.global.project.projectId,
         dateScope: this.store.global.dateScope,
+        dateNum: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -374,7 +375,7 @@ $asce: #ff2a76;
     line-height: 48px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
   }
 }
 </style>

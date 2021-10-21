@@ -28,7 +28,7 @@ export interface ProductQualityParams {
   /**
    * 年份
    */
-  year: number;
+  date: number;
 }
 
 /**
@@ -43,7 +43,7 @@ export interface ProductQualityReturn {
 /**
  * 营造盘面-产品品质
  * @createBy huyanan
- * @updateAt 2021/10/19 15:43:17
+ * @updateAt 2021/10/21 10:3:41
  * @method GET
  */
 export const fetchProductQuality = (

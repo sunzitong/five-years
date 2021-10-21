@@ -31,9 +31,9 @@ export interface SupplyAndMarketingSaveParams {
   orgName: unknown;
 
   /**
-   * 月份时间格式
+   * 年累形式（只有年累）
    */
-  month: unknown;
+  date: number;
 }
 
 /**
@@ -53,7 +53,7 @@ export interface SupplyAndMarketingSaveReturn {
 /**
  * 主屏-供销存
  * @createBy zhangyao03
- * @updateAt 2021/10/20 11:39:37
+ * @updateAt 2021/10/21 10:32:1
  * @method GET
  */
 export const fetchSupplyAndMarketingSave = (

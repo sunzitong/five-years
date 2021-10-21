@@ -13,7 +13,7 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">{{ formatValue(resData.complaintRatio) }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text special_position">投诉率</div>
@@ -21,15 +21,15 @@
       <div class="right_text">
         <div>
           <span>TOP1：</span>
-          <span>{{ "--" }}</span>
+          <span>{{ formatValue(getComplaintDetails(0).itemName) }}</span>
         </div>
         <div>
           <span>TOP2：</span>
-          <span>{{ "--" }}</span>
+          <span>{{ formatValue(getComplaintDetails(1).itemName) }}</span>
         </div>
         <div>
           <span>TOP3：</span>
-          <span>{{ "--" }}</span>
+          <span>{{ formatValue(getComplaintDetails(2).itemName) }}</span>
         </div>
       </div>
     </div>
@@ -46,7 +46,9 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">
+              {{ formatValue(resData.receiveOrderTimelinessRatio) }}%
+            </div>
           </div>
         </van-circle>
         <div class="bottom_text">及时接单率</div>
@@ -93,6 +95,12 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
+import {
+  CustomerInsightReturn,
+  fetchCustomerInsight,
+} from "@/service/analysis/bigScreen/projectBoard/managementSituation/customerInsight";
+import { iwant } from "@guanyu/shared";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
@@ -102,6 +110,28 @@ export default class D2 extends Base {
   currentRate2 = 0;
   currentRate3 = 0;
   currentRate4 = 0;
+
+  getComplaintDetails(index: number) {
+    return this.resData?.complaintDetails?.[index] ?? {};
+  }
+
+  resData: Partial<CustomerInsightReturn> = {};
+  async fetch() {
+    const response = await useStore(fetchCustomerInsight, {
+      key: StoreKey.ProjectCustomerInsight,
+      params: {
+        dataLevel: this.store.global.dataLevel,
+        levelId: this.store.global.project.orgId,
+        dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
+        phId: this.store.global.project.phId,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = iwant.object(response.data);
+    }
+    return response;
+  }
 }
 </script>
 
@@ -113,8 +143,8 @@ export default class D2 extends Base {
   padding: 36px 50px 66px 50px;
 
   .left_circle {
-    width: 588px;
-    margin-right: 100px;
+    width: 638px;
+    margin-right: 80px;
 
     display: flex;
     flex-flow: row nowrap;

@@ -49,6 +49,7 @@ import {
 } from "@/service/analysis/bigScreen/mainBoard/construct/costAnalysis";
 import { formatValue } from "@/utils/tools";
 import { iwant } from "@guanyu/shared";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {
@@ -95,8 +96,10 @@ export default class B3 extends Base implements IFetch {
     const response = await useStore(fetchCostAnalysis, {
       key: StoreKey.HomeCostAnalysis,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        dateScope: DateScopes.YEARLY,
+        year: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {
