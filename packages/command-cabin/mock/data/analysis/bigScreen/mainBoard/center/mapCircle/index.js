@@ -4,7 +4,7 @@
  *
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/10/19 15:24:29
+ * @updateAt 2021/10/21 16:49:48
  * @method GET
  */
 
@@ -26,6 +26,7 @@ exports.response = {
       openNum: 932, //开业间数
       openFinishLimit: 93.4, //开业间数完成度
       netProfitsRatio: 93.6, //净利润率
+      netProfitsDiff: -2.3, //净利润率-偏差
       netProfitsFinishLimit: 93.6, //净利润率完成度
       allFormatIncome: 93345.5, //全业态收入
       allFormatIncomeFinishLimit: 45.5, //全业态收入完成度

@@ -242,7 +242,7 @@ export default class D1A extends Base implements IFetch {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
-        dateNum: this.store.global.dateValue,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {

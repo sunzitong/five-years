@@ -13,12 +13,12 @@ export interface EventsParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: unknown;
+  orgType: unknown;
 
   /**
    * 组织id
    */
-  levelId: number;
+  orgId: number;
 }
 
 /**
@@ -38,7 +38,7 @@ export interface EventsItemReturn {
 /**
  * 指挥中心-冠寓大事记
  * @createBy huyanan
- * @updateAt 2021/10/12 19:9:37
+ * @updateAt 2021/10/21 16:52:38
  * @method GET
  */
 export const fetchEvents = (

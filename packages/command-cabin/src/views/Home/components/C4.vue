@@ -312,9 +312,9 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchMapCircle, {
       key: StoreKey.HomeMapCircle,
       params: {
-        dataLevel: this.levelValue,
+        orgType: this.levelValue,
         dateScope: this.store.global.dateScope,
-        dateNum: this.store.global.dateValue,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -354,10 +354,10 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchMapChangeBar, {
       key: StoreKey.HomeMapChangeBar,
       params: {
-        dataLevel: this.store.global.dataLevel,
+        orgType: this.store.global.dataLevel,
         dateScope: this.store.global.dateScope,
-        levelId: this.store.global.orgTree.orgId,
-        dateNum: this.store.global.dateValue,
+        orgId: this.store.global.orgTree.orgId,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -431,7 +431,8 @@ export default class C4 extends Base implements IFetch {
     }
     // 净利润率
     if (this.optionIndex === 2) {
-      return item.netProfitsFinishLimit < 100;
+      // return item.netProfitsFinishLimit < 100;
+      return item.netProfitsDiff < 0;
     }
     // 全业态收入(万元)
     if (this.optionIndex === 3) {
