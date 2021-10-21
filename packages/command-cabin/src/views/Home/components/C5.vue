@@ -92,8 +92,8 @@ export default class C5 extends Base implements IFetch {
     const response = await useStore(fetchEvents, {
       key: StoreKey.HomeEvents,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
       },
     });
     if (response?.status === "ok") {

@@ -13,12 +13,12 @@ export interface MapChangeBarParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: unknown;
+  orgType: unknown;
 
   /**
    * 组织id
    */
-  levelId: number;
+  orgId: number;
 
   /**
    * 时间范围：见公用枚举
@@ -28,7 +28,7 @@ export interface MapChangeBarParams {
   /**
    * 时间
    */
-  dateNum: unknown;
+  date: unknown;
 }
 
 /**
@@ -44,7 +44,7 @@ export interface MapChangeBarReturn {
 /**
  * 指挥中心-地图数据切换条
  * @createBy wuyao
- * @updateAt 2021/10/19 15:23:54
+ * @updateAt 2021/10/21 16:46:51
  * @method GET
  */
 export const fetchMapChangeBar = (

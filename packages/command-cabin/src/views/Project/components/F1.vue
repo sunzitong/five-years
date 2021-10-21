@@ -70,7 +70,7 @@ export default class F1 extends Base implements IFetch {
       params: {
         dateScope: this.store.global.dateScope,
         projectId: this.store.global.project.projectId,
-        dateNum: this.store.global.dateValue,
+        date: this.store.global.dateValue,
       },
     });
 

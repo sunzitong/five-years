@@ -121,8 +121,8 @@ export default class TheCostAnalysisList extends Base implements IFetch {
     const response = await useStore(fetchCostAnalysisList, {
       key: StoreKey.CostAnalysisList,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         approvedDateFrom: dayjs(NOW)
           .year(this.yearRange[0])
           .startOf("y")
