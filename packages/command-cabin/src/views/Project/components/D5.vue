@@ -110,6 +110,7 @@ export default class D5 extends Base implements IFetch {
       params: {
         dateScope: this.store.global.dateScope,
         phId: this.store.global.project.phId,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
