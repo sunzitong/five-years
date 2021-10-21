@@ -130,8 +130,8 @@ export default class D3 extends Base {
     const response = await useStore(fetchCustomerInsight, {
       key: StoreKey.HomeCustomerInsight,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
         date: this.store.global.dateValue,
       },
