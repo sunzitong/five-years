@@ -37,7 +37,6 @@ import {
   fetchProductQuality,
   ProductQualityReturn,
 } from "@/service/analysis/bigScreen/mainBoard/construct/productQuality";
-import dayjs from "dayjs";
 import { Base, IFetch } from "@/views/Base";
 import { iwant, NumberLike } from "@guanyu/shared";
 import { StoreKey, useStore } from "@/store";
@@ -56,7 +55,6 @@ export default class B4 extends Base implements IFetch {
    * /bigScreen/mainBoard/construct/productQuality
    */
   resData: Partial<ProductQualityReturn> = {};
-  year = dayjs().year();
 
   // name标签
   labels = [

@@ -69,7 +69,7 @@ export default class TheCostAnalysisList extends Base implements IFetch {
   yearRange: number[] = [];
 
   created() {
-    const year = dayjs().year();
+    const year = dayjs(this.store.env.NOW).year();
     this.yearRange = [year, year];
   }
 
@@ -117,16 +117,17 @@ export default class TheCostAnalysisList extends Base implements IFetch {
     if (this.riskValue === "False") {
       isRisk = false;
     }
+    const { NOW } = this.store.env;
     const response = await useStore(fetchCostAnalysisList, {
       key: StoreKey.CostAnalysisList,
       params: {
         regionType: this.store.global.dataLevel,
         regionId: this.store.global.orgTree.orgId,
-        approvedDateFrom: dayjs()
+        approvedDateFrom: dayjs(NOW)
           .year(this.yearRange[0])
           .startOf("y")
           .format("YYYY-MM-DD HH:mm:ss"),
-        approvedDateTo: dayjs()
+        approvedDateTo: dayjs(NOW)
           .year(this.yearRange[1])
           .endOf("y")
           .format("YYYY-MM-DD HH:mm:ss"),
