@@ -78,7 +78,7 @@ export default class TheExpandWideDetail extends Base implements IFetch {
   yearRange: number[] = [];
 
   created() {
-    const year = dayjs().year();
+    const year = dayjs(this.store.env.NOW).year();
     this.yearRange = [year, year];
   }
 

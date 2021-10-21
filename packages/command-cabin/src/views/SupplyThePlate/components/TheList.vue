@@ -115,7 +115,7 @@ export default class TheList extends Base implements IFetch {
   ];
 
   created() {
-    const now = dayjs();
+    const now = dayjs(this.store.env.NOW);
     this.years = {
       [now.format("YYYY-MM")]: now.year(),
       [now.format("YYYY-12")]: now.year() - 1,
