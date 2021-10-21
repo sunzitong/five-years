@@ -2,6 +2,7 @@
   <div class="app-spin" :style="formatStyle">
     <div class="loading" v-if="loading">
       <NoData />
+      <p>加载中...</p>
     </div>
     <div class="empty" v-else-if="empty">
       <NoData />
