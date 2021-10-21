@@ -378,7 +378,7 @@ export default class C4 extends Base implements IFetch {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
-        date: this.store.global.dataLevel,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
