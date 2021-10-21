@@ -77,8 +77,9 @@ export default class B4 extends Base implements IFetch {
       params: {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
+        // 仅年累
         dateScope: DateScopes.YEARLY,
-        year: +this.store.global.yearValue,
+        date: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

@@ -105,8 +105,8 @@ export default class C3 extends Base implements IFetch {
     const response = await useStore(fetchMonitorList, {
       key: StoreKey.HomeMonitorList,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
       },
       force,
