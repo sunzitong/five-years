@@ -144,7 +144,7 @@ export default class B1B extends Base implements IFetch {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
         dateScope: DateScopes.YEARLY,
-        year: +this.store.global.yearValue,
+        date: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

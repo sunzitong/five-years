@@ -26,7 +26,7 @@ export interface OperatingExpensesParams {
   dateScope: unknown;
 
   /**
-   * 这个无论年累，月累
+   * 年累传2021，月累传2021-11格式
    */
   date: unknown;
 }
@@ -53,7 +53,7 @@ export interface OperatingExpensesReturn {
 /**
  * 经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/20 17:33:51
+ * @updateAt 2021/10/21 11:12:34
  * @method GET
  */
 export const fetchOperatingExpenses = (

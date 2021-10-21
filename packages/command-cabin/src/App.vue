@@ -184,16 +184,8 @@ export default class App extends Mixins(MixStore) {
     // 清空所有数据
     removeStore();
     if (!this.store.currentUser) {
-      const response = await fetchToken();
-      if (response?.status === "ok") {
-        this.store.currentUser = response.data;
-        if (loginCallback) {
-          this.appLoading = false;
-          loginCallback();
-          return;
-        }
-      } else {
-        // 用户信息请求失败 跳转login
+      // 用户信息请求失败 跳转login
+      const fallback = () => {
         this.$router
           .push("/login")
           .catch(_.noop)
@@ -203,7 +195,21 @@ export default class App extends Mixins(MixStore) {
         if (loginCallback) {
           loginCallback();
         }
-        return;
+      };
+      if (localStorage.getItem("token")) {
+        const response = await fetchToken();
+        if (response?.status === "ok") {
+          this.store.currentUser = response.data;
+          if (loginCallback) {
+            this.appLoading = false;
+            loginCallback();
+            return;
+          }
+        } else {
+          return fallback();
+        }
+      } else {
+        return fallback();
       }
     }
     // FIXME Auth缓存问题

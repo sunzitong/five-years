@@ -29,7 +29,7 @@
               <tr animated v-for="item of list" :key="item.quota">
                 <td v-for="o of columns" :key="o.dataIndex">
                   <div :class="o.dataIndex">
-                    {{ item[o.dataIndex] }}
+                    {{ splitString(item[o.dataIndex]) }}
                   </div>
                 </td>
               </tr>
@@ -85,6 +85,14 @@ export default class B2 extends Base implements IFetch {
     return this.formatValue(this.response.month);
   }
 
+  splitString(str: string) {
+    let newStr = str;
+    if (str.length > 16) {
+      newStr = str.split("/").join("/\n");
+    }
+    return newStr;
+  }
+
   /**
    * 请求数据
    * 自动触发 重复调用
@@ -110,6 +118,9 @@ export default class B2 extends Base implements IFetch {
 
 <style lang="scss" scoped>
 $step-color: #0e173c;
+.table-wrapper {
+  word-break: break-all;
+}
 .investment {
   height: 1290px;
 }
@@ -125,6 +136,7 @@ $step-color: #0e173c;
   }
 }
 .table {
+  white-space: pre-wrap;
   width: 100%;
   table-layout: fixed;
   text-align: center;
@@ -138,6 +150,7 @@ $step-color: #0e173c;
     font-weight: normal;
   }
   td {
+    // padding: 0 2px;
     color: #90a4c3;
   }
   tbody {
