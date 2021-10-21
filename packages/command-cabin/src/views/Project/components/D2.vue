@@ -120,8 +120,8 @@ export default class D2 extends Base {
     const response = await useStore(fetchCustomerInsight, {
       key: StoreKey.ProjectCustomerInsight,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.project.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.project.orgId,
         dateScope: this.store.global.dateScope,
         date: this.store.global.dateValue,
         phId: this.store.global.project.phId,
