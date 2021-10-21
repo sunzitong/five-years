@@ -2,9 +2,11 @@
   <div class="app-spin" :style="formatStyle">
     <div class="loading" v-if="loading">
       <NoData />
+      <p>加载中...</p>
     </div>
     <div class="empty" v-else-if="empty">
       <NoData />
+      <p>暂无相关数据</p>
     </div>
     <div
       class="spin-content"
@@ -63,6 +65,7 @@ export default class Spin extends Vue {
   .loading {
     position: absolute;
     @extend %flex-center;
+    flex-flow: column;
     top: 0;
     right: 0;
     bottom: 0;
@@ -71,6 +74,8 @@ export default class Spin extends Vue {
     height: 100%;
     opacity: 0.5;
     backdrop-filter: blur(10px);
+    font-size: 24px;
+    color: #90a4c3;
   }
 }
 </style>

@@ -28,7 +28,7 @@
           <tr>
             <td rowspan="2">项目数据</td>
             <td colspan="2">权益后净利润</td>
-            <td colspan="2">收入总额含税</td>
+            <td colspan="2">收入总额</td>
           </tr>
           <tr>
             <td>实际</td>
@@ -239,7 +239,7 @@ export default class C4 extends Base implements IFetch {
     {
       numName: "allFormatIncome",
       limitName: "allFormatIncomeFinishLimit",
-      text: "主营业务收入(万元)",
+      text: "收入总额(万元)",
     },
   ];
   optionIndex = 0;

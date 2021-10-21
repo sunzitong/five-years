@@ -1,4 +1,5 @@
 // import { getToken } from "@/utils/guanyu";
+import { env } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
 import axios from "axios";
 
@@ -27,6 +28,9 @@ service.interceptors.request.use(
 // respone拦截器
 service.interceptors.response.use(
   (response) => {
+    if (response.data?.timestamp) {
+      env.NOW = response.data.timestamp;
+    }
     return response.data;
   },
   (error) => {

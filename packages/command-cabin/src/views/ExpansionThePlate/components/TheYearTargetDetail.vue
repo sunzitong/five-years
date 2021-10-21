@@ -61,7 +61,7 @@ export default class TheYearTargetDetail extends Base implements IFetch {
   yearRange: number[] = [];
 
   created() {
-    const year = dayjs().year();
+    const year = dayjs(this.store.env.NOW).year();
     this.yearRange = [year, year];
   }
 
@@ -131,7 +131,8 @@ export default class TheYearTargetDetail extends Base implements IFetch {
   color: #90a4c3;
   font-size: 40px;
   .table {
-    width: 100%;
+    min-width: 2200px;
+    margin: auto;
     white-space: pre-line;
     text-align: center;
   }

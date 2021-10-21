@@ -43,7 +43,10 @@
             </div>
           </div>
         </div>
-        <div class="big_title">
+        <div
+          class="big_title"
+          v-if="store.global.project.transactionModel === 'LightAsset'"
+        >
           <div>轻资产待回款</div>
           <div class="big_values">
             <span>{{ sepNumber(resData.payBackAmount) }}</span>
@@ -180,7 +183,6 @@ export default class D6 extends Base implements IFetch {
           rgba(5, 203, 253, 0.1) 0%,
           rgba(0, 127, 249, 0) 100.9%
         );
-        backdrop-filter: blur(10px);
 
         font-size: 36px;
         line-height: 36px;

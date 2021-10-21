@@ -46,7 +46,7 @@
               </CardA>
               <WhiteSpace />
               <SubWrapperA
-                title="风险监控"
+                title="现场监控"
                 size="small"
                 style="width: 1193px; height: 736px"
               >
@@ -82,6 +82,7 @@
             </van-radio-group>
           </ButtonGroupA>
 
+          <!-- TODO -->
           <ButtonGroupA>
             <van-checkbox-group
               :value="['meeting', 'command', 'scope', 'orgTree']"
@@ -90,6 +91,7 @@
               <van-checkbox
                 :name="centerType === 'meeting' ? 'meeting' : null"
                 @click="centerType = 'meeting'"
+                v-if="false"
               >
                 会议中心
               </van-checkbox>
@@ -218,7 +220,7 @@
     <div class="project-name">{{ store.global.project.projectName }}</div>
 
     <div class="header-right-extra">
-      <OperatingIndex />
+      <O1 />
     </div>
   </div>
 </template>
@@ -243,7 +245,7 @@ import D5 from "./components/D5.vue";
 import D6 from "./components/D6.vue";
 import E1 from "./components/E1.vue";
 import F1 from "./components/F1.vue";
-import OperatingIndex from "./components/OperatingIndex.vue";
+import O1 from "./components/O1.vue";
 import ButtonGroup from "@/components/ButtonGroup/Index.vue";
 import Icon from "@/components/Icon/Index.vue";
 import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
@@ -272,7 +274,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     ButtonGroup,
     Icon,
     ButtonGroupA,
-    OperatingIndex,
+    O1,
     OptionPanel,
   },
 })
@@ -307,11 +309,14 @@ export default class Index extends Base {
    * 时间维度按钮文案
    */
   get scopeValue() {
+    // TODO
+    // const suffix = `累计(${this.store.global.dateValue})`;
+    const suffix = `累计`;
     if (this.store.global.dateScope === DateScopes.YEARLY) {
-      return "年累计";
+      return `年${suffix}`;
     }
     if (this.store.global.dateScope === DateScopes.MONTHLY) {
-      return "月累计";
+      return `月${suffix}`;
     }
     return this.formatValue(null);
   }
@@ -329,6 +334,7 @@ export default class Index extends Base {
   .main-center {
     flex: 1;
     margin: 0 20px;
+    z-index: 11;
     &::v-deep {
       .app-subwrapper-a__body {
         overflow: visible;
@@ -360,6 +366,7 @@ export default class Index extends Base {
   font-weight: bold;
   font-size: 66px;
   color: #fff;
+  z-index: 10;
 }
 .header-right-extra {
   position: absolute;

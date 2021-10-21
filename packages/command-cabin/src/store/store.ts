@@ -5,6 +5,7 @@ import {
   DateScopes,
 } from "@/service/analysis/commandCabin/publicEnum/enums";
 import { TokenReturn } from "@/service/auth/token";
+import dayjs from "dayjs";
 
 const store = {
   /**
@@ -26,6 +27,10 @@ const store = {
      * 全局缩放比例
      */
     SCALE: 1,
+    /**
+     * 当前时间,自动从服务器更新
+     */
+    NOW: dayjs().valueOf(),
   } as Env,
   /**
    * 全局参数
@@ -39,6 +44,18 @@ const store = {
      * 时间枚举 年 月 日
      */
     dateScope: DateScopes.YEARLY,
+    /**
+     * 时间 年或者月
+     */
+    dateValue: dayjs().format("YYYY"),
+    /**
+     * 时间 年
+     */
+    yearValue: dayjs().format("YYYY"),
+    /**
+     * 时间 月
+     */
+    monthValue: dayjs().format("YYYY-MM"),
     /**
      * 全国地区城市ID
      */

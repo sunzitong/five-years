@@ -64,7 +64,7 @@ export default class A1B extends Base implements IFetch {
       actualOpenDate,
       approvedDate,
       costValLandSum,
-      startCheckScore,
+      // startCheckScore,
       workDays,
       fireControlType,
       pointRentRatioToday,
@@ -103,7 +103,7 @@ export default class A1B extends Base implements IFetch {
             label: "移交运营",
             date: this.formatValue(transferServiceDate),
             note: [
-              `开业检分数 ${this.formatValue(startCheckScore)} `,
+              // `开业检分数 ${this.formatValue(startCheckScore)} `,
               `工期 ${this.formatValue(workDays)}天`,
               `消防情况 ${this.formatValue(fireControlType)}`,
             ],
@@ -155,7 +155,7 @@ export default class A1B extends Base implements IFetch {
             label: "移交运营",
             date: this.formatValue(transferServiceDate),
             note: [
-              `开业检分数 ${this.formatValue(startCheckScore)} `,
+              // `开业检分数 ${this.formatValue(startCheckScore)} `,
               `工期 ${this.formatValue(workDays)}天`,
               `消防情况 ${this.formatValue(fireControlType)}`,
             ],

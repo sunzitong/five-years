@@ -157,7 +157,6 @@ $padding-x: 100px;
   font-size: 36px;
   bottom: 0;
   right: 0;
-  backdrop-filter: blur(30px);
   border: 2px solid rgba(81, 128, 228, 0.8);
   border-radius: 10px;
   .text {

@@ -374,7 +374,7 @@ $asce: #ff2a76;
     line-height: 48px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
   }
 }
 </style>

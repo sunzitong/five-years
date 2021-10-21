@@ -18,48 +18,50 @@
               {{ col.text }}
             </van-col>
           </van-row>
-          <div class="list">
-            <Animationend
-              :height="270"
-              :dataSource="group.list"
-              :scrollMinCount="3"
-            >
-              <template v-slot="{ list }">
-                <van-row
-                  v-for="item in list"
-                  :key="item.id"
-                  class="row"
-                  animated
-                >
-                  <van-col
-                    v-for="col in group.cols"
-                    :key="col.value"
-                    :span="group.span"
-                    class="td name"
+          <Spin :empty="group.list.length <= 0" :height="220">
+            <div class="list">
+              <Animationend
+                :height="270"
+                :dataSource="group.list"
+                :scrollMinCount="3"
+              >
+                <template v-slot="{ list }">
+                  <van-row
+                    v-for="item in list"
+                    :key="item.id"
+                    class="row"
+                    animated
                   >
-                    <template v-if="col.value === 'person'">
-                      <div class="person">
+                    <van-col
+                      v-for="col in group.cols"
+                      :key="col.value"
+                      :span="group.span"
+                      class="td name"
+                    >
+                      <template v-if="col.value === 'person'">
+                        <div class="person">
+                          {{ formatValue(item[col.value]) }}
+                        </div>
+                        <div class="icon" @click.stop="telClick(item)">
+                          <Icon type="call" color="#7BE7A1" :size="54" />
+                          <BlurBox
+                            class="tel-tips value-font"
+                            :height="70"
+                            v-if="item.id == telId"
+                          >
+                            {{ sepNumber(item.tel, " ", 4) }}
+                          </BlurBox>
+                        </div>
+                      </template>
+                      <template v-else>
                         {{ formatValue(item[col.value]) }}
-                      </div>
-                      <div class="icon" @click.stop="telClick(item)">
-                        <Icon type="call" color="#7BE7A1" :size="54" />
-                        <BlurBox
-                          class="tel-tips value-font"
-                          :height="70"
-                          v-if="item.id == telId"
-                        >
-                          {{ sepNumber(item.tel, " ", 4) }}
-                        </BlurBox>
-                      </div>
-                    </template>
-                    <template v-else>
-                      {{ formatValue(item[col.value]) }}
-                    </template>
-                  </van-col>
-                </van-row>
-              </template>
-            </Animationend>
-          </div>
+                      </template>
+                    </van-col>
+                  </van-row>
+                </template>
+              </Animationend>
+            </div>
+          </Spin>
         </div>
       </van-tab>
     </van-tabs>
@@ -254,7 +256,9 @@ export default class A2 extends Base implements IFetch {
   }
 }
 .person {
-  min-width: 4em;
+  width: 4em;
+  display: flex;
+  justify-content: flex-end;
 }
 .icon {
   display: flex;

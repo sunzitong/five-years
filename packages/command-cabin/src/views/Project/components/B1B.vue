@@ -130,7 +130,7 @@ export default class B1B extends Base {
           type: "line", // 默认为直线，可选为：'line' | 'shadow'
           snap: true,
           lineStyle: {
-            type: "solid",
+            type: "dashed",
             width: 2,
             color: "#01F5F1",
           },
@@ -161,11 +161,19 @@ export default class B1B extends Base {
           params.forEach((el) => {
             if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
-                str += `<div class="tool-item1"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>${unit}</span></div>`;
+                str += `<div class="tool-item1"><span></span><span>${
+                  this.tabNames[this.tabTag]
+                }（${el.seriesName}）</span>   <span>${
+                  el.value
+                }</span> <span>${unit}</span></div>`;
               }
             } else {
               if (el.seriesName !== "实际") {
-                str += `<div class="tool-item2"><span></span><span>收入 （${el.seriesName}）</span>   <span>${el.value}</span> <span>${unit}</span></div>`;
+                str += `<div class="tool-item2"><span></span><span>${
+                  this.tabNames[this.tabTag]
+                }（${el.seriesName}）</span>   <span>${
+                  el.value
+                }</span> <span>${unit}</span></div>`;
               }
             }
           });
@@ -175,35 +183,29 @@ export default class B1B extends Base {
       },
       legend: {
         left: 0,
-        padding: [32, 0],
+        padding: [12, 0],
         itemGap: 16,
+        itemHeight: 4,
         itemWidth: 30,
-        itemStyle: { opacity: 0 },
+        icon: "roundRect",
         data: [
           {
             name: "投资任务书版",
-            itemStyle: { opacity: 0 },
-            lineStyle: { color: "#57A6FB" },
+            itemStyle: { color: "#57A6FB" },
           },
           {
             name: "最新过会版",
-            itemStyle: { opacity: 0 },
-            lineStyle: { color: "#A957FB" },
+            itemStyle: { color: "#A957FB" },
           },
           {
             name: "月度运维版",
-            itemStyle: { opacity: 0 },
-            lineStyle: { color: "#F7D14A" },
+            itemStyle: { color: "#F7D14A" },
           },
           {
             name: "实际",
-            itemStyle: { opacity: 0 },
-            lineStyle: { color: "#57FBB6" },
+            itemStyle: { color: "#57FBB6" },
           },
         ],
-        lineStyle: {
-          width: 4,
-        },
         textStyle: {
           color: "#90A4C3",
           fontSize: 36,
@@ -213,20 +215,22 @@ export default class B1B extends Base {
       },
       grid: {
         top: "28%",
-        left: "8%",
+        left: "9%",
         right: "6%",
         bottom: "8%",
         //是否显示刻度标签
-        containLabel: true,
+        containLabel: false,
       },
       xAxis: [
         {
-          name: "\n\n运营年",
-          nameLocation: "end",
+          name: "运营年",
+          nameLocation: "center",
+          nameGap: 0,
           nameTextStyle: {
-            color: "#90A4C3",
-            fontSize: 24,
-            lineHeight: 26,
+            color: "#8090AA",
+            fontSize: 20,
+            lineHeight: 24,
+            padding: [19, 0, 0, 1350],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",
@@ -270,12 +274,13 @@ export default class B1B extends Base {
         {
           name: "百分比",
           show: 0 === this.yIndex[this.tabTag],
-          nameLocation: "center",
+          nameLocation: "end",
+          nameGap: 30,
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 0, 100, 0],
+            padding: [0, 0, 0, -110],
           },
           type: "value",
           axisLine: {
@@ -311,12 +316,13 @@ export default class B1B extends Base {
           name: "万元",
           show: 1 === this.yIndex[this.tabTag],
           position: "left",
-          nameLocation: "center",
+          nameLocation: "end",
+          nameGap: 30,
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 0, 100, 0],
+            padding: [0, 0, 0, -80],
           },
           type: "value",
           axisLine: {
@@ -349,12 +355,13 @@ export default class B1B extends Base {
           name: "元",
           show: 2 === this.yIndex[this.tabTag],
           position: "left",
-          nameLocation: "center",
+          nameLocation: "end",
+          nameGap: 30,
           nameTextStyle: {
             color: "#90A4C3",
             fontSize: 24,
             lineHeight: 26,
-            padding: [0, 0, 100, 0],
+            padding: [0, 0, 0, -60],
           },
           type: "value",
           axisLine: {
@@ -389,9 +396,10 @@ export default class B1B extends Base {
           name: "投资任务书版",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel0[this.tabTag],
-          lineStyle: { color: "#57A6FB", width: 4 },
+          lineStyle: { color: "#57A6FB", width: 4, borderRdius: 0 },
           type: "line",
           symbol: "none",
+          itemStyle: { ocolor: "#57A6FB" },
           markLine: {
             symbol: "none",
             type: "dashed",
@@ -407,8 +415,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0.4, color: "rgba(87, 166, 251, 0.2)" },
                 { offset: 1, color: "rgba(87, 166, 251, 0)" },
+                { offset: 0, color: "rgba(87, 166, 251, 0.2)" },
               ]
             ),
           },
@@ -417,9 +425,10 @@ export default class B1B extends Base {
           name: "最新过会版",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel1[this.tabTag],
-          lineStyle: { color: "#A957FB", width: 4 },
+          lineStyle: { color: "#A957FB", width: 4, borderRdius: 0 },
           type: "line",
           symbol: "none",
+          itemStyle: { ocolor: "#A957FB" },
           areaStyle: {
             color: new echarts.graphic.LinearGradient(
               0,
@@ -427,8 +436,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0, color: "rgba(169, 87, 251, 0.2)" },
                 { offset: 1, color: "rgba(169, 87, 251, 0)" },
+                { offset: 0, color: "rgba(169, 87, 251, 0.2)" },
               ]
             ),
           },
@@ -437,7 +446,7 @@ export default class B1B extends Base {
           name: "月度运维版",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel2[this.tabTag],
-          lineStyle: { color: "#F7D14A", width: 4 },
+          lineStyle: { color: "#F7D14A", width: 4, borderRdius: 0 },
           type: "line",
           symbol: "none",
           areaStyle: {
@@ -447,8 +456,8 @@ export default class B1B extends Base {
               0,
               1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
               [
-                { offset: 0, color: "rgba(247, 209, 74, 0.2)" },
                 { offset: 1, color: "rgba(247, 209, 74, 0)" },
+                { offset: 0, color: "rgba(247, 209, 74, 0.2)" },
               ]
             ),
           },
@@ -457,7 +466,22 @@ export default class B1B extends Base {
           name: "实际",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel3[this.tabTag],
-          lineStyle: { color: "#57FBB6", width: 4 },
+          type: "line",
+          symbol: "none",
+          itemStyle: { ocolor: "#57FBB6" },
+          lineStyle: { color: "#57FBB6", width: 4, borderRdius: 0 },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+              [
+                { offset: 1, color: "rgba(87, 251, 182, 0)" },
+                { offset: 0, color: "rgba(87, 251, 182, 0.2)" },
+              ]
+            ),
+          },
           markLine: {
             // 标记虚线
             symbol: "none",
@@ -484,7 +508,7 @@ export default class B1B extends Base {
                   label: {
                     show: true,
                     offset: [0, -58],
-                    position: "insideTop", // markArea中文字（name）位置
+                    position: "outsideTop", // markArea中文字（name）位置
                     color: "#ffff", // markArea中文字（name）颜色
                     fontSize: 36,
                     lineHeight: 36,
@@ -508,8 +532,6 @@ export default class B1B extends Base {
               ),
             },
           },
-          type: "line",
-          symbol: "none",
         },
       ],
     };
@@ -535,8 +557,13 @@ export default class B1B extends Base {
   align-items: flex-end;
 
   .left_title {
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    height: 40px;
     font-size: 40px;
     line-height: 40px;
+    text-align: center;
     color: #ffffff;
   }
   .tabs_box {
@@ -586,16 +613,20 @@ export default class B1B extends Base {
 
     .tool-item1:nth-child(2) span:nth-child(1),
     .tool-item2:nth-child(2) span:nth-child(1) {
+      border-radius: 5px;
       background: #57a6fb;
     }
     .tool-item1:nth-child(3) span:nth-child(1),
     .tool-item2:nth-child(3) span:nth-child(1) {
+      border-radius: 5px;
       background: #f7d14a;
     }
     .tool-item1:nth-child(4) span:nth-child(1) {
+      border-radius: 5px;
       background: #57fbb6;
     }
     .tool-item2:nth-child(4) span:nth-child(1) {
+      border-radius: 5px;
       background: #a957fb;
     }
 
@@ -608,7 +639,7 @@ export default class B1B extends Base {
 
     span:nth-child(2) {
       display: inline-block;
-      width: 300px;
+      width: 400px;
     }
 
     span:nth-child(2),

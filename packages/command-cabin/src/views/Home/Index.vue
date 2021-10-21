@@ -1,6 +1,7 @@
 <template>
   <div class="page__index">
     <div class="main">
+      <O1 />
       <div class="main-left">
         <SubWrapperA style="width: 2694px; height: 1203px" title="拓展盘面">
           <van-row gutter="20">
@@ -76,7 +77,6 @@
       <div class="main-center">
         <div style="height: 1876px">
           <C1 />
-          <C2 />
           <C4 :levelValue="mapLevelValue" v-if="centerChartType === 'main'" />
           <C5 v-if="centerChartType === 'guanyu'" />
         </div>
@@ -93,7 +93,7 @@
                   }
                 "
               >
-                <Icon type="map" :size="36" class="button-icon--left" />
+                <!-- <Icon type="map" :size="36" class="button-icon--left" /> -->
                 总盘面({{ mapLevelOptions[mapLevelValue] }})
                 <span v-show="store.global.dataLevel === DataLevels.GROUP">
                   <Icon
@@ -115,7 +115,7 @@
                 @click="showMapLevelPanel = false"
                 v-show="store.global.dataLevel === DataLevels.GROUP"
               >
-                <Icon type="flag" :size="36" class="button-icon--left" />
+                <!-- <Icon type="flag" :size="36" class="button-icon--left" /> -->
                 冠寓大事纪
               </van-radio>
             </van-radio-group>
@@ -308,7 +308,7 @@ import B3 from "./components/B3.vue";
 import B4 from "./components/B4.vue";
 import B5 from "./components/B5.vue";
 import C1 from "./components/C1.vue";
-import C2 from "./components/C2.vue";
+import O1 from "./components/O1.vue";
 import C3 from "./components/C3.vue";
 import C4 from "./components/C4.vue";
 import C5 from "./components/C5.vue";
@@ -339,7 +339,7 @@ import OptionPanel from "@/views/components/OptionPanel/Index.vue";
     B4,
     B5,
     C1,
-    C2,
+    O1,
     C3,
     C4,
     C5,
@@ -415,11 +415,14 @@ export default class Home extends Base {
    * 时间维度按钮文案
    */
   get scopeValue() {
+    // TODO
+    // const suffix = `累计(${this.store.global.dateValue})`;
+    const suffix = `累计`;
     if (this.store.global.dateScope === DateScopes.YEARLY) {
-      return "年累计";
+      return `年${suffix}`;
     }
     if (this.store.global.dateScope === DateScopes.MONTHLY) {
-      return "月累计";
+      return `月${suffix}`;
     }
     return this.formatValue(null);
   }
@@ -489,6 +492,9 @@ export default class Home extends Base {
     &.Options {
       left: 664px;
       right: auto;
+    }
+    &.TheOrgTree {
+      z-index: 22;
     }
   }
 }

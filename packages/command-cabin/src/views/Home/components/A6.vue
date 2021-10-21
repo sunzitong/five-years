@@ -229,7 +229,6 @@ export default class A6 extends Base implements IFetch {
     rgba(5, 203, 253, 0.1) 0%,
     rgba(0, 127, 249, 0) 100.9%
   );
-  backdrop-filter: blur(10px);
   margin: 20px 0;
   &::before {
     content: "";

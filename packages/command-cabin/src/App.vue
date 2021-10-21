@@ -43,6 +43,7 @@ import { fetchProjectList } from "./service/analysis/commandCabin/projectList";
 import _ from "lodash";
 import { fetchToken } from "./service/auth/token";
 import { DataLevels } from "./service/analysis/commandCabin/publicEnum/enums";
+import dayjs from "dayjs";
 
 @Component({
   name: "app",
@@ -183,16 +184,8 @@ export default class App extends Mixins(MixStore) {
     // 清空所有数据
     removeStore();
     if (!this.store.currentUser) {
-      const response = await fetchToken();
-      if (response?.status === "ok") {
-        this.store.currentUser = response.data;
-        if (loginCallback) {
-          this.appLoading = false;
-          loginCallback();
-          return;
-        }
-      } else {
-        // 用户信息请求失败 跳转login
+      // 用户信息请求失败 跳转login
+      const fallback = () => {
         this.$router
           .push("/login")
           .catch(_.noop)
@@ -202,32 +195,70 @@ export default class App extends Mixins(MixStore) {
         if (loginCallback) {
           loginCallback();
         }
-        return;
-      }
-    }
-    // 获取区域数据
-    const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
-    // 获取门店数据
-    const promiseProjectList = useStore(fetchProjectList, {
-      key: StoreKey.ProjectList,
-    });
-    const resOrgTree = await promiseOrgTree;
-    const resProjectList = await promiseProjectList;
-    if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
-      this.formatOrgTree(resOrgTree.data);
-      if (resOrgTree.data[0].childList) {
-        if (resOrgTree.data[0].isHidden) {
-          // 无全国权限
-          this.store.global.dataLevel = DataLevels.AREA;
-          this.store.global.orgTree = resOrgTree.data[0].childList[0];
+      };
+      if (localStorage.getItem("token")) {
+        const response = await fetchToken();
+        if (response?.status === "ok") {
+          this.store.currentUser = response.data;
+          if (loginCallback) {
+            this.appLoading = false;
+            loginCallback();
+            return;
+          }
         } else {
-          this.store.global.dataLevel = DataLevels.GROUP;
-          this.store.global.orgTree = resOrgTree.data[0];
+          return fallback();
         }
-        this.store.global.project = resProjectList.data[0];
-        this.appLoading = false;
+      } else {
+        return fallback();
       }
     }
+    // FIXME Auth缓存问题
+    setTimeout(async () => {
+      // 获取区域数据
+      const promiseOrgTree = useStore(fetchOrgTree, { key: StoreKey.OrgTree });
+      // 获取门店数据
+      const promiseProjectList = useStore(fetchProjectList, {
+        key: StoreKey.ProjectList,
+      });
+      const resOrgTree = await promiseOrgTree;
+      const resProjectList = await promiseProjectList;
+      if (resOrgTree?.status === "ok" && resProjectList?.status === "ok") {
+        /**
+         * 格式化组架
+         */
+        this.formatOrgTree(resOrgTree.data);
+        /**
+         * 初始化时间
+         */
+        this.resetDateScope();
+        /**
+         * 初始化组架
+         */
+        if (resOrgTree.data[0].childList) {
+          if (resOrgTree.data[0].isHidden) {
+            /**
+             * 无全国权限
+             * dataLevel初始化为大区
+             */
+            this.store.global.dataLevel = DataLevels.AREA;
+            this.store.global.orgTree = resOrgTree.data[0].childList[0];
+          } else {
+            /**
+             * 有全国权限
+             * dataLevel初始化为全国
+             */
+            this.store.global.dataLevel = DataLevels.GROUP;
+            this.store.global.orgTree = resOrgTree.data[0];
+          }
+          /**
+           * 初始化城市
+           */
+          this.store.global.project = resProjectList.data[0];
+
+          this.appLoading = false;
+        }
+      }
+    }, 1500);
     window.MAIAAPM?.setUid(this.store.currentUser?.userId);
   }
 
@@ -241,6 +272,16 @@ export default class App extends Mixins(MixStore) {
         this.formatOrgTree(item.childList, item);
       }
     });
+  }
+
+  /**
+   * 重设年累月累初始值
+   */
+  resetDateScope() {
+    const now = dayjs(this.store.env.NOW);
+    this.store.global.dateValue = now.format("YYYY");
+    this.store.global.yearValue = now.format("YYYY");
+    this.store.global.monthValue = now.format("YYYY-MM");
   }
 }
 </script>

@@ -1,25 +1,22 @@
 <template>
-  <Spin :loading="loading" style="height: 660px">
-    <div class="page__opening_extension__map">
-      <div class="abstract_text">
-        当前开业风险项目
-        <span>{{ riskProject }}</span>
-        个，共计
-        <span>{{ sepNumber(storeNum) }}</span>
-        间
-      </div>
-      <div class="scroll_table">
-        <van-row
-          justify="space-between"
-          type="flex"
-          class="table_row table_head"
-        >
-          <van-col :span="5" class="table_col">预计开业时间</van-col>
-          <van-col :span="5" class="table_col">项目</van-col>
-          <van-col :span="4" class="table_col">资产类型</van-col>
-          <van-col :span="5" class="table_col">房间数</van-col>
-          <van-col :span="5" class="table_col">延期卡点</van-col>
-        </van-row>
+  <div class="page__opening_extension__map">
+    <div class="abstract_text">
+      当前开业风险项目
+      <span>{{ riskProject }}</span>
+      个，共计
+      <span>{{ sepNumber(storeNum) }}</span>
+      间
+    </div>
+    <div class="scroll_table">
+      <van-row justify="space-between" type="flex" class="table_row table_head">
+        <van-col :span="5" class="table_col">预计开业时间</van-col>
+        <van-col :span="5" class="table_col">项目</van-col>
+        <van-col :span="4" class="table_col">资产类型</van-col>
+        <van-col :span="5" class="table_col">房间数</van-col>
+        <van-col :span="5" class="table_col">延期卡点</van-col>
+      </van-row>
+
+      <Spin :loading="loading" :empty="empty">
         <div class="table_body">
           <Animationend :scrollMinCount="4" :height="400" :dataSource="col">
             <template v-slot="{ list }">
@@ -52,9 +49,9 @@
             </template>
           </Animationend>
         </div>
-      </div>
+      </Spin>
     </div>
-  </Spin>
+  </div>
 </template>
 
 <script lang="ts">
@@ -120,6 +117,10 @@ export default class B2 extends Base implements IFetch {
         };
       });
     }
+    /**
+     * 处理无数据
+     */
+    this.empty = !this.resData.delayModelList?.length;
     return response;
   }
 }

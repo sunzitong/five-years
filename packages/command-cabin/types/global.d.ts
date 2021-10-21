@@ -24,6 +24,10 @@ type Env = {
    * 全局缩放比例
    */
   SCALE: number;
+  /**
+   * 服务器时间戳
+   */
+  NOW: number;
   [key: string]: any;
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <Spin :loading="loading" style="position: relative; z-index: 1000">
+  <Spin :loading="loading" style="position: relative; z-index: 20">
     <A1A />
     <A1B />
     <A1C />

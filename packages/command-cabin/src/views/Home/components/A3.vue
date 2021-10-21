@@ -2,13 +2,13 @@
   <Spin :height="483" :loading="loading" :empty="empty">
     <div class="page__a3__map">
       <div class="groop1">
-        <div>转化率</div>
-        <div>{{ resData.estabTransRatio }}%</div>
+        <div class="name_position">转化率</div>
+        <div class="value">{{ resData.estabTransRatio }}%</div>
         <AnimationForward class="arrow" />
       </div>
       <div class="groop2">
-        <div>转化率</div>
-        <div>{{ resData.meetingTransRatio }}%</div>
+        <div class="name_position">转化率</div>
+        <div class="value">{{ resData.meetingTransRatio }}%</div>
         <AnimationForward class="arrow" />
       </div>
       <div
@@ -83,7 +83,7 @@ export default class A3 extends Base implements IFetch {
       grid: {
         left: "-10%",
         right: "-8%",
-        bottom: "0%",
+        bottom: "5%",
         containLabel: true,
       },
       xAxis: {
@@ -93,7 +93,13 @@ export default class A3 extends Base implements IFetch {
         axisLabel: {
           formatter: (value: number, index: number) => {
             let name = this.dataSet[index].name;
-            return "{title1|" + name + "} {val|\n" + value + "} {title2|个}";
+            return (
+              "{title1|" +
+              name +
+              "} {val|\n" +
+              this.sepNumber(value) +
+              "} {title2|个}"
+            );
           },
           rich: {
             title1: {
@@ -109,14 +115,14 @@ export default class A3 extends Base implements IFetch {
               fontSize: 48,
               lineHeight: 36,
               color: "#DBF0FF",
-              padding: [36, 0, 0, 0],
+              padding: [36, 0, -18, 0],
             },
             title2: {
               fontFamily: this.store.env.TEXT_FONT,
               color: "#90A4C3",
               fontSize: 36,
               lineHeight: 36,
-              padding: [36, 0, 0, 0],
+              padding: [36, 0, -15, 0],
             },
           },
         },
@@ -162,13 +168,13 @@ export default class A3 extends Base implements IFetch {
   justify-content: space-around;
   width: 200px;
 
-  div:nth-child(1) {
+  .name_position {
     font-size: 36px;
     line-height: 36px;
     color: #90a4c3;
     margin-bottom: 18px;
   }
-  div:nth-child(2) {
+  .value {
     @extend %value-font;
     font-weight: bold;
     font-size: 48px;
@@ -180,13 +186,13 @@ export default class A3 extends Base implements IFetch {
 
 .groop1 {
   position: absolute;
-  top: 80px;
+  top: 85px;
   left: 239px;
 }
 
 .groop2 {
   position: absolute;
-  top: 80px;
+  top: 85px;
   left: 518px;
 }
 </style>

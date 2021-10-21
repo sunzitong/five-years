@@ -21,6 +21,7 @@ export default class ButtonGroupA extends Vue {
 .button-group {
   display: flex;
   position: relative;
+  z-index: 21;
   /* 单选 */
   ::v-deep {
     .van-radio-group {
@@ -43,7 +44,7 @@ export default class ButtonGroupA extends Vue {
 
     .van-radio[aria-checked] {
       min-width: 367px;
-      padding: 0 15px;
+      padding: 0 20px;
       height: 94px;
       margin: 0;
       position: relative;
@@ -154,7 +155,7 @@ export default class ButtonGroupA extends Vue {
 
     .van-checkbox[aria-checked] {
       min-width: 367px;
-      padding: 0 15px;
+      padding: 0 20px;
       height: 94px;
       margin: 0;
       position: relative;

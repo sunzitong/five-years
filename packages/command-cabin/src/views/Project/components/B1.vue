@@ -63,7 +63,7 @@ export default class B1 extends Base implements IFetch {
       "净利润率/NPI利润率/Y-C/现金流预估",
       "收入预估",
       "三费预估",
-      "承租租金&COST预估",
+      "COST预估",
     ],
     MediumAsset: [
       "净利润率/NPI利润率/Y-C/现金流预估",
@@ -71,7 +71,7 @@ export default class B1 extends Base implements IFetch {
       "三费预估",
       "承租租金&COST预估",
     ],
-    LightAsset: ["净利润率/NPI利润率/Y-C/现金流预估", "收入预估", "三费预估"],
+    LightAsset: ["净利润率/NPI利润率/现金流预估", "收入预估", "三费预估"],
   };
 
   yIndex = {
@@ -241,7 +241,7 @@ export default class B1 extends Base implements IFetch {
               data3: (number | string)[] = []; // 折线图i标签j中月度运维版
             // 第j个标签
             let prop = propMap[i][j];
-            if (prop === "cost") {
+            if (prop === "cost" || prop === "ycost") {
               infoMap.year1 &&
                 infoMap?.year1.forEach((el) => {
                   data0.push(el[prop]);
@@ -351,7 +351,7 @@ export default class B1 extends Base implements IFetch {
               data3: (number | string)[] = []; // 折线图i标签j中月度运维版
             // 第j个标签
             let prop = propMap[i][j];
-            if (prop === "cost") {
+            if (prop === "cost" || prop === "ycost") {
               infoMap.year1 &&
                 infoMap?.year1.forEach((el) => {
                   data0.push(el[prop]);
@@ -439,6 +439,11 @@ export default class B1 extends Base implements IFetch {
           iwant.string(this.resData.transactionModel)
         ];
         this.buildData(iwant.string(this.resData.transactionModel));
+      } else {
+        const { transactionModel } = this.store.global.project;
+        this.tabList = this.tabLabels[transactionModel];
+        this.titles = this.pannelTitles[transactionModel];
+        this.buildData(transactionModel);
       }
     } else {
       this.empty = true;

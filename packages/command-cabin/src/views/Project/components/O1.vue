@@ -50,7 +50,7 @@ type MonthData = Partial<BusinessScoreReturn["lastMonthScore"]>;
 @Component({
   components: { Icon, StepNumber },
 })
-export default class OperatingIndex extends Base implements IFetch {
+export default class O1 extends Base implements IFetch {
   /**
    * 返回数据
    */
@@ -154,6 +154,8 @@ export default class OperatingIndex extends Base implements IFetch {
 <style lang="scss" scoped>
 .operatingIndex {
   width: 500px;
+  position: relative;
+  z-index: 10;
   .tag-year {
     font-size: 36px;
     color: #90a4c3;
