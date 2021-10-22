@@ -115,10 +115,8 @@ export default class B1 extends Base implements IFetch {
     this.yLabel2 = [];
     this.yLabel3 = [];
 
-    debugger;
     if (infoMap && month) {
       if (transactionModel === "LightAsset") {
-        debugger;
         // 构建月度横坐标
         let monthXLabel: number[] = [];
         const list = (monthNum: number) =>
