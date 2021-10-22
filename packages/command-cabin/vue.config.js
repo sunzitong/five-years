@@ -120,12 +120,20 @@ module.exports = {
     before: (app) => {},
     disableHostCheck: true,
     proxy: {
-      [process.env.VUE_APP_BASE_API]: {
+      [process.env.VUE_APP_BASE_API + "/auth"]: {
         target: mockProxy[process.env.MOCK || "yapi"],
         secure: false,
         changeOrigin: true,
         pathRewrite: {
           ["^" + process.env.VUE_APP_BASE_API]: "",
+        },
+      },
+      [process.env.VUE_APP_BASE_API]: {
+        target: "http://10.237.1.160:8079/",
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          ["^" + process.env.VUE_APP_BASE_API + "/analysis"]: "",
         },
       },
     },
