@@ -133,6 +133,7 @@ export default class B1 extends Base implements IFetch {
 
         this.xLabel.push(monthXLabel);
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
+        this.specialTabIndex = -2; // -2是轻资产，第一个图无特殊情况
 
         // 构建三条折线数据结构（二维数组）
         let propMap = [
