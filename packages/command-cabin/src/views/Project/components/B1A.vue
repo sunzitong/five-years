@@ -32,7 +32,7 @@
         :yearTag="yearTag"
         :yIndex="yIndex[i - 1]"
         :specialTabIndex="
-          i === 1 && specialTabIndex !== -2 ? 2 : specialTabIndex 
+          i === 1 && specialTabIndex !== -2 ? 2 : specialTabIndex
         "
         :ifChange="ifChange"
         :currentSort.sync="sortList[i - 1]"
