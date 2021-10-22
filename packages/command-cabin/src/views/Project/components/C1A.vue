@@ -1,6 +1,6 @@
 <template>
   <div class="pictrues-more">
-    <span @click="toggleDialog">更多</span>
+    <a @click="toggleDialog">更多</a>
     <div v-if="show">
       <van-dialog
         class="dialog"
@@ -223,6 +223,17 @@ export default class C1A extends Base implements IFetch {
 </script>
 
 <style lang="scss" scoped>
+.pictrues-more {
+  width: 100%;
+  height: 100%;
+  > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 90px;
+    text-align: center;
+  }
+}
 .dialog {
   background: transparent;
   border-radius: 0;

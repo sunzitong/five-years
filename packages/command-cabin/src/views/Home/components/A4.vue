@@ -171,8 +171,6 @@ export default class A4 extends Base implements IFetch {
         );
       }
     }
-    // console.log(res);
-
     return res;
   }
 
