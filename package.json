@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope={static-pages-html,customerinvitat,newfriend,gy-new-customer-gift}",
-    "build": "lerna run build --scope={static-pages-html,customerinvitat,newfriend,gy-new-customer-gift} --stream",
+    "postinstall": "lerna bootstrap --scope=rent-guide",
+    "build": "lerna run build --scope=rent-guide --stream",
     "build:SIT": "cross-env BUILD=SIT npm-run-all build",
     "build:UAT": "cross-env BUILD=UAT npm-run-all build",
     "build:STAGING": "cross-env BUILD=STAGING npm-run-all build",
