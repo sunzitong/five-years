@@ -115,8 +115,10 @@ export default class B1 extends Base implements IFetch {
     this.yLabel2 = [];
     this.yLabel3 = [];
 
+    debugger;
     if (infoMap && month) {
       if (transactionModel === "LightAsset") {
+        debugger;
         // 构建月度横坐标
         let monthXLabel: number[] = [];
         const list = (monthNum: number) =>
@@ -131,7 +133,7 @@ export default class B1 extends Base implements IFetch {
           monthXLabel = list(monthNum);
         }
 
-        this.xLabel.push(this.monthXLabel);
+        this.xLabel.push(monthXLabel);
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
 
         // 构建三条折线数据结构（二维数组）
