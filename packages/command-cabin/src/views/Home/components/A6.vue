@@ -96,6 +96,8 @@ export default class A6 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
+
       this.currentYear = formatValue(this.resData.yearNetIncomeCollected);
       this.wholeCycle = formatValue(this.resData.allNetIncomeCollected);
       this.cycleRate = formatValue(this.resData.allNetIncomeCompletionRate);

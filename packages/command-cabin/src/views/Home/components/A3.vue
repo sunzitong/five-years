@@ -57,6 +57,7 @@ export default class A3 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
       if (this.resData) {
         this.dataSet = [
           { name: "年累立项", value: this.resData.yearsEstabProjectNum },

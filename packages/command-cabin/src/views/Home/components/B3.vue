@@ -1,17 +1,17 @@
 <template>
-  <Spin :height="560" :loading="loading">
-    <div class="page__b3__map">
-      <van-row class="abstract_text">
-        <van-col :span="12">成本风险预警项目</van-col>
-        <van-col :span="12">总体成本差异率</van-col>
-      </van-row>
-      <van-row class="abstract_text">
-        <van-col class="span_style1" :span="12">
-          {{ projecttNum }}
-          <span>个</span>
-        </van-col>
-        <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
-      </van-row>
+  <div class="page__b3__map">
+    <van-row class="abstract_text">
+      <van-col :span="12">成本风险预警项目</van-col>
+      <van-col :span="12">总体成本差异率</van-col>
+    </van-row>
+    <van-row class="abstract_text">
+      <van-col class="span_style1" :span="12">
+        {{ projecttNum }}
+        <span>个</span>
+      </van-col>
+      <van-col class="span_style2" :span="12">{{ differRatio }}%</van-col>
+    </van-row>
+    <Spin :height="230" :loading="loading" :empty="empty">
       <div class="process_container">
         <Animationend :scrollMinCount="3" :height="322" :dataSource="newList">
           <template v-slot="{ list }">
@@ -34,8 +34,8 @@
           </template>
         </Animationend>
       </div>
-    </div>
-  </Spin>
+    </Spin>
+  </div>
 </template>
 
 <script lang="ts">
@@ -106,9 +106,10 @@ export default class B3 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.projecttNum = formatValue(this.resData.riskItemNum);
       this.differRatio = formatValue(this.resData.allItemDiff);
-    } else {
-      this.empty = true;
     }
+
+    this.empty = iwant.array(this.resData.costAnalysisModelList).length === 0;
+
     return response;
   }
 }

@@ -85,6 +85,7 @@ export default class D5 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
     } else {
       this.empty = true;
     }
