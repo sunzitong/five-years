@@ -190,6 +190,7 @@ export default class D2 extends Base {
     flex-flow: column nowrap;
     justify-content: space-around;
     margin: 40px 0 20px 0;
+    white-space: nowrap;
     span {
       font-size: 40px;
       line-height: 44px;
