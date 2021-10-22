@@ -7,7 +7,7 @@
         <div class="content_box">
           <div class="top_text">净利润贡献值</div>
           <!-- <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div> -->
-          <div class="top_text">(全周期)</div>
+          <div class="top_text">(全年)</div>
         </div>
         <div class="container">
           <div class="text_row">
@@ -107,11 +107,11 @@ export default class A6 extends Base implements IFetch {
         // 饼图对象数组
         {
           name: "all",
-          value: 100 - iwant.number(this.resData.allNetIncomeCompletionRate),
+          value: 100 - iwant.number(this.resData.yearNetIncomeCompletionRate),
         },
         {
           name: "reach",
-          value: iwant.number(this.resData.allNetIncomeCompletionRate),
+          value: iwant.number(this.resData.yearNetIncomeCompletionRate),
         },
       ];
       this.paintChart();
