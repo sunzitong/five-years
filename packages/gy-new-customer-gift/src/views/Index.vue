@@ -50,7 +50,7 @@
       </div>
     </div>
     <img
-      src="https://goyoo-assets.longfor.com/prod/app/Ebp6Zyn74Bpg3hkO5Q7aMw.jpg"
+      src="../assets/img/invite-friends.png"
       alt
       class="invite-friends-img"
       @click="inviteJump"
