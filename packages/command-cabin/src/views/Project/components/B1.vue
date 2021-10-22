@@ -366,7 +366,7 @@ export default class B1 extends Base implements IFetch {
                   if (el.dataNum < (year as number)) {
                     data2.push("-");
                     data3.push(el[prop]);
-                  } else if (el.dataNum === (month as number)) {
+                  } else if (el.dataNum === (year as number)) {
                     data2.push(el[prop]);
                     data3.push(el[prop]);
                   } else {
