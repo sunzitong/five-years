@@ -292,7 +292,7 @@ export default class A4 extends Base implements IFetch {
   background-color: #5180e4;
 }
 .van-col:nth-child(2) .legend {
-  background-color: #F7D14A;
+  background-color: #f7d14a;
 }
 
 .names_box {
