@@ -43,7 +43,10 @@
             </div>
           </div>
         </div>
-        <div class="big_title">
+        <div
+          class="big_title"
+          v-if="store.global.project.transactionModel === 'LightAsset'"
+        >
           <div>轻资产待回款</div>
           <div class="big_values">
             <span>{{ sepNumber(resData.payBackAmount) }}</span>

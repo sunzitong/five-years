@@ -149,7 +149,7 @@ export default class E1 extends Base implements IFetch {
   columns = [
     { title: "门店", dataIndex: "projectName" },
     { title: "阶段", dataIndex: "stageDesc" },
-    { title: "预警类型", dataIndex: "typeDesc" },
+    { title: "类型", dataIndex: "typeDesc" },
     { title: "预警详情", dataIndex: "detail" },
     { title: "风险程度", dataIndex: "riskDegree" },
   ];
