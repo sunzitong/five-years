@@ -141,6 +141,7 @@ export default class B1B extends Base {
         borderWidth: 2,
         padding: [8, 30],
         formatter: (params: AnyObject[]) => {
+          console.log("=============", params);
           let str = `<div class='tooltip'><div class="tool-title">第`;
           let unit = "";
 
@@ -158,10 +159,12 @@ export default class B1B extends Base {
             unit = "元";
           }
 
-          params.forEach((el) => {
+          params.forEach((el, index) => {
             if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
-                str += `<div class="tool-item1"><span></span><span>${
+                str += `<div class="tool-item tool-item-${
+                  el.seriesIndex
+                }-${index}"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
                   el.value
@@ -169,7 +172,9 @@ export default class B1B extends Base {
               }
             } else {
               if (el.seriesName !== "实际") {
-                str += `<div class="tool-item2"><span></span><span>${
+                str += `<div class="tool-item tool-item-${
+                  el.seriesIndex
+                }-${index}"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
                   el.value
@@ -188,6 +193,7 @@ export default class B1B extends Base {
         itemHeight: 4,
         itemWidth: 30,
         icon: "roundRect",
+        inactiveColor: "#586983",
         data: [
           {
             name: "投资任务书版",
@@ -612,50 +618,63 @@ export default class B1B extends Base {
       margin-bottom: 8px;
     }
 
-    .tool-item1:nth-child(2) span:nth-child(1),
-    .tool-item2:nth-child(2) span:nth-child(1) {
+    .tool-item {
       border-radius: 5px;
-      background: #57a6fb;
-    }
-    .tool-item1:nth-child(3) span:nth-child(1),
-    .tool-item2:nth-child(3) span:nth-child(1) {
-      border-radius: 5px;
-      background: #f7d14a;
-    }
-    .tool-item1:nth-child(4) span:nth-child(1) {
-      border-radius: 5px;
-      background: #57fbb6;
-    }
-    .tool-item2:nth-child(4) span:nth-child(1) {
-      border-radius: 5px;
-      background: #a957fb;
-    }
 
-    span:nth-child(1) {
-      display: inline-block;
-      width: 35px;
-      height: 4px;
-      margin-right: 15px;
-    }
+      &-0-0,
+      &-0-1 {
+        .icon {
+          background: #57a6fb;
+        }
+      }
+      &-1-0,
+      &-1-1 {
+        .icon {
+          background: #a957fb;
+        }
+      }
+      &-2-0,
+      &-2-1 {
+        .icon {
+          background: #f7d14a;
+        }
+      }
+      &-3-0,
+      &-3-1 {
+        .icon {
+          background: #57fbb6;
+        }
+      }
+      span {
+        vertical-align: middle;
+      }
 
-    span:nth-child(2) {
-      display: inline-block;
-      width: 400px;
-    }
+      span:nth-child(1) {
+        display: inline-block;
+        width: 35px;
+        height: 4px;
+        margin-right: 15px;
+      }
 
-    span:nth-child(2),
-    span:nth-child(4) {
-      font-size: 30px;
-      line-height: 30px;
-      color: #90a4c3;
-      margin-right: 10px;
-    }
-    span:nth-child(3) {
-      @extend %value-font;
-      font-size: 40px;
-      line-height: 40px;
-      color: #ffffff;
-      font-weight: bold;
+      span:nth-child(2) {
+        display: inline-block;
+        width: 400px;
+      }
+      span:nth-child(2),
+      span:nth-child(4) {
+        font-size: 30px;
+        line-height: 30px;
+        color: #90a4c3;
+        margin-right: 10px;
+      }
+
+      span:nth-child(3) {
+        @extend %value-font;
+        font-size: 40px;
+        line-height: 40px;
+        color: #ffffff;
+        font-weight: bold;
+      }
     }
   }
 }

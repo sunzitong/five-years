@@ -138,6 +138,10 @@ export default class A3 extends Base implements IFetch {
           color: "#57A6FB",
           barWidth: 24,
           barCateGoryGap: 204,
+          showBackground: true,
+          backgroundStyle: {
+            color: "rgba(23, 44, 71, 1)",
+          },
           itemStyle: {
             color: new echarts.graphic.LinearGradient(
               0,
