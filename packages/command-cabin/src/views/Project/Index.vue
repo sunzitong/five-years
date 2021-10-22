@@ -309,7 +309,9 @@ export default class Index extends Base {
    * 时间维度按钮文案
    */
   get scopeValue() {
-    const suffix = `累计(${this.store.global.dateValue})`;
+    // TODO
+    // const suffix = `累计(${this.store.global.dateValue})`;
+    const suffix = `累计`;
     if (this.store.global.dateScope === DateScopes.YEARLY) {
       return `年${suffix}`;
     }

@@ -10,8 +10,10 @@
         <span class="value-font">{{ response.yellowNum }}</span>
       </div>
     </div>
-    <div class="chart-bg" v-if="showBarShadow"></div>
-    <div class="chart" ref="pieChart"></div>
+    <Spin :empty="cusEmpty">
+      <div class="chart-bg" v-if="!cusEmpty"></div>
+      <div class="chart" ref="pieChart"></div>
+    </Spin>
   </div>
 </template>
 
@@ -69,8 +71,8 @@ export default class F1B extends Base {
   /**
    * 是否显示阴影
    */
-  get showBarShadow() {
-    return (this.response?.numsByType ?? []).length !== 0;
+  get cusEmpty() {
+    return iwant.array(this.response?.numsByType).length === 0;
   }
 
   /**
