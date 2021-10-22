@@ -56,6 +56,7 @@ export default class A5 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
       this.pieData = [
         // 饼图对象数组
         {
