@@ -186,8 +186,6 @@ export default class TheProjectList extends Base {
       const active = this.projectScroll.querySelector<HTMLElement>(
         ".right.active"
       );
-      console.log(2222);
-
       this.projectScroll.scrollTo(
         0,
         active?.offsetTop ? active?.offsetTop - 10 : 0
