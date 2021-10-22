@@ -141,7 +141,6 @@ export default class B1B extends Base {
         borderWidth: 2,
         padding: [8, 30],
         formatter: (params: AnyObject[]) => {
-          console.log("=============", params);
           let str = `<div class='tooltip'><div class="tool-title">第`;
           let unit = "";
 
@@ -159,12 +158,12 @@ export default class B1B extends Base {
             unit = "元";
           }
 
-          params.forEach((el, index) => {
+          params.forEach((el) => {
             if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
                 str += `<div class="tool-item tool-item-${
                   el.seriesIndex
-                }-${index}"><span class="icon"></span><span>${
+                }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
                   el.value
@@ -174,7 +173,7 @@ export default class B1B extends Base {
               if (el.seriesName !== "实际") {
                 str += `<div class="tool-item tool-item-${
                   el.seriesIndex
-                }-${index}"><span class="icon"></span><span>${
+                }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
                   el.value
@@ -621,26 +620,22 @@ export default class B1B extends Base {
     .tool-item {
       border-radius: 5px;
 
-      &-0-0,
-      &-0-1 {
+      &-0 {
         .icon {
           background: #57a6fb;
         }
       }
-      &-1-0,
-      &-1-1 {
+      &-1 {
         .icon {
           background: #a957fb;
         }
       }
-      &-2-0,
-      &-2-1 {
+      &-2 {
         .icon {
           background: #f7d14a;
         }
       }
-      &-3-0,
-      &-3-1 {
+      &-3 {
         .icon {
           background: #57fbb6;
         }
