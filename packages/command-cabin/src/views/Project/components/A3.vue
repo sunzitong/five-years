@@ -38,6 +38,7 @@ export default class A3 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = response.data?.locationUrl;
     }
+    this.empty = !this.response;
     return response;
   }
 }
