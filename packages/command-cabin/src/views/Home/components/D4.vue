@@ -108,7 +108,8 @@ export default class D4 extends Base implements IFetch {
 .chart {
   display: flex;
   justify-content: space-between;
-  padding: 10px 304px 0 456px;
+  /* padding: 10px 304px 0 456px; */
+  padding: 10px 400px 0;
   margin: 59px auto 130px auto;
   .chart-item {
     position: relative;
