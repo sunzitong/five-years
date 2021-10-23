@@ -285,19 +285,9 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
-   * 全局切换时
+   * 切换总盘面时
+   * 隐藏数据 视觉优化
    */
-  @Watch("store.global.dataLevel")
-  dataLevelChanged(val: DataLevels) {
-    if (val === DataLevels.GROUP) {
-      this.tableData = {};
-      this.showTable = false;
-    } else {
-      this.fetchDetails();
-      this.showTable = true;
-    }
-  }
-
   @Watch("levelValue")
   levelValueChanged() {
     this.showCircle = false;
@@ -328,8 +318,19 @@ export default class C4 extends Base implements IFetch {
     } else {
       this.mapData = [];
     }
+    // 处理切换条
     this.setOptionBar();
     this.showCircle = true;
+    // 处理表格
+    if (this.store.global.dataLevel === DataLevels.GROUP) {
+      // 切换全国隐藏table
+      this.showTable = false;
+      this.tableData = {};
+    } else {
+      // 非全国刷新表格
+      this.showTable = true;
+      this.fetchDetails();
+    }
     return response;
   }
 
@@ -396,9 +397,6 @@ export default class C4 extends Base implements IFetch {
     if (!orgTree) return;
     this.store.global.dataLevel = this.levelValue;
     this.store.global.orgTree = orgTree;
-    this.showTable = true;
-    this.setOptionBar();
-    this.fetchDetails();
   }
 
   /**
