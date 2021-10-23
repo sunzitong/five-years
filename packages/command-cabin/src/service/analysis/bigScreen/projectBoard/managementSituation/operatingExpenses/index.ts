@@ -19,6 +19,11 @@ export interface OperatingExpensesParams {
    * 分期id
    */
   phId: unknown;
+
+  /**
+   * 年累传2021，月累传2021-11格式
+   */
+  date: unknown;
 }
 
 /**
@@ -41,7 +46,7 @@ export interface OperatingExpensesReturn {
 /**
  * 门店屏-经营性支出
  * @createBy zhangyao03
- * @updateAt 2021/10/12 10:53:52
+ * @updateAt 2021/10/21 15:35:20
  * @method GET
  */
 export const fetchOperatingExpenses = (

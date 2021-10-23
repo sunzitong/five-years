@@ -52,10 +52,12 @@ export default class A3 extends Base implements IFetch {
       params: {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
+        year: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
       if (this.resData) {
         this.dataSet = [
           { name: "年累立项", value: this.resData.yearsEstabProjectNum },
@@ -136,6 +138,10 @@ export default class A3 extends Base implements IFetch {
           color: "#57A6FB",
           barWidth: 24,
           barCateGoryGap: 204,
+          showBackground: true,
+          backgroundStyle: {
+            color: "rgba(23, 44, 71, 1)",
+          },
           itemStyle: {
             color: new echarts.graphic.LinearGradient(
               0,

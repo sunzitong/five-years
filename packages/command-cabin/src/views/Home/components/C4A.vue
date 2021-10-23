@@ -76,9 +76,10 @@ export default class C4A extends Base implements IFetch {
       key: StoreKey.HomeSupplyAndMarketingSave,
       params: {
         dateScope: this.store.global.dataLevel,
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
-        regionName: this.store.global.orgTree.orgName,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        orgName: this.store.global.orgTree.orgName,
+        date: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

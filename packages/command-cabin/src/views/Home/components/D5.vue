@@ -78,13 +78,14 @@ export default class D5 extends Base implements IFetch {
     const response = await useStore(fetchOverdue, {
       key: StoreKey.HomeOverdue,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
-        // phId: this.store.global.project.phId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        phId: this.store.global.project.phId,
       },
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
     } else {
       this.empty = true;
     }

@@ -62,7 +62,7 @@
           </div>
         </van-col>
       </van-row>
-      <div class="bottom_text_group">
+      <div class="bottom_text_group" style="margin-bottom: 40px">
         <span class="bottom_text">租金成本</span>
         <span class="bottom_value">
           {{ sepNumber(resData.rentCost) }}
@@ -72,6 +72,14 @@
           {{ formatValue(resData.rentCostRatio) }}%
         </span>
       </div>
+      <!-- TODO -->
+      <div class="bottom_text_group">
+        <span class="bottom_text">元均收入</span>
+        <span class="bottom_value">
+          {{ sepNumber(resData.yuanAverageCost) }}
+        </span>
+        <span class="bottom_text">元</span>
+      </div>
       <div class="flex_box_group">
         <!-- TODO 隐藏 -->
         <!-- <div class="flex_box">
@@ -80,7 +88,7 @@
             {{ formatValue(resData.peopleAndRoomRatio) }}
           </div>
         </div> -->
-        <div class="flex_box">
+        <!-- <div class="flex_box">
           <div>元均收入</div>
           <div>
             <span class="flex_value">
@@ -88,8 +96,8 @@
             </span>
             <span>元</span>
           </div>
-        </div>
-        <div class="flex_box">
+        </div> -->
+        <!-- <div class="flex_box">
           <div>能源费用（收支差）</div>
           <div>
             <span class="flex_value">
@@ -97,7 +105,7 @@
             </span>
             <span>万</span>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </Spin>
@@ -122,9 +130,10 @@ export default class D2 extends Base implements IFetch {
     const response = await useStore(fetchOperatingExpenses, {
       key: StoreKey.HomeOperatingExpenses,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {

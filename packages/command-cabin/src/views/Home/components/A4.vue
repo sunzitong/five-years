@@ -79,6 +79,7 @@ export default class A4 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
       this.ing = [
         iwant.number(this.resData.stateEnterpriseNegoNum),
         iwant.number(this.resData.fundSideNegoNum),
@@ -94,6 +95,28 @@ export default class A4 extends Base implements IFetch {
       this.empty = true;
     }
     return response;
+  }
+
+  getBGColorNum() {
+    let max = Math.max(...this.has, ...this.ing);
+    max = max === 0 ? 1 : max;
+
+    let bgColorNum = [
+      {
+        ing: [max - this.ing[0], 0, 0],
+        has: [max - this.has[0], 0, 0],
+      },
+      {
+        ing: [0, max - this.ing[1], 0],
+        has: [0, max - this.has[1], 0],
+      },
+      {
+        ing: [0, 0, max - this.ing[2]],
+        has: [0, 0, max - this.has[2]],
+      },
+    ];
+
+    return bgColorNum;
   }
 
   getSetting() {
@@ -131,6 +154,7 @@ export default class A4 extends Base implements IFetch {
           {
             name: "ing",
             type: "bar",
+            stack: "yellow",
             yAxisIndex: i,
             data: data[i].ing,
             barWidth: 18,
@@ -143,14 +167,26 @@ export default class A4 extends Base implements IFetch {
                 1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
                 [
                   { offset: 0, color: "#5180E4" },
-                  { offset: 1, color: "rgba(81, 128, 228, 0)" },
+                  { offset: 1, color: "rgba(81, 128, 228, 0.15)" },
                 ]
               ),
             },
           },
           {
+            type: "bar",
+            stack: "yellow",
+            z: -2,
+            yAxisIndex: i,
+            data: this.getBGColorNum()[i].ing,
+            barWidth: 18,
+            itemStyle: {
+              color: "#172C47",
+            },
+          },
+          {
             name: "has",
             type: "bar",
+            stack: "blue",
             yAxisIndex: i,
             data: data[i].has,
             barWidth: 18,
@@ -163,16 +199,25 @@ export default class A4 extends Base implements IFetch {
                 1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
                 [
                   { offset: 0, color: "#F7D14A" },
-                  { offset: 1, color: "rgba(81, 128, 228, 0)" },
+                  { offset: 1, color: "rgba(247, 210, 74, 0.15)" },
                 ]
               ),
+            },
+          },
+          {
+            type: "bar",
+            stack: "blue",
+            z: -2,
+            yAxisIndex: i,
+            data: this.getBGColorNum()[i].has,
+            barWidth: 18,
+            itemStyle: {
+              color: "#4C452D",
             },
           }
         );
       }
     }
-    // console.log(res);
-
     return res;
   }
 
@@ -188,8 +233,8 @@ export default class A4 extends Base implements IFetch {
     let option = {
       grid: {
         top: "0%",
-        left: "3%",
-        right: "-5%",
+        left: "-1%",
+        right: "-10%",
         bottom: "-8%",
         containLabel: true,
       },
@@ -262,7 +307,7 @@ export default class A4 extends Base implements IFetch {
 }
 
 .bottom_legend {
-  margin: 10px 120px 12px 180px;
+  margin: 10px 190px 12px 200px;
   color: #dbf0ff;
   @extend %value-font;
 
@@ -274,7 +319,7 @@ export default class A4 extends Base implements IFetch {
   }
 
   .van-row {
-    width: 724px;
+    width: 680px;
   }
 
   .van-row:nth-child(1) .icon {

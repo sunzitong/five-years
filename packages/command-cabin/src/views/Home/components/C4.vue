@@ -285,19 +285,9 @@ export default class C4 extends Base implements IFetch {
   }
 
   /**
-   * 全局切换时
+   * 切换总盘面时
+   * 隐藏数据 视觉优化
    */
-  @Watch("store.global.dataLevel")
-  dataLevelChanged(val: DataLevels) {
-    if (val === DataLevels.GROUP) {
-      this.tableData = {};
-      this.showTable = false;
-    } else {
-      this.fetchDetails();
-      this.showTable = true;
-    }
-  }
-
   @Watch("levelValue")
   levelValueChanged() {
     this.showCircle = false;
@@ -312,8 +302,9 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchMapCircle, {
       key: StoreKey.HomeMapCircle,
       params: {
-        dataLevel: this.levelValue,
+        orgType: this.levelValue,
         dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -327,8 +318,19 @@ export default class C4 extends Base implements IFetch {
     } else {
       this.mapData = [];
     }
+    // 处理切换条
     this.setOptionBar();
     this.showCircle = true;
+    // 处理表格
+    if (this.store.global.dataLevel === DataLevels.GROUP) {
+      // 切换全国隐藏table
+      this.showTable = false;
+      this.tableData = {};
+    } else {
+      // 非全国刷新表格
+      this.showTable = true;
+      this.fetchDetails();
+    }
     return response;
   }
 
@@ -353,9 +355,10 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchMapChangeBar, {
       key: StoreKey.HomeMapChangeBar,
       params: {
-        dataLevel: this.store.global.dataLevel,
+        orgType: this.store.global.dataLevel,
         dateScope: this.store.global.dateScope,
-        levelId: this.store.global.orgTree.orgId,
+        orgId: this.store.global.orgTree.orgId,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -373,9 +376,10 @@ export default class C4 extends Base implements IFetch {
     const response = await useStore(fetchRegionDetailsInfo, {
       key: StoreKey.HomeRegionDetailsInfo,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
@@ -393,9 +397,6 @@ export default class C4 extends Base implements IFetch {
     if (!orgTree) return;
     this.store.global.dataLevel = this.levelValue;
     this.store.global.orgTree = orgTree;
-    this.showTable = true;
-    this.setOptionBar();
-    this.fetchDetails();
   }
 
   /**
@@ -428,7 +429,8 @@ export default class C4 extends Base implements IFetch {
     }
     // 净利润率
     if (this.optionIndex === 2) {
-      return item.netProfitsFinishLimit < 100;
+      // return item.netProfitsFinishLimit < 100;
+      return item.netProfitsDiff < 0;
     }
     // 全业态收入(万元)
     if (this.optionIndex === 3) {

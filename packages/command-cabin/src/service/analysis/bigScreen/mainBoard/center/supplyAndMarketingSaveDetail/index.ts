@@ -13,22 +13,22 @@ export interface SupplyAndMarketingSaveDetailParams {
   /**
    * 地区类型
    */
-  regionType: unknown;
+  orgType: unknown;
 
   /**
    * 地区id
    */
-  regionId: number;
+  orgId: number;
 
   /**
    * 地区名字
    */
-  regionName: unknown;
+  orgName: unknown;
 
   /**
    * 年份加月份
    */
-  dateShort: number;
+  date: unknown;
 
   /**
    * 数据范围（年累，月累）【但是目前需求数据只有年累级别】
@@ -55,7 +55,7 @@ export interface SupplyAndMarketingSaveDetailReturn {
 /**
  * 主屏-供销存详情页
  * @createBy zhangyao03
- * @updateAt 2021/10/12 17:59:50
+ * @updateAt 2021/10/21 10:47:58
  * @method GET
  */
 export const fetchSupplyAndMarketingSaveDetail = (

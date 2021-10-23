@@ -13,23 +13,15 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">{{ formatValue(resData.complaintRatio) }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text special_position">投诉率</div>
       </div>
       <div class="right_text">
-        <div>
-          <span>TOP1：</span>
-          <span>{{ "--" }}</span>
-        </div>
-        <div>
-          <span>TOP2：</span>
-          <span>{{ "--" }}</span>
-        </div>
-        <div>
-          <span>TOP3：</span>
-          <span>{{ "--" }}</span>
+        <div v-for="n in 3" :key="n">
+          <span>TOP{{ n }}：</span>
+          <span>{{ formatValue(getComplaintDetails(n - 1).itemName) }}</span>
         </div>
       </div>
     </div>
@@ -46,7 +38,9 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">
+              {{ formatValue(resData.receiveOrderTimelinessRatio) }}%
+            </div>
           </div>
         </van-circle>
         <div class="bottom_text">及时接单率</div>
@@ -93,6 +87,12 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
+import {
+  CustomerInsightReturn,
+  fetchCustomerInsight,
+} from "@/service/analysis/bigScreen/projectBoard/managementSituation/customerInsight";
+import { iwant } from "@guanyu/shared";
+import { StoreKey, useStore } from "@/store";
 
 @Component({
   components: {},
@@ -102,6 +102,28 @@ export default class D2 extends Base {
   currentRate2 = 0;
   currentRate3 = 0;
   currentRate4 = 0;
+
+  getComplaintDetails(index: number) {
+    return this.resData?.complaintDetails?.[index] ?? {};
+  }
+
+  resData: Partial<CustomerInsightReturn> = {};
+  async fetch() {
+    const response = await useStore(fetchCustomerInsight, {
+      key: StoreKey.ProjectCustomerInsight,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.project.orgId,
+        dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
+        phId: this.store.global.project.phId,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = iwant.object(response.data);
+    }
+    return response;
+  }
 }
 </script>
 
@@ -109,12 +131,12 @@ export default class D2 extends Base {
 .page__d3__map {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 36px 50px 66px 50px;
 
   .left_circle {
-    width: 588px;
-    margin-right: 100px;
+    width: 638px;
+    margin-right: 80px;
 
     display: flex;
     flex-flow: row nowrap;
@@ -160,6 +182,7 @@ export default class D2 extends Base {
     flex-flow: column nowrap;
     justify-content: space-around;
     margin: 40px 0 20px 0;
+    white-space: nowrap;
     span {
       font-size: 40px;
       line-height: 44px;
@@ -174,7 +197,7 @@ export default class D2 extends Base {
   }
 
   .right_flex_box {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;

@@ -75,9 +75,10 @@ export default class F1 extends Base implements IFetch {
     const response = await useStore(fetchSentiment, {
       key: StoreKey.HomeSentiment,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
         dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {

@@ -202,6 +202,14 @@ export enum StoreKey {
    * 供销存详情页
    */
   HomeSupplyAndMarketingSaveDetail = "HomeSupplyAndMarketingSaveDetail",
+  /**
+   * 首页-客户洞察
+   */
+  HomeCustomerInsight = "HomeCustomerInsight",
+  /**
+   * 门店-客户洞察
+   */
+  ProjectCustomerInsight = "ProjectCustomerInsight",
 }
 /**
  * 方法重载

@@ -65,6 +65,7 @@ import { AnyObject, iwant } from "@guanyu/shared";
 import { Base, IFetch } from "@/views/Base";
 import { StoreKey, useStore } from "@/store";
 import { formatValue } from "@/utils/tools";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {
@@ -95,8 +96,10 @@ export default class B2 extends Base implements IFetch {
     const response = await useStore(fetchProjectDelayInfo, {
       key: StoreKey.HomeProjectDelayInfo,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        dateScope: DateScopes.YEARLY,
+        date: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

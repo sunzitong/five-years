@@ -131,8 +131,9 @@ export default class B1 extends Base implements IFetch {
           monthXLabel = list(monthNum);
         }
 
-        this.xLabel.push(this.monthXLabel);
+        this.xLabel.push(monthXLabel);
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
+        this.specialTabIndex = -2; // -2是轻资产，第一个图无特殊情况
 
         // 构建三条折线数据结构（二维数组）
         let propMap = [
@@ -365,7 +366,7 @@ export default class B1 extends Base implements IFetch {
                   if (el.dataNum < (year as number)) {
                     data2.push("-");
                     data3.push(el[prop]);
-                  } else if (el.dataNum === (month as number)) {
+                  } else if (el.dataNum === (year as number)) {
                     data2.push(el[prop]);
                     data3.push(el[prop]);
                   } else {
@@ -431,6 +432,7 @@ export default class B1 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
       if (this.resData.transactionModel) {
         this.tabList = this.tabLabels[
           iwant.string(this.resData.transactionModel)

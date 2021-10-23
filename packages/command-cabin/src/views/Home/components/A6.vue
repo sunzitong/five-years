@@ -7,7 +7,7 @@
         <div class="content_box">
           <div class="top_text">净利润贡献值</div>
           <!-- <div class="top_text">{{ yearFlag ? "(全年)" : "(全周期)" }}</div> -->
-          <div class="top_text">(全周期)</div>
+          <div class="top_text">(全年)</div>
         </div>
         <div class="container">
           <div class="text_row">
@@ -89,12 +89,15 @@ export default class A6 extends Base implements IFetch {
     const response = await useStore(fetchExpansionAwardInfo, {
       key: StoreKey.HomeExpansionAwardInfo,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        date: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
+
       this.currentYear = formatValue(this.resData.yearNetIncomeCollected);
       this.wholeCycle = formatValue(this.resData.allNetIncomeCollected);
       this.cycleRate = formatValue(this.resData.allNetIncomeCompletionRate);
@@ -104,11 +107,11 @@ export default class A6 extends Base implements IFetch {
         // 饼图对象数组
         {
           name: "all",
-          value: 100 - iwant.number(this.resData.allNetIncomeCompletionRate),
+          value: 100 - iwant.number(this.resData.yearNetIncomeCompletionRate),
         },
         {
           name: "reach",
-          value: iwant.number(this.resData.allNetIncomeCompletionRate),
+          value: iwant.number(this.resData.yearNetIncomeCompletionRate),
         },
       ];
       this.paintChart();

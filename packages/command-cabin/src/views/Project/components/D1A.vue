@@ -233,10 +233,12 @@ export default class D1A extends Base implements IFetch {
       params: {
         projectId: this.store.global.project.projectId,
         dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
     } else {
       this.empty = true;
     }

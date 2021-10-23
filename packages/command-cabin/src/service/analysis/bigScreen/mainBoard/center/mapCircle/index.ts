@@ -13,12 +13,17 @@ export interface MapCircleParams {
   /**
    * 组织级别：见公用枚举
    */
-  dataLevel: unknown;
+  orgType: unknown;
 
   /**
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
+
+  /**
+   * 时间
+   */
+  date: unknown;
 }
 
 /**
@@ -34,6 +39,7 @@ export interface MapCircleItemReturn {
   openNum: number;
   openFinishLimit: number;
   netProfitsRatio: number;
+  netProfitsDiff: number;
   netProfitsFinishLimit: number;
   allFormatIncome: number;
   allFormatIncomeFinishLimit: number;
@@ -42,7 +48,7 @@ export interface MapCircleItemReturn {
 /**
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/9/30 17:3:50
+ * @updateAt 2021/10/21 16:49:48
  * @method GET
  */
 export const fetchMapCircle = (

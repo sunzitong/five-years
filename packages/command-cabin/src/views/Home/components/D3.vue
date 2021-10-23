@@ -13,23 +13,21 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">{{ formatValue(resData.complaintRatio) }}%</div>
           </div>
         </van-circle>
         <div class="bottom_text special_position">投诉率</div>
       </div>
       <div class="right_text">
-        <div>
-          <span>TOP1：</span>
-          <span>{{ "--" }}</span>
-        </div>
-        <div>
-          <span>TOP2：</span>
-          <span>{{ "--" }}</span>
-        </div>
-        <div>
-          <span>TOP3：</span>
-          <span>{{ "--" }}</span>
+        <div v-for="n in 3" :key="n">
+          <span>TOP{{ n }}：</span>
+          <span>
+            {{
+              formatValue(
+                $data._.get(resData, `complaintDetails[${n - 1}].itemName`)
+              )
+            }}
+          </span>
         </div>
       </div>
     </div>
@@ -46,7 +44,9 @@
           :speed="100"
         >
           <div class="rate-text">
-            <div class="value">{{ "--" }}%</div>
+            <div class="value">
+              {{ formatValue(resData.receiveOrderTimelinessRatio) }}%
+            </div>
           </div>
         </van-circle>
         <div class="bottom_text">及时接单率</div>
@@ -93,15 +93,40 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { Base } from "@/views/Base";
+import { StoreKey, useStore } from "@/store";
+import {
+  CustomerInsightReturn,
+  fetchCustomerInsight,
+} from "@/service/analysis/bigScreen/mainBoard/managementSituation/customerInsight";
+import { iwant } from "@guanyu/shared";
+import _ from "lodash";
 
 @Component({
   components: {},
 })
 export default class D3 extends Base {
+  _ = _;
   currentRate1 = 0;
   currentRate2 = 0;
   currentRate3 = 0;
   currentRate4 = 0;
+
+  resData: Partial<CustomerInsightReturn> = {};
+  async fetch() {
+    const response = await useStore(fetchCustomerInsight, {
+      key: StoreKey.HomeCustomerInsight,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        dateScope: this.store.global.dateScope,
+        date: this.store.global.dateValue,
+      },
+    });
+    if (response?.status === "ok") {
+      this.resData = iwant.object(response.data);
+    }
+    return response;
+  }
 }
 </script>
 
@@ -109,12 +134,12 @@ export default class D3 extends Base {
 .page__d3__map {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 36px 50px 66px 50px;
 
   .left_circle {
-    width: 588px;
-    margin-right: 100px;
+    width: 638px;
+    margin-right: 80px;
 
     display: flex;
     flex-flow: row nowrap;
@@ -156,10 +181,12 @@ export default class D3 extends Base {
   }
 
   .right_text {
+    flex: 1;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
     margin: 40px 0 20px 0;
+    white-space: nowrap;
     span {
       font-size: 40px;
       line-height: 44px;
@@ -174,7 +201,7 @@ export default class D3 extends Base {
   }
 
   .right_flex_box {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;

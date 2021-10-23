@@ -19,6 +19,11 @@ export interface SentimentParams {
    * 时间范围：见公用枚举
    */
   dateScope: unknown;
+
+  /**
+   * 时间
+   */
+  date: unknown;
 }
 
 /**
@@ -39,7 +44,7 @@ export interface NumsByType {
 /**
  * 门店屏幕-经营现状-舆情风险
  * @createBy wuyao
- * @updateAt 2021/9/10 14:39:47
+ * @updateAt 2021/10/21 16:49:31
  * @method GET
  */
 export const fetchSentiment = (

@@ -161,7 +161,9 @@ export default class B1B extends Base {
           params.forEach((el) => {
             if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
-                str += `<div class="tool-item1"><span></span><span>${
+                str += `<div class="tool-item tool-item-${
+                  el.seriesIndex
+                }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
                   el.value
@@ -169,7 +171,9 @@ export default class B1B extends Base {
               }
             } else {
               if (el.seriesName !== "实际") {
-                str += `<div class="tool-item2"><span></span><span>${
+                str += `<div class="tool-item tool-item-${
+                  el.seriesIndex
+                }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
                   el.value
@@ -188,6 +192,7 @@ export default class B1B extends Base {
         itemHeight: 4,
         itemWidth: 30,
         icon: "roundRect",
+        inactiveColor: "#586983",
         data: [
           {
             name: "投资任务书版",
@@ -230,7 +235,8 @@ export default class B1B extends Base {
             color: "#8090AA",
             fontSize: 20,
             lineHeight: 24,
-            padding: [19, 0, 0, 1350],
+            padding:
+              this.xTag === this.monthTag ? [19, 0, 0, 1350] : [19, 0, 0, 1440],
           }, // 设置坐标轴名称
           type: "category",
           position: "bottom",
@@ -611,50 +617,59 @@ export default class B1B extends Base {
       margin-bottom: 8px;
     }
 
-    .tool-item1:nth-child(2) span:nth-child(1),
-    .tool-item2:nth-child(2) span:nth-child(1) {
+    .tool-item {
       border-radius: 5px;
-      background: #57a6fb;
-    }
-    .tool-item1:nth-child(3) span:nth-child(1),
-    .tool-item2:nth-child(3) span:nth-child(1) {
-      border-radius: 5px;
-      background: #f7d14a;
-    }
-    .tool-item1:nth-child(4) span:nth-child(1) {
-      border-radius: 5px;
-      background: #57fbb6;
-    }
-    .tool-item2:nth-child(4) span:nth-child(1) {
-      border-radius: 5px;
-      background: #a957fb;
-    }
 
-    span:nth-child(1) {
-      display: inline-block;
-      width: 35px;
-      height: 4px;
-      margin-right: 15px;
-    }
+      &-0 {
+        .icon {
+          background: #57a6fb;
+        }
+      }
+      &-1 {
+        .icon {
+          background: #a957fb;
+        }
+      }
+      &-2 {
+        .icon {
+          background: #f7d14a;
+        }
+      }
+      &-3 {
+        .icon {
+          background: #57fbb6;
+        }
+      }
+      span {
+        vertical-align: middle;
+      }
 
-    span:nth-child(2) {
-      display: inline-block;
-      width: 400px;
-    }
+      span:nth-child(1) {
+        display: inline-block;
+        width: 35px;
+        height: 4px;
+        margin-right: 15px;
+      }
 
-    span:nth-child(2),
-    span:nth-child(4) {
-      font-size: 30px;
-      line-height: 30px;
-      color: #90a4c3;
-      margin-right: 10px;
-    }
-    span:nth-child(3) {
-      @extend %value-font;
-      font-size: 40px;
-      line-height: 40px;
-      color: #ffffff;
-      font-weight: bold;
+      span:nth-child(2) {
+        display: inline-block;
+        width: 400px;
+      }
+      span:nth-child(2),
+      span:nth-child(4) {
+        font-size: 30px;
+        line-height: 30px;
+        color: #90a4c3;
+        margin-right: 10px;
+      }
+
+      span:nth-child(3) {
+        @extend %value-font;
+        font-size: 40px;
+        line-height: 40px;
+        color: #ffffff;
+        font-weight: bold;
+      }
     }
   }
 }

@@ -71,6 +71,7 @@ export default class B5 extends Base implements IFetch {
       params: {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
+        date: +this.store.global.yearValue,
       },
     });
     this.reset();

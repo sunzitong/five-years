@@ -41,6 +41,7 @@ import { Base, IFetch } from "@/views/Base";
 import { iwant, NumberLike } from "@guanyu/shared";
 import { StoreKey, useStore } from "@/store";
 import mitter, { EventName } from "@/utils/mitter";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: {},
@@ -74,8 +75,11 @@ export default class B4 extends Base implements IFetch {
     const response = await useStore(fetchProductQuality, {
       key: StoreKey.HomeProductQuality,
       params: {
-        regionType: this.store.global.dataLevel,
-        regionId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+        // 仅年累
+        dateScope: DateScopes.YEARLY,
+        date: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {

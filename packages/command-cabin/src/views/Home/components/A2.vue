@@ -55,10 +55,12 @@ export default class A2 extends Base implements IFetch {
       params: {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
+        year: +this.store.global.yearValue,
       },
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
     } else {
       this.empty = true;
     }

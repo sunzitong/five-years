@@ -62,7 +62,7 @@
           </div>
         </van-col>
       </van-row>
-      <div class="bottom_text_group">
+      <div class="bottom_text_group" style="margin-top: 30px">
         <span class="bottom_text">租金成本</span>
         <span class="bottom_value">
           {{ sepNumber(resData.rentCost) }}
@@ -72,7 +72,8 @@
           {{ formatValue(resData.rentCostRatio) }}%
         </span>
       </div>
-      <div class="flex_box">
+      <!-- TODO -->
+      <!-- <div class="flex_box">
         <Icon type="energy" :size="200" />
         <div class="felx_details">
           <div class="flex_text">能源费用（收支差）</div>
@@ -83,7 +84,7 @@
             <span class="flex_unit">万</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </Spin>
 </template>
@@ -110,10 +111,12 @@ export default class D5 extends Base implements IFetch {
       params: {
         dateScope: this.store.global.dateScope,
         phId: this.store.global.project.phId,
+        date: this.store.global.dateValue,
       },
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+      this.empty = false;
     } else {
       this.empty = true;
     }

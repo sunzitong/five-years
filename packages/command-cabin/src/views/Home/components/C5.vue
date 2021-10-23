@@ -20,7 +20,7 @@
                 <li>NPI利润率：{{ formatValue(item.npiProfit) }}%</li>
               </ul>
               <ul class="part">
-                <li>收入总额：{{ formatValue(item.income) }}万元</li>
+                <li>收入：{{ formatValue(item.income) }}万元</li>
                 <li>收入达成率：{{ formatValue(item.incomeRate) }}%</li>
                 <li>平均出租率：{{ formatValue(item.rentRate) }}%</li>
               </ul>
@@ -92,8 +92,8 @@ export default class C5 extends Base implements IFetch {
     const response = await useStore(fetchEvents, {
       key: StoreKey.HomeEvents,
       params: {
-        dataLevel: this.store.global.dataLevel,
-        levelId: this.store.global.orgTree.orgId,
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
       },
     });
     if (response?.status === "ok") {

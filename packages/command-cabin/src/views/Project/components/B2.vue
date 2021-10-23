@@ -89,7 +89,6 @@ export default class B2 extends Base implements IFetch {
     let newStr = str;
     if (str.length > 16) {
       newStr = str.split("/").join("/\n");
-      // console.log(11111111, arr);
     }
     return newStr;
   }
