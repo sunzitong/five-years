@@ -123,7 +123,7 @@ export default class C5 extends Base implements IFetch {
     background-image: url($track-1), url($track-2);
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position-y: bottom, 96%;
+    background-position-y: bottom, 90%;
   }
   &::after {
     content: "";
@@ -191,19 +191,19 @@ export default class C5 extends Base implements IFetch {
     }
 
     &:nth-child(1) .details {
-      margin-top: 978px;
+      margin-top: 962px;
     }
     &:nth-child(2) .details {
-      margin-top: 811px;
+      margin-top: 798px;
     }
     &:nth-child(3) .details {
-      margin-top: 602px;
+      margin-top: 595px;
     }
     &:nth-child(4) .details {
-      margin-top: 342px;
+      margin-top: 340px;
     }
     &:nth-child(5) .details {
-      margin-top: 0;
+      margin-top: 8px;
     }
   }
   .tools {
