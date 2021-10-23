@@ -80,7 +80,7 @@ export default class D5 extends Base implements IFetch {
       params: {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
-        phId: this.store.global.project.phId,
+        // phId: this.store.global.project.phId,
       },
     });
     if (response?.status === "ok") {
