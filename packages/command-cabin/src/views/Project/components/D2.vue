@@ -19,17 +19,9 @@
         <div class="bottom_text special_position">投诉率</div>
       </div>
       <div class="right_text">
-        <div>
-          <span>TOP1：</span>
-          <span>{{ formatValue(getComplaintDetails(0).itemName) }}</span>
-        </div>
-        <div>
-          <span>TOP2：</span>
-          <span>{{ formatValue(getComplaintDetails(1).itemName) }}</span>
-        </div>
-        <div>
-          <span>TOP3：</span>
-          <span>{{ formatValue(getComplaintDetails(2).itemName) }}</span>
+        <div v-for="n in 3" :key="n">
+          <span>TOP{{ n }}：</span>
+          <span>{{ formatValue(getComplaintDetails(n - 1).itemName) }}</span>
         </div>
       </div>
     </div>
@@ -139,7 +131,7 @@ export default class D2 extends Base {
 .page__d3__map {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 36px 50px 66px 50px;
 
   .left_circle {
@@ -205,7 +197,7 @@ export default class D2 extends Base {
   }
 
   .right_flex_box {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
