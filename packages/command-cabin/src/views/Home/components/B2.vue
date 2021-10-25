@@ -119,6 +119,8 @@ export default class B2 extends Base implements IFetch {
           chokePoint: formatValue(el?.chokePoint),
         };
       });
+    } else {
+      this.resData = {};
     }
     /**
      * 处理无数据

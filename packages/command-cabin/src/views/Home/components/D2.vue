@@ -138,6 +138,8 @@ export default class D2 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+    } else {
+      this.resData = {};
     }
     return response;
   }

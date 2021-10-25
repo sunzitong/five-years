@@ -113,6 +113,8 @@ export default class C3 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
+    } else {
+      this.response = [];
     }
 
     this.empty = !this.response.length;

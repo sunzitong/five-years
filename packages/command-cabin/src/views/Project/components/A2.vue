@@ -167,6 +167,10 @@ export default class A2 extends Base implements IFetch {
           .map((item) => ({ ...item, id: uuid() }));
         this.response[key].list = list;
       }
+    } else {
+      for (const key in this.response) {
+        this.response[key].list = [];
+      }
     }
     return response;
   }
