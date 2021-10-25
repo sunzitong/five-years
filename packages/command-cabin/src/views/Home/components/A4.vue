@@ -154,7 +154,7 @@ export default class A4 extends Base implements IFetch {
           {
             name: "ing",
             type: "bar",
-            stack: "yellow",
+            stack: "blue",
             yAxisIndex: i,
             data: data[i].ing,
             barWidth: 18,
@@ -166,7 +166,7 @@ export default class A4 extends Base implements IFetch {
                 0,
                 1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
                 [
-                  { offset: 0, color: "#5180E4" },
+                  { offset: 0, color: "rgba(81, 128, 228, 1)" },
                   { offset: 1, color: "rgba(81, 128, 228, 0.15)" },
                 ]
               ),
@@ -174,19 +174,19 @@ export default class A4 extends Base implements IFetch {
           },
           {
             type: "bar",
-            stack: "yellow",
+            stack: "blue",
             z: -2,
             yAxisIndex: i,
             data: this.getBGColorNum()[i].ing,
             barWidth: 18,
             itemStyle: {
-              color: "#172C47",
+              color: "rgba(81, 128, 228, 0.15)",
             },
           },
           {
             name: "has",
             type: "bar",
-            stack: "blue",
+            stack: "yellow",
             yAxisIndex: i,
             data: data[i].has,
             barWidth: 18,
@@ -198,21 +198,21 @@ export default class A4 extends Base implements IFetch {
                 0,
                 1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
                 [
-                  { offset: 0, color: "#F7D14A" },
-                  { offset: 1, color: "rgba(247, 210, 74, 0.15)" },
+                  { offset: 0, color: "rgba(247, 209, 74, 1)" },
+                  { offset: 1, color: "rgba(247, 209, 74, 0.15)" },
                 ]
               ),
             },
           },
           {
             type: "bar",
-            stack: "blue",
+            stack: "yellow",
             z: -2,
             yAxisIndex: i,
             data: this.getBGColorNum()[i].has,
             barWidth: 18,
             itemStyle: {
-              color: "#4C452D",
+              color: "rgba(247, 209, 74, 0.15)",
             },
           }
         );
@@ -290,7 +290,7 @@ export default class A4 extends Base implements IFetch {
   background-color: #5180e4;
 }
 .van-col:nth-child(2) .legend {
-  background-color: #f7d14a;
+  background-color: rgb(247, 209, 74);
 }
 
 .names_box {
@@ -323,7 +323,7 @@ export default class A4 extends Base implements IFetch {
   }
 
   .van-row:nth-child(1) .icon {
-    background-color: #5180e4;
+    background-color: rgb(81, 128, 228);
   }
   .van-row:nth-child(2) .icon {
     background-color: #f7d14a;

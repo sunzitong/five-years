@@ -60,7 +60,7 @@
               </div>
               <div class="pictures-gallery">
                 <div class="title">
-                  <span>视觉选择</span>
+                  <span>视角选择</span>
                 </div>
                 <div class="body">
                   <div class="gallery">

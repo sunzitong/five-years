@@ -139,7 +139,7 @@ export default class C1 extends Base implements IFetch {
   position: relative;
   width: 940px;
   margin: 0 auto;
-  padding-top: 25px;
+  padding-top: 9px;
   .btns {
     display: flex;
     margin: 0 auto;

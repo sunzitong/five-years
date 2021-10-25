@@ -1,7 +1,7 @@
 <template>
   <Spin class="account" :loading="loading" :empty="empty">
     <div class="account__award">
-      <span>{{ awards }}</span>
+      <span class="value">{{ awards }}</span>
       万元
     </div>
   </Spin>
@@ -66,5 +66,9 @@ export default class B3 extends Base implements IFetch {
       font-size: 88px;
     }
   }
+}
+
+.value {
+  @extend %value-font;
 }
 </style>
