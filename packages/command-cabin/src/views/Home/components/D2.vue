@@ -154,7 +154,7 @@ export default class D2 extends Base implements IFetch {
 }
 
 .top_value_box {
-  margin: 0 0 53px 50px;
+  margin: 0 0 43px 50px;
 
   .top_value {
     @extend %value-font;

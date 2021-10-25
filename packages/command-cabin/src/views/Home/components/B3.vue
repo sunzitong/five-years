@@ -123,7 +123,7 @@ export default class B3 extends Base implements IFetch {
   font-size: 40px;
   line-height: 40px;
   color: #90a4c3;
-  padding: 18px 20px 0px 90px;
+  padding: 18px 20px 0px 110px;
 }
 .span_style1 {
   @extend %value-font;
@@ -157,7 +157,7 @@ export default class B3 extends Base implements IFetch {
   flex-flow: column nowrap;
   justify-content: space-between;
   height: 284px;
-  margin: 66px 80px;
+  margin: 66px 80px 66px 100px;
   overflow: hidden;
 }
 
@@ -176,7 +176,7 @@ export default class B3 extends Base implements IFetch {
     justify-content: space-around;
 
     .item_name_item {
-      font-size: 40px;
+      font-size: 36px;
       line-height: 40px;
       width: 230px;
     }

@@ -212,6 +212,7 @@ export default class A6 extends Base implements IFetch {
 
 <style lang="scss" scoped>
 .text_pannel {
+  padding-top: 20px;
   text-align: center;
 }
 .content_box {
