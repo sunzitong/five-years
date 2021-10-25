@@ -138,14 +138,14 @@ export default class D2 extends Base {
 
   .left_circle {
     width: 638px;
-    margin-right: 80px;
+    margin-right: 120px;
 
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
 
     .left_pic {
-      flex: 1;
+      flex: 0.6;
       width: 200px;
       height: 240px;
       @extend %bg-img-circle-1;

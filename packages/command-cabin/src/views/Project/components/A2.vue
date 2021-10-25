@@ -263,6 +263,7 @@ export default class A2 extends Base implements IFetch {
   width: 4em;
   display: flex;
   justify-content: flex-end;
+  white-space: nowrap;
 }
 .icon {
   display: flex;
