@@ -164,7 +164,7 @@ export default class B4 extends Base implements IFetch {
 
 <style lang="scss" scoped>
 .page__product_quality__map {
-  padding: 56px 50px 44px 50px;
+  padding: 56px 50px 44px 70px;
 }
 .whole_pannel {
   display: inline-block;

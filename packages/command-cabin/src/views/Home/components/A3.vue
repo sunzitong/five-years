@@ -192,13 +192,13 @@ export default class A3 extends Base implements IFetch {
 
 .groop1 {
   position: absolute;
-  top: 85px;
+  top: 100px;
   left: 239px;
 }
 
 .groop2 {
   position: absolute;
-  top: 85px;
+  top: 100px;
   left: 518px;
 }
 </style>
