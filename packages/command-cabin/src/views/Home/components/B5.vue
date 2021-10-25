@@ -141,7 +141,7 @@ export default class B5 extends Base implements IFetch {
           type: "pie",
           avoidLabelOverlap: false,
           radius: [81, 72],
-          center: ["20%", "50%"],
+          center: ["22%", "50%"],
           itemStyle: {
             borderRadius: 88,
           },
@@ -193,6 +193,6 @@ export default class B5 extends Base implements IFetch {
   height: 300px;
   @extend %bg-img-circle-1;
   background-size: 26%;
-  background-position: 63px 18px;
+  background-position: 82px 18px;
 }
 </style>
