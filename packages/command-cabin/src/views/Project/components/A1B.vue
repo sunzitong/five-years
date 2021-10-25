@@ -263,7 +263,7 @@ export default class A1B extends Base implements IFetch {
   .note {
     // width: 215px;
     height: 190px;
-    padding-top: 30px;
+    padding-top: 50px;
     overflow: hidden;
     font-size: 28px;
     color: #90a4c3;
