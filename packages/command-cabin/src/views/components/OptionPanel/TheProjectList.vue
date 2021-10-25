@@ -46,12 +46,12 @@
         </div>
       </div>
       <div class="project-list" ref="projectScroll" @scroll="onScroll">
-        <div class="row" v-for="project in projectList" :key="project.phId">
+        <div class="row" v-for="project in projectList" :key="project.orgId">
           <div class="col left"></div>
           <div
             class="col right"
             :class="{
-              active: project.projectId === store.global.project.projectId,
+              active: project.orgId === store.global.project.orgId,
             }"
           >
             <div class="inner active" @click="setProject(project)">
