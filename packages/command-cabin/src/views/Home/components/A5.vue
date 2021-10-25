@@ -149,6 +149,7 @@ export default class A5 extends Base implements IFetch {
 }
 
 .text_pannel {
+  padding-top: 20px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
