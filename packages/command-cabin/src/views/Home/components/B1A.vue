@@ -197,6 +197,7 @@ export default class B1A extends Base implements IFetch {
             show: true,
             position: "top",
             color: "#DBF0FF",
+            fontFamily: this.store.env.VALUE_FONT,
             fontSize: 36,
             lineHeight: 42,
             padding: [0, -30, 18, 0],
