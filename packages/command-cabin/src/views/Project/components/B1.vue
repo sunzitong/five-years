@@ -115,12 +115,13 @@ export default class B1 extends Base implements IFetch {
     this.yLabel2 = [];
     this.yLabel3 = [];
 
+    const list = (monthNum: number) =>
+      [...new Array(monthNum).keys()].map((el) => el + 1);
+
     if (infoMap && month) {
       if (transactionModel === "LightAsset") {
         // 构建月度横坐标
         let monthXLabel: number[] = [];
-        const list = (monthNum: number) =>
-          [...new Array(monthNum).keys()].map((el) => el + 1);
 
         let monthNum = Math.max(
           infoMap.month1 && infoMap.month1.length,
@@ -131,7 +132,14 @@ export default class B1 extends Base implements IFetch {
           monthXLabel = list(monthNum);
         }
 
-        this.xLabel.push(monthXLabel);
+        // 数据最多现实20运营年
+        if (monthXLabel.length < 240) {
+          this.xLabel.push(monthXLabel);
+        } else {
+          let formateMonth = monthXLabel.slice(0, 240);
+          this.xLabel.push(formateMonth);
+        }
+
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
         this.specialTabIndex = -2; // -2是轻资产，第一个图无特殊情况
 
@@ -199,8 +207,7 @@ export default class B1 extends Base implements IFetch {
           infoMap.month2 && infoMap.month2.length,
           infoMap.month3 && infoMap.month3.length
         );
-        const list = (monthNum: number) =>
-          [...new Array(monthNum).keys()].map((el) => el + 1);
+
         if (monthNum > 0) {
           monthXLabel = list(monthNum);
         }
@@ -213,8 +220,19 @@ export default class B1 extends Base implements IFetch {
           yearXLabel = list(yearNum);
         }
 
-        // this.xLabel = [];
-        this.xLabel.push(monthXLabel, yearXLabel);
+        // 数据最多现实20运营年
+        if (monthXLabel.length < 240) {
+          this.xLabel.push(monthXLabel);
+        } else {
+          let formateMonth = monthXLabel.slice(0, 240);
+          this.xLabel.push(formateMonth);
+        }
+        if (yearXLabel.length < 20) {
+          this.xLabel.push(yearXLabel);
+        } else {
+          let formateYear = yearXLabel.slice(0, 20);
+          this.xLabel.push(formateYear);
+        }
 
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
         this.yearTag = yearXLabel.indexOf(iwant.number(this.resData.year));
@@ -303,8 +321,6 @@ export default class B1 extends Base implements IFetch {
         // 构建横坐标
         let monthXLabel: number[] = [],
           yearXLabel: number[] = [];
-        const list = (monthNum: number) =>
-          [...new Array(monthNum).keys()].map((el) => el + 1);
 
         let monthNum = Math.max(
           infoMap.month1 && infoMap.month1.length,
@@ -324,7 +340,19 @@ export default class B1 extends Base implements IFetch {
           yearXLabel = list(yearNum);
         }
 
-        this.xLabel.push(monthXLabel, yearXLabel);
+        // 数据最多现实20运营年
+        if (monthXLabel.length < 240) {
+          this.xLabel.push(monthXLabel);
+        } else {
+          let formateMonth = monthXLabel.slice(0, 240);
+          this.xLabel.push(formateMonth);
+        }
+        if (yearXLabel.length < 20) {
+          this.xLabel.push(yearXLabel);
+        } else {
+          let formateYear = yearXLabel.slice(0, 20);
+          this.xLabel.push(formateYear);
+        }
 
         this.monthTag = monthXLabel.indexOf(iwant.number(this.resData.month));
         this.yearTag = yearXLabel.indexOf(iwant.number(this.resData.year));

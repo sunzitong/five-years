@@ -69,7 +69,7 @@ export default class B2 extends Base implements IFetch {
   columns = [
     { title: "指标", dataIndex: "quota" },
     { title: "投资刻度版", dataIndex: "graduation" },
-    { title: "实际", dataIndex: "reality" },
+    { title: "月度运维版", dataIndex: "reality" },
     { title: "差异", dataIndex: "diff" },
   ];
 
