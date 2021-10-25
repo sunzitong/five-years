@@ -60,7 +60,7 @@
               </div>
               <div class="pictures-gallery">
                 <div class="title">
-                  <span>视觉选择</span>
+                  <span>视角选择</span>
                 </div>
                 <div class="body">
                   <div class="gallery">
@@ -213,10 +213,10 @@ export default class C1A extends Base implements IFetch {
           index,
         };
       });
-      this.empty = false;
     } else {
-      this.empty = true;
+      this.response = [];
     }
+    this.empty = !this.response.length;
     return response;
   }
 }

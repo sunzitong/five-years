@@ -310,6 +310,8 @@ export default class C3A extends Base implements IFetch {
 
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
+    } else {
+      this.response = {};
     }
 
     this.empty = _.isEmpty(this.response);

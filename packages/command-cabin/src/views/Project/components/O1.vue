@@ -66,7 +66,7 @@ export default class O1 extends Base implements IFetch {
   get monthData() {
     const key = this.showCurrentMonth ? "currentMonthScore" : "lastMonthScore";
     const response: MonthData = this.response?.[key] ?? {};
-    // 转换日期为月
+    // 转换日期为月 YYYY-MM-DD
     const month = dayjs(response.dataDate).format("M");
 
     // 如果当前月去掉试算
@@ -107,6 +107,8 @@ export default class O1 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
       this.loading = false;
+    } else {
+      this.response = null;
     }
     const noCurrent = _.isNil(
       _.get(response, "data.currentMonthScore.totalScore")

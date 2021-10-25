@@ -52,7 +52,7 @@ export default class TheDateScopes extends Base {
     }
     // 月累: 从2021-01开始
     {
-      let start = dayjs("2021");
+      let start = dayjs("2021", "YYYY");
       while (!start.isAfter(now, "M")) {
         this.options[1].children.push(start.format("YYYY-MM"));
         start = start.add(1, "M");
@@ -84,7 +84,7 @@ export default class TheDateScopes extends Base {
     }
     if (scope === DateScopes.MONTHLY) {
       this.store.global.monthValue = value;
-      this.store.global.yearValue = dayjs(value).format("YYYY");
+      this.store.global.yearValue = dayjs(value, "YYYY-MM").format("YYYY");
     }
     this.$emit("update:show", false);
   }

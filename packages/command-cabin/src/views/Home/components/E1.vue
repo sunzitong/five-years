@@ -264,6 +264,8 @@ export default class E1 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
+    } else {
+      this.response = [];
     }
 
     clearTimeout(this.timer);

@@ -62,6 +62,7 @@ export default class A2 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.empty = false;
     } else {
+      this.resData = {};
       this.empty = true;
     }
     return response;

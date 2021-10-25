@@ -124,6 +124,8 @@ export default class D3 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+    } else {
+      this.resData = {};
     }
     return response;
   }
@@ -146,7 +148,7 @@ export default class D3 extends Base {
     justify-content: space-around;
 
     .left_pic {
-      flex: 1;
+      flex: 0.8;
       width: 200px;
       height: 240px;
       @extend %bg-img-circle-1;

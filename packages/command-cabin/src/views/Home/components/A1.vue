@@ -123,6 +123,7 @@ export default class A1 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.empty = false;
     } else {
+      this.resData = {};
       this.empty = true;
     }
 

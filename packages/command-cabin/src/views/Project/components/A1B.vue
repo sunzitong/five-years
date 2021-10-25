@@ -192,6 +192,8 @@ export default class A1B extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
+    } else {
+      this.response = {};
     }
 
     this.empty = _.isEmpty(this.response);
@@ -261,7 +263,7 @@ export default class A1B extends Base implements IFetch {
   .note {
     // width: 215px;
     height: 190px;
-    padding-top: 30px;
+    padding-top: 50px;
     overflow: hidden;
     font-size: 28px;
     color: #90a4c3;

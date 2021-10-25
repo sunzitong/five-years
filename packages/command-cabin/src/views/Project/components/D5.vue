@@ -118,6 +118,7 @@ export default class D5 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.empty = false;
     } else {
+      this.resData = {};
       this.empty = true;
     }
     return response;
@@ -135,7 +136,7 @@ export default class D5 extends Base implements IFetch {
 }
 
 .top_value_box {
-  margin: 0 0 53px 50px;
+  margin: 0 0 93px 50px;
 
   .top_value {
     @extend %value-font;

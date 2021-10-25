@@ -21,7 +21,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="footer">
+    <div class="footer" style="padding-left: 300px">
       <Select
         @input="fetch"
         name="YearRange"
@@ -186,7 +186,8 @@ export default class TheExpandWideDetail extends Base implements IFetch {
   color: #90a4c3;
   font-size: 40px;
   .table {
-    min-width: 5760px;
+    // min-width: 5760px;
+    width: 100%;
     margin: auto;
     white-space: pre-line;
     text-align: center;

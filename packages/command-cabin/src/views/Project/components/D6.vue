@@ -85,6 +85,7 @@ export default class D6 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.empty = false;
     } else {
+      this.resData = {};
       this.empty = true;
     }
     return response;
@@ -98,7 +99,7 @@ export default class D6 extends Base implements IFetch {
   flex-flow: column nowrap;
   justify-content: space-between;
   color: #90a4c3;
-  padding: 66px 52px 104px 52px;
+  padding: 38px 52px 104px 52px;
 
   .big_title {
     font-size: 40px;
