@@ -43,10 +43,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="big_title"
-          v-if="store.global.project.transactionModel === 'LightAsset'"
-        >
+        <div class="big_title">
           <div>轻资产待回款</div>
           <div class="big_values">
             <span>{{ sepNumber(resData.payBackAmount) }}</span>
@@ -80,7 +77,6 @@ export default class D5 extends Base implements IFetch {
       params: {
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
-        // phId: this.store.global.project.phId,
       },
     });
     if (response?.status === "ok") {

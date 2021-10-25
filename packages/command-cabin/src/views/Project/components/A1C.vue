@@ -32,7 +32,7 @@
     </a>
     <van-dialog
       class="dialog"
-      :width="device().width"
+      :width="device.width"
       v-model="show"
       :show-confirm-button="false"
       :get-container="() => $root.$el"
@@ -40,10 +40,9 @@
       <CardB>
         <div class="content">
           <iframe
-            :width="device().width - 80"
-            :height="device().height"
+            :width="device.width - 80"
+            :height="device.height"
             frameborder="0"
-            scrolling="no"
             :src="response.investmentLink"
           ></iframe>
           <span class="cross" @click="toggleDialog">
@@ -103,15 +102,7 @@ export default class A1C extends Base implements IFetch {
     this.show = !this.show;
   }
 
-  /**
-   * device
-   */
-  device() {
-    return {
-      width: screen.width * 0.8,
-      height: screen.height * 0.8,
-    };
-  }
+  device = { width: 3240, height: 3240 * 0.9 };
 }
 </script>
 
