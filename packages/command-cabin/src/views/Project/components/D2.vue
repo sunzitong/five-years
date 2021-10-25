@@ -121,6 +121,8 @@ export default class D2 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+    } else {
+      this.resData = {};
     }
     return response;
   }

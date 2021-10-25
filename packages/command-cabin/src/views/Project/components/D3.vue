@@ -65,9 +65,9 @@ export default class D3 extends Base implements IFetch {
         orgId: this.store.global.project.orgId,
       },
     });
+    this.response = [];
     if (response?.status === "ok") {
       const data = iwant.object(response.data);
-      this.response = [];
       this.response.push({
         name: "水",
         icon: "water-drop",

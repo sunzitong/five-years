@@ -83,6 +83,10 @@ export default class F1 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
+      this.empty = false;
+    } else {
+      this.response = {};
+      this.empty = true;
     }
     return response;
   }

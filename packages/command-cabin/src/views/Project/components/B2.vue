@@ -108,8 +108,10 @@ export default class B2 extends Base implements IFetch {
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
       this.dataSource = iwant.array(this.response.list);
+    } else {
+      this.response = {};
+      this.dataSource = [];
     }
-
     this.empty = !this.dataSource.length;
     return response;
   }

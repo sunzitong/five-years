@@ -84,6 +84,8 @@ export default class C4A extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);
+    } else {
+      this.response = {};
     }
     return response;
   }

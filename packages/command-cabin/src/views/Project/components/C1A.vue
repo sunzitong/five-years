@@ -213,10 +213,10 @@ export default class C1A extends Base implements IFetch {
           index,
         };
       });
-      this.empty = false;
     } else {
-      this.empty = true;
+      this.response = [];
     }
+    this.empty = !this.response.length;
     return response;
   }
 }

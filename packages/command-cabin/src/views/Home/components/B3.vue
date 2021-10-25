@@ -106,6 +106,8 @@ export default class B3 extends Base implements IFetch {
       this.resData = iwant.object(response.data);
       this.projecttNum = formatValue(this.resData.riskItemNum);
       this.differRatio = formatValue(this.resData.allItemDiff);
+    } else {
+      this.resData = {};
     }
 
     this.empty = iwant.array(this.resData.costAnalysisModelList).length === 0;

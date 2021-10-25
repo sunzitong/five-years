@@ -124,6 +124,8 @@ export default class D3 extends Base {
     });
     if (response?.status === "ok") {
       this.resData = iwant.object(response.data);
+    } else {
+      this.resData = {};
     }
     return response;
   }

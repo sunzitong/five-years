@@ -125,6 +125,8 @@ export default class C1 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = iwant.array(response.data);
+    } else {
+      this.response = [];
     }
     this.empty = !this.response.length;
     return response;

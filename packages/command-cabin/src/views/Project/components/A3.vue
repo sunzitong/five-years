@@ -2,6 +2,7 @@
   <div class="iframe-wrapper">
     <Spin class="nodata" empty></Spin>
     <iframe
+      v-if="response"
       width="1600"
       height="741"
       frameborder="0"
@@ -37,6 +38,8 @@ export default class A3 extends Base implements IFetch {
     });
     if (response?.status === "ok") {
       this.response = response.data?.locationUrl;
+    } else {
+      this.response = "";
     }
     this.empty = !this.response;
     return response;
