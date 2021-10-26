@@ -32,7 +32,8 @@ service.interceptors.response.use(
       env.NOW = response.data.timestamp;
     }
     if (response.data?.status !== "ok") {
-      console.log(`[url] ${response.status} fail:`, response.config.url);
+      console.log(`[url] ${response.status}:`, response.config.url);
+      mitter.emit(EventName.ServiceError, response.data?.status);
     }
     return response.data;
   },
