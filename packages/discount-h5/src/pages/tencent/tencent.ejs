@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html style="background:linear-gradient(119deg,rgba(255,255,255,1) 0%,rgba(255,232,195,1) 100%);">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>优惠券领取</title>
+  <script src="<%= PUBLIC_PATH%>static/js/flexible.js"></script>
+</head>
+
+<body style="background:linear-gradient(119deg,rgba(255,255,255,1) 0%,rgba(255,232,195,1) 100%);">
+  <div class="t-header">
+    <img class="top-bg" src="<%= require('@/assets/tencent/top-bg.png')%>" alt="" />
+    <div class="t-header-bottom">
+      <div class="t-header-img">
+        <img class="vip-long" src="<%= require('@/assets/tencent/tencent.png')%>" alt="" />
+        <img class="vip-tencent" src="<%= require('@/assets/tencent/vip.png')%>" alt="" />
+        <img class="discount98" src="<%= require('@/assets/tencent/discount98.png')%>" alt="" />
+      </div>
+      <div class="t-iobox">
+        <img class="tel-bg" src="<%= require('@/assets/tencent/tel-bg.png')%>" alt="" />
+        <div class="tel-content">
+          <div class="codebox">
+            <img class="tel-code-img" src="<%= require('@/assets/tencent/tel.png')%>" alt="" />
+            <input class="tel" type="num" placeholder="请输入手机号" />
+          </div>
+          <div class="codebox">
+            <img class="tel-code-img" src="<%= require('@/assets/tencent/code.png')%>" alt="" />
+            <input type="text" maxlength="6" placeholder="输入验证码" class="input">
+            <button class="send">发送验证码</button>
+          </div>
+          <button class="recive">
+            <div class="recive-text">点击领券</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="t-content">
+    <div class="t-desc">
+      <img class="desc-img" src="<%= require('@/assets/tencent/quotes.png')%>" alt="" />
+      <p class="desc-desc">
+        <e class="desc-title">龙湖冠寓</e>
+        始于2017年，倡导“去孤岛化”的租住理念，是社交一体化的时尚独栋式公寓。在冠寓，和有趣的年轻人住在一起！
+      </p>
+    </div>
+    <div class="t-imglist">
+      <img class="t-imglist-top" src="<%= require('@/assets/tencent/o-t.png')%>" alt="" />
+      <div class="t-imglist-bottom">
+        <img class="t-imglist-left" src="<%= require('@/assets/tencent/o-l.png')%>" alt="" />
+        <img class="t-imglist-right" src="<%= require('@/assets/tencent/o-r.png')%>" alt="" />
+      </div>
+    </div>
+    <div class="t-content-title">
+      <img class="t-content-title-img" src="<%= require('@/assets/tencent/title.png')%>" alt="" />
+      <span class="t-content-title-text">我家我自在</span>
+      <img class="t-content-title-img" src="<%= require('@/assets/tencent/title.png')%>" alt="" />
+    </div>
+    <div class="t-imglist">
+      <img class="t-imglist-top" src="<%= require('@/assets/tencent/t-t.png')%>" alt="" />
+      <div class="t-imglist-bottom">
+        <img class="t-imglist-left" src="<%= require('@/assets/tencent/t-l.png')%>" alt="" />
+        <img class="t-imglist-right" src="<%= require('@/assets/tencent/t-r.png')%>" alt="" />
+      </div>
+    </div>
+    <div class="t-content-title">
+      <img class="t-content-title-img" src="<%= require('@/assets/tencent/title.png')%>" alt="" />
+      <span class="t-content-title-text">活动规则</span>
+      <img class="t-content-title-img" src="<%= require('@/assets/tencent/title.png')%>" alt="" />
+    </div>
+    <div class="bottom">
+      <div class="rules-box">
+        <p class="rules-content">
+            1. 龙湖冠寓9.8折租房优惠券，每月租金可享9.8折，租期6个月以上新签约时可使用<br />
+            2. 每个手机号只能领取和使用1张优惠劵，领取后可在冠寓APP-个人中心-优惠券查看<br />
+            3. 优惠券有效期至2020年12月31日<br />
+            4. 全国冠寓门店通用，剩余房量需详询门店<br />
+            5. 本券属于“折上折”特权，可叠加冠寓年租9.5折、年付9.8折等，叠加后约低至91折(但不可与企业优惠、学生/毕业生优惠同时使用)；其他优惠活动、有奖活动等规则可详询龙湖冠寓门店<br />
+            6. 门店地址电话可下载冠寓APP，或微信搜索“龙湖冠寓租房”小程序查询<br />
+            7. 龙湖冠寓保留活动最终解释权<br />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-cover"></div>
+  <div class="modal">
+    <img class="correct" src="<%= require('@/assets/tencent/correct.png')%>" alt="" />
+    <div class="success">领取成功！</div>
+    <div class="info">请使用手机号登录冠寓 APP 我的-优惠券 中查看。</div>
+    <div class="sure tencent">去使用</div>
+  </div>
+  <script src="<%= PUBLIC_PATH %>static/js/jquery-3.1.1.min.js"></script>
+  <!-- <script src="<%= PUBLIC_PATH %>static/js/vconsole.min.js"></script> -->
+</body>
+
+</html>

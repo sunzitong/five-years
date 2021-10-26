@@ -1,0 +1,80 @@
+.page__index {
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(57, 0, 145, 1) url(../../../src/assets/img/main_header.png) 0 0 no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+    .main {
+        .login-out-status {
+            position: fixed;
+            left: 50%;
+            bottom: 10%;
+            transform: translate(-50%, 0);
+            z-index: 100;
+            text-align: center;
+            .login-btn {
+                width: 323px;
+                height: 74px;
+                background: url('../../assets/img/login.png') 0 0 no-repeat;
+                background-size: 323px 74px;
+            }
+            p {
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+            
+        }
+        .main-box {
+            position: relative;
+            margin-top: 552px;
+            .tray-img {
+                width: 100%;
+                height: 48px;
+                background: url('../../assets/img/luck/trayImg.png') 0 0 no-repeat;
+                background-size: 100% 48px;
+                position: absolute;
+                left: 0;
+                bottom: 30px;
+                z-index: 300;
+            }
+        }
+    }
+    // 邀请助力区域
+    .main-inviate {
+        margin-top: 5px;
+
+        .p1 {
+            margin: 0 auto;
+            width: 71px;
+            height: 27px;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 22.5px;
+            letter-spacing: 1.5px;
+            color: #FFFFFF;
+            font-family: PingFangSC-Medium, PingFang SC;
+            border-bottom: 1px solid #FFFFFF;
+            letter-spacing: 1.5px;
+        }
+
+        .inviate-btn {
+            width: 299px;
+            height: 60px;
+            margin: 16px auto 10.5px;
+            background: url(../../../src/assets/img/btn_inviate.png) no-repeat;
+            background-size: cover;
+        }
+
+        .p2 {
+            margin-bottom: 10px;
+            text-align: center;
+            height: 16.5px;
+            line-height: 16.5px;
+            font-size: 12px;
+            font-weight: normal;
+            color: #FFFFFF;
+            font-family: PingFangSC-Regular, PingFang SC;
+            letter-spacing: 0.5px;
+        }
+    }
+}

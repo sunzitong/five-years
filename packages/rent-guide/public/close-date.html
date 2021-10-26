@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>邻里公约</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" media="screen" href="//static.iguanyu.com/manual/h5/rent-guide/static/resset.css">
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?492b2f302e5b2c18185a0f11bed67625";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script type = "text/javascript"> 
+    (function() {
+      window.zhuge = window.zhuge || [];
+      window.zhuge.methods = "_init identify track getDid getSid getKey setSuperProperty setUserProperties setWxProperties setPlatform".split(" ");
+      window.zhuge.factory = function(b) {
+        return function() {
+          var a = Array.prototype.slice.call(arguments);
+          a.unshift(b);
+          window.zhuge.push(a);
+          return window.zhuge;
+        }
+      };
+      for (var i = 0; i < window.zhuge.methods.length; i++) {
+        var key = window.zhuge.methods[i];
+        window.zhuge[key] = window.zhuge.factory(key);
+      }
+      window.zhuge.load = function(b, x) {
+        if (!document.getElementById("zhuge-js")) {
+          var a = document.createElement("script");
+          var verDate = new Date();
+          var verStr = verDate.getFullYear().toString() + verDate.getMonth().toString() + verDate.getDate().toString();
+
+          a.type = "text/javascript";
+          a.id = "zhuge-js";
+          a.async = !0;
+          a.src = 'https://datain.longfor.com/zhuge.js?v=' + verStr;
+          a.onerror = function() {
+            window.zhuge.identify = window.zhuge.track = function(ename, props, callback) {
+              if(callback && Object.prototype.toString.call(callback) === '[object Function]') {
+                callback();
+              } else if (Object.prototype.toString.call(props) === '[object Function]') {
+              props();
+              }
+            };
+          };
+          var c = document.getElementsByTagName("script")[0];
+          c.parentNode.insertBefore(a, c);
+          window.zhuge._init(b, x)
+        }
+      };
+      window.zhuge.load('05f3c3ed704142b58a27800c0f253ad4', {
+        superProperty: { //全局的事件属性(选填)               
+          '应用名称': 'wap'
+        },
+        adTrack:false,//广告监测开关,默认为false  
+        zgsee:false,//视屏采集开关, 默认为false
+        autoTrack: false,
+        //启用全埋点采集（选填，默认false）            
+        singlePage: false //是否是单页面应用（SPA），启用autoTrack后生效（选填，默认false）  
+      });
+      window.zhuge.track('邻里公约页')
+    })();
+  </script>
+  <style>
+    body {
+      background-color: #fff;
+    }
+    /* .header {
+      width: 100%;
+      height: 1.17rem;
+      line-height: 1.17rem;
+      position: fixed;
+      top: 0;
+      font-family: PingFangSC-Regular;
+      font-size: 17px;
+      color: #333333;
+      text-align: center;
+      background-color: #fff;
+      border-bottom: 1px solid #E6E6E6;
+    }
+    .header img {
+      position: absolute;
+      top: .32rem;
+      left: .53rem;
+      width: .32rem;
+      height: .52rem;
+    } */
+    .close-date {
+      /* margin-top: 1.17rem; */
+    }
+    .privacy {
+      font-family: PingFangSC-Medium;
+      font-size: 20px;
+      color: #333333;
+      text-align: center;
+      margin: 1.6rem 0 .66rem;
+    }
+    .content {
+      padding: 0 .53rem .53rem;
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      color: #666666;
+      letter-spacing: 0;
+      line-height: .64rem;
+      text-align: justify;
+    }
+    .content.retract {
+      text-indent:2em;
+    }
+    .content:first-child{
+      margin-top: .53rem;
+    }
+  </style>
+  <script src="//static.iguanyu.com/manual/h5/rent-guide/static/main.js"></script>
+</head>
+<body>
+  <!-- <div class="header">
+      邻里公约
+    <img class="backArrow" src="//static.iguanyu.com/manual/h5/rent-guide/img/arrow.png" alt="">
+  </div> -->
+  <div class="close-date">
+    <!-- <h3 class="privacy">邻里公约</h3> -->
+    <p class="content retract">
+      远亲不如近邻，租户们在享受“我家我自在”的时候，需关心邻居的感受，冠寓运营官在此提醒各位租户：<br />
+    </p>
+    <p class="content">
+      第一条：每日午休（12：00-13:00）及晚休（22:30-9:00）时间请避免喧哗，禁止深夜高歌或者大声喧哗； <br />
+    </p>
+    <p class="content">
+      第二条：出入关门及走廊行走时，请注意轻声细语；<br />
+    </p>
+    <p class="content retract">
+      如出现邻里违约情况，可联系社区运营官来协助处理，如情节严重，运营官将有权对违规租户进行劝离处置。<br />
+    </p>
+  </div>
+</body>
+</html>

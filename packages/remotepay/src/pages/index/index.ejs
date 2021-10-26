@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>龙湖冠寓_线上支付订单</title>
+    <script src="<%= PUBLIC_PATH%>static/js/flexible.js"></script>
+  </head>
+  <body>
+    <div class="paySuccess" style="display: none;">
+      <%= require('@/components/payResult/paySuccess.ejs')() %>
+    </div>
+    <div class="payFail" style="display: none;">
+      <%= require('@/components/payResult/payFail.ejs')() %>
+    </div>
+    <div class="loading">
+      <div class="loadingDash"></div>
+    </div>
+    <div class="container" style="display: none;">
+      <!-- 头部信息 -->
+        <div class="header">
+          <span class="headerAddr">--</span>
+          <span class="staffName">运营官:--</span>
+        </div>
+  
+        <!-- 应收金额 -->
+        <div class="amountBox">
+          <span class="amoutTitle">应收金额</span>
+          <div class="amount">¥--</div>
+        </div>
+
+        <!-- 签约信息 -->
+        <ul class="sginInfo labelInfo">
+        
+        </ul>
+
+      <!-- 账单明细 -->
+      <h6 class="billTitle">账单明细</h6>
+
+      <!-- 账单明细列表 -->
+      <ul class="BillInfo labelInfo">
+      </ul>
+
+      <div class="tips">
+        --
+      </div>
+      <!-- 一键支付按钮 -->
+      <div class="buttonBox" style="padding-top: 0;">
+        <div class="buttonChild">
+            <div class="payMoney">
+              <span>优惠后应缴</span>
+              <p class="payamout">¥--</p>
+            </div>
+            <div class="payButton">
+              一键支付
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="<%= PUBLIC_PATH %>static/js/jquery-3.1.1.min.js"></script>
+    <script src="<%= PUBLIC_PATH %>static/js/jweixin-1.0.0.js"></script>
+  </body>
+</html>

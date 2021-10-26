@@ -1,0 +1,17 @@
+
+.normal {
+  font-family: Georgia, sans-serif;
+  text-align: center;
+  background:rgba(244,246,247,1);
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: normal;
+  letter-spacing: -1px;
+  background: darkslateblue;
+  padding: .6em 0;
+  color: white;
+  margin: 0;
+}

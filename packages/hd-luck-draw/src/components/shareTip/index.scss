@@ -1,0 +1,61 @@
+.share-tip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 15px;
+    z-index: 500;
+    .fixed {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.88);
+        z-index: 50;
+    }
+    img {
+        width: 375px;
+        height: 140px;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 300;
+    }
+    .main-cont {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        // background-color: #ffffff;
+        z-index: 100;
+        width: 100%;
+        margin: 0 auto;
+        padding: 12px 23px 15px 23px;
+        box-sizing: border-box; 
+        text-align: center;
+        img {
+            width: 210px;
+            height: 254px;
+        }
+        .success-btn {
+            width: 185px;
+            height: 74px;
+            background: url('../../assets/img/success-btn.png') 0 0 no-repeat;
+            background-size: 185px 74px;
+            margin: 0 auto;
+        }
+        .close-btn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30px;
+            width: 28px;
+            height: 28px;
+            background: url('../../assets/img/close2.png') 0 0 no-repeat;
+            background-size: 28px 28px;
+            margin: 0 auto;
+        }
+    }
+}

@@ -1,0 +1,79 @@
+@labelColor: #858585;
+
+.baseLabel {
+  font-size: 0.28rem;
+  color: @labelColor;
+}
+
+.listItemHeadTitle:extend(.baseLabel) {
+  line-height: 0.4rem;
+}
+
+.listItemBodyLabel:extend(.baseLabel) {
+  margin-right: 0.3rem;
+}
+
+.listItemStatus {
+  font-size: 0.3rem;
+  line-height: 0.42rem;
+}
+
+.listItemBodyValue {
+  font-size: 0.28rem;
+  color: #343434;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footBottonsWrap {
+  :global{
+    .am-button-small {
+      color: #ffffff;
+      background-color: #3894F9;
+      height: 50px;
+      width: 160px;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #3894F9;
+      border-radius: 6px;
+      font-size: 28px;
+      display: flex;
+      margin-left: 39px;
+    }
+  }
+  padding: 0 30px;
+  min-height: 97px;
+  border-top: 1px solid #EAEAEA;
+  flex-direction: row-reverse;
+  align-items: center;
+  display: flex;
+}
+
+.timeout {
+  height: 117px;
+  width: 137px;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  transform: rotateZ(-30deg);
+
+  .text {
+    color: rgb(238, 153, 151);
+    font-size: 15px;
+    position: relative;
+    top: 0.64rem;
+    text-align: center;
+  }
+
+  .title {
+    color: rgb(238, 153, 151);
+    font-size: 20px;
+    position: relative;
+    top: 0.14rem;
+    text-align: center;
+  }
+}
+

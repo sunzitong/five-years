@@ -1,0 +1,64 @@
+import {
+  Toast,
+  Picker,
+  Icon,
+  Popup,
+  Overlay,
+  Lazyload,
+  Image,
+  Loading,
+  Button,
+  Circle,
+  DropdownItem,
+  DropdownMenu,
+  Grid,
+  GridItem,
+  Empty,
+  Progress,
+  Popover,
+  NavBar,
+  NoticeBar,
+  DatetimePicker,
+  Tag,
+  Calendar,
+  Tabs,
+  Tab,
+  List,
+  PullRefresh,
+  Field,
+  CellGroup,
+  Sticky,
+} from "vant";
+import Vue from "vue";
+
+Toast.allowMultiple(true);
+
+Vue.use(Toast);
+Vue.use(Picker);
+Vue.use(Icon);
+Vue.use(Popup);
+Vue.use(Overlay);
+Vue.use(Lazyload);
+Vue.use(Image);
+Vue.use(Loading);
+Vue.use(Button);
+Vue.use(Circle);
+Vue.use(DropdownItem);
+Vue.use(DropdownMenu);
+Vue.use(Grid);
+Vue.use(GridItem);
+Vue.use(Empty);
+Vue.use(Progress);
+Vue.use(Popover);
+Vue.use(NavBar);
+Vue.use(NoticeBar);
+Vue.use(DatetimePicker);
+Vue.use(Tag);
+Vue.use(Calendar);
+Vue.use(Tabs);
+Vue.use(Tab);
+Vue.use(List);
+Vue.use(PullRefresh);
+Vue.use(Field);
+Vue.use(CellGroup);
+Vue.use(Sticky);

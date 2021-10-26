@@ -1,0 +1,33 @@
+@import "./variable.scss";
+
+/** 背景图
+    $VUE_APP_BASE_IMG 在vue.config.js配置
+    process.env.VUE_APP_BASE_IMG
+*/
+$img-map: (
+  "404": "404.png",
+  "bg": "bg.png",
+  "act-rent": "act-rent.png",
+  "act-iphone": "act-iphone.png",
+  "act-iphone-0": "act-iphone-0.png",
+  "act-hw": "act-hw.png",
+  "act-hw-0": "act-hw-0.png",
+  "act-party": "act-party.png",
+  "act-party-0": "act-party-0.png",
+  "act-cash": "act-cash.png",
+  "cp-bg": "cp-bg.png",
+  "cp-btn": "cp-btn.png",
+  "slogan": "slogan.png",
+  "ptitle": "ptitle.png",
+  "rule-btn": "rule-btn.png",
+  "i15d": "i15d.png",
+  "i30d": "i30d.png",
+  "share1": "share1.png",
+  "share2": "share2.png",
+);
+@each $label, $map in $img-map {
+  %bg-img-#{$label} {
+    @extend %bg-top;
+    background-image: url($VUE_APP_BASE_IMG+$map);
+  }
+}
