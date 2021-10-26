@@ -1,0 +1,49 @@
+@import "./variable.scss";
+
+/** 背景图
+    $VUE_APP_BASE_IMG 在vue.config.js配置
+    process.env.VUE_APP_BASE_IMG
+*/
+$img-map: (
+  "box-head-bg": "box-head-bg.png",
+  "box-body-bg": "box-body-bg.png",
+  "box-footer-bg": "box-footer-bg.png",
+  "box-lattices": "box-lattices.png",
+  "subtitle-bg": "subtitle-bg.png",
+  "header": "header.png",
+  "circle-border": "circle-border.png",
+  "btn-arrow": "btn-arrow.png",
+  "btn-checked": "btn-checked.png",
+  "circle-1": "circle-1.png",
+  "circle-2": "circle-2.png",
+  "circle-3": "circle-3.svg",
+  "circle-4": "circle-4.svg",
+  "circle-5": "circle-5.png",
+  "btn-normal": "btn-normal.png",
+  "btn-shadow": "btn-shadow.png",
+  "btn-active": "btn-active.png",
+  "bg-earth": "bg-earth.png",
+  "btn-normal-center": "btn-normal-center.png",
+  "btn-active-center": "btn-active-center.png",
+  "bar-shadow": "bar-shadow.png",
+  "logo": "logo.png",
+  "step-bg": "step-bg.png",
+  "china": "china.png",
+  "mopt-0": "mopt-0.png",
+  "mopt-1": "mopt-1.png",
+  "track-1": "track-1.png",
+  "track-2": "track-2.png",
+  "supply-normal": "supply-normal.png",
+  "supply-active": "supply-active.png",
+);
+@each $label, $map in $img-map {
+  %bg-img-#{$label} {
+    @extend %bg-top;
+    background-image: url($VUE_APP_BASE_IMG + $map);
+  }
+}
+
+$circle-border: $VUE_APP_BASE_IMG + map-get($img-map, "circle-border");
+// 大事纪背景
+$track-1: $VUE_APP_BASE_IMG + map-get($img-map, "track-1");
+$track-2: $VUE_APP_BASE_IMG + map-get($img-map, "track-2");
