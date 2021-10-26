@@ -397,6 +397,7 @@ export default class C4 extends Base implements IFetch {
     if (!orgTree) return;
     this.store.global.dataLevel = this.levelValue;
     this.store.global.orgTree = orgTree;
+    this.showTable = true;
   }
 
   /**
