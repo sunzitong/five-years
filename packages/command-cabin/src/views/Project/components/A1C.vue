@@ -31,20 +31,27 @@
       </div>
     </a>
     <van-dialog
+      v-model="show"
       class="dialog"
       :width="device.width"
-      v-model="show"
       :show-confirm-button="false"
       :get-container="() => $root.$el"
     >
       <CardB>
         <div class="content">
-          <iframe
-            :width="device.width - 80"
+          <Spin
+            v-if="show"
+            :empty="!response.investmentLink"
             :height="device.height"
-            frameborder="0"
-            :src="response.investmentLink"
-          ></iframe>
+          >
+            <iframe
+              v-if="response.investmentLink"
+              :width="device.width - 80"
+              :height="device.height"
+              frameborder="0"
+              :src="response.investmentLink"
+            />
+          </Spin>
           <span class="cross" @click="toggleDialog">
             <van-icon name="cross" />
           </span>
