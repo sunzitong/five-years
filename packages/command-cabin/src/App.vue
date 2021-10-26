@@ -128,8 +128,9 @@ export default class App extends Mixins(MixStore) {
   /**
    * 接口出错
    */
-  serviceError(status?: number) {
-    if (status === 401) {
+  serviceError(status?: number | string) {
+    if (!status) return;
+    if (+status === 401) {
       // 清除用户信息
       removeStore();
       this.store.currentUser = null;
