@@ -81,7 +81,7 @@ export default class C5 extends Base implements IFetch {
 
   itemLength = 5;
 
-  activeYear = 2;
+  activeYear = 0;
 
   get list() {
     return this.response.slice(
@@ -103,6 +103,7 @@ export default class C5 extends Base implements IFetch {
     } else {
       this.response = [];
     }
+    this.startIndex = Math.max(this.response.length - this.itemLength, 0);
     return;
   }
 }
