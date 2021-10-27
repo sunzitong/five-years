@@ -64,6 +64,7 @@ import {
   SupplyAndMarketingSaveReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/supplyAndMarketingSave";
 import { iwant } from "@guanyu/shared";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: { Icon, CardB },
@@ -75,7 +76,8 @@ export default class C4A extends Base implements IFetch {
     const response = await useStore(fetchSupplyAndMarketingSave, {
       key: StoreKey.HomeSupplyAndMarketingSave,
       params: {
-        dateScope: this.store.global.dataLevel,
+        // TODO 固定年累
+        dateScope: DateScopes.YEARLY,
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
         orgName: this.store.global.orgTree.orgName,

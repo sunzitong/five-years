@@ -20,7 +20,9 @@
                 <li>NPI利润率：{{ formatValue(item.npiProfit) }}%</li>
               </ul>
               <ul class="part">
-                <li>收入：{{ formatValue(item.income) }}万元</li>
+                <li>
+                  主营业务收入：{{ formatValue(Math.round(item.income)) }}万
+                </li>
                 <li>收入达成率：{{ formatValue(item.incomeRate) }}%</li>
                 <li>平均出租率：{{ formatValue(item.rentRate) }}%</li>
               </ul>
@@ -79,7 +81,7 @@ export default class C5 extends Base implements IFetch {
 
   itemLength = 5;
 
-  activeYear = 2;
+  activeYear = 0;
 
   get list() {
     return this.response.slice(
@@ -101,6 +103,7 @@ export default class C5 extends Base implements IFetch {
     } else {
       this.response = [];
     }
+    this.startIndex = Math.max(this.response.length - this.itemLength, 0);
     return;
   }
 }
