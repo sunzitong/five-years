@@ -16,7 +16,7 @@
           />
           <div class="chart__text">
             <div class="name">{{ item.name }}</div>
-            <div class="value">{{ formatValue(item.currentRate) }}%</div>
+            <div class="value">{{ formatValue(item.rate) }}%</div>
           </div>
           <div
             class="icon animate__animated animate__infinite animate__pulse"
