@@ -75,7 +75,7 @@ export default class C4A extends Base implements IFetch {
     const response = await useStore(fetchSupplyAndMarketingSave, {
       key: StoreKey.HomeSupplyAndMarketingSave,
       params: {
-        dateScope: this.store.global.dataLevel,
+        dateScope: this.store.global.dateScope,
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
         orgName: this.store.global.orgTree.orgName,
