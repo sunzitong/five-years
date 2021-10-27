@@ -221,6 +221,7 @@ export default class Index extends Base {
 
   // 跳转到学生特权
   studentJump() {
+    window.zhuge.track('首页冠寓 - 新客礼包 - 毕业生身份认证按钮 - 点击');
     this.login();
     if (!getToken()) {
       return;
@@ -234,6 +235,7 @@ export default class Index extends Base {
 
   // 跳转到企业
   employeeJump() {
+    window.zhuge.track('首页冠寓 - 新客礼包 - 企业员工身份认证按钮 - 点击');
     this.login();
     if (!getToken()) {
       return;

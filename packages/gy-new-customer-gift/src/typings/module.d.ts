@@ -114,3 +114,6 @@ declare module "@guanyu/guanyu-h5-tools" {
   const ShowSharePanel: Function;
   const getCurrentCity: Function;
 }
+
+
+declare module '@guanyu/zhugeio'

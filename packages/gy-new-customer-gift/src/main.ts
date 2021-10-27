@@ -1,4 +1,6 @@
 import Vue from "vue";
+import zhugeio from '@guanyu/zhugeio';
+import { judgeDevice } from '@guanyu/h5-tools';
 import App from "./App.vue";
 // 路由
 import router from "./router/index";
@@ -18,6 +20,28 @@ import "./filters";
 import "./assets/css/style.scss";
 // console
 Vue.config.productionTip = false;
+
+const url = window.location.href;
+let appKey = '3ec10a66f82f4951ba811df964fcc199';
+let jsSrc = 'https://dataintest.longfor.com/zhuge.js?v=';
+const visitSource = judgeDevice();
+if (url.includes('m.iguanyu.com')) {
+  appKey = 'c6911bc459bb41a5acbb720e91057739'; // 正式
+  jsSrc = 'https://datain.longfor.com/zhuge.js?v=';
+}
+
+zhugeio({
+  appKey,
+  jsSrc,
+  options: {
+    superProperty: {
+      访问来源: visitSource === 'browser' ? '其他' : visitSource,
+    },
+  },
+});
+
+
+Vue.use(zhugeio);
 
 // import VConsole from "vconsole";
 // if (process.env.NODE_ENV === "development") {

@@ -27,6 +27,14 @@
                 $('.cooperation-container').addClass("hiden");
                 $('.brand').removeClass('app')
             }
+            var beginTime = new Date().getTime();
+            window.GyWebViewCloseFn = () => {
+                var endTime = new Date().getTime();
+                window.zhuge.track('页面访问时长', {
+                    页面名称: '首页星球 - 星球联名特权页面 ',
+                    停留时长: endTime - this.beginTime,
+                });
+            };
         })
     </script>
     <style>
@@ -158,16 +166,14 @@
             <li id='vip_readinng'>
                 <a
                     href="https://card.dushu.io/activity/card/index.html?id=1137&activityId=18&randomCode=OkMRvc57OkZsM6nlakf">
-                    <img src="https://goyoo-assets.longfor.com/test/app/0-mtj0bsiWtpBp6svYsuEA.jpeg"
-                        alt="">
+                    <img src="https://goyoo-assets.longfor.com/test/app/0-mtj0bsiWtpBp6svYsuEA.jpeg" alt="">
                 </a>
                 <h3>樊登14天读书卡领取</h3>
             </li>
             <li id='cotton'>
                 <a
                     href="https://mall.winnermedical.com/mobile/index#/componentPage?uuid=ebb07a9a-eb4b-4d98-8c57-8c5034bf2f9d&chn=187">
-                    <img src="https://goyoo-assets.longfor.com/test/app/GV9wliB3Itz97Zeahplmfg.jpeg"
-                        alt="">
+                    <img src="https://goyoo-assets.longfor.com/test/app/GV9wliB3Itz97Zeahplmfg.jpeg" alt="">
                 </a>
                 <h3>全棉时代官方商城</h3>
             </li>
