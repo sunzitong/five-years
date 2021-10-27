@@ -35,8 +35,10 @@ export interface MapCircleItemReturn {
   longitude: number;
   latitude: number;
   newIncreNum: number;
+  budgetNewIncreNum: number;
   newIncreFinishLimit: number;
   openNum: number;
+  budgetOpenNum: number;
   openFinishLimit: number;
   netProfitsRatio: number;
   netProfitsDiff: number;
@@ -48,7 +50,7 @@ export interface MapCircleItemReturn {
 /**
  * 指挥中心-地图大区/城市圆圈
  * @createBy wuyao
- * @updateAt 2021/10/21 16:49:48
+ * @updateAt 2021/10/26 10:31:26
  * @method GET
  */
 export const fetchMapCircle = (
