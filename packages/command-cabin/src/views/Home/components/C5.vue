@@ -201,7 +201,7 @@ export default class C5 extends Base implements IFetch {
         background: #182966;
         color: #90a4c3;
         border-radius: 50px;
-        font-size: 20px;
+        font-size: 30px;
         margin-left: 10px;
       }
     }
