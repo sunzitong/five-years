@@ -166,7 +166,7 @@ export default class B1B extends Base {
                 }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
-                  el.value
+                  el.value ?? "-"
                 }</span> <span>${unit}</span></div>`;
               }
             } else {
@@ -176,7 +176,7 @@ export default class B1B extends Base {
                 }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
-                  el.value
+                  el.value ?? "-"
                 }</span> <span>${unit}</span></div>`;
               }
             }
