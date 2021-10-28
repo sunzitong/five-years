@@ -10,9 +10,9 @@
     <div class="scroll_table">
       <van-row justify="space-between" type="flex" class="table_row table_head">
         <van-col :span="5" class="table_col">预计开业时间</van-col>
-        <van-col :span="5" class="table_col">项目</van-col>
-        <van-col :span="4" class="table_col">资产类型</van-col>
-        <van-col :span="5" class="table_col">房间数</van-col>
+        <van-col :span="6" class="table_col">项目</van-col>
+        <van-col :span="5" class="table_col">资产类型</van-col>
+        <van-col :span="3" class="table_col">房间数</van-col>
         <van-col :span="5" class="table_col">延期卡点</van-col>
       </van-row>
 
@@ -31,15 +31,15 @@
                 <van-col :span="5" class="table_col">
                   {{ item.planOpenDate }}
                 </van-col>
-                <van-col :span="5" class="table_col">
+                <van-col :span="6" class="table_col">
                   <div class="van-multi-ellipsis--l2">
                     {{ item.projectName }}
                   </div>
                 </van-col>
-                <van-col :span="4" class="table_col">
+                <van-col :span="5" class="table_col">
                   {{ item.transactionModel }}
                 </van-col>
-                <van-col :span="5" class="table_col">
+                <van-col :span="3" class="table_col">
                   {{ sepNumber(item.roomNum) }}
                 </van-col>
                 <van-col :span="5" class="table_col">
