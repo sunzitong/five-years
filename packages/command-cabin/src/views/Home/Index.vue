@@ -428,7 +428,7 @@ export default class Home extends Base {
    * 生命周期函数
    */
   created() {
-    /** */
+    this.dataLevelChanged(this.store.global.dataLevel);
   }
 }
 </script>
