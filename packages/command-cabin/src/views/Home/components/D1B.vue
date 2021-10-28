@@ -50,7 +50,7 @@
     </van-row>
     <van-row>
       <van-col :span="14" style="padding-top: 30px">
-        <h4 class="label">在租房间平均成交价(元)</h4>
+        <h4 class="label">在租房间成交均价(元)</h4>
         <div class="row_style">
           <strong class="strong_value">
             {{ formatValue(resData.avgPrice) }}
