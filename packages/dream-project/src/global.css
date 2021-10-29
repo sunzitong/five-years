@@ -1,0 +1,35 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.am-list-item {
+  opacity: 0;
+  height: 152px;
+  width: 100%;
+  position: absolute !important;
+  top: 0;
+}
+
+input {
+
+  background: none;
+
+  outline: none;
+
+  border: 0px;
+
+  margin: 0px;
+
+  padding: 0px;
+
+}
+
+/* div {
+  font-size: 34px;
+} */

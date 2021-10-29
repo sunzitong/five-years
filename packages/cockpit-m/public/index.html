@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui"
+    />
+    <% if(process.env.NODE_ENV !== 'development') {%>
+    <script>
+      (function () {
+        try {
+          if (window.zhuge) return;
+          // zhuge
+          var ZHUGE_CONFIG = {
+            "oms.gyapt.cn": {
+              key: "ac4018fb8b9d471582efaa3d319013b1",
+              src: "https://datain.longfor.com/zhuge.js?v=",
+              debug: false,
+            },
+            "oms.test109.gyapt.cn": {
+              key: "432aa507096c4cd59920926494e930cc",
+              src: "https://dataintest.longfor.com/zhuge.js?v=",
+              debug: true,
+            },
+          }[location.host];
+          if (!ZHUGE_CONFIG) return;
+          window.zhuge = [];
+          window.zhuge.methods = "_init identify track trackRevenue getDid getSid getKey setSuperProperty setUserProperties setWxProperties setPlatform".split(
+            " "
+          );
+          window.zhuge.factory = function (b) {
+            return function () {
+              var a = Array.prototype.slice.call(arguments);
+              a.unshift(b);
+              window.zhuge.push(a);
+              return window.zhuge;
+            };
+          };
+          for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+          }
+          window.zhuge.load = function (b, x) {
+            if (!document.getElementById("zhuge-js")) {
+              var a = document.createElement("script");
+              var verDate = new Date();
+              var verStr =
+                verDate.getFullYear().toString() +
+                verDate.getMonth().toString() +
+                verDate.getDate().toString();
+
+              a.type = "text/javascript";
+              a.id = "zhuge-js";
+              a.async = !0;
+              a.src = ZHUGE_CONFIG.src + verStr;
+              a.onerror = function () {
+                window.zhuge.identify = window.zhuge.track = function (
+                  ename,
+                  props,
+                  callback
+                ) {
+                  if (
+                    callback &&
+                    Object.prototype.toString.call(callback) ===
+                      "[object Function]"
+                  ) {
+                    callback();
+                  } else if (
+                    Object.prototype.toString.call(props) ===
+                    "[object Function]"
+                  ) {
+                    props();
+                  }
+                };
+              };
+              var c = document.getElementsByTagName("script")[0];
+              c.parentNode.insertBefore(a, c);
+              window.zhuge._init(b, x);
+            }
+          };
+          //配置应用的AppKey
+          window.zhuge.load(ZHUGE_CONFIG.key, {
+            //全局的事件属性(选填)
+            superProperty: {
+              // 应用名称: "驾驶舱",
+            },
+            adTrack: false, //广告监测开关，默认为false
+            zgsee: false, //视屏采集开关，默认为false
+            autoTrack: false, //启用全埋点采集（选填，默认false）
+            singlePage: false, //是否是单页面应用（SPA），启用autoTrack后生效（选填，默认false）
+            debug: ZHUGE_CONFIG.debug,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+    </script>
+    <script
+    id="MAIAAPM"
+    src="https://s.longfor.com/public/js/maia-apm/1.0/maia-apm-sdk.js"
+  ></script>
+  <script>
+    ;(function () {
+        try {
+          // apm 配置
+          var APM_CONFIG = {
+            'oms.gyapt.cn': {
+              key: 'A--tzw5GDnA', // 应⽤识别key，必须
+            },
+            'oms.test109.gyapt.cn': {
+              key: 'MBUGmVs_RDc', // 应⽤识别key，必须
+              debug: true, // 是否测试环境,默认生产环境
+            },
+          }[location.host] || { key: 'false' };
+
+          if (APM_CONFIG && MAIAAPM && MAIAAPM.init) {
+            MAIAAPM.init(APM_CONFIG);
+          }
+        } catch (e) {
+          console.log('[apm]', e);
+        }
+      })();
+  </script>
+   <% }%>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+</html>

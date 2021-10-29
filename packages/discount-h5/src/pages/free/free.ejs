@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html style="background:#01273E">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>免租券领取</title>
+    <script src="<%= PUBLIC_PATH%>static/js/flexible.js"></script>
+  </head>
+  <body style="background:#01273E">
+    <div class="free-header">
+      <img class="free-bg" src="<%= require('@/assets/free/bg.png')%>" alt="" />
+      <div class="free-header-top">
+        <div class="free-header-top-title"></div>
+        <div class="free-header-top-desc"></div>
+      </div>
+      <div class="free-header-bottom">
+        <div class="free-iobox">
+          <div class="tel-content">
+            <img class="tel-content-flower" src="<%= require('@/assets/free/flower.png')%>" alt="" />
+            <img class="tel-content-choose welfare" src="<%= require('@/assets/free/choose.png')%>" alt="" />
+            <div class="tel-content-percent welfare">
+              <div class="tel-content-percent-first">
+                签约租期>1天
+              </div>
+              <div class="tel-content-percent-second">
+                免租1天
+              </div>
+            </div>
+            <div class="click-toggle-coupon">
+              点击优惠券可更换
+            </div>
+            <div class="codebox">
+              <input class="free-input free-tel" type="num" placeholder="请输入手机号" />
+            </div>
+            <div class="codebox last">
+              <input type="text" maxlength="6" placeholder="输入验证码" class="free-input free-input-code">
+              <div class="free-send">获取验证码</div>
+            </div>
+            <!-- <div class="codebox last welfare">
+              <img class="tel-code-img" src="<%= require('@/assets/free/gift.png')%>" alt="" />
+              <input disabled class="free-input free-tel welfare-input" type="num" placeholder="选择福利" />
+              <img class="tel-code-arrow-img" src="<%= require('@/assets/free/arrow.png')%>" alt="" />
+            </div> -->
+            <button class="recive">
+              <div class="recive-text">点击领券</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="free-content">
+      <div class="free-content-title">
+        <span class="free-content-title-text">活动规则</span>
+      </div>
+      <div class="bottom">
+        <div class="rules-box">
+          <p class="">
+            <div class="rules-content-recive">领取规则：</div>
+            <div class="rules-content-time">有效期：</div>
+            <div class="">具体规则：</div>
+            <div class="rules-content-rules"></div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-cover"></div>
+    <div class="free-modal">
+      <img class="correct" src="<%= require('@/assets/tencent/correct.png')%>" alt="" />
+      <div class="success">领取成功！</div>
+      <div class="info">请使用手机号登录冠寓 APP 我的-优惠券 中查看。</div>
+      <div class="sure tencent">去使用</div>
+    </div>
+    <div class="select-modal">
+      <div class="select-title">请选择福利类型</div>
+      <div class="welfare-box">
+        <div class="select-list">
+          <div class="select-list-first">
+            签约租期>1天
+          </div>
+          <div class="select-list-second">
+            免租1天
+          </div>
+          <div class="select-list-button">
+            领取
+          </div>
+        </div>
+      </div>
+      <!-- <div class="select-button">确定</div> -->
+    </div>
+    <div class="error-cover"></div>
+    <div class="error-modal">
+      <div class="info active-info">很抱歉，活动暂未开始</div>
+      <div class="info active-time">开始时间：2020年3月20日</div>
+    </div>
+    <script src="<%= PUBLIC_PATH %>static/js/jquery-3.1.1.min.js"></script>
+    <!-- <script src="<%= PUBLIC_PATH %>static/js/vconsole.min.js"></script> -->
+  </body>
+</html>

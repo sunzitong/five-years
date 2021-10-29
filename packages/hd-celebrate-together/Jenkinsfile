@@ -1,0 +1,37 @@
+node('nodejs') {
+    def nodejsHome
+    def sonarHome
+
+    stage('Prepare') {
+        nodejsHome = tool 'NODEJS_11'
+        sonarHome = tool 'SONAR_3'
+    }
+    stage('Checkout') {
+        checkout scm
+    }
+    stage('Build') {
+        sh "'${nodejsHome}/bin/npm' i"
+    }
+    stage('Test') {
+        sh "'${nodejsHome}/bin/npm' run test:unit"
+        withSonarQubeEnv('longfor') {
+            sh "${sonarHome}/bin/sonar-scanner"
+        }
+    }
+    stage('Build stage') {
+        sh "rm -rf dist-stage.zip"
+        sh "'${nodejsHome}/bin/npm' run stage"
+        sh "pushd dist && zip -r ../dist-stage.zip * && popd"
+    }
+    stage('Build product') {
+        sh "rm -rf dist-product.zip"
+        sh "'${nodejsHome}/bin/npm' run build"
+        sh "pushd dist && zip -r ../dist-product.zip * && popd"
+    }
+    stage('Results') {
+        archiveArtifacts artifacts: 'dist-*.zip', fingerprint: true, onlyIfSuccessful: true
+        addGitLabMRComment comment: 'Jenkins CI passed'
+        gitlabCommitStatus(connection: gitLabConnection('git.longhu.net')) {}
+    }
+
+}

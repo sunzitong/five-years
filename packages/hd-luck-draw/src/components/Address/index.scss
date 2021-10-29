@@ -1,0 +1,93 @@
+.address-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 15px;
+    .fixed {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 50;
+    }
+    .main-cont {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        z-index: 100;
+        width: 100%;
+        margin: 0 auto;
+        padding: 12px 23px 15px 23px;
+        box-sizing: border-box; 
+        h3 {
+            font-size: 16px;
+            color: #333333;
+            font-weight: bold;
+            text-align: center;
+        }
+        .close-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 48px;
+            height: 46px;
+            @extend %bg-img-close;
+            background-size: 12px 12px;
+            background-position: center center;
+        }
+        .cont-box {
+            .input-box {
+                display: flex;
+                margin-top: 19px;
+            }
+            .label {
+                width: 42px;
+                white-space: nowrap;
+                font-size: 14px;
+                color: #333333;
+                line-height: 35px;
+                padding-right: 12px;
+            }
+            input {
+                flex: 1;
+                border: 1px solid rgba(226,226,226,1);
+                font-size: 14px;
+                color: #333333;
+                padding: 8px 10px;
+                background: #FDFDFD;
+                /*去除阴影边框*/
+                outline: none;
+                outline-color: transparent;
+                box-shadow: none;
+                outline-style: none;
+                outline-width: 0px;
+                text-shadow: none;
+                -webkit-appearance: none;
+                -webkit-user-select: text;
+                box-shadow: none;
+
+                &::placeholder {
+                    opacity: 1;
+                    -webkit-opacity: 1;
+                    color: #666666;
+                }
+            }
+        }
+        .submit-btn {
+            width: 162px;
+            height: 35px;
+            color: #ffffff;
+            background-color: #2E6AFF;
+            text-align: center;
+            line-height: 35px;
+            font-size: 14px;
+            margin: 35px auto 0;
+        }
+    }
+}

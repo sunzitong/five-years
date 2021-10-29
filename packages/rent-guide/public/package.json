@@ -1,0 +1,20 @@
+{
+  "name": "find-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo static build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.longhu.net/c3-guanyu/fe/fe-h5/rent-guide.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
+
+}

@@ -1,0 +1,1069 @@
+<template>
+  <div class="page__index">
+  <div class="ruleBtn" @click="handleRule">活动规则</div>
+    <!-- banner区域 -->
+    <div class="banner-box">
+      <div class="banner"></div>
+      <div class="banner-photoFrame">
+        <p class="active-overTime">
+          活动时间：{{ numberInfo.startTimeStr }}-{{ numberInfo.endTimeStr }}
+        </p>
+      </div>
+    </div>
+    <!-- 助力区域 -->
+    <div class="help-box">
+      <div class="current-help">
+        <div class="help-title">当前已助力{{ userInfo.ic }}人</div>
+        <div class="help-rate">
+          <div class="unit unit1">
+            <p
+              :class="[
+                userInfo.ic >= 5
+                  ? 'scale-active scale5-active'
+                  : 'scale scale5',
+              ]"
+            >
+              5人
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 15
+                  ? 'scale-active scale15-active'
+                  : 'scale scale15',
+              ]"
+            >
+              15人
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 25
+                  ? 'scale-active scale25-active'
+                  : 'scale scale25',
+              ]"
+            >
+              25人
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 55
+                  ? 'scale-active scale55-active'
+                  : 'scale scale55',
+              ]"
+            >
+              55人
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 85
+                  ? 'scale-active scale85-active'
+                  : 'scale scale85',
+              ]"
+            >
+              85人
+            </p>
+          </div>
+          <div class="barLayout">
+            <div class="Bar">
+              <div
+                class="rateBg"
+                :style="{
+                  width:
+                    userInfo.ic / helpHeadCountList.slice(-1) >= 1
+                      ? (1 / 3.75) * 287 + `vw`
+                      : (userInfo.ic / helpHeadCountList.slice(-1)) *
+                          (1 / 3.75) *
+                          287 +
+                        `vw`,
+                }"
+              >
+                <i
+                  :class="[
+                    'icon',
+                    { minIcon: userInfo.ic == 0 },
+                    { minIcon: userInfo.ic >= helpHeadCountList.slice(-1) },
+                  ]"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="unit unit2">
+            <p
+              :class="[
+                userInfo.ic >= 5
+                  ? 'scaleLong-active scaleLong5-active'
+                  : 'scaleLong scaleLong5',
+              ]"
+            >
+              100珑珠
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 15
+                  ? 'scaleLong-active scaleLong15-active'
+                  : 'scaleLong scaleLong15',
+              ]"
+            >
+              315珑珠
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 25
+                  ? 'scaleLong-active scaleLong25-active'
+                  : 'scaleLong scaleLong25',
+              ]"
+            >
+              555珑珠
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 55
+                  ? 'scaleLong-active scaleLong55-active'
+                  : 'scaleLong scaleLong55',
+              ]"
+            >
+              1355珑珠
+            </p>
+            <p
+              :class="[
+                userInfo.ic >= 85
+                  ? 'scaleLong-active scaleLong85-active'
+                  : 'scaleLong scaleLong85',
+              ]"
+            >
+              2355珑珠
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="history-help">
+        <div class="history-left">
+          <div class="history-left-ly">
+            <ul
+              class="complete-user"
+              v-if="
+                rankingsInfo && rankingsInfo.ll && rankingsInfo.ll.length > 0
+              "
+            >
+              <li v-for="(item, index) in rankingsInfo.ll" :key="index">
+                用户{{ item.nn }}已达成{{ item.pn }}
+              </li>
+            </ul>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂无内容</div>
+            </div>
+          </div>
+        </div>
+        <div class="history-right">
+          <div class="divided-up">
+            已瓜分
+            <span>{{ numberInfo.longZhuCount }}</span>
+            珑珠
+          </div>
+          <div class="divided-cumulative">当前累计获得</div>
+          <div class="divided-totel">
+            <span>{{ getLongShuCount(userInfo.ic) }}</span>
+            珑珠
+          </div>
+          <div
+            data-type="invitation"
+            :class="['btnInvitation', userInfo.cd <= 0 ? 'btnOverTime' : '']"
+            v-on:click="handleInvitation"
+          >
+            邀请好友来助力
+          </div>
+          <span class="activeOverDesc" v-if="userInfo.cd <= 0">
+            来晚了! 助力已结束
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- 助力记录和TOP10榜单 -->
+    <div class="record-box">
+      <div class="active-countDown">
+        <van-count-down :time="userInfo.cd * 1000">
+          <template #default="timeData">
+            <span class="block day">{{ formateNumber(timeData.days) }}</span>
+            <span class="block hours">{{ formateNumber(timeData.hours) }}</span>
+            <span class="block minutes">
+              {{ formateNumber(timeData.minutes) }}
+            </span>
+            <span class="block seconds">
+              {{ formateNumber(timeData.seconds) }}
+            </span>
+          </template>
+        </van-count-down>
+      </div>
+      <div class="record-list">
+        <div class="tabs">
+          <div class="tab-title" v-on:click="handleSelectTab">
+            <span tabIndex="1" :class="[activeTab == 1 ? 'active' : '']">
+              助力记录
+            </span>
+            <span tabIndex="2" :class="[activeTab == 2 ? 'active' : '']">
+              TOP10榜单
+            </span>
+          </div>
+          <div v-if="activeTab == 1" class="tab-content">
+            <div class="helpUserList" v-if="helpsList && helpsList.length > 0">
+              <div
+                class="helpUser"
+                v-for="(item, index) in helpsList"
+                :key="index"
+              >
+                <img v-if="item.img" class="headerImage" :src="item.img" />
+                <img
+                  v-else
+                  class="headerImage"
+                  src="https://goyoo-assets.longfor.com/prod/app/uV3bLfc3BkfKQa6bZfrzfA.png"
+                />
+                <ul class="descriptList">
+                  <li class="nn">{{ item.nn }}</li>
+                  <li class="descript">
+                    {{ dayjs(item.ht).month() + 1 }}月{{
+                      dayjs(item.ht).date()
+                    }}日前来助力
+                  </li>
+                  <!-- {dayjs(item.ht).month()+1}}月{{dayjs(item.ht).date() -->
+                </ul>
+              </div>
+            </div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂时还没有小伙伴助力</div>
+            </div>
+          </div>
+          <div v-else-if="activeTab == 2" class="tab-content tab-topTen">
+            <div v-if="rankingsInfo && rankingsInfo.rl.length > 0">
+              <ul class="title">
+                <li class="firstCol">名次</li>
+                <li class="twoCol">手机号</li>
+                <li class="threeCol">助力值</li>
+              </ul>
+              <div class="tab-topContain">
+                <ul v-for="(item, index) in rankingsInfo.rl" :key="index">
+                  <li class="firstCol">
+                    <i
+                      v-if="index <= 2"
+                      :class="[
+                        index == 0 ? 'number1' : '',
+                        index == 1 ? 'number2' : '',
+                        index == 2 ? 'number3' : '',
+                        'icon',
+                      ]"
+                    ></i>
+                    <span v-else>{{ index + 1 }}</span>
+                  </li>
+                  <li class="twoCol">{{ item.nn }}</li>
+                  <li class="threeCol">{{ item.ic }}人</li>
+                </ul>
+              </div>
+            </div>
+            <div class="emptyTemplateLy" v-else>
+              <div class="emptyTemplate"></div>
+              <div class="emptyDescript">暂无内容</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>*珑珠积分(简称珑珠)是</p>
+      <p class="context">
+        广大客户在龙湖集团旗下各场景中消费或参与活动所获得的积分
+      </p>
+    </div>
+
+    <!-- 弹窗模态框 -->
+    <van-overlay
+      :show="this.popParm.isShow"
+      @click="handleClosed"
+      :lock-scroll="false"
+    >
+      <modelBox
+        :buttonContext="this.popParm.buttonContext"
+        :descript="this.popParm.descript"
+        :popType="this.popParm.popType"
+        @closed="handleClosed"
+        @confirm="handleConfirm"
+      ></modelBox>
+    </van-overlay>
+  </div>
+</template>
+<script lang="ts">
+import { Component, Inject } from "vue-property-decorator";
+import Base from "./Base";
+import {
+  getNumber,
+  getRankings,
+  getHelpMy,
+  getMyHelpers,
+  helpStart,
+} from "@/service";
+import { getToken } from "@/utils/guanyu";
+import { setMiniProgramShare, showAppShare } from "@/utils/guanyu";
+import modelBox from "@/components/modelBox.vue";
+import dayjs from "dayjs";
+import { toLogin } from "../utils/guanyu";
+@Component({
+  components: {
+    modelBox,
+  },
+})
+export default class Index extends Base {
+  /**
+   * 运行环境
+   * 来源 App.vue中定义
+   */
+  @Inject() visitSource!: string;
+  /**
+   * 分享方法
+   * 来源 App.vue中定义
+   */
+  @Inject() share!: (url: string) => void;
+
+  popParm = {
+    isShow: false,
+    buttonContext: "",
+    popType: 3,
+    descript: "",
+  };
+  helpHeadCountList: any = [5, 15, 25, 55, 85]; //获取奖励比例图-助力人头数
+  helpLongZhuList: any = [100, 315, 555, 1355, 2355]; //获取奖励比例图-珑珠数量
+  dayjs: any = dayjs;
+  userInfo: any = {}; // 我的用户信息 ||  被助力人信息
+  numberInfo: any = {}; //获取活动编号信息
+  rankingsInfo: any = {}; //排行榜
+  helpsList: any = []; // 我的好友助力榜
+  invitationId: any = "";
+  activeTab = 1;
+  loading = false;
+  token = getToken();
+  async mounted() {
+    document.title = "新星集好运，租房更省力";
+    if (this.visitSource === "小程序") {
+      this.share(window.location.href.split("?")[0]);
+    }
+    window.zhuge.track('冠寓5周年助力活动pv');
+    await this.getNum();
+    await this.getHelpMy();
+    await this.getRankings();
+    await this.getMyHelpers();
+  }
+  async getNum() {
+    const res = await getNumber({
+      type: 1,
+    });
+    if ((res as any)?.code == "0") {
+      this.numberInfo = res?.data;
+    }
+  }
+  async getRankings() {
+    const res = await getRankings({
+      number: (this.numberInfo as any).an,
+    });
+    if ((res as any)?.code == "0") {
+      this.rankingsInfo = res?.data;
+    }
+  }
+  async getHelpMy() {
+    const res = await getHelpMy({
+      an: (this.numberInfo as any).an,
+      t: this.token,
+    });
+    if ((res as any)?.code == "0") {
+      this.userInfo = res?.data;
+      // this.userInfo.ic = 99; //todo
+      // this.userInfo.cd = 0; //todo
+    }
+  }
+  async getMyHelpers(){
+    const res = await getMyHelpers({
+      n: (this.numberInfo as any).an,
+      t: this.token,
+    });
+    if ((res as any)?.code == "0") {
+      this.helpsList = res?.data;
+    }
+  }
+  async helpStart() {
+    const res = await helpStart({
+      an: (this.numberInfo as any).an,
+      city: "全国",
+      t: this.token, //todo
+    });
+    if ((res as any)?.code == "0") {
+      return (res as any)?.data?.s;
+    } else {
+      this.popParm.descript = (res as any)?.msg;
+      this.popParm.popType = 3;
+      this.popParm.isShow = true;
+    }
+  }
+  async handleConfirm() {
+    const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+    this.share(url);
+    this.popParm.isShow = false;
+  }
+  async handleInvitation(): Promise<void> {
+    window.zhuge.track('[邀请更多好友助力]点击量');
+    // 未登录
+    if (!getToken()) {
+      toLogin();
+    } else {
+      // 倒计时>0
+      if (this.userInfo && this.userInfo?.cd > 0) {
+        const res = await helpStart({
+          an: (this.numberInfo as any).an,
+          city: "全国",
+          t: this.token, //todo
+        });
+        if ((res as any)?.code == "0") {
+          this.invitationId = (res as any)?.data?.s;
+          if (this.visitSource === "小程序") {
+            const url = `${window.location.origin}/fe/five-years-help/#/friendsHelp?id=${this.invitationId}`;
+            this.popParm.popType = 2; //微信内引导层
+            this.popParm.isShow = true;
+            this.share(url);
+          } else {
+            this.popParm.descript = "发送至微信好友或群聊";
+            this.popParm.buttonContext = "发送";
+            this.popParm.popType = 3; //分享成功
+            this.popParm.isShow = true;
+          }
+        } else if ((res as any)?.code >= 100) {
+          this.popParm.descript = (res as any)?.msg;
+          this.popParm.popType = 4; //错误信息
+          this.popParm.isShow = true;
+        }
+      }
+    }
+  }
+  getLongShuCount(count: any) {
+    if (count < this.helpHeadCountList[0]) {
+      return 0;
+    } else {
+      const res = this.helpHeadCountList.filter(function (item: any) {
+        return item <= count;
+      });
+      const index = this.helpHeadCountList.indexOf(
+        res
+          .sort(function (a: any, b: any) {
+            return a - b;
+          })
+          .slice(-1)[0]
+      );
+      return this.helpLongZhuList[index];
+    }
+  }
+  handleClosed(): void {
+    this.popParm.isShow = false;
+  }
+  handleRule(): void {
+    this.popParm.popType = 1;
+    this.popParm.isShow = true;
+  }
+  handleSelectTab($event: any): void {
+    let tabIndex = $event.target.getAttribute("tabIndex");
+    this.activeTab = tabIndex;
+  }
+  formateNumber(t: any) {
+    if (t < 10) {
+      return "0" + t;
+    }
+    return t;
+  }
+}
+</script>
+
+/* less也支持 */
+<style lang="scss" scoped>
+.btnOverTime {
+  opacity: 0.6;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.7;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 300;
+  padding: 20px 12px 25px 25px;
+  .context {
+    margin-top: 3px;
+  }
+}
+.firstCol {
+  display: flex;
+  justify-content: center;
+  width: 32px;
+  text-align: center;
+  font-size: 15px;
+}
+.twoCol {
+  width: 100px;
+  font-size: 15px;
+}
+.threeCol {
+  display: flex;
+  justify-content: center;
+  width: 52px;
+  font-size: 15px;
+}
+.barLayout {
+  position: absolute;
+  width: 100%;
+  top: 82.3px;
+}
+.Bar {
+  position: relative;
+  margin: 0px 46px;
+  .rateBg {
+    background: url(https://goyoo-assets.longfor.com/prod/app/GMIvYIhkavkt20V9v0h8tg.png)
+      0 0 no-repeat;
+    background-size: cover;
+  }
+}
+.Bar .icon {
+  background: url(https://goyoo-assets.longfor.com/prod/app/Pt0RE6MSbMbSTe7nCC4u-w.png) 0 0 no-repeat;
+  background-size: contain;
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  right: -22px;
+  top: -9px;
+}
+.Bar .minIcon {
+  background: url(https://goyoo-assets.longfor.com/prod/app/62lROyQgTvluMRTvAasw1A.png) 0 0 no-repeat;
+  background-size: contain;
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  right: -22px;
+  top: -13px;
+}
+.Bar .maxIcon {
+  background: url(https://goyoo-assets.longfor.com/prod/app/62lROyQgTvluMRTvAasw1A.png) 0 0 no-repeat;
+  background-size: contain;
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  right: -8px;
+  top: -13px;
+}
+.Bar div { 
+  display: block;
+  position: relative;
+  height: 9px; /* 高度 */
+  line-height: 20px;
+}
+.Bar div span {
+  position: absolute;
+  width: 200px; /* 宽度 */
+  text-align: center;
+  font-weight: bold;
+  background: blue;
+}
+.page__index {
+  background: linear-gradient(to right, #000c38, #250476, #012f5b);
+}
+.ruleBtn {
+  position: fixed;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  right: -2px;
+  top: 267px;
+  width: 22px;
+  height: 74px;
+  font-weight: 500;
+  color: #00FFFF;
+  text-shadow: 0px 0px 12px #000000, 0px 2px 4px #00ffff;
+  border: 1px solid #00FFFF;
+  border-right: 0;
+  border-radius: 12px 0 0 12px;
+  z-index: 98;
+  font-size: 12px;
+  line-height: 15px;
+}
+.banner-box {
+  .banner {
+    background: url("https://goyoo-assets.longfor.com/prod/app/WxEf4X2Y16pNNSANEcWULQ.png") 0 0 no-repeat;
+    background-size: contain;
+    height: 299px;
+    width: 375px;
+  }
+  .banner-photoFrame {
+    position: relative;
+    background: url("https://goyoo-assets.longfor.com/prod/app/idNHTU4-wUhMrQeMKmycrw.png") 0 0 no-repeat;
+    background-size: contain;
+    height: 320px;
+    width: 375px;
+    position: absolute;
+    // z-index: 999;
+    top: 76px;
+    display: flex;
+    justify-content: center;
+    .active-overTime {
+      position: absolute;
+      bottom: 158px;
+      color: #fff;
+      text-shadow: 0px 0px 8px #fd08fe;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .banner-operationPlatform {
+    background: url("https://goyoo-assets.longfor.com/prod/app/BcLqiWI1B8Z8Mjbhk2hDmA.png") 0 0 no-repeat;
+    background-size: cover;
+    height: 105px;
+    width: 375px;
+    top: 178px;
+    position: absolute;
+  }
+}
+.colon {
+  display: inline-block;
+  margin: 0 4px;
+  color: #ee0a24;
+  vertical-align: middle;
+}
+.block {
+  color: #fff;
+  text-shadow: 0 0 8px #fd08fe;
+  font-size: 18px;
+}
+.help-box {
+  margin-top: 32px;
+  .current-help {
+    position: relative;
+    background: url("https://goyoo-assets.longfor.com/prod/app/Ue44dyjJRg2TRxyKRRK1Og.png") 0 0 no-repeat;
+    background-size: contain;
+    // height: 205px;
+    height: 160px;
+    color: #fff;
+    .scale,
+    .scaleLong {
+      color: #fff;
+      font-weight: 400;
+    }
+    .scale-active,
+    .scaleLong-active {
+      text-shadow: 0px 0px 8px #fd08fe;
+      // font-weight: bold;
+    }
+    // 5珑珠刻度
+    .scale5 {
+      justify-content: end;
+      width: 47px;
+      opacity: 0.5;
+    }
+    .scale5-active {
+      justify-content: end;
+      width: 47px;
+    }
+    .scaleLong5 {
+      justify-content: end;
+      width: 48px;
+      opacity: 0.5;
+    }
+    .scaleLong5-active {
+      justify-content: end;
+      width: 48px;
+    }
+    // 15珑珠刻度
+    .scale15 {
+      justify-content: end;
+      width: 39px;
+      opacity: 0.5;
+    }
+    .scale15-active {
+      justify-content: center;
+      width: 39px;
+    }
+    .scaleLong15 {
+      justify-content: center;
+      width: 50px;
+      opacity: 0.5;
+    }
+    .scaleLong15-active {
+      justify-content: center;
+      width: 50px;
+    }
+    // 25珑珠刻度
+    .scale25 {
+      justify-content: center;
+      width: 43px;
+      opacity: 0.5;
+    }
+    .scale25-active {
+      justify-content: center;
+      width: 43px;
+    }
+    .scaleLong25 {
+      justify-content: center;
+      width: 52px;
+      opacity: 0.5;
+    }
+    .scaleLong25-active {
+      justify-content: center;
+      width: 52px;
+    }
+    // 55珑珠刻度
+    .scale55 {
+      justify-content: center;
+      width: 92px;
+      opacity: 0.5;
+    }
+    .scale55-active {
+      justify-content: center;
+      width: 92px;
+    }
+    .scaleLong55 {
+      justify-content: center;
+      width: 83px;
+      opacity: 0.5;
+    }
+    .scaleLong55-active {
+      justify-content: center;
+      width: 83px;
+    }
+    // 85珑珠刻度
+    .scale85 {
+      justify-content: center;
+      width: 93px;
+      opacity: 0.5;
+    }
+    .scale85-active {
+      justify-content: center;
+      width: 93px;
+    }
+    .scaleLong85 {
+      justify-content: center;
+      width: 83px;
+      opacity: 0.5;
+    }
+    .scaleLong85-active {
+      justify-content: center;
+      width: 83px;
+    }
+    .help-rate {
+      margin-top: 18px;
+    }
+    .help-title {
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+      font-weight: bolder;
+      color: #fefffe;
+    }
+    .unit {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      p {
+        display: flex;
+        justify-content: flex-end;
+        // font-weight: 400;
+      }
+    }
+    .unit1 {
+      position: absolute;
+      top: 53px;
+      text-align: center;
+      left: 27px;
+    }
+    .unit2 {
+      position: absolute;
+      bottom: 40px;
+      left: 27px;
+      text-align: center;
+    }
+  }
+  .history-help {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 16px 14.5px;
+    .emptyTemplate {
+      background: url("https://goyoo-assets.longfor.com/prod/app/pMkkAKCV1UcZixBhZ4WYBw.png") 0 0 no-repeat;
+      background-size: contain;
+      background-position: center;
+      height: 47px;
+      margin-top: 50px;
+    }
+    .emptyDescript {
+      text-align: center;
+      color: #fff;
+      opacity: 0.7;
+      margin-top: 12px;
+    }
+    .history-left {
+      display: flex;
+      align-items: center;
+      width: 149px;
+      height: 199px;
+      background: url("https://goyoo-assets.longfor.com/prod/app/PDO0sUdJUrDpMp3gzRXkrw.png")
+          no-repeat,
+        linear-gradient(270deg, #000c38 0%, #250476 0%, #012f5b 100%);
+      background-size: cover;
+      border-radius: 8px;
+      border-radius: 8px;
+      .history-left-ly {
+        width: 149px;
+        height: 170px;
+        overflow-y: auto;
+      }
+      .complete-user {
+        animation: myMove 5s linear infinite;
+        animation-fill-mode: forwards;
+      }
+      @keyframes myMove {
+        0% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-30px);
+        }
+
+        100% {
+          transform: translateY(-60px);
+        }
+      }
+      ul {
+        margin: 0 auto;
+        padding: 23px 0;
+        font-size: 12px;
+        color: #ffffff;
+        letter-spacing: 0;
+        width: 102px;
+        // line-height: 20px;
+      }
+      li:not(:first-child) {
+        margin-top: 11px;
+      }
+    }
+    .history-right {
+      position: relative;
+      width: 187px;
+      height: 199px;
+      background: url("https://goyoo-assets.longfor.com/prod/app/Veb0G3xGqprsdYLanJ3Q2A.png")
+          no-repeat,
+        linear-gradient(270deg, #000c38 0%, #250476 0%, #012f5b 100%);
+      background-size: cover;
+      border-radius: 8px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .divided-up {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        letter-spacing: 0;
+        text-align: center;
+        margin-top: 30px;
+        span {
+          text-shadow: 0 0 8px #fd08fe;
+        }
+      }
+      .divided-cumulative {
+        margin-top: 19.5px;
+        opacity: 0.6;
+        color: #ffffff;
+      }
+      .divided-totel {
+        font-size: 14px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        span {
+          font-family: DINAlternate-Bold;
+          font-size: 40px;
+          color: #fded65;
+          margin-right: 7.5px;
+        }
+      }
+      .btnInvitation {
+        position: absolute;
+        bottom: 24px;
+        // margin-top: 7.5px;
+        width: 158.5px;
+        height: 33.5px;
+        line-height: 37.5px;
+        text-align: center;
+        vertical-align: middle;
+        background: url("https://goyoo-assets.longfor.com//prod/app/JTEYpVYQyxBFGYaFGSzRVQ.png") 0 0 no-repeat;
+        background-size: cover;
+        font-weight: 500;
+        font-size: 14px;
+        color: #0E0748;
+      }
+      .btnOverTime {
+        opacity: 0.6;
+      }
+      .activeOverDesc {
+        position: absolute;
+        bottom: 5px;
+        color: #fff;
+        margin-top: 5.5px;
+        font-weight: 300;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+.record-box {
+  .active-countDown {
+    position: relative;
+    background: url("https://goyoo-assets.longfor.com/prod/app/anwWTrFUV6RqWAFWMBaypg.png") 0 0 no-repeat;
+    background-size: contain;
+    height: 84px;
+    display: flex;
+    justify-content: end;
+    font-size: 12px;
+    font-weight: 0.5;
+    text-shadow: 0px 0px 8px #fd08fe;
+    .day {
+      position: absolute;
+      top: 35px;
+      right: 185px;
+    }
+    .hours {
+      position: absolute;
+      top: 35px;
+      right: 135px;
+    }
+    .minutes {
+      position: absolute;
+      top: 35px;
+      right: 85px;
+    }
+    .seconds {
+      position: absolute;
+      top: 35px;
+      right: 36px;
+    }
+  }
+  .record-list {
+    background: url("https://goyoo-assets.longfor.com/prod/app/CJrWh_APU7OtTwiaK6UNuw.png") 0 0 no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 369px;
+    color: #fff;
+    .tabs {
+      width: 340px;
+      height: 100%;
+      margin: 0 auto;
+      padding-top: 18px;
+      .tab-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-size: 18px;
+        margin-top: 16px;
+        span {
+          display: inline-block;
+          width: 160px;
+          outline: none;
+          text-align: center;
+          opacity: 0.7;
+        }
+      }
+      .active {
+        text-shadow: 0px 0px 8px #fd08fe;
+        font-weight: bold;
+         opacity: 1 !important;
+      }
+      .tab-content {
+        margin: 30px 23px 0 23px;
+        .helpUserList {
+          overflow-y: auto;
+          height: 240px;
+        }
+        .title {
+          font-size: 15px;
+        }
+        .helpUser {
+          display: flex;
+          flex-direction: row;
+          margin-top: 18px;
+          margin-left: 24px;
+          .headerImage {
+            width: 40px;
+            height: 40px;
+            // border: 1px solid red;
+            margin-right: 10px;
+            border-radius: 50px;
+          }
+          .descriptList{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .nn{
+            font-size: 15px;
+          }
+
+          .descript {
+            opacity: 0.7;
+            font-size: 13px;
+          }
+        }
+        .emptyTemplate {
+          background: url("https://goyoo-assets.longfor.com/prod/app/NMwpl-lA6uDhLSWYwZEfPw.png") 0 0 no-repeat;
+          background-size: contain;
+          background-position: center;
+          height: 100px;
+          margin-top: 70px;
+        }
+        .emptyDescript {
+          width: 100%;
+          text-align: center;
+          color: #fff;
+          opacity: 0.7;
+          margin-top: 12px;
+        }
+      }
+      .tab-topTen {
+        .title {
+          color: #ffffff;
+          opacity: 0.7;
+        }
+        .tab-topContain {
+          overflow-y: auto;
+          height: 210px;
+        }
+        .icon {
+          height: 21px;
+          width: 21px;
+        }
+        .number1 {
+          background: url("https://goyoo-assets.longfor.com/prod/app/7rkQrycsgJY-noaJ9NqxFA.png") 0 0 no-repeat;
+          background-size: contain;
+        }
+        .number2 {
+          background: url("https://goyoo-assets.longfor.com/prod/app/Dz7Jy73FMbhMxpFvAd7RzQ.png") 0 0 no-repeat;
+          background-size: contain;
+        }
+        .number3 {
+          background: url("https://goyoo-assets.longfor.com/prod/app/hL680IJlvnSEy8pEjYKszw.png") 0 0 no-repeat;
+          background-size: contain;
+        }
+        ul {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin: 0 20px;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+}
+</style>
