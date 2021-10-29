@@ -222,7 +222,7 @@ $asce: #22cb98;
     background: #182966;
     border-radius: 100px;
     color: #90a4c3;
-    font-size: 42px;
+    font-size: 45px;
     margin-left: 40px;
   }
 
