@@ -1,7 +1,8 @@
 import service from "./service";
 import isPlainObject from "lodash/isPlainObject";
-import { AnyObject, ResponseData } from "@guanyu/shared";
 import { Notify } from "vant";
+import { AxiosRequestConfig } from "axios";
+import { ResponseData } from "@guanyu/shared";
 
 const unify = <T>(url: string, obj: T) => {
   if (!isPlainObject(obj)) return url;
@@ -16,7 +17,9 @@ const loading = {
   count: 0,
 };
 
-export type ServiceOptions = { showLoading: boolean; headers?: AnyObject };
+export type ServiceOptions = {
+  showLoading: boolean;
+} & AxiosRequestConfig;
 
 const mergeOptions = (partial?: Partial<ServiceOptions>): ServiceOptions => {
   return { showLoading: true, ...partial };
@@ -54,7 +57,7 @@ const http = {
     before(options);
     const res = await service.get<unknown, ResponseData<T> | undefined>(
       unify(url, params),
-      { params, headers: options?.headers }
+      { params, ...options }
     );
     after(options);
     return res;
@@ -69,7 +72,7 @@ const http = {
     const res = await service.post<unknown, ResponseData<T> | undefined>(
       unify(url, data),
       data,
-      { headers: options?.headers }
+      options
     );
     after(options);
     return res;
