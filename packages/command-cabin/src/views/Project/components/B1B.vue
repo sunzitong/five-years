@@ -23,7 +23,7 @@ import { Component, Prop, Ref, Watch } from "vue-property-decorator";
 import echarts from "@/plugins/echarts";
 import { Base } from "@/views/Base";
 import mitter, { EventName } from "@/utils/mitter";
-import { EChartsOption } from "echarts/types/dist/shared";
+import { AnyObject } from "@guanyu/shared";
 
 @Component({
   components: {},
@@ -123,7 +123,7 @@ export default class B1B extends Base {
     }
 
     const { myChart } = this;
-    let option: EChartsOption = {
+    let option = {
       tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -140,7 +140,7 @@ export default class B1B extends Base {
         borderColor: "transparent",
         borderWidth: 2,
         padding: [8, 30],
-        formatter: (params: any) => {
+        formatter: (params: AnyObject[]) => {
           let str = `<div class='tooltip'><div class="tool-title">第`;
           let unit = "";
 
@@ -158,7 +158,7 @@ export default class B1B extends Base {
             unit = "元";
           }
 
-          params.forEach((el: any) => {
+          params.forEach((el) => {
             if (el.axisValue < this.xTag + 1) {
               if (el.seriesName !== "月度运维版") {
                 str += `<div class="tool-item tool-item-${
@@ -229,7 +229,7 @@ export default class B1B extends Base {
       xAxis: [
         {
           name: "运营年",
-          nameLocation: "middle",
+          nameLocation: "center",
           nameGap: 0,
           nameTextStyle: {
             color: "#8090AA",
@@ -245,7 +245,7 @@ export default class B1B extends Base {
           axisLine: {
             show: true,
             lineStyle: {
-              width: 2,
+              width: "2",
               color: new echarts.graphic.LinearGradient(
                 1,
                 0,
@@ -268,9 +268,9 @@ export default class B1B extends Base {
             lineHeight: 36,
             formatter: (value: any) => {
               if (this.xTag !== this.monthTag) {
-                return parseInt(value).toString();
+                return parseInt(value);
               } else {
-                return Math.ceil(value / 12).toString();
+                return Math.ceil(value / 12);
               }
             },
           },
@@ -402,10 +402,18 @@ export default class B1B extends Base {
           name: "投资任务书版",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel0[this.tabTag],
-          lineStyle: { color: "#57A6FB", width: 4 },
+          lineStyle: { color: "#57A6FB", width: 4, borderRdius: 0 },
           type: "line",
           symbol: "none",
-          itemStyle: { color: "#57A6FB" },
+          itemStyle: { ocolor: "#57A6FB" },
+          markLine: {
+            symbol: "none",
+            type: "dashed",
+            color: "rgb(120, 200, 211,0.44)",
+            width: 2,
+            label: { show: false },
+            data: { xAxis: this.month },
+          },
           areaStyle: {
             color: new echarts.graphic.LinearGradient(
               0,
@@ -423,10 +431,10 @@ export default class B1B extends Base {
           name: "最新过会版",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel1[this.tabTag],
-          lineStyle: { color: "#A957FB", width: 4 },
+          lineStyle: { color: "#A957FB", width: 4, borderRdius: 0 },
           type: "line",
           symbol: "none",
-          itemStyle: { color: "#A957FB" },
+          itemStyle: { ocolor: "#A957FB" },
           areaStyle: {
             color: new echarts.graphic.LinearGradient(
               0,
@@ -444,7 +452,7 @@ export default class B1B extends Base {
           name: "月度运维版",
           yAxisIndex: this.yIndex[this.tabTag],
           data: this.yLabel2[this.tabTag],
-          lineStyle: { color: "#F7D14A", width: 4 },
+          lineStyle: { color: "#F7D14A", width: 4, borderRdius: 0 },
           type: "line",
           symbol: "none",
           areaStyle: {
@@ -466,8 +474,8 @@ export default class B1B extends Base {
           data: this.yLabel3[this.tabTag],
           type: "line",
           symbol: "none",
-          itemStyle: { color: "#57FBB6" },
-          lineStyle: { color: "#57FBB6", width: 4 },
+          itemStyle: { ocolor: "#57FBB6" },
+          lineStyle: { color: "#57FBB6", width: 4, borderRdius: 0 },
           areaStyle: {
             color: new echarts.graphic.LinearGradient(
               0,
@@ -480,6 +488,21 @@ export default class B1B extends Base {
               ]
             ),
           },
+          markLine: {
+            // 标记虚线
+            symbol: "none",
+            label: { show: false },
+            lineStyle: {
+              type: "dashed",
+              color: "rgba(120, 200, 211,0.44)",
+              width: 2,
+            },
+            data: [
+              {
+                xAxis: this.xTag,
+              },
+            ],
+          },
           markArea: {
             silent: true,
             data: [
@@ -491,10 +514,11 @@ export default class B1B extends Base {
                   label: {
                     show: true,
                     offset: [0, -58],
-                    position: "top", // markArea中文字（name）位置
+                    position: "outsideTop", // markArea中文字（name）位置
                     color: "#ffff", // markArea中文字（name）颜色
                     fontSize: 36,
                     lineHeight: 36,
+                    fill: "#FFFFFF",
                   },
                 },
                 { xAxis: this.xTag },

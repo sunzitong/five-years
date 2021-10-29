@@ -382,7 +382,6 @@ export default class Login extends Base {
    * 退出登录
    */
   async fetchLogout() {
-    return;
     // 清空所有数据
     removeStore();
     if (localStorage.getItem("token")) {
