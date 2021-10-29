@@ -542,6 +542,29 @@ export default class B1B extends Base {
       ],
     };
     option && myChart.setOption(option, true);
+
+    /**
+     * 鼠标离开图标显示提示框
+     */
+    this.showTooltip();
+    myChart.on("globalout", this.showTooltip);
+  }
+
+  @Watch("xLabel", { deep: true })
+  onPropsChange() {
+    this.showTooltip();
+  }
+
+  /**
+   * 显示提示框
+   */
+  showTooltip() {
+    this.myChart &&
+      this.myChart.dispatchAction({
+        type: "showTip",
+        seriesIndex: 3, // 显示第几个series
+        dataIndex: Math.max(this.xTag ?? 0, 0), // 显示第几个数据
+      });
   }
 }
 </script>
