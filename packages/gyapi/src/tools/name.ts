@@ -59,3 +59,20 @@ export const getApiPath = (api: Api, toParams = false) => {
 export const getUpdateTime = (api: Api) => {
   return dayjs(api.up_time * 1000).format("YYYY/M/D H:m:s");
 };
+
+/**
+ * 是否是文件流接口
+ * @param api 接口
+ */
+export const isExportApi = (api: Api) => {
+  return (
+    /** 导出 export*/
+    ((api.title.includes("导出") &&
+      api.path.toLowerCase().includes("export")) ||
+      /** 下载 download */
+      (api.title.includes("下载") &&
+        api.path.toLowerCase().includes("download"))) &&
+    /** 不设置返回值 */
+    !api.res_body?.trim()
+  );
+};
