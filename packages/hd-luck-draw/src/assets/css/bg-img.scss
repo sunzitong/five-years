@@ -1,0 +1,17 @@
+@import "./variable.scss";
+
+/** 背景图
+    $VUE_APP_BASE_IMG 在vue.config.js配置
+    process.env.VUE_APP_BASE_IMG
+*/
+$img-map: (
+  "404": "404.png",
+  "share": "share.png",
+  "close": "close.png",
+);
+@each $label, $map in $img-map {
+  %bg-img-#{$label} {
+    @extend %bg-top;
+    background-image: url($VUE_APP_BASE_IMG+$map);
+  }
+}

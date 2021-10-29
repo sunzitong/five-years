@@ -62,6 +62,10 @@ export default class C1 extends Base implements IFetch {
   async fetch() {
     const response = await useStore(fetchNumYearly, {
       key: StoreKey.HomeNumYearly,
+      params: {
+        orgType: this.store.global.dataLevel,
+        orgId: this.store.global.orgTree.orgId,
+      },
     });
     if (response?.status === "ok") {
       this.response = iwant.object(response.data);

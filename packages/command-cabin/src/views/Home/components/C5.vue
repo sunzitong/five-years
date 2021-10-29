@@ -10,7 +10,12 @@
             @click="activeYear = item.year"
           >
             <div class="details">
-              <div class="year">{{ item.year }}</div>
+              <div class="year">
+                {{ item.year }}
+                <span class="tag" v-if="item.year === currentYear">
+                  （实时）
+                </span>
+              </div>
               <ul class="part">
                 <li>新增获取间数：{{ formatValue(item.newRoomNum) }}万间</li>
                 <li>新增开业间数：{{ formatValue(item.newOpenNum) }}万间</li>
@@ -66,6 +71,7 @@ import {
   fetchEvents,
 } from "@/service/analysis/bigScreen/mainBoard/center/events";
 import { iwant } from "@guanyu/shared";
+import dayjs from "dayjs";
 
 @Component({
   components: {
@@ -83,11 +89,17 @@ export default class C5 extends Base implements IFetch {
 
   activeYear = 0;
 
+  currentYear = 0;
+
   get list() {
     return this.response.slice(
       this.startIndex,
       this.startIndex + this.itemLength
     );
+  }
+
+  created() {
+    this.currentYear = dayjs(this.store.env.NOW).year();
   }
 
   async fetch() {
@@ -181,8 +193,17 @@ export default class C5 extends Base implements IFetch {
 
     .year {
       font-size: 36px;
-      color: #ffffff;
+      color: #fff;
       margin: 32px 20px 24px;
+      display: flex;
+      align-items: center;
+      .tag {
+        background: #182966;
+        color: #90a4c3;
+        border-radius: 50px;
+        font-size: 30px;
+        margin-left: 10px;
+      }
     }
     .part {
       background: linear-gradient(

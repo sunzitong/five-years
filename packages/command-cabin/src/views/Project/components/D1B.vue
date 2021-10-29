@@ -221,12 +221,11 @@ $asce: #22cb98;
 
   .pointOfTime {
     display: inline-block;
-    padding: 8px 26px;
+    padding: 2px 26px;
     background: #182966;
-    border-radius: 45px;
+    border-radius: 100px;
     color: #90a4c3;
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 45px;
     margin-left: 40px;
   }
 

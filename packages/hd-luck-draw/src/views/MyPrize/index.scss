@@ -1,0 +1,59 @@
+.mt-prize {
+    overflow: hidden;
+    padding: 0 15px 12px 15px;
+}
+
+.prize-List {
+    background: #FFFFFF;
+    margin-top: 12px;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    .top-cont {
+        display: flex;
+    }
+
+    .img-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 13px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .b-title {
+        h2 {
+            font-size: 18px;
+            color: #333333;
+            font-weight: bold;
+            line-height: 25px;
+            padding-top: 1px;
+        }
+        .status {
+            font-size: 14px;
+            color: #333333;
+            line-height: 20px;
+            padding-top: 10px;
+        }
+        .address-btn {
+            font-size: 14px;
+            color: #3757EC;
+            width: 99px;
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            border: 1px solid rgba(55,87,236,1);
+            margin-top: 10px;
+        }
+    }
+    .prize-tip {
+        font-size: 14px;
+        color: #999999;
+        line-height: 20px;
+        margin-top: 15px;
+        border-top: 1px solid #F7F7F7;
+        padding-top: 10px;
+    }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>隐私政策</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <style>
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video, input {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font-weight: normal;
+        vertical-align: baseline;
+    }
+    
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, menu, nav, section {
+        display: block;
+    }
+    
+    body {
+        line-height: 1;
+    }
+    
+    blockquote, q {
+        quotes: none;
+    }
+    
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: none;
+    }
+    
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    
+    /* custom */
+    a {
+        color: #7e8c8d;
+        text-decoration: none;
+        -webkit-backface-visibility: hidden;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    
+    ::-webkit-scrollbar-track-piece {
+        background-color: rgba(0, 0, 0, 0.2);
+        -webkit-border-radius: 6px;
+    }
+    
+    ::-webkit-scrollbar-thumb:vertical {
+        height: 5px;
+        background-color: rgba(125, 125, 125, 0.7);
+        -webkit-border-radius: 6px;
+    }
+    
+    ::-webkit-scrollbar-thumb:horizontal {
+        width: 5px;
+        background-color: rgba(125, 125, 125, 0.7);
+        -webkit-border-radius: 6px;
+    }
+    
+    html, body {
+        width: 100%;
+    }
+    
+    body {
+        -webkit-text-size-adjust: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+  </style>
+  <script type = "text/javascript">
+    (function flexible (window, document) {
+      var docEl = document.documentElement
+      var dpr = window.devicePixelRatio || 1
+
+      // adjust body font size
+      function setBodyFontSize () {
+        if (document.body) {
+          document.body.style.fontSize = (12 * dpr) + 'px'
+        }
+        else {
+          document.addEventListener('DOMContentLoaded', setBodyFontSize)
+        }
+      }
+      setBodyFontSize();
+
+      // set 1rem = viewWidth / 10
+      function setRemUnit () {
+        var rem = docEl.clientWidth / 10
+        docEl.style.fontSize = rem + 'px'
+      }
+
+      setRemUnit()
+
+      // reset rem unit on page resize
+      window.addEventListener('resize', setRemUnit)
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          setRemUnit()
+        }
+      })
+
+      // window.onload = function() {
+      //   var backArrow = document.querySelector('.backArrow')
+      //   backArrow.addEventListener('click', function() {
+      //     history.back()
+      //   })
+      // }
+
+      // detect 0.5px supports
+      if (dpr >= 2) {
+        var fakeBody = document.createElement('body')
+        var testElement = document.createElement('div')
+        testElement.style.border = '.5px solid transparent'
+        fakeBody.appendChild(testElement)
+        docEl.appendChild(fakeBody)
+        if (testElement.offsetHeight === 1) {
+          docEl.classList.add('hairlines')
+        }
+        docEl.removeChild(fakeBody)
+      }
+    }(window, document))
+  </script>
+  <style>
+    body {
+      background-color: #fff;
+    }
+    .content {
+      height: 100vh;
+      padding: 0.53rem .53rem 0;
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      color: #666666;
+      letter-spacing: 0;
+      line-height: .64rem;
+      text-align: justify;
+      /* overflow-y: scroll; */
+    }
+    .link {
+      color: #3894f9;
+    }
+  </style>
+</head>
+<body>
+  <p class="content">
+    欢迎来到龙湖冠寓<br />
+    为了更安全透明的呈现冠寓收集和使用您个人信息的情况，我们根据国家最新法律要求，全力保护您的个人信息。<br />
+    您的信任对我们至关重要，我们将采取互联网业内的标准技术措施和数据安全保障措施保障您的信息安全。<br />
+    为更好体验冠寓APP及服务，请仔细阅读已更新的《龙湖冠寓隐私政策》。在使用过程中，您有权访问、更改、删除您的数据。<br />
+    除非再次征得您的同意，我们不会将您的信息用于本政策以外的其他目的。<br />
+    当您点击【同意】即表示你已充分阅读并接受<a href="https://m.iguanyu.com/fe/h5/rent-guide/privacy.html" class="link">《龙湖冠寓隐私政策》</a>的全部内容。您也可以进入<a href="https://m.iguanyu.com/fe/h5/rent-guide/privacy.html" class="link">隐私政策</a>了解更多信息<br />
+  </p>
+</body>
+</html>

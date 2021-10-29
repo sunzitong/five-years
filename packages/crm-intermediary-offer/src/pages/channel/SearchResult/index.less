@@ -1,0 +1,57 @@
+@import '../../../assets/style/common.less';
+
+.resultWrap{
+  padding-bottom: 100px;
+  :global{
+    .am-result-pic {
+      width: 174px;
+      height: 174px;
+    }
+    .am-list-item .am-list-line .am-list-extra {
+      font-size: 30px;
+      color: #9B9B9B;
+    }
+    .am-list-item {
+      .am-list-line {
+        .am-list-extra {
+          flex-basis: 50%;
+        }
+      }
+    }
+  }
+}
+
+.store {
+  color: #9B9B9B;
+  font-size: 30px;
+}
+
+.resultTips {
+  font-size: 32px;
+  color: #4A4A4A;
+  margin: 0 100px;
+}
+
+.buttonAppoint:extend(.button) {
+  background: @buttonColor;
+  box-shadow: 0 0 10px @buttonColor;
+  display: block;
+  height: 80px;
+  line-height: 80px;
+  margin: 0 95px;
+}
+
+.interval {
+  height: 226px;
+}
+
+.resIcon {
+  width: 174px;
+  height: 174px;
+}
+
+.successButton {
+  .buttonAppoint{
+    margin: 0 30px;
+  }
+}

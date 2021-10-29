@@ -1,0 +1,139 @@
+
+@import './reset.css';
+
+.paycontainer{
+  padding:0 40px;
+  box-sizing: border-box;
+  margin-bottom: 136px;
+  padding-top: 40px;
+}
+
+.header-nav{
+  display: flex;
+  span{
+    flex: 1;
+  }
+}
+
+.paytitle{
+  font-size: 40px;
+}
+
+.formInput{
+  font-size: 32px;
+  margin-top: 45px;
+  .formLabel{
+      height: 50px;
+      line-height: 50px;
+      font-size: 28px;
+      span{
+        color:red;
+        display: inline-block;
+        margin-right: 10px;
+      }
+  }
+
+  input{
+    width: 95%;
+    height: 40px;
+    border:2px solid #ddd;
+    margin-top: 16px;
+    border-radius: 6px;
+    padding:10px;
+    font-size: 24px;
+    outline: none;
+    -webkit-appearance: none;
+    // border-radius: 6px;  
+  }
+  select{
+    width: 98.5%;
+    height: 65px;
+    border:2px solid #ddd;
+    padding:10px;
+    border-radius: 6px;
+    margin-top: 16px;
+    font-size: 24px;
+   appearance:none;
+    -moz-appearance:none;
+  -webkit-appearance:none;  
+  }
+}
+
+
+.buttonBox{
+  // height: 136px;
+  // line-height: 136px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  box-sizing: border-box;
+  background: #fff;
+  .buttonChild{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #EBEBEB;
+    padding-top:20px;
+  }
+  .payMoney{
+    text-align: left;
+    flex:1;
+    span{
+      font-size: 24px;
+      color:#666;
+      display: block;
+      line-height:initial;
+    }
+    p{
+      color:#F18D00;
+      font-size: 48px;
+      line-height:initial;
+    }
+  }
+  .toPayButton{
+    flex:1;
+    height: 100px;
+    line-height: 100px;
+    color:#fff;
+    background: #F18D00;
+    text-align: center;
+    font-size: 34px;
+    border-radius:16px;
+  }
+}
+
+
+
+.loading{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+}
+
+.loadingDash{
+  width:140px;
+  height:140px;
+  // background:rgba(34,34,34,1);
+  border-radius:11px;
+  opacity:0.84;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);  
+  background:url('../../assets/loading.gif') no-repeat rgba(34,34,34,1);
+  background-size: 72px 72px;
+  background-position: center;
+}
+
+.toast{
+  position: fixed;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);  
+  background: rgba(34,34,34,0.84);
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+}

@@ -13,9 +13,6 @@ export default `
  * 本文件自动生成,勿手动更改,如需修改可以在同目录下进行扩展
  * 接口文档: http://docs.gyapt.cn/project/{{=it.api.project_id}}/interface/api/{{=it.api._id}}
  */
-
-import http, { ServiceOptions } from "@/service/http";
-const BASE_URL = process.env.VUE_APP_BASE_API;
 {{
   /* 名称相关 */
   const apiName = it.tools.getApiName(it.api);
@@ -24,7 +21,12 @@ const BASE_URL = process.env.VUE_APP_BASE_API;
   const paramsType = it.types.paramsType;
   /* 返回相关 */
   const returnType = it.types.returnType;
+  /* 文件下载接口 */
+  const isExport = it.tools.isExportApi(it.api);
 }}
+import http, { ServiceOptions } from "@/service/http";
+const BASE_URL = process.env.VUE_APP_BASE_API;
+
 {{?!paramsType.isUnknown}}
 /**
  * {{=it.api.title}}-参数
@@ -62,9 +64,16 @@ export const {{=apiName}} = (
   params{{?!paramsType.hasJsonType&&(paramsType.isOptional||paramsType.isUnknown)}}?{{?}}: {{?!paramsType.hasJsonType&&paramsType.isUnknown}}Record<string,unknown>{{??}}{{=paramsType.typeName}}{{?}},
   options?: Partial<ServiceOptions>
 ) => {
+  {{?isExport}}
+  return http.{{=it.api.method.toLowerCase()}}(\`$\{BASE_URL\}{{=apiPath}}\`,
+  { ...params },
+  { responseType: "blob", ...options }
+  ) as Promise<unknown>;
+  {{??}}
   return http.{{=it.api.method.toLowerCase()}}<{{=returnType.typeName||returnType.primitiveType}}{{?returnType.jsonIsArray}}[]{{?}}>(\`$\{BASE_URL\}{{=apiPath}}\`,
   { ...params },
   { ...options }
   );
+  {{?}}
 };
 `;

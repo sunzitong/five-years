@@ -28,14 +28,18 @@ service.interceptors.request.use(
 // respone拦截器
 service.interceptors.response.use(
   (response) => {
-    if (response.data?.timestamp) {
-      env.NOW = response.data.timestamp;
+    const { responseType } = response.config;
+    if (!responseType || responseType === "json") {
+      if (response.data?.timestamp) {
+        env.NOW = response.data.timestamp;
+      }
+      if (response.data?.status !== "ok") {
+        console.log(`[url] ${response.status}:`, response.config.url);
+        mitter.emit(EventName.ServiceError, response.data?.status);
+      }
+      return response.data;
     }
-    if (response.data?.status !== "ok") {
-      console.log(`[url] ${response.status}:`, response.config.url);
-      mitter.emit(EventName.ServiceError, response.data?.status);
-    }
-    return response.data;
+    return response;
   },
   (error) => {
     console.error("[url]", error?.response?.config?.url);

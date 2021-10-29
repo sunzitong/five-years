@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>冠寓</title>
+  <script src="<%= PUBLIC_PATH%>static/js/flexible.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="logo">
+      <img src="<%= PUBLIC_PATH %>static/images/logo.png">
+    </div>
+    <div class="content">
+      <div class="flex">
+        <img src="<%= PUBLIC_PATH %>static/images/title.png" class="title" alt="">
+      </div>
+      <div class="flex">
+        <img src="<%= PUBLIC_PATH %>static/images/titleImg.png" class="couponsImg" alt="">
+      </div>
+      <div class="flex inputWidth">
+        <input type="text" name="input" value="" id="phone" placeholder="请输入手机号" class="input phone">
+      </div>
+      <div class="flex inputWidth justify">
+        <input type="text" name="input" value="" id="code" placeholder="请输入验证码" class="input code">
+        <input type="button" name="input" value="发送验证码" class="codeBtn" id="codeBtn">
+      </div>
+      <div class="flex">
+        <div class="receiveBtn" id="btn">领取折扣券</div>
+      </div>
+      <div class="absolute flex">
+        <div class="flex line"></div>
+        <div class="lineTitle">活动规则</div>
+      </div>
+      <div class="flex">
+        <div class="termsTxt">
+          <p>1. 龙湖冠寓9.8折租房优惠券，每月租金可享9.8折，租期6个月以上新签约时可使用</p>
+          <p>2. 每个手机号只能领取和使用1张优惠劵，领取后可在冠寓APP-个人中心-优惠券查看</p>
+          <p>3. 优惠券有效期至2020年12月31日</p>
+          <p>4. 全国冠寓门店通用，剩余房量需详询门店</p>
+          <p>5. 本券属于“折上折”特权，可叠加冠寓年租9.5折、年付9.8折等，叠加后约低至91折(但不可与企业优惠、学生/毕业生优惠同时使用)；其他优惠活动、有奖活动等规则可详询龙湖冠寓门店</p>
+          <p>6. 门店地址电话可下载冠寓APP，或微信搜索“龙湖冠寓租房”小程序查询</p>
+          <p>7. 龙湖冠寓保留活动最终解释权</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex footer">
+      <div class="footertBox">
+        <img src="<%= PUBLIC_PATH %>static/images/icon.png" class="icon">
+      </div>
+      <div class="footertBox">
+        <p>现在到店还有老带新奖励等福利等着你，欢迎到店看房！</p>
+      </div>
+    </div>
+  </div>
+  <div class="snackbarBox hide">
+    <div class="snackbar" id="tig"></div>
+  </div>
+  <div class="protective"></div>
+  <div class="playOk" id="playOk">
+    <img src="<%= PUBLIC_PATH %>static/images/prompt.png" alt="" class="playOkImg">
+    <div class="playPadding">
+      <p class="playTitle">领取成功！</p>
+      <p class="playContent">请使用<span id="phoneId"></span>登录冠寓APP 我的-优惠券 中查看。</p>
+      <div class="playBtn">确认</div>
+    </div>
+  </div>
+
+  <script src="<%= PUBLIC_PATH %>static/js/jquery-3.1.1.min.js"></script>
+</body>
+
+</html>
