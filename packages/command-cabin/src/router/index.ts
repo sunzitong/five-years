@@ -66,7 +66,7 @@ const subRouter = [
       title: "冠寓总指挥中心",
     },
   },
-  {
+  /* {
     path: "example",
     component: () => import("@/views/Example.vue"),
     meta: {
@@ -79,7 +79,7 @@ const subRouter = [
     meta: {
       name: "example-map",
     },
-  },
+  }, */
   {
     path: "*",
     component: () => import("@/views/404.vue"),
