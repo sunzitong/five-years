@@ -563,7 +563,7 @@ export default class B1B extends Base {
       this.myChart.dispatchAction({
         type: "showTip",
         seriesIndex: 3, // 显示第几个series
-        dataIndex: Math.max((this.xTag ?? 0) - 1, 0), // 显示第几个数据
+        dataIndex: Math.max(this.xTag ?? 0, 0), // 显示第几个数据
       });
   }
 }
