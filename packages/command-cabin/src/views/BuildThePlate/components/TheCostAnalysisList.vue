@@ -14,7 +14,7 @@
           v-for="item in list"
           :key="item.id"
           :class="{
-            warn: item.isRisk,
+            warn: item.risk,
           }"
         >
           <td v-for="opt in options" :key="opt.name">

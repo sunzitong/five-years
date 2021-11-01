@@ -45,7 +45,11 @@
             warn: item.isRisk,
           }"
         >
-          <td v-for="opt in options" :key="opt.name">
+          <td
+            v-for="opt in options"
+            :key="opt.name"
+            :class="{ warn: item[opt.name] < 0 }"
+          >
             {{ formatValue(item[opt.name]) }}
           </td>
         </tr>
