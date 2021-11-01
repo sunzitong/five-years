@@ -102,12 +102,12 @@ import { uuid } from "@guanyu/shared";
 import CardTitle, { SizeProps } from "@/components/Card/CardTitle.vue";
 
 @Component({
-  name: "CardDecorate",
+  name: "CardBackground",
   components: {
     CardTitle,
   },
 })
-export default class CardDecorate extends Vue {
+export default class CardBackground extends Vue {
   /**
    * div容器
    */

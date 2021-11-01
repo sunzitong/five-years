@@ -39,7 +39,9 @@ import { Component, Vue, Prop } from "vue-property-decorator";
  */
 export type SizeProps = "small" | "medium" | "large";
 
-@Component
+@Component({
+  name: "CardTitle",
+})
 export default class CardTitle extends Vue {
   /**
    * 尺寸
