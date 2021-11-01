@@ -4,6 +4,7 @@
       :touchable="false"
       autoplay="20000"
       :show-indicators="false"
+      lazy-render
       indicator-color="transparent"
     >
       <van-swipe-item v-for="(pictrue, index) of pictures" :key="index">
