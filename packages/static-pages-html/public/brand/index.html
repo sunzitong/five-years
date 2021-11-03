@@ -140,12 +140,12 @@
                 },
             });
 
-            var beginTime = new Date().getTime();
+            const beginTime = new Date().getTime();
             window.GyWebViewCloseFn = () => {
                 var endTime = new Date().getTime();
                 window.zhuge.track('页面访问时长', {
                     页面名称: '星球联名特权页面 ',
-                    停留时长: endTime - this.beginTime,
+                    停留时长: endTime - beginTime,
                 });
             };
         })
