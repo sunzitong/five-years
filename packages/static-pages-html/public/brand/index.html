@@ -84,6 +84,18 @@
                 });
             }
 
+            const judgeSystem = () => {
+                const u = navigator.userAgent;
+                const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // 安卓
+                const isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+                if (isAndroid) {
+                    return 'isAndroid';
+                }
+                if (isIos) {
+                    return 'isIos';
+                }
+            };
+
 
             // 判断设备
             const judgeDevice = () => {

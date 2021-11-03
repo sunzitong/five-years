@@ -272,14 +272,14 @@ export default class Index extends Base {
     window.GyWebViewCloseFn = () => {
       const endTime = new Date().getTime();
       window.zhuge.track('页面访问时长', {
-        页面名称: '新课礼包页面',
+        页面名称: '新客礼包页面',
         停留时长: endTime - this.beginTime,
       });
     };
     window.onbeforeunload = () => {
       const endTime = new Date().getTime();
       window.zhuge.track('页面访问时长', {
-        页面名称: '新课礼包页面',
+        页面名称: '新客礼包页面',
         停留时长: endTime - this.beginTime,
       });
     };
