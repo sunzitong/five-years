@@ -268,6 +268,21 @@ export default class Index extends Base {
   }
 
   mounted() {
+    this.beginTime = new Date().getTime();
+    window.GyWebViewCloseFn = () => {
+      const endTime = new Date().getTime();
+      window.zhuge.track('页面访问时长', {
+        页面名称: '新课礼包页面',
+        停留时长: endTime - this.beginTime,
+      });
+    };
+    window.onbeforeunload = () => {
+      const endTime = new Date().getTime();
+      window.zhuge.track('页面访问时长', {
+        页面名称: '新课礼包页面',
+        停留时长: endTime - this.beginTime,
+      });
+    };
     document.title = '新客礼包';
     switch (getEnvHost()) {
       case 'test109': {
