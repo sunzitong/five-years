@@ -16,7 +16,9 @@
           :class="{ warn: item.overdueWarning === '是' }"
         >
           <td v-for="opt in options" :key="opt.name">
-            {{ formatValue(item[opt.name]) }}
+            <div class="van-ellipsis">
+              {{ formatValue(item[opt.name]) }}
+            </div>
           </td>
         </tr>
       </tbody>
@@ -228,10 +230,7 @@ export default class TheExpandWideDetail extends Base implements IFetch {
 .select {
   margin-right: 86px;
 }
+.van-ellipsis {
+  max-width: 1000px;
+}
 </style>
-
-function fetchExpandWideDetail(fetchExpandWideDetail: any, arg1: { key:
-StoreKey.ExpansionAwardInfo; params: { // 大区城市 orgType:
-import("../../../service/analysis/commandCabin/publicEnum").DataLevels; //
-组织ID orgId: number; // 页容量 pageSize: number; // 页码 pageNum: number; }; })
-{ throw new Error("Function not implemented."); }
