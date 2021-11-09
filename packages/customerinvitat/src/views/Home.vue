@@ -347,7 +347,6 @@ export default {
           this.guide = true;
         }
       }
-      window.zhuge.track('好友邀请页-立即邀请好友按钮');
       if (!this.isInvitationClick) {
         return;
       }
