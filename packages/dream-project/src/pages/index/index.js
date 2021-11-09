@@ -331,6 +331,7 @@ class Homepage extends React.Component {
                       <div
                         className={styles['login-btn']}
                         onClick={() => {
+                          window.zhuge.track('首页冠寓 - 学生特权 - 立即认证按钮 - 点击');
                           const searchObj = parse(window.location.href.split('?')[1]);
                           searchObj.fromHomepage = true;
                           router.push(`/fe/dream-project/layout/authentication?${stringify(searchObj)}`);

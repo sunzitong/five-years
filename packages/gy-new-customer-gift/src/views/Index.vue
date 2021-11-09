@@ -221,6 +221,7 @@ export default class Index extends Base {
 
   // 跳转到学生特权
   studentJump() {
+    window.zhuge.track('首页冠寓 - 新客礼包 - 毕业生身份认证按钮 - 点击');
     this.login();
     if (!getToken()) {
       return;
@@ -234,6 +235,7 @@ export default class Index extends Base {
 
   // 跳转到企业
   employeeJump() {
+    window.zhuge.track('首页冠寓 - 新客礼包 - 企业员工身份认证按钮 - 点击');
     this.login();
     if (!getToken()) {
       return;
@@ -266,6 +268,21 @@ export default class Index extends Base {
   }
 
   mounted() {
+    this.beginTime = new Date().getTime();
+    window.GyWebViewCloseFn = () => {
+      const endTime = new Date().getTime();
+      window.zhuge.track('页面访问时长', {
+        页面名称: '新客礼包页面',
+        停留时长: endTime - this.beginTime,
+      });
+    };
+    window.onbeforeunload = () => {
+      const endTime = new Date().getTime();
+      window.zhuge.track('页面访问时长', {
+        页面名称: '新客礼包页面',
+        停留时长: endTime - this.beginTime,
+      });
+    };
     document.title = '新客礼包';
     switch (getEnvHost()) {
       case 'test109': {
