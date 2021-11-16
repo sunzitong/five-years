@@ -27,6 +27,127 @@
                 $('.cooperation-container').addClass("hiden");
                 $('.brand').removeClass('app')
             }
+
+            /* eslint-disable*/
+            function zhugeio({
+                appKey = 'c6911bc459bb41a5acbb720e91057739',
+                jsSrc = 'https://datain.longfor.com/zhuge.js?v=',
+                options = {}
+            } = {}) {
+                window.zhuge = window.zhuge || [];
+                window.zhuge.methods = "_init identify track getDid getSid getKey setSuperProperty setUserProperties setWxProperties setPlatform".split(" ");
+                window.zhuge.factory = function (b) {
+                    return function () {
+                        var a = Array.prototype.slice.call(arguments);
+                        a.unshift(b);
+                        window.zhuge.push(a);
+                        return window.zhuge;
+                    }
+                };
+                for (var i = 0; i < window.zhuge.methods.length; i++) {
+                    var key = window.zhuge.methods[i];
+                    window.zhuge[key] = window.zhuge.factory(key);
+                }
+                window.zhuge.load = function (b, x) {
+                    if (!document.getElementById("zhuge-js")) {
+                        var a = document.createElement("script");
+                        var verDate = new Date();
+                        var verStr = verDate.getFullYear().toString() + verDate.getMonth().toString() + verDate.getDate().toString();
+
+                        a.type = "text/javascript";
+                        a.id = "zhuge-js";
+                        a.async = !0;
+                        a.src = jsSrc + verStr;
+                        a.onerror = function () {
+                            window.zhuge.identify = window.zhuge.track = function (ename, props, callback) {
+                                if (callback && Object.prototype.toString.call(callback) === '[object Function]') {
+                                    callback();
+                                } else if (Object.prototype.toString.call(props) === '[object Function]') {
+                                    props();
+                                }
+                            };
+                        };
+                        var c = document.getElementsByTagName("script")[0];
+                        c.parentNode.insertBefore(a, c);
+                        window.zhuge._init(b, x)
+                    }
+                };
+                window.zhuge.load(appKey, {
+                    superProperty: {
+                        '应用名称': '诸葛io'
+                    },
+                    adTrack: false,
+                    zgsee: false,//视屏采集开关, 默认为false
+                    autoTrack: true,
+                    singlePage: true,
+                    ...options,
+                });
+            }
+
+            const judgeSystem = () => {
+                const u = navigator.userAgent;
+                const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // 安卓
+                const isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+                if (isAndroid) {
+                    return 'isAndroid';
+                }
+                if (isIos) {
+                    return 'isIos';
+                }
+            };
+
+
+            // 判断设备
+            const judgeDevice = () => {
+                if (navigator.userAgent) {
+                    // 对部分ios和android机型做兼容，可能存在没有‘GY’的情况
+                    if (judgeSystem() === 'isAndroid') {
+                        if (window.gyAndroid && window.gyAndroid.fetchAuthInfo) {
+                            return 'APP';
+                        }
+                    }
+                    if (judgeSystem() === 'isIos') {
+                        if (window.fetchAuthInfo) {
+                            return 'APP';
+                        }
+                    }
+                    if (navigator.userAgent.includes('GY')) {
+                        return 'APP';
+                    }
+                    if (navigator.userAgent.includes('miniProgram')) {
+                        return '小程序';
+                    }
+                    return 'browser';
+                }
+            };
+
+            let appKey = '3ec10a66f82f4951ba811df964fcc199';
+            let jsSrc = 'https://dataintest.longfor.com/zhuge.js?v=';
+            const visitSource = judgeDevice();
+
+            // 正式环境
+            if (window.location.href.includes('m.iguanyu.com')) {
+                appKey = 'c6911bc459bb41a5acbb720e91057739';
+                jsSrc = 'https://datain.longfor.com/zhuge.js?v=';
+            }
+            zhugeio({
+                appKey,
+                jsSrc,
+                options: {
+                    superProperty: {
+                        访问来源: visitSource === 'browser' ? '其他' : visitSource,
+                    },
+                },
+            });
+
+            const beginTime = new Date().getTime();
+            window.GyWebViewCloseFn = () => {
+                var endTime = new Date().getTime();
+                window.zhuge.track('页面访问时长', {
+                    页面名称: '星球联名特权页面 ',
+                    停留时长: endTime - beginTime,
+                });
+            };
         })
     </script>
     <style>
@@ -158,16 +279,14 @@
             <li id='vip_readinng'>
                 <a
                     href="https://card.dushu.io/activity/card/index.html?id=1137&activityId=18&randomCode=OkMRvc57OkZsM6nlakf">
-                    <img src="https://goyoo-assets.longfor.com/test/app/0-mtj0bsiWtpBp6svYsuEA.jpeg"
-                        alt="">
+                    <img src="https://goyoo-assets.longfor.com/test/app/0-mtj0bsiWtpBp6svYsuEA.jpeg" alt="">
                 </a>
                 <h3>樊登14天读书卡领取</h3>
             </li>
             <li id='cotton'>
                 <a
                     href="https://mall.winnermedical.com/mobile/index#/componentPage?uuid=ebb07a9a-eb4b-4d98-8c57-8c5034bf2f9d&chn=187">
-                    <img src="https://goyoo-assets.longfor.com/test/app/GV9wliB3Itz97Zeahplmfg.jpeg"
-                        alt="">
+                    <img src="https://goyoo-assets.longfor.com/test/app/GV9wliB3Itz97Zeahplmfg.jpeg" alt="">
                 </a>
                 <h3>全棉时代官方商城</h3>
             </li>
