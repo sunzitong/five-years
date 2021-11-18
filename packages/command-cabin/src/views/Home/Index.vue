@@ -238,7 +238,6 @@
                 title="24小时设备离线率"
                 style="width: 1820px; height: 452px"
               >
-                <template #data-cycle>{{ dataCycle }}</template>
                 <D4 />
               </CardA>
             </van-col>
@@ -249,7 +248,6 @@
               </CardA>
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 924px">
-                <template #data-cycle>{{ dataCycle }}</template>
                 <D5 />
               </CardA>
             </van-col>
@@ -428,7 +426,7 @@ export default class Home extends Base {
    * 生命周期函数
    */
   created() {
-    /** */
+    this.dataLevelChanged(this.store.global.dataLevel);
   }
 }
 </script>

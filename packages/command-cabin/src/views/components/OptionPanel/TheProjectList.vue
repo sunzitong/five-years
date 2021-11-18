@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="scroll" v-if="projectList.length > 13">
+      <div class="scroll" v-if="showScroll">
         <div
           class="scroll__button scroll--up"
           :class="{ disabled: disabledScroll === 'up' }"
@@ -195,6 +195,18 @@ export default class TheProjectList extends Base {
   }
 
   /**
+   * 显示滚动条按钮
+   */
+  get showScroll() {
+    if (!this.resOrgTree) return false;
+    const list = this.resOrgTree[0]?.childList ?? [];
+    if (list.length < 13) {
+      return this.projectList.length > Math.max(list.length, 5);
+    }
+    return this.projectList.length > 13;
+  }
+
+  /**
    * 设置门店
    */
   setProject(project: ProjectListItemReturn) {
@@ -240,6 +252,9 @@ export default class TheProjectList extends Base {
   color: #90a4c3;
   background: rgba(14, 23, 60, 0.9);
   backdrop-filter: blur(10px);
+  .org-wrap {
+    min-height: 500px;
+  }
 }
 .row {
   display: flex;
@@ -374,7 +389,7 @@ export default class TheProjectList extends Base {
 .forward-bar {
   position: absolute;
   left: 10px;
-  bottom: 50%;
+  bottom: 36%;
 }
 
 .scroll {

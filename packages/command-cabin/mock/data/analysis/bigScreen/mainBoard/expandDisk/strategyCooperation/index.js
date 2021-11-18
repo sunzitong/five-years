@@ -4,7 +4,7 @@
  *
  * 拓展盘面-战略合作
  * @createBy baishiqiang
- * @updateAt 2021/9/28 11:2:56
+ * @updateAt 2021/10/25 16:27:36
  * @method GET
  */
 
@@ -16,11 +16,11 @@ exports.response = {
   status: "ok",
   msg: "ok",
   data: {
-    stateEnterpriseCoopNum: 1, //国企平台已合作个数
-    stateEnterpriseNegoNum: 1, //国企平台洽谈中个数
+    stateEnterpriseCoopNum: 0, //国企平台已合作个数
+    stateEnterpriseNegoNum: 0, //国企平台洽谈中个数
     fundSideCoopNum: 1, //资金方已合作个数
-    fundSideNegoNum: 1, //资金方洽谈中个数
+    fundSideNegoNum: 90, //资金方洽谈中个数
     mainToMainCoopNum: 1, //总对总已合作个数
-    mainToMainNegoNum: 1, //总对总洽谈中个数
+    mainToMainNegoNum: 0, //总对总洽谈中个数
   },
 };

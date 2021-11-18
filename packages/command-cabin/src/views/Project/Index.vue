@@ -177,7 +177,6 @@
                 style="width: 1820px; height: 452px"
               >
                 <D3 />
-                <template #data-cycle>{{ dataCycle }}</template>
               </CardA>
             </van-col>
             <van-col>
@@ -187,7 +186,6 @@
               </CardA>
               <WhiteSpace />
               <CardA title="逾期金额" style="width: 801px; height: 924px">
-                <template #data-cycle>{{ dataCycle }}</template>
                 <D6 />
               </CardA>
             </van-col>

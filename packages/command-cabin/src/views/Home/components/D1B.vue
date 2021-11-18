@@ -3,7 +3,7 @@
     <div class="line"></div>
     <van-row>
       <van-col :span="14">
-        <h4 class="label">平均出租率(开业三月以上)</h4>
+        <h4 class="label">平均出租率(中重资产)</h4>
         <div class="row_style">
           <strong class="strong_value">
             {{ formatValue(resData.avgRentRatio) }}%
@@ -27,7 +27,7 @@
         </div>
       </van-col>
       <van-col :span="10">
-        <h4 class="label">平均续租率</h4>
+        <h4 class="label">平均续租率(中重资产)</h4>
         <div class="row_style">
           <strong class="strong_value">
             {{ formatValue(resData.avgRenewRatio) }}%
@@ -50,7 +50,7 @@
     </van-row>
     <van-row>
       <van-col :span="14" style="padding-top: 30px">
-        <h4 class="label">在租房间平均成交价(元)</h4>
+        <h4 class="label">在租房间成交均价(中重资产)</h4>
         <div class="row_style">
           <strong class="strong_value">
             {{ formatValue(resData.avgPrice) }}
@@ -218,12 +218,11 @@ $asce: #22cb98;
 
   .pointOfTime {
     display: inline-block;
-    padding: 8px 26px;
+    padding: 2px 26px;
     background: #182966;
-    border-radius: 45px;
+    border-radius: 100px;
     color: #90a4c3;
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 45px;
     margin-left: 40px;
   }
 

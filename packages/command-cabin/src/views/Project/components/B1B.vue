@@ -166,7 +166,7 @@ export default class B1B extends Base {
                 }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
-                  el.value
+                  el.value ?? "-"
                 }</span> <span>${unit}</span></div>`;
               }
             } else {
@@ -176,7 +176,7 @@ export default class B1B extends Base {
                 }"><span class="icon"></span><span>${
                   this.tabNames[this.tabTag]
                 }（${el.seriesName}）</span>   <span>${
-                  el.value
+                  el.value ?? "-"
                 }</span> <span>${unit}</span></div>`;
               }
             }
@@ -546,10 +546,11 @@ export default class B1B extends Base {
     /**
      * 鼠标离开图标显示提示框
      */
+    this.showTooltip();
     myChart.on("globalout", this.showTooltip);
   }
 
-  @Watch("$props", { deep: true, immediate: true })
+  @Watch("xLabel", { deep: true })
   onPropsChange() {
     this.showTooltip();
   }
@@ -558,14 +559,12 @@ export default class B1B extends Base {
    * 显示提示框
    */
   showTooltip() {
-    setTimeout(() => {
-      this.myChart.dispatchAction &&
-        this.myChart.dispatchAction({
-          type: "showTip",
-          seriesIndex: 3, // 显示第几个series
-          dataIndex: Math.max(this.xTag, 0), // 显示第几个数据
-        });
-    }, 100);
+    this.myChart &&
+      this.myChart.dispatchAction({
+        type: "showTip",
+        seriesIndex: 3, // 显示第几个series
+        dataIndex: Math.max(this.xTag ?? 0, 0), // 显示第几个数据
+      });
   }
 }
 </script>
