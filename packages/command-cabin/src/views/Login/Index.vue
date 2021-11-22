@@ -485,27 +485,30 @@ export default class Login extends Base {
     }
     .role {
       width: 700px;
-      height: 90px;
       background: #22475f;
       border: 2px solid #3b707d;
       border-radius: 4px;
       margin: 18px 0;
       box-sizing: border-box;
+      span {
+        @extend %flex-center;
+        margin: 6px;
+        width: 100%;
+        padding: 14px 4px;
+        line-height: 1.2;
+        text-align: center;
+      }
       &.active {
         border-color: #01f5f1;
         color: #fff;
         background: transparent;
-        padding: 6px;
         span {
-          @extend %flex-center;
           background: linear-gradient(
             181.25deg,
             rgba(1, 245, 241, 0) 10.53%,
             rgba(1, 245, 241, 0.48) 118.58%
           );
           border-radius: 2px;
-          width: 100%;
-          height: 100%;
         }
       }
     }

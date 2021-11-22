@@ -36,15 +36,27 @@
           <tbody>
             <tr>
               <td>{{ formatValue(response.regionName) }}</td>
-              <td>{{ formatValue(response.ytdIncomeGap) }}</td>
-              <td>{{ formatValue(response.forecastIncomeGap) }}</td>
-              <td>
+              <td :class="{ warn: response.ytdIncomeGap < 0 }">
+                {{ formatValue(response.ytdIncomeGap) }}
+              </td>
+              <td :class="{ warn: response.forecastIncomeGap < 0 }">
+                {{ formatValue(response.forecastIncomeGap) }}
+              </td>
+              <td :class="{ warn: response.openedAndPostponeIncomeGap < 0 }">
                 {{ formatValue(response.openedAndPostponeIncomeGap) }}
               </td>
-              <td>{{ formatValue(response.openedAndAheadIncomeGap) }}</td>
-              <td>{{ formatValue(response.openAsUsualIncomeGap) }}</td>
-              <td>{{ formatValue(response.openedAndTerminationIncomeGap) }}</td>
-              <td>{{ formatValue(response.contractTerminationIncomeGap) }}</td>
+              <td :class="{ warn: response.openedAndAheadIncomeGap < 0 }">
+                {{ formatValue(response.openedAndAheadIncomeGap) }}
+              </td>
+              <td :class="{ warn: response.openAsUsualIncomeGap < 0 }">
+                {{ formatValue(response.openAsUsualIncomeGap) }}
+              </td>
+              <td :class="{ warn: response.openedAndTerminationIncomeGap < 0 }">
+                {{ formatValue(response.openedAndTerminationIncomeGap) }}
+              </td>
+              <td :class="{ warn: response.contractTerminationIncomeGap < 0 }">
+                {{ formatValue(response.contractTerminationIncomeGap) }}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -64,6 +76,7 @@ import {
   SupplyAndMarketingSaveReturn,
 } from "@/service/analysis/bigScreen/mainBoard/center/supplyAndMarketingSave";
 import { iwant } from "@guanyu/shared";
+import { DateScopes } from "@/service/analysis/commandCabin/publicEnum/enums";
 
 @Component({
   components: { Icon, CardB },
@@ -75,7 +88,8 @@ export default class C4A extends Base implements IFetch {
     const response = await useStore(fetchSupplyAndMarketingSave, {
       key: StoreKey.HomeSupplyAndMarketingSave,
       params: {
-        dateScope: this.store.global.dataLevel,
+        // TODO 固定年累
+        dateScope: DateScopes.YEARLY,
         orgType: this.store.global.dataLevel,
         orgId: this.store.global.orgTree.orgId,
         orgName: this.store.global.orgTree.orgName,

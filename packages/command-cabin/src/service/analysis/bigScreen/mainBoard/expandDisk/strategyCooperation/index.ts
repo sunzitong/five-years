@@ -36,7 +36,7 @@ export interface StrategyCooperationReturn {
 /**
  * 拓展盘面-战略合作
  * @createBy baishiqiang
- * @updateAt 2021/9/28 11:2:56
+ * @updateAt 2021/10/25 16:27:36
  * @method GET
  */
 export const fetchStrategyCooperation = (

@@ -141,14 +141,13 @@ export default class D3 extends Base {
 
   .left_circle {
     width: 638px;
-    margin-right: 80px;
+    margin: 0 80px 0 50px;
 
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
 
     .left_pic {
-      flex: 0.8;
+      padding-right: 80px;
       width: 200px;
       height: 240px;
       @extend %bg-img-circle-1;

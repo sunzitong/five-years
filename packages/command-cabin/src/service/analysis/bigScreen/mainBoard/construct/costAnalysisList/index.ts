@@ -49,13 +49,13 @@ export interface CostAnalysisListItemReturn {
   dynamicCostNonTax: number;
   targetCostNonTax: number;
   diff: number;
-  isRisk: boolean;
+  risk: boolean;
 }
 
 /**
  * 成本分析详情列表
  * @createBy zhangyao03
- * @updateAt 2021/10/21 16:39:14
+ * @updateAt 2021/11/1 14:37:21
  * @method GET
  */
 export const fetchCostAnalysisList = (

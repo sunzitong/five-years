@@ -22,7 +22,7 @@ const getPublicPath = () => {
     }
     return `https://s.longfor.com/toch5/${pkg.name}`;
   }
-  return "";
+  return "/";
 };
 
 /**

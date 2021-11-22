@@ -26,7 +26,7 @@ import { Component, Vue, Ref, Prop } from "vue-property-decorator";
 import { ResizeObserver } from "resize-observer";
 
 @Component({
-  name: "CardABackground",
+  name: "CardBBackground",
 })
 export default class CardABackground extends Vue {
   /**
