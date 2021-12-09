@@ -17,8 +17,8 @@
     "ncu": "lerna exec ncu -- --timeout 60000",
     "create": "lerna create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all dev:{newfriend,customerinvitat}",
-    "dev:{newfriend,customerinvitat}": "lerna run serve --scope={newfriend,customerinvitat} --stream"
+    "dev": "npm-run-all dev:static-pages-html",
+    "dev:static-pages-html": "lerna run serve --scope=static-pages-html --stream"
   },
   "repository": {
     "type": "git",
