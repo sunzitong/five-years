@@ -5,8 +5,8 @@
   "private": true,
   "main": "scripts/entry.js",
   "scripts": {
-    "postinstall": "lerna bootstrap --scope=static-pages-html",
-    "build": "lerna run build --scope=static-pages-html --stream",
+    "postinstall": "lerna bootstrap --scope={newfriend,customerinvitat}",
+    "build": "lerna run build --scope={newfriend,customerinvitat} --stream",
     "build:SIT": "cross-env BUILD=SIT npm-run-all build",
     "build:UAT": "cross-env BUILD=UAT npm-run-all build",
     "build:STAGING": "cross-env BUILD=STAGING npm-run-all build",
@@ -17,8 +17,8 @@
     "ncu": "lerna exec ncu -- --timeout 60000",
     "create": "lerna create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all dev:static-pages-html",
-    "dev:static-pages-html": "lerna run serve --scope=static-pages-html --stream"
+    "dev": "npm-run-all dev:{newfriend,customerinvitat}",
+    "dev:{newfriend,customerinvitat}": "lerna run serve --scope={newfriend,customerinvitat} --stream"
   },
   "repository": {
     "type": "git",
