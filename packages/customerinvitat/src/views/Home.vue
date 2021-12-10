@@ -13,11 +13,14 @@
     <!-- <div class="height466"></div> -->
     <div class="invitation-process">
       <!-- 邀请按钮 -->
-        <div class="invitation-btn" @click="invitationBtn"></div>
-        <div class="activity-btn" @click="invitationRecord"></div>
+      <div class="invitation-btn" @click="invitationBtn"></div>
+      <div class="activity-btn" @click="invitationRecord"></div>
     </div>
     <div class="lz-cont">
-      <img src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/T6PhFhfXFBe0lKF7xpPrIg.png" alt="" />
+      <img
+        src="https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/T6PhFhfXFBe0lKF7xpPrIg.png"
+        alt=""
+      />
     </div>
     <!-- <div class="invitation-btn" :class="noClick" @click="invitationBtn">立即邀请好友</div> -->
     <!-- 活动规则弹窗 -->
@@ -26,15 +29,27 @@
         <h3 class="active-rules-title">活动规则</h3>
         <div class="rules-text">
           <p>1.本活动适用于所有珑珠用户；</p>
-          <p>2.点击上方“马上参与”按钮发起活动邀请并分享，您的好友通过链接填写手机及验证码与您进行绑定；</p>
-          <p>3.好友通过该手机号成功签约并完成入住冠寓门店，即可认定邀请成功，并获得相应金额珑珠；</p>
-          <p>4.珑珠可直接在珑珠商城兑换有关商品及服务，适用于京东、美团、爱奇艺等各种平台及主流APP；</p>
-          <p>5.冠寓有权对通过技术手段等影响活动公平原则的行为进行查证，一经查实则取消活动资格并回收对应珑珠。</p>
+          <p>
+            2.点击上方“马上参与”按钮发起活动邀请并分享，您的好友通过链接填写手机及验证码与您进行绑定；
+          </p>
+          <p>
+            3.好友通过该手机号成功签约并完成入住冠寓门店，即可认定邀请成功，并获得相应金额珑珠；
+          </p>
+          <p>
+            4.珑珠可直接在珑珠商城兑换有关商品及服务，适用于京东、美团、爱奇艺等各种平台及主流APP；
+          </p>
+          <p>
+            5.冠寓有权对通过技术手段等影响活动公平原则的行为进行查证，一经查实则取消活动资格并回收对应珑珠。
+          </p>
           <p>注意事项：</p>
           <p>1.好友手机号未入住过冠寓门店方可被成功邀请；</p>
           <p>2.被邀请人签约手机号与绑定手机号不一致，将无法参与此活动;</p>
-          <p>3.部分指定冠寓门店不参与上述活动，请您在办理签约手续前咨询对应运营官所在门店是否参与该活动；</p>
-          <p>4.若珑珠未及时到账，可咨询对应门店运营官或拨打客服电话详询。</p>
+          <p>
+            3.部分指定冠寓门店不参与上述活动，请您在办理签约手续前咨询对应运营官所在门店是否参与该活动；
+          </p>
+          <p>
+            4.成功推荐奖励3000珑珠，其中2000珑珠24小时内到账，1000珑珠最迟于活动结束后7天内（1月7日前）到账，若珑珠未及时到账，可咨询对应门店运营官或拨打客服电话详询（400-001-1166）。
+          </p>
         </div>
       </div>
     </div>
