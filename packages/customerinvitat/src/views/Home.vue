@@ -98,7 +98,7 @@ export default {
       btnStatus: Boolean,
       isFullScreen: false,
       myBonus: '0',
-      shareTitle: '跟着老友住冠寓，得神秘大礼包！',
+      shareTitle: '够朋友，一起住冠寓',
       shareText: '住好房，拿好礼。加入够友圈，神秘大礼包送不停！',
       shareImg: 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/201DD99E3kqI6TpHXgAQoQ.png',
       isNoTenant: false,
@@ -245,7 +245,7 @@ export default {
         // 微信内
         window.wx.miniProgram.postMessage({
           data: {
-            title: '跟着老友住冠寓，得神秘大礼包！',
+            title: '够朋友，一起住冠寓',
             imageUrl:
               'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/app/201DD99E3kqI6TpHXgAQoQ.png',
             path: `${window.location.origin}/fe/newfriend/?encodeuserId=${this.getQueryVariable(

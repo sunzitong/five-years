@@ -222,7 +222,7 @@ export default {
       const url = `${window.location.origin}/fe/newfriend`;
       wxShare({
         api: `${window.location.origin}/gymwebsite/getJsapiSigna`, // 获取微信鉴权的接口地址,
-        title: '跟着老友住冠寓，得神秘大礼包！', // 分享标题,
+        title: '够朋友，一起住冠寓', // 分享标题,
         debug: false,
         link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致,
         img: 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/test/CMS/T-N_QvfOtgQ.jpg', // 分享图标,
