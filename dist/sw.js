@@ -7,17 +7,14 @@ self.addEventListener('install', function (event) {
         // cache.add('/index.html');
         // cache.add('/src/js/app.js');
         cache.addAll([
-          '/',
-          // 'https://res2.wx.qq.com/open/js/jweixin-1.6.0.js',
-          '/js/chunk-vendors.js',
-          '/js/app.js',
-          // 'https://dataintest.longfor.com/zhuge.js?v=202233',
-          '/js/1.js',
-          '/js/2.js',
-          '/js/3.js',
-          // 'https://goyoo-assets.longfor.com/prod/app/55cC0WCB5wQTFc_JA5p0EQ.png',
-          // 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/_FE2SpPV8jrhx7gKYyeXPQ.png',
-          // 'https://guanyuoss.oss-cn-qingdao.aliyuncs.com/prod/app/OO0AfvTKMewa5qeOrcx6rA.png',
+          // '/',
+          '/five-years/dist/css/chunk-vendors.60b51ea4.css',
+          '/five-years/dist/css/app.c492647d.css',
+          '/five-years/dist/css/chunk-28757ccf.b0e0b622.css',
+          '/five-years/dist/js/chunk-vendors.7405a62e.js',
+          '/five-years/dist/js/app.92403492.js',
+          '/five-years/dist/js/chunk-2d0d43d7.156002df.js',
+          '/five-years/dist/js/chunk-28757ccf.2ae267a4.js',
         ]);
       })
   );
@@ -27,10 +24,10 @@ self.addEventListener('activate', function () {
   console.log('SW Activated');
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
-      .then(function(res) {
+      .then(function (res) {
         if (res) {
           return res;
         } else {
