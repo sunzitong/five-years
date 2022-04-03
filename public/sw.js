@@ -8,11 +8,13 @@ self.addEventListener('install', function (event) {
         // cache.add('/src/js/app.js');
         cache.addAll([
           // '/',
-          // '/five-years/dist/js/chunk-vendors.js',
-          // '/five-years/dist/js/app.js',
-          // '/five-years/dist/js/1.js',
-          // '/five-years/dist/js/2.js',
-          // '/five-years/dist/js/3.js',
+          '/five-years/dist/css/chunk-vendors.60b51ea4.css',
+          '/five-years/dist/css/app.c492647d.css',
+          '/five-years/dist/css/chunk-28757ccf.b0e0b622.css',
+          '/five-years/dist/js/chunk-vendors.7405a62e.js',
+          '/five-years/dist/js/app.92403492.js',
+          '/five-years/dist/js/chunk-2d0d43d7.156002df.js',
+          '/five-years/dist/js/chunk-28757ccf.2ae267a4.js',
         ]);
       })
   );
