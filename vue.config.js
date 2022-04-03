@@ -15,7 +15,7 @@ $VUE_APP_BASE_IMG: "~${process.env.VUE_APP_BASE_IMG}";
 const pkg = require("./package.json");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? `/fe/${pkg.name}` : "",
+  publicPath: process.env.NODE_ENV === "production" ? `/five-years/dist` : "",
   // outputDir: `../../dist/${pkg.name}`,
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === "development",
