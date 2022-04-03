@@ -7,7 +7,7 @@ self.addEventListener('install', function (event) {
         // cache.add('/index.html');
         // cache.add('/src/js/app.js');
         cache.addAll([
-          // '/',
+          '/five-years/dist/',
           '/five-years/dist/css/chunk-vendors.60b51ea4.css',
           '/five-years/dist/css/app.c492647d.css',
           '/five-years/dist/css/chunk-28757ccf.b0e0b622.css',
